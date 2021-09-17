@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	https://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 공통 JSP파일 -->
+	<security:http
+		pattern="/common/**"
+		security="none" />
+
+	<!-- 사용자 -->
+	<security:http
+		auto-config="true"
+		use-expressions="true">
+
+		<security:intercept-url
+			pattern="/**"
+			access="permitAll" />
+
+		<security:form-login
+			login-page="/login"
+			login-processing-url="/loginAction"
+			authentication-success-handler-ref="userLoginSuccessHandler"
+			authentication-failure-handler-ref="userLoginFailureHandler"
+			username-parameter="userid"
+			password-parameter="password" />
+
+		<security:logout
+			logout-url="/logout"
+			invalidate-session="true"
+			delete-cookies="JESSIONID" />
+
+		<security:session-management invalid-session-url="/login">
+			<security:concurrency-control
+				expired-url="/login"
+				max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</security:session-management>
+
+		<!-- csrf token cookie -->
+		<security:csrf token-repository-ref="tokenRepository" />
+
+		<!-- 접근 권한이 없는 경우의 코드 -->
+		<security:access-denied-handler ref="userDeniedHandler" />
+
+	</security:http>
+
+	<!-- CSRF토큰을 쿠키로 관리 -->
+	<bean
+		id="tokenRepository"
+		class="org.springframework.security.web.csrf.CookieCsrfTokenRepository"
+		p:cookieHttpOnly="false" />
+
+	<bean
+		id="userLoginSuccessHandler"
+		class="com.kosmo88.logistics_erp.member.handler.LoginSuccessHandler" />
+
+	<bean
+		id="userLoginFailureHandler"
+		class="com.kosmo88.logistics_erp.member.handler.LoginFailureHandler" />
+
+	<bean
+		id="userDeniedHandler"
+		class="com.kosmo88.logistics_erp.member.handler.UserDeniedHandler" />
+
+	<!-- 비밀번호 암호화 빈 -->
+	<bean
+		id="bCryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<bean
+		id="userService"
+		class="com.kosmo88.logistics_erp.member.handler.AuthenticationHandler">
+		<constructor-arg
+			name="sqlSession"
+			ref="sqlSession" />
+	</bean>
+</beans>
