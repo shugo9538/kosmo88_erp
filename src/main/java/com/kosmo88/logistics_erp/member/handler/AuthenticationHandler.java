@@ -36,6 +36,7 @@ public class AuthenticationHandler implements UserDetailsService {
         authority.add(new SimpleGrantedAuthority(user.getAuthority()));
         System.out.println(authority);
 
+        // enabled updated 예정
         return new LoginUserVO(user.getUsername(), user.getPassword(), true, true,
                 true, true, authority, user.getUserid());
     }
