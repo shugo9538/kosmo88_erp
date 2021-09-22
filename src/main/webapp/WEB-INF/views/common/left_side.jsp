@@ -126,13 +126,13 @@
 						<a href="${ROOT_PATH}/wms/">창고 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/wms/">재고 관리</a>
+						<a href="${ROOT_PATH}/stock/">재고 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/truck/">차량 관리</a>
+						<a href="${ROOT_PATH}/receiving/">입고 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/route/">경로 정보(보류)</a>
+						<a href="${ROOT_PATH}/shipping/">출고 관리</a>
 					</li>
 				</ul>
 			</li>
