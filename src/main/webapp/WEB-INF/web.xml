@@ -15,6 +15,12 @@
 		</param-value>
 	</context-param>
 
+
+	<!-- 컨텍스트 설정용(임시) -->
+	<listener>
+		<listener-class>com.kosmo88.logistics_erp.servletInit.InitVars</listener-class>
+	</listener>
+
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -68,8 +74,7 @@
 		-> 실제 지원 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
-		</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 	</filter>
 
 	<filter-mapping>
@@ -93,4 +98,9 @@
 	<session-config>
 		<session-timeout>480</session-timeout>
 	</session-config>
+	
+
+	
+	
+	
 </web-app>
