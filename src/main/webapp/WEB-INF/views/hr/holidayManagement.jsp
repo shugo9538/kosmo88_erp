@@ -11,9 +11,13 @@
 		<!--body wrapper start-->
 		<div class="wrapper">
 			휴가 관리
-			<div>
-				<img src="${RESOURCES_PATH}/assets/img/hr/휴가관리.PNG" alt="">
-			</div>
+			<table>
+				<tr>
+					<th>휴가 코드</th>
+					<th>휴가 종류</th>
+					<th>근태 코드</th>
+				</tr>
+			</table>
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
