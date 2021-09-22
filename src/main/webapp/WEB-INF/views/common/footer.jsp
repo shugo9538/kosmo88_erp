@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--Start  Footer -->
-<footer class="footer-main"> 2017 &copy; Meter admin Template. </footer>
+<footer class="footer-main"> 2021 &copy; 우여곡절 admin Template. </footer>
 <!--End footer -->
 </div>
 <!--End main content -->

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.kosmo88.logistics_erp.account.dao.AccountDAO">
+
+<!-- 기초정보관리  -->
+<!-- 1. 거래처 목록건수  -->
+<select id="getClientCnt" resultType="int">
+	SELECT COUNT(*) as cnt FROM CLIENT 
+</select>
+<!-- 2. 거래처 목록조회(페이징처리 아직 않함) -->
+<select id="selectClient" resultType="com.kosmo88.logistics_erp.account.vo.ClientVO">
+<![CDATA[
+SELECT * 
+FROM (SELECT id, type, name, ceo_name, register_num, address, register_date, ROWNUM rNum     
+FROM(SELECT * FROM CLIENT
+  ORDER BY register_date DESC)
+  )
+  WHERE rNum >=#{start} AND rNum <=#{end}
+]]>
+</select>
+<!-- 3. 신규거래처 등록 -->
+<insert id="insertClient">
+INSERT INTO CLIENT(id, type, name, ceo_name, register_num, address, register_date)
+        VALUES(#{id}, #{type}, #{name}, #{ceo_name}, #{register_num}, #{address} ,#{SYSDATE})	
+</insert>
+<!-- 4. 거래처 정보수정(where => 사업자등록번호) -->
+<update id="updeateClient" parameterType="int">
+UPDATE CLIENT
+SET type=#{type},name=#{name},ceo_name=#{ceo_name},register_num=#{register_num},address=#{address}
+where register_num = #{register_num}
+</update>
+<!-- 5. 거래체 목록 삭제(where => 사업자등록번호) -->
+<delete id="deleteClient" parameterType="int">
+DELETE FROM CLIENT WHERE register_num=#{register_num}
+</delete>
+
+<!-- 장부관리-일반전표 -->
+<!-- 1. 일반전표 건수 -->
+<select id="getSlipCnt" resultType="int">
+SELECT COUNT(*)as cnt FROM slip
+</select>
+<!-- 2. 일반전표 조회 -->
+<select id="selectSlip" resultType="com.kosmo88.logistics_erp.account.vo.SlipVO">
+<![CDATA[
+SELECT *
+FROM (SELECT ID, TYPE, REGISTER_DATE, UPDATE_DATE, STATE, DEPARTMENT_ID, DEPARTMENT_REQUEST, ROWNUM rNum   
+FROM(SELECT *
+  FROM slip
+  ORDER BY REGISTER_DATE))
+  WHERE rNum >=#{start} AND rNum <=#{end}
+]]>
+</select>
+<!-- 3. 일반전표 등록 -->
+<!-- 4. 파트별 전표승인 -->
+<!-- 5. 일반전표 수정 -->
+<!-- 6. 일반전표 상태변경 -->
+<!-- 7. 일반전표 삭제 -->
+
+
+
+<!-- 장부관리-매입/매출장 -->
+<!-- 1. 매입/매출전표 건수 -->
+<!-- 2. 매입/매출전표 목록조회 -->
+<!-- 3. 매입전표조회 -->
+<!-- 4. 매출전표조회 -->
+<!-- 5. 매입/매출전표 등록 -->
+<!-- 6. 매입/매출전표 수정 -->
+<!-- 7. 매입/매출전표 삭제 -->
+
+
+
+</mapper>    
