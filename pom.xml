@@ -35,12 +35,14 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>
@@ -118,6 +120,7 @@
 			<version>1.0</version>
 		</dependency>
 
+
 		<!-- Mybatis 설정 시작 -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -144,6 +147,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- Mybatis 설정 종료 -->
+
 
 		<!-- 스프링 시큐리티 설정 시작 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
@@ -175,6 +179,7 @@
 		</dependency>
 		<!-- 스프링 시큐리티 설정 종료 -->
 
+
 		<!-- JSON Converter -->
 		<!-- JSON Converter 설정 시작 -->
 		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
@@ -191,6 +196,7 @@
 			<version>2.9.8</version>
 		</dependency>
 		<!-- JSON Converter 설정 종료 -->
+
 
 		<!-- Java Mail API -->
 		<dependency>
@@ -211,6 +217,7 @@
 			<version>4.1.6.RELEASE</version>
 		</dependency>
 		<!-- Java Mail API -->
+
 
 		<!-- Test -->
 		<dependency>
