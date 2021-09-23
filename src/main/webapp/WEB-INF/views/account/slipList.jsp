@@ -34,9 +34,7 @@
               
           <!--Start Page Title-->
            <div class="page-title-box">
-                <h4 class="page-title">
-                <a href="#">전표입력/장부관리</a>
-                </h4>
+                <h4 class="page-title">  전표입력/장부관리 </h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">승인전표 목록</a>
@@ -83,10 +81,28 @@
                                     	<td>11111</td>
                                     	<td>입금</td>
                                     	<td>2021-09-23</td>
-                                    	<td></td>
-                                    	<td></td>
-                                    	<td></td>
-                                    	<td></td>
+                                    	<td>2021-09-24</td>
+                                    	<td>미승인</td>
+                                    	<td>22222</td>
+                                    	<td>33333</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>11111</td>
+                                    	<td>입금</td>
+                                    	<td>2021-09-24</td>
+                                    	<td>2021-09-25</td>
+                                    	<td>미승인</td>
+                                    	<td>22222</td>
+                                    	<td>33333</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>11111</td>
+                                    	<td>입금</td>
+                                    	<td>2021-09-26</td>
+                                    	<td>2021-09-27</td>
+                                    	<td>미승인</td>
+                                    	<td>22222</td>
+                                    	<td>33333</td>
                                     </tr>
                                     <!-- 등록전표가 있는 경우 -->                     
                                     <c:if test="${cnt > 0}">

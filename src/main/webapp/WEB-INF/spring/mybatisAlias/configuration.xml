@@ -7,7 +7,6 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
-<<<<<<< HEAD
 			
 		<!-- 회계관리 -->	
 		<!-- 일반전표 VO -->
@@ -15,8 +14,7 @@
 			alias="SlipVO"/>
 		<!-- 계좌 VO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.vo.AccountVO"
-		   alias="AccountVO"/>		
-=======
+		   alias="AccountVO"/>	
 		<!-- hr dto start -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO"
@@ -43,7 +41,6 @@
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
->>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
 	</typeAliases>
 
 </configuration>

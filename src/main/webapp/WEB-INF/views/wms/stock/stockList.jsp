@@ -15,41 +15,66 @@
 
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">창고 정보</h4>
+				<h4 class="page-title">재고 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 목록</a></li>
-					<li class="active">창고 정보</li>
+					<li><a href="#">재고 관리</a></li>
+					<li class="active">재고 목록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
+
+
+
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/modify">창고
-						수정</a></li>
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/delete">창고
-						삭제</a></li>
+<%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">재고 --%>
+<!-- 						목록</a></li> -->
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/add">재고
+						등록</a></li>
 			</ul>
-		
+
+
 			<!--Start row-->
-				<div class="row">
+			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<h2 class="header-title">섹션 정보</h2>
-						<form class="form-horizontal">
-							<div class="form-group">
-								<label class="col-md-2 control-label">Text</label>
-								<div class="col-md-10">
-									<input class="form-control" value="Some text value..."
-										type="text">
-								</div>
-							</div>
-
-
-						</form>
+<!-- 						<h2 class="header-title">Projects</h2> -->
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>품목명</th>
+										<th>품목 분류</th>
+										<th>수량</th>
+										<th>창고</th>
+										<th>입고일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/view">하리보</a></td>
+										<td>제과류</td>
+										<td>200</td>
+										<td>본사창고</td>
+										<td>2021/04/27</td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!--재고 목록End row-->
+			
+			
+			
+			
+			<!--Start row-->
+			<div class="row"></div>
 			<!--End row-->
 			<!--Start row-->
 			<div class="row"></div>

@@ -36,7 +36,7 @@
               
           <!--Start Page Title-->
            <div class="page-title-box">
-                <h4 class="page-title">통장거래내역</h4>
+                <h4 class="page-title">금융/자금관리(통장)</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">급여통장</a>
@@ -68,10 +68,36 @@
                                             <th>잔액</th>
                                             <th>요약</th>
                                             <th>등록일</th>
-                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <tr>
+                                    	<td>98000</td>
+                                    	<td>우여곡절-급여계좌</td>
+                                    	<td>7050030-02-1117-307</td>
+                                    	<td>국민은행(보통)</td>
+                                    	<td>100,000,000</td>
+                                    	<td>급여이체</td>
+                                    	<td>2021-09-23</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>98000</td>
+                                    	<td>우여곡절-세금관리</td>
+                                    	<td>096-24-0094-123</td>
+                                    	<td>기업은행(보통)</td>
+                                    	<td>500,000,000</td>
+                                    	<td>세금납부</td>
+                                    	<td>2021-03-21</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>98000</td>
+                                    	<td>우여곡절-거래처</td>
+                                    	<td>542314-11-00027</td>
+                                    	<td>신한은행(보통)</td>
+                                    	<td>8,000,000</td>
+                                    	<td>매출/매입 자금관리</td>
+                                    	<td>2021-07-12</td>
+                                    </tr>
                                     <!-- 등록거래처가 있는경우 -->                     
                                     <c:if test="${cnt > 0}">
                                     	<c:forEach var="dto" items="${account}">
@@ -94,13 +120,13 @@
                                      </c:if>
 
                                      <!-- 거래내역이 없는경우 -->
-                                     <c:if test="${cnt == 0}">
+                                  <%--    <c:if test="${cnt == 0}">
                                      	<tr>
                                      		<td colspan="8" align="center">
                                      			<span style="color:red"> 거래내역이 없습니다. </span>
                                      		</td>
                                      	</tr>
-                                     </c:if>   
+                                     </c:if>  --%>  
                                     </tbody>
                                     
                                     <tfoot>

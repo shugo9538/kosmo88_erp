@@ -55,7 +55,7 @@
                     <h4 class="page-title">
                     <a href="${ROOT_PATH}/account/slipList?categoryNum=120">전표입력/장부관리</a>
                    	 &gt;
-               		<a href="${ROOT_PATH}/account/slipDetail">일반전표등록</a>
+               		일반전표등록
                    	 </h4>
                     <ol class="breadcrumb">
                         <li>
@@ -140,7 +140,8 @@
                           </div>
                           <div class="form-group">
                             <div class="col-md-8 col-md-offset-3">
-                              <button class="btn  btn-primary" type="submit">Submit</button>
+                              <button class="btn  btn-primary" type="submit">전표등록</button>
+                              <button class="btn  btn-primary" type="reset">입력취소</button>
                             </div>
                           </div>
                         </form>

@@ -116,23 +116,6 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list" id="logistics">
-				<a href="#">
-					<i class="icon-loop"></i>
-					<span>물류관리</span>
-				</a>
-				<ul class="sub-menu-list">
-					<li>
-						<a href="${ROOT_PATH}/dispatching/">배차 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/truck/">차량 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/route/">경로 정보(보류)</a>
-					</li>
-				</ul>
-			</li>
 			<li class="menu-list" id="wms">
 				<a href="#">
 					<i class="icon-loop"></i>
@@ -140,16 +123,16 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/wms/">창고 관리</a>
+						<a href="${ROOT_PATH}/wms/warehouse/">창고 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/stock/">재고 관리</a>
+						<a href="${ROOT_PATH}/wms/stock/">재고 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/receiving/">입고 관리</a>
+						<a href="${ROOT_PATH}/wms/truck/">차량 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/shipping/">출고 관리</a>
+						<a href="${ROOT_PATH}/wms/shipping/">배차 관리</a>
 					</li>
 				</ul>
 			</li>
