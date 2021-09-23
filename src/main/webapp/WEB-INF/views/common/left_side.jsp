@@ -13,7 +13,7 @@
 	<div class="left-side-inner">
 		<!--Sidebar nav-->
 		<ul class="nav nav-pills nav-stacked custom-nav">
-			<li class="menu-list nav-active">
+			<li class="menu-list" id="hr">
 				<a href="${ROOT_PATH}/">
 					<i class="icon-home"></i>
 					<span>인사관리</span>
@@ -39,7 +39,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list">
+			<li class="menu-list" id="account">
 				<a href="#">
 					<i class="icon-layers"></i>
 					<span>회계관리</span>
@@ -73,7 +73,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list">
+			<li class="menu-list" id="sales">
 				<a href="#">
 					<i class="icon-grid"></i>
 					<span>영업관리</span>
@@ -96,7 +96,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list">
+			<li class="menu-list" id="purchase">
 				<a href="#">
 					<i class="icon-envelope-open"></i>
 					<span>구매관리</span>
@@ -116,7 +116,7 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list">
+			<li class="menu-list" id="logistics">
 				<a href="#">
 					<i class="icon-loop"></i>
 					<span>물류관리</span>
@@ -133,10 +133,10 @@
 					</li>
 				</ul>
 			</li>
-			<li class="menu-list">
+			<li class="menu-list" id="wms">
 				<a href="#">
 					<i class="icon-loop"></i>
-					<span>wms</span>
+					<span>WMS</span>
 				</a>
 				<ul class="sub-menu-list">
 					<li>

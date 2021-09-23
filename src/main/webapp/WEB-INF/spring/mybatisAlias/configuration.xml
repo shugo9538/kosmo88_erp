@@ -7,6 +7,7 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
+<<<<<<< HEAD
 			
 		<!-- 회계관리 -->	
 		<!-- 일반전표 VO -->
@@ -15,6 +16,34 @@
 		<!-- 계좌 VO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.vo.AccountVO"
 		   alias="AccountVO"/>		
+=======
+		<!-- hr dto start -->
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO"
+			alias="AttendanceCodeDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.AttendanceDTO"
+			alias="AttendanceDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.CommuteDTO"
+			alias="CommuteDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
+			alias="PaySlipDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.HolidayDTO"
+			alias="HolidayDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO"
+			alias="HolidayUsageStatusDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO"
+			alias="PayStepTableDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
+			alias="SalaryDTO" />
+		<!-- hr dto end -->
+>>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
 	</typeAliases>
 
 </configuration>
