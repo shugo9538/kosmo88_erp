@@ -15,7 +15,8 @@
 			<div class="page-title-box">
 				<h4 class="page-title">견적서 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서
+							관리</a></li>
 					<li class="active">견적서 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -26,10 +27,11 @@
 				<!-- Start white-box -->
 				<div class="white-box">
 					<div class="col-md-12">
-						<h4 class="page-title"><i class="fa fa-chevron-circle-right"></i>견적서</h4>
-						
-						<div class="form-group">
-						</div>
+						<h4 class="page-title">
+							<i class="fa fa-chevron-circle-right"></i>견적서
+						</h4>
+
+						<div class="form-group"></div>
 						<div class="form-group">
 							<label class="col-md-1 control-label">회사명</label>
 							<div class="col-md-3">
@@ -104,17 +106,19 @@
 							</div>
 						</div>
 					</div>
-						
+
 					<div class="form-group"></div>
 					<div class="form-group"></div>
-	
+
 					<div class="col-md-12">
-						<h4 class="page-title"><i class="fa fa-chevron-circle-right"></i>견적서 품목내역</h4>
+						<h4 class="page-title">
+							<i class="fa fa-chevron-circle-right"></i>견적서 품목내역
+						</h4>
 						<div class="table-responsive">
-						<div class="col-md-2">
-							<input class="btn btn-default" type="button" value="품목추가">
-							<input class="btn btn-default" type="button" value="품목삭제">
-						</div>
+							<div class="col-md-2">
+								<input class="btn btn-default" type="button" value="품목추가">
+								<input class="btn btn-default" type="button" value="품목삭제">
+							</div>
 							<table id="example" class="display table">
 								<thead>
 									<tr>
@@ -128,7 +132,7 @@
 										<th>공급가액</th>
 									</tr>
 								</thead>
-								
+
 								<tbody>
 									<tr>
 										<th style="text-align: center;"><input type="checkbox"
@@ -214,20 +218,19 @@
 							</table>
 						</div>
 					</div>
-						
+
 					<div class="form-group">
 						<div class="col-md-5 col-md-offset-5">
 							<input class="btn btn-primary" type="submit" value="등록">
-							<input class="btn btn-primary" type="reset" value="취소">								
+							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
 					</div>
 				</div>
 				<!-- End white-box -->
-			</form>	
+			</form>
 		</div>
-	</div>
-	<!-- End Wrapper-->
-	
-	<%@ include file="../common/footer.jsp"%>
+		<!-- End Wrapper-->
+
+		<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
