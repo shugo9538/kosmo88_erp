@@ -10,11 +10,26 @@
 		<%@ include file="../common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
-			주문 관리
-			<div>
-				<img src="${RESOURCES_PATH}/assets/img/buy/주문관리.PNG" alt="">
+
+
+			<!--Start Page Title-->
+			<div class="page-title-box">
+				<h4 class="page-title">발주서관리</h4>
+				<ol class="breadcrumb">
+					<li><a href="#">발주서관리</a></li>
+					<li class="active">발주서목록</li>
+				</ol>
+				<div class="clearfix"></div>
 			</div>
-		</div>
+			<!--End Page Title-->
+			
+			<ul class="nav nav-pills custom-nav">
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouseList.do">창고
+						목록</a></li>
+				<li class="active"><a href="${ROOT_PATH}/wms/addWarehouse.do">창고
+						등록</a></li>
+			</ul>
+		</div>	
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
 </body>

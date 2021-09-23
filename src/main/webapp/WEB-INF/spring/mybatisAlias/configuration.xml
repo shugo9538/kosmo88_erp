@@ -42,5 +42,6 @@
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
 	</typeAliases>
+	
 
 </configuration>

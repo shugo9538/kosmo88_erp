@@ -80,7 +80,7 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/sales/clientManagement"> 거래처 관리</a>
+						<a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/sales/salesManagement">판매 관리</a>
@@ -103,16 +103,16 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/purchase/purchaseManagement"> 구매관리</a>
+						<a href="${ROOT_PATH}/purchase/clientManagement"> 거래처 관리 </a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/clientManagement"> 거래처 관리</a>
+						<a href="${ROOT_PATH}/purchase/estimateManagement"> 견적서 관리 </a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/orderManagement"> 발주 관리</a>
+						<a href="${ROOT_PATH}/purchase/orderManagement"> 구매 관리 </a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/currentStatus"> 구매관리 현황</a>
+						<a href="${ROOT_PATH}/purchase/currentStatus"> 구매전표 관리 </a>
 					</li>
 				</ul>
 			</li>
