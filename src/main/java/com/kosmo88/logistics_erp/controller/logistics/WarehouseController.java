@@ -17,15 +17,15 @@ public class WarehouseController {
 
     @RequestMapping(value = {"/warehouseList.do", "/"})
     public String warehouseList(Model model) {
-        return "logistics/wms/warehouseList";
+        return "wms/warehouse/warehouseList";
     }
     @RequestMapping(value = {"/addWarehouse.do"})
     public String addWarehouse(Model model) {
-        return "logistics/wms/addWarehouse";
+        return "wms/warehouse/addWarehouse";
     }
     @RequestMapping(value = {"/itemList.do"})
     public String itemList(Model model) {
-        return "logistics/wms/itemList";
+        return "wms/warehouse/itemList";
     }
 
 }

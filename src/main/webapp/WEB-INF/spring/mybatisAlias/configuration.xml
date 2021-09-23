@@ -8,5 +8,6 @@
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
 	</typeAliases>
+	
 
 </configuration>
