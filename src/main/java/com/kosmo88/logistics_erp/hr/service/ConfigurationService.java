@@ -3,7 +3,7 @@ package com.kosmo88.logistics_erp.hr.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public interface HRService {
+public interface ConfigurationService {
     // 기초 환경 설정
     // 근태 항목 목록 조회
     void attendanceCodeManagement(HttpServletRequest req, HttpServletResponse res);
