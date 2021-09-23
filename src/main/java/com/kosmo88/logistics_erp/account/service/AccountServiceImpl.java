@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.account.code.menuCode;
+import com.kosmo88.logistics_erp.account.dao.AccountDAO;
 import com.kosmo88.logistics_erp.account.dao.AccountDAOImpl;
 import com.kosmo88.logistics_erp.account.vo.AccountVO;
 import com.kosmo88.logistics_erp.account.vo.ClientVO;
@@ -22,7 +23,7 @@ import com.kosmo88.logistics_erp.account.vo.SlipVO;
 public class AccountServiceImpl implements AccountService, menuCode {
 	
 	@Autowired
-	AccountDAOImpl dao;
+	AccountDAO accountDAO;
 
 	// 기초정보관리
 	// 거래처 목록조회
@@ -51,16 +52,16 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 		switch (categoryNum) {
 			case CLIENT:
-			cnt = dao.getClientCnt();
+			cnt = accountDAO.getClientCnt();
 			break;
 			case SLIP:
-			cnt = dao.getSlipCnt();
+			cnt = accountDAO.getSlipCnt();
 			break;
 			case SALESSLIP:
-			cnt = dao.getSalesSlipCnt();
+			cnt = accountDAO.getSalesSlipCnt();
 			break;
 			case ACCOUNT:
-			cnt = dao.getAccountCnt();
+			cnt = accountDAO.getAccountCnt();
 			break;
 		
 		}
@@ -134,19 +135,19 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			// 거래처관리
 			if (categoryNum == CLIENT) {
 				client = new ArrayList<ClientVO>();
-				client = dao.selectClient(map);
+				client = accountDAO.selectClient(map);
 			// 일반전표
 			}else if(categoryNum == SLIP) {
 				slip = new ArrayList<SlipVO>();
-				slip = dao.selectSlip(map);
+				slip = accountDAO.selectSlip(map);
 			// 매입/매출전표
 			}else if(categoryNum == SALESSLIP) {
 				saleslip = new ArrayList<SalesSlipVO>();
-				saleslip = dao.selectSalesSlip(map);
+				saleslip = accountDAO.selectSalesSlip(map);
 			// 계좌조회
 			}else if(categoryNum == ACCOUNT) {
 				account = new ArrayList<AccountVO>();
-				account = dao.selectAccount(map);
+				account = accountDAO.selectAccount(map);
 			}
 				
 		}

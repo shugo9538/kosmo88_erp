@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kosmo88.logistics_erp.account.service.AccountService;
 import com.kosmo88.logistics_erp.account.service.AccountServiceImpl;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -19,7 +20,7 @@ import com.kosmo88.logistics_erp.account.service.AccountServiceImpl;
 public class AccountController {
 	
 	@Autowired
-	AccountServiceImpl service;
+	AccountService service;
 	
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
