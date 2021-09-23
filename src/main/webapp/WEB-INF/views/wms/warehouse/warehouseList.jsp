@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/settings.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -11,13 +10,13 @@
 		<%@ include file="/WEB-INF/views/common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
-
-
 			<!--Start Page Title-->
 			<div class="page-title-box">
 				<h4 class="page-title">창고 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
+					<li>
+						<a href="#">창고 관리</a>
+					</li>
 					<li class="active">창고 목록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -28,10 +27,19 @@
 
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
+<<<<<<< HEAD
 <%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">창고 --%>
 <!-- 						목록</a></li> -->
 				<li class="active"><a href="${ROOT_PATH}/warehouse/add">창고
 						등록</a></li>
+=======
+				<li class="active">
+					<a href="${ROOT_PATH}/wms/warehouseList.do">창고 목록</a>
+				</li>
+				<li class="active">
+					<a href="${ROOT_PATH}/wms/addWarehouse.do">창고 등록</a>
+				</li>
+>>>>>>> f64f03fd7394f857afc5fa5c4e064c84de6ee17d
 			</ul>
 
 
@@ -55,6 +63,7 @@
 								<tbody>
 									<tr>
 										<td>1</td>
+<<<<<<< HEAD
 										<td><a href="${ROOT_PATH}/warehouse/view">본사 창고</a></td>
 										<td>창고창창</td>
 										<td>고창창고</td>
@@ -63,6 +72,17 @@
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 25%;"></div>
+=======
+										<td>본사 창고</td>
+										<td>창고창창</td>
+										<td>고창창고</td>
+										<td>
+											<span class="label label-warning">창고중</span>
+										</td>
+										<td>
+											<div class="progress progress-striped progress-sm">
+												<div class="progress-bar progress-bar-warning" style="width: 25%;"></div>
+>>>>>>> f64f03fd7394f857afc5fa5c4e064c84de6ee17d
 											</div>
 										</td>
 									</tr>
@@ -71,11 +91,20 @@
 										<td>유라 창고</td>
 										<td>창고창창</td>
 										<td>고창창고</td>
+<<<<<<< HEAD
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 90%;"></div>
+=======
+										<td>
+											<span class="label label-warning">창고중</span>
+										</td>
+										<td>
+											<div class="progress progress-striped progress-sm">
+												<div class="progress-bar progress-bar-warning" style="width: 90%;"></div>
+>>>>>>> f64f03fd7394f857afc5fa5c4e064c84de6ee17d
 											</div>
 										</td>
 									</tr>
@@ -85,11 +114,15 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<!--창고 목록End row-->
 			
 			
 			
 			
+=======
+			<!--End row-->
+>>>>>>> f64f03fd7394f857afc5fa5c4e064c84de6ee17d
 			<!--Start row-->
 			<div class="row"></div>
 			<!--End row-->

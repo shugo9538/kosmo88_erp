@@ -33,7 +33,7 @@ public class HRController {
     @RequestMapping(value = "/attendanceManagement")
     public String attendanceManagement(Model model) {
 
-        return "hr/hrManagement";
+        return "hr/attendanceManagement";
     }
 
     // 휴가 관리

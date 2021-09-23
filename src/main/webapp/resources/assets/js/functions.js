@@ -38,6 +38,14 @@
       }
       return false;
    });
+   
+   $(document).ready(function() {
+      var curLink = window.location.href;
+      curLink = curLink.toString();
+      curLink = curLink.split('/')[4];
+      
+      jQuery('#'+curLink).addClass('nav-active');
+   });
 
    function visibleSubMenuClose() {
       jQuery('.menu-list').each(function() {
