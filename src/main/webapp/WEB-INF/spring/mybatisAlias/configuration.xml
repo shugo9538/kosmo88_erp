@@ -7,11 +7,22 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
+<<<<<<< HEAD
 		
 		<typeAlias 
 			type="com.kosmo88.logistics_erp.sale.dto.SaleDTO"
 			alias="SaleDTO"/>
 			
+=======
+			
+		<!-- 회계관리 -->	
+		<!-- 일반전표 VO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.vo.SlipVO"
+			alias="SlipVO"/>
+		<!-- 계좌 VO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.vo.AccountVO"
+		   alias="AccountVO"/>	
+>>>>>>> b36ff90ffa51e79f1934ed3045fd4c0d18f1363e
 		<!-- hr dto start -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO"

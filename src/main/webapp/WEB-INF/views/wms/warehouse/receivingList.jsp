@@ -11,35 +11,17 @@
 		<%@ include file="/WEB-INF/views/common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
-
-
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">창고 목록</h4>
+				<h4 class="page-title">입고 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
-					<li class="active">창고 목록</li>
+					<li><a href="#">입고 관리</a></li>
+					<li class="active">입고 목록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-<<<<<<< HEAD
-			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
-=======
-
-
-
-			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
->>>>>>> b36ff90ffa51e79f1934ed3045fd4c0d18f1363e
-			<ul class="nav nav-pills custom-nav">
-<%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">창고 --%>
-<!-- 						목록</a></li> -->
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/add">창고
-						등록</a></li>
-			</ul>
-
-
-			<!--Start row-->
+					<!--창고 목록 Start row-->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
@@ -49,9 +31,9 @@
 								<thead>
 									<tr>
 										<th>#</th>
+										<th>일시</th>
 										<th>창고 이름</th>
-										<th>창고창창</th>
-										<th>창창창고</th>
+										<th>구역</th>
 										<th>창고 상태</th>
 										<th>포화도</th>
 									</tr>
@@ -59,31 +41,14 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="${ROOT_PATH}/wms/warehouse/view">본사 창고</a></td>
+										<td>본사 창고</td>
 										<td>창고창창</td>
 										<td>고창창고</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 25%;"></div>
-=======
-										<td>
-											<span class="label label-warning">창고중</span>
-										</td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning" style="width: 25%;"></div>
->>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
-=======
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 25%;"></div>
->>>>>>> ccaace795acb986958d4a4bbf5ce5475b7201035
 											</div>
 										</td>
 									</tr>
@@ -92,28 +57,11 @@
 										<td>유라 창고</td>
 										<td>창고창창</td>
 										<td>고창창고</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 90%;"></div>
-=======
-										<td>
-											<span class="label label-warning">창고중</span>
-										</td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning" style="width: 90%;"></div>
->>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
-=======
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 90%;"></div>
->>>>>>> ccaace795acb986958d4a4bbf5ce5475b7201035
 											</div>
 										</td>
 									</tr>
@@ -124,13 +72,6 @@
 				</div>
 			</div>
 			<!--창고 목록End row-->
-			
-			
-			
-			
-			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
 			<!--Start row-->
 			<div class="row"></div>
 			<!--End row-->

@@ -13,22 +13,50 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">품목 목록</h4>
+				<h4 class="page-title">차량 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">품목 관리</a></li>
-					<li class="active">품목 목록</li>
+					<li><a href="#">차량 관리</a></li>
+					<li class="active">차량 목록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
+			
 			<!--Start row-->
 			<div class="row">
-				<div class="myFilter">
-					
+				<div class="col-md-12">
+					<div class="white-box">
+<!-- 						<h2 class="header-title">Projects</h2> -->
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>차량번호</th>
+										<th>분류(적재)</th>
+										<th>최종위치</th>
+										<th>상태</th>
+										<th>등록일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/view">5223</a></td>
+										<td>5톤땀프</td>
+										<td>본사창고</td>
+										<td>운행중</td>
+										<td>2021/04/27</td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
-			<!--End row-->
-			<!--Start row-->
+			<!--재고 목록End row-->
+			
 			<div class="row"></div>
 			<!--End row-->
 			<!--Start row-->

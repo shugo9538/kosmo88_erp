@@ -1,4 +1,3 @@
-
 var BaseFormValidation = function() {
     var initValidationBootstrap = function(){
         jQuery('.js-validation-bootstrap').validate({
