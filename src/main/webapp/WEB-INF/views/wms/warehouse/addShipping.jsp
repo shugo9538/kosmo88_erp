@@ -13,16 +13,14 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">제목</h4>
+				<h4 class="page-title">출고 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">소메뉴</a></li>
-					<li class="active">대메뉴</li>
+					<li><a href="#">출고 관리</a></li>
+					<li class="active">출고 등록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-			
-				<img src="${RESOURCES_PATH}/assets/img/hr/기초환경설정.PNG" alt="">
 			<!--Start row-->
 			<div class="row"></div>
 			<!--End row-->

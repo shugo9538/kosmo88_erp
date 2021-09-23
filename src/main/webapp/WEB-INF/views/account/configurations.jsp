@@ -17,5 +17,6 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
+	</div>	
 </body>
 </html>
