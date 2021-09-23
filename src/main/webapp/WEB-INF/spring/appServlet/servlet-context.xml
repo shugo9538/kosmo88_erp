@@ -41,10 +41,16 @@
 	<beans:bean id="loggingService" class="com.kosmo88.logistics_erp.aop.AopLogger"></beans:bean>	
 	<aop:config>
 <!-- 			 execution([접근제어자] [returnType].[package]..[className].[method].([매개변수리스트]) -->
-		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*.*(..))" id="allPc"/>
+		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*Service.*(..))" id="services"/>
+		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*DAO.*(..))" id="DAOs"/>
+		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*Controller.*(..))" id="Controllers"/>
+	
+<!-- 		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*.*(..))" id=""/> -->
 
 		<aop:aspect ref="loggingService">
-			<aop:before method="logging" pointcut-ref="allPc"/>
+			<aop:before method="logging" pointcut-ref="services"/>
+			<aop:before method="logging" pointcut-ref="DAOs"/>
+			<aop:before method="logging" pointcut-ref="Controllers"/>
 		</aop:aspect>
 	</aop:config>
 
