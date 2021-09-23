@@ -19,7 +19,7 @@ import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
 
 @Service
-public class HRServiceImpl implements HRService {
+public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
     HRDAO hrDAO;
