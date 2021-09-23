@@ -22,9 +22,35 @@ public class SalesController {
     public String clientResister(HttpServletRequest request, Model model) {
     	logger.info("url => clientResister");
     	
-    	
+    	// service.resisterClient
     	
     	return "sales/clientResister";
+    }
+    
+    // 거래처 목록
+    @RequestMapping(value="/clientList")
+    public String clientList(HttpServletRequest request, Model model) {
+    	
+    	// service.clientList(HttpServletRequest request, Model model)
+    	
+    	return "sale/clientList";
+    }
+    
+    // 거래처 수정
+    
+    
+    // 견적서 등록
+    @RequestMapping(value="estimateResister")
+    public String estimateResister(HttpServletRequest request, Model model) {
+    	
+    	return "sale/estimateResister";
+    }
+    
+    // 견적서 목록
+    @RequestMapping(value="estimateList")
+    public String estimateList(HttpServletRequest request, Model model) {
+    	
+    	return "sale/estimateList";
     }
     
     // 거래처 관리

@@ -23,7 +23,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
+			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
 				<li class="active"><a href="${ROOT_PATH}/wms/warehouseList.do">창고
 						목록</a></li>

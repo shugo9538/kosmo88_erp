@@ -20,22 +20,22 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li class="active">
-						<a href="${ROOT_PATH}/hr/configurations"> 기초정보 환경설정</a>
+						<a href="${ROOT_PATH}/hr/configurations">기초정보 환경설정</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/hrManagement"> 인사카드 관리</a>
+						<a href="${ROOT_PATH}/hr/hrManagement">인사카드 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/attendanceManagement"> 근태 관리</a>
+						<a href="${ROOT_PATH}/hr/attendanceManagement">근태 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/holidayManagement"> 휴가 관리</a>
+						<a href="${ROOT_PATH}/hr/holidayManagement">휴가 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/salaryManagement"> 급여관리</a>
+						<a href="${ROOT_PATH}/hr/salaryManagement">급여관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/slipManagement"> 전표 관리</a>
+						<a href="${ROOT_PATH}/hr/slipManagement">전표 관리</a>
 					</li>
 				</ul>
 			</li>
@@ -63,19 +63,19 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/sales/clientManagement"> 거래처 관리</a>
+						<a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/sales/salesManagement">판매 관리</a>
+						<a href="${ROOT_PATH}/sales/salesManagement">견적서 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/sales/estimateMangement">견적서 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/sales/orderManagement">주문서 관리</a>
+						<a href="${ROOT_PATH}/sales/estimateMangement">판매 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/sales/shipmentManagement">출하 관리</a>
+					</li>
+					<li>
+						<a href="${ROOT_PATH}/sales/shipmentManagement">판매전표 관리</a>
 					</li>
 				</ul>
 			</li>
