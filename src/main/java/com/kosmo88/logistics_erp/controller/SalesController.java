@@ -18,13 +18,13 @@ public class SalesController {
     private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 
     // 거래처 등록
-    @RequestMapping(value= "/clientResister")
+    @RequestMapping(value= "/clientManagement")
     public String clientResister(HttpServletRequest request, Model model) {
-    	logger.info("url => clientResister");
+    	logger.info("url => clientManagement");
     	
     	// service.resisterClient
     	
-    	return "sales/clientResister";
+    	return "sales/clientManagement";
     }
     
     // 거래처 목록
@@ -53,12 +53,7 @@ public class SalesController {
     	return "sale/estimateList";
     }
     
-    // 거래처 관리
-    @RequestMapping(value = "/clientManagement")
-    public String clientManagement(Model model) {
-
-        return "sales/clientManagement";
-    }
+    
 
     // 판매 관리
     @RequestMapping(value = "/salesManagement")

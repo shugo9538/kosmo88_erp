@@ -21,19 +21,7 @@ public class WarehouseController {
     }
     @RequestMapping(value = {"/addWarehouse.do"})
     public String addWarehouse(Model model) {
-<<<<<<< HEAD
-        return "wms/warehouse/addWarehouse";
-    }
-    @RequestMapping(value = {"/itemList.do"})
-    public String itemList(Model model) {
-        return "wms/warehouse/itemList";
-=======
-        return "wms/addWarehouse";
-    }
-    @RequestMapping(value = {"/itemList.do"})
-    public String itemList(Model model) {
-        return "wms/itemList";
->>>>>>> f64f03fd7394f857afc5fa5c4e064c84de6ee17d
-    }
 
+    	return "";
+    }
 }
