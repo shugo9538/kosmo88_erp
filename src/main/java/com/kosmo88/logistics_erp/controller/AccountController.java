@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,55 +45,82 @@ public class AccountController {
     }
 
     
-    //------------------------ 밑 추가사항 위 기본 git다운 전 메뉴
+    //------------------------ 기초정보관리 ------------------------
     //
     // 기초정보관리 - 거래처 목록
     @RequestMapping(value = "/clientList")
     public String clientList(HttpServletRequest request, Model model) {
     	logger.info("/clientList");
     	
-    	service.clientList(request, model);
+    	service.accountingList(request, model);
 
         return "account/clientList";
     }
     
+    //------------------------ 장부관리 ------------------------
     // 장부관리 - 일반전표 목록
     @RequestMapping(value="/slipList")
     public String slipList(HttpServletRequest request, Model model) {
     	logger.info("/slipList");
     	
+    	service.accountingList(request, model);
+    	
     	return "account/slipList";
     }
+    // 장부관리 - 일반전표 등록페이지
+    @RequestMapping(value="/slipDetail")
+    public String slipDetail(HttpServletRequest request, Model model) {
+    	logger.info("/slipDetail");
+    	
+    	
+    	return "account/slipDetail";
+    }
+    // 장부관리 - 일반전표 등록페이지
+    @RequestMapping(value="/slipModify")
+    public String slipModify(HttpServletRequest request, Model model) {
+    	logger.info("/slipModify");
+    	
+    	
+    	return "account/slipModify";
+    }
     
-    // 장부관리 - 매입/매출장(매출)
+    // 장부관리 - 매입/매출장 목록
     @RequestMapping(value = "/salesSlipList")
     public String salesList(HttpServletRequest request, Model model) {
-
+    	logger.info("/salesSlipList");
+    	
+    	service.accountingList(request, model);
+    	
         return "account/salesSlipList";
     }
     
-    // 장부관리 - 매입/매출장(매출)
-    @RequestMapping(value = "/salesSlip")
+    // 장부관리 - 매입/매출장(매출전표목록)
+    @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
-
-        return "account/salesSlip";
+    	
+        return "account/salesList";
     }
     
-    // 장부관리 - 매입/매출장(매입)
-    @RequestMapping(value = "/purchase")
+    // 장부관리 - 매입/매출장(매입전표목록)
+    @RequestMapping(value = "/purchaseList")
     public String purchase(HttpServletRequest request, Model model) {
 
-        return "account/purchase";
+        return "account/purchaseList";
     }
     
+    //------------------------ 금융/자금관리 ------------------------
     // 금융자금 - 통장거래내역
     @RequestMapping(value = "/accountList")
     public String accountList(HttpServletRequest request, Model model) {
-
+    	logger.info("/accountList");
+    	
+    	service.accountingList(request, model);
+    	
         return "account/accountList";
     }
     
-    // 결산/재무재표(재무상태표)
+    //------------------------ 결산/재무제표------------------------
+    // 결산/재무제표(재무상태표)
     @RequestMapping(value = "/financialStatement")
     public String financialStatement(HttpServletRequest request, Model model) {
 

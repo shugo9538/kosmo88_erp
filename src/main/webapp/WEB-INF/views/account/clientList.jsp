@@ -72,7 +72,7 @@
                                     <tbody>
                                     <!-- 등록거래처가 있는경우 -->                     
                                     <c:if test="${cnt > 0}">
-                                    	<c:forEach var="dto" items="${dtos}">
+                                    	<c:forEach var="dto" items="${client}">
    											<tr>
    												<td>${number}
    													<c:set var="number" value="${number -1 }"/>
@@ -107,8 +107,8 @@
                                      	<th colspan="8">
                                      	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
                                      	<c:if test="${startPage > pageBlock}">
-                                     		<a href="${ROOT_PATH}/account/clientList" style="color:block">[◀◀]</a>
-                                     		<a href="${ROOT_PATH}/account/clientList?pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
+                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110" style="color:block">[◀◀]</a>
+                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
                                      	</c:if>
                                      	
                                      	<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -116,13 +116,13 @@
                                      			<span><b>[${i}]</b></span>
                                      		</c:if>
                                      		<c:if test="${i != currengPage}">
-                                     			<a href="${ROOT_PATH}/account/clientList?pageNum=${i}">[${i}]</a>
+                                     			<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${i}">[${i}]</a>
                                      		</c:if>
                                      	</c:forEach>
                                      	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
                                      	<c:if test="${pageCount > endPage}">
-                                     		<a href="${ROOT_PATH}/account/clientList?pageNum=${startPage + pageBlock}">[▶]</a>
-                                     		<a href="${ROOT_PATH}/account/clientList?pageNum=${pageCount}">[▶▶]</a>
+                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${startPage + pageBlock}">[▶]</a>
+                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${pageCount}">[▶▶]</a>
                                      	</c:if>
                                      	</th>
                                      	</tr>

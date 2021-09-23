@@ -57,19 +57,19 @@
 					
 					<!-- 아래추가사항 -->
 					<li>
-						<a href="${ROOT_PATH}/account/clientList"> 1. 기초정보 관리</a>
+						<a href="${ROOT_PATH}/account/clientList?categoryNum=110"> 1. 기초정보 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/account/salesSlipList"> 2. 매입/매출장</a>
+						<a href="${ROOT_PATH}/account/salesSlipList?categoryNum=130"> 2. 매입/매출장</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/account/slipList"> 3. 일반전표</a>
+						<a href="${ROOT_PATH}/account/slipList?categoryNum=120"> 3. 일반전표</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/account/accountList"> 4. 금융/자금관리</a>
+						<a href="${ROOT_PATH}/account/accountList?categoryNum=140"> 4. 금융/자금관리</a>
 					</li>					
 					<li>
-						<a href="${ROOT_PATH}/account/financialStatement">5. 결산/재무제표</a>
+						<a href="${ROOT_PATH}/account/financialStatement?categoryNum=150">5. 결산/재무제표</a>
 					</li>
 				</ul>
 			</li>

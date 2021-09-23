@@ -43,7 +43,7 @@ DELETE FROM CLIENT WHERE register_num=#{register_num}
 SELECT COUNT(*)as cnt FROM slip
 </select>
 <!-- 2. 일반전표 조회 -->
-<select id="selectSlip" resultType="com.kosmo88.logistics_erp.account.vo.SlipVO">
+<select id="selectSlip" resultType="SlipVO">
 <![CDATA[
 SELECT *
 FROM (SELECT ID, TYPE, REGISTER_DATE, UPDATE_DATE, STATE, DEPARTMENT_ID, DEPARTMENT_REQUEST, ROWNUM rNum   
@@ -53,23 +53,64 @@ FROM(SELECT *
   WHERE rNum >=#{start} AND rNum <=#{end}
 ]]>
 </select>
-<!-- 3. 일반전표 등록 -->
+<!-- 3. 일반전표 등록 (update_date 승인일자제외, state제외 default N) -->
+<insert id="insertSlip">
+INSERT INTO slip(id, type, register_date, department_id, department_request)
+    VALUES(#{id}, #{type}, SYSDATE, #{department_id}, #{department_request})
+</insert>
 <!-- 4. 파트별 전표승인 -->
+<update id="updateSlipState" parameterType="java.util.Map">
+UPDATE slip
+SET UPDATE_DATE = SYSDATE, STATE='Y'
+WHERE DEPARTMENT_ID=#{DEPARTMENT_ID} AND DEPARTMENT_REQUEST=#{DEPARTMENT_REQUEST}
+</update>
 <!-- 5. 일반전표 수정 -->
-<!-- 6. 일반전표 상태변경 -->
-<!-- 7. 일반전표 삭제 -->
-
+<!-- 6. 일반전표 삭제  enabled 처리  -->
 
 
 <!-- 장부관리-매입/매출장 -->
 <!-- 1. 매입/매출전표 건수 -->
+<select id="getSalesSlipCnt" resultType="int">
+SELECT COUNT(*)as cnt FROM sales_slip
+</select>
 <!-- 2. 매입/매출전표 목록조회 -->
+<select id="selectSalesSlip" resultType="com.kosmo88.logistics_erp.account.vo.SalesSlipVO" parameterType="java.util.Map">
+<![CDATA[
+SELECT *
+FROM (SELECT id, account_title, supply_amount, tax_amount, type, abstract Abstract, slip_id, ROWNUM rNum   
+FROM(SELECT *
+  FROM sales_slip
+  ORDER BY SLIP_ID))
+  WHERE rNum >=#{start} AND rNum <=#{end}
+]]>
+</select>
 <!-- 3. 매입전표조회 -->
 <!-- 4. 매출전표조회 -->
 <!-- 5. 매입/매출전표 등록 -->
 <!-- 6. 매입/매출전표 수정 -->
-<!-- 7. 매입/매출전표 삭제 -->
+<!-- 7. 매입/매출전표 삭제 enabled 처리 -->
 
+<!-- 금융/자금관리  -->
+<!-- 1. 통장건수 조회  -->
+<select id="getAccountCnt" resultType="int">
+SELECT COUNT(*) as cnt FROM ACCOUNT
+</select>
+
+<!-- 2. 통장목록 조회 -->
+<select id="selectAccount" parameterType="java.util.Map" resultType="AccountVO">
+<![CDATA[
+SELECT *
+FROM(SELECT id, name, account_number, bank, balance, abstract Abstract, register, account_holder_id, ROWNUM rNUM 
+FROM(SELECT * FROM ACCOUNT
+ORDER BY register))
+WHERE rNUM >=#{start} and rNUM <=#{end}
+]]>
+</select>
+<!-- 3. 통장입출금 등록 -->
+<!-- 4. 통장 입금내역조회 -->
+<!-- 5. 통장 출금내역조회 -->
+<!-- 6. 통장입출금 수정 -->
+<!-- 7. 통장입출금 삭제-->
 
 
 </mapper>    

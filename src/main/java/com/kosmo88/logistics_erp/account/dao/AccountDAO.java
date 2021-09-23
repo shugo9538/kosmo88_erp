@@ -30,21 +30,39 @@ public interface AccountDAO {
 	// 일반전표 조회
 	public List<SlipVO> selectSlip(Map<String,Object> map);
 	// 일반전표 등록
-	//public int insertSlip();
-	// 파트별 전표승인
-	//public int confirmSlip();
+	public int insertSlip(Map<String, Object> map);
+	// 파트별 전표승인 
+	public int updateSlipState(Map<String, Object> map);
 	// 일반전표 수정
 	//public int updateSlip(int id);
-	// 일반전표 상태변경 (승인/미승인)
-	//public int updateSlipState(int id);
 	// 일반전표 삭제
 	//public int deleteSlip(int id);
 	
+	// 매입/매출장
+	// 매입/매출전표 건수
+	public int getSalesSlipCnt();
+	// 매입/매출전표 조회
+	public List<SalesSlipVO> selectSalesSlip(Map<String,Object> map);
+	// 매출전표 건수
+	//public int getSalesCnt(int type);
+	// 매출전표 조회
+	//public List<SalesSlipVO> selectSales(Map<String,Object> map);
+	// 매입전표 건수
+	//public int getPurchaseSlipCnt(int type);
+	// 매입전표 조회
+	//public List<SalesSlipVO> selectPurchase(Map<String,Object> map);
+	// 매입/매출전표 추가
+	//public int insertSalesSlip();
+	// 매입/매출전표 수정
+	//public int updateSalesSlip(int id);
+	// 매입/매출전표 삭제
+	//public int deleteSalesSlip(int id);
+	
 	// 금융자금관리
 	// 통장 거래내역 건수
-	//public int getAccountCnt();
+	public int getAccountCnt();
 	// 통장 거래내역 조회 
-	//public List<AccountVO> selectAccount(Map<String,Object> map);
+	public List<AccountVO> selectAccount(Map<String,Object> map);
 	// 통장 목록조회
 	// 통장 거래내역 추가
 	//public int intsertAccountList();
@@ -61,27 +79,6 @@ public interface AccountDAO {
 	//
 	// 거래처통장 조회
 	//
-	
-	// 매입/매출장
-	// 매입/매출전표 건수
-	//public int getSalesSlipCnt();
-	// 매입/매출전표 조회
-	//public List<SalesSlipVO> selectSalesSlip(Map<String,Object> map);
-	// 매출전표 건수
-	//public int getSalesCnt(int type);
-	// 매출전표 조회
-	//public List<SalesSlipVO> selectSales(Map<String,Object> map);
-	// 매입전표 건수
-	//public int getPurchaseSlipCnt(int type);
-	// 매입전표 조회
-	//public List<SalesSlipVO> selectPurchase(Map<String,Object> map);
-	// 매입/매출전표 추가
-	//public int insertSalesSlip();
-	// 매입/매출전표 수정
-	//public int updateSalesSlip(int id);
-	// 매입/매출전표 삭제
-	//public int deleteSalesSlip(int id);
-	
 	
 	// 결산/제무재표
 	// 재무상태표

@@ -18,3 +18,9 @@
 <script src="${RESOURCES_PATH}/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/dashboard.js"></script>
 <!--End Page Level Plugin-->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="${RESOURCES_PATH}/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="${RESOURCES_PATH}/assets/pages/validation-custom.js"></script>
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+

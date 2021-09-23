@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 
 public interface AccountService {
 	
+	// 회계관리 리스트관리 
+	public void accountingList(HttpServletRequest request, Model model);
+	
 	// 기초정보관리
 	// 거래처 목록조회
-	public void clientList(HttpServletRequest request, Model model);
+	//public void clientList(HttpServletRequest request, Model model);
 	// 신규 거래처등록
 	public void clientInsert(HttpServletRequest request, Model model);
 	// 신규 거래처등록 페이지(컨트롤러에서처리)
@@ -19,7 +22,6 @@ public interface AccountService {
 	// 거리처 목록삭제 페이지(알럿으로 처리)
 	// 거래처 목록삭제 처리
 	public void clientDeleteAction(HttpServletRequest request, Model model);
-	
 	
 	// 일반전표/장부관리
 	// 일반전표 목록조회
@@ -40,7 +42,7 @@ public interface AccountService {
 	
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
-	//public void accountList(Model model);
+	//public void accountList(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가
 	//public void accountInsert(Model model);
 	// 통장 입금내역 조회

@@ -39,13 +39,13 @@
                 <h4 class="page-title">통장거래내역</h4>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="account-salary.jsp">급여통장</a>
+                        <a href="#">급여통장</a>
                     </li>
                     <li>
-                        <a href="account-client.jsp">거래처통장</a>
+                        <a href="#">거래처통장</a>
                     </li>
                     <li class="active">
-                        <a href="account.jsp">통장목록</a>
+                        <a href="#">통장목록</a>
                     </li>
                 </ol>
                 <div class="clearfix"></div>
@@ -68,64 +68,77 @@
                                             <th>잔액</th>
                                             <th>요약</th>
                                             <th>등록일</th>
+                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-           								    <td>3148</td>
-                                            <td>우여곡절-급여</td>
-                                            <td>1002-050-447307</td>
-                                            <td>우리은행</td>
-                                            <td>100000</td>
-                                            <td>급여통장</td>
-                                            <td>2021-09-19</td>
-                                        </tr>
-                                        <tr>
-           								    <td>3148</td>
-                                            <td>우여곡절-거래처내역</td>
-                                            <td>1002-050-447307</td>
-                                            <td>우리은행</td>
-                                            <td>100000</td>
-                                            <td>급여통장</td>
-                                            <td>2021-09-19</td>
-                                        </tr>
-                                        <tr>
-           								    <td>3148</td>
-                                            <td>1002-050-447307</td>
-                                            <td>1002-050-447307</td>
-                                            <td>우리은행</td>
-                                            <td>100000</td>
-                                            <td>급여통장</td>
-                                             <td>2021-09-19</td>
-                                        </tr>
-                                        <tr>
-           								    <td>3148</td>
-                                            <td>1002-050-447307</td>
-                                            <td>1002-050-447307</td>
-                                            <td>우리은행</td>
-                                            <td>100000</td>
-                                            <td>급여통장</td>
-                                             <td>2021-09-19</td>
-                                        </tr>
-                                        <tr>
-           								    <td>3148</td>
-                                            <td>1002-050-447307</td>
-                                            <td>1002-050-447307</td>
-                                            <td>우리은행</td>
-                                            <td>100000</td>
-                                            <td>급여통장</td>
-                                             <td>2021-09-19</td>
-                                        </tr>
+                                    <!-- 등록거래처가 있는경우 -->                     
+                                    <c:if test="${cnt > 0}">
+                                    	<c:forEach var="dto" items="${account}">
+   											<tr>
+   												<td>${number}
+   													<c:set var="number" value="${number -1 }"/>
+   												</td>
+                                        		<td>${dto.id}</td>
+                                        		<td>${dto.name}</td>
+                                        		<td>${dto.account_number}</td>
+                                        		<td>${dto.bank}</td>
+                                        		<td>${dto.balance}</td>
+                                        		<td>${dto.Abstract}</td>
+                                        		<td>
+                                        		<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register}"/>
+                                        		</td>
+                                        		<td>${dto.account_holder_id}</td>
+                                       	    </tr>		                                     		
+                                    	</c:forEach>
+                                     </c:if>
+
+                                     <!-- 거래내역이 없는경우 -->
+                                     <c:if test="${cnt == 0}">
+                                     	<tr>
+                                     		<td colspan="8" align="center">
+                                     			<span style="color:red"> 거래내역이 없습니다. </span>
+                                     		</td>
+                                     	</tr>
+                                     </c:if>   
                                     </tbody>
+                                    
+                                    <tfoot>
+                                    <!-- 등록거래처가 있는경우 --> 
+                                     <c:if test="${cnt > 0}">
+                                     <tr>
+                                     	<th colspan="8">
+                                     	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
+                                     	<c:if test="${startPage > pageBlock}">
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140" style="color:block">[◀◀]</a>
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
+                                     	</c:if>
+                                     	
+                                     	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                     		<c:if test="${i == currengPage}">
+                                     			<span><b>[${i}]</b></span>
+                                     		</c:if>
+                                     		<c:if test="${i != currengPage}">
+                                     			<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${i}">[${i}]</a>
+                                     		</c:if>
+                                     	</c:forEach>
+                                     	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
+                                     	<c:if test="${pageCount > endPage}">
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${startPage + pageBlock}">[▶]</a>
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${pageCount}">[▶▶]</a>
+                                     	</c:if>
+                                     	</th>
+                                     	</tr>
+                                     </c:if>
+                                    </tfoot>
                                    </table>  
                             </div>
                        </div>
                    </div>
-               </div>
                <!--End row-->
 			    </div>
         <!-- End Wrapper-->
-
+			</div>
         <!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>	
          <!--End footer -->

@@ -33,52 +33,52 @@
 			<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
-		<div class="white-box">
-			<h2 class="header-title">Projects</h2>
-			<div class="table-responsive">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>창고 이름</th>
-							<th>창고창창</th>
-							<th>창창창고</th>
-							<th>창고 상태</th>
-							<th>포화도</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>본사 창고</td>
-							<td>창고창창</td>
-							<td>고창창고</td>
-							<td><span class="label label-warning">창고중</span></td>
-							<td>
-								<div class="progress progress-striped progress-sm">
-									<div class="progress-bar progress-bar-warning"
-										style="width: 25%;"></div>
-								</div>
-							</td>
-						</tr>
-							<tr>
-							<td>2</td>
-							<td>유라 창고</td>
-							<td>창고창창</td>
-							<td>고창창고</td>
-							<td><span class="label label-warning">창고중</span></td>
-							<td>
-								<div class="progress progress-striped progress-sm">
-									<div class="progress-bar progress-bar-warning"
-										style="width: 90%;"></div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+					<div class="white-box">
+						<h2 class="header-title">Projects</h2>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>창고 이름</th>
+										<th>창고창창</th>
+										<th>창창창고</th>
+										<th>창고 상태</th>
+										<th>포화도</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>본사 창고</td>
+										<td>창고창창</td>
+										<td>고창창고</td>
+										<td><span class="label label-warning">창고중</span></td>
+										<td>
+											<div class="progress progress-striped progress-sm">
+												<div class="progress-bar progress-bar-warning"
+													style="width: 25%;"></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>유라 창고</td>
+										<td>창고창창</td>
+										<td>고창창고</td>
+										<td><span class="label label-warning">창고중</span></td>
+										<td>
+											<div class="progress progress-striped progress-sm">
+												<div class="progress-bar progress-bar-warning"
+													style="width: 90%;"></div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!--End row-->
 			<!--Start row-->

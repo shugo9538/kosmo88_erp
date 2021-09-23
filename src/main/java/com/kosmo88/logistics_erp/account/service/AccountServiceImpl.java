@@ -11,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.kosmo88.logistics_erp.account.code.menuCode;
 import com.kosmo88.logistics_erp.account.dao.AccountDAOImpl;
+import com.kosmo88.logistics_erp.account.vo.AccountVO;
 import com.kosmo88.logistics_erp.account.vo.ClientVO;
+import com.kosmo88.logistics_erp.account.vo.SalesSlipVO;
+import com.kosmo88.logistics_erp.account.vo.SlipVO;
 
 @Service
-public class AccountServiceImpl implements AccountService {
+public class AccountServiceImpl implements AccountService, menuCode {
 	
 	@Autowired
 	AccountDAOImpl dao;
@@ -23,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
 	// 기초정보관리
 	// 거래처 목록조회
 	@Override
-	public void clientList(HttpServletRequest request, Model model) {
+	public void accountingList(HttpServletRequest request, Model model) {
 
 		// 거래처 목록조회 페이징 처리
 		int pageSize = 5;// 한 페이지당 출력할 글 개수
@@ -41,8 +45,26 @@ public class AccountServiceImpl implements AccountService {
 		int endPage = 0; //마지막 페이지
 		
 		// 1. 거래처 등록 개수 조회
-		cnt = dao.getClientCnt();
-		System.out.println("거래처 등록 개수 cnt : " + cnt);
+		int categoryNum = Integer.parseInt(request.getParameter("categoryNum"));
+		System.out.println("화면에서 받은 categoryNum");
+		System.out.println("=================");
+		
+		switch (categoryNum) {
+			case CLIENT:
+			cnt = dao.getClientCnt();
+			break;
+			case SLIP:
+			cnt = dao.getSlipCnt();
+			break;
+			case SALESSLIP:
+			cnt = dao.getSalesSlipCnt();
+			break;
+			case ACCOUNT:
+			cnt = dao.getAccountCnt();
+			break;
+		
+		}
+		System.out.println("건수조회 cnt : " + cnt);
 		
 		// 2. 페이지번호(페이지이동시 전화면세서 가지고와서 대입)
 		pageNum = request.getParameter("pageNum");
@@ -92,13 +114,16 @@ public class AccountServiceImpl implements AccountService {
 		System.out.println("마지막페이지 endPage : " + endPage);
 		
 		// 리턴받을 List
-		List<ClientVO> dtos = null;
+		List<ClientVO> client = null;
+		List<SlipVO> slip = null;
+		List<SalesSlipVO> saleslip = null;
+		List<AccountVO> account = null;
+		
 		// 매개변수 전달한 Map
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		// 전체글개수가 0보다 크면 리스트정보를 받아온다.
 		if (cnt > 0) {
-			dtos = new ArrayList<ClientVO>();
 			System.out.println("==================");
 			System.out.println("dao 전달 start : " + start);
 			System.out.println("dao 전달 end : " + end);
@@ -106,12 +131,40 @@ public class AccountServiceImpl implements AccountService {
 			map.put("start", start);
 			map.put("end", end);
 			
-			dtos = dao.selectClient(map);
-		
+			// 거래처관리
+			if (categoryNum == CLIENT) {
+				client = new ArrayList<ClientVO>();
+				client = dao.selectClient(map);
+			// 일반전표
+			}else if(categoryNum == SLIP) {
+				slip = new ArrayList<SlipVO>();
+				slip = dao.selectSlip(map);
+			// 매입/매출전표
+			}else if(categoryNum == SALESSLIP) {
+				saleslip = new ArrayList<SalesSlipVO>();
+				saleslip = dao.selectSalesSlip(map);
+			// 계좌조회
+			}else if(categoryNum == ACCOUNT) {
+				account = new ArrayList<AccountVO>();
+				account = dao.selectAccount(map);
+			}
+				
 		}
-		System.out.println("거래처 dtos : " + dtos);
+		System.out.println("거래처 dtos : " + client);
+		System.out.println("일반전표 dtos : " + slip);
+		System.out.println("매입/매출 전표 dtos : " + saleslip);
+		System.out.println("계좌조회 dtos : " + account);
 		
-		model.addAttribute("dtos", dtos);
+		// 거래처
+		model.addAttribute("client", client);
+		// 일반전표
+		model.addAttribute("slip", slip);
+		// 매입 매출전표 
+		model.addAttribute("saleslip", saleslip);
+		// 계좌조회
+		model.addAttribute("account", account);
+		
+		
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("number", number);
