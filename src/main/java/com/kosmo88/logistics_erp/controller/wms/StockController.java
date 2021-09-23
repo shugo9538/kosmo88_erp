@@ -11,42 +11,38 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @Controller
-@RequestMapping(value = "/wms/warehouse")
-public class WarehouseController {
-    private static final Logger logger = LoggerFactory.getLogger(WarehouseController.class);
+@RequestMapping(value = "/wms/stock")
+public class StockController {
+    private static final Logger logger = LoggerFactory.getLogger(StockController.class);
 
     @RequestMapping(value = {"/list", "/"})
-    public String warehouseList(Model model) {
-        return "wms/warehouse/warehouseList";
+    public String stock(Model model) {
+        return "wms/stock/stockList";
     }
 
     @RequestMapping(value = "/add")
     public String add(Model model) {
-        return "wms/warehouse/addWarehouse";
+        return "wms/stock/addStock";
     }
     @RequestMapping(value = "/addAction")
     public String addAction(Model model) {
-        return "wms/warehouse/warehouseList";
+        return "wms/stock/stockList";
     }
 
-    @RequestMapping(value = "/stock")
-    public String stock(Model model) {
-        return "wms/warehouse/stock";
-    }
 
     @RequestMapping("/modify")
-    public String modifyWarehouse(){
-    	return "wms/warehouse/warehouseDetail";
+    public String modify(){
+    	return "wms/stock/stockDetail";
     }
  
     @RequestMapping("/delete")
-    public String deleteWarehouse(){
-    	return "wms/warehouse/warehouseList";
+    public String delete(){
+    	return "wms/stock/stockList";
     }
 
-    @RequestMapping(value = {"/view"})
-    public String warehouseDetail(Model model) {
-        return "wms/warehouse/warehouseDetail";
+    @RequestMapping(value = "/view")
+    public String view(Model model) {
+        return "wms/stock/stockDetail";
     }
 
     @RequestMapping("/rack")

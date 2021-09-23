@@ -15,10 +15,10 @@
 
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">창고 목록</h4>
+				<h4 class="page-title">재고 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
-					<li class="active">창고 목록</li>
+					<li><a href="#">재고 관리</a></li>
+					<li class="active">재고 목록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -28,9 +28,9 @@
 
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
-<%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">창고 --%>
+<%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">재고 --%>
 <!-- 						목록</a></li> -->
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/add">창고
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/add">재고
 						등록</a></li>
 			</ul>
 
@@ -39,53 +39,36 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<h2 class="header-title">Projects</h2>
+<!-- 						<h2 class="header-title">Projects</h2> -->
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>창고 이름</th>
-										<th>창고창창</th>
-										<th>창창창고</th>
-										<th>창고 상태</th>
-										<th>포화도</th>
+										<th>품목명</th>
+										<th>품목 분류</th>
+										<th>수량</th>
+										<th>창고</th>
+										<th>입고일</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="${ROOT_PATH}/wms/warehouse/view">본사 창고</a></td>
-										<td>창고창창</td>
-										<td>고창창고</td>
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 25%;"></div>
-											</div>
-										</td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/view">하리보</a></td>
+										<td>제과류</td>
+										<td>200</td>
+										<td>본사창고</td>
+										<td>2021/04/27</td>
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>유라 창고</td>
-										<td>창고창창</td>
-										<td>고창창고</td>
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 90%;"></div>
-											</div>
-										</td>
-									</tr>
+								
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!--창고 목록End row-->
+			<!--재고 목록End row-->
 			
 			
 			

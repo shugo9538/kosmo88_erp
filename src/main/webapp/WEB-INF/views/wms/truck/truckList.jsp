@@ -21,10 +21,42 @@
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
+			
 			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
-			<!--Start row-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="white-box">
+<!-- 						<h2 class="header-title">Projects</h2> -->
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>차량번호</th>
+										<th>분류(적재)</th>
+										<th>최종위치</th>
+										<th>상태</th>
+										<th>등록일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/view">5223</a></td>
+										<td>5톤땀프</td>
+										<td>본사창고</td>
+										<td>운행중</td>
+										<td>2021/04/27</td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--재고 목록End row-->
+			
 			<div class="row"></div>
 			<!--End row-->
 			<!--Start row-->

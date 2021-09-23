@@ -25,9 +25,9 @@
 			<!--End Page Title-->
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
-				<li class="active"><a href="${ROOT_PATH}/warehouse/modify">창고
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/modify">창고
 						수정</a></li>
-				<li class="active"><a href="${ROOT_PATH}/warehouse/delete">창고
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/delete">창고
 						삭제</a></li>
 			</ul>
 		

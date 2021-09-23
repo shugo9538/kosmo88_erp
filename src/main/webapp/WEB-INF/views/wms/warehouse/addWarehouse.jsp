@@ -25,7 +25,7 @@
 			<!--End Page Title-->
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouseList">창고
+				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/warehouseList">창고
 						목록</a></li>
 			</ul>
 			<!--Start row-->
@@ -36,50 +36,47 @@
 <%-- 						<form class="form-horizontal" action="${ROOT_PATH}/warehouse/addAction"> --%>
 						<form class="form-horizontal">
 							<div class="form-group">
-								<label class="col-md-2 control-label">창고 이름</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
+								<label class="col-sm-2 control-label">창고 이름</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
 										type="text">
 								</div>
-								<label class="col-md-2 control-label">창고 종류</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
-										type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-md-2 control-label">창고 종류</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
+								<label class="col-sm-2 control-label">창고 종류</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
 										type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label">창고 종류</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
+								<label class="col-sm-2 control-label">창고 종류</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
 										type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label">창고 종류</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
+								<label class="col-sm-2 control-label">창고 종류</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
 										type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-2 control-label">창고 종류</label>
-								<div class="col-md-4">
-									<input class="form-control" value="Some text value..."
+								<label class="col-sm-2 control-label">창고 종류</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
+										type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">창고 종류</label>
+								<div class="col-sm-4">
+									<input class="form-control" value=""
 										type="text">
 								</div>
 							</div>
 
 
-							<div class="my-3"></div>
-
-							<hr>
 
 							<div class="form-group">
 

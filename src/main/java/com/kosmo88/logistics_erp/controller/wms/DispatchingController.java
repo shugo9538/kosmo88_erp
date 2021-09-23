@@ -1,10 +1,10 @@
-package com.kosmo88.logistics_erp.controller.logistics;
+package com.kosmo88.logistics_erp.controller.wms;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/dispatching")
+@RequestMapping("/logistics/dispatching")
 public class DispatchingController {
 
 	
