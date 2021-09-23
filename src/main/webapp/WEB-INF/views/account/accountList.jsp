@@ -58,7 +58,7 @@
                        <div class="white-box">
                            <h2 class="header-title">통장 목록</h2>
                             <div class="table-responsive">
-                             <table id="example" class="display table">
+                             <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
                                             <th>계좌코드</th>
