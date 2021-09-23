@@ -62,28 +62,11 @@
 										<td><a href="${ROOT_PATH}/wms/warehouse/view">본사 창고</a></td>
 										<td>창고창창</td>
 										<td>고창창고</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 25%;"></div>
-=======
-										<td>
-											<span class="label label-warning">창고중</span>
-										</td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning" style="width: 25%;"></div>
->>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
-=======
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 25%;"></div>
->>>>>>> ccaace795acb986958d4a4bbf5ce5475b7201035
 											</div>
 										</td>
 									</tr>
@@ -92,28 +75,11 @@
 										<td>유라 창고</td>
 										<td>창고창창</td>
 										<td>고창창고</td>
-<<<<<<< HEAD
-<<<<<<< HEAD
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
 													style="width: 90%;"></div>
-=======
-										<td>
-											<span class="label label-warning">창고중</span>
-										</td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning" style="width: 90%;"></div>
->>>>>>> 38567eb6b210382aae3c0acec7fd8bff27cfc2bb
-=======
-										<td><span class="label label-warning">창고중</span></td>
-										<td>
-											<div class="progress progress-striped progress-sm">
-												<div class="progress-bar progress-bar-warning"
-													style="width: 90%;"></div>
->>>>>>> ccaace795acb986958d4a4bbf5ce5475b7201035
 											</div>
 										</td>
 									</tr>
