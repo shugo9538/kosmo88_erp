@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class WarehouseController {
     private static final Logger logger = LoggerFactory.getLogger(WarehouseController.class);
 
-    @RequestMapping(value = {"/warehouseList.do", "/"})
+    @RequestMapping(value = {"/warehouseList", "/"})
     public String warehouseList(Model model) {
-        return "logistics/wms/warehouseList";
+        return "wms/warehouse/warehouseList";
     }
     @RequestMapping(value = {"/addWarehouse.do"})
     public String addWarehouse(Model model) {
-        return "logistics/wms/addWarehouse";
+        return "wms/addWarehouse";
     }
     @RequestMapping(value = {"/itemList.do"})
     public String itemList(Model model) {
-        return "logistics/wms/itemList";
+        return "wms/itemList";
     }
 
 }
