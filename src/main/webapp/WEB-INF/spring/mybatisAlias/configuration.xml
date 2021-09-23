@@ -7,6 +7,9 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
+		<typeAlias 
+			type="com.kosmo88.logistics_erp.sale.dto.SaleDTO"
+			alias="SaleDTO"/>
 			
 		<!-- 회계관리 -->	
 		<!-- 일반전표 VO -->
@@ -42,5 +45,4 @@
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
 	</typeAliases>
-
 </configuration>
