@@ -1,5 +1,7 @@
 package com.kosmo88.logistics_erp.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -15,12 +17,43 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class SalesController {
     private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 
-    // 거래처 관리
-    @RequestMapping(value = "/clientManagement")
-    public String clientManagement(Model model) {
-
-        return "sales/clientManagement";
+    // 거래처 등록
+    @RequestMapping(value= "/clientManagement")
+    public String clientResister(HttpServletRequest request, Model model) {
+    	logger.info("url => clientManagement");
+    	
+    	// service.resisterClient
+    	
+    	return "sales/clientManagement";
     }
+    
+    // 거래처 목록
+    @RequestMapping(value="/clientList")
+    public String clientList(HttpServletRequest request, Model model) {
+    	
+    	// service.clientList(HttpServletRequest request, Model model)
+    	
+    	return "sale/clientList";
+    }
+    
+    // 거래처 수정
+    
+    
+    // 견적서 등록
+    @RequestMapping(value="estimateResister")
+    public String estimateResister(HttpServletRequest request, Model model) {
+    	
+    	return "sale/estimateResister";
+    }
+    
+    // 견적서 목록
+    @RequestMapping(value="estimateList")
+    public String estimateList(HttpServletRequest request, Model model) {
+    	
+    	return "sale/estimateList";
+    }
+    
+    
 
     // 판매 관리
     @RequestMapping(value = "/salesManagement")
