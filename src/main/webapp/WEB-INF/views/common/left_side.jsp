@@ -123,11 +123,11 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/wms/">창고 관리</a>
+						<a href="${ROOT_PATH}/warehouse/">창고 관리</a>
 					</li>
-					<li>
-						<a href="${ROOT_PATH}/stock/">재고 관리</a>
-					</li>
+<!-- 					<li> -->
+<%-- 						<a href="${ROOT_PATH}/wms/stock/">재고 관리</a> --%>
+<!-- 					</li> -->
 					<li>
 						<a href="${ROOT_PATH}/receiving/">입고 관리</a>
 					</li>

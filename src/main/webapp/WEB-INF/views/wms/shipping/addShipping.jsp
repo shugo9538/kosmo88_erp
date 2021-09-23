@@ -13,10 +13,10 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">품목 목록</h4>
+				<h4 class="page-title">출고 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">품목 관리</a></li>
-					<li class="active">품목 목록</li>
+					<li><a href="#">출고 관리</a></li>
+					<li class="active">출고 등록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>

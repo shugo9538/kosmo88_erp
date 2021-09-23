@@ -18,10 +18,14 @@ public class TruckController {
 
     // 차량 관리
     @RequestMapping(value = {"/truckList.do", "/"})
-    public String carManagement(Model model) {
-
+    public String truckList(Model model) {
         return "logistics/truck/truckList";
     }
 
+    // 차량 관리
+    @RequestMapping(value = "/addTruck.do")
+    public String addTruck(Model model) {
+        return "logistics/truck/truckList";
+    }
 
 }
