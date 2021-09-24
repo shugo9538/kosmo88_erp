@@ -1,7 +1,9 @@
 package com.kosmo88.logistics_erp.hr.service;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kosmo88.logistics_erp.hr.dao.HRDAO;
+import com.kosmo88.logistics_erp.hr.dao.AttendanceDAO;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
@@ -22,36 +24,11 @@ import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
 public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
-    HRDAO hrDAO;
-
-    @Override
-    public void attendanceCodeManagement(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<AttendanceCodeDTO> attendanceCodeList = (ArrayList<AttendanceCodeDTO>) hrDAO.attendanceCodeList();
-
-        req.setAttribute("acList", attendanceCodeList);
-    }
-
-    @Override
-    public void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res) {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String name = req.getParameter("name");
-        String type = req.getParameter("type");
-        String enabled = req.getParameter("enabled");
-
-        AttendanceCodeDTO dto = new AttendanceCodeDTO(id, name, type, enabled.charAt(0));
-
-        hrDAO.insertAttendanceCode(dto);
-    }
-
-    @Override
-    public void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
+    AttendanceDAO attendanceDAO;
 
     @Override
     public void selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<AttendanceDTO> attendanceList = (ArrayList<AttendanceDTO>) hrDAO.selectAttendacne();
+        ArrayList<AttendanceDTO> attendanceList = (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
 
         req.setAttribute("attendanceList", attendanceList);
     }
@@ -73,7 +50,7 @@ public class AttendanceServiceImpl implements AttendanceService {
         dto.setReason(reason);
         dto.setState("결재중");
         dto.setAttendance_cd_id(attendance_cd_id);
-        hrDAO.insertAttendance(dto);
+        attendanceDAO.insertAttendance(dto);
     }
 
     @Override
@@ -83,69 +60,32 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public void commutingRecords(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) hrDAO.commutingRecords();
+        ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
 
         req.setAttribute("commuteList", commuteList);
     }
 
     @Override
-    public void manageSalary(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
+    public void insertCommute(HttpServletRequest req, HttpServletResponse res) {
+        Date work_date = Date.valueOf(req.getParameter("work_date"));
+        System.out.println(req.getParameter("begin_date"));
+        String[] time = req.getParameter("begin_date").split(":");
+//        Time begin_date = new Time(Integer.parseInt(time[0]), Integer.parseInt(time[1]), 0);
+        time = req.getParameter("end_date").split(":");
+//        Time end_date = new Time(Integer.parseInt(time[0]), Integer.parseInt(time[1]), 0);
+        int night_time = Integer.parseInt(req.getParameter("night_time"));
+        int over_time = Integer.parseInt(req.getParameter("over_time"));
+        int attendance_id = Integer.parseInt(req.getParameter("attendance_id"));
+        String employee_id = req.getParameter("employee_id");
 
-    }
-
-    @Override
-    public void salayStepTable(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void leftHolidayNum(HttpServletRequest req, HttpServletResponse res) {
-         ArrayList<HolidayUsageStatusDTO> holidayUsageList = (ArrayList<HolidayUsageStatusDTO>) hrDAO.useHolidayNum();
-         
-         req.setAttribute("holidayUsageList", holidayUsageList);
-    }
-
-    @Override
-    public void useHolidayNum(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void attendanceTable(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void monthlyPaymentAndStatus(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void salaryStatistics(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void earnedIncome(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void makePaySlip(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void totalPaySlip(HttpServletRequest req, HttpServletResponse res) {
-        // TODO Auto-generated method stub
-
+        CommuteDTO dto = new CommuteDTO();
+        dto.setWork_date(work_date);
+//        dto.setBegin_date(begin_date);
+//        dto.setEnd_date(end_date);
+        dto.setNight_time(night_time);
+        dto.setOver_time(over_time);
+        dto.setAttendance_id(attendance_id);
+        dto.setEmployee_id(employee_id);
+        attendanceDAO.insertCommute(dto);
     }
 }

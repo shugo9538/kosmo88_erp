@@ -39,16 +39,19 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<h2 class="header-title">휴가 조회</h2>
+						<h2 class="header-title">급여 관리</h2>
 						<div class="table-responsive">
 							<table class="table table-hover">
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>사원 코드</th>
-										<th>휴가 사용일</th>
-										<th>연차</th>
-										<th>휴가 코드</th>
+										<th>급여 코드</th>
+										<th>기본급</th>
+										<th>초과 근로 수당</th>
+										<th>상여금</th>
+										<th>소득세</th>
+										<th>급여일</th>
+										<th>이체현황</th>
 									</tr>
 								</thead>
 								<tbody>
