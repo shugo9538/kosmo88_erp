@@ -87,7 +87,7 @@
                                     	<td>33333</td>
                                     </tr>
                                     <tr>
-                                    	<td>11111</td>
+                                    	<td>22222</td>
                                     	<td>입금</td>
                                     	<td>2021-09-24</td>
                                     	<td>2021-09-25</td>
@@ -96,7 +96,7 @@
                                     	<td>33333</td>
                                     </tr>
                                     <tr>
-                                    	<td>11111</td>
+                                    	<td>33333</td>
                                     	<td>입금</td>
                                     	<td>2021-09-26</td>
                                     	<td>2021-09-27</td>
@@ -171,8 +171,74 @@
                </div>
                <!--End row-->
                
+                              <!--Start row-->
+               <div class="row">
+                   <div class="col-md-12">
+                       <div class="white-box">
+                       <h2 class="header-title">전표번호 : 11111</h2>
+                            <div class="table-responsive">
+                             <table id="example" class="table table table-hover m-0">
+                                    <thead>
+                                        <tr>
+                                            <th>순번</th>
+                                            <th>구분</th>
+                                            <th>코드</th>
+                                            <th>계정과목</th>
+                                            <th>거래처코드</th>
+                                            <th>거래처명</th>
+                                            <th>사업자번호</th>
+                                            <th>금액</th>
+                                            <th>적요명</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    	<td>1</td>
+                                    	<td>차변</td>
+                                    	<td>81900</td>
+                                    	<td>지급임차료</td>
+                                    	<td>00095</td>
+                                    	<td>한국렌트카(주)</td>
+                                    	<td>666-81-12343</td>
+                                    	<td>5,000,000</td>
+                                    	<td>일반매입</td>
+                                    	<td></td>
+                                    </tr>
+                                    <tr>
+                                    	<td>2</td>
+                                    	<td>대변</td>
+                                    	<td>13500</td>
+                                    	<td>부가세대급금</td>
+                                    	<td>00095</td>
+                                    	<td>한국렌트카(주)</td>
+                                    	<td>666-81-12343</td>
+                                    	<td>500,0000</td>
+                                    	<td>매입부가세</td>
+                                    </tr>
+                                    <tr>
+                                    	<td>3</td>
+                                    	<td>대변</td>
+                                    	<td>25100</td>
+                                    	<td>외상매입금</td>
+                                    	<td>00095</td>
+                                    	<td>한국렌트카(주)</td>
+                                    	<td>666-81-12343</td>
+                                    	<td>5,500,000</td>
+                                    	<td>외상매입금 발생</td>
+                                    	<td></td>
+                                    </tr>
+                                    </tbody>
+                                   </table>  
+                            </div>
+                       </div>
+                   </div>
+               </div>
+               <!--End row-->
+               
 			    </div>
         <!-- End Wrapper-->
+        
+        
 
         <!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>	

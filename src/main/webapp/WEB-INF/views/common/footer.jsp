@@ -24,5 +24,6 @@
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 
+
 <script src="${RESOURCES_PATH}/search/js/search.js"></script>
 
