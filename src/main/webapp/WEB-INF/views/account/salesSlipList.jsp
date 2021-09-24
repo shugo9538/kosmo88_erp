@@ -62,6 +62,40 @@
 		                    <h2 class="header-title">2021년</h2>
 	                    </div>
 	                    
+	                      <!--Start row-->
+                <div class="row">
+                    <div class="col-md-12">
+                       <div class="white-box">
+                            <div class="col-md-8">
+                             <h2 class="header-title">일자 검색</h2>
+                         	    <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">Default Functionality</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+                                            <span class="input-group-addon b-0 text-white"><i class="icon-calender"></i></span>
+                                        </div> 
+                                    </div>
+                                </div>
+			                                		
+                            <div class="form-group">
+                                <label class="control-label col-md-4">검색 일자</label>
+                                <div class="col-md-8">
+                                    <div class="input-daterange input-group" id="date-range">
+                                        <input type="text" class="form-control" name="start" />
+                                        <span class="input-group-addon no-border text-white">to</span>
+                                        <input type="text" class="form-control" name="end" />
+                                    </div>
+                                </div>
+                            </div>
+						</form>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+                <!--End row-->
+	                    
                      <div class="table-responsive">
                          <table class="table table-bordered">
                                     <thead>
