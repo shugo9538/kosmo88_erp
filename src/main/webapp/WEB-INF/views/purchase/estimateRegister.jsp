@@ -15,7 +15,8 @@
 			<div class="page-title-box">
 				<h4 class="page-title">견적서 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서
+							관리</a></li>
 					<li class="active">견적서 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -63,7 +64,7 @@
 
 							<label class="col-md-1 control-label">견적일자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="견적일자" type="text">
+								<input class="form-control" placeholder="견적일자" type="date">
 							</div>
 						</div>
 
@@ -74,8 +75,19 @@
 							</div>
 
 							<label class="col-md-1 control-label">담당자 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="담당자 연락처" type="text">
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text"
+									maxlength="3" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text"
+									maxlength="4" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text"
+									maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">담당자
@@ -93,8 +105,19 @@
 							</div>
 
 							<label class="col-md-1 control-label">거래처 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 연락처" type="text">
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text"
+									maxlength="3" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text"
+									maxlength="4" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text"
+									maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">거래처

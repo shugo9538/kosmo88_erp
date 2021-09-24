@@ -33,7 +33,7 @@
 						<div class="form-group">
 							<label class="col-md-2 control-label">작성일자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="작성일자" type="text">
+								<input class="form-control" placeholder="작성일자" type="date">
 							</div>
 							
 							<label class="col-md-2 control-label">거래처명</label>
@@ -41,60 +41,64 @@
 								<input class="form-control" placeholder="거래처명" type="text">
 							</div>			
 						</div>
-<!-- 
-						<div class="form-group">
-							<label class="col-md-2 control-label">증빙서</label>
-							<div class="col-md-3">
-								<p class="form-control-static">계좌이체</p>
-							</div>
-
-							<label class="col-md-2 control-label">증명구분</label>
-							<div class="col-md-3">
-								<p class="form-control-static">세금계산서(과세)</p>
-							</div>
-						</div>
- -->
+						
 						<div class="form-group">
 							<label class="col-md-2 control-label">구매일자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="구매일자" type="text">
+								<input class="form-control" placeholder="구매일자" type="date">
 							</div>
 							
+							<label class="col-md-2 control-label">거래처 대표자명</label>
+							<div class="col-md-3">
+								<input class="form-control" placeholder="거래처 대표자명" type="text">
+							</div>							
+						</div>
+
+						<div class="form-group">
 							<label class="col-md-2 control-label">구매 담당자</label>
 							<div class="col-md-3">
 								<input class="form-control" placeholder="구매 담당자" type="text">
+							</div>	
+							
+							<label class="col-md-2 control-label">거래처 연락처</label>
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text">
+							</div>
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text">
+							</div>
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text">
 							</div>
 						</div>
 
 						<div class="form-group">
-
-							<label class="col-md-1 control-label">담당자 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="담당자 연락처" type="text">
+							<label class="col-md-2 control-label">담당자 연락처</label>
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text" maxlength="3" required>
 							</div>
-
-							<label class="col-md-1 control-label" for="val-email">담당자이메일 </label>
-							<div class="col-md-3">
-								<input class="form-control" type="text" id="val-email"
-									name="val-email" placeholder="담당자 이메일">
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text" maxlength="4" required>
 							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-1 control-label">거래처대표자명</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 대표자명" type="text">
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text" maxlength="4" required>
 							</div>
-
-							<label class="col-md-1 control-label">거래처 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 연락처" type="text">
+							
+							<label class="col-md-2 control-label">사업자번호</label>
+							<div class="col-md-1">
+								<input class="form-control" placeholder="xxx" type="text" maxlength="3" required>
 							</div>
-
-							<label class="col-md-1 control-label" for="val-email">거래처 이메일 </label>
-							<div class="col-md-3">
-								<input class="form-control" type="text" id="val-email"
-									name="val-email" placeholder="거래처 이메일">
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="xx" type="text" maxlength="2" required>
+							</div>
+							
+							<div class="col-md-1">
+								<input class="form-control" placeholder="xxxxx" type="text" maxlength="5" required>
 							</div>
 						</div>
 					</div>
@@ -104,7 +108,7 @@
 
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>구매하는 제품 
+							<i class="fa fa-chevron-circle-right mr-2"></i>구매 제품
 						</h4>
 						<div class="table-responsive">
 							<div class="col-md-2 mt-3 mb-3">
