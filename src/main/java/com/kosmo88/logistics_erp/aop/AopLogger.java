@@ -17,7 +17,7 @@ public class AopLogger {
 	private static final Logger logger = LoggerFactory.getLogger(AopLogger.class);
 
 //	logger.info("Welcome home! The client locale is {}.", locale);
-	@Before("execution(* com.kosmo88.logistics_erp..*.*(..))")
+//	@Before("execution(* com.kosmo88.logistics_erp..*.*(..))")
 	public void logging(JoinPoint jp) {
 		logger.info("-------------------------------");
 		logger.info("메소드 실행 : " + jp.getSignature().toShortString());

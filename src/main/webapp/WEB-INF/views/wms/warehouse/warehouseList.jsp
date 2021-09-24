@@ -23,6 +23,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
+			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 
 
 
