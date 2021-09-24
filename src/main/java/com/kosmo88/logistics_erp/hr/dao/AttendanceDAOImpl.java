@@ -35,4 +35,9 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     public List<CommuteDTO> commutingRecords() {
         return sqlSession.selectList(STATEMENT + ".commutingRecords");
     }
+
+    @Override
+    public int insertCommute(CommuteDTO dto) {
+        return sqlSession.insert(STATEMENT + ".insertCommute", dto);
+    }
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -9,14 +8,14 @@
 	<div class="main-content">
 		<!-- header section start-->
 		<%@ include file="../common/header.jsp"%>
+		
 		<!--body wrapper start-->
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
 				<h4 class="page-title">견적서 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서
-							관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
 					<li class="active">견적서 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -76,18 +75,15 @@
 
 							<label class="col-md-1 control-label">담당자 연락처</label>
 							<div class="col-md-1">
-								<input class="form-control" placeholder="010" type="text"
-									maxlength="3" required>
+								<input class="form-control" placeholder="010" type="text" maxlength="3" required>
 							</div>
-
+							
 							<div class="col-md-1">
-								<input class="form-control" placeholder="1111" type="text"
-									maxlength="4" required>
+								<input class="form-control" placeholder="1111" type="text" maxlength="4" required>
 							</div>
-
+							
 							<div class="col-md-1">
-								<input class="form-control" placeholder="2222" type="text"
-									maxlength="4" required>
+								<input class="form-control" placeholder="2222" type="text" maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">담당자
@@ -106,18 +102,15 @@
 
 							<label class="col-md-1 control-label">거래처 연락처</label>
 							<div class="col-md-1">
-								<input class="form-control" placeholder="010" type="text"
-									maxlength="3" required>
+								<input class="form-control" placeholder="010" type="text" maxlength="3" required>
 							</div>
-
+							
 							<div class="col-md-1">
-								<input class="form-control" placeholder="1111" type="text"
-									maxlength="4" required>
+								<input class="form-control" placeholder="1111" type="text" maxlength="4" required>
 							</div>
-
+							
 							<div class="col-md-1">
-								<input class="form-control" placeholder="2222" type="text"
-									maxlength="4" required>
+								<input class="form-control" placeholder="2222" type="text" maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">거래처
@@ -252,7 +245,7 @@
 			</form>
 		</div>
 		<!-- End Wrapper-->
-
+		
 		<%@ include file="../common/footer.jsp"%>
 </body>
 </html>

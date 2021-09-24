@@ -23,14 +23,11 @@
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-<<<<<<< HEAD
 			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
-=======
 
 
 
 			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
->>>>>>> b36ff90ffa51e79f1934ed3045fd4c0d18f1363e
 			<ul class="nav nav-pills custom-nav">
 <%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">창고 --%>
 <!-- 						목록</a></li> -->
