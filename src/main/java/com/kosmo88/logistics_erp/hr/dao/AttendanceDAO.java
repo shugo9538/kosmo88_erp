@@ -9,10 +9,16 @@ public interface AttendanceDAO {
     // 근태
     // 근태 조회
     List<AttendanceDTO> selectAttendacne();
+
     // 근태 입력
     int insertAttendance(AttendanceDTO dto);
+
     // 근태 현황
     AttendanceDTO attendanceStatus();
+
     // 출퇴근 기록부
     List<CommuteDTO> commutingRecords();
+
+    // 출퇴근 입력
+    int insertCommute(CommuteDTO dto);
 }

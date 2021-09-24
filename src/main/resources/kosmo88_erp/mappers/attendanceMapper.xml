@@ -20,10 +20,30 @@
 		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state}, #{attendance_cd_id})
 	</insert>
 	<!-- 근태 현황 -->
+<!-- 	<select -->
+<!-- 		id="" -->
+<!-- 		parameterType="AttendanceDTO" -->
+<!-- 		resultType="AttendanceDTO"> -->
+<!-- 		SELECT *  -->
+<!-- 		  FROM attendance -->
+<!-- 		 WHERE state= -->
+<!-- 		  <if test=""> -->
+<!-- 		  	AND  -->
+<!-- 		  </if> -->
+	
+<!-- 	</select> -->
 	<!-- 출퇴근 기록부 -->
 	<select 
 		id="commutingRecords" 
 		resultType="CommuteDTO">
 		SELECT * FROM commute
 	</select>
+	
+	<!-- 출퇴근 입력 -->
+	<insert 
+		id="insertCommute"
+		parameterType="CommuteDTO">
+		INSERT INTO commute (id, work_date, begin_date, end_date, night_time, over_time, attendance_id, employee_id)
+		VALUES(commute_seq.nextval, #{work_date}, #{begin_date}, #{end_date}, #{night_time}, #{over_time}, #{attendance_id}, #{employee_id})
+	</insert>
 </mapper>
