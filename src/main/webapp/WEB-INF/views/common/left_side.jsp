@@ -112,7 +112,7 @@
 						<a href="${ROOT_PATH}/purchase/orderManagement"> 구매 관리 </a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/currentStatus"> 구매전표 관리 </a>
+						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement"> 구매전표 관리 </a>
 					</li>
 				</ul>
 			</li>

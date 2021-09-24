@@ -13,10 +13,10 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">견적서 등록</h4>
+				<h4 class="page-title">구매전표 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
-					<li class="active">견적서 등록</li>
+					<li><a href="${ROOT_PATH}/purchase/purchaseSlipManagement">구매전표 관리</a></li>
+					<li class="active">구매전표 등록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -27,59 +27,53 @@
 				<div class="white-box">
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>견적서
+							<i class="fa fa-chevron-circle-right mr-2"></i>구매전표
 						</h4>
 
-						<div class="form-group"></div>
 						<div class="form-group">
-							<label class="col-md-1 control-label">회사명</label>
+							<label class="col-md-2 control-label">작성일자</label>
 							<div class="col-md-3">
-								<p class="form-control-static">주식회사 우여곡절</p>
+								<input class="form-control" placeholder="작성일자" type="text">
 							</div>
-
-							<label class="col-md-1 control-label">거래처명</label>
+							
+							<label class="col-md-2 control-label">거래처명</label>
 							<div class="col-md-3">
 								<input class="form-control" placeholder="거래처명" type="text">
-							</div>
+							</div>			
 						</div>
-
+<!-- 
 						<div class="form-group">
-							<label class="col-md-1 control-label">대금결제방법</label>
+							<label class="col-md-2 control-label">증빙서</label>
 							<div class="col-md-3">
 								<p class="form-control-static">계좌이체</p>
 							</div>
 
-							<label class="col-md-1 control-label">증명구분</label>
+							<label class="col-md-2 control-label">증명구분</label>
 							<div class="col-md-3">
 								<p class="form-control-static">세금계산서(과세)</p>
 							</div>
 						</div>
-
+ -->
 						<div class="form-group">
-							<label class="col-md-1 control-label">견적번호</label>
+							<label class="col-md-2 control-label">구매일자</label>
 							<div class="col-md-3">
-								<p class="form-control-static">21estimate0923</p>
+								<input class="form-control" placeholder="구매일자" type="text">
 							</div>
-
-							<label class="col-md-1 control-label">견적일자</label>
+							
+							<label class="col-md-2 control-label">구매 담당자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="견적일자" type="text">
+								<input class="form-control" placeholder="구매 담당자" type="text">
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-1 control-label">영업 담당자</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="영업담당자" type="text">
-							</div>
 
 							<label class="col-md-1 control-label">담당자 연락처</label>
 							<div class="col-md-3">
 								<input class="form-control" placeholder="담당자 연락처" type="text">
 							</div>
 
-							<label class="col-md-1 control-label" for="val-email">담당자
-								이메일 </label>
+							<label class="col-md-1 control-label" for="val-email">담당자이메일 </label>
 							<div class="col-md-3">
 								<input class="form-control" type="text" id="val-email"
 									name="val-email" placeholder="담당자 이메일">
@@ -97,8 +91,7 @@
 								<input class="form-control" placeholder="거래처 연락처" type="text">
 							</div>
 
-							<label class="col-md-1 control-label" for="val-email">거래처
-								이메일 </label>
+							<label class="col-md-1 control-label" for="val-email">거래처 이메일 </label>
 							<div class="col-md-3">
 								<input class="form-control" type="text" id="val-email"
 									name="val-email" placeholder="거래처 이메일">
@@ -111,7 +104,7 @@
 
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>견적서 품목내역
+							<i class="fa fa-chevron-circle-right mr-2"></i>구매하는 제품 
 						</h4>
 						<div class="table-responsive">
 							<div class="col-md-2 mt-3 mb-3">
