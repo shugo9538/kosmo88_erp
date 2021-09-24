@@ -25,6 +25,8 @@
 <!--End  Page Level  CSS -->
 <link href="${RESOURCES_PATH}/assets/css/icons.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/bootstrap.min.css" rel="stylesheet">
+<%-- <link href="${RESOURCES_PATH}/assets/css/bootstrap.css" rel="stylesheet"> --%>
+<link href="${RESOURCES_PATH}/assets/css/temp_bootstrap.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/style.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/responsive.css" rel="stylesheet">
 </head>
