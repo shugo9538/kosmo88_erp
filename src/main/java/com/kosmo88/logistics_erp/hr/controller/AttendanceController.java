@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kosmo88.logistics_erp.hr.service.AttendanceService;
 import com.kosmo88.logistics_erp.hr.service.HRService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -22,12 +23,12 @@ public class AttendanceController {
     private static final Logger logger = LoggerFactory.getLogger(AttendanceController.class);
 
     @Autowired
-    HRService hrService;
+    AttendanceService attendanceService;
     
     // 근태 조회
     @RequestMapping(value = "/selectAttendacne")
     public String selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        hrService.selectAttendacne(req, res);
+        attendanceService.selectAttendacne(req, res);
         
         return "hr/attendanceManagement";
     }
@@ -35,7 +36,7 @@ public class AttendanceController {
     // 근태 입력
     @RequestMapping(value = "/insertAttendance")
     public String insertAttendance(HttpServletRequest req, HttpServletResponse res) {
-        hrService.insertAttendance(req, res);
+        attendanceService.insertAttendance(req, res);
         
         return "hr/attendanceManagement";
     }
@@ -43,7 +44,7 @@ public class AttendanceController {
     // 근태 현황
     @RequestMapping(value = "/attendanceStatus")
     public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
-        hrService.attendanceStatus(req, res);
+        attendanceService.attendanceStatus(req, res);
         
         return "hr/attendanceManagement";
     }
@@ -51,7 +52,15 @@ public class AttendanceController {
     // 출퇴근 기록부
     @RequestMapping(value = "/commutingRecords")
     public String commutingRecords(HttpServletRequest req, HttpServletResponse res) {
-        hrService.commutingRecords(req, res);
+        attendanceService.commutingRecords(req, res);
+        
+        return "hr/attendanceManagement";
+    }
+    
+    // 출퇴근 입력
+    @RequestMapping(value = "/insertCommute")
+    public String insertCommute(HttpServletRequest req, HttpServletResponse res) {
+        attendanceService.insertCommute(req, res);
         
         return "hr/attendanceManagement";
     }

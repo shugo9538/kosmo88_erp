@@ -42,10 +42,18 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>사원 코드</th>
-										<th>휴가 사용일</th>
-										<th>연차</th>
-										<th>휴가 코드</th>
+										<th>전표 코드</th>
+										<th>전표 유형</th>
+										<th>발행일</th>
+										<th>승인 상태</th>
+										<th>사원</th>
+										<th>급여 코드</th>
+										<th>기본급</th>
+										<th>초과 근로 수당</th>
+										<th>상여금</th>
+										<th>소득세</th>
+										<th>급여일</th>
+										<th>이체현황</th>
 									</tr>
 								</thead>
 								<tbody>

@@ -83,13 +83,17 @@
 						<a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/sales/salesManagement">견적서 관리</a>
+						<a href="${ROOT_PATH}/sales/estimateManagement">견적서 관리</a>
 					</li>
 					<li>
+<<<<<<< HEAD
 						<a href="${ROOT_PATH}/sales/estimateMangement">주문 관리</a>
+=======
+						<a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
+>>>>>>> 5ee29dff54be67314be233313648d4eb843c0d69
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/sales/shipmentManagement">출하 관리</a>
+						<a href="${ROOT_PATH}/sales/#">출하 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/sales/shipmentManagement">판매전표 관리</a>
