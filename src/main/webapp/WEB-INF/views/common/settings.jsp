@@ -22,6 +22,7 @@
 <!--Begin  Page Level  CSS -->
 <link href="${RESOURCES_PATH}/assets/plugins/morris-chart/morris.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+
 <!--End  Page Level  CSS -->
 <link href="${RESOURCES_PATH}/assets/css/icons.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/bootstrap.min.css" rel="stylesheet">
