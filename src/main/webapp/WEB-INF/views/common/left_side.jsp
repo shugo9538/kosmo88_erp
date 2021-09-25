@@ -2,7 +2,7 @@
 <div class="left-side sticky-left-side">
 	<!--logo-->
 	<div class="logo">
-		<a href="${ROOT_PATH}/">ERP 프로그램</a>
+		<a href="${ROOT_PATH}/">우여곡절 ERP</a>
 	</div>
 	<div class="logo-icon text-center">
 		<a href="${ROOT_PATH}/">
@@ -86,11 +86,7 @@
 						<a href="${ROOT_PATH}/sales/estimateManagement">견적서 관리</a>
 					</li>
 					<li>
-<<<<<<< HEAD
-						<a href="${ROOT_PATH}/sales/estimateMangement">주문 관리</a>
-=======
 						<a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
->>>>>>> 5ee29dff54be67314be233313648d4eb843c0d69
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/sales/#">출하 관리</a>
@@ -114,6 +110,9 @@
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/purchase/purchaseManagement">구매 관리</a>
+					</li>
+					<li>
+						<a href="${ROOT_PATH}/purchase/#">제품 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement">구매전표 관리</a>

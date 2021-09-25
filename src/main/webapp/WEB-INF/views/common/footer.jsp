@@ -23,6 +23,11 @@
 <script src="${RESOURCES_PATH}/assets/pages/validation-custom.js"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 
+<!--Begin Page Level Plugin-->
+<script src="${RESOURCES_PATH}/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
+<!--End Page Level Plugin-->
 
 <script src="${RESOURCES_PATH}/search/js/search.js"></script>
+
 

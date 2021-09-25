@@ -1,3 +1,4 @@
+/*
 $(document).ready(function() {
     $('').click(function() {
         $('#display').css("visibility", "visible");
@@ -13,4 +14,4 @@ $(document).ready(function() {
         });
     }
 });
-
+*/
