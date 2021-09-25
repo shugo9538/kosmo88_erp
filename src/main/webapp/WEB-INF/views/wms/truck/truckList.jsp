@@ -22,6 +22,15 @@
 			</div>
 			<!--End Page Title-->
 			
+			
+
+			<ul class="nav nav-pills custom-nav">
+<%-- 				<li class="active"><a href="${ROOT_PATH}/truck/list">차량 --%>
+<!-- 						목록</a></li> -->
+				<li class="active"><a href="${ROOT_PATH}/wms/truck/add">차량
+						등록</a></li>
+			</ul>
+			
 			<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
@@ -42,7 +51,7 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="${ROOT_PATH}/wms/warehouse/view">5223</a></td>
+										<td><a href="${ROOT_PATH}/wms/truck/view">5223</a></td>
 										<td>5톤땀프</td>
 										<td>본사창고</td>
 										<td>운행중</td>

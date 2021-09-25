@@ -11,32 +11,33 @@
 		<%@ include file="/WEB-INF/views/common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
+
+
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">창고 수정</h4>
+				<h4 class="page-title">입고 목록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
-					<li><a href="#">창고 목록</a></li>
-					<li class="active">창고 수정</li>
+					<li><a href="#">입고 관리</a></li>
+					<li class="active">입고 목록</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-			
-			<%--			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
-			<ul class="nav nav-pills custom-nav">
-<%-- 				<li class="active"><a href="${ROOT_PATH}/wms/list">창고 --%>
-<!-- 						목록</a></li> -->
-				<li class="active"><a href="${ROOT_PATH}/warehouse/list">창고
-						목록</a></li>
-			</ul>
 
-				<!--Start row-->
+
+
+			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
+			<!-- 			<ul class="nav nav-pills custom-nav"> -->
+			<%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">입고 --%>
+			<!-- 						목록</a></li> -->
+			<%-- 				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/add">입고 --%>
+			<!-- 						등록</a></li> -->
+			<!-- 			</ul> -->
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 filter">
 					<div class="white-box">
 						<form class="form-horizontal">
-							<h2 class="header-title">창고 정보 입력</h2>
+							<h2 class="header-title">입고 조회 필터</h2>
 							<div class="form-group">
 								<label class="col-sm-1 control-label">창고 번호</label>
 								<div class="col-sm-5">
@@ -70,42 +71,12 @@
 								</div>
 							</div>
 
-							<div class="form-group">
 
-								<label class="col-sm-1 control-label">주소</label>
-								<div class="col-sm-2">
-									<input class="form-control col-sm-2" type="text"
-										id="sample6_postcode" placeholder="우편번호">
-								</div>
-								<div class="col-sm-1">
-									<button type="button" class="btn btn-default "
-										onclick="sample6_execDaumPostcode()" value="우편번호 찾기">우편번호
-										찾기</button>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-1"></div>
-								<div class="col-sm-5">
-									<input class="form-control" type="text" id="sample6_address"
-										placeholder="주소"><br>
-								</div>
-								<div class="col-sm-6">
-									<input class="form-control" type="text"
-										id="sample6_detailAddress" placeholder="상세주소">
-								</div>
-
-							</div>
-
-							<input class="form-control" type="hidden"
-								id="sample6_extraAddress" placeholder="참고항목">
-
-
-
-							<h2 class="header-title col-md-12 my-5">랙 등록</h2>
+							<h2 class="header-title col-md-12 my-5">랙</h2>
 							<div id="rack-group">
 
 								<!-- 									<div id="firstRack"></div> -->
-								<div id="rack" style="display: none;">
+								<div id="rack">
 									<div class="form-group">
 										<label class="col-md-1 control-label">랙 이름</label>
 										<div class="col-md-5">
@@ -123,33 +94,65 @@
 								<!-- onload시 복제 처리했으며, 아이디 중복으로 인한 문제가 발생할 수도 있다 -->
 
 
-								<div role="button" class="preview col-md-12 md-5" id="addRack"
-									onclick="addRack()">
-									<i class="icon-plus"></i> 랙 추가
-								</div>
-
 							</div>
 							<button type="submit" class="btn btn-default mt-5"
-								onclick="warehouseAddAction()">등록</button>
+								onclick="warehouseAddAction()">조회</button>
 						</form>
 					</div>
 				</div>
-				<!--End row-->
 			</div>
-			<!-- End Wrapper-->
-			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-			<%@ include file="/WEB-INF/views/wms/common/myFooter.jsp"%>
-		</div>
-	</div>
 
-	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
-	<script>
-		window.onload = addRack();
-	</script>
-	<!-- 다음 도로명주소 -->
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
+
+			<!--Start row-->
+			<div class="row">
+<!-- 				<div class="col-md-12"> -->
+					<div class="white-box">
+						<!-- 						<h2 class="header-title">Projects</h2> -->
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>품목명</th>
+										<th>품목 분류</th>
+										<th>수량</th>
+										<th>위치</th>
+										<th>입고일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/view">하리보</a></td>
+										<td>제과류</td>
+										<td>200</td>
+										<td>본사창고</td>
+										<td>2021/04/27</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+<!-- 				</div> -->
+			</div>
+			<!--입고 목록End row-->
+
+
+
+
+			<!--Start row-->
+			<div class="row"></div>
+			<!--End row-->
+			<!--Start row-->
+			<div class="row"></div>
+			<!--End row-->
+			<!--Start row-->
+			<div class="row"></div>
+			<!--End row-->
+		</div>
+		<!-- End Wrapper-->
+		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	</div>
 </body>
 </html>
-

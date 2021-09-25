@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/settings.jsp"%>
-<%@ include file="/WEB-INF/views/wms/common/myHeader.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="/WEB-INF/views/common/left_side.jsp"%>
@@ -14,28 +13,32 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">창고 등록</h4>
+				<h4 class="page-title">차량 수정</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
-					<li class="active">창고 등록</li>
+					<li><a href="#">차량 관리</a></li>
+					<li><a href="#">차량 목록</a></li>
+					<li class="active">차량 수정</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
+			
+			<%--			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
-				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/">창고
+<%-- 				<li class="active"><a href="${ROOT_PATH}/wms/list">차량 --%>
+<!-- 						목록</a></li> -->
+				<li class="active"><a href="${ROOT_PATH}/warehouse/list">차량
 						목록</a></li>
 			</ul>
 
-			<!--Start row-->
+				<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
 						<form class="form-horizontal">
-							<h2 class="header-title">창고 정보 입력</h2>
+							<h2 class="header-title">차량 정보 입력</h2>
 							<div class="form-group">
-								<label class="col-sm-1 control-label">창고 번호</label>
+								<label class="col-sm-1 control-label">차량 번호</label>
 								<div class="col-sm-5">
 									<input class="form-control" value="" type="text" readonly>
 								</div>
@@ -52,17 +55,17 @@
 							</div>
 							<div class="form-group">
 
-								<label class="col-sm-1 control-label">창고 이름</label>
+								<label class="col-sm-1 control-label">차량 이름</label>
 								<div class="col-sm-5">
 									<input class="form-control" value="" type="text">
 								</div>
 
-								<label class="col-sm-1 control-label">창고 종류</label>
+								<label class="col-sm-1 control-label">차량 종류</label>
 								<div class="col-sm-5">
 									<select class="form-control">
-										<option>일반창고</option>
-										<option>야적창고</option>
-										<option>냉동창고</option>
+										<option>일반차량</option>
+										<option>야적차량</option>
+										<option>냉동차량</option>
 									</select>
 								</div>
 							</div>
@@ -111,26 +114,6 @@
 										<label class="col-md-1 control-label">용적</label>
 										<div class="col-md-3">
 											<input class="form-control" value="" type="text">
-
-
-
-<!-- 											<div class="input-group bootstrap-touchspin"> -->
-<!-- 												<span class="input-group-btn"><button -->
-<!-- 														class="btn btn-primary bootstrap-touchspin-down" -->
-<!-- 														type="button">-</button></span><span -->
-<!-- 													class="input-group-addon bootstrap-touchspin-prefix" -->
-<!-- 													style="display: none;"></span><input id="demo3" type="text" -->
-<!-- 													value="" name="demo3" class="form-control" -->
-<!-- 													style="display: block;"><span -->
-<!-- 													class="input-group-addon bootstrap-touchspin-postfix" -->
-<!-- 													style="display: none;"></span><span class="input-group-btn"><button -->
-<!-- 														class="btn btn-primary bootstrap-touchspin-up" -->
-<!-- 														type="button">+</button></span> -->
-<!-- 											</div> -->
-
-
-
-
 										</div>
 										<div role="button" class="col-md-1" onclick="delRack(this);">
 											<i class="icon-minus"></i>

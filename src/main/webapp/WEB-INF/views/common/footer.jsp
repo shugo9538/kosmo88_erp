@@ -11,11 +11,7 @@
 <script src="${RESOURCES_PATH}/assets/js/jquery.nicescroll.js"></script>
 <script src="${RESOURCES_PATH}/assets/js/functions.js"></script>
 <!-- End core plugin -->
-<!--Begin Page Level Plugin-->
-<script src="${RESOURCES_PATH}/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-<script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
-<script src="${RESOURCES_PATH}/assets/pages/components-jqueryui-sliders.js"></script>
-<!--End Page Level Plugin-->
+
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${RESOURCES_PATH}/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
