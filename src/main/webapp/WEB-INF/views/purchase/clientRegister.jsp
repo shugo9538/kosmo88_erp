@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
 
-<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -26,7 +25,7 @@
             </div>
             <!--End Page Title-->
 
-			<form class="js-validation-bootstrap form-horizontal" action="${ROOT_PATH}/purchase/clientRegisterAction" method="post" >
+			<form class="js-validation-bootstrap form-horizontal" name="clientRegisterform" action="${ROOT_PATH}/purchase/clientRegisterAction" method="post" >
 				<!-- csrf 토큰 -->
 				<sec:csrfInput />
 			 
@@ -41,7 +40,7 @@
 	                                <label class="col-md-1 control-label header-title">거래처명</label>
 	                                <div class="col-md-3">
 	                                    <input class="form-control" type="text" id="name" name="name"
-	                                        placeholder="거래처명" required>
+	                                        placeholder="거래처명">
 	                                </div>
 	                               
 	                                <label class="col-md-1 control-label header-title" for="ceo_name">대표자명</label>
@@ -53,17 +52,16 @@
 	                                <label class="col-md-1 control-label header-title" for="phone1">거래처 연락처</label>
 	                                <div class="col-md-1">
 	                                    <input class="form-control" type="text" id="phone1" name="phone1" maxlength="3"
-	                                        placeholder="000" required>
+	                                        placeholder="000" required onkeyup="nextPhone1()">
 	                                </div>
-	                                
 	                                <div class="col-md-1">
 	                                    <input class="form-control" type="text" id="phone2" name="phone2" maxlength="4"
-	                                        placeholder="1111" required>
+	                                        placeholder="1111" required onkeyup="nextPhone2()">
 	                                </div>
 	                                
 	                                <div class="col-md-1">
 	                                    <input class="form-control" type="text" id="phone3" name="phone3" maxlength="4"
-	                                        placeholder="2222" required>
+	                                        placeholder="2222" required onkeyup="nextPhone3()">
 	                                </div>
 	                            </div>
 								
@@ -76,15 +74,18 @@
 	                                
 	                                <label class="col-md-1 control-label header-title" for="register_num1">사업자번호</label>
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xxx" type="text" id="register_num1" name="register_num1" maxlength="3" required>
+										<input class="form-control" placeholder="xxx" type="text" id="register_num1" name="register_num1" 
+											maxlength="3" required onkeyup="nextRegister_num1()">
 									</div>
 									
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xx" type="text" id="register_num2" name="register_num2"  maxlength="2" required>
+										<input class="form-control" placeholder="xx" type="text" id="register_num2" name="register_num2"  
+											maxlength="2" required onkeyup="nextRegister_num2()">
 									</div>
 									
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xxxxx" type="text" id="register_num3" name="register_num3"  maxlength="5" required>
+										<input class="form-control" placeholder="xxxxx" type="text" id="register_num3" name="register_num3"  
+											maxlength="5" required onkeyup="nextRegister_num3()">
 									</div>
 	                            </div>
 	                            
@@ -94,8 +95,8 @@
 	                                <div style="padding-left: 15px;" class="input-group m-b-0 col-md-2">
 	                                    <input class="form-control" type="text" placeholder="우편번호" id="zip_code" name="zip_code" maxlength="5" required>
 	                                    <span class="input-group-btn">
-	                                        <button type="button" class="form-control" id="search_zipcode" name="search_zip_code">우편번호검색</button>
-	                                    </span> 
+	                                        <button type="button" class="btn  btn-primary" id="search_zipcode" name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
+	                                    </span>
 	                                </div>
 	                            </div>
 								
@@ -166,11 +167,6 @@
 	            </div>
            		<!-- end row -->
             </form>
-			
-			<script>
-				window.onload = addItem();
-			</script>
-	
 	         <!--Start row-->
 	         <div class="row">
 	             <div class="col-md-12">
@@ -245,6 +241,9 @@
     <!-- End Wrapper-->
     
 	<%@ include file="../common/footer.jsp"%>
-	
+	<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
+	<script>
+		window.onload = addItem();
+	</script>
 </body>
 </html>

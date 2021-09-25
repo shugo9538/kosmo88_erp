@@ -37,14 +37,14 @@
                      	거래처 전체 목록</h2>
                      <div class="table-responsive">
                     	 <div class="col-md-2 mt-1">
-							<input class="btn btn-default" type="button" value="품목삭제" onclick="deleteClient()">
+							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
 						 </div>
                      	
                          <table id="example" class="display table">
                              <thead>
                                  <tr>
                                      <td style="text-align:center">
-                                         <input type="checkbox" name="select" id="select">
+                                         <input type="checkbox" id="checkAll" name="checkAll" id="select">
                                      </td>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
@@ -58,12 +58,11 @@
                              	 <!-- 거래처가 있으면 -->
                              	 <c:if test="${cnt > 0}">
                              	 	<c:forEach var="dto" items="${dtos}">
-                             	 		<input type="hidden" value="${dto.id}"> <!-- client id -->
                              	 		<tr>
 		                                    <th style="text-align:center">
-		                                        <input type="checkbox" name="select" id="select">
+		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
 		                                    </th>
-		                                    <td><a href="${ROOT_PATH}/purchase/clientDetail?">${dto.name}</a></td>
+		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
 		                             	 	<td>
 		                             	 		${fn:substring(dto.register_num,0,3)} -
 		                             	 		${fn:substring(dto.register_num,3,5)} - 
@@ -103,5 +102,6 @@
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
+		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
 </body>
 </html>
