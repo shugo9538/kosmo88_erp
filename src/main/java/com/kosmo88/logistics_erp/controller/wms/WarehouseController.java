@@ -36,7 +36,7 @@ public class WarehouseController {
 
     @RequestMapping("/modify")
     public String modifyWarehouse(){
-    	return "wms/warehouse/warehouseDetail";
+    	return "wms/warehouse/modifyWarehouse";
     }
  
     @RequestMapping("/delete")
@@ -44,14 +44,18 @@ public class WarehouseController {
     	return "wms/warehouse/warehouseList";
     }
 
-    @RequestMapping(value = {"/view"})
+    @RequestMapping("/view")
     public String warehouseDetail(Model model) {
         return "wms/warehouse/warehouseDetail";
     }
-
-    @RequestMapping("/rack")
-    public String rack(){
-    	return "";
+    @RequestMapping("/viewRack")
+    public String viewRack(Model model) {
+        return "wms/warehouse/rackDetail";
     }
+
+//    @RequestMapping("/rack")
+//    public String rack(){
+//    	return "";
+//    }
 
 }

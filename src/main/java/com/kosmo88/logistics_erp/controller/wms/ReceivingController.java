@@ -10,12 +10,12 @@ public class ReceivingController {
 	public ReceivingController() {
 	}
 	
-	@RequestMapping(value = {"/receivingList.do", "/"})
+	@RequestMapping(value = {"/list", "/"})
 	public String ReceivingList() {
 		return "wms/receiving/receivingList";
 	}
 
-	@RequestMapping("/receivingDetail.do")
+	@RequestMapping("/detail")
 	public String ReceivingDetail() {
 		return "wms/receiving/receivingDetail";
 	}

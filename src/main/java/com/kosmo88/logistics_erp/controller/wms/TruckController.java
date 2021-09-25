@@ -36,6 +36,10 @@ public class TruckController {
 
     @RequestMapping("/modify")
     public String modify(){
+    	return "wms/truck/modifyTruck";
+    }
+    @RequestMapping("/modifyAction")
+    public String modifyAction(){
     	return "wms/truck/truckDetail";
     }
  
@@ -49,10 +53,5 @@ public class TruckController {
         return "wms/truck/truckDetail";
     }
 
-    @RequestMapping("/rack")
-    public String rack(){
-    	return "";
-    }
-   
 
 }
