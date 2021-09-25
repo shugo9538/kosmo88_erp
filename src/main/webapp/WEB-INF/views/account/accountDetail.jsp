@@ -36,9 +36,11 @@
               
           <!--Start Page Title-->
            <div class="page-title-box">
-                <h4 class="page-title">금융/자금관리(통장)</h4>
+                <h4 class="page-title">
+                <a href="${ROOT_PATH}/account/accountList?categoryNum=140">금융/자금관리(통장)</a>
+              &gt;급여통장 거래내역</h4>
                 <ol class="breadcrumb">
-                    <li>
+             <!--        <li>
                         <a href="#">급여통장</a>
                     </li>
                     <li>
@@ -46,7 +48,7 @@
                     </li>
                     <li class="active">
                         <a href="#">통장목록</a>
-                    </li>
+                    </li> -->
                 </ol>
                 <div class="clearfix"></div>
              </div>
@@ -61,44 +63,46 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
-                                            <th>계좌코드</th>
-                                            <th>계좌명</th>
-                                            <th>계좌번호</th>
+                                            <th>거래일자</th>
+                                            <th>거래시간</th>
                                             <th>은행</th>
+                                            <th>계좌번호</th>
+                                            <th>적요</th>
+                                            <th>입금</th>
+                                            <th>출금</th>
                                             <th>잔액</th>
-                                            <th>요약</th>
-                                            <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                    	<td>
-                                    	<a href="${ROOT_PATH}/account/accountDetail">98000</a>
-                                    	</td>
-                                    	<td>우여곡절-급여계좌</td>
-                                    	<td>7050030-02-1117-307</td>
+                                    	<td>2021-09-24</td>
+                                    	<td>15:47:44</td>
                                     	<td>국민은행(보통)</td>
-                                    	<td>100,000,000</td>
-                                    	<td>급여이체</td>
-                                    	<td>2021-09-23</td>
+                                    	<td>1002-050-447307</td>
+                                    	<td>급여대체5644638</td>
+                                    	<td>20,000,000</td>
+                                    	<td>-</td>
+                                    	<td>20,000,000</td>
                                     </tr>
                                     <tr>
-                                    	<td>98000</td>
-                                    	<td>우여곡절-세금관리</td>
-                                    	<td>096-24-0094-123</td>
-                                    	<td>기업은행(보통)</td>
-                                    	<td>500,000,000</td>
-                                    	<td>세금납부</td>
-                                    	<td>2021-03-21</td>
+                                    	<td>2021-09-24</td>
+                                    	<td>16:47:44</td>
+                                    	<td>국민은행(보통)</td>
+                                    	<td>1002-050-447307</td>
+                                    	<td>급여대체5644638</td>
+                                    	<td>-</td>
+                                    	<td>10,000,000</td>
+                                    	<td>10,000,000</td>
                                     </tr>
-                                    <tr>
-                                    	<td>98000</td>
-                                    	<td>우여곡절-거래처</td>
-                                    	<td>542314-11-00027</td>
-                                    	<td>신한은행(보통)</td>
-                                    	<td>8,000,000</td>
-                                    	<td>매출/매입 자금관리</td>
-                                    	<td>2021-07-12</td>
+                                     <tr>
+                                    	<td>2021-09-24</td>
+                                    	<td>17:47:44</td>
+                                    	<td>국민은행(보통)</td>
+                                    	<td>1002-050-447307</td>
+                                    	<td>급여대체5644638</td>
+                                    	<td>-</td>
+                                    	<td>10,000,000</td>
+                                    	<td>-</td>
                                     </tr>
                                     <!-- 등록거래처가 있는경우 -->                     
                                     <c:if test="${cnt > 0}">

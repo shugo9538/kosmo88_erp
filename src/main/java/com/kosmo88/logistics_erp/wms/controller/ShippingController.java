@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.controller.wms;
+package com.kosmo88.logistics_erp.wms.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

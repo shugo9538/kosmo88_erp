@@ -1,12 +1,18 @@
 package com.kosmo88.logistics_erp.hr.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 
 public interface AttendanceService {
     // 근태
     // 근태 조회
-    void selectAttendacne(HttpServletRequest req, HttpServletResponse res);
+    ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res);
 
     // 근태 입력
     void insertAttendance(HttpServletRequest req, HttpServletResponse res);

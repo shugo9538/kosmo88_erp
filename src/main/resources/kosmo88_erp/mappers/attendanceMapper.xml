@@ -9,7 +9,12 @@
 	<select 
 		id="selectAttendacne"
 		resultType="AttendanceDTO">
-		SELECT * FROM attendance	
+		SELECT rownums, id, application_date, begin_date, end_date, reason, state, attendance_cd_id
+		  FROM (
+					SELECT ROWNUM as rownums, attendance.*
+					  FROM attendance
+					 ORDER BY id DESC
+				)				
 	</select>
 	
 	<!-- 근태 입력 -->
