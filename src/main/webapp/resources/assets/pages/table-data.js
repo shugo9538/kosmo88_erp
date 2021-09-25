@@ -118,6 +118,6 @@ $(document).ready(function() {
     });*/
 });
 
-jQuery(document).ready(function() {       
-  ComponentsjQueryUISliders.init();
-});
+//jQuery(document).ready(function() {       
+//  ComponentsjQueryUISliders.init();
+//});

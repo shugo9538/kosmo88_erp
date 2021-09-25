@@ -495,5 +495,7 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="common/footer.jsp"%>
+		<%@ include file="common/lib_main.jsp"%>
+
 </body>
 </html>

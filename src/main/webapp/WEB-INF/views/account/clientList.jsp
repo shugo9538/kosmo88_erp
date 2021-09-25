@@ -56,7 +56,7 @@
                        <div class="white-box">
                            <h2 class="header-title">거래처 관리 (등록 거래처 총 ${cnt}개)</h2>
                             <div class="table-responsive">
-                             <table id="example" class="display table">
+                             <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
                                         	<th>번호</th>

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,8 +17,13 @@ public class AopLogger {
 
 	private static final Logger logger = LoggerFactory.getLogger(AopLogger.class);
 
-//	logger.info("Welcome home! The client locale is {}.", locale);
-//	@Before("execution(* com.kosmo88.logistics_erp..*.*(..))")
+//	@Pointcut("execution(* com.kosmo88.logistics_erp.wms..*.*(..))")
+//    private void publicTarget() {
+//    }
+
+
+	@Before("execution(* com.kosmo88.logistics_erp.wms..*.*(..))")
+//	@Before("publicTarget()")
 	public void logging(JoinPoint jp) {
 		logger.info("-------------------------------");
 		logger.info("메소드 실행 : " + jp.getSignature().toShortString());
