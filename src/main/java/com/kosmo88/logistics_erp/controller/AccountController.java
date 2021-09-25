@@ -119,6 +119,15 @@ public class AccountController {
     	
         return "account/accountList";
     }
+    // 금융자금 - 통장 입/출금 내역
+    @RequestMapping(value = "/accountDetail")
+    public String accountDetail(HttpServletRequest request, Model model) {
+    	logger.info("/accountDetail");
+    	
+    	//service
+    	
+    	return "account/accountDetail";
+    }
     
     //------------------------ 결산/재무제표------------------------
     // 결산/재무제표(재무상태표)
