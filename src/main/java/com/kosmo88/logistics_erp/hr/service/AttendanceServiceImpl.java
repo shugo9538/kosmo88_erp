@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.dao.AttendanceDAO;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
@@ -27,10 +28,8 @@ public class AttendanceServiceImpl implements AttendanceService {
     AttendanceDAO attendanceDAO;
 
     @Override
-    public void selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<AttendanceDTO> attendanceList = (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
-
-        req.setAttribute("attendanceList", attendanceList);
+    public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
+        return (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
     }
 
     @Override

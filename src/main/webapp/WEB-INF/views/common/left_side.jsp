@@ -26,7 +26,7 @@
 						<a href="${ROOT_PATH}/hr/hrManagement">인사카드 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/attendanceManagement">근태 관리</a>
+						<a href="${ROOT_PATH}/hr/attendance/">근태 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/hr/holidayManagement">휴가 관리</a>
