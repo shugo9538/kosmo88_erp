@@ -5,22 +5,31 @@
 
 
 <mapper namespace="com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO">
-	
-<!-- 	
-	<select
-		id="getUserData"
-		parameterType="String"
-		resultType="PurchaseDTO">
-		SELECT userid, password, username, tel, advAlert, enabled, authority, key
-		FROM USER_TBL
-		WHERE userid = #{userid}
-	</select>
+ 	
+ 	<!-- 거래처 갯수 가져오기 -->
+ 	<select id="getClientCnt" resultType="int">
+ 		SELECT COUNT(id)
+ 		  FROM client
+ 		 WHERE type = '구매'
+ 	</select>
 
-	<insert
-		id="insertUser"
-		parameterType="PurchaseDTO">
-		INSERT INTO USER_TBL(userid, password, username, tel, key, advAlert, enabled, authority)
-		VALUES(#{userid}, #{password}, #{username}, #{tel}, #{key}, 'OK', 0, 'ROLE_GUEST')
+	<!-- 거래처(구매처) 목록	 -->
+ 	<select id="getClientList" resultType="PurchaseClientDTO">
+ 		SELECT id, name, register_num, ceo_name, phone, address, register_date
+ 		  FROM client
+ 		 WHERE type = '구매'
+ 	</select>
+ 
+	<!-- 거래처 등록 처리 -->
+	<insert id="RegisterClient" parameterType="PurchaseClientDTO">
+		INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code)
+		VALUES (client_seq.nextval, '구매', #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code})
 	</insert>
- -->	
+
+	<!-- 상품 등록 처리 -->
+	<insert id="RegisterItem" parameterType="PurchaseItemDTO">
+		INSERT INTO item(id, name item_name, category, price)
+		VALUES (item_seq.nextval, #{item_name}, #{category}, #{price})
+	</insert>
+ 
 </mapper>

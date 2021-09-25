@@ -23,20 +23,38 @@ public class PurchaseController {
     @Autowired
     PurchaseService purchaseService;
     
-    // 거래처(판매처) 관리 - 거래처 목록
+    // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
 
-    	// purchaseService.clientList(req, model)
+    	purchaseService.clientList(req, model);
     	
         return "purchase/clientManagement";
+    }
+
+    // 거래처 등록 화면
+    @RequestMapping(value = "/clientRegister")
+    public String clientRegister(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.clientList(req, model);
+    	
+    	return "purchase/clientRegister";
+    }
+    
+    // 거래처 상품 등록 처리
+    @RequestMapping(value = "/clientRegisterAction")
+    public String clientRegisterAction(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.RegisterClient(req, model);
+    	
+    	return "purchase/clientRegisterAction";
     }
     
     // 거래처 수정
     @RequestMapping(value = "/clientUpdate")
     public String clientUpdate(HttpServletRequest req, Model model) {
     	
-    	// service.updateClient
+    	// purchaseService.updateClient
     	
     	return "purchase/clientUpdate";
     }
@@ -45,7 +63,7 @@ public class PurchaseController {
     @RequestMapping(value = "/clientDelete")
     public String clientDelete(HttpServletRequest req, Model model) {
     	
-    	// service.updateClient
+    	// purchaseService.updateClient
     	// (update)
     	
     	return "purchase/clientDelete";
@@ -55,18 +73,9 @@ public class PurchaseController {
     @RequestMapping(value = "/clientSearch")
     public String clientSearch(HttpServletRequest req, Model model) {
     	
-    	// service.searchClient
+    	// purchaseService.searchClient
     	
     	return "purchase/clientSearch";
-    }
-    
-    // 거래처 등록
-    @RequestMapping(value = "/clientRegister")
-    public String clientRegister(HttpServletRequest req, Model model) {
-    	
-    	// service.registerClient
-    	
-    	return "purchase/clientRegister";
     }
     
     // 거래처 삭제(선택삭제)

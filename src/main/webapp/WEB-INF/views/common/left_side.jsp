@@ -2,7 +2,7 @@
 <div class="left-side sticky-left-side">
 	<!--logo-->
 	<div class="logo">
-		<a href="${ROOT_PATH}/">ERP 프로그램</a>
+		<a href="${ROOT_PATH}/">우여곡절 ERP</a>
 	</div>
 	<div class="logo-icon text-center">
 		<a href="${ROOT_PATH}/">
@@ -103,16 +103,19 @@
 				</a>
 				<ul class="sub-menu-list">
 					<li>
-						<a href="${ROOT_PATH}/purchase/clientManagement"> 거래처 관리 </a>
+						<a href="${ROOT_PATH}/purchase/clientManagement">거래처 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/estimateManagement"> 견적서 관리 </a>
+						<a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/orderManagement"> 구매 관리 </a>
+						<a href="${ROOT_PATH}/purchase/purchaseManagement">구매 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement"> 구매전표 관리 </a>
+						<a href="${ROOT_PATH}/purchase/#">제품 관리</a>
+					</li>
+					<li>
+						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement">구매전표 관리</a>
 					</li>
 				</ul>
 			</li>
