@@ -55,9 +55,9 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-2 control-label">구매 담당자</label>
+							<label class="col-md-2 control-label">담당자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="구매 담당자" type="text">
+								<input class="form-control" placeholder="담당자" type="text">
 							</div>	
 							
 							<label class="col-md-2 control-label">거래처 연락처</label>
@@ -108,7 +108,7 @@
 
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>구매 제품
+							<i class="fa fa-chevron-circle-right mr-2"></i>구매 제품 내역
 						</h4>
 						<div class="table-responsive">
 							<div class="col-md-2 mt-3 mb-3">

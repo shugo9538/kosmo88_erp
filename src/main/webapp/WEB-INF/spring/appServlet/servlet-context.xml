@@ -37,6 +37,7 @@
 
 	<context:component-scan base-package="com.kosmo88.logistics_erp" />
 
+<aop:aspectj-autoproxy/>
 <!-- 어노테이션으로 대체한다 -->
 <!-- 	<beans:bean id="loggingService" class="com.kosmo88.logistics_erp.aop.AopLogger"></beans:bean>	 -->
 <!-- 	<aop:config> -->
@@ -45,8 +46,9 @@
 <!-- 		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*DAO.*(..))" id="DAOs"/> -->
 <!-- 		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*Controller.*(..))" id="Controllers"/> -->
 	
-<!-- 		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*.*(..))" id=""/> -->
+<!-- 		<aop:pointcut expression="execution(* com.kosmo88.logistics_erp..*.*(..))" id=""/>  -->
 
+  
 <!-- 		<aop:aspect ref="loggingService"> -->
 <!-- 			<aop:before method="logging" pointcut-ref="services"/> -->
 <!-- 			<aop:before method="logging" pointcut-ref="DAOs"/> -->

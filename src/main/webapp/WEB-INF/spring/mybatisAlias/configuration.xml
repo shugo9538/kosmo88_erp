@@ -44,5 +44,18 @@
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
+		
+		<!-- 구매관리  -->
+		<!-- purchase dto start -->
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO"
+			alias="PurchaseClientDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
+			alias="PurchaseItemDTO" />
+			
+			
+		<!-- purchase dto end -->		
+		
 	</typeAliases>
 </configuration>

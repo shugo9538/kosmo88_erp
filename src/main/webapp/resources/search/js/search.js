@@ -1,3 +1,4 @@
+/*
 $(document).ready(function() {
     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");
@@ -44,6 +45,7 @@ $(document).ready(function() {
         selectAttendancec();
     });
 });
+*/
 
 function selectAttendancec(csrfToken, csrfParameter) {
     var data = {};

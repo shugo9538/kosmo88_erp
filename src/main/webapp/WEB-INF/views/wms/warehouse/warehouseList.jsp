@@ -11,8 +11,6 @@
 		<%@ include file="/WEB-INF/views/common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
-
-
 			<!--Start Page Title-->
 			<div class="page-title-box">
 				<h4 class="page-title">창고 목록</h4>
@@ -26,8 +24,6 @@
 			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 
 
-
-			<%-- 			<%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 			<ul class="nav nav-pills custom-nav">
 <%-- 				<li class="active"><a href="${ROOT_PATH}/warehouse/warehouseList">창고 --%>
 <!-- 						목록</a></li> -->

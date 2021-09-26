@@ -27,6 +27,7 @@
 				<li class="active"><a href="${ROOT_PATH}/wms/warehouse/">창고
 						목록</a></li>
 			</ul>
+
 			<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
@@ -110,6 +111,26 @@
 										<label class="col-md-1 control-label">용적</label>
 										<div class="col-md-3">
 											<input class="form-control" value="" type="text">
+
+
+
+<!-- 											<div class="input-group bootstrap-touchspin"> -->
+<!-- 												<span class="input-group-btn"><button -->
+<!-- 														class="btn btn-primary bootstrap-touchspin-down" -->
+<!-- 														type="button">-</button></span><span -->
+<!-- 													class="input-group-addon bootstrap-touchspin-prefix" -->
+<!-- 													style="display: none;"></span><input id="demo3" type="text" -->
+<!-- 													value="" name="demo3" class="form-control" -->
+<!-- 													style="display: block;"><span -->
+<!-- 													class="input-group-addon bootstrap-touchspin-postfix" -->
+<!-- 													style="display: none;"></span><span class="input-group-btn"><button -->
+<!-- 														class="btn btn-primary bootstrap-touchspin-up" -->
+<!-- 														type="button">+</button></span> -->
+<!-- 											</div> -->
+
+
+
+
 										</div>
 										<div role="button" class="col-md-1" onclick="delRack(this);">
 											<i class="icon-minus"></i>

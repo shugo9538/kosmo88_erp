@@ -30,7 +30,7 @@
            <div class="page-title-box">
                 <h3 class="page-title">
                <a href="${ROOT_PATH}/account/salesSlipList?categoryNum=130">
-               		 매입/매출장 목록</a>
+               		 매입/매출장 목록</a>&nbsp&gt;&nbsp;매출목록
                 </h3>
                 <ol class="breadcrumb">
                     <li>

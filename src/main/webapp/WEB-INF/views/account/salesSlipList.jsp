@@ -43,12 +43,10 @@
                 <div class="clearfix"></div>
              </div>
               <!--End Page Title-->  
-              
-                      
            
                <!-- Start responsive Table-->
                 <div class="col-md-12">
-              <!-- 메뉴버튼 -->
+           	   <!-- 메뉴버튼 -->
                             	<div>
 			        <ul class="nav nav-pills custom-nav">
 						<li class="active"><a href="${ROOT_PATH}/account/purchaseList">매입
@@ -57,12 +55,13 @@
 								목록</a></li>
 					</ul>
                  	</div>
-      	  <!-- 메뉴버튼 끝 -->    
+      	 		 <!-- 메뉴버튼 끝 -->    
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
 		                    <h2 class="header-title">매입/매출장</h2>
 		                    <h2 class="header-title">2021년</h2>
 	                    </div>
+	                    
                      <div class="table-responsive">
                          <table class="table table-bordered">
                                     <thead>
@@ -100,12 +99,12 @@
                                             <td>2021-02-01</td>
                                             <td>50002</td>
                                             <td>00106</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)영진전자</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
+                                            <td>5,000,000</td>
+                                            <td>500,000</td>
+                                            <td>5,500,000</td>
                                             <td>외상매출금</td>
                                             <td>상품매출</td>
                                             <td>22222</td>
@@ -114,12 +113,12 @@
                                             <td>2021-03-01</td>
                                             <td>50003</td>
                                             <td>00107</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)수정상사</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
+                                            <td>1,000,000</td>
+                                            <td>100,000</td>
+                                            <td>1,100,000</td>
                                             <td>외상매출금</td>
                                             <td>상품매출</td>
                                             <td>22222</td>
@@ -128,12 +127,12 @@
                                             <td>2021-04-01</td>
                                             <td>50004</td>
                                             <td>00110</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)영훈통상</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
+                                            <td>50,000,000</td>
+                                            <td>5,000,000</td>
+                                            <td>55,000,000</td>
                                             <td>외상매출금</td>
                                             <td>상품매출</td>
                                             <td>22222</td>
@@ -142,42 +141,42 @@
                                             <td>2021-05-01</td>
                                             <td>50005</td>
                                             <td>00105</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)오리온</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
-                                            <td>외상매출금</td>
-                                            <td>상품매출</td>
+                                            <td>700,000</td>
+                                            <td>70,000</td>
+                                            <td>770,000</td>
+                                            <td>외상매입금</td>
+                                            <td>상품매입</td>
                                             <td>22222</td>
                                         </tr>
                                         <tr>
                                             <td>2021-06-01</td>
                                             <td>50006</td>
                                             <td>00105</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)오뚜기</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
-                                            <td>외상매출금</td>
-                                            <td>상품매출</td>
+                                            <td>6,000,000</td>
+                                            <td>600,000</td>
+                                            <td>6,600,000</td>
+                                            <td>외상매입금</td>
+                                            <td>상품매입</td>
                                             <td>22222</td>
                                         </tr>
                                         <tr>
                                             <td>2021-07-01</td>
                                             <td>50001</td>
                                             <td>00105</td>
-                                            <td>(주)머핀나라</td>
+                                            <td>(주)파라메터</td>
                                             <td>119-811-4210</td>
                                             <td>상품</td>
-                                            <td>20,000,000</td>
-                                            <td>2,000,000</td>
-                                            <td>22,000,000</td>
-                                            <td>외상매출금</td>
-                                            <td>상품매출</td>
+                                            <td>8,000,000</td>
+                                            <td>800,000</td>
+                                            <td>8,800,000</td>
+                                            <td>외상매입금</td>
+                                            <td>상품매입</td>
                                             <td>22222</td>
                                         </tr>                                                                                                                                                                                                        
                                     <!-- 등록 매출/매입전표가 있는경우 -->                     

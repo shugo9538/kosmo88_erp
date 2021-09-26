@@ -58,7 +58,7 @@
                        <div class="white-box">
                            <h2 class="header-title">통장 목록</h2>
                             <div class="table-responsive">
-                             <table id="example" class="display table">
+                             <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
                                             <th>계좌코드</th>
@@ -72,7 +72,9 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                    	<td>98000</td>
+                                    	<td>
+                                    	<a href="${ROOT_PATH}/account/accountDetail">98000</a>
+                                    	</td>
                                     	<td>우여곡절-급여계좌</td>
                                     	<td>7050030-02-1117-307</td>
                                     	<td>국민은행(보통)</td>
