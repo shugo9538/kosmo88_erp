@@ -9,12 +9,11 @@
 	<select 
 		id="selectAttendacne"
 		resultType="AttendanceDTO">
-		SELECT rownums, id, application_date, begin_date, end_date, reason, state, attendance_cd_id
-		  FROM (
-					SELECT ROWNUM as rownums, attendance.*
-					  FROM attendance
-					 ORDER BY id DESC
-				)				
+		<![CDATA[
+		select a.*, ROW_NUMBER() over(order by id desc) r_num
+        from attendance a
+        order by id desc
+		]]>
 	</select>
 	
 	<!-- 근태 입력 -->
@@ -41,7 +40,7 @@
 	<select 
 		id="commutingRecords" 
 		resultType="CommuteDTO">
-		SELECT * FROM commute
+		SELECT *, rowNum rnum FROM commute
 	</select>
 	
 	<!-- 출퇴근 입력 -->

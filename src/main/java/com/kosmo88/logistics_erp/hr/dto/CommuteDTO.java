@@ -11,6 +11,7 @@ public class CommuteDTO {
     private int over_time;
     private int attendance_id;
     private String employee_id;
+    private int rnum;
 
     public int getId() {
         return id;
@@ -74,5 +75,13 @@ public class CommuteDTO {
 
     public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
+    }
+
+    public int getRnum() {
+        return rnum;
+    }
+
+    public void setRnum(int rnum) {
+        this.rnum = rnum;
     }
 }
