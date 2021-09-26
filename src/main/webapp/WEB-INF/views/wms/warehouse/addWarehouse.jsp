@@ -106,11 +106,11 @@
 									<div class="form-group">
 										<label class="col-md-1 control-label">랙 이름</label>
 										<div class="col-md-5">
-											<input class="form-control" value="" type="text">
+											<input class="form-control" value="" type="text" disabled>
 										</div>
 										<label class="col-md-1 control-label">용적</label>
 										<div class="col-md-3">
-											<input class="form-control" value="" type="text">
+											<input class="form-control" value="" type="text" disabled>
 
 
 

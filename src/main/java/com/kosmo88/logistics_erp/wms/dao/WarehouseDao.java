@@ -1,8 +1,26 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
-public class WarehouseDao {
+public interface WarehouseDao {
 
-	public WarehouseDao() {
-	}
+	void insert();
+	void select();
+	void update(); 
+	void delete(); 
+	/*
+	 * public WarehouseDao() { }
+	 * 
+	 * public void insert() { }
+	 * 
+	 * public void select() { }
+	 * 
+	 * public void update() {
+	 * 
+	 * }
+	 * 
+	 * public void delete() {
+	 * 
+	 * }
+	 * 
+	 */	
 
 }

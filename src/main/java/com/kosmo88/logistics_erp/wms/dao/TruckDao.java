@@ -5,4 +5,19 @@ public class TruckDao {
 	public TruckDao() {
 	}
 
+
+	
+	public void insert() {
+	}
+	
+	public void select() {
+	}
+	
+	public void update() {
+		
+	}
+	
+	public void delete() {
+		
+	}
 }
