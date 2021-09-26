@@ -168,8 +168,122 @@
 											+ end.format('MMMM D, YYYY'));
 						});
 	</script>
+	
+	
+	
 
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<!-- picker 관련 -->
+<%-- 	<script src="${RESOURCES_PATH}/assets/plugins/autoNumeric/autoNumeric.js" type="text/javascript"></script> --%>
+<%-- 	<script src="${RESOURCES_PATH}/assets/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js" type="text/javascript"></script> --%>
+<%-- 	<script src="${RESOURCES_PATH}/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script> --%>
+<%-- 	<script src="${RESOURCES_PATH}/assets/plugins/inputmask/jasny-bootstrap.min.js" type="text/javascript"></script> --%>
+<%-- 	<script src="${RESOURCES_PATH}/assets/plugins/tagsinput/bootstrap-tagsinput.js" type="text/javascript"></script> --%>
+<%-- 	<script type="text/javascript" src="${RESOURCES_PATH}/assets/plugins/jquery-quicksearch/jquery.quicksearch.js"></script> --%>
+<%-- 	<script type="text/javascript" src="${RESOURCES_PATH}/assets/plugins/jquery-multi-select/js/jquery.multi-select.js"></script> --%>
+<%-- 	<script src="${RESOURCES_PATH}/assets/pages/multi-select-init.js"></script> --%>
+<!-- 	<script> -->
+<!-- 		 jQuery(function($) { -->
+<!--               $('.autonumber').autoNumeric('init'); -->
+<!--           }); -->
+
+<!--             //Bootstrap-TouchSpin -->
+<!--             $(".vertical-spin").TouchSpin({ -->
+<!--                 verticalbuttons: true, -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary", -->
+<!--                 verticalupclass: 'ti-plus', -->
+<!--                 verticaldownclass: 'ti-minusbootstrap-touchspin' -->
+<!--             }); -->
+<!--             var vspinTrue = $(".vertical-spin").TouchSpin({ -->
+<!--                 verticalbuttons: true -->
+<!--             }); -->
+<!--             if (vspinTrue) { -->
+<!--                 $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove(); -->
+<!--             } -->
+
+<!--             $("input[name='demo1']").TouchSpin({ -->
+<!--                 min: 0, -->
+<!--                 max: 100, -->
+<!--                 step: 0.1, -->
+<!--                 decimals: 2, -->
+<!--                 boostat: 5, -->
+<!--                 maxboostedstep: 10, -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary", -->
+<!--                 postfix: '%' -->
+<!--             }); -->
+<!--             $("input[name='demo2']").TouchSpin({ -->
+<!--                 min: -1000000000, -->
+<!--                 max: 1000000000, -->
+<!--                 stepinterval: 50, -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary", -->
+<!--                 maxboostedstep: 10000000, -->
+<!--                 prefix: '$' -->
+<!--             }); -->
+<!--             $("input[name='demo3']").TouchSpin({ -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary" -->
+<!--             }); -->
+<!--             $("input[name='demo3_21']").TouchSpin({ -->
+<!--                 initval: 40, -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary" -->
+<!--             }); -->
+<!--             $("input[name='demo3_22']").TouchSpin({ -->
+<!--                 initval: 40, -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary" -->
+<!--             }); -->
+
+<!--             $("input[name='demo5']").TouchSpin({ -->
+<!--                 prefix: "pre", -->
+<!--                 postfix: "post", -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary" -->
+<!--             }); -->
+<!--             $("input[name='demo0']").TouchSpin({ -->
+<!--                 buttondown_class: "btn btn-primary", -->
+<!--                 buttonup_class: "btn btn-primary" -->
+<!--             }); -->
+
+           
+<!--             //Bootstrap-MaxLength -->
+<!--             $('input#defaultconfig').maxlength() -->
+
+<!--             $('input#thresholdconfig').maxlength({ -->
+<!--                 threshold: 20 -->
+<!--             }); -->
+
+<!--             $('input#moreoptions').maxlength({ -->
+<!--                 alwaysShow: true, -->
+<!--                 warningClass: "label label-success", -->
+<!--                 limitReachedClass: "label label-danger" -->
+<!--             }); -->
+
+<!--             $('input#alloptions').maxlength({ -->
+<!--                 alwaysShow: true, -->
+<!--                 warningClass: "label label-success", -->
+<!--                 limitReachedClass: "label label-danger", -->
+<!--                 separator: ' out of ', -->
+<!--                 preText: 'You typed ', -->
+<!--                 postText: ' chars available.', -->
+<!--                 validate: true -->
+<!--             }); -->
+
+<!--             $('textarea#textarea').maxlength({ -->
+<!--                 alwaysShow: true -->
+<!--             }); -->
+
+<!--             $('input#placement').maxlength({ -->
+<!--                 alwaysShow: true, -->
+<!--                 placement: 'top-left' -->
+<!--             }); -->
+<!--         </script> -->
+	
+
+
+
 
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 </body>

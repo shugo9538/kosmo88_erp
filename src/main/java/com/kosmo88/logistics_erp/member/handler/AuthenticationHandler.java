@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.kosmo88.logistics_erp.dto.LoginUserVO;
-import com.kosmo88.logistics_erp.dto.UserDTO;
+import com.kosmo88.logistics_erp.member.dto.LoginUserVO;
+import com.kosmo88.logistics_erp.member.dto.UserDTO;
 
 public class AuthenticationHandler implements UserDetailsService {
     @Autowired

@@ -25,7 +25,9 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a>
+	<!-- 					근태 조회 버튼 임시 -->
+					<button id="selectAttendacne">근태 조회</button>
+<%-- 					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a> --%>
 				</li>
 				<li class="active">
 					<a href="${ROOT_PATH}/hr/attendance/attendanceStatus">근태 현황</a>
@@ -41,7 +43,7 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 조회</h2>
 						<div class="table-responsive">
-							<table class="table table-hover">
+							<table id="example" class="display table">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -54,7 +56,9 @@
 										<th>상태</th>
 									</tr>
 								</thead>
-								<tbody>
+								
+<!-- 								여기다가 결과물 뿌림 -->
+								<tbody id="attendanceList">
 									<c:forEach var="aDTO" items="${attendanceList}">
 										<tr>
 											<td>1</td>
@@ -80,8 +84,8 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 입력</h2>
 						<div class="table-responsive">
-							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post">
-								<sec:csrfInput />
+<%-- 							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post"> --%>
+<%-- 								<sec:csrfInput /> --%>
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -116,13 +120,13 @@
 										</tr>
 										<tr>
 											<td colspan="6" align="center">
-												<input type="submit" value="등록">
+												<button id="insertAttendance">등록</button>
 												<input type="reset" value="취소">
 											</td>
 										</tr>
 									</tbody>
 								</table>
-							</form>
+<!-- 							</form> -->
 						</div>
 					</div>
 				</div>

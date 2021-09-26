@@ -12,7 +12,11 @@
 		class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property
 			name="jndiName"
+<<<<<<< HEAD
 			value="java:comp/env/jdbc/kosmo88erp3"/>
+=======
+			value="java:comp/env/jdbc/kosmo88erp3" />
+>>>>>>> ffee93b2c8699657e52fc93b890d0d1556729014
 		<property
 			name="resourceRef"
 			value="true" />
@@ -26,7 +30,7 @@
 			ref="dataSource" />
 		<property
 			name="mapperLocations"
-			value="classpath:/kosmo88_erp/mappers/**/*.xml" />
+			value="classpath:/mappers/**/*.xml" />
 		<property
 			name="configLocation"
 			value="/WEB-INF/spring/mybatisAlias/configuration.xml" />

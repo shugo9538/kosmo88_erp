@@ -10,6 +10,7 @@ public class AttendanceDTO {
     private String reason;
     private String state;
     private int attendance_cd_id;
+    private int r_num;
 
     public int getId() {
         return id;
@@ -65,6 +66,14 @@ public class AttendanceDTO {
 
     public void setAttendance_cd_id(int attendance_cd_id) {
         this.attendance_cd_id = attendance_cd_id;
+    }
+
+    public int getR_num() {
+        return r_num;
+    }
+
+    public void setR_num(int r_num) {
+        this.r_num = r_num;
     }
 
 }

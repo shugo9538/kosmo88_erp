@@ -10,11 +10,24 @@
 		<%@ include file="../common/header.jsp"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
-			구매관리
-			<div>
-				<img src="${RESOURCES_PATH}/assets/img/buy/구매관리.PNG" alt="">
+
+
+			<!--Start Page Title-->
+			<div class="page-title-box">
+				<h4 class="page-title">구매 관리</h4>
+				<ol class="breadcrumb">
+					<li><a href="#">구매 관리</a></li>
+					<li class="active">발주서 목록</li>
+				</ol>
+				<div class="clearfix"></div>
 			</div>
-		</div>
+			<!--End Page Title-->
+			
+			<ul class="nav nav-pills custom-nav">
+				<li class="active"><a href="${ROOT_PATH}/purchase/purchaseRegister">발주서 등록</a></li>
+				<li class="active"><a href="${ROOT_PATH}/purchase/purchaseChoiceDelete">발주서 삭제</a></li>
+			</ul>
+		</div>	
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
 </body>
