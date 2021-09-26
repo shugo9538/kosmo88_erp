@@ -2,7 +2,7 @@ package com.kosmo88.logistics_erp.member.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.dto.UserDTO;
+import com.kosmo88.logistics_erp.member.dto.UserDTO;
 
 @Repository
 public interface UserDAO {

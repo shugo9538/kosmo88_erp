@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.dto;
+package com.kosmo88.logistics_erp.member.dto;
 
 import java.util.Collection;
 

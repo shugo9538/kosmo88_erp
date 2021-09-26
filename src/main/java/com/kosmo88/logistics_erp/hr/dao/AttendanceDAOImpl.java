@@ -15,6 +15,11 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Autowired
     SqlSession sqlSession;
+    
+    @Override
+    public int getAttendanceNum() {
+        return sqlSession.selectOne(STATEMENT + ".getAttendanceNum");
+    }
 
     @Override
     public int insertAttendance(AttendanceDTO dto) {
@@ -24,7 +29,6 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     @Override
     public List<AttendanceDTO> selectAttendacne() {
         List<AttendanceDTO> list = sqlSession.selectList(STATEMENT + ".selectAttendacne");
-        System.out.println(list.get(0).getR_num());
         return list;
     }
 
