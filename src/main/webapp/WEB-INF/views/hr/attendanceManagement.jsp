@@ -25,9 +25,9 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-	<!-- 					근태 조회 버튼 임시 -->
+					<!-- 					근태 조회 버튼 임시 -->
 					<button id="selectAttendacne">근태 조회</button>
-<%-- 					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a> --%>
+					<%-- 					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a> --%>
 				</li>
 				<li class="active">
 					<a href="${ROOT_PATH}/hr/attendance/attendanceStatus">근태 현황</a>
@@ -43,7 +43,7 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 조회</h2>
 						<div class="table-responsive">
-							<table id="example" class="display table">
+							<table id="attendanceTable" class="display table">
 								<thead>
 									<tr>
 										<th>#</th>
@@ -56,22 +56,6 @@
 										<th>상태</th>
 									</tr>
 								</thead>
-								
-<!-- 								여기다가 결과물 뿌림 -->
-								<tbody id="attendanceList">
-									<c:forEach var="aDTO" items="${attendanceList}">
-										<tr>
-											<td>1</td>
-											<td>${aDTO.id}</td>
-											<td>${aDTO.attendance_cd_id}</td>
-											<td>${aDTO.application_date}</td>
-											<td>${aDTO.begin_date}</td>
-											<td>${aDTO.end_date}</td>
-											<td>${aDTO.reason}</td>
-											<td>${aDTO.state}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
 							</table>
 						</div>
 					</div>
@@ -84,55 +68,54 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 입력</h2>
 						<div class="table-responsive">
-<%-- 							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post"> --%>
-<%-- 								<sec:csrfInput /> --%>
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>근태 아이디</th>
-											<th>근태 코드</th>
-											<th>근태 신청일</th>
-											<th>시작</th>
-											<th>종료</th>
-											<th>사유</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<input type="text" name="id">
-											</td>
-											<td>
-												<input type="text" name="attendance_cd_id">
-											</td>
-											<td>
-												<input type="date" name="application_date">
-											</td>
-											<td>
-												<input type="date" name="begin_date">
-											</td>
-											<td>
-												<input type="date" name="end_date">
-											</td>
-											<td>
-												<input type="text" name="reason">
-											</td>
-										</tr>
-										<tr>
-											<td colspan="6" align="center">
-												<button id="insertAttendance">등록</button>
-												<input type="reset" value="취소">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-<!-- 							</form> -->
+							<%-- 							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post"> --%>
+							<%-- 								<sec:csrfInput /> --%>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>근태 아이디</th>
+										<th>근태 코드</th>
+										<th>근태 신청일</th>
+										<th>시작</th>
+										<th>종료</th>
+										<th>사유</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="text" name="id">
+										</td>
+										<td>
+											<input type="text" name="attendance_cd_id">
+										</td>
+										<td>
+											<input type="date" name="application_date">
+										</td>
+										<td>
+											<input type="date" name="begin_date">
+										</td>
+										<td>
+											<input type="date" name="end_date">
+										</td>
+										<td>
+											<input type="text" name="reason">
+										</td>
+									</tr>
+									<tr>
+										<td colspan="6" align="center">
+											<button id="insertAttendance">등록</button>
+											<input type="reset" value="취소">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- 							</form> -->
 						</div>
 					</div>
 				</div>
 			</div>
 			<!--End row-->
-			
 			<!--Start row : 출퇴근 기록부 -->
 			<div class="row">
 				<div class="col-md-12">
@@ -174,7 +157,6 @@
 				</div>
 			</div>
 			<!--End row-->
-			
 			<!--Start row : 출퇴근 입력 -->
 			<div class="row">
 				<div class="col-md-12">
