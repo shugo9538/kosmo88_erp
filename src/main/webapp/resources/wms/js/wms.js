@@ -5,7 +5,7 @@ function getCurrentDate(){
   var date = newDate.getDate().toString();
   if(parseInt(month)<10)month = "0" + month; 
   if(parseInt(date)<10)date = "0" + date; 
- return  month + "/" + date + "/" + year;
+  return  month + "/" + date + "/" + year;
 }
 
 function addRack() {

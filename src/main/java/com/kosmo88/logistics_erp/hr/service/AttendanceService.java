@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
+import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 
 public interface AttendanceService {
     // 근태
@@ -21,7 +22,7 @@ public interface AttendanceService {
     void attendanceStatus(HttpServletRequest req, HttpServletResponse res);
 
     // 출퇴근 기록부
-    void commutingRecords(HttpServletRequest req, HttpServletResponse res);
+    ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res);
     
     // 출퇴근 입력
     void insertCommute(HttpServletRequest req, HttpServletResponse res);

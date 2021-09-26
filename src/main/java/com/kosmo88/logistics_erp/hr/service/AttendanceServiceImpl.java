@@ -58,10 +58,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public void commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
 
         req.setAttribute("commuteList", commuteList);
+        
+        return (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
     }
 
     @Override

@@ -11,7 +11,7 @@ import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 
 @Repository
 public class AttendanceDAOImpl implements AttendanceDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.AttendanceDAO";
 
     @Autowired
     SqlSession sqlSession;
@@ -23,7 +23,9 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public List<AttendanceDTO> selectAttendacne() {
-        return sqlSession.selectList(STATEMENT + ".selectAttendacne");
+        List<AttendanceDTO> list = sqlSession.selectList(STATEMENT + ".selectAttendacne");
+        System.out.println(list.get(0).getR_num());
+        return list;
     }
 
     @Override
