@@ -18,7 +18,7 @@
 
 	<!-- 컨텍스트 설정용(임시) -->
 	<listener>
-		<listener-class>com.kosmo88.logistics_erp.util.InitVars</listener-class>
+		<listener-class>com.kosmo88.logistics_erp.servletInit.InitVars</listener-class>
 	</listener>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

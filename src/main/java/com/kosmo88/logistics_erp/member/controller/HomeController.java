@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kosmo88.logistics_erp.member.service.UserService;
 
 @Controller
-public class MemberController {
+public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	UserService userService;
