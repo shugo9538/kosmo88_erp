@@ -10,27 +10,20 @@
 		id="getAttendanceNum"
 		resultType="int">
 		SELECT COUNT(*)
-		  FROM attendance
+		FROM attendance
 	</select>
-	
+
 	<!-- 근태 조회 -->
 	<select
 		id="selectAttendacne"
-		
+
 		resultType="AttendanceDTO">
-		<![CDATA[
 		SELECT *
 		FROM (
-			SELECT * 
-			  FROM (
-				SELECT a.*, ROWNUM r_num
-		          FROM attendance a
-		         ORDER BY id desc
-	        )
-	        WHERE r_num >= 1
-	          AND r_num <= 10
-        )
-		]]>
+		SELECT a.*, ROWNUM r_num
+		FROM attendance a
+		ORDER BY id desc
+		)
 	</select>
 
 	<!-- 근태 입력 -->

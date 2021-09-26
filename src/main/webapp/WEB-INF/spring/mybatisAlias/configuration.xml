@@ -5,7 +5,7 @@
 
 	<typeAliases>
 		<typeAlias
-			type="com.kosmo88.logistics_erp.dto.UserDTO"
+			type="com.kosmo88.logistics_erp.member.dto.UserDTO"
 			alias="UserDTO" />
 		<typeAlias 
 			type="com.kosmo88.logistics_erp.sale.dto.SaleDTO"
