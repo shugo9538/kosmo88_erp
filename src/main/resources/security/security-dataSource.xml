@@ -26,7 +26,7 @@
 			ref="dataSource" />
 		<property
 			name="mapperLocations"
-			value="classpath:/kosmo88_erp/mappers/**/*.xml" />
+			value="classpath:/mappers/**/*.xml" />
 		<property
 			name="configLocation"
 			value="/WEB-INF/spring/mybatisAlias/configuration.xml" />

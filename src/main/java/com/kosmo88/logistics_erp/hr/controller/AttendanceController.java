@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
+import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -61,10 +62,8 @@ public class AttendanceController {
     
     // 출퇴근 기록부
     @RequestMapping(value = "/commutingRecords")
-    public String commutingRecords(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.commutingRecords(req, res);
-        
-        return "hr/attendanceManagement";
+    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+        return attendanceService.commutingRecords(req, res);
     }
     
     // 출퇴근 입력

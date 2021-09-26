@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.servletInit;
+package com.kosmo88.logistics_erp.util;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

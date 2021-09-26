@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.controller;
+package com.kosmo88.logistics_erp.account.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

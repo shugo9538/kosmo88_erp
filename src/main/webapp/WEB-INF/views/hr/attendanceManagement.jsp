@@ -56,6 +56,7 @@
 										<th>상태</th>
 									</tr>
 								</thead>
+								
 <!-- 								여기다가 결과물 뿌림 -->
 								<tbody id="attendanceList">
 									<c:forEach var="aDTO" items="${attendanceList}">

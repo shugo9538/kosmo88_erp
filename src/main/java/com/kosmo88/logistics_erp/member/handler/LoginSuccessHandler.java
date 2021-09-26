@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.kosmo88.logistics_erp.dto.LoginUserVO;
+import com.kosmo88.logistics_erp.member.dto.LoginUserVO;
 
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
