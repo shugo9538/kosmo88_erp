@@ -20,15 +20,20 @@ import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
+import com.kosmo88.logistics_erp.util.ViewPager;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
     AttendanceDAO attendanceDAO;
+    
+    @Autowired
+    ViewPager pager;
 
     @Override
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
+        pager.setCnt(attendanceDAO.getAttendanceNum());
         return (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
     }
 

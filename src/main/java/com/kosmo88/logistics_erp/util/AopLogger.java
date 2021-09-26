@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.aop;
+package com.kosmo88.logistics_erp.util;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.dto;
+package com.kosmo88.logistics_erp.member.dto;
 
 //User 클래스는 스프링 시큐리티에 내장된 추상클래스로서, 사용자 상세정보를 담는 클래스이다.
 //User클래스는 추상클래스이므로 상속받아 추상메서드를 오버라이드해서 구현한다.
