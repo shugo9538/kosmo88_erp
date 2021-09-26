@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.account.service.AccountService;
-import com.kosmo88.logistics_erp.account.service.AccountServiceImpl;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -46,6 +45,31 @@ public class AccountController {
     }
 
     
+    // 달력확인
+    //jQuery
+    @RequestMapping(value = "/jQuery")
+    public String jQuery(HttpServletRequest request, Model model) {
+    	logger.info("/jQuery");
+    	
+    	
+        return "account/jQuery";
+    }
+    //jQuery
+    @RequestMapping(value = "/jQuery1")
+    public String jQuery1(HttpServletRequest request, Model model) {
+    	logger.info("/jQuery1");
+    	
+    	
+        return "account/jQuery1";
+    }
+    //jQuery
+    @RequestMapping(value = "/jQuery2")
+    public String jQuery2(HttpServletRequest request, Model model) {
+    	logger.info("/jQuery2");
+    	
+    	
+    	return "account/jQuery2";
+    }
     //------------------------ 기초정보관리 ------------------------
     //
     // 기초정보관리 - 거래처 목록
@@ -94,10 +118,11 @@ public class AccountController {
     	
         return "account/salesSlipList";
     }
-    
     // 장부관리 - 매입/매출장(매출전표목록)
     @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
+    	
+    	service.accountingList(request, model);
     	
         return "account/salesList";
     }
@@ -106,6 +131,8 @@ public class AccountController {
     @RequestMapping(value = "/purchaseList")
     public String purchase(HttpServletRequest request, Model model) {
 
+    	service.accountingList(request, model);
+    	
         return "account/purchaseList";
     }
     
@@ -124,9 +151,9 @@ public class AccountController {
     public String accountDetail(HttpServletRequest request, Model model) {
     	logger.info("/accountDetail");
     	
-    	//service
+    	//service.accountingList(request, model);
     	
-    	return "account/accountDetail";
+    	return "account/accountDetail2";
     }
     
     //------------------------ 결산/재무제표------------------------
@@ -135,6 +162,12 @@ public class AccountController {
     public String financialStatement(HttpServletRequest request, Model model) {
 
         return "account/financialStatement";
+    }
+    // 재무제표(계정과목 상세페이지)
+    @RequestMapping(value = "/accountTitleDetail")
+    public String accountTitleDetail(HttpServletRequest request, Model model) {
+    	
+    	return "account/accountTitleDetail";
     }
     
     // 손익계산서

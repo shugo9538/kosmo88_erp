@@ -84,14 +84,24 @@
                               <td>1,956,562,100</td>
                             </tr>
                             <tr>
-                              <td>      현금 및 현금성자산(보통예금)</td>
+                              <!-- <td>      현금 및 현금성자산(보통예금)</td> -->
+                              <td>  
+                              <input type="hidden" id="root" value="${ROOT_PATH}">
+                              <input type="hidden" id="accountTitle" value="계정과목">
+                              <a href="#" onclick="accountTitleDetail();">    
+                               	현금 및 현금성자산(보통예금)</a>
+                              </td>
                               <td>452,427,500</td>
                               <td></td>
                               <td>686,488,500</td>
                               <td></td>
                             </tr>
                             <tr>
-                              <td>      매   출    채   권(외상매출금)</td>
+                              <!-- <td>      매   출    채   권(외상매출금)</td> -->
+                              <td>
+               					<a href="#">               
+                                   	 매   출    채   권(외상매출금)</a>
+                                    </td>
                               <td>1,330,390,000</td>
                               <td></td>
                               <td>731,651,000</td>
@@ -232,7 +242,8 @@
         <!-- End Wrapper-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp" %>	
          <!--End footer -->
        </div>
       <!--End main content -->

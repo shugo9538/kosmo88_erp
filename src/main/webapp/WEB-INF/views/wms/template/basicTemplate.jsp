@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/settings.jsp"%>
+<%@ include file="/WEB-INF/views/wms/common/myHeader.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="/WEB-INF/views/common/left_side.jsp"%>
@@ -24,18 +25,12 @@
 			<!--Start row-->
 			<div class="row"></div>
 			<!--End row-->
-			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
-			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
-			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+		<%@ include file="/WEB-INF/views/wms/common/myFooter.jsp"%>
 	</div>
+	
+	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class SalesController {
     private static final Logger logger = LoggerFactory.getLogger(SalesController.class);
 
-    // 거래처 등록
+    // 거래처 관리
     @RequestMapping(value= "/clientManagement")
     public String clientResister(HttpServletRequest request, Model model) {
     	logger.info("url => clientManagement");
@@ -27,59 +27,34 @@ public class SalesController {
     	return "sales/clientManagement";
     }
     
-    // 거래처 목록
-    @RequestMapping(value="/clientList")
-    public String clientList(HttpServletRequest request, Model model) {
+    // 거래처 등록
+    @RequestMapping(value="/clientRegister")
+    public String clientRegister (HttpServletRequest request, Model model) {
+    	logger.info("url => clientRegister");
     	
-    	// service.clientList(HttpServletRequest request, Model model)
+    	// service.resisterClient
     	
-    	return "sale/clientList";
+    	return "sales/clientRegister";
     }
     
-    // 거래처 수정
-    
-    
-    // 견적서 등록
-    @RequestMapping(value="estimateResister")
-    public String estimateResister(HttpServletRequest request, Model model) {
+    // 주문 관리
+    @RequestMapping(value= "/orderManagement")
+    public String orderManagement(HttpServletRequest request, Model model) {
+    	logger.info("url => orderManagement");
     	
-    	return "sale/estimateResister";
-    }
-    
-    // 견적서 목록
-    @RequestMapping(value="estimateList")
-    public String estimateList(HttpServletRequest request, Model model) {
+    	// service.resisterClient
     	
-    	return "sale/estimateList";
+    	return "sales/orderManagement";
     }
     
-    
-
-    // 판매 관리
-    @RequestMapping(value = "/salesManagement")
-    public String hrManagement(Model model) {
-
-        return "sales/salesManagement";
-    }
-
     // 견적서 관리
-    @RequestMapping(value = "/estimateMangement")
-    public String holidayManagement(Model model) {
-
-        return "sales/estimateMangement";
+    @RequestMapping(value="/estimateManagement")
+    public String estimateManagement(HttpServletRequest request, Model model) {
+    	logger.info("url => estimateManagement");
+    	
+    	
+    	return "sales/estimateManagement";
     }
-
-    // 주문서 관리
-    @RequestMapping(value = "/orderManagement")
-    public String requestManagement(Model model) {
-        
-        return "sales/orderManagement";
-    }
-
-    // 출하 관리
-    @RequestMapping(value = "/shipmentManagement")
-    public String slipManagement(Model model) {
-
-        return "sales/shipmentManagement";
-    }
+    
+    
 }

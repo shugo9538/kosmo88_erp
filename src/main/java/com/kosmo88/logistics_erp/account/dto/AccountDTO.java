@@ -1,8 +1,8 @@
-package com.kosmo88.logistics_erp.account.vo;
+package com.kosmo88.logistics_erp.account.dto;
 
 import java.util.Date;
 
-public class AccountVO {
+public class AccountDTO {
 	
 //	ID                NOT NULL NUMBER(5)    
 //	NAME              NOT NULL VARCHAR2(50) 
@@ -18,8 +18,9 @@ public class AccountVO {
 	private String account_number;
 	private String bank;
 	private int balance;
-	private String Abstract; //abstract 테이블 컬럼명 소문자 첫글자 대문자로 변경
+	private String abs; //abstract 컬럼명 예약어로 변경 (별칭)
 	private Date register ;
+	private String type;
 	private int account_holder_id;
 	
 	
@@ -53,11 +54,11 @@ public class AccountVO {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public String getAbstract() {
-		return Abstract;
+	public String getAbs() {
+		return abs;
 	}
-	public void setAbstract(String abstract1) {
-		Abstract = abstract1;
+	public void setAbs(String abs) {
+		this.abs = abs;
 	}
 	public Date getRegister() {
 		return register;
@@ -65,11 +66,19 @@ public class AccountVO {
 	public void setRegister(Date register) {
 		this.register = register;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getAccount_holder_id() {
 		return account_holder_id;
 	}
 	public void setAccount_holder_id(int account_holder_id) {
 		this.account_holder_id = account_holder_id;
 	}
+	
+	
 	
 }

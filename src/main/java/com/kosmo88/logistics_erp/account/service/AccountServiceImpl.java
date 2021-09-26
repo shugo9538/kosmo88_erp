@@ -13,11 +13,10 @@ import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.account.code.menuCode;
 import com.kosmo88.logistics_erp.account.dao.AccountDAO;
-import com.kosmo88.logistics_erp.account.dao.AccountDAOImpl;
-import com.kosmo88.logistics_erp.account.vo.AccountVO;
-import com.kosmo88.logistics_erp.account.vo.ClientVO;
-import com.kosmo88.logistics_erp.account.vo.SalesSlipVO;
-import com.kosmo88.logistics_erp.account.vo.SlipVO;
+import com.kosmo88.logistics_erp.account.dto.AccountDTO;
+import com.kosmo88.logistics_erp.account.dto.ClientDTO;
+import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
+import com.kosmo88.logistics_erp.account.dto.SlipDTO;
 
 @Service
 public class AccountServiceImpl implements AccountService, menuCode {
@@ -51,17 +50,29 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		System.out.println("=================");
 		
 		switch (categoryNum) {
-			case CLIENT:
+			case CLIENT://거래처
 			cnt = accountDAO.getClientCnt();
+			System.out.println("accountDAO : " + CLIENT);
 			break;
-			case SLIP:
+			case SLIP://일반전표
 			cnt = accountDAO.getSlipCnt();
+			System.out.println("accountDAO : " + SLIP);
 			break;
-			case SALESSLIP:
+			case SALES://매출전표
+			cnt = accountDAO.getSalesPurchaseCnt(SALES_NAME);
+			System.out.println("accountDAO : " + SALES);
+			break;
+			case PURCHASE://매입전표
+			cnt = accountDAO.getSalesPurchaseCnt(PURCHASE_NAME);
+			System.out.println("accountDAO : " + PURCHASE);
+			break;
+			case SALESSLIP://매입/매출전표
 			cnt = accountDAO.getSalesSlipCnt();
+			System.out.println("accountDAO : " + SALESSLIP);
 			break;
-			case ACCOUNT:
+			case ACCOUNT://계좌
 			cnt = accountDAO.getAccountCnt();
+			System.out.println("accountDAO : " + ACCOUNT);
 			break;
 		
 		}
@@ -115,10 +126,10 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		System.out.println("마지막페이지 endPage : " + endPage);
 		
 		// 리턴받을 List
-		List<ClientVO> client = null;
-		List<SlipVO> slip = null;
-		List<SalesSlipVO> saleslip = null;
-		List<AccountVO> account = null;
+		List<ClientDTO> client = null;
+		List<SlipDTO> slip = null;
+		List<SalesSlipDTO> saleslip = null;
+		List<AccountDTO> account = null;
 		
 		// 매개변수 전달한 Map
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -134,19 +145,29 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			
 			// 거래처관리
 			if (categoryNum == CLIENT) {
-				client = new ArrayList<ClientVO>();
+				client = new ArrayList<ClientDTO>();
 				client = accountDAO.selectClient(map);
 			// 일반전표
 			}else if(categoryNum == SLIP) {
-				slip = new ArrayList<SlipVO>();
+				slip = new ArrayList<SlipDTO>();
 				slip = accountDAO.selectSlip(map);
-			// 매입/매출전표
+			// 매출전표 목록	
+			}else if (categoryNum == SALES) {
+				map.put("type", SALES_NAME);
+				saleslip = new ArrayList<SalesSlipDTO>();
+				saleslip = accountDAO.selectSalesPurchase(map);
+			// 매입전표 목록	
+			}else if (categoryNum == PURCHASE) {
+				map.put("type", PURCHASE_NAME);
+				saleslip = new ArrayList<SalesSlipDTO>();
+				saleslip = accountDAO.selectSalesPurchase(map);
+			// 매입/매출 전체목록
 			}else if(categoryNum == SALESSLIP) {
-				saleslip = new ArrayList<SalesSlipVO>();
+				saleslip = new ArrayList<SalesSlipDTO>();
 				saleslip = accountDAO.selectSalesSlip(map);
 			// 계좌조회
 			}else if(categoryNum == ACCOUNT) {
-				account = new ArrayList<AccountVO>();
+				account = new ArrayList<AccountDTO>();
 				account = accountDAO.selectAccount(map);
 			}
 				

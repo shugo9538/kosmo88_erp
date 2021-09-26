@@ -28,7 +28,7 @@
 				<div class="white-box">
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right"></i>견적서
+							<i class="fa fa-chevron-circle-right mr-2"></i>견적서
 						</h4>
 
 						<div class="form-group"></div>
@@ -64,7 +64,7 @@
 
 							<label class="col-md-1 control-label">견적일자</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="견적일자" type="text">
+								<input class="form-control" placeholder="견적일자" type="date">
 							</div>
 						</div>
 
@@ -75,8 +75,19 @@
 							</div>
 
 							<label class="col-md-1 control-label">담당자 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="담당자 연락처" type="text">
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text"
+									maxlength="3" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text"
+									maxlength="4" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text"
+									maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">담당자
@@ -94,8 +105,19 @@
 							</div>
 
 							<label class="col-md-1 control-label">거래처 연락처</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 연락처" type="text">
+							<div class="col-md-1">
+								<input class="form-control" placeholder="010" type="text"
+									maxlength="3" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="1111" type="text"
+									maxlength="4" required>
+							</div>
+
+							<div class="col-md-1">
+								<input class="form-control" placeholder="2222" type="text"
+									maxlength="4" required>
 							</div>
 
 							<label class="col-md-1 control-label" for="val-email">거래처
@@ -112,11 +134,11 @@
 
 					<div class="col-md-12">
 						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right"></i>견적서 품목내역
+							<i class="fa fa-chevron-circle-right mr-2"></i>견적서 품목내역
 						</h4>
 						<div class="table-responsive">
-							<div class="col-md-2">
-								<input class="btn btn-default" type="button" value="품목추가">
+							<div class="col-md-2 mt-3 mb-3">
+								<input class="btn btn-default mx-2" type="button" value="품목추가">
 								<input class="btn btn-default" type="button" value="품목삭제">
 							</div>
 							<table id="example" class="display table">
@@ -220,8 +242,8 @@
 					</div>
 
 					<div class="form-group">
-						<div class="col-md-5 col-md-offset-5">
-							<input class="btn btn-primary" type="submit" value="등록">
+						<div class="col-md-5 col-md-offset-5 mt-3">
+							<input class="btn btn-primary mx-1" type="submit" value="등록">
 							<input class="btn btn-primary" type="reset" value="취소">
 						</div>
 					</div>

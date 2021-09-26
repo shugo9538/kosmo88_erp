@@ -1,6 +1,6 @@
-package com.kosmo88.logistics_erp.account.vo;
+package com.kosmo88.logistics_erp.account.dto;
 
-public class IncomeStatementVO {
+public class IncomeStatementDTO {
 	
 // 손익계산서
 // 상품매출 - 매입/매출전표에서 외상매출금 (세액제외 가져오기)

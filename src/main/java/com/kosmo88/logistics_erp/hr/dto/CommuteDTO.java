@@ -10,7 +10,7 @@ public class CommuteDTO {
     private int night_time;
     private int over_time;
     private int attendance_id;
-    private int employee_id;
+    private String employee_id;
 
     public int getId() {
         return id;
@@ -68,11 +68,11 @@ public class CommuteDTO {
         this.attendance_id = attendance_id;
     }
 
-    public int getEmployee_id() {
+    public String getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(int employee_id) {
+    public void setEmployee_id(String employee_id) {
         this.employee_id = employee_id;
     }
 }

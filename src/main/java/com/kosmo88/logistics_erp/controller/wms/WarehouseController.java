@@ -53,6 +53,5 @@ public class WarehouseController {
     public String rack(){
     	return "";
     }
-   
 
 }

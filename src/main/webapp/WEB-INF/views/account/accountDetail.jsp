@@ -29,8 +29,6 @@
 		<%@ include file="../common/header.jsp"%>    
         <!-- header section end-->
 
-
-
         <!--body wrapper start-->
         <div class="wrapper">
               

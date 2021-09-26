@@ -12,6 +12,7 @@
   <meta name="author" content="">
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <title>우여곡절 - 계좌조회 </title>
+  <script type="text/javascript" src="${RESOURCES_PATH}/accounting/js/account.js"></script>
 </head>
 
 <body class="sticky-header">
@@ -61,6 +62,7 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
+                                            <th>번호</th>
                                             <th>계좌코드</th>
                                             <th>계좌명</th>
                                             <th>계좌번호</th>
@@ -71,35 +73,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                    	<td>
-                                    	<a href="${ROOT_PATH}/account/accountDetail">98000</a>
-                                    	</td>
-                                    	<td>우여곡절-급여계좌</td>
-                                    	<td>7050030-02-1117-307</td>
-                                    	<td>국민은행(보통)</td>
-                                    	<td>100,000,000</td>
-                                    	<td>급여이체</td>
-                                    	<td>2021-09-23</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>98000</td>
-                                    	<td>우여곡절-세금관리</td>
-                                    	<td>096-24-0094-123</td>
-                                    	<td>기업은행(보통)</td>
-                                    	<td>500,000,000</td>
-                                    	<td>세금납부</td>
-                                    	<td>2021-03-21</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>98000</td>
-                                    	<td>우여곡절-거래처</td>
-                                    	<td>542314-11-00027</td>
-                                    	<td>신한은행(보통)</td>
-                                    	<td>8,000,000</td>
-                                    	<td>매출/매입 자금관리</td>
-                                    	<td>2021-07-12</td>
-                                    </tr>
                                     <!-- 등록거래처가 있는경우 -->                     
                                     <c:if test="${cnt > 0}">
                                     	<c:forEach var="dto" items="${account}">
@@ -109,30 +82,36 @@
    												</td>
                                         		<td>${dto.id}</td>
                                         		<td>${dto.name}</td>
-                                        		<td>${dto.account_number}</td>
-                                        		<td>${dto.bank}</td>
-                                        		<td>${dto.balance}</td>
-                                        		<td>${dto.Abstract}</td>
                                         		<td>
-                                        		<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register}"/>
+                                        		<input type="hidden" id="root" value="${ROOT_PATH}">
+                                        		<input type="hidden" id="num" value="${dto.account_number}">
+                                    			<a href="#" id="accountNum" onclick="accountDetail();" >
+                                        		${dto.account_number}</a>
                                         		</td>
-                                        		<td>${dto.account_holder_id}</td>
+                                        		<td>${dto.bank}</td>
+                                        		<td>
+                                        		<fmt:formatNumber pattern="###,###,###,###" value="${dto.balance}"/>
+                                        		</td>
+                                        		<td>${dto.abs}</td>
+                                        		<td>
+                                        		<fmt:formatDate pattern="yyyy-MM-dd" value="${dto.register}"/>
+                                        		</td>
                                        	    </tr>		                                     		
                                     	</c:forEach>
                                      </c:if>
 
-                                     <!-- 거래내역이 없는경우 -->
-                                  <%--    <c:if test="${cnt == 0}">
+                                     <!-- 보유통장이 없는경우 -->
+                                  <c:if test="${cnt == 0}">
                                      	<tr>
                                      		<td colspan="8" align="center">
-                                     			<span style="color:red"> 거래내역이 없습니다. </span>
+                                     			<span style="color:red"> 등록된 통장이 없습니다.</span>
                                      		</td>
                                      	</tr>
-                                     </c:if>  --%>  
+                                     </c:if>
                                     </tbody>
                                     
                                     <tfoot>
-                                    <!-- 등록거래처가 있는경우 --> 
+                                    <!-- 보유통장이 있는경우 --> 
                                      <c:if test="${cnt > 0}">
                                      <tr>
                                      	<th colspan="8">

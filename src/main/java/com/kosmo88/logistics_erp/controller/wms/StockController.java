@@ -40,7 +40,7 @@ public class StockController {
     	return "wms/stock/stockList";
     }
 
-    @RequestMapping(value = "/view")
+    @RequestMapping("/view")
     public String view(Model model) {
         return "wms/stock/stockDetail";
     }
