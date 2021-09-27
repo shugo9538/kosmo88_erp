@@ -10,7 +10,7 @@
                 <h2 style="font-size:34px; text-align:center;" class="header-title col-md-8">${dto.name}</h2>
                 
                 <form class="js-validation-bootstrap form-horizontal mt-5">
-                    <input type="hidden" name="pageNum" value="${pageNum}">
+                    <!--  <input type="hidden" name="pageNum" value="${pageNum}"> -->
                     <input type="hidden" name="id" value="${dto.id}">
                     
                     <div class="form-group mt-5">

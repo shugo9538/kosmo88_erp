@@ -21,7 +21,10 @@ public interface PurchaseDAO {
 	// 상품 등록 처리
 	public int RegisterItem(PurchaseItemDTO idto);
 	
-	// 거래처, 상품 상세페이지
-	// public getClientDetail()
+	// 상세페이지 - 거래처
+//	public PurchaseClientDTO getClientDetail();
+	
+	// 상세페이지 - 상품
+	public List<PurchaseItemDTO>getItemDetail();
 	
 }

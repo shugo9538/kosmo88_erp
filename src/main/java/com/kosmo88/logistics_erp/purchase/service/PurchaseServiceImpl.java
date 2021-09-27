@@ -141,8 +141,14 @@ public class PurchaseServiceImpl implements PurchaseService {
 	// 거래처 상세페이지
 	@Override
 	public void clientDetail(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
 		
+		// 화면에서 값 가져온다.
+		String id = req.getParameter("id");	// 거래처코드
+		
+		
+		
+		// model.addAttribute("", );
+		// model.addAttribute("", );
 	}
 
 }

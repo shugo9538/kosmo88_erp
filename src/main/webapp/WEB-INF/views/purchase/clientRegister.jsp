@@ -41,7 +41,7 @@
 	                                <label class="col-md-1 control-label header-title">거래처명</label>
 	                                <div class="col-md-3">
 	                                    <input class="form-control" type="text" id="name" name="name"
-	                                        placeholder="거래처명">
+	                                        placeholder="거래처명" required>
 	                                </div>
 	                               
 	                                <label class="col-md-1 control-label header-title" for="ceo_name">대표자명</label>
@@ -123,24 +123,24 @@
 							
 								<div id="item-group">
 							
-									<div id="item" style="display:none">
+									<div id="item">
 										<div class="form-group mt-3">
 											<label class="col-md-1 control-label header-title" for="item_name">상품명</label>
 				                            <div class="col-md-2">
 				                                <input class="form-control" type="text" name="item_name"
-				                                    placeholder="상품명">
+				                                    placeholder="상품명" required>
 				                            </div>
 											
 											<label class="col-md-2 control-label header-title" for="category">상품종류</label>
 											<div class="col-md-2">
 				                                <input class="form-control" type="text" name="category"
-				                                    placeholder="상품종류">
+				                                    placeholder="상품종류" required>
 				                            </div>
 											
 											<label class="col-md-2 control-label header-title" for="price">상품가격(구매원가)</label>
 				                            <div class="col-md-2">
 				                                <input class="form-control" type="text" name="price" maxlength="10"
-				                                    placeholder="상품가격">
+				                                    placeholder="상품가격" required>
 				                            </div>
 				                            
 											<div role="button" class="col-md-1" onclick="delItem(this)">
@@ -217,7 +217,7 @@
 	                             	 <!-- 거래처가 없으면 -->
 	                             	 <c:if test="${cnt == 0}">
 	                             	 	<tr>
-											<td colspan="7" align="center">
+											<td colspan="6" align="center">
 												등록한 거래처가 없습니다. 거래처를 등록해주세요!!
 											</td>
 										</tr>
@@ -237,8 +237,5 @@
     
 	<%@ include file="../common/footer.jsp"%>
 	<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
-	<script>
-		window.onload = addItem();
-	</script>
 </body>
 </html>

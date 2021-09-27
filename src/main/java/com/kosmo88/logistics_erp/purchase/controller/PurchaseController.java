@@ -26,15 +26,6 @@ public class PurchaseController {
     
     @Autowired
     PurchaseService purchaseService;
-/*    
-    // 거래처(구매처) 관리
-    @RequestMapping(value = "/clientManagement")
-    public ModelAndView clientManagement(HttpServletRequest req, HttpServletResponse res) {
-    	ModelAndView view = new ModelAndView("/purchase/clientManagement");
-    	
-    	return view;
-    }
-*/    
     
     // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")

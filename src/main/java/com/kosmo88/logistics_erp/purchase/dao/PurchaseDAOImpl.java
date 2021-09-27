@@ -42,4 +42,17 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 		return sqlSession.insert(STATEMENT + ".RegisterItem", idto);
 	}
 
+	// 상세페이지 - 거래처
+//	@Override
+//	public PurchaseClientDTO getClientDetail() {
+//		return sqlSession.selectOne(STATEMENT + ".getClientDetail");
+//	}
+
+	// 상세페이지 - 상품
+	@Override
+	public List<PurchaseItemDTO> getItemDetail() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
