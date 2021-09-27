@@ -20,6 +20,7 @@ import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
+import com.kosmo88.logistics_erp.util.QueryCode;
 import com.kosmo88.logistics_erp.util.ViewPager;
 
 @Service
@@ -30,6 +31,8 @@ public class AttendanceServiceImpl implements AttendanceService {
     
     @Autowired
     ViewPager pager;
+    
+    QueryCode state;
 
     @Override
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
@@ -38,7 +41,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public void insertAttendance(HttpServletRequest req, HttpServletResponse res) {
+    public boolean insertAttendance(HttpServletRequest req, HttpServletResponse res) {
         int id = Integer.parseInt(req.getParameter("id"));
         int attendance_cd_id = Integer.parseInt(req.getParameter("attendance_cd_id"));
         Date application_date = Date.valueOf(req.getParameter("application_date"));
@@ -54,7 +57,9 @@ public class AttendanceServiceImpl implements AttendanceService {
         dto.setReason(reason);
         dto.setState("결재중");
         dto.setAttendance_cd_id(attendance_cd_id);
-        attendanceDAO.insertAttendance(dto);
+        state = QueryCode.UPDATE;
+        
+        return state.check(attendanceDAO.insertAttendance(dto));
     }
 
     @Override
