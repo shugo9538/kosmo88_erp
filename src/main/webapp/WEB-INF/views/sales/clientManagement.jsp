@@ -68,7 +68,7 @@
 	                                        <td>${dto.id}</td>
 	                                        <th>
 	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
-	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
+	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');return false;">${dto.name}</a>
 	                                        </th>
 	                                        <td>${fn:substring(dto.register_num,0,3)} - 
 		                    					${fn:substring(dto.register_num,3,5)} - 
