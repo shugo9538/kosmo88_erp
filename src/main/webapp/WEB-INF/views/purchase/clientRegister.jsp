@@ -18,7 +18,7 @@
             <div class="page-title-box">
                 <h4 class="page-title">거래처 등록</h4>
                 <ol class="breadcrumb">
-                    <li><a href="#">거래처 관리</a></li>
+                    <li><a href="${ROOT_PATH}/purchase/clientManagement">거래처 관리</a></li>
                     <li class="active">거래처 등록</li>
                 </ol>
                 <div class="clearfix"></div>
@@ -26,6 +26,7 @@
             <!--End Page Title-->
 
 			<form class="js-validation-bootstrap form-horizontal" name="clientRegisterform" action="${ROOT_PATH}/purchase/clientRegisterAction" method="post" >
+				
 				<!-- csrf 토큰 -->
 				<sec:csrfInput />
 			 
@@ -74,17 +75,17 @@
 	                                
 	                                <label class="col-md-1 control-label header-title" for="register_num1">사업자번호</label>
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xxx" type="text" id="register_num1" name="register_num1" 
+										<input class="form-control" placeholder="000" type="text" id="register_num1" name="register_num1" 
 											maxlength="3" required onkeyup="nextRegister_num1()">
 									</div>
 									
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xx" type="text" id="register_num2" name="register_num2"  
+										<input class="form-control" placeholder="11" type="text" id="register_num2" name="register_num2"  
 											maxlength="2" required onkeyup="nextRegister_num2()">
 									</div>
 									
 									<div class="col-md-1">
-										<input class="form-control" placeholder="xxxxx" type="text" id="register_num3" name="register_num3"  
+										<input class="form-control" placeholder="22222" type="text" id="register_num3" name="register_num3"  
 											maxlength="5" required onkeyup="nextRegister_num3()">
 									</div>
 	                            </div>
@@ -179,9 +180,6 @@
 	                         <table id="example" class="display table">
 	                             <thead>
 	                                 <tr>
-	                                     <td style="text-align: center;">
-	                                         <input type="checkbox" name="select" id="select">
-	                                     </td>
 	                                     <th>회사명</th>
 	                                     <th>사업자번호</th>
 	                                     <th>대표자명</th>
@@ -196,10 +194,7 @@
 	                             	 	<c:forEach var="dto" items="${dtos}">
 	                             	 		<input type="hidden" value="${dto.id}"> <!-- client id -->
 	                             	 		<tr>
-			                                    <th style="text-align:center">
-			                                        <input type="checkbox" name="select" id="select">
-			                                    </th>
-			                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
+			                                    <td><a href="${ROOT_PATH}/purchase/clientDetail?id=${dto.id}">${dto.name}</a></td>
 			                             	 	<td>
 			                             	 		${fn:substring(dto.register_num,0,3)} -
 			                             	 		${fn:substring(dto.register_num,3,5)} - 
@@ -208,8 +203,8 @@
 			                             	 	<td>${dto.ceo_name}</td>
 			                             	 	<td>
 			                             	 		${fn:substring(dto.phone,0,3)} -
-			                             	 		${fn:substring(dto.phone,3,6)} -
-			                             	 		${fn:substring(dto.phone,6,11)}
+		                             	 			${fn:substring(dto.phone,3,7)} -
+		                             	 			${fn:substring(dto.phone,7,10)}
 			                             	 	</td>
 			                             	 	<td>${dto.address}</td>
 			                             	 	<td>

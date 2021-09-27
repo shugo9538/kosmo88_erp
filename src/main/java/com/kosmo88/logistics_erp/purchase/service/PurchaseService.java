@@ -16,5 +16,8 @@ public interface PurchaseService {
 	// 거래처, 상품등록 처리
 	public void RegisterClient(HttpServletRequest req, Model model);
 	
+	// 거래처 상세페이지
+	public void clientDetail(HttpServletRequest req, Model model);
+	
 	
 }

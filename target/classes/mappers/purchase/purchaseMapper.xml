@@ -28,8 +28,8 @@
 
 	<!-- 상품 등록 처리 -->
 	<insert id="RegisterItem" parameterType="PurchaseItemDTO">
-		INSERT INTO item(id, name item_name, category, price)
+		INSERT INTO item(id, name, category, price)
 		VALUES (item_seq.nextval, #{item_name}, #{category}, #{price})
 	</insert>
- 
+	
 </mapper>

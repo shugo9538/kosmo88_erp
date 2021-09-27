@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.util.ViewPager;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -29,7 +30,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		int cnt = 0;
 		
 		// 거래처 목록
-		List<PurchaseClientDTO> dtos = null;
+		List<PurchaseClientDTO> dtos = new ArrayList<PurchaseClientDTO>();
 		
 		// 거래처 갯수 가져오기
 		cnt = purchaseDao.getClientCnt();
@@ -50,7 +51,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	public void RegisterClient(HttpServletRequest req, Model model) {
 		
 		// 거래처 바구니
-		PurchaseClientDTO cdto = null;
+		PurchaseClientDTO cdto = new PurchaseClientDTO();
 		
 		// 화면 입력 값 받아오기
 		
@@ -109,9 +110,9 @@ public class PurchaseServiceImpl implements PurchaseService {
 				
 		// }
 		
-		PurchaseItemDTO idto = null; 
-		String item_name = "";
+		PurchaseItemDTO idto = new PurchaseItemDTO();
 		String category = "";
+		String item_name = "";
 		int itemCnt = 0;
 		int price = 0;
 		
@@ -135,6 +136,13 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		model.addAttribute("clientCnt", clientCnt);
 		model.addAttribute("itemCnt", itemCnt);
+	}
+
+	// 거래처 상세페이지
+	@Override
+	public void clientDetail(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

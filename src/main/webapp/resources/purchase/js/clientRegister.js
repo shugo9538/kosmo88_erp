@@ -1,8 +1,16 @@
-// 거래처 상품 등록 required
+// 거래처 상품(숨겨진것) disabled
 $(document).ready(function() {
-	$("input:visible").each(function(){
-		$(this).prop("required", true);
-	});
+	$("input[name=item_name]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
+	
+	$("input[name=category]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
+	
+	$("input[name=price]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
 });
 
 // 거래처 상품 등록 추가
@@ -13,6 +21,8 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.style.display = "block";
+	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.removeAttribute("disabled"));
+	
 	document.getElementById("item-group").insertBefore(newItem, addItemBtn);
 }
 

@@ -6,7 +6,7 @@ import java.util.Date;
 public class PurchaseItemDTO {
 	
 	private int id;					// 상품코드
-	private String item_name;		// 상품명   name
+	private String item_name;		// 상품명 name
 	private String category;		// 종류
 	private Date register_date;		// 상품 등록일
 	private int price;				// 상품가격(구매원가)
@@ -52,5 +52,5 @@ public class PurchaseItemDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 }

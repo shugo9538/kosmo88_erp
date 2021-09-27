@@ -36,8 +36,8 @@
                      	<i class="fa fa-chevron-circle-right mr-2"></i>
                      	거래처 전체 목록</h2>
                      <div class="table-responsive">
-                    	 <div class="col-md-2 mt-1">
-							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
+                    	 <div class="col-md-2 mt-1 mb-4">
+							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="거래처 삭제">
 						 </div>
                      	
                          <table id="example" class="display table">
@@ -62,7 +62,7 @@
 		                                    <th style="text-align:center">
 		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
 		                                    </th>
-		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
+		                                    <td><a href="${ROOT_PATH}/purchase/clientDetail?id=${dto.id}">${dto.name}</a></td>
 		                             	 	<td>
 		                             	 		${fn:substring(dto.register_num,0,3)} -
 		                             	 		${fn:substring(dto.register_num,3,5)} - 
@@ -71,12 +71,12 @@
 		                             	 	<td>${dto.ceo_name}</td>
 		                             	 	<td>
 		                             	 		${fn:substring(dto.phone,0,3)} -
-		                             	 		${fn:substring(dto.phone,3,6)} -
-		                             	 		${fn:substring(dto.phone,6,11)}
+		                             	 		${fn:substring(dto.phone,3,7)} -
+		                             	 		${fn:substring(dto.phone,7,10)}
 		                             	 	</td>
 		                             	 	<td>${dto.address}</td>
 		                             	 	<td>
-		                             	 		<fmt:formatDate value="${dto.register_date}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
+		                             	 		<fmt:formatDate value="${dto.register_date}" pattern="yyyy-MM-dd hh:mm:ss" />
 		                             	 	</td>
 	                             		</tr>	 
                              	 	</c:forEach>
