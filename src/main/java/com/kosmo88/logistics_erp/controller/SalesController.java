@@ -74,6 +74,7 @@ public class SalesController {
     public String clientDeleteAction(HttpServletRequest request, Model model) {
     	
     	
+    	
     	return "sales/clientDeleteAction";
     }
     

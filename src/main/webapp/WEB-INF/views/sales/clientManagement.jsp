@@ -67,8 +67,8 @@
 	                                        </td>
 	                                        <td>${dto.id}</td>
 	                                        <th>
-	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
-	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
+	                                        	<a 
+	                                        		onclick="window.open(this.href='clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}', 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
 	                                        </th>
 	                                        <td>${dto.register_num}</td>
 	                                        <td>${dto.ceo_name}</td>
