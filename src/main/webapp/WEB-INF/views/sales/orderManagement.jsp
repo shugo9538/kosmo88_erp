@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -72,7 +73,7 @@
                                         placeholder="대표자명">
                                 </div>
 
-                                <label class="col-md-1 control-label header-title" for="val-username">대표전화</label>
+                                <label class="col-md-1 control-label header-title" for="val-username">거래처 연락처</label>
                                 <div class="col-md-1">
                                     <input class="form-control" type="text" id="val-username" name="val-username"
                                         placeholder="010">
@@ -103,7 +104,7 @@
                                         placeholder="담당자">
                                 </div>
 
-                                <label class="col-md-1 control-label header-title" for="val-username">담당자전화</label>
+                                <label class="col-md-1 control-label header-title" for="val-username">담당자 연락처</label>
                                 <div class="col-md-1">
                                     <input class="form-control" type="text" id="val-username" name="val-username"
                                         placeholder="010">

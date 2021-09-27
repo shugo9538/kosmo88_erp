@@ -7,9 +7,18 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.dto.UserDTO"
 			alias="UserDTO" />
+		
+		<!-- 영업관리 -->
+		<!--  -->
 		<typeAlias 
-			type="com.kosmo88.logistics_erp.sale.dto.SaleDTO"
+			type="com.kosmo88.logistics_erp.sale.dto.SalesDTO"
 			alias="SaleDTO"/>
+		<!-- 거래처 DTO -->
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
+			alias="SalesClientDTO"
+		/>	
+			
 			
 		<!-- 회계관리 -->	
 		<!-- 일반전표 VO -->

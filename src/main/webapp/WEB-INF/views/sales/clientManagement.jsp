@@ -10,23 +10,21 @@
 		<%@ include file="../common/header.jsp"%>
 		
 		<!--body wrapper start-->
-        <div class="wrapper">
-
-            <!--Start Page Title-->
-            <div class="page-title-box">
-                <h4 class="page-title">거래처 관리</h4>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="#">전체 목록</a>
-                    </li>
-                    <li class="active">
-                        	거래처 관리
-                    </li>
-                </ol>
-                <div class="clearfix"></div>
-            </div>
-            <!--End Page Title-->
-
+		<div class="wrapper">
+			<!--Start Page Title-->
+			<div class="page-title-box">
+				<h4 class="page-title">거래처 관리</h4>
+				<ol class="breadcrumb">
+					<li class="active">거래처 관리</li>
+				</ol>
+				<div class="clearfix"></div>
+			</div>
+			<!--End Page Title-->
+			
+			<ul class="nav nav-pills custom-nav">
+				<li class="active"><a href="${ROOT_PATH}/sales/clientRegister">거래처 등록</a></li>
+				<li class="active"><a href="${ROOT_PATH}/sales/clientDelete">거래처 삭제</a></li>
+			</ul>
 
             <!--Start row-->
             <div class="row">
@@ -34,141 +32,11 @@
                     <div class="white-box">
                         <h2 class="header-title">
                         	<i class="fa fa-chevron-circle-right mr-2"></i>
-                        	거래처 등록</h2>
-                        <div class="form-group">
-                        </div>
-                        <form class="js-validation-bootstrap form-horizontal" action="base_forms_validation.html"
-                            method="post">
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username">회사명</label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="회사명">
-                                </div>
-
-                                <label class="col-md-1 control-label header-title" for="val-username">사업자번호</label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="사업자번호">
-                                </div>
-                                
-                                <label class="col-md-1 control-label header-title" for="val-username">대표 전화</label>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="000">
-                                </div>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="xxxx">
-                                </div>
-                                <div>
-                                    
-                                </div>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="xxxx">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username">사업장주소</label>
-                                
-                                <div style="padding-left: 15px;" class="input-group m-b-0 col-md-2">
-                                    <input class="form-control" type="text" placeholder="우편번호">
-                                    <span class="input-group-btn">
-                                        <button type="button" class="form-control">우편번호검색</button>
-                                    </span> 
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username"></label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="주소">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username"></label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="상세주소">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                            </div>
-                            <div class="form-group">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username">담당자</label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="회사명">
-                                </div>
-
-                                <label class="col-md-1 control-label header-title" for="val-username">담당자 부서</label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="대표자명">
-                                </div>
-
-                                <label class="col-md-1 control-label header-title" for="val-username">담당자 전화</label>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="010">
-                                </div>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="xxxx">
-                                </div>
-                                <div>
-                                    
-                                </div>
-                                <div class="col-md-1">
-                                    <input class="form-control" type="text" id="val-username" name="val-username"
-                                        placeholder="xxxx">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-1 control-label header-title" for="val-username">담당자 이메일</label>
-                                <div class="col-md-3">
-                                    <input class="form-control" type="email" id="val-username" name="val-username"
-                                        placeholder="담당자 이메일">
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-md-5 col-md-offset-5">
-                                	<input class="btn  btn-primary" type="submit" value="등록">
-                                    <input class="btn  btn-default" type="reset" value="취소">
-                                    
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-
-            <!--Start row-->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="white-box">
-                        <h2 class="header-title">
-                        	<i class="fa fa-chevron-circle-right mr-2"></i>
-                        	거래처 전체 목록</h2>
+                        	거래처 전체 목록 </h2><span style="text-align:right;">(등록된 거래처 : ${cnt}개)</span>
                         <div class="table-responsive">
                             <div class="form-group">
                             </div>
                             <div class="form-group">
-                            
-                                <div class="col-md-1 col-md-offset-0">
-                                    <input class="btn  btn-default" type="submit" value="삭제">
-                                </div>
                             </div>
                             <table id="example" class="display table">
                                 <thead>
@@ -176,82 +44,81 @@
                                         <td style="text-align: center;">
                                             <input type="checkbox" name="select" id="select">
                                         </td>
+                                        <th>번호</th>
+                                        <th>거래처 번호</th>
                                         <th>회사명</th>
                                         <th>사업자번호</th>
                                         <th>대표자명</th>
                                         <th>전화번호</th>
                                         <th>주소</th>
-                                        <th>수정일</th>
+                                        <th>등록일</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">이노텍</a></th>
-                                        <td>2222-3444-2243</td>
-                                        <td>김철수</td>
-                                        <td>032-2222-2342</td>
-                                        <td>서울 금천구</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">삼성</a></th>
-                                        <td>1111-2234-1233</td>
-                                        <td>감창수</td>
-                                        <td>032-2222-5446</td>
-                                        <td>경기도 안양시</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">대우</a></th>
-                                        <td>5555-11234-5522</td>
-                                        <td>김영태</td>
-                                        <td>032-2222-3423</td>
-                                        <td>서울 도봉구</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">이노텍</a></th>
-                                        <td>2222-3444-2243</td>
-                                        <td>김철수</td>
-                                        <td>032-2222-2342</td>
-                                        <td>서울 금천구</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">삼성</a></th>
-                                        <td>1111-2234-1233</td>
-                                        <td>감창수</td>
-                                        <td>032-2222-5446</td>
-                                        <td>경기도 안양시</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <th style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
-                                        </th>
-                                        <th><a href="#">대우</a></th>
-                                        <td>5555-11234-5522</td>
-                                        <td>김영태</td>
-                                        <td>032-2222-3423</td>
-                                        <td>서울 도봉구</td>
-                                        <td>2021-08-24</td>
-                                    </tr>
+                                <!-- 등록된 거래처가 있는 경우 -->
+                                <c:if test="${cnt > 0}">
+                                	<c:forEach var="dto" items="${dto}">
+                                		<tr>
+	                                        <th style="text-align: center;">
+	                                            <input type="checkbox" name="select" id="select">
+	                                        </th>
+	                                        <td>${number}
+	                                        	<c:set var="number" value="${number -1}"/>
+	                                        </td>
+	                                        <td>${dto.id}</td>
+	                                        <th>
+	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
+	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
+	                                        </th>
+	                                        <td>${dto.register_num}</td>
+	                                        <td>${dto.ceo_name}</td>
+	                                        <td>${dto.phone}</td>
+	                                        <td>${dto.address}</td>
+	                                        <td>
+	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
+	                                        </td>
+	                                    </tr>
+                                	</c:forEach>
+                                </c:if>
+                                
+                                <!-- 등록된 거래처가 없는 경우 -->
+                                <c:if test="${cnt == 0}">
+                                	<tr>
+                                		<td colspan="7" align="center">
+                                   			<span style="color:red"> 등록된 거래처가 없습니다. </span>
+                                   		</td>
+                                	</tr>
+                                </c:if>   
+                                    
                                 </tbody>
+                                <tfoot>
+                                    <!-- 등록거래처가 있는경우 --> 
+                                     <c:if test="${cnt > 0}">
+                                     <tr>
+                                     	<th colspan="8">
+	                                     	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
+	                                     	<c:if test="${startPage > pageBlock}">
+	                                     		<a href="${ROOT_PATH}/sales/clientManagement" style="color:block">[◀◀]</a>
+	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
+	                                     	</c:if>
+	                                     	
+	                                     	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+	                                     		<c:if test="${i == currengPage}">
+	                                     			<span><b>[${i}]</b></span>
+	                                     		</c:if>
+	                                     		<c:if test="${i != currengPage}">
+	                                     			<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${i}">[${i}]</a>
+	                                     		</c:if>
+	                                     	</c:forEach>
+	                                     	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
+	                                     	<c:if test="${pageCount > endPage}">
+	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${startPage + pageBlock}">[▶]</a>
+	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${pageCount}">[▶▶]</a>
+	                                     	</c:if>
+	                                     	</th>
+                                     	</tr>
+                                     </c:if>
+                                </tfoot>
                             </table>
                         </div>
                         
@@ -265,10 +132,11 @@
             	<div>
             </div>
         </div>
-       
-       
-        <!-- End Wrapper-->
+		</div>	
+		<!-- End Wrapper-->
+		
 		<%@ include file="../common/footer.jsp"%>
-	</div>
+		
+		
 </body>
 </html>

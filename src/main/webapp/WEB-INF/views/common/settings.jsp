@@ -19,6 +19,7 @@
 <meta name="author" content="">
 <link rel="icon" href="${RESOURCES_PATH}/assets/images/favicon.png" type="image/png">
 <title>Meter - Responsive Admin Dashboard Template</title>
+
 <!--Begin  Page Level  CSS -->
 <link href="${RESOURCES_PATH}/assets/plugins/morris-chart/morris.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
@@ -28,4 +29,7 @@
 <link href="${RESOURCES_PATH}/assets/css/temp_bootstrap.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/style.css" rel="stylesheet">
 <link href="${RESOURCES_PATH}/assets/css/responsive.css" rel="stylesheet">
+
+<link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+<link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables-custom.css" rel="stylesheet" type="text/css" />
 </head>
