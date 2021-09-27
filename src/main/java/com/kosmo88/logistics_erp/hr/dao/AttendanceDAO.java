@@ -7,6 +7,9 @@ import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 
 public interface AttendanceDAO {
     // 근태
+    // 근태 목록 수
+    int getAttendanceNum();
+    
     // 근태 조회
     List<AttendanceDTO> selectAttendacne();
 

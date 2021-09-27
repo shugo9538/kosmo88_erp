@@ -33,7 +33,7 @@
 
 						<div class="form-group"></div>
 						<div class="form-group">
-							<label class="col-md-1 control-label">회사명</label>
+							<label class="col-md-1 control-label header-title">회사명</label>
 							<div class="col-md-3">
 								<p class="form-control-static">주식회사 우여곡절</p>
 							</div>
@@ -99,9 +99,9 @@
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-1 control-label">거래처대표자명</label>
+							<label class="col-md-1 control-label">대표자명</label>
 							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 대표자명" type="text">
+								<input class="form-control" placeholder="대표자명" type="text">
 							</div>
 
 							<label class="col-md-1 control-label">거래처 연락처</label>

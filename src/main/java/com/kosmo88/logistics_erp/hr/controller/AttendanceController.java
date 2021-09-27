@@ -1,5 +1,7 @@
 package com.kosmo88.logistics_erp.hr.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,12 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
+import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
-import com.kosmo88.logistics_erp.hr.service.HRService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -26,19 +31,16 @@ public class AttendanceController {
     AttendanceService attendanceService;
     
     // 근태 조회
-    @RequestMapping(value = "/selectAttendacne")
-    public String selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.selectAttendacne(req, res);
-        
+    @RequestMapping(value = "")
+    public String attendanceManagement(HttpServletRequest req, HttpServletResponse res) {
         return "hr/attendanceManagement";
     }
     
     // 근태 입력
     @RequestMapping(value = "/insertAttendance")
     public String insertAttendance(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.insertAttendance(req, res);
         
-        return "hr/attendanceManagement";
+        return "hr/insertAttendance";
     }
     
     // 근태 현황
@@ -51,10 +53,8 @@ public class AttendanceController {
     
     // 출퇴근 기록부
     @RequestMapping(value = "/commutingRecords")
-    public String commutingRecords(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.commutingRecords(req, res);
-        
-        return "hr/attendanceManagement";
+    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+        return attendanceService.commutingRecords(req, res);
     }
     
     // 출퇴근 입력

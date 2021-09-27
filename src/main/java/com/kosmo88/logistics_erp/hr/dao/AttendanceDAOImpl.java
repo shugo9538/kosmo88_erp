@@ -11,10 +11,15 @@ import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 
 @Repository
 public class AttendanceDAOImpl implements AttendanceDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.AttendanceDAO";
 
     @Autowired
     SqlSession sqlSession;
+    
+    @Override
+    public int getAttendanceNum() {
+        return sqlSession.selectOne(STATEMENT + ".getAttendanceNum");
+    }
 
     @Override
     public int insertAttendance(AttendanceDTO dto) {
@@ -23,7 +28,8 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public List<AttendanceDTO> selectAttendacne() {
-        return sqlSession.selectList(STATEMENT + ".selectAttendacne");
+        List<AttendanceDTO> list = sqlSession.selectList(STATEMENT + ".selectAttendacne");
+        return list;
     }
 
     @Override

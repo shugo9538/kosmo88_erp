@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.dao.AttendanceDAO;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
@@ -19,22 +20,28 @@ import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
+import com.kosmo88.logistics_erp.util.QueryCode;
+import com.kosmo88.logistics_erp.util.ViewPager;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
 
     @Autowired
     AttendanceDAO attendanceDAO;
+    
+    @Autowired
+    ViewPager pager;
+    
+    QueryCode state;
 
     @Override
-    public void selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        ArrayList<AttendanceDTO> attendanceList = (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
-
-        req.setAttribute("attendanceList", attendanceList);
+    public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
+        pager.setCnt(attendanceDAO.getAttendanceNum());
+        return (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
     }
 
     @Override
-    public void insertAttendance(HttpServletRequest req, HttpServletResponse res) {
+    public boolean insertAttendance(HttpServletRequest req, HttpServletResponse res) {
         int id = Integer.parseInt(req.getParameter("id"));
         int attendance_cd_id = Integer.parseInt(req.getParameter("attendance_cd_id"));
         Date application_date = Date.valueOf(req.getParameter("application_date"));
@@ -50,7 +57,9 @@ public class AttendanceServiceImpl implements AttendanceService {
         dto.setReason(reason);
         dto.setState("결재중");
         dto.setAttendance_cd_id(attendance_cd_id);
-        attendanceDAO.insertAttendance(dto);
+        state = QueryCode.UPDATE;
+        
+        return state.check(attendanceDAO.insertAttendance(dto));
     }
 
     @Override
@@ -59,10 +68,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public void commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
 
         req.setAttribute("commuteList", commuteList);
+        
+        return (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
     }
 
     @Override
