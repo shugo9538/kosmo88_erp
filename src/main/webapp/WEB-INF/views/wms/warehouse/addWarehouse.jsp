@@ -16,7 +16,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">창고 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">창고 관리</a></li>
+					<li><a href="${ROOT_PATH}/wms/warehouse/">창고 관리</a></li>
 					<li class="active">창고 등록</li>
 				</ol>
 				<div class="clearfix"></div>

@@ -9,125 +9,58 @@
 <!-- <typeAliases> 내부에 <typeAlias alias="" type=""으로 앨리어싱> 여기에 작성한 내용을 다른 
 	태그의 parameterType에서 사용? 대부분 생략한다고 한다 -->
 <mapper
-
 	namespace="com.kosmo88.logistics_erp.wms.dao.WarehouseDao">
 
-	<insert id="select">
-		insert into warehouse values(
-		1, '본사창고', '서울시 금천구 가산디지털2로123 4층 413호', 'loadable'
+	<insert id="insert">
+		INSERT INTO WAREHOUSE 
+		VALUES(
+			#{id}, #{name}, #{address}, #{register_date}
 		);
 	</insert>
 
 	<!-- warehouse -->
-	<select id="viweWarehouse"
+	<select id="select"
 		resultType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
-		select * from warehouse;
+<!-- 		select * from warehouse; -->
+		SELECT s.*
+		FROM (
+			SELECT ROWNUM RNUM, w.*
+			FROM WAREHOUSE w
+			) s
+		WHERE RNUM BETWEEN 1 AND 10;
 	</select>
 
 	<!-- rackList -->
-	<select id="selectClient"
-		resultType="com.kosmo88.logistics_erp.account.vo.ClientVO">
-<![CDATA[
-SELECT * 
-FROM (SELECT id, type, name, ceo_name, register_num, address, register_date, ROWNUM rNum     
-FROM(SELECT * FROM CLIENT
-  ORDER BY register_date DESC)
-  )
-  WHERE rNum >=#{start} AND rNum <=#{end}
-]]>
+	<select id="selectRack"
+		resultType="com.kosmo88.logistics_erp.wms.dto.RackDto">
+	<![CDATA[
+	SELECT * 
+	FROM RACK 
+	WHERE WAREHOUSE_ID = 1;
+	]]>
 	</select>
-	<insert id="insertClient">
-		INSERT INTO CLIENT(id, type, name, ceo_name,
-		register_num, address,
-		register_date)
-		VALUES(#{id}, #{type}, #{name},
-		#{ceo_name}, #{register_num}, #{address}
-		,#{SYSDATE})
-	</insert>
+
+<!-- 입고시 insert 처리한다 -->
+<!-- 	<insert id="insert"> -->
+<!-- 		insert into rack values( -->
+<!-- 				'#{id}', '#{warehouse_id}', '#{section}' -->
+<!-- 			  , '#{section_number}', '#{capacity}', '#{loaded}'  -->
+<!-- 			); -->
+<!-- 	</insert> -->
+
 	<!-- 4. 거래처 정보수정(where => 사업자등록번호) -->
-	<update id="updeateClient" parameterType="int">
-		UPDATE CLIENT
+	<update id="update" parameterType="int">
+		UPDATE WAREHOUSE 
 		SET
-		type=#{type},name=#{name},ceo_name=#{ceo_name},register_num=#{register_num},address=#{address}
-		where register_num = #{register_num}
+		NAME=#{name}
+	  , ADDRESS=#{address}
+	  , REGISTER_DATE=#{register_date}
 	</update>
 	<!-- 5. 거래체 목록 삭제(where => 사업자등록번호) -->
-	<delete id="deleteClient" parameterType="int">
-		DELETE FROM CLIENT WHERE
-		register_num=#{register_num}
+	<delete id="delete" parameterType="int">
+		DELETE FROM WAREHOUSE 
+		WHERE
+		REGISTER_NUM=#{register_num}
 	</delete>
 
-	<!-- 장부관리-일반전표 -->
-	<!-- 1. 일반전표 건수 -->
-	<select id="getSlipCnt" resultType="int">
-		SELECT COUNT(*)as cnt FROM
-		slip
-	</select>
-	<!-- 2. 일반전표 조회 -->
-	<select id="selectSlip" resultType="SlipVO">
-<![CDATA[
-SELECT *
-FROM (SELECT ID, TYPE, REGISTER_DATE, UPDATE_DATE, STATE, DEPARTMENT_ID, DEPARTMENT_REQUEST, ROWNUM rNum   
-FROM(SELECT *
-  FROM slip
-  ORDER BY REGISTER_DATE))
-  WHERE rNum >=#{start} AND rNum <=#{end}
-]]>
-	</select>
-	<!-- 3. 일반전표 등록 (update_date 승인일자제외, state제외 default N) -->
-	<insert id="insertSlip">
-		INSERT INTO slip(id, type, register_date,
-		department_id, department_request)
-		VALUES(#{id}, #{type}, SYSDATE,
-		#{department_id},
-		#{department_request})
-	</insert>
-	<!-- 4. 파트별 전표승인 -->
-	<update id="updateSlipState" parameterType="java.util.Map">
-		UPDATE slip
-		SET
-		UPDATE_DATE = SYSDATE, STATE='Y'
-		WHERE DEPARTMENT_ID=#{DEPARTMENT_ID}
-		AND
-		DEPARTMENT_REQUEST=#{DEPARTMENT_REQUEST}
-	</update>
-	<!-- 5. 일반전표 수정 -->
-	<!-- 6. 일반전표 삭제 enabled 처리 -->
-
-
-	<!-- 장부관리-매입/매출장 -->
-	<!-- 1. 매입/매출전표 건수 -->
-	<select id="getSalesSlipCnt" resultType="int">
-		SELECT COUNT(*)as cnt
-		FROM sales_slip
-	</select>
-	<!-- 2. 매입/매출전표 목록조회 -->
-	<select id="selectSalesSlip"
-		resultType="com.kosmo88.logistics_erp.account.vo.SalesSlipVO"
-		parameterType="java.util.Map">
-<![CDATA[
-SELECT *
-FROM (SELECT id, account_title, supply_amount, tax_amount, type, abstract Abstract, slip_id, ROWNUM rNum   
-FROM(SELECT *
-  FROM sales_slip
-  ORDER BY SLIP_ID))
-  WHERE rNum >=#{start} AND rNum <=#{end}
-]]>
-	</select>
-	<select id="getAccountCnt" resultType="int">
-		SELECT COUNT(*) as cnt
-		FROM ACCOUNT
-	</select>
-
-	<!-- 2. 통장목록 조회 -->
-	<select id="selectAccount" parameterType="java.util.Map"
-		resultType="AccountVO">
-<![CDATA[
-SELECT *
-FROM(SELECT id, name, account_number, bank, balance, abstract Abstract, register, account_holder_id, ROWNUM rNUM 
-FROM(SELECT * FROM ACCOUNT
-ORDER BY register))
-WHERE rNUM >=#{start} and rNUM <=#{end}
-]]>
-	</select>
 </mapper>    
