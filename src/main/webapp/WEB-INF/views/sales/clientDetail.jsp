@@ -7,25 +7,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-8">
-                	
-                	${dto.name}</h2>
-                <div class="form-group">
-                </div>
+                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-8">${dto.name}</h2>
                 
-                <form class="js-validation-bootstrap form-horizontal">
+                <form class="js-validation-bootstrap form-horizontal mt-5">
                     <input type="hidden" name="pageNum" value="${pageNum}">
                     <input type="hidden" name="id" value="${dto.id}">
-                    <input type="hidden" name="name" value="${dto.name}">
-                    <input type="hidden" name="ceo_name" value="${dto.ceo_name}">
-                    <input type="hidden" name="phone" value="${dto.phone}">
-                    <input type="hidden" name="email" value="${dto.email}">
-                    <input type="hidden" name="register_num" value="${dto.register_num}">
-                    <input type="hidden" name="zip_code" value="${dto.zip_code}">
-                    <input type="hidden" name="address" value="${dto.address}">
-                    <input type="hidden" name="detail_address" value="${dto.detail_address}">
-                    <input type="hidden" name="register_date" value="${dto.register_date}">
-                    
                     
                     <div class="form-group mt-5">
                         <label class="col-md-2 control-label header-title" for="val-username">거래처번호</label>
