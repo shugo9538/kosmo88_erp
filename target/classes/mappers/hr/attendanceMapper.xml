@@ -10,6 +10,7 @@
 		id="getAttendanceNum"
 		resultType="int">
 		SELECT COUNT(*)
+<<<<<<< HEAD
 		  FROM attendance
 	</select>
 	
@@ -31,6 +32,22 @@
 	          AND r_num <= 10
         )
 		]]>
+=======
+		FROM attendance
+	</select>
+
+	<!-- 근태 조회 -->
+	<select
+		id="selectAttendacne"
+
+		resultType="AttendanceDTO">
+		SELECT *
+		FROM (
+		SELECT a.*, ROWNUM r_num
+		FROM attendance a
+		ORDER BY id desc
+		)
+>>>>>>> 142db359713958de9443e822f2aa5c64ebf49458
 	</select>
 
 	<!-- 근태 입력 -->

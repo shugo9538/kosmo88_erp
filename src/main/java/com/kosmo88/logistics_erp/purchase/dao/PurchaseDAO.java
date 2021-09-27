@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
-
 public interface PurchaseDAO {
 
 	// 거래처 갯수 

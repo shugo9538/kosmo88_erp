@@ -25,9 +25,9 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-	<!-- 					근태 조회 버튼 임시 -->
+					<!-- 					근태 조회 버튼 임시 -->
 					<button id="selectAttendacne">근태 조회</button>
-<%-- 					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a> --%>
+					<%-- 					<a href="${ROOT_PATH}/hr/attendance/selectAttendacne">근태 조회</a> --%>
 				</li>
 				<li class="active">
 					<a href="${ROOT_PATH}/hr/attendance/attendanceStatus">근태 현황</a>
@@ -43,9 +43,10 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 조회</h2>
 						<div class="table-responsive">
-							<table id="example" class="display table">
+							<table id="attendanceTable" class="display table">
 								<thead>
 									<tr>
+										<th><input type="checkbox"></th>
 										<th>#</th>
 										<th>근태 아이디</th>
 										<th>근태 코드</th>
@@ -56,22 +57,11 @@
 										<th>상태</th>
 									</tr>
 								</thead>
-								
-<!-- 								여기다가 결과물 뿌림 -->
-								<tbody id="attendanceList">
-									<c:forEach var="aDTO" items="${attendanceList}">
-										<tr>
-											<td>1</td>
-											<td>${aDTO.id}</td>
-											<td>${aDTO.attendance_cd_id}</td>
-											<td>${aDTO.application_date}</td>
-											<td>${aDTO.begin_date}</td>
-											<td>${aDTO.end_date}</td>
-											<td>${aDTO.reason}</td>
-											<td>${aDTO.state}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
+								<tfoot>
+									<tr>
+										<th><button id="insertAttendance">근태 입력</button>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>
@@ -84,8 +74,8 @@
 					<div class="white-box">
 						<h2 class="header-title">근태 입력</h2>
 						<div class="table-responsive">
-<%-- 							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post"> --%>
-<%-- 								<sec:csrfInput /> --%>
+							<form action="${ROOT_PATH}/hr/attendance/insertAttendance" method="post">
+								<sec:csrfInput />
 								<table class="table table-hover">
 									<thead>
 										<tr>
@@ -120,19 +110,18 @@
 										</tr>
 										<tr>
 											<td colspan="6" align="center">
-												<button id="insertAttendance">등록</button>
+												<input type="submit" id="insertAttendance" value="등록">
 												<input type="reset" value="취소">
 											</td>
 										</tr>
 									</tbody>
 								</table>
-<!-- 							</form> -->
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!--End row-->
-			
 			<!--Start row : 출퇴근 기록부 -->
 			<div class="row">
 				<div class="col-md-12">
@@ -174,7 +163,6 @@
 				</div>
 			</div>
 			<!--End row-->
-			
 			<!--Start row : 출퇴근 입력 -->
 			<div class="row">
 				<div class="col-md-12">
@@ -236,5 +224,6 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="lib_attendance.jsp"%>
 </body>
 </html>

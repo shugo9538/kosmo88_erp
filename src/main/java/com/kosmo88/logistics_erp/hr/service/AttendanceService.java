@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.ModelAndView;
-
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 
@@ -16,7 +14,7 @@ public interface AttendanceService {
     ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res);
 
     // 근태 입력
-    void insertAttendance(HttpServletRequest req, HttpServletResponse res);
+    boolean insertAttendance(HttpServletRequest req, HttpServletResponse res);
 
     // 근태 현황
     void attendanceStatus(HttpServletRequest req, HttpServletResponse res);

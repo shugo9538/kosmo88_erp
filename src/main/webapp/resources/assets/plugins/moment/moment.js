@@ -1315,7 +1315,7 @@
             this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
     }
 
-    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+    var defaultLocaleWeekdaysShort = '일_월_화_수_목_금_토'.split('_');
     function localeWeekdaysShort (m) {
         return this._weekdaysShort[m.day()];
     }
@@ -3029,8 +3029,8 @@
         return -(wholeMonthDiff + adjust) || 0;
     }
 
-    utils_hooks__hooks.defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
-    utils_hooks__hooks.defaultFormatUtc = 'YYYY-MM-DDTHH:mm:ss[Z]';
+    utils_hooks__hooks.defaultFormat = 'YY년 MM월 DD일 ddd';
+    utils_hooks__hooks.defaultFormatUtc = 'YY년 MM월 DD일 ddd';
 
     function toString () {
         return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
