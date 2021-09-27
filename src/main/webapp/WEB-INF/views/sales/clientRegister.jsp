@@ -96,7 +96,7 @@
 	                                <div style="padding-left: 15px;" class="input-group m-b-0 col-md-2">
 	                                    <input class="form-control" type="text" placeholder="우편번호" id="zip_code" name="zipcode" maxlength="5" required>
 	                                    <span class="input-group-btn">
-	                                        <button type="button" class="form-control" id="zipcode" name="zip_code">우편번호검색</button>
+	                                        <button type="button" class="form-control btn  btn-primary" id="zipcode" name="zip_code">우편번호검색</button>
 	                                    </span> 
 	                                </div>
 	                            </div>
@@ -146,6 +146,7 @@
                                             <input type="checkbox" name="select" id="select">
                                         </td>
                                         <th>번호</th>
+                                        <th>거래처 번호</th>
                                         <th>회사명</th>
                                         <th>사업자번호</th>
                                         <th>대표자명</th>
@@ -165,10 +166,21 @@
 	                                        <td>${number}
 	                                        	<c:set var="number" value="${number -1}"/>
 	                                        </td>
-	                                        <th><a href="#">${dto.name}</a></th>
-	                                        <td>${dto.register_num}</td>
+	                                        <th>
+	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
+	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
+	                                        </th>
+	                                        <td>${fn:substring(dto.register_num,0,3)} - 
+		                    					${fn:substring(dto.register_num,3,5)} - 
+		                    					${fn:substring(dto.register_num,5,10)}
+	                                        
+	                                        </td>
 	                                        <td>${dto.ceo_name}</td>
-	                                        <td>${dto.phone}</td>
+	                                        <td>${fn:substring(dto.phone,0,3)} -
+	                                        	${fn:substring(dto.phone,3,7)} - 
+                            					${fn:substring(dto.phone,7,11)}
+	                                        
+	                                        </td>
 	                                        <td>${dto.address}</td>
 	                                        <td>
 	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>

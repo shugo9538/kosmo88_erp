@@ -214,6 +214,11 @@ public class SalesServiceImpl implements SalesService{
 	@Override
 	public void deleteClient(HttpServletRequest request, Model model) {
 		
+		int id = Integer.parseInt(request.getParameter("id"));
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		dao.deleteClient(id);
+		
 	}
 
 	

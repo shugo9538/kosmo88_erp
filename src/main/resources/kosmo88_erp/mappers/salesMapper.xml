@@ -40,5 +40,8 @@
 </update>
 
 <!-- 거래처 삭제 -->
+<delete id="deleteClient" parameterType="int">
+	DELETE FROM client WHERE id=#{id}
+</delete>
 
 </mapper>

@@ -33,7 +33,10 @@
                         
                         <label class="col-md-2 control-label header-title" for="client_phone1">거래처 연락처</label>
                         <div class="col-md-2">
-                            <p class="form-control-static">${dto.phone}</p>
+                            <p class="form-control-static">${fn:substring(dto.phone,0,3)} - 
+                            							   ${fn:substring(dto.phone,3,7)} - 
+                            							   ${fn:substring(dto.phone,7,11)}
+                            </p>
                         </div>
                     </div>
                     
@@ -45,7 +48,11 @@
                         
                         <label class="col-md-2 control-label header-title" for="register_num">사업자번호</label>
 		                 <div class="col-md-2">
-		                    <p class="form-control-static">${dto.register_num}</p>
+		                    <p class="form-control-static">${fn:substring(dto.register_num,0,3)} - 
+		                    							   ${fn:substring(dto.register_num,3,5)} - 
+		                    							   ${fn:substring(dto.register_num,5,10)}
+		                    
+		                    </p>
 		                 </div>
 		             </div>
 

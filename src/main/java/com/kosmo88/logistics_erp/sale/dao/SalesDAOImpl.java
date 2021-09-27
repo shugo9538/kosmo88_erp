@@ -49,6 +49,12 @@ public class SalesDAOImpl implements SalesDAO{
 		return updateCnt;
 	}
 
+	@Override
+	public int deleteClient(int id) {
+		int deleteCnt = sqlSession.delete("com.kosmo88.logistics_erp.sale.dao.SalesDAO.deleteClient", id);
+		return deleteCnt;
+	}
+
 	
 
 

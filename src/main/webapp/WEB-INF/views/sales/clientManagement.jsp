@@ -70,9 +70,16 @@
 	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
 	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');">${dto.name}</a>
 	                                        </th>
-	                                        <td>${dto.register_num}</td>
+	                                        <td>${fn:substring(dto.register_num,0,3)} - 
+		                    					${fn:substring(dto.register_num,3,5)} - 
+		                    					${fn:substring(dto.register_num,5,10)}
+	                                        
+	                                        </td>
 	                                        <td>${dto.ceo_name}</td>
-	                                        <td>${dto.phone}</td>
+	                                        <td>${fn:substring(dto.phone,0,3)} -
+	                                        	${fn:substring(dto.phone,3,7)} - 
+                            					${fn:substring(dto.phone,7,11)}
+	                                        </td>
 	                                        <td>${dto.address}</td>
 	                                        <td>
 	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>

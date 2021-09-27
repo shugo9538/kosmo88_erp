@@ -24,4 +24,5 @@ public interface SalesDAO {
 	public int updateClient(SalesClientDTO dto);
 	
 	// 거래처 삭제
+	public int deleteClient(int id);
 }

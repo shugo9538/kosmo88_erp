@@ -41,8 +41,16 @@
                         </div>
                         
                         <label class="col-md-2 control-label header-title" for="phone">거래처 연락처</label>
-                        <div class="col-md-2">
-                            <input class="form-control" type="text" id="phone" name="phone" value="${dto.phone}"
+                        <div class="col-md-1">
+                            <input class="form-control" type="text" id="phone1" name="phone1" value="${fn:substring(dto.phone,0,3)}"
+                                        required>
+                        </div>
+                        <div class="col-md-1">  
+                            <input class="form-control" type="text" id="phone2" name="phone2" value="${fn:substring(dto.phone,3,7)}"
+                                        required>
+                        </div>                
+                        <div class="col-md-1">                
+                            <input class="form-control" type="text" id="phone3" name="phone3" value="${fn:substring(dto.phone,7,11)}"
                                         required>
                         </div>
                     </div>
@@ -55,8 +63,16 @@
                         </div>
                         
                         <label class="col-md-2 control-label header-title" for="register_num">사업자번호</label>
-		                 <div class="col-md-2">
-		                    <input class="form-control" type="text" id="register_num" name="register_num" value="${dto.register_num}"
+		                 <div class="col-md-1">
+		                    <input class="form-control" type="text" id="register_num1" name="register_num1" value="${fn:substring(dto.register_num,0,3)}"
+                                        required>
+		                 </div>
+		                 <div class="col-md-1">
+		                    <input class="form-control" type="text" id="register_num2" name="register_num2" value="${fn:substring(dto.register_num,3,5)}"
+                                        required>
+		                 </div>
+		                 <div class="col-md-1">
+		                    <input class="form-control" type="text" id="register_num3" name="register_num3" value="${fn:substring(dto.register_num,5,10)}"
                                         required>
 		                 </div>
 		             </div>
@@ -85,7 +101,7 @@
                      <div class="form-group">
                      	<label class="col-md-2 control-label header-title" for="register_date">등록일</label>
                          <div class="col-md-3">
-                             <input class="form-control" type="text" id="register_date" name="register_date" value="${dto.register_date}"
+                             <input class="form-control" type="text" id="id" name="id" pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"
                                         required readonly>
                          </div>
                      </div>
@@ -93,7 +109,7 @@
                      <div class="form-group mt-5">
                          <div style="padding-left:70px" class="col-md-12 col-md-offset-3">
                             <input class="btn  btn-primary" type="submit" value="수정">
-	                        <input class="btn  btn-default" type="reset" value="취소">
+	                        <input class="btn  btn-default" type="reset" value="닫기" onclick="javascript:self.close();">
                          </div>
                     </div>
                 </form>

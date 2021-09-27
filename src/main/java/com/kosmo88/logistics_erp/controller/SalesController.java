@@ -66,6 +66,8 @@ public class SalesController {
     @RequestMapping(value="/clientDelete")
     public String clientDelete(HttpServletRequest request, Model model) {
     	
+    	service.deleteClient(request, model);
+    	
     	return "sales/clientDelete";
     }
     
@@ -95,11 +97,6 @@ public class SalesController {
     	return "sales/clientRegisterAction";
     }
     
-    // 거래처 수정
-    
-    // 거래처 삭제
-    
-    // 
     
     // 주문 관리
     @RequestMapping(value= "/orderManagement")
