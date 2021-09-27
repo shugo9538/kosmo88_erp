@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kosmo88.logistics_erp.hr.dao.HolidayDAO">
+	<!-- 휴가 관리 -->
+	<!-- 휴가 잔여일수 현황 -->
+	<select
+		id="useHolidayNum"
+		resultType="HolidayUsageStatusDTO">
+		SELECT * FROM holiday_use_status
+	</select>
+	<!-- 휴가 사용실적 -->
+	<!-- 근태 집계표 -->
+</mapper>
