@@ -1,22 +1,9 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
-public class ShippingDao {
-
-	public ShippingDao() {
-	}
-
-	
-	public void insert() {
-	}
-	
-	public void select() {
-	}
-	
-	public void update() {
-		
-	}
-	
-	public void delete() {
-		
-	}
+public interface ShippingDao {
+	void insert();
+	void select();
+	void selectRack();
+	void update(); 
+	void delete(); 
 }

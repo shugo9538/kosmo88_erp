@@ -1,22 +1,10 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
-public class StockDao {
+public interface StockDao {
 
-	public StockDao() {
+	void insert();
+	void select();
+	void selectRack();
+	void update(); 
+	void delete(); 
 	}
-
-	
-	public void insert() {
-	}
-	
-	public void select() {
-	}
-	
-	public void update() {
-		
-	}
-	
-	public void delete() {
-		
-	}
-}
