@@ -14,18 +14,18 @@ $(document).ready(function() {
 
     // 시작 주소로 처음 구분
     if (currLocation.split('/')[5] == 'attendance') {
-        $('#selectAttendacne').ready(function() {
+        $('#attendanceTable').ready(function() {
             attendanceList();
         });
     }
 
     // 버튼 눌렀을때
     $('#selectAttendacne').click(function() {
-        selectAttendancec(csrfToken, csrfParameter);
+        refeshAttendanceList();
     });
 
-    $('#insertAttendance').click(function() {
-        selectAttendancec();
+    $('#insertAttendanceAction').click(function() {
+        insertAttendance(csrfParameter, csrfToken);
     });
 });
 
@@ -65,9 +65,17 @@ function attendanceList() {
         },
         columns : [
                 {
+                    data : 'id',
+                    render : function(data) {
+                        return '<input type="checkBox" value="' + data + '">';
+                    }
+                }, {
                     data : 'r_num'
                 }, {
-                    data : 'id'
+                    data : 'id',
+                    render : function(data) {
+                        return '<a href="' + data + '">' + data + '</a>';
+                    }
                 }, {
                     data : 'attendance_cd_id'
                 }, {
@@ -84,6 +92,46 @@ function attendanceList() {
                 }, {
                     data : 'state'
                 }
-        ]
+        ],
+        destroy : true,
+        retrieve : true
+    });
+}
+
+function insertAttendance(csrfParameter, csrfToken) {
+    $('#insertAttendanceForm').submit(function(event) {
+        var formData = {
+            '_csrf' : $('input[name=_csrf]').val(),
+            'id' : $('input[name=id]').val(),
+            'attendance_cd_id' : $('input[name=attendance_cd_id]').val(),
+            'application_date' : $('input[name=application_date]').val(),
+            'begin_date' : $('input[name=begin_date]').val(),
+            'end_date' : $('input[name=end_date]').val(),
+            'reason' : $('input[name=reason]').val(),
+        };
+        var loc = $('#insertAttendanceForm').attr('action');
+        $.ajax({
+            type : 'POST',
+            url : loc,
+            data : formData,
+            dataType : 'json',
+            success : function(data) {
+                if (data) {
+                    window.close();
+                }
+            },
+            error : function() {
+                alert('오류');
+            },
+        });
+
+        event.preventDefault();
+    });
+}
+
+function refeshAttendanceList() {
+    $('#attendanceTable').ready(function() {
+        $('#attendanceTable').DataTable().clear().draw().destroy();
+        attendanceList();
     });
 }
