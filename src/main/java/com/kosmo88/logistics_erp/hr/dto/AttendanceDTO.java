@@ -4,13 +4,16 @@ import java.util.Date;
 
 public class AttendanceDTO {
     private int id;
-    private Date application_date;
-    private Date begin_date;
-    private Date end_date;
+    private String application_date;
+    private String begin_date;
+    private String end_date;
     private String reason;
     private String state;
     private int attendance_cd_id;
     private int r_num;
+    
+    public AttendanceDTO() {
+    }
 
     public int getId() {
         return id;
@@ -20,27 +23,51 @@ public class AttendanceDTO {
         this.id = id;
     }
 
-    public Date getApplication_date() {
+//    public Date getApplication_date() {
+//        return application_date;
+//    }
+//
+//    public void setApplication_date(Date application_date) {
+//        this.application_date = application_date;
+//    }
+//
+//    public Date getBegin_date() {
+//        return begin_date;
+//    }
+//
+//    public void setBegin_date(Date begin_date) {
+//        this.begin_date = begin_date;
+//    }
+//
+//    public Date getEnd_date() {
+//        return end_date;
+//    }
+//
+//    public void setEnd_date(Date end_date) {
+//        this.end_date = end_date;
+//    }
+
+    public String getApplication_date() {
         return application_date;
     }
 
-    public void setApplication_date(Date application_date) {
+    public void setApplication_date(String application_date) {
         this.application_date = application_date;
     }
 
-    public Date getBegin_date() {
+    public String getBegin_date() {
         return begin_date;
     }
 
-    public void setBegin_date(Date begin_date) {
+    public void setBegin_date(String begin_date) {
         this.begin_date = begin_date;
     }
 
-    public Date getEnd_date() {
+    public String getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Date end_date) {
+    public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
 
