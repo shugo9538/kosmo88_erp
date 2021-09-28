@@ -13,9 +13,11 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.style.display = "block";
-	document.getElementById("item-group").insertBefore(newItem, addItemBtn);
+//	document.getElementById("item-group").insertBefore(newItem, addItemBtn);
+	document.getElementById("test1").appendChild(newItem);
+	Array.from(newItem.getElementsByClassName("form-control")).
+	    addAttribute("required");
 }
-
 // 거래처 상품 삭제
 function delItem(obj) {
 	var itemGroup = document.getElementById("item-group");
