@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -25,7 +24,7 @@
             </div>
             <!--End Page Title-->
 
-			<form class="js-validation-bootstrap form-horizontal" name="clientRegisterform" action="${ROOT_PATH}/purchase/clientRegisterAction" method="post" >
+			<form class="form-horizontal" name="clientRegisterform" id="clientRegisterform" action="${ROOT_PATH}/purchase/clientRegisterAction" method="post" >
 				
 				<!-- csrf 토큰 -->
 				<sec:csrfInput />
@@ -73,7 +72,7 @@
 	                                        placeholder="거래처 이메일" required>
 	                                </div>
 	                                
-	                                <label class="col-md-1 control-label header-title" for="register_num1">사업자번호</label>
+	                                <label class="col-md-1 control-label header-title" for="register_num1">사업자 번호</label>
 									<div class="col-md-1">
 										<input class="form-control" placeholder="000" type="text" id="register_num1" name="register_num1" 
 											maxlength="3" required onkeyup="nextRegister_num1()">
@@ -158,7 +157,7 @@
 							
 							<div class="form-group mt-5">
 		                        <div class="col-md-5 col-md-offset-5">
-		                        	<input class="btn  btn-primary" type="submit" value="등록">
+		                        	<input class="btn  btn-primary" type="submit" id="insertClient" value="등록">
 		                            <input class="btn  btn-default" type="reset" value="취소">
 		                        </div>
 							</div>
@@ -177,7 +176,7 @@
 	                     	<i class="fa fa-chevron-circle-right ml-3 mr-2"></i>
 	                     	거래처 전체 목록</h2>
 	                     <div class="table-responsive">
-	                         <table id="example" class="display table">
+	                         <table id="registeredClientList" class="display table">
 	                             <thead>
 	                                 <tr>
 	                                     <th>회사명</th>
@@ -188,11 +187,12 @@
 	                                     <th>등록일</th>
 	                                 </tr>
 	                             </thead>
+<!--	                             
 	                             <tbody>
-	                             	 <!-- 거래처가 있으면 -->
+	                             	  거래처가 있으면
 	                             	 <c:if test="${cnt > 0}">
 	                             	 	<c:forEach var="dto" items="${dtos}">
-	                             	 		<input type="hidden" value="${dto.id}"> <!-- client id -->
+	                             	 		<input type="hidden" value="${dto.id}">
 	                             	 		<tr>
 			                                    <td><a href="${ROOT_PATH}/purchase/clientDetail?id=${dto.id}">${dto.name}</a></td>
 			                             	 	<td>
@@ -214,7 +214,7 @@
 	                             	 	</c:forEach>
 	                             	 </c:if>
 	                             	 
-	                             	 <!-- 거래처가 없으면 -->
+	                             	 거래처가 없으면
 	                             	 <c:if test="${cnt == 0}">
 	                             	 	<tr>
 											<td colspan="6" align="center">
@@ -224,6 +224,7 @@
 	                             	 </c:if>
 	                             	 
 	                             </tbody>
+ -->	                             
 	                         </table>
 	                     </div>
 	                 </div>
@@ -237,5 +238,6 @@
     
 	<%@ include file="../common/footer.jsp"%>
 	<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
+	<%@ include file="./js_purchase.jsp"%>
 </body>
 </html>

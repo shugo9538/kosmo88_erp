@@ -5,19 +5,14 @@
 
 
 <mapper namespace="com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO">
- 	
- 	<!-- 거래처 갯수 가져오기 -->
- 	<select id="getClientCnt" resultType="int">
- 		SELECT COUNT(id)
- 		  FROM client
- 		 WHERE type = '구매'
- 	</select>
 
 	<!-- 거래처(구매처) 목록	 -->
  	<select id="getClientList" resultType="PurchaseClientDTO">
- 		SELECT id, name, register_num, ceo_name, phone, address, register_date
+ 		SELECT id, name, register_num, ceo_name, phone, address, register_date, ROWNUM r_num
  		  FROM client
  		 WHERE type = '구매'
+ 		   AND enabled = 'Y'
+ 		 ORDER BY id DESC
  	</select>
  
 	<!-- 거래처 등록 처리 -->
@@ -29,7 +24,48 @@
 	<!-- 상품 등록 처리 -->
 	<insert id="RegisterItem" parameterType="PurchaseItemDTO">
 		INSERT INTO item(id, name, category, price)
-		VALUES (item_seq.nextval, #{item_name}, #{category}, #{price})
+		VALUES (item_seq.nextval, #{name}, #{category}, #{price})
 	</insert>
 	
+	<!-- 상세페이지 - 거래처 -->
+	<select id="getClientDetail" parameterType="int" resultType="PurchaseClientDTO">
+		SELECT id, name, register_num, ceo_name, phone, address, detail_address, register_date, email, zip_code
+		  FROM client
+		 WHERE id = #{id}
+		   AND type = '구매'
+		 ORDER BY id DESC
+	</select>
+	
+	<!-- 상세페이지 - 상품 -->
+	<select id="getItemDetail" parameterType="int" resultType="PurchaseItemDTO">
+		SELECT i.id id, i.name name, i.category category, i.register_date register_date, i.price price
+		  FROM client c, client_product_list cpl, item i
+		 WHERE c.id = cpl.client_id
+		   AND cpl.item_id = i.id
+		   AND c.id = #{id}
+		 ORDER BY c.id DESC
+	</select>
+	
+	<!-- 거래처 삭제 처리  -->
+	<update id="deleteChoiceClient" parameterType="int">
+		UPDATE client
+		   SET enabled = 'N'
+		 WHERE id = #{id}
+	</update>
+	
+	<!-- 거래처 수정 처리 -->
+	<update id="updateClient" parameterType="PurchaseClientDTO">
+		UPDATE client
+		   SET ceo_name = #{ceo_name}, 
+		 WHERE id = #{id}
+		   AND enabled = 'Y'
+	</update>
+	
+	<!-- 상품 수정 처리 -->
+	<update id="updateItem" parameterType="PurchaseItemDTO">
+		UPDATE item
+		   SET 
+		 WHERE id = #{id}
+		   AND enabled = 'Y'
+	</update>
 </mapper>

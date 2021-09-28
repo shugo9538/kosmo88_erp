@@ -1,3 +1,4 @@
+/*
 $(document).ready(function() {
 	
 	// 전체 체크박스 클릭
@@ -30,7 +31,7 @@ $(document).ready(function() {
 		}
 	});
 	
-   	// 선택 거래처 삭제
+	// 선택 거래처 삭제
 	$("#delButton").click(function(){
 		
 		var clientIdArr = new Array();
@@ -47,10 +48,20 @@ $(document).ready(function() {
 		} else {
 			var result = confirm("선택한 거래처를 삭제하시겠습니까?");
 			if (result) {
-				window.location = "/logistics_erp/purchase/clientChoiceDelete?id=" + clientIdArr;
+				window.location = "/logistics_erp/purchase/clientChoiceDeleteAction?=client_id" + clientIdArr;
 			} else {
 				return false;
 			}
 		}
 	});
+	
+	// 거래처 상세페이지
+	$(".detailBtn").click(function() {
+		
+		var id = $(this).parent().parent().find(".client_id").val();
+		
+		var url = "/logistics_erp/purchase/clientDetail?id=" + id;
+		window.open(url, "거래처 상세페이지", "menubar=no, width=1000, height=700");
+	});
 });
+*/

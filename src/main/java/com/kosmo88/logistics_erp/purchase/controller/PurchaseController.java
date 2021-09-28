@@ -30,8 +30,6 @@ public class PurchaseController {
     // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
-
-    	purchaseService.clientList(req, model);
     	
         return "purchase/clientManagement";
     }
@@ -40,26 +38,14 @@ public class PurchaseController {
     @RequestMapping(value = "/clientRegister")
     public String clientRegister(HttpServletRequest req, Model model) {
     	
-    	purchaseService.clientList(req, model);
-    	
     	return "purchase/clientRegister";
-    }
-    
-    // 거래처 상품 등록 처리
-    @RequestMapping(value = "/clientRegisterAction")
-    public String clientRegisterAction(HttpServletRequest req, Model model) {
-    	
-    	purchaseService.RegisterClient(req, model);
-    	
-    	return "purchase/clientRegisterAction";
     }
     
     // 거래처 삭제(선택삭제)
     @RequestMapping(value = "/clientChoiceDelete")
     public String clientChoiceDelete(HttpServletRequest req, Model model) {
     	
-    	// service.deleteChoiceClient
-    	// (update)
+    	purchaseService.clientChoiceDelete(req, model);
     	
     	return "purchase/clientChoiceDelete";
     }
@@ -73,14 +59,26 @@ public class PurchaseController {
     	return "purchase/clientDetail";
     }
     
-    // 거래처 수정
+    // 거래처 수정페이지
     @RequestMapping(value = "/clientUpdate")
     public String clientUpdate(HttpServletRequest req, Model model) {
     	
-    	// purchaseService.updateClient
+    	purchaseService.clientUpdate(req, model);
     	
     	return "purchase/clientUpdate";
     }
+    
+    // 거래처 수정 처리
+    @RequestMapping(value = "/clientUpdateAction")
+    public String clientUpdateAction(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.clientUpdateAction(req, model);
+    	
+    	return "purchase/clientUpdateAction";
+    }
+    
+
+/*  
     
     // 거래처 삭제(단일 삭제)
     @RequestMapping(value = "/clientDelete")
@@ -220,5 +218,5 @@ public class PurchaseController {
     	
     	return "purchase/purchaseSlipRegister";
     }
-    
+*/    
 }

@@ -7,83 +7,67 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-8">${dto.name}</h2>
+                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-12 mb-5">${cdto.name}</h2>
                 
-                <form class="js-validation-bootstrap form-horizontal mt-5">
-                    <!--  <input type="hidden" name="pageNum" value="${pageNum}"> -->
-                    <input type="hidden" name="id" value="${dto.id}">
-                    
-                    <div class="form-group mt-5">
-                        <label class="col-md-2 control-label header-title" for="val-username">거래처번호</label>
-                        <div class="col-md-2">
-                            <p class="form-control-static">${dto.id}</p>
-                        </div>
-                        
-                        <label class="col-md-2 control-label header-title" for="val-username">구분</label>
-                        <div class="col-md-2">
-                            <p class="form-control-static">법인</p>
-                        </div>
-                    </div>                        
-                   
-                    <div class="form-group">
-                        <label class="col-md-2 control-label header-title" for="ceo_name">대표자명</label>
-                        <div class="col-md-2">
-                            <p class="form-control-static">${dto.ceo_name}</p>
-                        </div>
-                        
-                        <label class="col-md-2 control-label header-title" for="client_phone1">거래처 연락처</label>
-                        <div class="col-md-2">
-                            <p class="form-control-static">${dto.phone}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                       <label class="col-md-2 control-label header-title" for="email">거래처 이메일</label>
-                        <div class="col-md-2">
-                           <p class="form-control-static">${dto.email}</p>
-                        </div>
-                        
-                        <label class="col-md-2 control-label header-title" for="register_num">사업자번호</label>
-		                 <div class="col-md-2">
-		                    <p class="form-control-static">${dto.register_num}</p>
-		                 </div>
-		             </div>
-
-                     <div class="form-group">
-                         <label class="col-md-2 control-label header-title" for="zip_code">우편번호</label>
-                         <div style="padding-left: 15px;" class="input-group m-b-0 col-md-2">
-                             <p class="form-control-static">${dto.zip_code}</p>
-                         </div>
-                     </div>
-                     <div class="form-group">
-                         <label class="col-md-2 control-label header-title" for="address">주소</label>
-                         <div class="col-md-3">
-                             <p class="form-control-static">${dto.address}</p>
-                         </div>
-                     </div>
-                     <div class="form-group">
-                         <label class="col-md-2 control-label header-title" for="detail_address">상세주소</label>
-                         <div class="col-md-3">
-                             <p class="form-control-static">${dto.detail_address}</p>
-                         </div>
-                     </div>
-                     
-                     <div class="form-group">
-                     	<label class="col-md-2 control-label header-title" for="register_date">등록일</label>
-                         <div class="col-md-3">
-                             <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
-                         </div>
-                     </div>
-
-                     <div class="form-group mt-5">
-                         <div style="padding-left:70px" class="col-md-12 col-md-offset-3">
+                
+                <form class="form-horizontal">
+	                <table id="example" class="display table mt-12">
+	                	<tr>
+	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 번호</th>
+	                		<td style="padding:15px;">${cdto.id}</td>
+	                		<th style="background-color: #f1f1f1; padding:15px;">구분</th>
+	                		<td style="padding:15px;">법인</td>
+	                	</tr>
+	                	<tr>
+	                		<th style="background-color: #f1f1f1; padding:15px;">대표자명</th>
+	                		<td style="padding:15px;">${cdto.ceo_name}</td>
+	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 연락처</th>
+	                		<td style="padding:15px;"> ${cdto.phone}</td>
+	                	</tr>
+	                		
+	                	<tr>
+	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 이메일</th>
+	                		<td style="padding:15px;">${cdto.email}</td>
+	                		<th style="background-color: #f1f1f1; padding:15px;">사업자 번호</th>
+	                		<td style="padding:15px;">${cdto.register_num}</td>
+	                	</tr>
+	                	<tr>
+	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 주소</th>
+	                		<td style="padding:15px;" colspan="3">(${cdto.zip_code}) <br>${cdto.address} <br>${cdto.detail_address}</td>
+	                	</tr>
+	                		
+	                	<tr>
+	                		<th style="background-color: #f1f1f1; padding:15px;">등록일</th>
+	                		<td style="padding:15px;" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cdto.register_date}"/></td>
+	                	</tr>
+	                	
+	                	<tr>
+		                	<th style="background-color: #f1f1f1; padding:15px;">상품명</th>
+		                	<th style="background-color: #f1f1f1; padding:15px;">상품종류</th>
+		                	<th style="background-color: #f1f1f1; padding:15px;">상품가격</th>
+		                	<th style="background-color: #f1f1f1; padding:15px;">상품 등록일</th>
+		                </tr>
+		                
+		                <c:forEach var="idto" items="${idtos}">
+	                		<input type="hidden" value="${idto.id}">
+		                	<tr>
+		                		<td style="padding:15px;">${idto.name}</td>
+		                		<td style="padding:15px;">${idto.category}</td>
+		                		<td style="padding:15px;">${idto.price}</td>
+		                		<td style="padding:15px;">
+		                			<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${idto.register_date}" />
+		                		</td>
+		                	</tr>
+		                </c:forEach>
+	                </table>
+	                
+	                <div style="text-align:center;" class="form-group mt-5 col-md-12">
                             <input class="btn  btn-primary" type="button" value="수정"
-                            	onclick="window.location='clientUpdate?id=${dto.id}&pageNum=${pageNum}'"/>
+                            	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
                             <input class="btn  btn-primary" type="button" value="삭제"
-                            	onclick="window.location='clientDelete?id=${dto.id}&pageNum=${pageNum}'"/>
-                            <input class="btn  btn-primary" type="button" value="목록"
-                            	onclick="window.location='clientManagement?pageNum=${pageNum}'">
-                         </div>
+                            	onclick="window.location='clientDelete?client_id=${cdto.id}'"/>
+                            <input class="btn  btn-defalte" type="button" value="닫기"
+                            	onclick="window.close();"/>
                     </div>
                 </form>
             </div>
