@@ -51,7 +51,7 @@
 	<select
 		id="commutingRecords"
 		resultType="CommuteDTO">
-		SELECT *, rowNum rnum FROM commute
+		SELECT c.*, rowNum rnum FROM commute c
 	</select>
 
 	<!-- 출퇴근 입력 -->
