@@ -54,7 +54,7 @@
 
 								<label class="col-sm-1 control-label">창고 이름</label>
 								<div class="col-sm-5">
-									<input class="form-control" value="" type="text">
+									<input class="form-control" type="text" required="true">
 								</div>
 
 								<label class="col-sm-1 control-label">창고 종류</label>
@@ -99,38 +99,25 @@
 
 
 							<h2 class="header-title col-md-12 my-5">랙 등록</h2>
-							<div id="rack-group">
+							<div id="rack-group" class="col-md-12">
 
 								<!-- 									<div id="firstRack"></div> -->
 								<div id="rack" style="display: none;">
 									<div class="form-group">
-										<label class="col-md-1 control-label">랙 이름</label>
-										<div class="col-md-5">
-											<input class="form-control" value="" type="text" disabled>
+										<label class="col-md-1 control-label">구역</label>
+										<div class="col-md-2">
+											<input class="form-control" name="section" type="text"
+												disabled>
+										</div>
+										<label class="col-md-1 control-label">번호</label>
+										<div class="col-md-2">
+											<input class="form-control" name="section_number" type="text"
+												disabled>
 										</div>
 										<label class="col-md-1 control-label">용적</label>
-										<div class="col-md-3">
-											<input class="form-control" value="" type="text" disabled>
-
-
-
-<!-- 											<div class="input-group bootstrap-touchspin"> -->
-<!-- 												<span class="input-group-btn"><button -->
-<!-- 														class="btn btn-primary bootstrap-touchspin-down" -->
-<!-- 														type="button">-</button></span><span -->
-<!-- 													class="input-group-addon bootstrap-touchspin-prefix" -->
-<!-- 													style="display: none;"></span><input id="demo3" type="text" -->
-<!-- 													value="" name="demo3" class="form-control" -->
-<!-- 													style="display: block;"><span -->
-<!-- 													class="input-group-addon bootstrap-touchspin-postfix" -->
-<!-- 													style="display: none;"></span><span class="input-group-btn"><button -->
-<!-- 														class="btn btn-primary bootstrap-touchspin-up" -->
-<!-- 														type="button">+</button></span> -->
-<!-- 											</div> -->
-
-
-
-
+										<div class="col-md-2">
+											<input class="form-control" name="capacity" type="text"
+												disabled>
 										</div>
 										<div role="button" class="col-md-1" onclick="delRack(this);">
 											<i class="icon-minus"></i>
@@ -140,14 +127,17 @@
 								<!-- onload시 복제 처리했으며, 아이디 중복으로 인한 문제가 발생할 수도 있다 -->
 
 
-								<div role="button" class="preview col-md-12 md-5" id="addRack"
-									onclick="addRack()">
-									<i class="icon-plus"></i> 랙 추가
-								</div>
 
 							</div>
-							<button type="submit" class="btn btn-default mt-5"
-								onclick="warehouseAddAction()">등록</button>
+
+							<div role="button" class="preview col-md-12 md-5" id="addRack"
+								onclick="addRack()">
+								<i class="icon-plus"></i> 랙 추가
+							</div>
+							<button type="submit" class="btn btn-default mt-5">
+								<!--onclick="warehouseAddAction()"-->
+								등록
+							</button>
 						</form>
 					</div>
 				</div>

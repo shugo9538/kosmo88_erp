@@ -10,18 +10,20 @@ function getCurrentDate() {
 
 function addRack() {
   var rack = document.getElementById("rack");
-  //   var lastLack = document.getElementById("rack-group").lastChild.get
   var addRackBtn = document.getElementById("addRack");
   var newRack = document.createElement("div");
-  //   newRack.setAttribute("class", "rack");
   newRack = rack.cloneNode(true);
   newRack.style.display = "block";
   Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
-    f.removeAttribute("disabled")
-  );
-  document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
+    f.removeAttribute("disabled"));
+
+  Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
+    f.setAttribute("required", true));
+  // document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
+  document.getElementById("rack-group").appendChild(newRack);
 }
 // window.onload = addRack();
+
 
 function delRack(obj) {
   var rackGroup = document.getElementById("rack-group");
