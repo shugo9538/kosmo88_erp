@@ -22,4 +22,5 @@
 
 <script src="${RESOURCES_PATH}/search/js/search.js"></script>
 <script src="${RESOURCES_PATH}/hr/js/newWindow.js"></script>
+<script src="${RESOURCES_PATH}/hr/js/insert.js"></script>
 

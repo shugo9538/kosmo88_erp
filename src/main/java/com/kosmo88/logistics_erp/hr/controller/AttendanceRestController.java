@@ -38,8 +38,8 @@ public class AttendanceRestController {
 
     // 근태 입력
     @RequestMapping(value = "/insertAttendanceAction")
-    public boolean insertAttendanceAction(HttpServletRequest req, HttpServletResponse res) {
-        return attendanceService.insertAttendance(req, res);
+    public boolean insertAttendanceAction(AttendanceDTO dto) {
+        return attendanceService.insertAttendance(dto);
     }
     
     // 출퇴근 기록부

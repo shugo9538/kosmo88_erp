@@ -9,9 +9,9 @@
 			<div class="col-md-12">
 				<div class="white-box">
 					<h2 class="header-title">근태 입력</h2>
-					<div class="table-responsive">
-						<form id="insertAttendanceForm" action="${ROOT_PATH}/hr/attendance/insertAttendanceAction" method="post">
-							<sec:csrfInput />
+					<form id="insertAttendanceForm" action="${ROOT_PATH}/hr/attendance/insertAttendanceAction" method="post">
+						<sec:csrfInput />
+						<div class="table-responsive" align="center">
 							<table id="insertAttendanceTable" class="table table-hover">
 								<thead>
 									<tr>
@@ -21,43 +21,52 @@
 										<th>시작</th>
 										<th>종료</th>
 										<th>사유</th>
+										<th>삭제 버튼</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="attendance-group">
+									<tr id="attendance" style="display: none;">
 										<td>
-											<input type="text" name="id">
+											<input class="form-control" name="id" type="text" disabled>
 										</td>
 										<td>
-											<input type="text" name="attendance_cd_id">
+											<input class="form-control" name="attendance_cd_id" type="text" disabled>
 										</td>
 										<td>
-											<input type="date" name="application_date">
+											<input class="form-control" name="application_date" type="text" disabled>
 										</td>
 										<td>
-											<input type="date" name="begin_date">
+											<input class="form-control" name="begin_date" type="text" disabled>
 										</td>
 										<td>
-											<input type="date" name="end_date">
+											<input class="form-control" name="end_date" type="text" disabled>
 										</td>
 										<td>
-											<input type="text" name="reason">
+											<input class="form-control" name="reason" type="text" disabled>
 										</td>
-									</tr>
-									<tr>
-										<td colspan="6" align="center">
-											<input type="submit" id="insertAttendanceAction" value="등록">
-											<input type="reset" value="취소">
+										<td weight="1">
+											<div role="button" onclick="delAttendance(this);">
+												<i class="icon-minus"></i>
+											</div>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-						</form>
-					</div>
+							<div role="button" class="preview col-md-12 md-5" id="addAttendance" onclick="addAttendance()">
+								<i class="icon-plus"></i>
+								항목 추가
+							</div>
+							<div style="text-align: center;">
+								<input type="submit" id="insertAttendanceAction" value="등록">
+								<input type="reset" value="취소" onclick="window.close();">
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!--End row-->
+	</div>
+	<!--End row-->
 	</div>
 	<%@ include file="../js_settings/js_insertAttendance.jsp"%>
 </body>

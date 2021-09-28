@@ -14,13 +14,13 @@ $(document).ready(function() {
         columns = [
                 {
                     'sTitle' : '#',
-                    data : 'r_num'
-                }, {
-                    'sTitle' : '근태 아이디',
-                    data : 'id',
+                    data : 'r_num',
                     render : function(data) {
                         return '<input type="checkBox" value="' + data + '">';
                     }
+                }, {
+                    'sTitle' : '근태 아이디',
+                    data : 'id'
                 }, {
                     'sTitle' : '근태 코드',
                     data : 'attendance_cd_id'
@@ -45,7 +45,7 @@ $(document).ready(function() {
                 }
         ];
 
-        url = window.location.href + 'selectAttendacne';
+        url = 'selectAttendacne';
         callList(url, columns);
     }
 });
@@ -59,13 +59,13 @@ $(document).on("click", '#selectAttendacne', function() {
     columns = [
             {
                 'sTitle' : '#',
-                data : 'r_num'
-            }, {
-                'sTitle' : '근태 아이디',
-                data : 'id',
+                data : 'r_num',
                 render : function(data) {
                     return '<input type="checkBox" value="' + data + '">';
                 }
+            }, {
+                'sTitle' : '근태 아이디',
+                data : 'id'
             }, {
                 'sTitle' : '근태 코드',
                 data : 'attendance_cd_id'
@@ -90,7 +90,7 @@ $(document).on("click", '#selectAttendacne', function() {
             }
     ];
 
-    url = window.location.href + 'selectAttendacne';
+    url = 'selectAttendacne';
     callList(url, columns);
 });
 
@@ -101,9 +101,9 @@ $(document).on('click', '#commutingRecords', function() {
                 data : 'rnum'
             }, {
                 'sTitle' : '출퇴근 아이디',
-                data : 'id',
-                render : function(data) {
-                    return '<a href="' + data + '">' + data + '</a>';
+                data : id,
+                render : function(data, type, row, meta) {
+                    return '<a href="item?id=' + id + '">' + id + '</a>';
                 }
             }, {
                 'sTitle' : '근무일',
@@ -132,7 +132,7 @@ $(document).on('click', '#commutingRecords', function() {
             }
     ];
 
-    url = window.location.href + 'commuteList';
+    url = 'commuteList';
     callList(url, columns);
 });
 
@@ -141,20 +141,19 @@ function callList(url, columns) {
     $('#datatables').append('<table id="attendanceTable"></table>');
     currTab = $('#attendanceTable').DataTable({
         ajax : {
-            url : url,
-//            type : 'POST',
+            url : window.location.href + url,
+            type : 'POST',
             data : csrfData,
             dataSrc : ''
         },
         columns : columns,
         destroy : true
     });
-    currTab.button().add( 0, {
-        action: function ( e, dt, button, config ) {
-            dt.ajax.reload();
-        },
-        text: 'Reload table'
-    } );;
+    
+    if(url == 'selectAttendacne') {
+        $('#datatables').append('<button id="insertAttendance">');
+        $('#insertAttendance').append('신규 등록');
+    }
 }
 
 // 날짜 형식 조정

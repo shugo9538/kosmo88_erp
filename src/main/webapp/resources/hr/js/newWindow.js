@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#insertAttendance').click(function(event) {
         event.preventDefault();
         currLocation = currLocation + 'insertAttendance';
-        win = window.open(currLocation, "popupWindow", "width=1200,height=320,scrollbars=no,menubar=no,status=no,titlebar=no,left=150,top=200");
+        win = window.open(currLocation, "popupWindow", "width=1800,height=320,scrollbars=no,menubar=no,status=no,titlebar=no,left=150,top=200");
         
         var timer = setInterval(function() { 
             if(win.closed) {
