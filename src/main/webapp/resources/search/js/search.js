@@ -142,7 +142,7 @@ function callList(url, columns) {
     currTab = $('#attendanceTable').DataTable({
         ajax : {
             url : url,
-            type : 'POST',
+//            type : 'POST',
             data : csrfData,
             dataSrc : ''
         },
