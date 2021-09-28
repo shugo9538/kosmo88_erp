@@ -1,6 +1,6 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
-public interface TruckDao {
+public interface RackDao {
 
 	void insert();
 	void select();
