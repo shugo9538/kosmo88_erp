@@ -37,5 +37,8 @@
 		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
-	
+	<!-- wms dao -->
+	<logger name="com.kosmo88.logistics_erp.wms.dao">
+		<level value="trace" />
+	</logger>	
 </log4j:configuration>

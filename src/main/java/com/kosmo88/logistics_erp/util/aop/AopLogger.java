@@ -3,6 +3,7 @@ package com.kosmo88.logistics_erp.util.aop;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -29,5 +30,12 @@ public class AopLogger {
 		logger.info("메소드 실행 : " + jp.getSignature().toShortString());
 		logger.info("아-규멘또 : " + Arrays.toString(jp.getArgs()));
 		logger.info("-------------------------------");
+		logger.debug(jp.toShortString());
 	}// end of startLog()
+	
+	
+	@Around("execution(* dtoFunction.DtoFunction.set*(..))")
+	public void logDtoProperties(JoinPoint jp) {
+	}
+
 }// end of class SampleAdvice{}

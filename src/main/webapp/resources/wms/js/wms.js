@@ -42,8 +42,7 @@ function delRack(obj) {
 
 function warehouseAddAction() {
   alert("등록되었습니다");
-  // location.href="${ROOT_PATH}/warehouse/addAction";
-  window.location = "logistics_erp/warehouse/addAction";
+  window.location = "logistics_erp/wms/warehouse/addAction"
 }
 
 // function selTab(tab) {

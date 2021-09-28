@@ -4,6 +4,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
+
+import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
+
 @Repository
 public class WarehouseDaoImpl implements WarehouseDao {
 
@@ -13,7 +17,7 @@ public class WarehouseDaoImpl implements WarehouseDao {
 //	기존에 Dao에서 하던것 : Service로부터 Dto 등을 넘겨받으면서 실행. DB 와 연결하여 결과를 받아와 저장
 //	com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert
 	@Override
-	public void insert() {
+	public void insert(WarehouseDto warehouseDto) {
 		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
 	}
 
@@ -28,13 +32,18 @@ public class WarehouseDaoImpl implements WarehouseDao {
 	}
 
 	@Override
-	public void update() {
+	public void update(WarehouseDto warehouseDto) {
 		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
 	}
 
 	@Override
 	public void delete() {
 		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
+	}
+
+	@Override
+	public int selectMaxId() {
+		return  sqlSession.selectOne("com.kosmo88.logistics.wms.dao.WarehouseDao.selectMaxId");
 	}
 
 }

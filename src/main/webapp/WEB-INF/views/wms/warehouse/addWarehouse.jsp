@@ -32,34 +32,34 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<form class="form-horizontal">
+						<form class="form-horizontal" method="post" onsubmit="warehouseAddAction()">
 							<h2 class="header-title">창고 정보 입력</h2>
-							<div class="form-group">
-								<label class="col-sm-1 control-label">창고 번호</label>
-								<div class="col-sm-5">
-									<input class="form-control" value="" type="text" readonly>
-								</div>
+<!-- 							<div class="form-group"> -->
+<!-- 								<label class="col-sm-1 control-label">창고 번호</label> -->
+<!-- 								<div class="col-sm-5"> -->
+<!-- 									<input class="form-control" value="" type="text" readonly> -->
+<!-- 								</div> -->
 
-								<label class="col-sm-1 control-label">등록일</label>
-								<div class="col-md-5">
-									<div class="input-group">
-										<input type="text" class="form-control"
-											placeholder="mm/dd/yyyy" id="datepicker-autoclose"> <span
-											class="input-group-addon b-0 text-white"><i
-											class="icon-calender"></i></span>
-									</div>
-								</div>
-							</div>
+<!-- 								<label class="col-sm-1 control-label">등록일</label> -->
+<!-- 								<div class="col-md-5"> -->
+<!-- 									<div class="input-group"> -->
+<!-- 										<input type="text" class="form-control" -->
+<!-- 											placeholder="mm/dd/yyyy" id="datepicker-autoclose"> <span -->
+<!-- 											class="input-group-addon b-0 text-white"><i -->
+<!-- 											class="icon-calender"></i></span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 
 								<label class="col-sm-1 control-label">창고 이름</label>
 								<div class="col-sm-5">
-									<input class="form-control" type="text" required="true">
+									<input class="form-control" name="name" type="text" required="true">
 								</div>
 
-								<label class="col-sm-1 control-label">창고 종류</label>
+								<label class="col-sm-1 control-label" >창고 종류</label>
 								<div class="col-sm-5">
-									<select class="form-control">
+									<select class="form-control" name="kind">
 										<option>일반창고</option>
 										<option>야적창고</option>
 										<option>냉동창고</option>
@@ -72,7 +72,7 @@
 								<label class="col-sm-1 control-label">주소</label>
 								<div class="col-sm-2">
 									<input class="form-control col-sm-2" type="text"
-										id="sample6_postcode" placeholder="우편번호">
+										id="sample6_postcode" name="zip" placeholder="우편번호">
 								</div>
 								<div class="col-sm-1">
 									<button type="button" class="btn btn-default "
@@ -84,11 +84,12 @@
 								<div class="col-sm-1"></div>
 								<div class="col-sm-5">
 									<input class="form-control" type="text" id="sample6_address"
-										placeholder="주소"><br>
+										name="basicAddr" placeholder="주소"><br>
 								</div>
 								<div class="col-sm-6">
 									<input class="form-control" type="text"
-										id="sample6_detailAddress" placeholder="상세주소">
+										id="sample6_detailAddress" 
+										name="detailAddr" placeholder="상세주소">
 								</div>
 
 							</div>
@@ -130,14 +131,11 @@
 
 							</div>
 
-							<div role="button" class="preview col-md-12 md-5" id="addRack"
-								onclick="addRack()">
-								<i class="icon-plus"></i> 랙 추가
+							<div role="button" class="preview col-md-12 md-5" id="addRack" >
+								<i class="icon-plus"  onclick="addRack()"></i> 랙 추가
 							</div>
-							<button type="submit" class="btn btn-default mt-5">
-								<!--onclick="warehouseAddAction()"-->
-								등록
-							</button>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<button type="submit" class="btn btn-default mt-5"> 등록 </button>
 						</form>
 					</div>
 				</div>
