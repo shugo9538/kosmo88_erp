@@ -101,9 +101,9 @@ $(document).on('click', '#commutingRecords', function() {
                 data : 'rnum'
             }, {
                 'sTitle' : '출퇴근 아이디',
-                data : id,
+                data : 'id',
                 render : function(data, type, row, meta) {
-                    return '<a href="item?id=' + id + '">' + id + '</a>';
+                    return '<a href="item?id=' + data + '">' + data + '</a>';
                 }
             }, {
                 'sTitle' : '근무일',
