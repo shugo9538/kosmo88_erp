@@ -41,4 +41,11 @@ public class AttendanceRestController {
     public boolean insertAttendanceAction(HttpServletRequest req, HttpServletResponse res) {
         return attendanceService.insertAttendance(req, res);
     }
+    
+    // 출퇴근 기록부
+    @ResponseBody
+    @RequestMapping(value = "/commuteList")
+    public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
+        return attendanceService.commuteList(req, res);
+    }
 }

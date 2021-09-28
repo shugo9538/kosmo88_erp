@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../common/settings.jsp"%>
+<%@ include file="../../common/settings.jsp"%>
 <body class="sticky-header">
 	<c:if test="${stateCode == true}">
 	</c:if>
@@ -12,7 +12,7 @@
 					<div class="table-responsive">
 						<form id="insertAttendanceForm" action="${ROOT_PATH}/hr/attendance/insertAttendanceAction" method="post">
 							<sec:csrfInput />
-							<table class="table table-hover">
+							<table id="insertAttendanceTable" class="table table-hover">
 								<thead>
 									<tr>
 										<th>근태 아이디</th>
@@ -59,6 +59,6 @@
 		</div>
 		<!--End row-->
 	</div>
-	<%@ include file="lib_attendance.jsp"%>
+	<%@ include file="../js_settings/js_insertAttendance.jsp"%>
 </body>
 </html>

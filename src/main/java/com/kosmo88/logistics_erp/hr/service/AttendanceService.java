@@ -20,7 +20,7 @@ public interface AttendanceService {
     void attendanceStatus(HttpServletRequest req, HttpServletResponse res);
 
     // 출퇴근 기록부
-    ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res);
+    ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res);
     
     // 출퇴근 입력
     void insertCommute(HttpServletRequest req, HttpServletResponse res);
