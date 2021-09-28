@@ -14,13 +14,13 @@ public interface AttendanceService {
     ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res);
 
     // 근태 입력
-    boolean insertAttendance(HttpServletRequest req, HttpServletResponse res);
+    boolean insertAttendance(AttendanceDTO dto);
 
     // 근태 현황
     void attendanceStatus(HttpServletRequest req, HttpServletResponse res);
 
     // 출퇴근 기록부
-    ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res);
+    ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res);
     
     // 출퇴근 입력
     void insertCommute(HttpServletRequest req, HttpServletResponse res);
