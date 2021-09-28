@@ -34,7 +34,7 @@
 	            	<div class="col-md-12">
 		            	<!-- Start white-box -->
 		            	<div class="white-box">
-							<div class="col-md-12">
+							<div id="test1" class="col-md-12">
 							<h2 class="header-title"><i class="fa fa-chevron-circle-right mr-2"></i>거래처 등록</h2>
 								<div class="form-group mt-1">
 	                                <label class="col-md-1 control-label header-title">거래처명</label>

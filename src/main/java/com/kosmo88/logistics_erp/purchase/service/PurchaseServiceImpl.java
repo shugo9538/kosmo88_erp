@@ -64,7 +64,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		String phone3 = req.getParameter("phone3");
 		
 		// 거래처 연락처
-		int phone = Integer.parseInt(phone1 + phone2 + phone3);
+		String phone = phone1 + phone2 + phone3;
 		
 		// 거래처 이메일
 		String email = req.getParameter("email");			

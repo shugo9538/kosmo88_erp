@@ -149,6 +149,12 @@ function callList(url, columns) {
         columns : columns,
         destroy : true
     });
+    currTab.button().add( 0, {
+        action: function ( e, dt, button, config ) {
+            dt.ajax.reload();
+        },
+        text: 'Reload table'
+    } );;
 }
 
 // 날짜 형식 조정

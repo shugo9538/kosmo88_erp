@@ -14,7 +14,7 @@ public class PurchaseClientDTO {
 	private String detail_address;	// 상세주소
 	private int zip_code;			// 우편번호
 	private Date register_date;		// 거래처 등록일
-	private int phone;				// 거래처 연락처
+	private String phone;				// 거래처 연락처
 	private String email;			// 거래처 이메일
 	
 	public PurchaseClientDTO() {}
@@ -91,11 +91,11 @@ public class PurchaseClientDTO {
 		this.register_date = register_date;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
