@@ -62,12 +62,12 @@
 	                </table>
 	                
 	                <div style="text-align:center;" class="form-group mt-5 col-md-12">
-                            <input class="btn  btn-primary" type="button" value="수정"
-                            	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
-                            <input class="btn  btn-primary" type="button" value="삭제"
-                            	onclick="window.location='clientDelete?client_id=${cdto.id}'"/>
-                            <input class="btn  btn-defalte" type="button" value="닫기"
-                            	onclick="window.close();"/>
+	                   <input class="btn  btn-primary" type="button" value="수정" 
+	                   	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
+	                   <input class="btn  btn-primary" type="button" value="삭제"
+	                   	onclick="window.location='clientDelete?client_id=${cdto.id}'"/>
+	                   <input class="btn  btn-defalte" type="button" value="닫기"
+	                   	onclick="window.close();"/>
                     </div>
                 </form>
             </div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.kosmo88.logistics_erp.purchase.dao.EstimateDAO">
+
+	<!-- 견적서 관리 - 견적서 목록(구매) -->
+ 	<select id="getEstimateList" resultType="PurchaseEstimateListViewDTO">
+ 		SELECT *
+ 		  FROM P_ESTIMATE_LIST_VIEW
+ 	</select>
+ 	
+ 	<!-- 견적서 관리 - 견적서 삭제(선택삭제) -->
+ 	<update id="deleteEstimate" parameterType="int">
+ 		UPDATE P_ESTIMATE_LIST_VIEW
+ 		   SET enabled = 'N'
+ 		 WHERE request_id = #{request_id}
+ 	</update>
+ 	
+
+</mapper>

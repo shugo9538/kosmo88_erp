@@ -1,7 +1,5 @@
 package com.kosmo88.logistics_erp.purchase.dto;
 
-import java.util.Date;
-
 // 요청서 상품 그룹 DTO
 public class PurchaseProductGroupDTO {
 	

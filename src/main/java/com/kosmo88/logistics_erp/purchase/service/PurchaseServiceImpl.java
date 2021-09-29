@@ -57,7 +57,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 		String register_num3 = req.getParameter("register_num3");
 		
 		// 사업자 번호
-		String register_num = (register_num1 + "-" + register_num2 + "-" + register_num3);
+		String register_num = register_num1 + "-" + register_num2 + "-" + register_num3;
 		
 		// 우편번호
 		int zip_code = Integer.parseInt(req.getParameter("zip_code"));
@@ -134,26 +134,16 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 	// 거래처 삭제(선택삭제)
 	@Override
-	public void clientChoiceDelete(HttpServletRequest req, Model model) {
-		
-		// 화면에서 값을 불러온다.
-		String[] arrId = req.getParameter("id").split(",");	// 거래처 코드
+	public boolean clientChoiceDelete(int[] client_id) {
 		state = QueryCode.UPDATE;
-		boolean update = false;
-		int id = 0;
 		
-		for(int i = 0; i < arrId.length; i++) {
-			
-			id = Integer.parseInt(arrId[i]);
-			
-			// 거래처 삭제 처리
-			update = state.check(purchaseDao.deleteChoiceClient(id));
-			System.out.println("거래처 삭제 처리 : " + update);
+		for (int i : client_id) {
+			if (!state.check(purchaseDao.deleteClient(i))) {
+				return false;
+			}
 		}
-		
-		model.addAttribute("update", update);
-	}
-
+		return true;
+	}	
 	
 	// 거래처 수정 페이지
 	@Override

@@ -11,5 +11,5 @@
 <!--End Page Level Plugin-->
 
 <script src="${RESOURCES_PATH}/purchase/js/clientManagement_ajax.js"></script>
-
+<script src="${RESOURCES_PATH}/purchase/js/estimateManagement_ajax.js"></script>
 </head>
