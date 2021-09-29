@@ -47,6 +47,7 @@
                                      <td style="text-align:center">
                                          <input type="checkbox" id="checkAll" name="checkAll">
                                      </td>
+                                     <td>거래처 번호</td>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>
@@ -55,6 +56,45 @@
                                      <th>등록일</th>
                                  </tr>
                              </thead>
+                             <tbody>
+                             	 <!-- 거래처가 있으면 -->
+                             	 <c:if test="${cnt > 0}">
+                             	 	<c:forEach var="dto" items="${dtos}">
+                             	 		<tr>
+		                                    <th style="text-align:center">
+		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
+		                                    </th>
+		                                    <td>${dto.id}</td>
+		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
+		                             	 	<td>
+		                             	 		${fn:substring(dto.register_num,0,3)} -
+		                             	 		${fn:substring(dto.register_num,3,5)} - 
+		                             	 		${fn:substring(dto.register_num,5,10)}
+		                             	 	</td>
+		                             	 	<td>${dto.ceo_name}</td>
+		                             	 	<td>
+		                             	 		${fn:substring(dto.phone,0,3)} -
+		                             	 		${fn:substring(dto.phone,3,6)} -
+		                             	 		${fn:substring(dto.phone,6,11)}
+		                             	 	</td>
+		                             	 	<td>${dto.address}</td>
+		                             	 	<td>
+		                             	 		<fmt:formatDate value="${dto.register_date}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
+		                             	 	</td>
+	                             		</tr>	 
+                             	 	</c:forEach>
+                             	 </c:if>
+                             	 
+                             	 <!-- 거래처가 없으면 -->
+                             	 <c:if test="${cnt == 0}">
+                             	 	<tr>
+										<td colspan="7" align="center">
+											등록한 거래처가 없습니다. 거래처를 등록해주세요!!
+										</td>
+									</tr>
+                             	 </c:if>
+                             	 
+                             </tbody>
                          </table>
                      </div>
                  </div>
