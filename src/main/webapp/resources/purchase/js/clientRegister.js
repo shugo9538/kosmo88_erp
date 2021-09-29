@@ -40,6 +40,11 @@ function addItem() {
 	
 }
 
+    Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
+        f.setAttribute("required", true));
+  
+	document.getElementById("item-group").appendChild(newItem);
+}
 // 거래처 상품 삭제
 function delItem(obj) {
 	var itemGroup = document.getElementById("item-group");

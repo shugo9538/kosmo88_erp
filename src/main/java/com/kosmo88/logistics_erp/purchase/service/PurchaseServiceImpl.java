@@ -49,7 +49,6 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		// 거래처 연락처
 		String phone = phone1 + "-" + phone2 + "-" + phone3;
-		
 		// 거래처 이메일
 		String email = req.getParameter("email");			
 		
