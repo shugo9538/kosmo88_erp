@@ -1,3 +1,4 @@
+/*
 // 거래처 상품(숨겨진것) disabled
 $(document).ready(function() {
 	$("input[name=item_name]:hidden").each(function(){
@@ -40,58 +41,54 @@ function addItem() {
 	
 }
 
-    Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
-        f.setAttribute("required", true));
-  
-	document.getElementById("item-group").appendChild(newItem);
-}
 // 거래처 상품 삭제
 function delItem(obj) {
 	var itemGroup = document.getElementById("item-group");
 	var selectedItem = $(obj);
 	var item = selectedItem.parent().parent();
 	
-	if (itemGroup.childElementCount < 3) {
+	if (itemGroup.childElementCount < 4) {
 		alert("최소 하나 이상의 상품을 등록해야 합니다.")
 	} else {
 		item.remove();
 	}
 }
+*/
 
 // 입력 후 커서 이동
 function nextPhone1() {
-	if(document.clientRegisterform.phone1.value.length >= 3) {
-		document.clientRegisterform.phone2.focus();
+	if(document.clientUpdateForm.phone1.value.length >= 3) {
+		document.clientUpdateForm.phone2.focus();
 	}
 }
 
 function nextPhone2() {
-	if(document.clientRegisterform.phone2.value.length >= 4) {
-		document.clientRegisterform.phone3.focus();
+	if(document.clientUpdateForm.phone2.value.length >= 4) {
+		document.clientUpdateForm.phone3.focus();
 	}
 }
 
 function nextPhone3() {
-	if(document.clientRegisterform.phone3.value.length >= 4) {
-		document.clientRegisterform.email.focus();
+	if(document.clientUpdateForm.phone3.value.length >= 4) {
+		document.clientUpdateForm.email.focus();
 	}
 }
 
 function nextRegister_num1() {
-	if(document.clientRegisterform.register_num1.value.length >= 3) {
-		document.clientRegisterform.register_num2.focus();
+	if(document.clientUpdateForm.register_num1.value.length >= 3) {
+		document.clientUpdateForm.register_num2.focus();
 	}
 }
 
 function nextRegister_num2() {
-	if(document.clientRegisterform.register_num2.value.length >= 2) {
-		document.clientRegisterform.register_num3.focus();
+	if(document.clientUpdateForm.register_num2.value.length >= 2) {
+		document.clientUpdateForm.register_num3.focus();
 	}
 }
 
 function nextRegister_num3() {
-	if(document.clientRegisterform.register_num3.value.length >= 5) {
-		document.clientRegisterform.zip_code.focus();
+	if(document.clientUpdateForm.register_num3.value.length >= 5) {
+		document.clientUpdateForm.zip_code.focus();
 	}
 }
 
