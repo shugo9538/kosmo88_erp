@@ -1,5 +1,7 @@
 var currTab;
 var csrfData = {};
+var csrfParameter;
+var csrfToken;
 
 $(document).ready(function() {
     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
@@ -50,8 +52,48 @@ $(document).ready(function() {
     }
 });
 
-$('.white-box').on('click', '#insertAttendanceAction', function() {
-    insertAttendance(csrfParameter, csrfToken);
+
+$('.white-box').on('click', '#insertAttendanceAction', function(event) {
+    csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    csrfToken = $("meta[name='_csrf']").attr("content");
+    var list = new Array();
+    var i = 0;
+    $('#insertAttendanceForm #attendance').each(function() {
+        var dataObject = new Object();
+        $('.form-control'+i).each(function() {
+            var data = $(this);
+            dataObject[data.attr('name')] = data.val();
+            console.log(dataObject);
+        });
+        list.push(dataObject);
+        i++;
+    });
+    list.pop();
+    var formData = JSON.stringify(list);
+    alert(formData);
+    var loc = $('#insertAttendanceForm').attr('action');
+    console.log(formData);
+    $.ajax({
+        type : 'POST',
+        url : loc + '?' + csrfParameter + '=' + csrfToken,
+        data : formData,
+        accept : "application/json",
+        contentType : "application/json; charset=utf-8",
+        dataType : 'text',
+        beforeSend : function(xhr) {
+            xhr.setRequestHeader(csrfParameter, csrfToken);
+        },
+        success : function(data) {
+            if (data) {
+                window.close();
+            }
+        },
+        error : function() {
+            alert('오류');
+        },
+    });
+
+    event.preventDefault();
 });
 
 // 버튼 눌렀을때
@@ -149,8 +191,8 @@ function callList(url, columns) {
         columns : columns,
         destroy : true
     });
-    
-    if(url == 'selectAttendacne') {
+
+    if (url == 'selectAttendacne') {
         $('#datatables').append('<button id="insertAttendance">');
         $('#insertAttendance').append('신규 등록');
     }
@@ -177,35 +219,48 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
         return m.format(type === 'sort' || type === 'type' ? 'x' : to);
     };
 };
-
-function insertAttendance(csrfParameter, csrfToken) {
-    $('#insertAttendanceForm').submit(function(event) {
-        var formData = {
-            '_csrf' : $('input[name=_csrf]').val(),
-            'id' : $('input[name=id]').val(),
-            'attendance_cd_id' : $('input[name=attendance_cd_id]').val(),
-            'application_date' : $('input[name=application_date]').val(),
-            'begin_date' : $('input[name=begin_date]').val(),
-            'end_date' : $('input[name=end_date]').val(),
-            'reason' : $('input[name=reason]').val(),
-        };
-        var loc = $('#insertAttendanceForm').attr('action');
-        $.ajax({
-            type : 'POST',
-            url : loc,
-            data : formData,
-            dataType : 'json',
-            success : function(data) {
-                if (data) {
-                    window.close();
-                }
-            },
-            error : function() {
-                alert('오류');
-            },
-        });
-
-        event.preventDefault();
-    });
-    currTab.ajax.reload();
-}
+//function insertAttendance(csrfParameter, csrfToken) {
+//    $(document).ready(function() {
+//        $('#insertAttendanceForm').on('click', '#insertAttendanceAction', function(event) {
+//            csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+//            csrfToken = $("meta[name='_csrf']").attr("content");
+//            var list = new Array();
+//            var i = 0;
+//            $('#insertAttendanceForm #attendance').each(function() {
+//                var dataObject = new Object();
+//                $('.form-control'+i).each(function() {
+//                    var data = $(this);
+//                    dataObject[data.attr('name')] = data.val();
+//                    console.log(dataObject);
+//                });
+//                list.push(dataObject);
+//                i++;
+//            });
+//            var formData = JSON.stringify(list);
+//            alert(formData);
+//            var loc = $('#insertAttendanceForm').attr('action');
+//            console.log(formData);
+//            $.ajax({
+//                type : 'POST',
+//                url : loc + '?' + csrfParameter + '=' + csrfToken,
+//                data : formData,
+//                accept : "application/json",
+//                contentType : "application/json; charset=utf-8",
+//                dataType : 'text',
+//                beforeSend : function(xhr) {
+//                    xhr.setRequestHeader(csrfParameter, csrfToken);
+//                },
+//                success : function(data) {
+//                    if (data) {
+//                        window.close();
+//                    }
+//                },
+//                error : function() {
+//                    alert('오류');
+//                },
+//            });
+//
+//            event.preventDefault();
+//        });
+//    });
+//}
