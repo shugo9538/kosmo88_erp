@@ -25,8 +25,8 @@ public class SalesDAOImpl implements SalesDAO{
 
 	// 거래처 목록 조회
 	@Override
-	public List<SalesClientDTO> getClientList(Map<String, Object> map) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.sale.dao.SalesDAO.getClientList", map);
+	public List<SalesClientDTO> getClientList() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.sale.dao.SalesDAO.getClientList");
 	}
 	
 	// 거래처 상세 정보

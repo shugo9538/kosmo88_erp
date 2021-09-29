@@ -1,7 +1,3 @@
-var startPage = 0;
-var endPage = 0;
-var currPage = 1;
-
 $(document).ready(function() {
     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");

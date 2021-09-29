@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.member.controller;
+package com.kosmo88.logistics_erp.sale.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,6 +56,7 @@ public class SalesController {
     @RequestMapping(value="/clientUpdateAction")
     public String clientUpdateAction(HttpServletRequest request, Model model) {
     	
+    	System.out.println("업데이트 컨트롤러 탐");
     	service.updateClientAction(request, model);
     	
     	return "sales/clientUpdateAction";
@@ -83,8 +84,9 @@ public class SalesController {
     // 거래처 등록
     @RequestMapping(value="/clientRegister")
     public String clientRegister (HttpServletRequest request, Model model) {
-    	logger.info("url => clientRegister");
+    	
     	service.clientList(request, model);
+    	
     	return "sales/clientRegister";
     }
     
@@ -108,13 +110,33 @@ public class SalesController {
     	return "sales/orderManagement";
     }
     
+    // 거래처 선택
+    @RequestMapping(value="/selectClient")
+    public String selectClient(HttpServletRequest request, Model model) {
+    	
+    	service.clientList(request, model);
+    	
+    	return "sales/selectClient";
+    }
+    
+    
     // 견적서 관리
     @RequestMapping(value="/estimateManagement")
     public String estimateManagement(HttpServletRequest request, Model model) {
     	logger.info("url => estimateManagement");
     	
+    	service.estimateList(request, model);
     	
     	return "sales/estimateManagement";
+    }
+    
+    // 견적서 목록
+    @RequestMapping(value="/estimateRegister")
+    public String estimateRegister(HttpServletRequest request, Model model) {
+    	
+    	service.estimateResister(request, model);
+    	
+    	return "sales/estimateRegister";
     }
     
     // 출하 관리

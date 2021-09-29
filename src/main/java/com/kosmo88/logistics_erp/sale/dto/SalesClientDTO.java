@@ -8,13 +8,13 @@ public class SalesClientDTO {
     private String type;            	//varchar2(50)         NOT NULL,   -- 거래유형
     private String name;           		// VARCHAR2(100)     NOT NULL,   -- 거래처명
     private String ceo_name;       		// VARCHAR2(100)     NOT NULL,   -- 대표자명
-    private long register_num;   		// NUMBER(10)        NOT NULL,   -- 사업자번호
+    private String register_num;   		// NUMBER(10)        NOT NULL,   -- 사업자번호
     private String email;                // VARCHAR2(100) NOT NULL,
     private String address;        		// VARCHAR2(100)     NOT NULL,   -- 주소
     private String detail_address; 		//varchar2(100)    NOT NULL,
     private int zip_code;    			// number(5)       not null,
     private Date register_date;   	//DATE              NOT NULL,   -- 거래처 등록일
-	private int phone;              // NUMBER(11)     NOT NULL
+	private String phone;              // NUMBER(11)     NOT NULL
     
     public int getId() {
 		return id;
@@ -40,10 +40,10 @@ public class SalesClientDTO {
 	public void setCeo_name(String ceo_name) {
 		this.ceo_name = ceo_name;
 	}
-	public long getRegister_num() {
+	public String getRegister_num() {
 		return register_num;
 	}
-	public void setRegister_num(long register_num) {
+	public void setRegister_num(String register_num) {
 		this.register_num = register_num;
 	}
 	public String getEmail() {
@@ -76,10 +76,10 @@ public class SalesClientDTO {
 	public void setRegister_date(Date register_date) {
 		this.register_date = register_date;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	@Override

@@ -12,7 +12,7 @@ public interface SalesDAO {
 	public int getClientCnt();
 	
 	// 거래처 목록
-	public List<SalesClientDTO> getClientList(Map<String, Object> map);
+	public List<SalesClientDTO> getClientList();
 	
 	// 거래처 상세 정보
 	public SalesClientDTO getClientDetail(int id);

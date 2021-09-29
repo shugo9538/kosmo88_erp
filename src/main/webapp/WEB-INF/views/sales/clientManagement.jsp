@@ -23,7 +23,6 @@
 			
 			<ul class="nav nav-pills custom-nav">
 				<li class="active"><a href="${ROOT_PATH}/sales/clientRegister">거래처 등록</a></li>
-				<li class="active"><a href="${ROOT_PATH}/sales/clientDelete">거래처 삭제</a></li>
 			</ul>
 
             <!--Start row-->
@@ -34,17 +33,16 @@
                         	<i class="fa fa-chevron-circle-right mr-2"></i>
                         	거래처 전체 목록 </h2><span style="text-align:right;">(등록된 거래처 : ${cnt}개)</span>
                         <div class="table-responsive">
-                            <div class="form-group">
-                            </div>
-                            <div class="form-group">
-                            </div>
+                        	<div class="col-md-2 mt-1">
+								<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
+							 </div>
+							 
                             <table id="example" class="display table">
                                 <thead>
                                     <tr>
                                         <td style="text-align: center;">
-                                            <input type="checkbox" name="select" id="select">
+                                            <input type="checkbox" name="checkAll" id="checkAll">
                                         </td>
-                                        <th>번호</th>
                                         <th>거래처 번호</th>
                                         <th>회사명</th>
                                         <th>사업자번호</th>
@@ -60,26 +58,16 @@
                                 	<c:forEach var="dto" items="${dto}">
                                 		<tr>
 	                                        <th style="text-align: center;">
-	                                            <input type="checkbox" name="select" id="select">
+	                                            <input type="checkbox" name="client_id" id="client_id" value="${dto.id}">
 	                                        </th>
-	                                        <td>${number}
-	                                        	<c:set var="number" value="${number -1}"/>
-	                                        </td>
 	                                        <td>${dto.id}</td>
 	                                        <th>
-	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}&number=${number + 1}"
-	                                        		onclick="window.open(this.href, 'mywin', 'left=1000,  width=1000, height=700, toolbar=1');return false;">${dto.name}</a>
+	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}"
+	                                        		onclick="window.open(this.href, 'mywin', 'left=100,  width=1000, height=600, toolbar=1');return false;">${dto.name}</a>
 	                                        </th>
-	                                        <td>${fn:substring(dto.register_num,0,3)} - 
-		                    					${fn:substring(dto.register_num,3,5)} - 
-		                    					${fn:substring(dto.register_num,5,10)}
-	                                        
-	                                        </td>
+	                                        <td>${dto.register_num}</td>
 	                                        <td>${dto.ceo_name}</td>
-	                                        <td>${fn:substring(dto.phone,0,3)} -
-	                                        	${fn:substring(dto.phone,3,7)} - 
-                            					${fn:substring(dto.phone,7,11)}
-	                                        </td>
+	                                        <td>${dto.phone}</td>
 	                                        <td>${dto.address}</td>
 	                                        <td>
 	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
@@ -98,40 +86,13 @@
                                 </c:if>   
                                     
                                 </tbody>
-                                <tfoot>
-                                    <!-- 등록거래처가 있는경우 --> 
-                                     <c:if test="${cnt > 0}">
-                                     <tr>
-                                     	<th colspan="8">
-	                                     	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
-	                                     	<c:if test="${startPage > pageBlock}">
-	                                     		<a href="${ROOT_PATH}/sales/clientManagement" style="color:block">[◀◀]</a>
-	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
-	                                     	</c:if>
-	                                     	
-	                                     	<c:forEach var="i" begin="${startPage}" end="${endPage}">
-	                                     		<c:if test="${i == currengPage}">
-	                                     			<span><b>[${i}]</b></span>
-	                                     		</c:if>
-	                                     		<c:if test="${i != currengPage}">
-	                                     			<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${i}">[${i}]</a>
-	                                     		</c:if>
-	                                     	</c:forEach>
-	                                     	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
-	                                     	<c:if test="${pageCount > endPage}">
-	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${startPage + pageBlock}">[▶]</a>
-	                                     		<a href="${ROOT_PATH}/sales/clientManagement?pageNum=${pageCount}">[▶▶]</a>
-	                                     	</c:if>
-	                                     	</th>
-                                     	</tr>
-                                     </c:if>
-                                </tfoot>
                             </table>
                         </div>
                         
                     </div>
                 </div>
                 <!--End row-->
+                
         
         <!-- End Wrapper-->
         
@@ -143,7 +104,7 @@
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
-		
+		<script src="${RESOURCES_PATH}/sales/js/clientManagement.js"></script>
 		
 </body>
 </html>

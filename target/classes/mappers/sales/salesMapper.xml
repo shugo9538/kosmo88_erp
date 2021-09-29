@@ -7,18 +7,15 @@
 
 <!-- 거래처 갯수 -->
 <select id="getClientCnt" resultType="int">
-	SELECT COUNT(*) as cnt FROM client WHERE TYPE = '판매'
+	SELECT COUNT(*) as cnt FROM client WHERE TYPE = '판매' AND ENABLED = 'Y'
 </select>
 <!-- 거래처 조회 -->
-<select id="getClientList" resultType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO" parameterType="java.util.Map">
-	<![CDATA[
-	SELECT * 
-      FROM (SELECT id, type, name, ceo_name, register_num, email, address, detail_address, zip_code, phone, register_date, ROWNUM rNum
-              FROM(SELECT * FROM client WHERE type='판매' ORDER BY register_date DESC)
-         )
-     WHERE rNum >= #{start} AND rNum <= #{end}
-	]]>
-	
+<select id="getClientList" resultType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
+	SELECT *
+      FROM client
+     WHERE type = '판매'
+       AND enabled = 'Y'
+      ORDER BY id DESC
 </select>
 
 <!-- 거래처 상세 페이지 -->
@@ -28,8 +25,8 @@
 
 <!-- 거래처 등록 -->
 <insert id="registerClient" parameterType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
-	INSERT INTO client (id, type, name, ceo_name, register_num, email, address, detail_address, zip_code, register_date, phone)
- 		VALUES(4, '판매', #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{zip_code}, sysdate, #{phone});
+	INSERT INTO client (id, type, name, ceo_name, register_num, email, address, detail_address, zip_code, phone, ENABLED)
+ 		VALUES(client_seq.nextval, '판매', #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{zip_code}, #{phone}, 'Y')
 </insert>
 
 <!-- 거래처 수정 -->

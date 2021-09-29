@@ -19,12 +19,12 @@
 <meta name="author" content="">
 <sec:csrfMetaTags/>
 <link rel="icon" href="${RESOURCES_PATH}/assets/images/favicon.png" type="image/png">
-<<<<<<< HEAD
+
 <title>Meter - Responsive Admin Dashboard Template</title>
 
-=======
+
 <title>우여곡절 ERP</title>
->>>>>>> 142db359713958de9443e822f2aa5c64ebf49458
+
 <!--Begin  Page Level  CSS -->
 <link href="${RESOURCES_PATH}/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
 <link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>

@@ -44,8 +44,9 @@
                              <thead>
                                  <tr>
                                      <td style="text-align:center">
-                                         <input type="checkbox" id="checkAll" name="checkAll" id="select">
+                                         <input type="checkbox" id="checkAll" name="checkAll" >
                                      </td>
+                                     <td>거래처 번호</td>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>
@@ -62,6 +63,7 @@
 		                                    <th style="text-align:center">
 		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
 		                                    </th>
+		                                    <td>${dto.id}</td>
 		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
 		                             	 	<td>
 		                             	 		${fn:substring(dto.register_num,0,3)} -

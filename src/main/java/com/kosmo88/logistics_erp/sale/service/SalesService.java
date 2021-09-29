@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 
 public interface SalesService {
 
+	// ---------------- 거래처 --------------------------------------------
 	// 거래처 등록
 	public void clientResister(HttpServletRequest request, Model model);
 	
@@ -27,9 +28,32 @@ public interface SalesService {
 	// 거래처 삭제 처리
 	public void deleteClientAction(HttpServletRequest request, Model model);
 	
-	// 견적서 등록
 	
-	// 견적서 조회
+	// ---------------- 견적서 --------------------------------------------
+	// 견적서 등록
+	public void estimateResister(HttpServletRequest request, Model model);
+	
+	// 견적서 목록
+	public void estimateList(HttpServletRequest request, Model model);
+	
+	// 견적서 상세 정보
+	public void estimateDetail(HttpServletRequest request, Model model);
+	
+	// 견적서 수정
+	public void updateEstimate(HttpServletRequest request, Model model);
+	
+	// 견적서 수정 처리
+	public void updateEstimateAction(HttpServletRequest request, Model model);
+	
+	// 견적서 삭제
+	public void deleteEstimate(HttpServletRequest request, Model model);
+	
+	// 견적서 삭제 처리
+	
+	
+	
+	
+	
 	
 	// 판매 관리
 	

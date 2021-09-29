@@ -11,9 +11,9 @@
 
 <c:if test="${updateCnt == 1 }">
 	<script type="text/javascript">
-		alert("거래처가 수정 되었습니다.")
+		alert("거래처가 수정 되었습니다.");
+		window.close();
 	</script>
-	<c:redirect url="clientRegister?insertCnt=${updateCnt}"/>
 </c:if>
 
 </body>
