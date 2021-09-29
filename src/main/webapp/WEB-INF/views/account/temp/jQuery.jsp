@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<%@ include file="common/accountHeader.jsp" %>
+<%@ include file="../common/accountHeader.jsp" %>
 
 		<!-- 여기있으면 input태그 무조건 위에 있어야함 -->
           <!--   <script type="text/javascript">
@@ -20,7 +20,7 @@
 			
 			});
 			</script> -->
-<%@ include file="common/accountFooter.jsp" %>
+<%@ include file="../common/accountFooter.jsp" %>
 <input type="text" name="date" id="date1" size="12" />
 
 

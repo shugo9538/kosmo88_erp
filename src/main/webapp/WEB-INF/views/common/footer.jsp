@@ -11,22 +11,16 @@
 <script src="${RESOURCES_PATH}/assets/js/jquery.nicescroll.js"></script>
 <script src="${RESOURCES_PATH}/assets/js/functions.js"></script>
 <!-- End core plugin -->
-<<<<<<< HEAD
-<!--Begin Page Level Plugin-->
-<%-- <script src="${RESOURCES_PATH}/assets/pages/dashboard.js"></script> --%>
-<!--End Page Level Plugin-->
-=======
 
->>>>>>> ffee93b2c8699657e52fc93b890d0d1556729014
+<!--Begin Page Level Plugin-->
+<script src="${RESOURCES_PATH}/assets/pages/dashboard.js"></script>
+<!--End Page Level Plugin-->
 
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${RESOURCES_PATH}/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/validation-custom.js"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
-<<<<<<< HEAD
 
-=======
->>>>>>> ffee93b2c8699657e52fc93b890d0d1556729014
 
 
 <!--Begin Page Level Plugin-->

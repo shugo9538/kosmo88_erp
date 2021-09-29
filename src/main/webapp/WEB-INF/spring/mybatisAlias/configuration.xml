@@ -22,6 +22,12 @@
 		<!-- 계좌 DTO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.dto.AccountDTO"
 		   alias="AccountDTO"/>	
+		<!-- 입출금내역 -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.DepositWithdrawalHistoryDTO"
+		   alias="DepositWithdrawalHistoryDTO"/>	
+		<!-- 통장잔액 -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.BalanceDTO"
+		   alias="BalanceDTO"/>	
 		<!-- 매입/매출전표 DTO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.dto.SalesSlipDTO"
 		   alias="SalesSlipDTO"/>

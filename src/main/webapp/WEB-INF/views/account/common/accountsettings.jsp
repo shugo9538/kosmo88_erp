@@ -23,6 +23,6 @@
 <!--End  Page Level  CSS -->
 <link href="/logistics_erp/resources/accounting/css/bootstrap.min.css" rel="stylesheet">
 <link href="/logistics_erp/resources/accounting/css/temp_bootstrap.css" rel="stylesheet">
-<link href="/logistics_erp/resources/accounting/css/style.css" rel="stylesheet">
+<link href="/logistics_erp/resources/accounting/css/accountDetail_style.css" rel="stylesheet">
 <link href="/logistics_erp/resources/accounting/css/responsive.css" rel="stylesheet">
 </head>

@@ -7,7 +7,7 @@ public class FinancialStatementsDTO {
 		private int accounts_receivable;//매출채권(외상매출금)
 		private int vatPayment;//부가세대급금
 		//재고자산
-		private int productSales;//상품
+		private int inventory_assets;//상품
 		//부채
 		private int purchase_receivable; //매입채권(외상매입금)
 		private int vatDeposit;//부가세예수금
@@ -32,11 +32,11 @@ public class FinancialStatementsDTO {
 		public void setVatPayment(int vatPayment) {
 			this.vatPayment = vatPayment;
 		}
-		public int getProductSales() {
-			return productSales;
+		public int getInventory_assets() {
+			return inventory_assets;
 		}
-		public void setProductSales(int productSales) {
-			this.productSales = productSales;
+		public void setProductSales(int inventory_assets) {
+			this.inventory_assets = inventory_assets;
 		}
 		public int getPurchase_receivable() {
 			return purchase_receivable;

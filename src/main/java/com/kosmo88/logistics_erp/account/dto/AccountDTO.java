@@ -9,7 +9,6 @@ public class AccountDTO {
 //	ACCOUNT_NUMBER    NOT NULL VARCHAR2(50) 
 //	BANK              NOT NULL VARCHAR2(50) 
 //	BALANCE           NOT NULL NUMBER(10)   
-//	ABSTRACT          NOT NULL VARCHAR2(50) 
 //	REGISTER          NOT NULL DATE         
 //	ACCOUNT_HOLDER_ID NOT NULL NUMBER(5) 
 	
@@ -18,9 +17,7 @@ public class AccountDTO {
 	private String account_number;
 	private String bank;
 	private int balance;
-	private String abs; //abstract 컬럼명 예약어로 변경 (별칭)
 	private Date register ;
-	private String type;
 	private int account_holder_id;
 	
 	
@@ -54,23 +51,11 @@ public class AccountDTO {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public String getAbs() {
-		return abs;
-	}
-	public void setAbs(String abs) {
-		this.abs = abs;
-	}
 	public Date getRegister() {
 		return register;
 	}
 	public void setRegister(Date register) {
 		this.register = register;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
 	}
 	public int getAccount_holder_id() {
 		return account_holder_id;
@@ -78,7 +63,5 @@ public class AccountDTO {
 	public void setAccount_holder_id(int account_holder_id) {
 		this.account_holder_id = account_holder_id;
 	}
-	
-	
 	
 }

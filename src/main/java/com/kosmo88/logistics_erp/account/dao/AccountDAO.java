@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.kosmo88.logistics_erp.account.dto.AccountDTO;
+import com.kosmo88.logistics_erp.account.dto.BalanceDTO;
 import com.kosmo88.logistics_erp.account.dto.ClientDTO;
+import com.kosmo88.logistics_erp.account.dto.DepositWithdrawalHistoryDTO;
 import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
 import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
 import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
@@ -66,14 +68,19 @@ public interface AccountDAO {
 	public int getAccountCnt();
 	// 통장 거래내역 조회 
 	public List<AccountDTO> selectAccount(Map<String,Object> map);
+	// 통장 추가처리
+	public int insertAccountAction(AccountDTO accountDTO);
 	// 통장 목록조회
 	// 통장 거래내역 추가
 	//public int intsertAccountList();
-	// 통장 출금내역 조회 (입금?출금?여부) 현재 구분 컬럼 없음
-	//public int selectAccountWithdrawal(int state);
-	// 통장 입금내역 조회 (입금?출금?여부) 현재 구분 컬럼 없음
-	//public int selectAccountDeposit(int state);
-	// 통장잔액조회 (전체조회에서 입출금잔액 불러와서 처리)
+	// 통장 입출금 내역 조회
+	public List<DepositWithdrawalHistoryDTO>selectDepositWithdrawalHistory(String account_number);
+	// 통장 출금내역 조회
+	public List<DepositWithdrawalHistoryDTO> selectAccountWithdrawal(String account_number);
+	// 통장 입금내역 조회 
+	public List<DepositWithdrawalHistoryDTO> selectAccountDeposit(String account_number);
+	// 통장잔액조회 
+	public List<BalanceDTO> selectAccountBalance(String account_number);
 	// 급여통장 건수 (급여/거래처통장 구분??) 현재 구분 컬럼 없음
 	//public int getSalaryAccountCnt();
 	// 급여통장 조회  (급여/거래처통장 구분??) 현재 구분 컬럼 없음
@@ -85,7 +92,7 @@ public interface AccountDAO {
 	
 	// 결산/제무재표
 	// 재무상태표
-	//public FinancialStatementsVO selectFinancialStatementsVO();
+	public FinancialStatementsDTO selectFinancialStatements();
 	// 거래처통장조회(합계) 보통예금
 	//public int sumAccount();  // 다른정보와 함께 받으려면 vo로 받고 해당컬럼 별칭 합계만 받을때는 resultType int로
 	// 매출전표조회(합계) 외상매출금 (공급가액) 부가세대급금 (세액)
@@ -97,7 +104,7 @@ public interface AccountDAO {
 	//public int sumPurchaseSlip(int type);
 	
 	// 손익계산서
-	//public IncomeStatementVO selectIncomeStatement();
+	public IncomeStatementDTO selectIncomeStatement();
 	
 	// 매출전표조회(합계) 상품매출
 	// 상품매출원가(물류 상품매입가조회)

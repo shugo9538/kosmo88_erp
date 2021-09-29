@@ -1,7 +1,9 @@
 package com.kosmo88.logistics_erp.account.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,11 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.account.code.menuCode;
 import com.kosmo88.logistics_erp.account.dao.AccountDAO;
 import com.kosmo88.logistics_erp.account.dto.AccountDTO;
+import com.kosmo88.logistics_erp.account.dto.BalanceDTO;
 import com.kosmo88.logistics_erp.account.dto.ClientDTO;
+import com.kosmo88.logistics_erp.account.dto.DepositWithdrawalHistoryDTO;
+import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
+import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
 import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
 import com.kosmo88.logistics_erp.account.dto.SlipDTO;
 
@@ -201,34 +207,135 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		}
 		System.out.println("다음페이지 통과 ");
 	}
+	
+	// ------------------------------ 금융/자금관리 ------------------------------
+	// 신규통장 추가 처리
+	@Override
+	public void accountInsertAction(HttpServletRequest request, Model model) {
+		
+		// accountNewDetail.jsp에서 입력받은 값 
+		
+		int account_holder_id = Integer.parseUnsignedInt(request.getParameter("account_holder_id")); // 관계테이블 FK
+		String account_name = request.getParameter("account_name"); // 계좌명
+		String account_number = request.getParameter("account_number"); // 계좌번호
+		String account_bank = request.getParameter("account_bank"); // 계좌은행
+		int account_balance = Integer.parseInt(request.getParameter("account_balance")); // 기초잔액
+		//String account_resister_date = request.getParameter("account_resister_date"); // 통장개설일
+		
+		System.out.println("계좌소유 : " + account_holder_id);
+		System.out.println("계좌명 : " + account_name);
+		System.out.println("계좌번호 : " + account_number);
+		System.out.println("계좌은행 : " + account_bank);
+		System.out.println("기초잔액" + account_balance);
+		//System.out.println("통장등록일" + account_resister_date);
+		
+		AccountDTO accountDTO = new AccountDTO();
+		
+		accountDTO.setAccount_holder_id(account_holder_id);
+		accountDTO.setName(account_name);
+		accountDTO.setAccount_number(account_number);
+		accountDTO.setBank(account_bank);
+		accountDTO.setBalance(account_balance);
+		accountDTO.setRegister(new Date(System.currentTimeMillis()));
+		
+		int insertCnt = 0;
+		insertCnt = accountDAO.insertAccountAction(accountDTO);
+		
+		if (insertCnt > 0) {
+			System.out.println("insertCnt 성공 : " + insertCnt );
+			model.addAttribute("insertCnt", insertCnt);
+		}else {
+			System.out.println("insertCnt 실패 : " + insertCnt );
+			model.addAttribute("insertCnt", insertCnt);
+		}
+		
+	}
+	// 통장 입출금내역조회
+	@Override
+	public void accountTransactionHistory(HttpServletRequest request, Model model) {
+		
+		//accountList.jsp 에서 전달받은 값
+		String account_number = request.getParameter("account_number");
+		System.out.println("통장 입출금내역1 : " + account_number);
+		
+		//List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
+		//depositWithdrawalHistoryDTO = accountDAO.selectDepositWithdrawalHistory(account_number);
+		//model.addAttribute("dtos", depositWithdrawalHistoryDTO);
+		//System.out.println("통장입출금내역 dtos : " + depositWithdrawalHistoryDTO);
+		
+		List<BalanceDTO> balanceDTO = new ArrayList<BalanceDTO>();
+		
+		balanceDTO = accountDAO.selectAccountBalance(account_number); 
+
+		model.addAttribute("dtos", balanceDTO);
+		System.out.println("잔액조회 balanceDTO : " + balanceDTO);
+	}
+	
+	// 통장 입금내역 조회
+	@Override
+	public void accountDeposit(HttpServletRequest request, Model model) {
+
+		//accountDetail.jsp 에서 전달받은 값
+		String account_number = request.getParameter("account_number");
+		
+		List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
+		
+		depositWithdrawalHistoryDTO = accountDAO.selectAccountDeposit(account_number);
+		
+		model.addAttribute("DepositWithdrawalHistoryDTO", depositWithdrawalHistoryDTO);
+	}
+
+	// 통장 출금내역 조회
+	@Override
+	public void accountWithdrawal(HttpServletRequest request, Model model) {
+		
+		//accountDetail.jsp 에서 전달받은 값
+		String account_number = request.getParameter("account_number");
+		
+		List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
+		
+		depositWithdrawalHistoryDTO = accountDAO.selectAccountWithdrawal(account_number);
+		
+		System.out.println("잔액조회 depositWithdrawalHistoryDTO : " + depositWithdrawalHistoryDTO);
+		
+		model.addAttribute("depositWithdrawalHistoryDTO", depositWithdrawalHistoryDTO);
+		
+	}
+	
+	// ------------------------------ 결산/재무제표 ------------------------------
+	// 재무상태표
+	@Override
+	public void financialStatementsSelect(Model model) {
+		
+		FinancialStatementsDTO finan = new FinancialStatementsDTO();
+		
+		finan = accountDAO.selectFinancialStatements();
+		
+		model.addAttribute("dto", finan);
+		
+	}
+	// 손익계산서
+	@Override
+	public void incomeStatementSelect(Model model) {
+		
+		IncomeStatementDTO income = new IncomeStatementDTO();
+		
+		income = accountDAO.selectIncomeStatement();
+		
+		model.addAttribute("dto", income);
+	}
+
+
+
+
+
+
+
+
+
 
 	
-	@Override
-	public void clientInsert(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clientModifyDetail(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clientModifyAction(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void clientDeleteAction(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	
-
 	// 영업팀 수주요청서 
 	// 4번 거래대금 수금확인 요청(영업팀) rx_sale바탕으로 slip테이블 작성(영업팀)
 	// 영업팀에서 일반전표 생성하여 회계팀에서 일반전표 변경하면서 매출전표 발생 sales_slip

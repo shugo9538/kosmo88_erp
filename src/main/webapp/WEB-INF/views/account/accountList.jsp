@@ -39,6 +39,7 @@
            <div class="page-title-box">
                 <h4 class="page-title">금융/자금관리(통장)</h4>
                 <ol class="breadcrumb">
+                   <!-- 
                     <li>
                         <a href="#">급여통장</a>
                     </li>
@@ -48,6 +49,7 @@
                     <li class="active">
                         <a href="#">통장목록</a>
                     </li>
+                    -->
                 </ol>
                 <div class="clearfix"></div>
              </div>
@@ -56,43 +58,70 @@
                <!--Start row-->
                <div class="row">
                    <div class="col-md-12">
-                       <div class="white-box">
+					<!-- 메뉴버튼 -->
+					<div>
+						<ul class="nav nav-pills custom-nav">
+							<li class="active">
+								<a href="${ROOT_PATH}/account/accountNewDetail">통장 추가</a>
+							</li>
+							<li class="active">
+								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
+							</li>
+							<li class="active">
+								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
+							</li>
+						</ul>
+					</div>
+					<!-- 메뉴버튼 끝 -->
+					<div class="white-box">
                            <h2 class="header-title">통장 목록</h2>
                             <div class="table-responsive">
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
+                                            <!-- <th>번호</th> -->
                                             <th>번호</th>
-                                            <th>계좌코드</th>
                                             <th>계좌명</th>
                                             <th>계좌번호</th>
                                             <th>은행</th>
-                                            <th>잔액</th>
-                                            <th>요약</th>
+                                            <th>잔액
+                                           	    <!-- 계좌번호 확인  -->
+                                    			<script type="text/javascript">
+                                   					var arr = new Array();
+                                   					
+                                   					<c:forEach var="dto" items="${account}">	
+                                   						arr.push({account_num:"${dto.account_number}"});
+                                   					</c:forEach>	
+                                   					
+                                   					
+                                   					for(var i=0; i<arr.length; i++){
+                                   						console.log(arr[i].account_num);
+                                   						alert("계좌번호 :" + arr[i].account_num);
+                                    			</script>
+                                            </th>
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <!-- 등록거래처가 있는경우 -->                     
+                                    <!-- 계좌목록이 있는 경우  -->
                                     <c:if test="${cnt > 0}">
+                                    	<input type="hidden" id="root" value="${ROOT_PATH}">
                                     	<c:forEach var="dto" items="${account}">
    											<tr>
-   												<td>${number}
+   												<%-- <td>${number}
    													<c:set var="number" value="${number -1 }"/>
-   												</td>
+   												</td> --%>
                                         		<td>${dto.id}</td>
                                         		<td>${dto.name}</td>
                                         		<td>
-                                        		<input type="hidden" id="root" value="${ROOT_PATH}">
-                                        		<input type="hidden" id="num" value="${dto.account_number}">
-                                    			<a href="#" id="accountNum" onclick="accountDetail();" >
-                                        		${dto.account_number}</a>
+	                                        		<input type="hidden" id="account_number" value="${dto.account_number}">
+	                                    			<a href="#" id="accountNum" onclick="accountDetail();" >
+	                                        		${dto.account_number}</a>
                                         		</td>
                                         		<td>${dto.bank}</td>
                                         		<td>
                                         		<fmt:formatNumber pattern="###,###,###,###" value="${dto.balance}"/>
                                         		</td>
-                                        		<td>${dto.abs}</td>
                                         		<td>
                                         		<fmt:formatDate pattern="yyyy-MM-dd" value="${dto.register}"/>
                                         		</td>

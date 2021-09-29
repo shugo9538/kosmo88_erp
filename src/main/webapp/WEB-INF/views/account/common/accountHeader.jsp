@@ -9,3 +9,6 @@
   
 <!-- jQuery UI css -->  
 <link rel="stylesheet" href="/logistics_erp/resources/assets/plugins/jquery-ui/jquery-ui.min.css">
+
+<!-- financialStatement.jsp  -->
+<link rel="stylesheet" href="/logistics_erp/resources/accounting/css/statement.css">
