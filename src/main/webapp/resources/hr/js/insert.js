@@ -1,19 +1,25 @@
 $('#insertAttendanceForm').ready(function(){
     addAttendance();
 });
-
+var i = 0;
 function addAttendance() {
   var attendance = document.getElementById("attendance");
   var addAttendanceBtn = document.getElementById("addAttendance");
   var newAttendance = document.createElement("tr");
   newAttendance = attendance.cloneNode(true);
   newAttendance.removeAttribute("style");
-  Array.from(newAttendance.getElementsByClassName("form-control")).forEach((f) =>
+  tmp = newAttendance.getElementsByTagName('input');
+  for (var j = 0 ; j < tmp.length ; j++) { 
+    tmp[j].className = "form-control"+i;
+  }
+  
+  Array.from(newAttendance.getElementsByClassName("form-control"+i)).forEach((f) =>
     f.removeAttribute("disabled"));
 
-  Array.from(newAttendance.getElementsByClassName("form-control")).forEach((f) =>
+  Array.from(newAttendance.getElementsByClassName("form-control"+i)).forEach((f) =>
     f.setAttribute("required", true));
   document.getElementById("attendance-group").appendChild(newAttendance);
+  i++;
 }
 
 function delAttendance(obj) {

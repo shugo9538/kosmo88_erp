@@ -27,13 +27,13 @@
 	</select>
 
 	<!-- 근태 입력 -->
-<!-- 	<insert -->
-<!-- 		id="insertAttendance" -->
-<!-- 		parameterType="AttendanceDTO"> -->
-<!-- 		INSERT INTO attendance (id, application_date, begin_date, end_date, reason, state, attendance_cd_id) -->
-<!-- 		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state}, -->
-<!-- 		#{attendance_cd_id}) -->
-<!-- 	</insert> -->
+	<insert
+		id="insertAttendance"
+		parameterType="AttendanceDTO">
+		INSERT INTO attendance (id, application_date, begin_date, end_date, reason, state, attendance_cd_id)
+		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state},
+		#{attendance_cd_id})
+	</insert>
 	<!-- 근태 현황 -->
 	<!-- <select -->
 	<!-- id="" -->
