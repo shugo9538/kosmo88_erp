@@ -30,7 +30,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	// 선택 거래처 삭제
+   	// 선택 거래처 삭제
 	$("#delButton").click(function(){
 		
 		var clientIdArr = new Array();
@@ -47,7 +47,7 @@ $(document).ready(function() {
 		} else {
 			var result = confirm("선택한 거래처를 삭제하시겠습니까?");
 			if (result) {
-				window.location = "/logistics_erp/purchase/clientChoiceDelete?=client_id" + clientIdArr;
+				window.location = "/logistics_erp/purchase/clientChoiceDelete?id=" + clientIdArr;
 			} else {
 				return false;
 			}

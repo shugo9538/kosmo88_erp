@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.util;
+package com.kosmo88.logistics_erp.util.aop;
 
 import java.util.Arrays;
 
@@ -22,7 +22,7 @@ public class AopLogger {
 //    }
 
 
-	@Before("execution(* com.kosmo88.logistics_erp.wms..*.*(..))")
+	@Before("execution(* com.kosmo88.logistics_erp.wms..*Service.*(..))")
 //	@Before("publicTarget()")
 	public void logging(JoinPoint jp) {
 		logger.info("-------------------------------");

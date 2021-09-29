@@ -1,8 +1,10 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
-public class TruckDao {
+public interface TruckDao {
 
-	public TruckDao() {
-	}
-
+	void insert();
+	void select();
+	void selectRack();
+	void update(); 
+	void delete(); 
 }

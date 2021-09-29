@@ -26,6 +26,7 @@
 <!--위에 두개 추가 -->
 
 <script src="${RESOURCES_PATH}/search/js/search.js"></script>
+<script src="${RESOURCES_PATH}/hr/js/newWindow.js"></script>
 
 
 <!--Begin Page Level Plugin-->

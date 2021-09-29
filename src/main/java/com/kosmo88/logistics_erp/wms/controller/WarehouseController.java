@@ -23,7 +23,7 @@ public class WarehouseController {
 
     @RequestMapping(value = {"/list", "/"})
     public String list(Model model) {
-    	warehouseService.list();
+    	warehouseService.list(model);
         return "wms/warehouse/warehouseList";
     }
 

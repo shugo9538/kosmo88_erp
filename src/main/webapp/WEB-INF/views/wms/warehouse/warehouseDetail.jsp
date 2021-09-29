@@ -17,7 +17,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">창고 정보</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/wms/warehouse">창고 목록</a></li>
+					<li><a href="${ROOT_PATH}/wms/warehouse/">창고 목록</a></li>
 					<li class="active">창고 정보</li>
 				</ol>
 				<div class="clearfix"></div>

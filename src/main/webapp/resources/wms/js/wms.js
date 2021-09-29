@@ -1,24 +1,29 @@
-function getCurrentDate(){
+function getCurrentDate() {
   var newDate = new Date();
   var year = newDate.getFullYear().toString();
   var month = (parseInt(newDate.getMonth().toString()) + 1).toString();
   var date = newDate.getDate().toString();
-  if(parseInt(month)<10)month = "0" + month; 
-  if(parseInt(date)<10)date = "0" + date; 
-  return  month + "/" + date + "/" + year;
+  if (parseInt(month) < 10) month = "0" + month;
+  if (parseInt(date) < 10) date = "0" + date;
+  return month + "/" + date + "/" + year;
 }
 
 function addRack() {
   var rack = document.getElementById("rack");
-  //   var lastLack = document.getElementById("rack-group").lastChild.get
   var addRackBtn = document.getElementById("addRack");
   var newRack = document.createElement("div");
-  //   newRack.setAttribute("class", "rack");
   newRack = rack.cloneNode(true);
   newRack.style.display = "block";
-  document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
+  Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
+    f.removeAttribute("disabled"));
+
+  Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
+    f.setAttribute("required", true));
+  // document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
+  document.getElementById("rack-group").appendChild(newRack);
 }
 // window.onload = addRack();
+
 
 function delRack(obj) {
   var rackGroup = document.getElementById("rack-group");
@@ -62,41 +67,47 @@ function log() {
 }
 
 function currentDate() {
- var newDate = new Date();
+  var newDate = new Date();
   var year = newDate.getFullYear().toString();
   var month = (parseInt(newDate.getMonth().toString()) + 1).toString();
   var date = newDate.getDate().toString();
-  if(parseInt(month)<10)month = "0" + month; 
-  if(parseInt(date)<10)date = "0" + date; 
-document.getElementById("datepicker-autoclose").value
-   = month + "/" + date + "/" + year;
+  if (parseInt(month) < 10) month = "0" + month;
+  if (parseInt(date) < 10) date = "0" + date;
+  document.getElementById("datepicker-autoclose").value =
+    month + "/" + date + "/" + year;
 }
 
-function initDatePicker(){
-  var datePicker = document.getElementById("datepicker-autoclose")
+function initDatePicker() {
+  var datePicker = document.getElementById("datepicker-autoclose");
   datePicker.value = getCurrentDate();
 }
 
-function initDateRange(){
+function initDateRange() {
   // var ranges = document.getElementById("date-range").children;
-//  Array.from(ranges).= getCurrentDate(); 
+  //  Array.from(ranges).= getCurrentDate();
 }
 
-
-function adjustIncludedPage(){
+function adjustIncludedPage() {
   // var includePages = document.querySelectorAll(".include");
   var includePages = Array.from(document.getElementsByClassName("include"));
   console.log(includePages);
   // var includePagesHasFilter = Array.from(includePages).filter(i=>i.querySelector(".filter")!=null);
-  var includePagesHasFilter = includePages.filter(i=>i.querySelector(".filter")!=null);
+  var includePagesHasFilter = includePages.filter(
+    (i) => i.querySelector(".filter") != null
+  );
   console.log(includePagesHasFilter);
-  
-  try{
-   includePages.forEach(i=>i.querySelector(".page-title-box").remove());
-   includePages.forEach(i=>i.querySelector(".main-content").setAttribute("class", ""));
-   includePagesHasFilter.forEach(i=>{console.log("잉" + i.nodeName); i.querySelector(".filter").remove(); });
-  } catch(e) {
-    console.log(e); 
+
+  try {
+    includePages.forEach((i) => i.querySelector(".page-title-box").remove());
+    includePages.forEach((i) =>
+      i.querySelector(".main-content").setAttribute("class", "")
+    );
+    includePagesHasFilter.forEach((i) => {
+      console.log("잉" + i.nodeName);
+      i.querySelector(".filter").remove();
+    });
+  } catch (e) {
+    console.log(e);
   }
   //  includePages.forEach(i=>i.querySelector(".page-title-box").remove());
   //  includePages.forEach(i=>i.querySelector(".main-content").setAttribute("class", ""));

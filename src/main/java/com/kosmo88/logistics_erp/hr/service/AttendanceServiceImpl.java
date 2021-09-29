@@ -41,25 +41,12 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public boolean insertAttendance(HttpServletRequest req, HttpServletResponse res) {
-        int id = Integer.parseInt(req.getParameter("id"));
-        int attendance_cd_id = Integer.parseInt(req.getParameter("attendance_cd_id"));
-        Date application_date = Date.valueOf(req.getParameter("application_date"));
-        Date begin_date = Date.valueOf(req.getParameter("begin_date"));
-        Date end_date = Date.valueOf(req.getParameter("end_date"));
-        String reason = req.getParameter("reason");
-
-        AttendanceDTO dto = new AttendanceDTO();
-        dto.setId(id);
-        dto.setApplication_date(application_date);
-        dto.setBegin_date(begin_date);
-        dto.setEnd_date(end_date);
-        dto.setReason(reason);
+    public boolean insertAttendance(AttendanceDTO dto) {
         dto.setState("결재중");
-        dto.setAttendance_cd_id(attendance_cd_id);
         state = QueryCode.UPDATE;
         
-        return state.check(attendanceDAO.insertAttendance(dto));
+//        return state.check(attendanceDAO.insertAttendance(dto));
+        return true;
     }
 
     @Override
@@ -68,7 +55,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+    public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
 
         req.setAttribute("commuteList", commuteList);
