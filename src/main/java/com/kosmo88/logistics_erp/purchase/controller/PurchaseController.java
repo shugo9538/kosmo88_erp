@@ -77,18 +77,17 @@ public class PurchaseController {
     	return "purchase/clientUpdateAction";
     }
     
-
-/*  
-    
-    // 거래처 삭제(단일 삭제)
+    // 거래처 삭제(상세페이지에서 단일 삭제)
     @RequestMapping(value = "/clientDelete")
     public String clientDelete(HttpServletRequest req, Model model) {
     	
-    	// purchaseService.updateClient
-    	// (update)
+    	purchaseService.clientDelete(req, model);
     	
     	return "purchase/clientDelete";
-    } 
+    }
+    
+
+/*  
 
     // 견적서 관리 - 목록
     @RequestMapping(value = "/estimateManagement")

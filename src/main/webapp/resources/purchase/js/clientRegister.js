@@ -46,7 +46,7 @@ function delItem(obj) {
 	var selectedItem = $(obj);
 	var item = selectedItem.parent().parent();
 	
-	if (itemGroup.childElementCount < 4) {
+	if (itemGroup.childElementCount < 3) {
 		alert("최소 하나 이상의 상품을 등록해야 합니다.")
 	} else {
 		item.remove();

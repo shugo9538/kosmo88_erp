@@ -17,13 +17,6 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-/*	
-	// 거래처 갯수 가져오기
-	@Override
-	public int getClientCnt() {
-		return sqlSession.selectOne(STATEMENT + ".getClientCnt");
-	}
-*/
 	// 거래처(구매처) 관리 - 거래처 목록
 	@Override
 	public List<PurchaseClientDTO> getClientList() {
@@ -55,22 +48,22 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 		return sqlSession.selectList(STATEMENT + ".getItemDetail", id);
 	}
 	
-	// 거래처 삭제 처리
+	// 거래처 삭제
 	@Override
-	public int deleteChoiceClient(int id) {
-		return sqlSession.update(STATEMENT + ".deleteChoiceClient", id);
+	public int deleteClient(int id) {
+		return sqlSession.update(STATEMENT + ".deleteClient", id);
 	}
 	
 	// 거래처 수정 처리 
 	@Override
 	public int updateClient(PurchaseClientDTO cdto) {
-		return sqlSession.update(STATEMENT + "updateClient", cdto);
+		return sqlSession.update(STATEMENT + ".updateClient", cdto);
 	}
 
 	// 상품 수정 처리
 	@Override
 	public int updateItem(PurchaseItemDTO idto) {
-		return sqlSession.update(STATEMENT + "updateItem", idto);
+		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
 
 }

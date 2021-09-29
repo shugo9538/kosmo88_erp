@@ -8,7 +8,7 @@
 
 	<!-- 거래처(구매처) 목록	 -->
  	<select id="getClientList" resultType="PurchaseClientDTO">
- 		SELECT id, name, register_num, ceo_name, phone, address, register_date, ROWNUM r_num
+ 		SELECT id, name, register_num, ceo_name, phone, address, register_date
  		  FROM client
  		 WHERE type = '구매'
  		   AND enabled = 'Y'
@@ -18,7 +18,7 @@
 	<!-- 거래처 등록 처리 -->
 	<insert id="RegisterClient" parameterType="PurchaseClientDTO">
 		INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code)
-		VALUES (client_seq.nextval, '구매', #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code})
+		VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code})
 	</insert>
 
 	<!-- 상품 등록 처리 -->
@@ -47,7 +47,7 @@
 	</select>
 	
 	<!-- 거래처 삭제 처리  -->
-	<update id="deleteChoiceClient" parameterType="int">
+	<update id="deleteClient" parameterType="int">
 		UPDATE client
 		   SET enabled = 'N'
 		 WHERE id = #{id}
@@ -56,16 +56,16 @@
 	<!-- 거래처 수정 처리 -->
 	<update id="updateClient" parameterType="PurchaseClientDTO">
 		UPDATE client
-		   SET ceo_name = #{ceo_name}, 
+		   SET ceo_name = #{ceo_name}, register_num = #{register_num}, address = #{address}, detail_address = #{detail_address}, zip_code = #{zip_code}, phone = #{phone}, email = #{email}
 		 WHERE id = #{id}
-		   AND enabled = 'Y'
+		   AND enabled = #{enabled}
 	</update>
 	
 	<!-- 상품 수정 처리 -->
 	<update id="updateItem" parameterType="PurchaseItemDTO">
 		UPDATE item
-		   SET 
+		   SET name = #{name}, category = #{category}, price = #{price}
 		 WHERE id = #{id}
-		   AND enabled = 'Y'
 	</update>
+	
 </mapper>

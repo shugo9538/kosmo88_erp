@@ -31,4 +31,7 @@ public interface PurchaseService {
 	
 	// 거래처 수정 처리
 	public void clientUpdateAction(HttpServletRequest req, Model model);
+	
+	// 거래처 삭제(상세페이지에서 단일 삭제)
+	public void clientDelete(HttpServletRequest req, Model model);
 }

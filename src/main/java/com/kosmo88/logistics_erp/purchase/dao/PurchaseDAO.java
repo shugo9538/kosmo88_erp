@@ -9,10 +9,6 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 public interface PurchaseDAO {
 
-/*
-	// 거래처 갯수 
-	public int getClientCnt();
-*/	
     // 거래처(구매처) 관리 - 거래처 목록
 	public List<PurchaseClientDTO> getClientList();
 	
@@ -37,5 +33,7 @@ public interface PurchaseDAO {
 	// 상품 수정 처리
 	public int updateItem(PurchaseItemDTO idto);
 	
+	// 거래처 삭제(상세페이지에서 단일 삭제)
+	public int deleteClient(int id);
 	
 }

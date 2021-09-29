@@ -64,7 +64,7 @@
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;" rowspan="3">거래처 주소</th>
 	                		<td style="padding:15px;" colspan="3">
-	                			<input style="width:100px;"type="text" id="zip_code" name="zip_code" value="${cdto.zip_code}">
+	                			<input style="width:100px;" type="text" id="zip_code" name="zip_code" value="${cdto.zip_code}">
 	                			<button type="button" id="search_zip_code" name="search_zip_code" 
 	                                      value="${cdto.zip_code}" onclick="daumPostcode()">우편번호검색</button>
 	                		</td>
@@ -86,7 +86,7 @@
 	                		<td style="padding:15px;" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cdto.register_date}"/></td>
 	                	</tr>
 	                	
-	                		                	<tr>
+	                	<tr>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품명</th>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품종류</th>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품가격</th>
@@ -96,9 +96,15 @@
 		                <c:forEach var="idto" items="${idtos}">
 	                		<input type="hidden" value="${idto.id}">
 		                	<tr>
-		                		<td style="padding:15px;">${idto.name}</td>
-		                		<td style="padding:15px;">${idto.category}</td>
-		                		<td style="padding:15px;">${idto.price}</td>
+		                		<td>
+		                			<input type="text" name="item_name" value="${idto.name}">
+		                		</td>
+		                		<td>
+		                			<input type="text" name="category" value="${idto.category}">
+		                		</td>
+		                		<td>
+		                			<input type="text" name="price" value="${idto.price}">
+		                		</td>
 		                		<td style="padding:15px;">
 		                			<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${idto.register_date}" />
 		                		</td>
@@ -106,8 +112,7 @@
 		                </c:forEach>
 	                </table>
 	                <div style="text-align:center;" class="form-group mt-5 col-md-12">
-                            <input class="btn  btn-primary" type="submit" value="수정하기"
-                            	onclick="window.location='clientUpdateAction?id=${cdto.id}'"/>
+                            <input class="btn  btn-primary" type="submit" value="수정하기">
                             <input class="btn  btn-defalte" type="button" value="닫기"
                             	onclick="window.close();"/>
                     </div>
