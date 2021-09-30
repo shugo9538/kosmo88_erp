@@ -3,6 +3,7 @@ var csrfData = {};
 var csrfParameter;
 var csrfToken;
 var preventMultiFlag = false;
+var attCol = ['전체 항목', '근태 아이디', '근태 코드', '근태 신청일', '시작', '종료', '사유', '상태'];
 
 $(document).ready(function() {
     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
@@ -194,6 +195,7 @@ function callList(url, columns) {
     $('#datatables').append('<table id="attendanceTable" style="width:100%"></table>');
     currTab = $('#attendanceTable').DataTable({
         ajax : {
+            "searching": false,
             url : window.location.href + url,
             type : 'POST',
             data : csrfData,
@@ -205,12 +207,33 @@ function callList(url, columns) {
 
     if (url == 'selectAttendacne') {
         $('#datatables').append('<button id="insertAttendance">');
+        var searchDiv = $('#attendanceTable_filter').find('label');
+        searchDiv.before('<select id="searchAttendance" style="margin-right:10px">');
+        searchDiv.find('input').attr('class', 'column_filter');
+        for(var i = 0; i < attCol.length; i++){
+            $('#searchAttendance').append('<option id=' + i + '>'+attCol[i]+'</option>');
+        }
+        
         $('#insertAttendance').append('신규 등록');
     } else if (url == 'commuteList') {
         $('#datatables').append('<button id="insertCommute">');
         $('#insertCommute').append('신규 등록');
     }
+
+    $('input.column_filter').on( 'keyup click', function (e) {
+        filterColumn( $('#searchAttendance').val(), this.value);
+        e.preventDefault();
+    } );
 }
+
+function filterColumn ( i, t ) {
+    currTab
+        .column(i)
+        .search(t)
+        .draw();
+}
+
+
 
 //날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {

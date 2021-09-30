@@ -48,7 +48,6 @@ public class AttendanceRestController {
         for (AttendanceDTO d : dto) {
             attendanceService.insertAttendance(d);
         }
-        
         return true;
     }
     
