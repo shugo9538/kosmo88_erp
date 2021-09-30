@@ -89,12 +89,14 @@
 					<li>
 						<a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
 					</li>
+					<!--
 					<li>
 						<a href="${ROOT_PATH}/sales/#">출하 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/sales/shipmentManagement">판매전표 관리</a>
 					</li>
+					-->
 				</ul>
 			</li>
 			<li class="menu-list" id="purchase">
@@ -110,14 +112,16 @@
 						<a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/purchase/purchaseManagement">구매 관리</a>
+						<a href="${ROOT_PATH}/purchase/orderManagement">구매 관리</a>
 					</li>
+					<!-- 
 					<li>
-						<a href="${ROOT_PATH}/purchase/#">제품 관리</a>
+						<a href="${ROOT_PATH}/purchase/#">입하 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement">구매전표 관리</a>
 					</li>
+					 -->
 				</ul>
 			</li>
 			<li class="menu-list" id="wms">
@@ -135,12 +139,14 @@
 					<li>
 						<a href="${ROOT_PATH}/wms/receiving/">입고 관리</a>
 					</li>
+					 
 					<li>
 						<a href="${ROOT_PATH}/wms/shipping/">출고 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/wms/truck/">차량 관리</a>
 					</li>
+					
 				</ul>
 			</li>
 		</ul>
