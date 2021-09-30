@@ -9,11 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DateConverter implements Converter<String, Date> {
+    @SuppressWarnings("deprecation")
     @Override
     public Date convert(final String arg0) {
         if (StringUtils.isNotEmpty(arg0)) {
             try {
-                return new SimpleDateFormat("yyyy-MM-dd").parse(arg0);
+                return new SimpleDateFormat("yyyy-MM-ddTHH:mm:ss").parse(arg0);
             } catch (Throwable e) {
                 return null;
             }
