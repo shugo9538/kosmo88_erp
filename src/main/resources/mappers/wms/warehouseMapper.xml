@@ -11,11 +11,22 @@
 <mapper
 	namespace="com.kosmo88.logistics_erp.wms.dao.WarehouseDao">
 
-	<insert id="insert">
+	<insert id="insert"
+		parameterType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
 		INSERT INTO WAREHOUSE
+		(ID, NAME, ADDRESS)
 		VALUES(
-		#{id}, #{name}, #{address}, #{register_date}
-		);
+		#{id}, #{name}, #{address}
+		)
+	</insert>
+
+	<insert id="insertRack"
+		parameterType="com.kosmo88.logistics_erp.wms.dto.RackDto">
+		INSERT INTO RACK
+		(ID, WAREHOUSE_ID, SECTION, SECTION_NUMBER, CAPACITY) 
+		VALUES
+		(1, 1, 'A', 1, 5);
+		COMMIT;
 	</insert>
 
 	<!-- warehouse -->
@@ -27,11 +38,13 @@
 		SELECT ROWNUM RNUM, w.*
 		FROM WAREHOUSE w
 		) s
-		WHERE RNUM BETWEEN 1 AND 10;
+		WHERE RNUM
+		BETWEEN 1 AND 10;
 	</select>
 
-	<select id="selectLastId" resultType="int">
-		SELECT MAX(ID) FROM WAREHOUSE;
+	<select id="selectMaxId" resultType="int">
+		SELECT MAX(ID) FROM
+		WAREHOUSE
 	</select>
 
 	<!-- rackList -->

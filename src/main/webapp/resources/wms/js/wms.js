@@ -10,39 +10,59 @@ function getCurrentDate() {
 
 function addRack() {
   var rack = document.getElementById("rack");
-  var addRackBtn = document.getElementById("addRack");
-  var newRack = document.createElement("div");
-  newRack = rack.cloneNode(true);
+  // var addRackBtn = document.getElementById("addRack");
+  var newRack = rack.cloneNode(true);
   newRack.style.display = "block";
+  newRack.setAttribute("class", "additionalForm");
   Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
-    f.removeAttribute("disabled"));
-
+    f.removeAttribute("disabled")
+  );
   Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
-    f.setAttribute("required", true));
+    f.setAttribute("required", true)
+  );
   // document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
   document.getElementById("rack-group").appendChild(newRack);
+  document
+    .getElementById("additionalFormCnt")
+    .setAttribute("value", getAdditionalFormCnt());
 }
 // window.onload = addRack();
 
-
 function delRack(obj) {
   var rackGroup = document.getElementById("rack-group");
-  var selectedRack = $(obj);
-  //   selectedRack.parents("#rack").remove();
-  var rack = selectedRack.parent().parent();
-
-  console.log(rackGroup.childElementCount);
-  console.log(rackGroup.children);
-  if (rackGroup.childElementCount < 4) {
+  if (document.getElementsByClassName("additionalForm").length < 2) {
     alert("최소 하나 이상의 랙은 등록해야 합니다.");
   } else {
-    rack.remove();
+    obj.parentElement.parentElement.remove();
+    document
+      .getElementById("additionalFormCnt")
+      .setAttribute("value", getAdditionalFormCnt());
+  }
+}
+
+function getAdditionalFormCnt() {
+  return document.getElementsByClassName("additionalForm").length;
+}
+
+function setAdditionalFormNum() {
+  var additionalForms = Array.from(
+    document.getElementsByClassName("additionalForm")
+  );
+  var num = 1;
+  var inputs;
+  for (var f of additionalForms) {
+    inputs = f.getElementsByClassName("form-control");
+    for (var i of inputs) {
+      i.setAttribute("name", i.getAttribute("name") + num);
+    }
+    num++;
+    console.log("num: " + num);
   }
 }
 
 function warehouseAddAction() {
   alert("등록되었습니다");
-  window.location = "logistics_erp/wms/warehouse/addAction"
+  return true;
 }
 
 // function selTab(tab) {

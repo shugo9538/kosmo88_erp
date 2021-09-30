@@ -32,7 +32,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<form class="form-horizontal" method="post" onsubmit="warehouseAddAction()">
+						<form class="form-horizontal" method="post" 
+						action="${ROOT_PATH}/wms/warehouse/addAction" onsubmit="return warehouseAddAction()">
+						
+						<sec:csrfInput/>
 							<h2 class="header-title">창고 정보 입력</h2>
 <!-- 							<div class="form-group"> -->
 <!-- 								<label class="col-sm-1 control-label">창고 번호</label> -->
@@ -57,14 +60,14 @@
 									<input class="form-control" name="name" type="text" required="true">
 								</div>
 
-								<label class="col-sm-1 control-label" >창고 종류</label>
-								<div class="col-sm-5">
-									<select class="form-control" name="kind">
-										<option>일반창고</option>
-										<option>야적창고</option>
-										<option>냉동창고</option>
-									</select>
-								</div>
+<!-- 								<label class="col-sm-1 control-label" >창고 종류</label> -->
+<!-- 								<div class="col-sm-5"> -->
+<!-- 									<select class="form-control" name="kind"> -->
+<!-- 										<option>일반창고</option> -->
+<!-- 										<option>야적창고</option> -->
+<!-- 										<option>냉동창고</option> -->
+<!-- 									</select> -->
+<!-- 								</div> -->
 							</div>
 
 							<div class="form-group">
@@ -101,8 +104,6 @@
 
 							<h2 class="header-title col-md-12 my-5">랙 등록</h2>
 							<div id="rack-group" class="col-md-12">
-
-								<!-- 									<div id="firstRack"></div> -->
 								<div id="rack" style="display: none;">
 									<div class="form-group">
 										<label class="col-md-1 control-label">구역</label>
@@ -120,22 +121,19 @@
 											<input class="form-control" name="capacity" type="text"
 												disabled>
 										</div>
-										<div role="button" class="col-md-1" onclick="delRack(this);">
+										<div role="button" id="delAdditionalForm" class="col-md-1" onclick="delRack(this);">
 											<i class="icon-minus"></i>
 										</div>
 									</div>
 								</div>
-								<!-- onload시 복제 처리했으며, 아이디 중복으로 인한 문제가 발생할 수도 있다 -->
-
-
-
 							</div>
-
 							<div role="button" class="preview col-md-12 md-5" id="addRack" >
 								<i class="icon-plus"  onclick="addRack()"></i> 랙 추가
 							</div>
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input type="hidden" id="additionalFormCnt" name="additionalFormCnt" value="1">
 							<button type="submit" class="btn btn-default mt-5"> 등록 </button>
+							<button type="button" class="btn btn-default mt-5"
+							onclick="setAdditionalFormNum()"> 테스트 </button>
 						</form>
 					</div>
 				</div>

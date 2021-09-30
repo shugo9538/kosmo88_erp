@@ -1,5 +1,7 @@
 package com.kosmo88.logistics_erp.wms.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -10,12 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.wms.dao.WarehouseDao;
+import com.kosmo88.logistics_erp.wms.dto.RackDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.service.RackService;
 import com.kosmo88.logistics_erp.wms.service.WarehouseService;
+import com.kosmo88.logistics_erp.wms.util.DtoFunction;
+import com.kosmo88.logistics_erp.wms.util.MyLog;
 
-import dtoFunction.DtoFunction;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -43,18 +46,15 @@ public class WarehouseController {
         return "wms/warehouse/warehouseList";
     }
 
-    @RequestMapping(value = "/addAction")
+
+	@RequestMapping(value = "/addAction")
     public String addAction(HttpServletRequest req, Model model) {
-     	WarehouseDto warehouseDto = new WarehouseDto();
-//    	제네릭 타입을 Object,Object로 바꿔야 할 수도 있다
-    	DtoFunction.setDtoWithParameterMap(req.getParameterMap(), warehouseDto);
-     	warehouseDto.setAddress(req.getParameter("basicAddr") + req.getParameter("detailAddr"));
-    	warehouseService.addAction(warehouseDto);
+     	Map<String, String[]> paramMap = req.getParameterMap();
+     	MyLog.logParamMap(paramMap);
+     	System.out.println("파라미터 맵 값 : " + paramMap);
+    	int warehouseId = warehouseService.addAction(paramMap);
+    	rackService.addAction(paramMap, warehouseId);
     	
-    	int RackCnt = 0;
-    	for(int i = 0; i < RackCnt; i++) {
-    		rackService.add();
-    	}
         return "wms/warehouse/warehouseList";
     }
 

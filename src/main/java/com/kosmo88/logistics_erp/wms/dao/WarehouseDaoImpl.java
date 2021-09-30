@@ -4,8 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
-
+import com.kosmo88.logistics_erp.wms.dto.RackDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 
 @Repository
@@ -18,32 +17,37 @@ public class WarehouseDaoImpl implements WarehouseDao {
 //	com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert
 	@Override
 	public void insert(WarehouseDto warehouseDto) {
-		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert", warehouseDto);
+	}
+	
+	@Override
+	public void insertRack(RackDto rackDto) {
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insertRack", rackDto);
 	}
 
 	@Override
 	public void select() {
-		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.select");
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.select");
 	}
 
 	@Override
 	public void selectRack() {
-		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao");
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao");
 	}
 
 	@Override
 	public void update(WarehouseDto warehouseDto) {
-		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert");
 	}
 
 	@Override
 	public void delete() {
-		sqlSession.insert("com.kosmo88.logistics.wms.dao.WarehouseDao.insert");
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.delete");
 	}
 
 	@Override
 	public int selectMaxId() {
-		return  sqlSession.selectOne("com.kosmo88.logistics.wms.dao.WarehouseDao.selectMaxId");
+		return  sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectMaxId");
 	}
 
 }
