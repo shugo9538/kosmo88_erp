@@ -29,7 +29,7 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 		return sqlSession.insert(STATEMENT + ".RegisterClient", cdto);
 	}
 
-	// 상품 등록 처리
+	// 상품 등록 처리 
 	@Override
 	public int registerItem(PurchaseItemDTO idto) {
 		return sqlSession.insert(STATEMENT + ".RegisterItem", idto);
@@ -64,5 +64,11 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 	public int updateItem(PurchaseItemDTO idto) {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
+
+    @Override
+    public int deleteChoiceClient(int id) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }
