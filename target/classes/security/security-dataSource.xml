@@ -12,7 +12,8 @@
 		class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property
 			name="jndiName"
-			value="java:comp/env/jdbc/kosmo88erp3" />
+			value="java:comp/env/jdbc/kosmo88erp3"/>
+
 		<property
 			name="resourceRef"
 			value="true" />
