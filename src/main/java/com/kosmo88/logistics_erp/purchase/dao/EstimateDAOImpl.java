@@ -6,10 +6,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
 //import com.kosmo88.logistics_erp.account.vo.ClientVO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+=======
+>>>>>>> 51db4c9d20b3ed720ddb9bf9d0f07f40d614b97b
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 @Repository
 public class EstimateDAOImpl implements EstimateDAO {
