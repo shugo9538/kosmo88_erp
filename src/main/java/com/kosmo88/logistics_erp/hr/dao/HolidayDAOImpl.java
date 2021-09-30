@@ -12,7 +12,7 @@ import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 
 @Repository
 public class HolidayDAOImpl implements HolidayDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HolidayDAO";
 
     @Autowired
     SqlSession sqlSession;
