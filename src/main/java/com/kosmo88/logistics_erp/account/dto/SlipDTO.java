@@ -1,8 +1,8 @@
-package com.kosmo88.logistics_erp.account.vo;
+package com.kosmo88.logistics_erp.account.dto;
 
 import java.util.Date;
 
-public class SlipVO {
+public class SlipDTO {
 	
 //	ID                 NOT NULL NUMBER(5)    
 //	TYPE               NOT NULL VARCHAR2(50) 
