@@ -23,11 +23,44 @@
 			
 			<ul class="nav nav-pills custom-nav">
 				<li class="active"><a href="${ROOT_PATH}/purchase/estimateRegister">견적서 등록</a></li>
-				<li class="active"><a href="${ROOT_PATH}/purchase/estimateChoiceDelete">견적서 삭제</a></li>
 			</ul>
-		</div>	
+         <!--Start row-->
+         <div class="row">
+             <div class="col-md-12">
+             	<!-- Start white-box -->
+                 <div class="white-box">
+                     <h2 class="header-title">
+                     	<i class="fa fa-chevron-circle-right mr-2"></i>
+                     	견적서 전체 목록</h2>
+                     <div class="table-responsive">
+                    	 <div class="col-md-2 mt-1 mb-4">
+							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="견적서 삭제">
+						 </div>
+                     	
+                         <table id="estimateList" class="display table">
+                             <thead>
+                                 <tr>
+                                     <td style="text-align:center">
+                                         <input type="checkbox" id="checkAll" name="checkAll">
+                                     </td>
+                                     <th>견적번호</th>
+                                     <th>거래처명</th>
+                                     <th>거래처대표자명</th>
+                                     <th>담당자명</th>
+                                     <th>견적일자</th>
+                                 </tr>
+                             </thead>
+                         </table>
+                     </div>
+                 </div>
+               </div>
+             </div>
+             <!--End row-->
+		</div>
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
+		<script src="${RESOURCES_PATH}/purchase/js/estimateManagement.js"></script>
+		<%@ include file="./js_purchase.jsp"%>
 </body>
 </html>

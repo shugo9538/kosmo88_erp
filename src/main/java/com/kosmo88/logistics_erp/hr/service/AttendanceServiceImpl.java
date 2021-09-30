@@ -20,7 +20,7 @@ import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
-import com.kosmo88.logistics_erp.util.ViewPager;
+import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
@@ -28,33 +28,20 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Autowired
     AttendanceDAO attendanceDAO;
     
-    @Autowired
-    ViewPager pager;
+    QueryCode state;
 
     @Override
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        pager.setCnt(attendanceDAO.getAttendanceNum());
         return (ArrayList<AttendanceDTO>) attendanceDAO.selectAttendacne();
     }
 
     @Override
-    public void insertAttendance(HttpServletRequest req, HttpServletResponse res) {
-        int id = Integer.parseInt(req.getParameter("id"));
-        int attendance_cd_id = Integer.parseInt(req.getParameter("attendance_cd_id"));
-        Date application_date = Date.valueOf(req.getParameter("application_date"));
-        Date begin_date = Date.valueOf(req.getParameter("begin_date"));
-        Date end_date = Date.valueOf(req.getParameter("end_date"));
-        String reason = req.getParameter("reason");
-
-        AttendanceDTO dto = new AttendanceDTO();
-        dto.setId(id);
-        dto.setApplication_date(application_date);
-        dto.setBegin_date(begin_date);
-        dto.setEnd_date(end_date);
-        dto.setReason(reason);
+    public boolean insertAttendance(AttendanceDTO dto) {
         dto.setState("결재중");
-        dto.setAttendance_cd_id(attendance_cd_id);
-        attendanceDAO.insertAttendance(dto);
+        System.out.println(dto.getId());
+        state = QueryCode.UPDATE;
+        
+        return state.check(attendanceDAO.insertAttendance(dto));
     }
 
     @Override
@@ -63,7 +50,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     @Override
-    public ArrayList<CommuteDTO> commutingRecords(HttpServletRequest req, HttpServletResponse res) {
+    public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
         ArrayList<CommuteDTO> commuteList = (ArrayList<CommuteDTO>) attendanceDAO.commutingRecords();
 
         req.setAttribute("commuteList", commuteList);

@@ -9,7 +9,8 @@ public class WarehouseService {
 
 	public WarehouseService() {
 	}
-	    public void list() {
+	    public void list(Model model) {
+
 	    }
 
 	    public void add() {

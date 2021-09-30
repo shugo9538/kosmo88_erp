@@ -1,9 +1,27 @@
-// 거래처 상품 등록 required
+// 거래처 상품(숨겨진것) disabled
 $(document).ready(function() {
-	$("input:visible").each(function(){
-		$(this).prop("required", true);
-	});
+	$("input[name=item_name]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
+	
+	$("input[name=category]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
+	
+	$("input[name=price]:hidden").each(function(){
+		$(this).prop("disabled", true);
+	})
 });
+
+function initItem() {
+	var item = document.getElementById("item");
+	Array.from(item.getElementsByClassName("form-control")).forEach(f => {
+		f.setAttribute("required","true");
+		f.setAttribute("aria-required","true");
+	});
+	
+	addItem();
+}
 
 // 거래처 상품 등록 추가
 function addItem() {
@@ -13,16 +31,27 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.style.display = "block";
+	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.removeAttribute("disabled"));
+	
 	document.getElementById("item-group").insertBefore(newItem, addItemBtn);
+	
+	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.value = '');
+	
+	
 }
 
+    Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
+        f.setAttribute("required", true));
+  
+	document.getElementById("item-group").appendChild(newItem);
+}
 // 거래처 상품 삭제
 function delItem(obj) {
 	var itemGroup = document.getElementById("item-group");
 	var selectedItem = $(obj);
 	var item = selectedItem.parent().parent();
 	
-	if (itemGroup.childElementCount < 4) {
+	if (itemGroup.childElementCount < 3) {
 		alert("최소 하나 이상의 상품을 등록해야 합니다.")
 	} else {
 		item.remove();
@@ -77,7 +106,7 @@ function daumPostcode() {
             var addr = ''; // 주소 변수
             var extraAddr = ''; // 참고항목 변수
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                 addr = data.roadAddress;
             } else { // 사용자가 지번 주소를 선택했을 경우(J)
