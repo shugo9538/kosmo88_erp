@@ -36,7 +36,6 @@ public class AttendanceRestController {
     private static List<AttendanceDTO> attendanceList = new ArrayList<>();
 
     // 근태 조회
-    @ResponseBody
     @RequestMapping(value = "/selectAttendacne")
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
         return attendanceService.selectAttendacne(req, res);
@@ -52,7 +51,6 @@ public class AttendanceRestController {
     }
     
     // 출퇴근 기록부
-    @ResponseBody
     @RequestMapping(value = "/commuteList")
     public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
         return attendanceService.commuteList(req, res);

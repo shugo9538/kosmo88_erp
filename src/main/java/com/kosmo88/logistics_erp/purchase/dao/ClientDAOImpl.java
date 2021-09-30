@@ -65,8 +65,4 @@ public class ClientDAOImpl implements ClientDAO {
 	public int updateItem(PurchaseItemDTO idto) {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
-<<<<<<< HEAD
-=======
-
->>>>>>> 51db4c9d20b3ed720ddb9bf9d0f07f40d614b97b
 }
