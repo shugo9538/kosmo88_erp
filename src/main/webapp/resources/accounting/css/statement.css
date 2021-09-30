@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+
+/* 총계 */
+.total1{
+	
+background-color:aliceblue;	
+	
+}
+/* 상단합계 */
+.total2{
+background-color:mintcream;
+}
+
+/* 작업끝난것 */
+.red{
+color:red;	
+}

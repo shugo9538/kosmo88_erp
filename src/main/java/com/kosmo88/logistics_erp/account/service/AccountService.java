@@ -13,15 +13,15 @@ public interface AccountService {
 	// 거래처 목록조회
 	//public void clientList(HttpServletRequest request, Model model);
 	// 신규 거래처등록
-	public void clientInsert(HttpServletRequest request, Model model);
+	//public void clientInsert(HttpServletRequest request, Model model);
 	// 신규 거래처등록 페이지(컨트롤러에서처리)
 	// 거래처 정보수정 페이지
-	public void clientModifyDetail(HttpServletRequest request, Model model);
+	//public void clientModifyDetail(HttpServletRequest request, Model model);
 	// 거래처 정보수정 처리
-	public void clientModifyAction(HttpServletRequest request, Model model);
+	//public void clientModifyAction(HttpServletRequest request, Model model);
 	// 거리처 목록삭제 페이지(알럿으로 처리)
 	// 거래처 목록삭제 처리
-	public void clientDeleteAction(HttpServletRequest request, Model model);
+	//public void clientDeleteAction(HttpServletRequest request, Model model);
 	
 	// 일반전표/장부관리
 	// 일반전표 목록조회
@@ -43,13 +43,22 @@ public interface AccountService {
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
 	//public void accountList(HttpServletRequest request, Model model);
+	// 신규통장 추가 처리
+	public void accountInsertAction(HttpServletRequest request, Model model);
+	// 통장 거래내역 추가 단건 추가 처리 페이지(통장정보조회)
+	public void accountSimplDetail(HttpServletRequest request, Model model);
+	// 통장 거래내역 추가 단건 추가 처리
+	public void accountSimplAction(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가
 	//public void accountInsert(Model model);
+	// 통장 입/출금내역 조회
+	public void accountTransactionHistory(HttpServletRequest request, Model model);
 	// 통장 입금내역 조회
-	//public void accountDeposit(Model model);
+	public void accountDeposit(HttpServletRequest request, Model model);
 	// 통장 출금내역 조회
-	//public void accountWithdrawal(Model model);
+	public void accountWithdrawal(HttpServletRequest request, Model model);
 	// 통장 잔액조회 (전체조회에서 입출금잔액 불러와서 처리)
+	//public void accountBalance(HttpServletRequest request, Model model);
 	// 급여통장 목록조회
 	//public void salaryAccountList(Model model);
 	// 거래처통장 목록조회
@@ -75,9 +84,9 @@ public interface AccountService {
 	
 	// 결산/제무재표
 	// 재무상태표 조회
-	//public void financialStatementsSelect(Model model);
+	public void financialStatementsSelect(Model model);
 	// 손익계산서 조회
-	//public void incomeStatementSelect(Model model);
+	public void incomeStatementSelect(Model model);
 
 
 }

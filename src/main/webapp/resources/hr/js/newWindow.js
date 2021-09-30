@@ -11,7 +11,7 @@ $(document).ready(function() {
         var timer = setInterval(function() { 
             if(win.closed) {
                 clearInterval(timer);
-                refeshAttendanceList();
+                currTab.ajax.reload();
             }
         }, 1000);
     });

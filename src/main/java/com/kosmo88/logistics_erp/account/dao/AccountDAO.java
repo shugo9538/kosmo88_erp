@@ -3,12 +3,14 @@ package com.kosmo88.logistics_erp.account.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.kosmo88.logistics_erp.account.vo.AccountVO;
-import com.kosmo88.logistics_erp.account.vo.ClientVO;
-import com.kosmo88.logistics_erp.account.vo.FinancialStatementsVO;
-import com.kosmo88.logistics_erp.account.vo.SalesSlipVO;
-import com.kosmo88.logistics_erp.account.vo.SlipVO;
-import com.kosmo88.logistics_erp.account.vo.IncomeStatementVO;
+import com.kosmo88.logistics_erp.account.dto.AccountDTO;
+import com.kosmo88.logistics_erp.account.dto.BalanceDTO;
+import com.kosmo88.logistics_erp.account.dto.ClientDTO;
+import com.kosmo88.logistics_erp.account.dto.AccountHistoryDTO;
+import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
+import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
+import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
+import com.kosmo88.logistics_erp.account.dto.SlipDTO;
 
 public interface AccountDAO {
 	
@@ -16,7 +18,7 @@ public interface AccountDAO {
 	// 거래처 목록건수
 	public int getClientCnt();
 	// 거래처 목록조회
-	public List<ClientVO> selectClient(Map<String,Object> map);
+	public List<ClientDTO> selectClient(Map<String,Object> map);
 	// 신규 거래처 등록
 	public int insertClient();
 	// 거래처 정보 수정
@@ -28,7 +30,7 @@ public interface AccountDAO {
 	// 일반전표 건수
 	public int getSlipCnt();
 	// 일반전표 조회
-	public List<SlipVO> selectSlip(Map<String,Object> map);
+	public List<SlipDTO> selectSlip(Map<String,Object> map);
 	// 일반전표 등록
 	public int insertSlip(Map<String, Object> map);
 	// 파트별 전표승인 
@@ -38,11 +40,14 @@ public interface AccountDAO {
 	// 일반전표 삭제
 	//public int deleteSlip(int id);
 	
-	// 매입/매출장
-	// 매입/매출전표 건수
+	// 매입,매출장 목록
+	public int getSalesPurchaseCnt(String type);
+	// 매입, 매출 목록
+	public List<SalesSlipDTO> selectSalesPurchase(Map<String, Object> map);
+	// 매입,매출전표 건수
 	public int getSalesSlipCnt();
 	// 매입/매출전표 조회
-	public List<SalesSlipVO> selectSalesSlip(Map<String,Object> map);
+	public List<SalesSlipDTO> selectSalesSlip(Map<String,Object> map);
 	// 매출전표 건수
 	//public int getSalesCnt(int type);
 	// 매출전표 조회
@@ -61,28 +66,20 @@ public interface AccountDAO {
 	// 금융자금관리
 	// 통장 거래내역 건수
 	public int getAccountCnt();
-	// 통장 거래내역 조회 
-	public List<AccountVO> selectAccount(Map<String,Object> map);
-	// 통장 목록조회
+	// 통장 목록 조회 
+	public List<AccountDTO> selectAccount(Map<String,Object> map);
+	// 통장 추가처리
+	public int insertAccount(AccountDTO accountDTO);
+	// 통장 목록 단순 조회(거래내역 추가페이지 계좌정보 뿌릴때)
+	public List<AccountDTO> selectAccountInfo();
 	// 통장 거래내역 추가
-	//public int intsertAccountList();
-	// 통장 출금내역 조회 (입금?출금?여부) 현재 구분 컬럼 없음
-	//public int selectAccountWithdrawal(int state);
-	// 통장 입금내역 조회 (입금?출금?여부) 현재 구분 컬럼 없음
-	//public int selectAccountDeposit(int state);
-	// 통장잔액조회 (전체조회에서 입출금잔액 불러와서 처리)
-	// 급여통장 건수 (급여/거래처통장 구분??) 현재 구분 컬럼 없음
-	//public int getSalaryAccountCnt();
-	// 급여통장 조회  (급여/거래처통장 구분??) 현재 구분 컬럼 없음
-	//public List<SalaryAccount>
-	// 거래처통장 건수
-	//
-	// 거래처통장 조회
-	//
+	public int insertAcountHistory(AccountHistoryDTO ahDTO);
+	// 통장 입출금 거래내역 상세페이지
+	public List<BalanceDTO> selectAccountBalance(String account_number);
 	
 	// 결산/제무재표
 	// 재무상태표
-	//public FinancialStatementsVO selectFinancialStatementsVO();
+	public FinancialStatementsDTO selectFinancialStatements();
 	// 거래처통장조회(합계) 보통예금
 	//public int sumAccount();  // 다른정보와 함께 받으려면 vo로 받고 해당컬럼 별칭 합계만 받을때는 resultType int로
 	// 매출전표조회(합계) 외상매출금 (공급가액) 부가세대급금 (세액)
@@ -94,7 +91,7 @@ public interface AccountDAO {
 	//public int sumPurchaseSlip(int type);
 	
 	// 손익계산서
-	//public IncomeStatementVO selectIncomeStatement();
+	public IncomeStatementDTO selectIncomeStatement();
 	
 	// 매출전표조회(합계) 상품매출
 	// 상품매출원가(물류 상품매입가조회)

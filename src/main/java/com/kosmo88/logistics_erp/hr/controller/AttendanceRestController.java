@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.hr.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,12 +10,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.kosmo88.logistics_erp.hr.dto.AttendaceDTOWrapper;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
@@ -29,6 +32,8 @@ public class AttendanceRestController {
     @Autowired
     AttendanceService attendanceService;
 
+    private static List<AttendanceDTO> attendanceList = new ArrayList<>();
+
     // 근태 조회
     @ResponseBody
     @RequestMapping(value = "/selectAttendacne")
@@ -38,8 +43,12 @@ public class AttendanceRestController {
 
     // 근태 입력
     @RequestMapping(value = "/insertAttendanceAction")
-    public boolean insertAttendanceAction(AttendanceDTO dto) {
-        return attendanceService.insertAttendance(dto);
+    public boolean insertAttendanceAction(@RequestBody List<AttendanceDTO> dto) {
+        for (AttendanceDTO d : dto) {
+            attendanceService.insertAttendance(d);
+        }
+        
+        return true;
     }
     
     // 출퇴근 기록부
