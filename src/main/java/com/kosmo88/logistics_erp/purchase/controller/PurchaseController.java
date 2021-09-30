@@ -41,15 +41,6 @@ public class PurchaseController {
     	return "purchase/clientRegister";
     }
     
-    // 거래처 삭제(선택삭제)
-    @RequestMapping(value = "/clientChoiceDelete")
-    public String clientChoiceDelete(HttpServletRequest req, Model model) {
-    	
-    	purchaseService.clientChoiceDelete(req, model);
-    	
-    	return "purchase/clientChoiceDelete";
-    }
-    
     // 거래처 상세페이지
     @RequestMapping(value = "/clientDetail")
     public String clientDetail(HttpServletRequest req, Model model) {
@@ -83,57 +74,11 @@ public class PurchaseController {
     	
     	purchaseService.clientDelete(req, model);
     	
-    	return "purchase/clientDelete";
+    	return "purchase/clientDeleteAction";
     }
     
 
 /*  
-
-    // 견적서 관리 - 목록
-    @RequestMapping(value = "/estimateManagement")
-    public String estimateManagement(HttpServletRequest req, Model model) {
-
-    	// service.estimateList
-    	
-        return "purchase/estimateManagement";
-    }
-    
-    // 견적서 수정
-    @RequestMapping(value = "/estimateUpdate")
-    public String estimateUpdate(HttpServletRequest req, Model model) {
-
-    	// service.updateEstimate
-    	
-        return "purchase/estimateUpdate";
-    } 
-    
-    // 견적서 삭제(단일 삭제)
-    @RequestMapping(value = "/estimateDelete")
-    public String estimateDelete(HttpServletRequest req, Model model) {
-
-    	// service.deleteEstimate
-    	// (update)
-    	
-        return "purchase/estimateDelete";
-    }     
-    
-    // 견적서 등록
-    @RequestMapping(value = "/estimateRegister") 
-    public String estimateRegister(HttpServletRequest req, Model model) {
-    	
-    	// service.registerEstimate
-    	
-    	return "purchase/estimateRegister";
-    }
-    
-    // 견적서 삭제(선택삭제)
-    @RequestMapping(value = "/estimateChoiceDelete")
-    public String estimateChoiceDelete(HttpServletRequest req, Model model) {
-    	
-    	// service.deleteChoiceEstimate
-    	
-    	return "purchase/estimateChoiceDelete";
-    }
     
     // 구매 관리(발주) - 발주서 목록
     @RequestMapping(value = "/purchaseManagement")

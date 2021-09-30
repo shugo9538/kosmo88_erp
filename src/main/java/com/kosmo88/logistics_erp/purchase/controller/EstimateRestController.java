@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
+import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -25,15 +27,23 @@ public class EstimateRestController {
     private static final Logger logger = LoggerFactory.getLogger(EstimateRestController.class);
     
     @Autowired
-    PurchaseService purchaseService;
-/*    
-    // 거래처(구매처) 목록
+    EstimateService estimateService;
+    
+    // 견적서 관리 - 견적서 목록(구매)
     @ResponseBody
-    @RequestMapping(value = "/clientManagement/estimateList")
-    public List<PurchaseClientDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
-    	return purchaseService.estimateList(req, res);
+    @RequestMapping(value = "/estimateManagement/estimateList")
+    public List<PurchaseEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
+    	return estimateService.estimateList(req, res);
     }
-*/    
+    
+    // 견적서 관리 - 견적서 삭제(선택삭제)
+    @ResponseBody
+    @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
+    public boolean estimateChoiceDelete(int[] request_id) {
+    	return estimateService.estimateChoiceDelete(request_id);
+    }
+    
+    
     /*   
     // 등록한 거래처(구매처) 목록
     @ResponseBody

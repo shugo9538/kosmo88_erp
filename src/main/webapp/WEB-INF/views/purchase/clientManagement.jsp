@@ -30,16 +30,17 @@
              <div class="col-md-12">
              	<!-- Start white-box -->
                  <div class="white-box">
-                     <h2 class="header-title">
+                 	<h2 class="header-title">
                      	<i class="fa fa-chevron-circle-right mr-2"></i>
                      	거래처 전체 목록</h2>
+                 	<form class="form-horizontal" id="clientManagementForm" name="clientManagementForm"
+						action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
+                     	<!-- csrf 토큰 -->
+						<sec:csrfInput />
                      <div class="table-responsive">
                     	 <div class="col-md-2 mt-1 mb-4">
-							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="거래처 삭제">
+							<input class="btn btn-default" type="button" id="clientChoiceDeleteBtn" value="거래처 삭제">
 						 </div>
-						 
-						<!-- csrf 토큰 -->
-						<sec:csrfInput />
                      	
                          <table id="clientList" class="display table">
                              <thead>
@@ -47,7 +48,7 @@
                                      <td style="text-align:center">
                                          <input type="checkbox" id="checkAll" name="checkAll">
                                      </td>
-                                     <td>거래처 번호</td>
+                                     <th>거래처 번호</th>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>
@@ -56,56 +57,19 @@
                                      <th>등록일</th>
                                  </tr>
                              </thead>
-                             <tbody>
-                             	 <!-- 거래처가 있으면 -->
-                             	 <c:if test="${cnt > 0}">
-                             	 	<c:forEach var="dto" items="${dtos}">
-                             	 		<tr>
-		                                    <th style="text-align:center">
-		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
-		                                    </th>
-		                                    <td>${dto.id}</td>
-		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
-		                             	 	<td>
-		                             	 		${fn:substring(dto.register_num,0,3)} -
-		                             	 		${fn:substring(dto.register_num,3,5)} - 
-		                             	 		${fn:substring(dto.register_num,5,10)}
-		                             	 	</td>
-		                             	 	<td>${dto.ceo_name}</td>
-		                             	 	<td>
-		                             	 		${fn:substring(dto.phone,0,3)} -
-		                             	 		${fn:substring(dto.phone,3,6)} -
-		                             	 		${fn:substring(dto.phone,6,11)}
-		                             	 	</td>
-		                             	 	<td>${dto.address}</td>
-		                             	 	<td>
-		                             	 		<fmt:formatDate value="${dto.register_date}" pattern="yyyy년 MM월 dd일 hh시 mm분 ss초" />
-		                             	 	</td>
-	                             		</tr>	 
-                             	 	</c:forEach>
-                             	 </c:if>
-                             	 
-                             	 <!-- 거래처가 없으면 -->
-                             	 <c:if test="${cnt == 0}">
-                             	 	<tr>
-										<td colspan="7" align="center">
-											등록한 거래처가 없습니다. 거래처를 등록해주세요!!
-										</td>
-									</tr>
-                             	 </c:if>
-                             	 
-                             </tbody>
                          </table>
                      </div>
+                 	</form>    
                  </div>
                </div>
-             </div>
-             <!--End row-->
+	        </div>
+	        <!--End row-->
 		</div>
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
-		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
 		<%@ include file="./js_purchase.jsp"%>
+		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
+		
 </body>
 </html>

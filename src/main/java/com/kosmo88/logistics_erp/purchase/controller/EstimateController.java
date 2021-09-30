@@ -62,13 +62,5 @@ public class EstimateController {
     	return "purchase/estimateRegister";
     }
     
-    // 견적서 삭제(선택삭제)
-    @RequestMapping(value = "/estimateChoiceDelete")
-    public String estimateChoiceDelete(HttpServletRequest req, Model model) {
-    	
-    	// service.deleteChoiceEstimate
-    	
-    	return "purchase/estimateChoiceDelete";
-    }
 */    
 }

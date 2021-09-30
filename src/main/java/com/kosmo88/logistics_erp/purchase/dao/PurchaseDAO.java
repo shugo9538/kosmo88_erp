@@ -24,16 +24,13 @@ public interface PurchaseDAO {
 	// 상세페이지 - 상품
 	public List<PurchaseItemDTO> getItemDetail(int id);
 	
-	// 거래처 삭제 처리
-	public int deleteChoiceClient(int id);
+	// 거래처 삭제
+	public int deleteClient(int id);
 	
 	// 거래처 수정 처리
 	public int updateClient(PurchaseClientDTO cdto);
 	
 	// 상품 수정 처리
 	public int updateItem(PurchaseItemDTO idto);
-	
-	// 거래처 삭제(상세페이지에서 단일 삭제)
-	public int deleteClient(int id);
 	
 }

@@ -94,7 +94,7 @@
 		                </tr>
 		                
 		                <c:forEach var="idto" items="${idtos}">
-	                		<input type="hidden" value="${idto.id}">
+	                		<input type="hidden" name="item_id" value="${idto.id}">
 		                	<tr>
 		                		<td>
 		                			<input type="text" name="item_name" value="${idto.name}">

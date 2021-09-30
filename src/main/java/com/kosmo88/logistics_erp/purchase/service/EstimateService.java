@@ -11,9 +11,15 @@ import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 
 public interface EstimateService {
 	
-	// 거래처(구매처) 관리 - 거래처 목록
-	public List<PurchaseClientDTO> clientList(HttpServletRequest req, HttpServletResponse res);
+	// 견적서 관리 - 견적서 목록(구매)
+	public List<PurchaseEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res);
+	
+	// 견적서 관리 - 견적서 삭제(선택삭제)
+	public boolean estimateChoiceDelete(int[] request_id);
+	
+	
 }

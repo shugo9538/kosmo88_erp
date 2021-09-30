@@ -24,7 +24,7 @@ public interface PurchaseService {
 	public void clientDetail(HttpServletRequest req, Model model);
 	
 	// 거래처 삭제(선택삭제)
-	public void clientChoiceDelete(HttpServletRequest req, Model model);
+	public boolean clientChoiceDelete(int[] client_id);
 	
 	// 거래처 수정페이지
 	public void clientUpdate(HttpServletRequest req, Model model);
