@@ -9,7 +9,7 @@ public class SalesSlipDTO {
 	private String account_title; // 계정과목   
 	private int client_code; // 거래처코드   
 	private String client_name; // 거래처명  
-	private long client_num;// 사업자번호  
+	private String client_num;// 사업자번호  
 	private String product_name;// 품명  
 	private int supply_amount;// 공급가액  
 	private int tax_amount;// 세액 
@@ -52,10 +52,10 @@ public class SalesSlipDTO {
 	public void setClient_name(String client_name) {
 		this.client_name = client_name;
 	}
-	public long getClient_num() {
+	public String getClient_num() {
 		return client_num;
 	}
-	public void setClient_num(long client_num) {
+	public void setClient_num(String client_num) {
 		this.client_num = client_num;
 	}
 	public String getProduct_name() {

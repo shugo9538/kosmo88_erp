@@ -15,7 +15,7 @@
 
 		<c:if test="${insertCnt == 1}">
 			<script type="text/javascript">
-				swal("통장목록","신규통장이 추가되었습니다. 목록으로 이동합니다.","success",{
+				swal("통장거래내역","거리내역이 추가 되었습니다.","success",{
 					closeOnclickOutside : false,
 					closeEsc: false,
 					buttons : {
@@ -30,11 +30,10 @@
 		
 		<c:if test="${insertCnt == 0}">
 			<script type="text/javascript">
-				alert("통장 추가가 실패 하였습니다.");
+				swal("통장거래내역","거리내역 추가를 실패 하였습니다.","warning");
 				window.history.back();
 			</script>	
 		</c:if>
-
 
 <!--Begin core plugin -->
 <script src="/logistics_erp/resources/assets/js/jquery.min.js"></script>

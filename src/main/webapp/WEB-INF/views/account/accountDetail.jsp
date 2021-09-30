@@ -15,7 +15,7 @@
     <!-- main content start-->
     <div class="main-content" >
 
-        <!-- header section start-->
+        <!-- header section start -->
 		<%@ include file="common/accountDetailHeader.jsp"%>    
         <!-- header section end-->
 

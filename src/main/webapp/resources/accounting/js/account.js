@@ -7,6 +7,9 @@ function accountDetail(){
 	const accountNum = document.getElementById("account_number");
 	const rootPath = document.getElementById("root");
 	
+	var accountNum2 = document.getElementsByName("account_number");
+	colsole.log("계좌번호 : " + accountNum2.value);
+	
 	const url = rootPath.value + "/account/accountDetail?account_number=" + accountNum.value;
 	window.open(url, "accountDetail", "menubar=no, width=1500, height=900");	
 }
@@ -22,6 +25,15 @@ function accountTitleDetail(){
 	const url = rootPath.value + "/account/accountTitleDetail?account_Name=" + accountTitle.value;
 	window.open(url, "accountTitleDetail", "menubar=no, width=1000, height=600");	
 }
+
+
+/* datepicker */
+$(function(){
+	// 매입매출장 목록
+    $("#statd_date").datepicker(); // 검색시작일
+    $("#end_date").datepicker(); // 검색 마지마막일
+    $("#date1").datepicker();
+});
 
 
 //accountNewDetail.jsp

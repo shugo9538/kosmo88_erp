@@ -19,8 +19,14 @@ public class AccountDTO {
 	private int balance;
 	private Date register ;
 	private int account_holder_id;
+	private String enabled;
 	
-	
+	public String getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 	public int getId() {
 		return id;
 	}

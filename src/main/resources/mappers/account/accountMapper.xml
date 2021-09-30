@@ -121,38 +121,25 @@ ORDER BY register))
 WHERE rNUM >=#{start} and rNUM <=#{end}
 ]]>
 </select>
-<!-- 2. 신규통장 추가처리 -->
-<insert id="insertAccountAction" >
+<!-- 3. 통장목록 조회(단순 조회 페이징처리 없음) -->
+<select id="selectAccountInfo" resultType="AccountDTO">
+SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled 
+  FROM ACCOUNT
+</select>
+<!-- 4. 신규통장 추가처리 -->
+<insert id="insertAccount" parameterType="AccountDTO">
 INSERT INTO ACCOUNT(id, name, account_number, bank, balance, register, account_holder_id, enabled)
-        VALUES(account_insert_seq, #{account_name}, #{account_number}, #{account_bank}, #{account_balance}, #{register}, #{account_holder_id}, 'Y');
+        VALUES(account_insert_seq.nextval, #{name}, #{account_number}, #{bank}, #{balance}, #{register}, #{account_holder_id}, 'Y')
 </insert>
-<!-- 3. 통장입출금 등록 -->
+<!-- 5.. 통장입출금 등록 -->
+<insert id="insertAcountHistory" parameterType="AccountHistoryDTO">
+INSERT INTO account_history(account_number, type, balance, abstract ,transaction_date)    
+	VALUES(#{account_number}, #{type}, #{balance}, #{abs}, #{transaction_date})		 
+</insert>
+<!-- 6. 입금내역조회 -->
+<!-- 7. 출금내역조회 -->
 
-<!-- 4. 입출금내역조회 사용보류(잔액없음)-->
-<select id="selectDepositWithdrawalHistory" resultType="DepositWithdrawalHistoryDTO">
-SELECT ac.name, ac.account_number, ac.bank, ah.balance, ah.type, ah.abstract abs,ah.transaction_date 
-  FROM account ac, account_history ah
- WHERE ac.account_number = ah.account_number
-   AND ac.account_number = #{account_number} 
-ORDER BY TRANSACTION_DATE ASC
-</select>
-<!-- 5. 입금내역조회 -->
-<select id="selectAccountDeposit" resultType="DepositWithdrawalHistoryDTO">
-SELECT ac.name, ac.account_number, ac.bank, ah.balance, ah.type, ah.transaction_date 
-  FROM account ac, account_history ah
- WHERE ac.account_number = ah.account_number
-   AND ac.account_number = #{account_number} AND ah.type='입금'
-ORDER BY TRANSACTION_DATE DESC   
-</select>
-<!-- 6. 출금내역조회 -->
-<select id="selectAccountWithdrawal" resultType="DepositWithdrawalHistoryDTO">
-SELECT ac.name, ac.account_number, ac.bank, ah.balance, ah.type, ah.transaction_date 
-  FROM account ac, account_history ah
- WHERE ac.account_number = ah.account_number
-   AND ac.account_number = #{account_number} AND ah.type='출금'
-ORDER BY TRANSACTION_DATE DESC
-</select>
-<!-- 7. 통장 입출금내역 및 잔액조회(잔액만 따로불러오면 테이블 변형일어나서 조인해서 사용) -->
+<!-- 8. 통장 입출금내역 및 잔액조회(잔액만 따로불러오면 테이블 변형일어나서 조인해서 사용) -->
 <select id="selectAccountBalance" resultType="BalanceDTO">
 SELECT ac.name account_name, ac.bank account_bank, ac.balance account_balance  
     ,ah.account_number, ah.type, ah.abstract abs, ah.transaction_date
@@ -167,7 +154,7 @@ GROUP BY ac.name, ac.bank, ac.balance,
 </select> 
 
   
-<!-- 8. 통장입출금내역 삭제 enabled-->
+<!-- 9. 통장입출금내역 삭제 enabled-->
 
 <!-- 결산/재무제표 -->
 <!-- 1. 재무제표 -->

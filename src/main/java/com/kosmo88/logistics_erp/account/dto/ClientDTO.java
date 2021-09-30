@@ -19,7 +19,7 @@ public class ClientDTO {
 	private String type;
 	private String name;
 	private String ceo_name;
-	private long register_num;	//int 범위가 넘어가서 long으로 변경
+	private String register_num;	//int 범위가 넘어가서 long으로 변경
 	private String address;
 	private Date register_date;
 	private String detail_address;
@@ -50,10 +50,10 @@ public class ClientDTO {
 	public void setCeo_name(String ceo_name) {
 		this.ceo_name = ceo_name;
 	}
-	public long getRegister_num() {
+	public String getRegister_num() {
 		return register_num;
 	}
-	public void setRegister_num(long register_num) {
+	public void setRegister_num(String register_num) {
 		this.register_num = register_num;
 	}
 	public String getAddress() {

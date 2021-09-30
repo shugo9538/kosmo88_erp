@@ -12,7 +12,6 @@
   <meta name="author" content="">
   <title> 회계관리 - 거래처 목록</title>
 </head>
-<script type="text/javascript" src="/logistics_erp/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js" ></script>
 <body class="sticky-header">
 
@@ -78,29 +77,29 @@
 							</div>
 
 							<div class="form-group">
-                            <label class="col-md-3 control-label" for="account_name">계좌명 <span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="name">계좌명 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" id="account_name" name="account_name" placeholder="계좌명을 입력하세요" required>
+                              <input class="form-control" type="text" id="name" name="name" placeholder="계좌명을 입력하세요" required>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="account_bank">계좌은행<span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="bank">계좌은행<span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <select class="form-control" id="account_bank" name="account_bank" required>
+                              <select class="form-control" id="bank" name="bank" required>
                                 <option value="0">계좌은행을 선택하세요</option>
-                                <option value="1">우리은행</option>
-                                <option value="2">국민은행</option>
-                                <option value="3">신한은행</option>
-                                <option value="4">하나은행</option>
-                                <option value="5">기업은행</option>
-                                <option value="6">카카오뱅크</option>
-                                <option value="8">토스</option>
-                                <option value="9">농협은행</option>
-                                <option value="10">SC제일은행 </option>
-                                <option value="11">수협</option>
-                                <option value="12">케이뱅크</option>
-                                <option value="13">대구은행</option>
-                                <option value="14">부산은행</option>
+                                <option value="우리은행">우리은행</option>
+                                <option value="국민은행">국민은행</option>
+                                <option value="신한은행">신한은행</option>
+                                <option value="하나은행">하나은행</option>
+                                <option value="기업은행">기업은행</option>
+                                <option value="카카오뱅크">카카오뱅크</option>
+                                <option value="토스">토스</option>
+                                <option value="농협은행">농협은행</option>
+                                <option value="SC제일은행">SC제일은행 </option>
+                                <option value="수협">수협</option>
+                                <option value="케이뱅크">케이뱅크</option>
+                                <option value="대구은행">대구은행</option>
+                                <option value="부산은행">부산은행</option>
                               </select>
                             </div>
                           </div>
@@ -111,9 +110,9 @@
                             </div>
                           </div>
                             <div class="form-group">
-                            <label class="col-md-3 control-label" for="account_balance">기초잔액<span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="balance">기초잔액<span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="number" id="account_balance" name="account_balance" value="0" required>
+                              <input class="form-control" type="number" id="balance" name="balance" value="0" required>
                             </div>
                           </div>
                           
@@ -153,7 +152,7 @@
 
         <!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
-		<script src="/logistics_erp/resources/accounting/js/account.js"></script>
+		<%@ include file="common/accountFooter.jsp" %>
 			
          <!--End footer -->
        </div>

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.kosmo88.logistics_erp.account.dto.AccountDTO;
 import com.kosmo88.logistics_erp.account.dto.BalanceDTO;
 import com.kosmo88.logistics_erp.account.dto.ClientDTO;
-import com.kosmo88.logistics_erp.account.dto.DepositWithdrawalHistoryDTO;
+import com.kosmo88.logistics_erp.account.dto.AccountHistoryDTO;
 import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
 import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
 import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
@@ -66,29 +66,16 @@ public interface AccountDAO {
 	// 금융자금관리
 	// 통장 거래내역 건수
 	public int getAccountCnt();
-	// 통장 거래내역 조회 
+	// 통장 목록 조회 
 	public List<AccountDTO> selectAccount(Map<String,Object> map);
 	// 통장 추가처리
-	public int insertAccountAction(AccountDTO accountDTO);
-	// 통장 목록조회
+	public int insertAccount(AccountDTO accountDTO);
+	// 통장 목록 단순 조회(거래내역 추가페이지 계좌정보 뿌릴때)
+	public List<AccountDTO> selectAccountInfo();
 	// 통장 거래내역 추가
-	//public int intsertAccountList();
-	// 통장 입출금 내역 조회
-	public List<DepositWithdrawalHistoryDTO>selectDepositWithdrawalHistory(String account_number);
-	// 통장 출금내역 조회
-	public List<DepositWithdrawalHistoryDTO> selectAccountWithdrawal(String account_number);
-	// 통장 입금내역 조회 
-	public List<DepositWithdrawalHistoryDTO> selectAccountDeposit(String account_number);
-	// 통장잔액조회 
+	public int insertAcountHistory(AccountHistoryDTO ahDTO);
+	// 통장 입출금 거래내역 상세페이지
 	public List<BalanceDTO> selectAccountBalance(String account_number);
-	// 급여통장 건수 (급여/거래처통장 구분??) 현재 구분 컬럼 없음
-	//public int getSalaryAccountCnt();
-	// 급여통장 조회  (급여/거래처통장 구분??) 현재 구분 컬럼 없음
-	//public List<SalaryAccount>
-	// 거래처통장 건수
-	//
-	// 거래처통장 조회
-	//
 	
 	// 결산/제무재표
 	// 재무상태표

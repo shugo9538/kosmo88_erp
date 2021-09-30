@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kosmo88.logistics_erp.account.dto.AccountDTO;
 import com.kosmo88.logistics_erp.account.dto.BalanceDTO;
 import com.kosmo88.logistics_erp.account.dto.ClientDTO;
-import com.kosmo88.logistics_erp.account.dto.DepositWithdrawalHistoryDTO;
+import com.kosmo88.logistics_erp.account.dto.AccountHistoryDTO;
 import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
 import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
 import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
@@ -111,31 +111,30 @@ public class AccountDAOImpl implements AccountDAO {
 	public List<AccountDTO> selectAccount(Map<String, Object> map) {
 		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectAccountList", map);
 	}
+	// 등록 계좌정보 조회(계좌거래내역 등록시 계좌정보)
+	@Override
+	public List<AccountDTO> selectAccountInfo() {
+		return sqlSession.selectList(STATEMENT + ".selectAccountInfo");
+	}
 	// 신규통장 추가처리
 	@Override
-	public int insertAccountAction(AccountDTO accountDTO) {
-		return sqlSession.insert(STATEMENT + ".insertAccountAction");
-	}
-	// 통장 입출금 내역조회
-	@Override
-	public List<DepositWithdrawalHistoryDTO> selectDepositWithdrawalHistory(String account_number) {
-		return sqlSession.selectList(STATEMENT + ".selectDepositWithdrawalHistory", account_number);
+	public int insertAccount(AccountDTO accountDTO) {
+		return sqlSession.insert(STATEMENT + ".insertAccount", accountDTO);
 	}
 	// 통장 잔액조회
 	@Override
 	public List<BalanceDTO> selectAccountBalance(String account_number) {
 		return sqlSession.selectList(STATEMENT + ".selectAccountBalance", account_number);
 	}
-	// 통장출금내역조회
+	//통장 거래내역 추가
 	@Override
-	public List<DepositWithdrawalHistoryDTO> selectAccountWithdrawal(String account_number) {
-		return sqlSession.selectList(STATEMENT + ".selectAccountDeposit", account_number);
+	public int insertAcountHistory(AccountHistoryDTO ahDTO) {
+		System.out.println("dddd : "+ ahDTO);
+		return sqlSession.insert(STATEMENT + ".insertAcountHistory", ahDTO);
 	}
-	// 통장 입금내역 조회
-	@Override
-	public List<DepositWithdrawalHistoryDTO> selectAccountDeposit(String account_number) {
-		return sqlSession.selectList(STATEMENT + ".selectAccountWithdrawal", account_number);
-	}
+	
+	
+	
 	// ------------------------------ 결산/재무제표 ------------------------------
 	// 제무재표
 	@Override
@@ -147,6 +146,9 @@ public class AccountDAOImpl implements AccountDAO {
 	public IncomeStatementDTO selectIncomeStatement() {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
+
+
+
 
 
 

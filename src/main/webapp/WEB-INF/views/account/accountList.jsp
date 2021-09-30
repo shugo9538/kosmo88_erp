@@ -114,7 +114,7 @@
                                         		<td>${dto.id}</td>
                                         		<td>${dto.name}</td>
                                         		<td>
-	                                        		<input type="hidden" id="account_number" value="${dto.account_number}">
+	                                        		<input type="hidden" id="account_number" name="account_number" value="${dto.account_number}">
 	                                    			<a href="#" id="accountNum" onclick="accountDetail();" >
 	                                        		${dto.account_number}</a>
                                         		</td>

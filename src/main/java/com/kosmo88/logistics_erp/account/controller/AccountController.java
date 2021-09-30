@@ -50,25 +50,25 @@ public class AccountController {
     @RequestMapping(value = "/jQuery")
     public String jQuery(HttpServletRequest request, Model model) {
     	logger.info("/jQuery");
-    	
-    	
         return "account/temp/jQuery";
     }
     //jQuery
     @RequestMapping(value = "/jQuery1")
     public String jQuery1(HttpServletRequest request, Model model) {
     	logger.info("/jQuery1");
-    	
-    	
         return "account/temp/jQuery1";
     }
     //jQuery
     @RequestMapping(value = "/jQuery2")
     public String jQuery2(HttpServletRequest request, Model model) {
     	logger.info("/jQuery2");
-    	
-    	
     	return "account/temp/jQuery2";
+    }
+    //jQuery
+    @RequestMapping(value = "/sweetalert")
+    public String sweetalert(HttpServletRequest request, Model model) {
+    	logger.info("/sweetalert");
+    	return "account/temp/sweetalert";
     }
     //------------------------ 기초정보관리 ------------------------
     //
@@ -139,7 +139,7 @@ public class AccountController {
     }
     
     //------------------------ 금융/자금관리 ------------------------
-    // 금융자금 - 통장거래내역
+    // 금융자금 - 통장목록 리스트
     @RequestMapping(value = "/accountList")
     public String accountList(HttpServletRequest request, Model model) {
     	logger.info("/accountList");
@@ -180,18 +180,28 @@ public class AccountController {
     public String newAccountAction(HttpServletRequest request, Model model) {
     	logger.info("/accountInsertAction");
     	
-    	//service.accountInsertAction(request, model);
+    	service.accountInsertAction(request, model);
     	
     	return "account/accountInsertAction";
     }
     
-    // 금융자금 - 통장 거래내역 추가 (단건)
+    // 금융자금 - 통장 거래내역 단건추가 페이지
     @RequestMapping(value = "/accountSimplDetail")
-    public String accountInsertDetail(HttpServletRequest request, Model model) {
-    	logger.info("/accountInsertDetail");
+    public String accountSimplDetail(HttpServletRequest request, Model model) {
+    	logger.info("/accountSimplDetail");
     	
+    	service.accountSimplDetail(request, model);
     	
     	return "account/accountSimplDetail";
+    }
+    // 금융자금 - 통장 거래내역 단건 추가처리
+    @RequestMapping(value = "/accountSimplAction")
+    public String accountSimplDetailAction(HttpServletRequest request, Model model) {
+    	logger.info("/accountSimplAction");
+    	
+    	service.accountSimplAction(request, model);
+    	
+    	return "account/accountSimplAction";
     }
     // 금융자금 - 통장 거래내역 추가(다건)
     @RequestMapping(value = "/accountMultitDetail")

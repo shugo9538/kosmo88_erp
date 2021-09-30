@@ -17,12 +17,22 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="/logistics_erp/resources/assets/images/favicon.png" type="image/png">
-<title>우여곡절</title>
+<sec:csrfMetaTags/>
+<link rel="icon" href="${RESOURCES_PATH}/assets/images/favicon.png" type="image/png">
+<title>우여곡절 ERP</title>
+<!--Begin  Page Level  CSS -->
+<link href="${RESOURCES_PATH}/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+<link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+<link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables-custom.css" rel="stylesheet" type="text/css"/>
 
+  
 <!--End  Page Level  CSS -->
-<link href="/logistics_erp/resources/accounting/css/bootstrap.min.css" rel="stylesheet">
-<link href="/logistics_erp/resources/accounting/css/temp_bootstrap.css" rel="stylesheet">
-<link href="/logistics_erp/resources/accounting/css/accountDetail_style.css" rel="stylesheet">
-<link href="/logistics_erp/resources/accounting/css/responsive.css" rel="stylesheet">
+<link href="${RESOURCES_PATH}/assets/css/icons.css" rel="stylesheet">
+<link href="${RESOURCES_PATH}/assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="${RESOURCES_PATH}/assets/css/temp_bootstrap.css" rel="stylesheet">
+<%-- <link href="${RESOURCES_PATH}/assets/css/style.css" rel="stylesheet"> --%>
+<link href="${RESOURCES_PATH}/assets/css/responsive.css" rel="stylesheet">
 </head>
+
+<!-- accountDetail.jsp -->
+<link href="/logistics_erp/resources/accounting/css/accountDetail_style.css" rel="stylesheet">

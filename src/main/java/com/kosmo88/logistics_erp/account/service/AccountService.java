@@ -45,6 +45,10 @@ public interface AccountService {
 	//public void accountList(HttpServletRequest request, Model model);
 	// 신규통장 추가 처리
 	public void accountInsertAction(HttpServletRequest request, Model model);
+	// 통장 거래내역 추가 단건 추가 처리 페이지(통장정보조회)
+	public void accountSimplDetail(HttpServletRequest request, Model model);
+	// 통장 거래내역 추가 단건 추가 처리
+	public void accountSimplAction(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가
 	//public void accountInsert(Model model);
 	// 통장 입/출금내역 조회
