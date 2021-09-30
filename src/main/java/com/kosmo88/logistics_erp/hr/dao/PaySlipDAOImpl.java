@@ -10,7 +10,7 @@ import com.kosmo88.logistics_erp.hr.dto.PaySlipDTO;
 
 @Repository
 public class PaySlipDAOImpl implements PaySlipDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.PaySlipDAO";
 
     @Autowired
     SqlSession sqlSession;
