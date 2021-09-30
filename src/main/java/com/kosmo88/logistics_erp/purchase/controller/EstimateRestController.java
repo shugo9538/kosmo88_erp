@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.service.EstimateService;
-import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
+import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -39,7 +40,16 @@ public class EstimateRestController {
     // 견적서 관리 - 견적서 삭제(선택삭제)
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
-    public boolean estimateChoiceDelete(int[] request_id) {
+    public boolean estimateChoiceDelete(@RequestBody String data) {
+    	System.out.println(data);
+    	data = data.replace("\"", "");
+    	data = data.replace("request_id=", "");
+    	String[] arrStr = data.split("&");
+    	int[] request_id = new int[arrStr.length];
+    	for(int i = 0; i < arrStr.length; i++) {
+    		request_id[i] = Integer.parseInt(arrStr[i]);
+    		System.out.println(request_id[i]);
+    	}
     	return estimateService.estimateChoiceDelete(request_id);
     }
     

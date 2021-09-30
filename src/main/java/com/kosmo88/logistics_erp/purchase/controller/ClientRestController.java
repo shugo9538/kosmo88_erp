@@ -16,23 +16,25 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
-import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @RestController
 @RequestMapping(value = "/purchase")
-public class PurchaseRestController {
-    private static final Logger logger = LoggerFactory.getLogger(PurchaseRestController.class);
+public class ClientRestController {
+    private static final Logger logger = LoggerFactory.getLogger(ClientRestController.class);
     
     @Autowired
-    PurchaseService purchaseService;
+    ClientService clientService;
     
     // 거래처(구매처) 목록
     @ResponseBody
     @RequestMapping(value = "/clientManagement/clientList")
     public List<PurchaseClientDTO> clientList(HttpServletRequest req, HttpServletResponse res) {
-    	return purchaseService.clientList(req, res);
+    	return clientService.clientList(req, res);
     }
     
     // 거래처 삭제(선택삭제)
@@ -44,26 +46,34 @@ public class PurchaseRestController {
     	data = data.replace("client_id=", "");
     	String[] arrStr = data.split("&");
     	int[] client_id = new int[arrStr.length];
-    	for(int i = 0; i < arrStr.length ; i++) {
+    	for(int i = 0; i < arrStr.length; i++) {
     		client_id[i] = Integer.parseInt(arrStr[i]);
     		System.out.println(client_id[i]);
     	}
-    	return purchaseService.clientChoiceDelete(client_id);
+    	return clientService.clientChoiceDelete(client_id);
     }
     
     // 등록한 거래처(구매처) 목록
     @ResponseBody
     @RequestMapping(value = "/clientRegister/registeredClientList")
     public List<PurchaseClientDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
-    	return purchaseService.clientList(req, res);
+    	return clientService.clientList(req, res);
     }
     
-    // 거래처, 상품 등록 처리
-    @ResponseBody
+    // 거래처 등록 처리
     @RequestMapping(value = "/clientRegister/clientRegisterAction")
-    public boolean clientRegisterAction(HttpServletRequest req, HttpServletResponse res) {
-    	return purchaseService.clientRegisterAction(req, res);
+    public boolean clientRegisterAction(@RequestBody PurchaseInsertClientDTO dto) {
+    	clientService.clientRegisterAction(dto);
+    	return true;
     }
-
-
+    
+	// 상품 등록 처리
+    @RequestMapping(value = "/clientRegister/itemRegisterAction")
+    public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
+    	for (PurchaseItemDTO dto : dtos) {
+    		clientService.itemRegisterAction(dto);
+    	}
+    	return true;
+    }
+    
 }

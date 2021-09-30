@@ -11,12 +11,16 @@ $(document).ready(function() {
 	$("input[name=price]:hidden").each(function(){
 		$(this).prop("disabled", true);
 	})
+	
 });
+
 
 
 $('#clientManagementForm').ready(function(){
 	addItem();
 });
+
+var i = 0;
 
 // 거래처 상품 등록 추가
 function addItem() {
@@ -26,11 +30,19 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.removeAttribute("style");
-	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.removeAttribute("disabled"));
-    Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
+	
+	
+	tmp = newItem.getElementsByTagName('input');
+	for (var j = 0 ; j < tmp.length ; j++) { 
+		tmp[j].className = "form-control"+i;
+	}
+	
+	Array.from(newItem.getElementsByClassName("form-control" + i)).forEach(f => f.removeAttribute("disabled"));
+    Array.from(newItem.getElementsByClassName("form-control" + i)).forEach((f) =>
         f.setAttribute("required", true));
   
 	document.getElementById("item-group").appendChild(newItem);
+	i++;
 }
 
 // 거래처 상품 삭제
@@ -77,7 +89,7 @@ function nextPhone2() {
 
 function nextPhone3() {
 	if(document.clientRegisterForm.phone3.value.length >= 4) {
-		document.clientRegisterForm.email.focus();
+		document.clientRegisterForm.zip_code.focus();
 	}
 }
 

@@ -2,21 +2,20 @@ package com.kosmo88.logistics_erp.purchase.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
-public interface PurchaseDAO {
+public interface ClientDAO {
 
     // 거래처(구매처) 관리 - 거래처 목록
 	public List<PurchaseClientDTO> getClientList();
 	
 	// 거래처 등록 처리
-	public int registerClient(PurchaseClientDTO cdto);
+	public int registerClient(PurchaseInsertClientDTO dto);
 	
 	// 상품 등록 처리
-	public int registerItem(PurchaseItemDTO idto);
+	public int registerItem(PurchaseItemDTO dto);
 	
 	// 상세페이지 - 거래처
 	public PurchaseClientDTO getClientDetail(int id);

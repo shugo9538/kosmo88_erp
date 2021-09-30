@@ -19,7 +19,7 @@
                 	
                     <input type="hidden" name="name" value="${cdto.name}">
                     
-                    <table id="example" class="display table mt-12">
+                    <table id="example" class="display table mt-12" style="width:100%">
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 번호</th>
 	                		<td style="padding:15px;">
@@ -53,11 +53,11 @@
 	                		</td>
 	                		<th style="background-color: #f1f1f1; padding:15px;">사업자 번호</th>
 	                		<td style="padding:15px;">
-	                			<input style="width:50px;" type="text" id="register_num1" name="phone1" maxlength="3" 
+	                			<input style="width:50px;" type="text" id="register_num1" name="register_num1" maxlength="3" 
 	                				value="${fn:substring(cdto.register_num,0,3)}" required onkeyup="nextRegisterNum1()"> - 
-	                			<input style="width:50px;" type="text" id="register_num2" name="phone2" maxlength="2" 
+	                			<input style="width:50px;" type="text" id="register_num2" name="register_num2" maxlength="2" 
 	                				value="${fn:substring(cdto.register_num,4,6)}" required onkeyup="nextRegisterNum2()"> - 
-	                			<input style="width:50px;" type="text" id="register_num3" name="phone3" maxlength="5" 
+	                			<input style="width:50px;" type="text" id="register_num3" name="register_num3" maxlength="5" 
 	                				value="${fn:substring(cdto.register_num,7,12)}" required onkeyup="nextRegisterNum3()">
 	                		</td>
 	                	</tr>
