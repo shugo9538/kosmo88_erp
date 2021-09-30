@@ -19,21 +19,18 @@
 
 		resultType="AttendanceDTO">
 		SELECT *
-		FROM (
-		SELECT a.*, ROWNUM r_num
-		FROM attendance a
+		FROM attendance
 		ORDER BY id desc
-		)
 	</select>
 
 	<!-- 근태 입력 -->
-<!-- 	<insert -->
-<!-- 		id="insertAttendance" -->
-<!-- 		parameterType="AttendanceDTO"> -->
-<!-- 		INSERT INTO attendance (id, application_date, begin_date, end_date, reason, state, attendance_cd_id) -->
-<!-- 		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state}, -->
-<!-- 		#{attendance_cd_id}) -->
-<!-- 	</insert> -->
+	<insert
+		id="insertAttendance"
+		parameterType="AttendanceDTO">
+		INSERT INTO attendance (id, application_date, begin_date, end_date, reason, state, attendance_cd_id)
+		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state},
+		#{attendance_cd_id})
+	</insert>
 	<!-- 근태 현황 -->
 	<!-- <select -->
 	<!-- id="" -->
@@ -51,7 +48,7 @@
 	<select
 		id="commutingRecords"
 		resultType="CommuteDTO">
-		SELECT c.*, rowNum rnum FROM commute c
+		SELECT * FROM commute ORDER BY id desc
 	</select>
 
 	<!-- 출퇴근 입력 -->
@@ -59,7 +56,7 @@
 		id="insertCommute"
 		parameterType="CommuteDTO">
 		INSERT INTO commute (id, work_date, begin_date, end_date, night_time, over_time, attendance_id, employee_id)
-		VALUES(commute_seq.nextval, #{work_date}, #{begin_date}, #{end_date},
+		VALUES(commute_seq.nextval, #{work_date}, to_date(#{begin_date}, 'hh24:mi'), to_date(#{end_date}, 'hh24:mi'),
 		#{night_time}, #{over_time}, #{attendance_id}, #{employee_id})
 	</insert>
 </mapper>

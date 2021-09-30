@@ -13,7 +13,7 @@ import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
 
 @Repository
 public class ConfigurationDAOImpl implements ConfigurationDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.ConfigurationDAO";
 
     @Autowired
     SqlSession sqlSession;

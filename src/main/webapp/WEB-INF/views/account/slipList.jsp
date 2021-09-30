@@ -53,64 +53,39 @@
                <!--Start row-->
                <div class="row">
                    <div class="col-md-12">
-                   	              <!-- 메뉴버튼 -->
-                            	<div>
-			        <ul class="nav nav-pills custom-nav">
-						<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표 등록</a></li>
-						<li class="active"><a href="${ROOT_PATH}/account/slipModify">일반전표 수정</a></li>
-					</ul>
+       				<!-- 메뉴버튼 -->
+                    <div>
+				        <ul class="nav nav-pills custom-nav">
+							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표 등록</a></li>
+							<li class="active"><a href="${ROOT_PATH}/account/slipModify">일반전표 수정</a></li>
+						</ul>
                  	</div>
-      	  <!-- 메뉴버튼 끝 -->  
+      	 			 <!-- 메뉴버튼 끝 -->  
                        <div class="white-box">
-                           <h2 class="header-title">일반전표 목록</h2>
+                           <h2 class="header-title">일반전표 목록
+                             ( 구매 영업에서 세부내용 오면 뿌릴 항목 추가해야함)
+                           </h2>
                             <div class="table-responsive">
                              <table id="example" class="table table table-hover m-0">
                                     <thead>
                                         <tr>
+                                            <!-- <th>순서</th> -->
                                             <th>전표번호</th>
                                             <th>유형</th>
                                             <th>발행일</th>
-                                            <th>승인일자</th>
-                                            <th>상태(Y/N)</th>
+                                            <th>승인일자(notnull바꿔야함)</th>
+                                            <th>전표승인상태(Y/N)</th>
                                             <th>부서코드</th>
-                                            <th>파트별ID</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                    	<td>11111</td>
-                                    	<td>입금</td>
-                                    	<td>2021-09-23</td>
-                                    	<td>2021-09-24</td>
-                                    	<td>미승인</td>
-                                    	<td>22222</td>
-                                    	<td>33333</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>22222</td>
-                                    	<td>입금</td>
-                                    	<td>2021-09-24</td>
-                                    	<td>2021-09-25</td>
-                                    	<td>미승인</td>
-                                    	<td>22222</td>
-                                    	<td>33333</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>33333</td>
-                                    	<td>입금</td>
-                                    	<td>2021-09-26</td>
-                                    	<td>2021-09-27</td>
-                                    	<td>미승인</td>
-                                    	<td>22222</td>
-                                    	<td>33333</td>
-                                    </tr>
                                     <!-- 등록전표가 있는 경우 -->                     
                                     <c:if test="${cnt > 0}">
                                     	<c:forEach var="dto" items="${slip}">
    											<tr>
-   												<td>${number}
+   											<%-- 	<td>${number}
    													<c:set var="number" value="${number -1 }"/>
-   												</td>
+   												</td> --%>
                                         		<td>${dto.id}</td>
                                         		<td>${dto.type}</td>
                                         		<td>
@@ -119,21 +94,40 @@
                                         		<td>
                                         		<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.update_date}"/>
                                         		</td>
-                                        		<td>${dto.state}</td>
-                                        		<td>${dto.department_id}</td>
-                                        		<td>${dto.department_request}</td>
+                                        		<!-- 전표 승인 여부 확인 -->
+                                        		<td>
+                                       				<c:choose>
+                                       					<c:when test="${dto.state eq 'Y'}">
+                                       						<span style="color:red">승인</span>
+                                       					</c:when>
+                                       					<c:when test="${dto.state eq 'N'}">
+                                       						<span>미승인</span>
+                                       					</c:when>
+                                       				</c:choose>
+                                        		</td>
+                                        		
+                                        		<td>
+	                                        		<c:choose>
+	                                        			<c:when test="${dto.department_id == 1}">
+	                                        			인사팀
+	                                        			</c:when>
+	                                        			<c:when test="${dto.department_id == 2}">
+	                                        			개발팀
+	                                        			</c:when>
+	                                        		</c:choose>
+                                        		</td>
                                        	    </tr>		                                     		
                                     	</c:forEach>
                                      </c:if>
 
                                      <!-- 등록 전표가 없는경우 -->
-                                  <%--    <c:if test="${cnt == 0}">
+                                  <c:if test="${cnt == 0}">
                                      	<tr>
                                      		<td colspan="7" align="center">
                                      			<span style="color:red"> 등록된 전표가 없습니다. </span>
                                      		</td>
                                      	</tr>
-                                     </c:if>  --%>  
+                                     </c:if> 
                                     </tbody>
                                     
                                     <tfoot>
@@ -171,7 +165,7 @@
                </div>
                <!--End row-->
                
-                              <!--Start row-->
+              <!--Start row-->
                <div class="row">
                    <div class="col-md-12">
                        <div class="white-box">

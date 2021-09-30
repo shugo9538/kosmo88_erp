@@ -9,8 +9,8 @@
 			<div class="col-md-12">
 				<div class="white-box">
 					<h2 class="header-title">근태 입력</h2>
-					<form id="insertAttendanceForm" action="${ROOT_PATH}/hr/attendance/insertAttendanceAction" method="post">
 						<sec:csrfInput />
+					<form id="insertAttendanceForm" action="${ROOT_PATH}/hr/attendance/insertAttendanceAction" method="post">
 						<div class="table-responsive" align="center">
 							<table id="insertAttendanceTable" class="table table-hover">
 								<thead>
@@ -27,19 +27,19 @@
 								<tbody id="attendance-group">
 									<tr id="attendance" style="display: none;">
 										<td>
-											<input class="form-control" name="id" type="text" disabled>
+											<input class="form-control" name="id" type="number" disabled>
 										</td>
 										<td>
-											<input class="form-control" name="attendance_cd_id" type="text" disabled>
+											<input class="form-control" name="attendance_cd_id" type="number" disabled>
 										</td>
 										<td>
-											<input class="form-control" name="application_date" type="text" disabled>
+											<input class="form-control" name="application_date" type="date" disabled>
 										</td>
 										<td>
-											<input class="form-control" name="begin_date" type="text" disabled>
+											<input class="form-control" name="begin_date" type="date" disabled>
 										</td>
 										<td>
-											<input class="form-control" name="end_date" type="text" disabled>
+											<input class="form-control" name="end_date" type="date" disabled>
 										</td>
 										<td>
 											<input class="form-control" name="reason" type="text" disabled>
@@ -57,7 +57,7 @@
 								항목 추가
 							</div>
 							<div style="text-align: center;">
-								<input type="submit" id="insertAttendanceAction" value="등록">
+								<button id="insertAttendanceAction">등록</button>
 								<input type="reset" value="취소" onclick="window.close();">
 							</div>
 						</div>

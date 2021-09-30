@@ -23,5 +23,5 @@ public interface AttendanceService {
     ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res);
     
     // 출퇴근 입력
-    void insertCommute(HttpServletRequest req, HttpServletResponse res);
+    boolean insertCommute(CommuteDTO dto);
 }

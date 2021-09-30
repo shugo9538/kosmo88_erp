@@ -11,13 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
-import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -36,12 +31,6 @@ public class AttendanceController {
         return "hr/attendanceManagement/attendanceManagement";
     }
     
-    // 근태 조회
-    @RequestMapping(value = "/attendanceList")
-    public String attendanceList(HttpServletRequest req, HttpServletResponse res) {
-        return "hr/attendanceManagement/attendanceList";
-    }
-    
     // 근태 입력
     @RequestMapping(value = "/insertAttendance")
     public String insertAttendance(HttpServletRequest req, HttpServletResponse res) {
@@ -54,10 +43,10 @@ public class AttendanceController {
         return "hr/attendanceManagement/commutingRecords";
     }
     
-    // 근태 현황
+// 근태 현황
     @RequestMapping(value = "/attendanceStatus")
     public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.attendanceStatus(req, res);
+//        attendanceService.attendanceStatus(req, res);
         
         return "hr/attendanceManagement/attendanceManagement";
     }
@@ -65,8 +54,8 @@ public class AttendanceController {
     // 출퇴근 입력
     @RequestMapping(value = "/insertCommute")
     public String insertCommute(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.insertCommute(req, res);
+//        attendanceService.insertCommute(req, res);
         
-        return "hr/attendanceManagement/attendanceManagement";
+        return "hr/attendanceManagement/insertCommute";
     }
 }

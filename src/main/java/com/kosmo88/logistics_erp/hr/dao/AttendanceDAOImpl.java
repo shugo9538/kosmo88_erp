@@ -21,10 +21,10 @@ public class AttendanceDAOImpl implements AttendanceDAO {
         return sqlSession.selectOne(STATEMENT + ".getAttendanceNum");
     }
 
-//    @Override
-//    public int insertAttendance(AttendanceDTO dto) {
-//        return sqlSession.insert(STATEMENT + ".insertAttendance", dto);
-//    }
+    @Override
+    public int insertAttendance(AttendanceDTO dto) {
+        return sqlSession.insert(STATEMENT + ".insertAttendance", dto);
+    }
 
     @Override
     public List<AttendanceDTO> selectAttendacne() {
@@ -44,6 +44,7 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public int insertCommute(CommuteDTO dto) {
+        System.out.println("commute insert");
         return sqlSession.insert(STATEMENT + ".insertCommute", dto);
     }
 }

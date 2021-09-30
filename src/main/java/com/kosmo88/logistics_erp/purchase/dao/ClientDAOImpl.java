@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.account.vo.ClientVO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
@@ -31,7 +30,7 @@ public class ClientDAOImpl implements ClientDAO {
 		return sqlSession.insert(STATEMENT + ".registerClient", dto);
 	}
 
-	// 상품 등록 처리
+	// 상품 등록 처리 
 	@Override
 	public int registerItem(PurchaseItemDTO dto) {
 		return sqlSession.insert(STATEMENT + ".registerItem", dto);
@@ -66,5 +65,11 @@ public class ClientDAOImpl implements ClientDAO {
 	public int updateItem(PurchaseItemDTO idto) {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
+
+    @Override
+    public int deleteChoiceClient(int id) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
 }
