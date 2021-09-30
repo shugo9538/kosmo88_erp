@@ -13,239 +13,97 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">견적서 등록</h4>
+				<h4 class="page-title">견적서 관리</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
-					<li class="active">견적서 등록</li>
+					<li class="active">견적서 관리</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
+			
+			<ul class="nav nav-pills custom-nav">
+				<li class="active"><a href="${ROOT_PATH}/sales/estimateRegister">견적서 등록</a></li>
+			</ul>
 
-			<form class="form-horizontal">
-				<!-- Start white-box -->
-				<div class="white-box">
-					<div class="col-md-12">
-						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>견적서
-						</h4>
-
-						<div class="form-group"></div>
-						<div class="form-group">
-							<label class="col-md-1 control-label">회사명</label>
-							<div class="col-md-3">
-								<p class="form-control-static">주식회사 우여곡절</p>
-							</div>
-
-							<label class="col-md-1 control-label">거래처명</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처명" type="text">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-1 control-label">대금결제방법</label>
-							<div class="col-md-3">
-								<p class="form-control-static">계좌이체</p>
-							</div>
-
-							<label class="col-md-1 control-label">증명구분</label>
-							<div class="col-md-3">
-								<p class="form-control-static">세금계산서(과세)</p>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-1 control-label">견적번호</label>
-							<div class="col-md-3">
-								<p class="form-control-static">21estimate0923</p>
-							</div>
-
-							<label class="col-md-1 control-label">견적일자</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="견적일자" type="date">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-1 control-label">영업 담당자</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="영업담당자" type="text">
-							</div>
-
-							<label class="col-md-1 control-label">담당자 연락처</label>
-							<div class="col-md-1">
-								<input class="form-control" placeholder="010" type="text" maxlength="3" required>
-							</div>
-							
-							<div class="col-md-1">
-								<input class="form-control" placeholder="1111" type="text" maxlength="4" required>
-							</div>
-							
-							<div class="col-md-1">
-								<input class="form-control" placeholder="2222" type="text" maxlength="4" required>
-							</div>
-
-							<label class="col-md-1 control-label" for="val-email">담당자
-								이메일 </label>
-							<div class="col-md-3">
-								<input class="form-control" type="text" id="val-email"
-									name="val-email" placeholder="담당자 이메일">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="col-md-1 control-label">거래처대표자명</label>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="거래처 대표자명" type="text">
-							</div>
-
-							<label class="col-md-1 control-label">거래처 연락처</label>
-							<div class="col-md-1">
-								<input class="form-control" placeholder="010" type="text" maxlength="3" required>
-							</div>
-							
-							<div class="col-md-1">
-								<input class="form-control" placeholder="1111" type="text" maxlength="4" required>
-							</div>
-							
-							<div class="col-md-1">
-								<input class="form-control" placeholder="2222" type="text" maxlength="4" required>
-							</div>
-
-							<label class="col-md-1 control-label" for="val-email">거래처
-								이메일 </label>
-							<div class="col-md-3">
-								<input class="form-control" type="text" id="val-email"
-									name="val-email" placeholder="거래처 이메일">
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group"></div>
-					<div class="form-group"></div>
-
-					<div class="col-md-12">
-						<h4 class="page-title">
-							<i class="fa fa-chevron-circle-right mr-2"></i>견적서 품목내역
-						</h4>
-						<div class="table-responsive">
-							<div class="col-md-2 mt-3 mb-3">
-								<input class="btn btn-default mx-2" type="button" value="품목추가">
-								<input class="btn btn-default" type="button" value="품목삭제">
-							</div>
-							<table id="example" class="display table">
-								<thead>
-									<tr>
-										<td style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></td>
-										<th>순번</th>
-										<th>품목명</th>
-										<th>종류</th>
-										<th>공급단가</th>
-										<th>수량</th>
-										<th>공급가액</th>
-									</tr>
-								</thead>
-
-								<tbody>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>1</td>
-										<td><a href="#">백미러</a></td>
-										<td>자동차부품</td>
-										<td>250,000</td>
-										<td>100</td>
-										<td>25,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>2</td>
-										<td><a href="#">겹판 스프링</a></td>
-										<td>자동차부품</td>
-										<td>100,000</td>
-										<td>500</td>
-										<td>50,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>3</td>
-										<td><a href="#">내연기관 펌프</a></td>
-										<td>자동차부품</td>
-										<td>3,000,000</td>
-										<td>400</td>
-										<td>1,200,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>4</td>
-										<td><a href="#">기체압축기</a></td>
-										<td>자동차부품</td>
-										<td>5,000,000</td>
-										<td>200</td>
-										<td>1,000,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>5</td>
-										<td><a href="#">액체여과기</a></td>
-										<td>자동차부품</td>
-										<td>300,000</td>
-										<td>300</td>
-										<td>90,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>6</td>
-										<td><a href="#">공기여과기</a></td>
-										<td>자동차부품</td>
-										<td>400,000</td>
-										<td>150</td>
-										<td>60,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>7</td>
-										<td><a href="#">전동축</a></td>
-										<td>자동차부품</td>
-										<td>20,000,000</td>
-										<td>150</td>
-										<td>3,000,000,000</td>
-									</tr>
-									<tr>
-										<th style="text-align: center;"><input type="checkbox"
-											name="select" id="select"></th>
-										<td>8</td>
-										<td><a href="#">배기가스 정화용 여과기</a></td>
-										<td>자동차부품</td>
-										<td>2,000,000</td>
-										<td>150</td>
-										<td>300,000,000</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-					<div class="form-group">
-						<div class="col-md-5 col-md-offset-5 mt-3">
-							<input class="btn btn-primary mx-1" type="submit" value="등록">
-							<input class="btn btn-primary" type="reset" value="취소">
-						</div>
-					</div>
-				</div>
-				<!-- End white-box -->
-			</form>
-		</div>
+			<!--Start row-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="white-box">
+                        <h2 class="header-title">
+                        	<i class="fa fa-chevron-circle-right mr-2"></i>
+                        	견적서 전체 목록 </h2><span style="text-align:right;">(등록된 견적서 : ${cnt}개)</span>
+                        <div class="table-responsive">
+                        	<div class="col-md-2 mt-1">
+								<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
+							 </div>
+							 
+                            <table id="example" class="display table">
+                                <thead>
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <input type="checkbox" name="checkAll" id="checkAll">
+                                        </td>
+                                        <th>견적서 번호</th>
+                                        <th>견적일자</th>
+                                        <th>거래처명</th>
+                                        <th>거래처 당담자</th>
+                                        <th>영업 담당자</th>
+                                        <th>품목명</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- 등록된 거래처가 있는 경우 -->
+                                <c:if test="${cnt > 0}">
+                                	<c:forEach var="dto" items="${dto}">
+                                		<tr>
+	                                        <th style="text-align: center;">
+	                                            <input type="checkbox" name="client_id" id="client_id" value="${dto.id}">
+	                                        </th>
+	                                        <td>${dto.id}</td>
+	                                        <th>
+	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}"
+	                                        		onclick="window.open(this.href, 'mywin', 'left=100,  width=1000, height=600, toolbar=1');return false;">${dto.name}</a>
+	                                        </th>
+	                                        <td>${dto.register_num}</td>
+	                                        <td>${dto.ceo_name}</td>
+	                                        <td>${dto.phone}</td>
+	                                        <td>${dto.address}</td>
+	                                        <td>
+	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
+	                                        </td>
+	                                    </tr>
+                                	</c:forEach>
+                                </c:if>
+                                
+                                <!-- 등록된 거래처가 없는 경우 -->
+                                <c:if test="${cnt == 0}">
+                                	<tr>
+                                		<td colspan="7" align="center">
+                                   			<span style="color:red"> 등록된 견적서처가 없습니다. </span>
+                                   		</td>
+                                	</tr>
+                                </c:if>   
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--End row-->
+                
+        
+        <!-- End Wrapper-->
+        
+                    </div>
+            	<div>
+            </div>
+        </div>
+		</div>	
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
+		<script src="${RESOURCES_PATH}/sales/js/clientManagement.js"></script>
+		
 </body>
 </html>

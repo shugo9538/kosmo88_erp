@@ -4,9 +4,8 @@ import java.util.Date;
 
 // 구매 상품 DTO
 public class PurchaseItemDTO {
-	
 	private int id;					// 상품코드
-	private String item_name;		// 상품명   name
+	private String name;			// 상품명
 	private String category;		// 종류
 	private Date register_date;		// 상품 등록일
 	private int price;				// 상품가격(구매원가)
@@ -21,12 +20,12 @@ public class PurchaseItemDTO {
 		this.id = id;
 	}
 
-	public String getItem_name() {
-		return item_name;
+	public String getName() {
+		return name;
 	}
 
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCategory() {
@@ -52,5 +51,5 @@ public class PurchaseItemDTO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 }
