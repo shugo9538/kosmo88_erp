@@ -221,7 +221,7 @@
 			<version>4.1.6.RELEASE</version>
 		</dependency>
 		<!-- Java Mail API -->
-		
+
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

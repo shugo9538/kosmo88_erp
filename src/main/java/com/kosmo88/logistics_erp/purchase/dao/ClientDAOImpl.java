@@ -6,13 +6,13 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.account.vo.ClientVO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 @Repository
-public class PurchaseDAOImpl implements PurchaseDAO {
-	private static final String STATEMENT = "com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO";
+public class ClientDAOImpl implements ClientDAO {
+	private static final String STATEMENT = "com.kosmo88.logistics_erp.purchase.dao.ClientDAO";
 
 	@Autowired
 	SqlSession sqlSession;
@@ -26,14 +26,14 @@ public class PurchaseDAOImpl implements PurchaseDAO {
 
 	// 거래처 등록 처리
 	@Override
-	public int registerClient(PurchaseClientDTO cdto) {
-		return sqlSession.insert(STATEMENT + ".RegisterClient", cdto);
+	public int registerClient(PurchaseInsertClientDTO dto) {
+		return sqlSession.insert(STATEMENT + ".registerClient", dto);
 	}
 
-	// 상품 등록 처리
+	// 상품 등록 처리 
 	@Override
-	public int registerItem(PurchaseItemDTO idto) {
-		return sqlSession.insert(STATEMENT + ".RegisterItem", idto);
+	public int registerItem(PurchaseItemDTO dto) {
+		return sqlSession.insert(STATEMENT + ".registerItem", dto);
 	}
 
 	// 상세페이지 - 거래처

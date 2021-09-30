@@ -66,6 +66,8 @@
                                             <th>대표자</th>
                                             <th>사업자등록번호</th>
                                             <th>주소지</th>
+                                            <th>우편번호</th>
+                                            <th>이메일</th>
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
@@ -83,6 +85,8 @@
                                         		<td>${dto.ceo_name}</td>
                                         		<td>${dto.register_num}</td>
                                         		<td>${dto.address}</td>
+                                        		<td>${dto.zip_code}</td>
+                                        		<td>${dto.email}</td>
                                         		<td>
                                         		<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
                                         		</td>

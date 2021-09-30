@@ -29,10 +29,11 @@
          <div class="row">
              <div class="col-md-12">
              	<!-- Start white-box -->
-                 <div class="white-box">
+                <div class="white-box">
                  	<h2 class="header-title">
                      	<i class="fa fa-chevron-circle-right mr-2"></i>
-                     	거래처 전체 목록</h2>
+                     	거래처 전체 목록
+                    </h2> 	
                  	<form class="form-horizontal" id="clientManagementForm" name="clientManagementForm"
 						action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
                      	<!-- csrf 토큰 -->
@@ -42,7 +43,7 @@
 							<input class="btn btn-default" type="button" id="clientChoiceDeleteBtn" value="거래처 삭제">
 						 </div>
                      	
-                         <table id="clientList" class="display table">
+                         <table id="clientList" class="display table" style="width:100%">
                              <thead>
                                  <tr>
                                      <td style="text-align:center">
@@ -69,6 +70,7 @@
 		
 		<%@ include file="../common/footer.jsp"%>
 		<%@ include file="./js_purchase.jsp"%>
+		<script src="${RESOURCES_PATH}/purchase/js/clientManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
 		
 </body>

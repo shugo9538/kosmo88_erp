@@ -12,11 +12,11 @@
 <script src="${RESOURCES_PATH}/assets/js/functions.js"></script>
 <!-- End core plugin -->
 
-
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${RESOURCES_PATH}/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/validation-custom.js"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
 
 
 <!--Begin Page Level Plugin-->

@@ -46,7 +46,7 @@ public class AttendanceController {
 // 근태 현황
     @RequestMapping(value = "/attendanceStatus")
     public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.attendanceStatus(req, res);
+//        attendanceService.attendanceStatus(req, res);
         
         return "hr/attendanceManagement/attendanceManagement";
     }
@@ -54,8 +54,8 @@ public class AttendanceController {
     // 출퇴근 입력
     @RequestMapping(value = "/insertCommute")
     public String insertCommute(HttpServletRequest req, HttpServletResponse res) {
-        attendanceService.insertCommute(req, res);
+//        attendanceService.insertCommute(req, res);
         
-        return "hr/attendanceManagement/attendanceManagement";
+        return "hr/attendanceManagement/insertCommute";
     }
 }

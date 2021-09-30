@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
+import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 // @RestController
 @Controller
 @RequestMapping(value = "/purchase")
-public class PurchaseController {
-    private static final Logger logger = LoggerFactory.getLogger(PurchaseController.class);
+public class ClientController {
+    private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
     
     @Autowired
-    PurchaseService purchaseService;
+    ClientService clientService;
     
     // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")
@@ -45,7 +45,7 @@ public class PurchaseController {
     @RequestMapping(value = "/clientDetail")
     public String clientDetail(HttpServletRequest req, Model model) {
 
-    	purchaseService.clientDetail(req, model);
+    	clientService.clientDetail(req, model);
 
     	return "purchase/clientDetail";
     }
@@ -54,7 +54,7 @@ public class PurchaseController {
     @RequestMapping(value = "/clientUpdate")
     public String clientUpdate(HttpServletRequest req, Model model) {
     	
-    	purchaseService.clientUpdate(req, model);
+    	clientService.clientUpdate(req, model);
     	
     	return "purchase/clientUpdate";
     }
@@ -63,7 +63,7 @@ public class PurchaseController {
     @RequestMapping(value = "/clientUpdateAction")
     public String clientUpdateAction(HttpServletRequest req, Model model) {
     	
-    	purchaseService.clientUpdateAction(req, model);
+    	clientService.clientUpdateAction(req, model);
     	
     	return "purchase/clientUpdateAction";
     }
@@ -72,7 +72,7 @@ public class PurchaseController {
     @RequestMapping(value = "/clientDelete")
     public String clientDelete(HttpServletRequest req, Model model) {
     	
-    	purchaseService.clientDelete(req, model);
+    	clientService.clientDelete(req, model);
     	
     	return "purchase/clientDeleteAction";
     }

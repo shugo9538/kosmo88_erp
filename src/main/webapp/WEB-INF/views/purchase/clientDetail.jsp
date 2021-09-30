@@ -11,7 +11,7 @@
                 
                 
                 <form class="form-horizontal">
-	                <table id="example" class="display table mt-12">
+	                <table id="example" class="display table mt-12" style="width:100%">
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 번호</th>
 	                		<td style="padding:15px;">${cdto.id}</td>

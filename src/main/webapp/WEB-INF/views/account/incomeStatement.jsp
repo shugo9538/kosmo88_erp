@@ -22,7 +22,9 @@
     <!-- main content start-->
     <div class="main-content" >
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/header.jsp"%>  
+		<%@ include file="common/accountHeader.jsp" %>
+		<%@ include file="statement/incomeStatementSetting.jsp"%>    
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -67,13 +69,17 @@
                             <tr>
                               <td> Ⅰ  . 매      출      액 </td>
                               <td></td>
-                              <td>4,028,490,906</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${income1}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>2,764,422,100</td>
                             </tr>
                             <tr>
                               <td>       상    품   매   출 </td>
-                              <td>4,028,490,906</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${sales_cost}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>2,764,422,100</td>
                               <td></td>
@@ -86,22 +92,28 @@
                               <td></td>
                             </tr>
                             <tr>
-                              <td>      상 품 매 출  원 가</td>
-                              <td>452,427,500</td>
+                              <td class="red">      상 품 매 출  원 가</td>
+                              <td></td>                             	
                               <td></td>
                               <td>686,488,500</td>
                               <td></td>
                             </tr>
                             <tr>
                               <td>        기초  상품  재고액</td>
-                              <td>1,330,390,000</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${basic_product}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
-                              <td>731,651,000</td>
+                              <td>
+                              731,651,000
+                              </td>
                               <td></td>
                             </tr>
                             <tr>
                               <td>        당기 상품 매 입 액</td>
-                              <td>403,174,000</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${current_product}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td></td>
                               <td>314,356,000</td>
@@ -109,27 +121,35 @@
                             <tr>
                               <td>        기말  상품  재고액</td>
                               <td></td>
-                              <td>1,597,620,000</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${end_product}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>807,860,000</td>
                             </tr>
                             <tr>
                               <td>Ⅲ  . 매  출  총  이  익</td>
                               <td></td>
-                              <td>642,420,000</td>
+                              <td class="red">
+                              <fmt:formatNumber value="${income1}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>322,710,000</td>
                             </tr>
                             <tr>
                               <td>Ⅳ  . 판  매  관  리  비</td>
                               <td></td>
-                              <td>6,463,946,906</td>
+                              <td class="red">
+                              <fmt:formatNumber value="${income2}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>5,134,878,100</td>
                             </tr>
                             <tr>
                               <td>      직   원    급   여</td>
-                              <td>370,000,000</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${employee_salary}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>370,000,000</td>
                               <td></td>
@@ -212,98 +232,68 @@
                               <td></td>
                             </tr>                                                                                                                                               
                             <tr>
-                              <td> Ⅰ. 유  동    부  채  </td>
+                              <td> Ⅴ  . 영    업   이   익  </td>
                               <td></td>
-                              <td>2,237,410,500</td>
                               <td></td>
-                              <td>1,942,210,500</td>
+                              <td></td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${income3}" pattern="###,###,###,###"/>
+                              </td>
                             </tr>
                             <tr>
-                              <td>      매   입    채   무(외상매입금)</td>
-                              <td>238,460,000</td>
+                              <td>Ⅵ  . 영  업  외  수  익</td>
+                              <td>1,000,000</td>
                               <td></td>
-                              <td>678,710,000</td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>      부 가 세 예  수 금</td>
-                              <td>736,830,000</td>
-                              <td></td>
-                              <td>543,185,000</td>
+                              <td>1,000,000</td>
                               <td></td>
                             </tr>
                             <tr>
-                              <td>부    채    총    계</td>
+                              <td>      이    자   수   익</td>
+                              <td>1,000,000</td>
                               <td></td>
-                              <td>2,292,510,500</td>
-                              <td></td>
-                              <td>1,997,310,500</td>
-                            </tr>
-                            <tr>
-                              <td>자본</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td>1,000,000</td>
                               <td></td>
                             </tr>
                             <tr>
-                              <td> Ⅰ. 자      본      금  </td>
+                              <td>Ⅶ  . 영  업  외  비  용</td>
+                              <td></td>
+                              <td>80,000,000</td>
+                              <td></td>
+                              <td>80,000,000</td>
+                            </tr>
+                            <tr>
+                              <td>      이   자    비   용</td>
+                              <td>80,000,000</td>
+                              <td></td>
+                              <td>80,000,000</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>Ⅷ  . 법인세비용차감전순이익</td>
+                              <td></td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${income6}" pattern="###,###,###,###"/>
+                              </td>
+                              <td></td>
+                              <td>1,513,671,806</td>
+                            </tr>
+                            <tr>
+                              <td>Ⅸ  . 법  인  세  비  용</td>
                               <td></td>
                               <td>541,997,000</td>
                               <td></td>
                               <td>541,997,000</td>
                             </tr>
                             <tr>
-                              <td>      자     본       금</td>
+                              <td>Ⅹ  . 당  기  순  이  익</td>
                               <td></td>
-                              <td>541,997,000</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${income8}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
-                              <td>541,997,000</td>
-                            </tr>
-                            <tr>
-                              <td> Ⅱ. 이  익  잉  여  금    </td>
-                              <td></td>
-                              <td>3,629,439,406</td>
-                              <td></td>
-                              <td>2,595,570,600</td>
-                            </tr>
- 							<tr>
-                              <td>(당기순이익)</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>                           
-							<tr>
-                              <td>   당기 :     1,513,671,806</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>   전기 :     1,509,072,120</td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>자본총계(당기순이익+)</td>
-                              <td></td>
-                              <td>4,171,436,406</td>
-                              <td></td>
-                              <td>3,137,567,600</td>
-                            </tr>
-                            <tr>
-                              <td>부채및자본총계</td>
-                              <td></td>
-                              <td>6,463,946,906</td>
-                              <td></td>
-                              <td>5,134,878,100</td>
+                              <td>1,513,671,806</td>
                             </tr>
                         </table>
-    
                      </div>
                  </div>
                  </div>
@@ -313,7 +303,8 @@
         <!-- End Wrapper-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp" %>	
          <!--End footer -->
        </div>
       <!--End main content -->

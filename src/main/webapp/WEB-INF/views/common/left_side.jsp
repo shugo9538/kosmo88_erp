@@ -35,7 +35,7 @@
 						<a href="${ROOT_PATH}/hr/salaryManagement">급여관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/slipManagement">전표 관리</a>
+						<a href="${ROOT_PATH}/hr/payslip">전표 관리</a>
 					</li>
 				</ul>
 			</li>
@@ -45,6 +45,7 @@
 					<span>회계관리</span>
 				</a>
 				<ul class="sub-menu-list">
+					<!--
 					<li class="active">
 						<a href="${ROOT_PATH}/account/configurations"> 기초정보 관리</a>
 					</li>
@@ -54,7 +55,7 @@
 					<li>
 						<a href="${ROOT_PATH}/account/financialFunds"> 금융/자금관리</a>
 					</li>
-					
+					  -->
 					<!-- 아래추가사항 -->
 					<li>
 						<a href="${ROOT_PATH}/account/clientList?categoryNum=110"> 1. 기초정보 관리</a>

@@ -410,7 +410,7 @@
         return this._longDateFormat[key];
     }
 
-    var defaultInvalidDate = 'Invalid date';
+    var defaultInvalidDate = '유효하지 않은 날짜';
 
     function invalidDate () {
         return this._invalidDate;
@@ -425,18 +425,18 @@
 
     var defaultRelativeTime = {
         future : 'in %s',
-        past   : '%s ago',
-        s  : 'a few seconds',
-        m  : 'a minute',
-        mm : '%d minutes',
-        h  : 'an hour',
-        hh : '%d hours',
-        d  : 'a day',
-        dd : '%d days',
-        M  : 'a month',
-        MM : '%d months',
-        y  : 'a year',
-        yy : '%d years'
+        past   : '%s 전',
+        s  : 'a few 초',
+        m  : 'a 분',
+        mm : '%d 분',
+        h  : 'an 시',
+        hh : '%d 시',
+        d  : 'a 일',
+        dd : '%d 일',
+        M  : 'a 달',
+        MM : '%d 달',
+        y  : 'a 년',
+        yy : '%d 년'
     };
 
     function relative__relativeTime (number, withoutSuffix, string, isFuture) {
@@ -1684,9 +1684,9 @@
     var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
     function localeMeridiem (hours, minutes, isLower) {
         if (hours > 11) {
-            return isLower ? 'pm' : 'PM';
+            return '오후';
         } else {
-            return isLower ? 'am' : 'AM';
+            return '오전';
         }
     }
 

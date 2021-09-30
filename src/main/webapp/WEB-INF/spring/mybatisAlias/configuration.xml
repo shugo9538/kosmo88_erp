@@ -20,13 +20,37 @@
 		/>	
 			
 			
-		<!-- 회계관리 -->	
-		<!-- 일반전표 VO -->
-		<typeAlias type="com.kosmo88.logistics_erp.account.vo.SlipVO"
-			alias="SlipVO"/>
-		<!-- 계좌 VO -->
-		<typeAlias type="com.kosmo88.logistics_erp.account.vo.AccountVO"
-		   alias="AccountVO"/>	
+		<!-- accounting start -->	
+		
+		<!-- 일반전표DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.SlipDTO"
+			alias="SlipDTO"/>
+		<!-- 거래처 DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.ClientDTO"
+		   alias="ClientDTO"/>		   
+		<!-- 계좌 DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.AccountDTO"
+		   alias="AccountDTO"/>	
+		<!-- 입출금내역DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.AccountHistoryDTO"
+		   alias="AccountHistoryDTO"/>	
+		<!-- 계좌+입출금내역 조인DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.BalanceDTO"
+		   alias="BalanceDTO"/>	
+		<!-- 매입/매출전표 DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.SalesSlipDTO"
+		   alias="SalesSlipDTO"/>
+		<!-- 제무재표 DTO -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO"
+		   alias="FinancialStatementsDTO"/>		   
+		<!-- 손익계산서 -->
+		<typeAlias type="com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO"
+		   alias="IncomeStatementDTO"/>
+		   		   		   
+		   
+		<!-- accounting end -->   
+		   
+		   
 		<!-- hr dto start -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO"
@@ -54,6 +78,7 @@
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
 		
+		
 		<!-- 구매관리  -->
 		<!-- purchase dto start -->
 		<typeAlias
@@ -65,7 +90,9 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
 			alias="PurchaseEstimateListViewDTO" />	
-			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
+			alias="PurchaseInsertClientDTO" />		
 			
 			
 		<!-- purchase dto end -->		
