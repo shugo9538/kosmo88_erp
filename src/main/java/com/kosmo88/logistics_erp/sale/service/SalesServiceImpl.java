@@ -147,7 +147,10 @@ public class SalesServiceImpl implements SalesService{
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		dao.deleteClient(id);
+		int deleteCnt = dao.deleteClient(id);
+		System.out.println("updateCnt : " + deleteCnt);
+		
+		model.addAttribute("updateCnt", deleteCnt);
 		
 	}
 	

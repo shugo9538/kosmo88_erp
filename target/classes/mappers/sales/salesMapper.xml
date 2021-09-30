@@ -38,7 +38,9 @@
 
 <!-- 거래처 삭제 -->
 <delete id="deleteClient" parameterType="int">
-	DELETE FROM client WHERE id=#{id}
+	UPDATE client
+	   SET enabled='N'
+	   AND id=#{id} 
 </delete>
 
 </mapper>

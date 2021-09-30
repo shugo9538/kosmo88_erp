@@ -65,10 +65,10 @@
                             		<th style="background-color: #f1f1f1;">거래처 이메일</th>
                             		<td >
                             			<input class="input" type="text" id="email1" name="email1" maxlength="20"
-											style="width:100px">
+											required style="width:100px">
 										@
 										<input class="input" type="text" id="email2" name="email2" maxlength="20"
-											style="width:80px">
+											required style="width:80px">
 										<select class="input" name="email3" onchange="selectEmailChk();">
 											<option value="0">직접입력</option>
 											<option value="naver.com">네이버</option>
@@ -127,7 +127,7 @@
                     <div class="white-box">
                         <h2 class="header-title">
                         	<i class="fa fa-chevron-circle-right mr-2"></i>
-                        	거래처 전체 목록 </h2><span style="text-align:right;">(등록된 거래처 : ${cnt}개)</span>
+                        	거래처 전체 목록 </h2>
                         <div class="table-responsive">
                             <div class="form-group">
                             </div>
@@ -193,7 +193,7 @@
                     </div>
             	<div>
             </div>
-        </div>
+       
        
        
         <!-- End Wrapper-->
