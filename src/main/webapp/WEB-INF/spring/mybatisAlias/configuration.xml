@@ -86,6 +86,10 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
 			alias="PurchaseItemDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
+			alias="PurchaseEstimateListViewDTO" />	
+			
 			
 			
 		<!-- purchase dto end -->		

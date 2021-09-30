@@ -13,38 +13,26 @@ $(document).ready(function() {
 	})
 });
 
-function initItem() {
-	var item = document.getElementById("item");
-	Array.from(item.getElementsByClassName("form-control")).forEach(f => {
-		f.setAttribute("required","true");
-		f.setAttribute("aria-required","true");
-	});
-	
+
+$('#clientManagementForm').ready(function(){
 	addItem();
-}
+});
 
 // 거래처 상품 등록 추가
 function addItem() {
 	var item = document.getElementById("item");
 	var addItemBtn = document.getElementById("addItem");
-	var newItem = document.createElement("div");
+	var newItem = document.createElement("tr");
 	
 	newItem = item.cloneNode(true);
-	newItem.style.display = "block";
+	newItem.removeAttribute("style");
 	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.removeAttribute("disabled"));
-	
-	document.getElementById("item-group").insertBefore(newItem, addItemBtn);
-	
-	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.value = '');
-	
-	
-}
-
     Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
         f.setAttribute("required", true));
   
 	document.getElementById("item-group").appendChild(newItem);
 }
+
 // 거래처 상품 삭제
 function delItem(obj) {
 	var itemGroup = document.getElementById("item-group");
@@ -59,39 +47,47 @@ function delItem(obj) {
 }
 
 // 입력 후 커서 이동
+function nextRegisterNum1(){
+	if(document.clientRegisterForm.register_num1.value.length >= 3){
+		document.clientRegisterForm.register_num2.focus();
+	}
+}
+function nextRegisterNum2(){
+	if(document.clientRegisterForm.register_num2.value.length >= 2){
+		document.clientRegisterForm.register_num3.focus();
+	}
+}
+function nextRegisterNum3(){
+	if(document.clientRegisterForm.register_num3.value.length >= 5){
+		document.clientRegisterForm.email1.focus();
+	}
+}
+
 function nextPhone1() {
-	if(document.clientRegisterform.phone1.value.length >= 3) {
-		document.clientRegisterform.phone2.focus();
+	if(document.clientRegisterForm.phone1.value.length >= 3) {
+		document.clientRegisterForm.phone2.focus();
 	}
 }
 
 function nextPhone2() {
-	if(document.clientRegisterform.phone2.value.length >= 4) {
-		document.clientRegisterform.phone3.focus();
+	if(document.clientRegisterForm.phone2.value.length >= 4) {
+		document.clientRegisterForm.phone3.focus();
 	}
 }
 
 function nextPhone3() {
-	if(document.clientRegisterform.phone3.value.length >= 4) {
-		document.clientRegisterform.email.focus();
+	if(document.clientRegisterForm.phone3.value.length >= 4) {
+		document.clientRegisterForm.email.focus();
 	}
 }
 
-function nextRegister_num1() {
-	if(document.clientRegisterform.register_num1.value.length >= 3) {
-		document.clientRegisterform.register_num2.focus();
-	}
-}
-
-function nextRegister_num2() {
-	if(document.clientRegisterform.register_num2.value.length >= 2) {
-		document.clientRegisterform.register_num3.focus();
-	}
-}
-
-function nextRegister_num3() {
-	if(document.clientRegisterform.register_num3.value.length >= 5) {
-		document.clientRegisterform.zip_code.focus();
+// 이메일 체크
+function selectEmailChk(){
+	if(document.clientRegisterForm.email3.value == 0){ // 직접입력
+		document.clientRegisterForm.email2.value = ""; // input 초기화
+		document.clientRegisterForm.email2.focus();
+	} else {
+		document.clientRegisterForm.email2.value = document.clientRegisterForm.email3.value;
 	}
 }
 
