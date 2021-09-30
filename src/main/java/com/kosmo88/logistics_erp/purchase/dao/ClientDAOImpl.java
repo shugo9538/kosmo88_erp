@@ -66,10 +66,4 @@ public class ClientDAOImpl implements ClientDAO {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
 
-    @Override
-    public int deleteChoiceClient(int id) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }
