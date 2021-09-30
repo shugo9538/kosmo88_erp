@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -24,7 +23,6 @@
 			
 			<ul class="nav nav-pills custom-nav">
 				<li class="active"><a href="${ROOT_PATH}/purchase/clientRegister">거래처 등록</a></li>
-				<!-- <li class="active"><a href="${ROOT_PATH}/purchase/clientChoiceDelete">거래처 삭제</a></li>  -->
 			</ul>
 			
          <!--Start row-->
@@ -36,16 +34,20 @@
                      	<i class="fa fa-chevron-circle-right mr-2"></i>
                      	거래처 전체 목록</h2>
                      <div class="table-responsive">
-                    	 <div class="col-md-2 mt-1">
-							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
+                    	 <div class="col-md-2 mt-1 mb-4">
+							<input class="btn btn-default" type="button" id="delButton" name="delButton" value="거래처 삭제">
 						 </div>
+						 
+						<!-- csrf 토큰 -->
+						<sec:csrfInput />
                      	
-                         <table id="example" class="display table">
+                         <table id="clientList" class="display table">
                              <thead>
                                  <tr>
                                      <td style="text-align:center">
-                                         <input type="checkbox" id="checkAll" name="checkAll" id="select">
+                                         <input type="checkbox" id="checkAll" name="checkAll">
                                      </td>
+                                     <td>거래처 번호</td>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>
@@ -62,6 +64,7 @@
 		                                    <th style="text-align:center">
 		                                        <input type="checkbox" class="client_id" name="client_id" value="${dto.id}"> <!-- client id -->
 		                                    </th>
+		                                    <td>${dto.id}</td>
 		                                    <td><a href="${ROOT_PATH}/purchase/">${dto.name}</a></td>
 		                             	 	<td>
 		                             	 		${fn:substring(dto.register_num,0,3)} -
@@ -103,5 +106,6 @@
 		
 		<%@ include file="../common/footer.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
+		<%@ include file="./js_purchase.jsp"%>
 </body>
 </html>

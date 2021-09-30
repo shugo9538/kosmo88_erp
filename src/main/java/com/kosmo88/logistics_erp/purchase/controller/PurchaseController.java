@@ -1,6 +1,7 @@
-package com.kosmo88.logistics_erp.member.controller;
+package com.kosmo88.logistics_erp.purchase.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,12 +10,15 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
+// @RestController
 @Controller
 @RequestMapping(value = "/purchase")
 public class PurchaseController {
@@ -26,8 +30,6 @@ public class PurchaseController {
     // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
-
-    	purchaseService.clientList(req, model);
     	
         return "purchase/clientManagement";
     }
@@ -36,57 +38,56 @@ public class PurchaseController {
     @RequestMapping(value = "/clientRegister")
     public String clientRegister(HttpServletRequest req, Model model) {
     	
-    	purchaseService.clientList(req, model);
-    	
     	return "purchase/clientRegister";
-    }
-    
-    // 거래처 상품 등록 처리
-    @RequestMapping(value = "/clientRegisterAction")
-    public String clientRegisterAction(HttpServletRequest req, Model model) {
-    	
-    	purchaseService.RegisterClient(req, model);
-    	
-    	return "purchase/clientRegisterAction";
-    }
-    
-    // 거래처 수정
-    @RequestMapping(value = "/clientUpdate")
-    public String clientUpdate(HttpServletRequest req, Model model) {
-    	
-    	// purchaseService.updateClient
-    	
-    	return "purchase/clientUpdate";
-    }
-    
-    // 거래처 삭제(단일 삭제)
-    @RequestMapping(value = "/clientDelete")
-    public String clientDelete(HttpServletRequest req, Model model) {
-    	
-    	// purchaseService.updateClient
-    	// (update)
-    	
-    	return "purchase/clientDelete";
-    }    
-    
-    // 거래처 검색
-    @RequestMapping(value = "/clientSearch")
-    public String clientSearch(HttpServletRequest req, Model model) {
-    	
-    	// purchaseService.searchClient
-    	
-    	return "purchase/clientSearch";
     }
     
     // 거래처 삭제(선택삭제)
     @RequestMapping(value = "/clientChoiceDelete")
     public String clientChoiceDelete(HttpServletRequest req, Model model) {
     	
-    	// service.deleteChoiceClient
-    	// (update)
+    	purchaseService.clientChoiceDelete(req, model);
     	
     	return "purchase/clientChoiceDelete";
     }
+    
+    // 거래처 상세페이지
+    @RequestMapping(value = "/clientDetail")
+    public String clientDetail(HttpServletRequest req, Model model) {
+
+    	purchaseService.clientDetail(req, model);
+
+    	return "purchase/clientDetail";
+    }
+    
+    // 거래처 수정페이지
+    @RequestMapping(value = "/clientUpdate")
+    public String clientUpdate(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.clientUpdate(req, model);
+    	
+    	return "purchase/clientUpdate";
+    }
+    
+    // 거래처 수정 처리
+    @RequestMapping(value = "/clientUpdateAction")
+    public String clientUpdateAction(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.clientUpdateAction(req, model);
+    	
+    	return "purchase/clientUpdateAction";
+    }
+    
+    // 거래처 삭제(상세페이지에서 단일 삭제)
+    @RequestMapping(value = "/clientDelete")
+    public String clientDelete(HttpServletRequest req, Model model) {
+    	
+    	purchaseService.clientDelete(req, model);
+    	
+    	return "purchase/clientDelete";
+    }
+    
+
+/*  
 
     // 견적서 관리 - 목록
     @RequestMapping(value = "/estimateManagement")
@@ -115,15 +116,6 @@ public class PurchaseController {
     	
         return "purchase/estimateDelete";
     }     
-
-    // 견적서 검색
-    @RequestMapping(value = "/estimateSearch")
-    public String estimateSearch(HttpServletRequest req, Model model) {
-    	
-    	// service.searchEstimate
-    	
-    	return "purchase/estimateSearch";
-    }
     
     // 견적서 등록
     @RequestMapping(value = "/estimateRegister") 
@@ -169,15 +161,6 @@ public class PurchaseController {
     	// (update)
     	
     	return "purchase/purchaseDelete";
-    }
-
-    // 발주서 검색
-    @RequestMapping(value = "/purchaseSearch")
-    public String purchaseSearch(HttpServletRequest req, Model model) {
-    	
-    	// service.searchPurchase
-    	
-    	return "purchase/purchaseSearch";
     }
     
     // 발주서 등록
@@ -226,15 +209,6 @@ public class PurchaseController {
     	return "purchase/purchaseSlipDelete";
     }
     
-    // 구매전표 검색
-    @RequestMapping(value = "/purchaseSlipSearch")
-    public String purchaseSlipSearch(HttpServletRequest req, Model model) {
-    	
-    	// service.searchPurchaseSlip
-    	
-    	return "purchase/purchaseSlipSearch";
-    } 
-    
     // 구매전표 등록
     @RequestMapping(value = "/purchaseSlipRegister")
     public String purchaseSlipRegister(HttpServletRequest req, Model model) {
@@ -243,5 +217,5 @@ public class PurchaseController {
     	
     	return "purchase/purchaseSlipRegister";
     }
-    
+*/    
 }
