@@ -24,38 +24,34 @@ public class AttendanceController {
 
     @Autowired
     AttendanceService attendanceService;
-    
+
     // 근태 조회
     @RequestMapping(value = "")
     public String attendanceManagement(HttpServletRequest req, HttpServletResponse res) {
         return "hr/attendanceManagement/attendanceManagement";
     }
-    
+
     // 근태 입력
     @RequestMapping(value = "/insertAttendance")
     public String insertAttendance(HttpServletRequest req, HttpServletResponse res) {
         return "hr/attendanceManagement/insertAttendance";
     }
-    
+
     // 출퇴근 기록부
     @RequestMapping(value = "/commutingRecords")
     public String commutingRecords(HttpServletRequest req, HttpServletResponse res) {
         return "hr/attendanceManagement/commutingRecords";
     }
-    
-// 근태 현황
-    @RequestMapping(value = "/attendanceStatus")
-    public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
-//        attendanceService.attendanceStatus(req, res);
-        
-        return "hr/attendanceManagement/attendanceManagement";
-    }
-    
-    // 출퇴근 입력
+
+    // 출퇴근 입력 화면
     @RequestMapping(value = "/insertCommute")
     public String insertCommute(HttpServletRequest req, HttpServletResponse res) {
-//        attendanceService.insertCommute(req, res);
-        
         return "hr/attendanceManagement/insertCommute";
+    }
+
+    // 근태 현황
+    @RequestMapping(value = "/attendanceStatus")
+    public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
+        return "hr/attendanceManagement/attendanceManagement";
     }
 }
