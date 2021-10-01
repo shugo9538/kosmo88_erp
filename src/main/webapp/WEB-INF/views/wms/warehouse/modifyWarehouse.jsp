@@ -137,11 +137,12 @@
 				<!--End row-->
 			</div>
 			<!-- End Wrapper-->
-			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-			<%@ include file="/WEB-INF/views/wms/common/myFooter.jsp"%>
+		<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 		</div>
 	</div>
 
+	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
+	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script>
 		window.onload = addRack();

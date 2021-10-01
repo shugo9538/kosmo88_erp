@@ -32,5 +32,11 @@ public class WarehouseDto {
 	public void setRegister_date(Date register_date) {
 		this.register_date = register_date;
 	}
+	@Override
+	public String toString() {
+		return "WarehouseDto [id=" + id + ", name=" + name + ", address=" + address + ", register_date=" + register_date
+				+ "]";
+	}
+	
 	
 }
