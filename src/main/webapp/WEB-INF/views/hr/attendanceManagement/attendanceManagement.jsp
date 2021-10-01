@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../../common/settings.jsp"%>
+<%@ include file="../css_settings/customSettings.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../../common/left_side.jsp"%>
@@ -23,11 +23,11 @@
 			</div>
 			<!--END Page Title-->
 			<!--Start Page Tab-->
-			<ul class="nav nav-pills custom-nav">
-				<li class="active">
+			<ul class="nav nav-tabs nav-pills custom-nav">
+				<li class="nav-item">
 					<a id="selectAttendacne">근태 조회</a>
 				</li>
-				<li class="active">
+				<li class="nav-item">
 					<a id="commutingRecords">출퇴근 기록부</a>
 				</li>
 			</ul>
