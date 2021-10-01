@@ -43,3 +43,5 @@ target/
 
 .DS_Store
 .settings
+.springBeans
+.project
