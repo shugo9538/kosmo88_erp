@@ -29,10 +29,10 @@
 						<a href="${ROOT_PATH}/hr/attendance/">근태 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/holidayManagement">휴가 관리</a>
+						<a href="${ROOT_PATH}/hr/holiday">휴가 관리</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/salaryManagement">급여관리</a>
+						<a href="${ROOT_PATH}/hr/salary">급여관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/hr/payslip">전표 관리</a>
