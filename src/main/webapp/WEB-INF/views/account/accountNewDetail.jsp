@@ -93,10 +93,8 @@
                                 <option value="하나은행">하나은행</option>
                                 <option value="기업은행">기업은행</option>
                                 <option value="카카오뱅크">카카오뱅크</option>
-                                <option value="토스">토스</option>
                                 <option value="농협은행">농협은행</option>
                                 <option value="SC제일은행">SC제일은행 </option>
-                                <option value="수협">수협</option>
                                 <option value="케이뱅크">케이뱅크</option>
                                 <option value="대구은행">대구은행</option>
                                 <option value="부산은행">부산은행</option>
@@ -106,7 +104,7 @@
                             <div class="form-group">
                             <label class="col-md-3 control-label" for="account_number">계좌번호<span style="color:red">(숫자만)</span> <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" id="account_number" name="account_number" placeholder="계좌번호를 입력하세요" required>
+                              <input class="form-control" type="text" class="account_number" id="account_number"  name="account_number" placeholder="계좌번호를 입력하세요" required>
                             </div>
                           </div>
                             <div class="form-group">

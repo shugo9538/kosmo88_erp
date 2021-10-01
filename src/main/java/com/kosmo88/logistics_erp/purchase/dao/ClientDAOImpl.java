@@ -66,10 +66,18 @@ public class ClientDAOImpl implements ClientDAO {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
 
+<<<<<<< HEAD:src/main/java/com/kosmo88/logistics_erp/purchase/dao/PurchaseDAOImpl.java
+	@Override
+	public int deleteChoiceClient(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+=======
     @Override
     public int deleteChoiceClient(int id) {
         // TODO Auto-generated method stub
         return 0;
     }
 
+>>>>>>> main:src/main/java/com/kosmo88/logistics_erp/purchase/dao/ClientDAOImpl.java
 }

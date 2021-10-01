@@ -26,7 +26,7 @@
           <!--Start Page Title-->
            <div class="page-title-box">
                 <h4 class="page-title">
-              급여통장 거래내역</h4>
+              ${dto.name}거래내역</h4>
                 <ol class="breadcrumb">
              <!--        <li>
                         <a href="#">급여통장</a>

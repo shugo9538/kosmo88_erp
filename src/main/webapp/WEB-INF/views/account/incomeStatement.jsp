@@ -234,11 +234,11 @@
                             <tr>
                               <td> Ⅴ  . 영    업   이   익  </td>
                               <td></td>
-                              <td></td>
-                              <td></td>
                               <td class="red">
                               	<fmt:formatNumber value="${income3}" pattern="###,###,###,###"/>
                               </td>
+                              <td></td>
+                              <td>800,000</td>
                             </tr>
                             <tr>
                               <td>Ⅵ  . 영  업  외  수  익</td>

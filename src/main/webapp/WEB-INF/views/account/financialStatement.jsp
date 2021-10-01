@@ -274,7 +274,7 @@
 
         <!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="common/accountFooter.jsp" %>
+		<%@ include file="common/accountFooter.jsp"%>
          <!--End footer -->
        </div>
       <!--End main content -->

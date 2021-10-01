@@ -32,8 +32,8 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 거래처 목록조회
 	@Override
-	public List<ClientDTO> selectClient(Map<String, Object> map) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectClient", map);
+	public List<ClientDTO> selectClient() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectClient");
 	}
 	// 신규 거래처 등록
 	@Override
@@ -59,8 +59,8 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 일반전표 조회
 	@Override
-	public List<SlipDTO> selectSlip(Map<String, Object> map) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlip", map);
+	public List<SlipDTO> selectSlip() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlip");
 	}
 	// 일반전표 등록 (parameter 로 int department_id, int department_request)
 	@Override
@@ -91,8 +91,8 @@ public class AccountDAOImpl implements AccountDAO {
 	// 공급가액  + 세액 합계조회
 	// 매입/매출전표 전체목록
 	@Override
-	public List<SalesSlipDTO> selectSalesSlip(Map<String, Object> map) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSalesSlip", map);
+	public List<SalesSlipDTO> selectSalesSlip() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSalesSlip");
 	}
 	// 매입or매출 전표 목록 조회
 	@Override
@@ -108,13 +108,19 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 계좌 목록조회
 	@Override
-	public List<AccountDTO> selectAccount(Map<String, Object> map) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectAccountList", map);
+	public List<AccountDTO> selectAccount() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectAccountList");
 	}
 	// 등록 계좌정보 조회(계좌거래내역 등록시 계좌정보)
 	@Override
-	public List<AccountDTO> selectAccountInfo() {
-		return sqlSession.selectList(STATEMENT + ".selectAccountInfo");
+	public AccountDTO selectAccountInfo(String account_number) {
+		System.out.println("dbdbdbdbdbdb");
+		return sqlSession.selectOne(STATEMENT + ".selectAccountInfo", account_number);
+	}
+	// 계좌번호 중복조회
+	@Override
+	public int accountConfrim(String account_number) {
+		return sqlSession.selectOne(STATEMENT + ".accountConfrim");
 	}
 	// 신규통장 추가처리
 	@Override
@@ -146,6 +152,7 @@ public class AccountDAOImpl implements AccountDAO {
 	public IncomeStatementDTO selectIncomeStatement() {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
+
 
 
 
