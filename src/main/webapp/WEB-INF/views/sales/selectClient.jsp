@@ -23,8 +23,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <!-- 등록된 거래처가 있는 경우 -->
-                                <c:if test="${cnt > 0}">
                                 	<c:forEach var="dto" items="${dto}">
                                 		<input type="hidden" id="c_email" name="c_email" value="${dto.email}">
                                 		<input type="hidden" id="c_zip_code" name="c_zip_code" value="${dto.zip_code}">
@@ -32,7 +30,6 @@
                                 		<input type="hidden" id="c_detail_address" name="c_detail_address" value="${dto.detail_address}">
                                 		<tr>
 	                                        <td>
-	                                        	
 	                                        	<input style="border:none;" type="text" id="c_id" name="c_id" value="${dto.id}">
 	                                        	
 	                                        </td>
@@ -44,7 +41,6 @@
 	                                        </td>
 	                                    </tr>
                                 	</c:forEach>
-                                </c:if>
                            </tbody>
                        </table>
                        <div style="text-align:center;" class="form-group mt-5 col-md-12">
