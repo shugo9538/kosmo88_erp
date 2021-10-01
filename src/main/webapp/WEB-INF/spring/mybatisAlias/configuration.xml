@@ -78,6 +78,7 @@
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
 		
+		
 		<!-- 구매관리  -->
 		<!-- purchase dto start -->
 		<typeAlias
@@ -86,6 +87,12 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
 			alias="PurchaseItemDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
+			alias="PurchaseEstimateListViewDTO" />	
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
+			alias="PurchaseInsertClientDTO" />		
 			
 			
 		<!-- purchase dto end -->		

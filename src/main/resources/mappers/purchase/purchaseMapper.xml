@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.kosmo88.logistics_erp.purchase.dao.PurchaseDAO">
+<mapper namespace="com.kosmo88.logistics_erp.purchase.dao.ClientDAO">
 
 	<!-- 거래처(구매처) 목록	 -->
  	<select id="getClientList" resultType="PurchaseClientDTO">
@@ -16,13 +16,13 @@
  	</select>
  
 	<!-- 거래처 등록 처리 -->
-	<insert id="RegisterClient" parameterType="PurchaseClientDTO">
-		INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code)
-		VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code})
+	<insert id="registerClient" parameterType="PurchaseInsertClientDTO">
+		INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code, enabled)
+		VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code}, #{enabled})
 	</insert>
 
 	<!-- 상품 등록 처리 -->
-	<insert id="RegisterItem" parameterType="PurchaseItemDTO">
+	<insert id="registerItem" parameterType="PurchaseItemDTO">
 		INSERT INTO item(id, name, category, price)
 		VALUES (item_seq.nextval, #{name}, #{category}, #{price})
 	</insert>

@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kosmo88.logistics_erp.purchase.service.PurchaseService;
+import com.kosmo88.logistics_erp.purchase.service.ClientService;
+import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -25,7 +26,7 @@ public class EstimateController {
     private static final Logger logger = LoggerFactory.getLogger(EstimateController.class);
     
     @Autowired
-    PurchaseService purchaseService;
+    EstimateService estimateService;
 
     // 견적서 관리 - 목록
     @RequestMapping(value = "/estimateManagement")
@@ -62,13 +63,5 @@ public class EstimateController {
     	return "purchase/estimateRegister";
     }
     
-    // 견적서 삭제(선택삭제)
-    @RequestMapping(value = "/estimateChoiceDelete")
-    public String estimateChoiceDelete(HttpServletRequest req, Model model) {
-    	
-    	// service.deleteChoiceEstimate
-    	
-    	return "purchase/estimateChoiceDelete";
-    }
 */    
 }
