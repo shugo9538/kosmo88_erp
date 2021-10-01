@@ -20,6 +20,7 @@
  		UPDATE request
  		   SET enabled = 'N'
  		 WHERE id = #{request_id}
+ 		   AND state = 'TX_ESTIMATE'
  	</update>
  	
 

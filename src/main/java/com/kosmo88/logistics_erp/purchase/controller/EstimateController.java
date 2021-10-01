@@ -19,7 +19,6 @@ import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
-// @RestController
 @Controller
 @RequestMapping(value = "/purchase")
 public class EstimateController {
@@ -34,6 +33,24 @@ public class EstimateController {
     	
         return "purchase/estimateManagement";
     }
+    
+    // 견적서 등록 화면
+    @RequestMapping(value = "/estimateRegister")
+    public String estimateRegister(HttpServletRequest req, Model model) {
+    	
+    	return "purchase/estimateRegister";
+    }
+/*    
+    // 견적서 등록 화면 - 거래처 선택
+    @RequestMapping(value = "/selectClient")
+    public String selectClient(HttpServletRequest req, Model model) {
+    	
+    	estimateService.selectClient(req, model);
+    	
+    	return "purchase/selectClient";
+    }
+*/ 
+    
 /*    
     // 견적서 수정
     @RequestMapping(value = "/estimateUpdate")
