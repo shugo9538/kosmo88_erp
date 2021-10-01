@@ -31,7 +31,6 @@
                                 		<tr>
 	                                        <td>
 	                                        	<input style="border:none;" type="text" id="c_id" name="c_id" value="${dto.id}">
-	                                        	
 	                                        </td>
 	                                        <th><input style="border:none;" type="text" id="c_name" name="c_name" value="${dto.name}"></th>
 	                                        <td><input style="border:none;" type="text" id="c_ceo_name" name="c_ceo_name" value="${dto.ceo_name}"></td>

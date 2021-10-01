@@ -55,6 +55,15 @@ public class SalesEstimateController {
 		return "sales/estimateRegister";
 	}
 	
+	// 견적서 상세 화면
+	@RequestMapping(value = "/estimateDetail")
+	public String estimateDetail(HttpServletRequest req, Model model) {
+		
+		estimateService.estimateDetail(req, model);
+		
+		return "sales/estimateDetail";
+	}
+	
 	
 	
 }

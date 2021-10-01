@@ -31,7 +31,7 @@
 	                                        <td><input style="border:none;" type="text" id="c_employee_phone" name="c_employee_phone" value="${dto.phone}"></td>
 	                                        <td><input style="border:none;" type="text" id="c_employee_email" name="c_employee_email" value="${dto.email}"></td>
 	                                        <td>
-	                                        	<input class="btn  btn-primary" type="button" id="select" name="${dto.name}" value="선택"/>
+	                                        	<input class="btn  btn-primary" type="button" id="select" name="${dto.id}" value="선택"/>
 	                                        </td>
 	                                    </tr>
                                 	</c:forEach>

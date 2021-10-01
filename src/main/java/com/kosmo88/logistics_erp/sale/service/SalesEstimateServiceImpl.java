@@ -50,10 +50,19 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		return (ArrayList<SalesEstimateListViewDTO>) estimateDao.getEstimateList();
 	}
 
+	// 견적서 선택 삭제
 	@Override
 	public boolean estimateChoiceDelete(int[] request_id) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	// 견적서 상세페이지
+	@Override
+	public void estimateDetail(HttpServletRequest req, Model model) {
+		
+		int id = Integer.parseInt(req.getParameter("request_id"));
+		
 	}
 
 	
