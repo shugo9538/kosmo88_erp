@@ -20,6 +20,8 @@ public interface EstimateService {
 	
 	// 견적서 관리 - 견적서 삭제(선택삭제)
 	public boolean estimateChoiceDelete(int[] request_id);
-	
-	
+/*	
+	// 견적서 등록 화면 - 거래처 선택
+	public selectClient(HttpServletRequest req, Model model);
+*/	
 }

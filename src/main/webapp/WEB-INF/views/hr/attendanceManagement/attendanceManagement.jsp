@@ -28,9 +28,6 @@
 					<a id="selectAttendacne">근태 조회</a>
 				</li>
 				<li class="active">
-					<a id="attendanceStatus">근태 현황</a>
-				</li>
-				<li class="active">
 					<a id="commutingRecords">출퇴근 기록부</a>
 				</li>
 			</ul>
