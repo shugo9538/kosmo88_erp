@@ -65,6 +65,7 @@ public class ClientDAOImpl implements ClientDAO {
 	public int updateItem(PurchaseItemDTO idto) {
 		return sqlSession.update(STATEMENT + ".updateItem", idto);
 	}
+<<<<<<< HEAD
 
 <<<<<<< HEAD:src/main/java/com/kosmo88/logistics_erp/purchase/dao/PurchaseDAOImpl.java
 	@Override
@@ -80,4 +81,6 @@ public class ClientDAOImpl implements ClientDAO {
     }
 
 >>>>>>> main:src/main/java/com/kosmo88/logistics_erp/purchase/dao/ClientDAOImpl.java
+=======
+>>>>>>> c8cf8506b139343f947f559f0bbb3fe6281b58d4
 }

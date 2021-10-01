@@ -16,8 +16,11 @@
 		<!-- 거래처 DTO -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
-			alias="SalesClientDTO"
-		/>	
+			alias="SalesClientDTO"/>
+		<!-- 담당자 DTO -->
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
+			alias="SalesEmployeeDTO"/>
 			
 			
 		<!-- accounting start -->	
@@ -88,12 +91,16 @@
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
 			alias="PurchaseItemDTO" />
 		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
-			alias="PurchaseEstimateListViewDTO" />	
-		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
 			alias="PurchaseInsertClientDTO" />		
-			
+					
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
+			alias="PurchaseEstimateListViewDTO" />	
+	
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
+			alias="PurchaseOrderListViewDTO" />	
 			
 		<!-- purchase dto end -->		
 		
