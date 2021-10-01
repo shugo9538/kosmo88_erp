@@ -70,8 +70,10 @@ public class ClientRestController {
 	// 상품 등록 처리
     @RequestMapping(value = "/clientRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
+        System.out.println(dtos);
     	for (PurchaseItemDTO dto : dtos) {
     		clientService.itemRegisterAction(dto);
+    		System.out.println(dto.getName());
     	}
     	return true;
     }
