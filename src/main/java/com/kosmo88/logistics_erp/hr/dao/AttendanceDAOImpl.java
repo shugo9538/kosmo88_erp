@@ -33,11 +33,6 @@ public class AttendanceDAOImpl implements AttendanceDAO {
     }
 
     @Override
-    public AttendanceDTO attendanceStatus() {
-        return null;
-    }
-
-    @Override
     public List<CommuteDTO> commutingRecords() {
         return sqlSession.selectList(STATEMENT + ".commutingRecords");
     }

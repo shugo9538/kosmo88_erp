@@ -1,7 +1,5 @@
 package com.kosmo88.logistics_erp.hr.controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,11 +45,5 @@ public class AttendanceController {
     @RequestMapping(value = "/insertCommute")
     public String insertCommute(HttpServletRequest req, HttpServletResponse res) {
         return "hr/attendanceManagement/insertCommute";
-    }
-
-    // 근태 현황
-    @RequestMapping(value = "/attendanceStatus")
-    public String attendanceStatus(HttpServletRequest req, HttpServletResponse res) {
-        return "hr/attendanceManagement/attendanceManagement";
     }
 }

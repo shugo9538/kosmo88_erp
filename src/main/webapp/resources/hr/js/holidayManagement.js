@@ -15,53 +15,42 @@ $(document).ready(function() {
     currLocation = currLocation.toString();
     csrfData[csrfParameter] = csrfToken;
     // 시작 주소로 처음 구분
-    if (currLocation.split('/')[5] == 'attendance') {
-        $('#datatables').append('<table id="attendanceTable"></table>');
+    console.log(currLocation.split('/')[5]);
+    if (currLocation.split('/')[5] == 'holiday') {
+        $('#datatables').append('<table id="holidayTable"></table>');
         columns = [
                 {
-                    'sTitle' : '#',
-                    data : 'r_num',
-                    render : function(data) {
-                        return '<input type="checkBox" value="' + data + '">';
-                    }
+                    'sTitle' : '사원 코드',
+                    data : 'employee_id'
                 }, {
-                    'sTitle' : '근태 아이디',
-                    data : 'id'
+                    'sTitle' : '휴가 사용일',
+                    data : 'use_date'
                 }, {
-                    'sTitle' : '근태 코드',
-                    data : 'attendance_cd_id'
+                    'sTitle' : '연차',
+                    data : 'annual_holiday'
                 }, {
-                    'sTitle' : '근태 신청일',
-                    data : 'application_date',
-                    render : $.fn.dataTable.render.moment()
-                }, {
-                    'sTitle' : '시작',
-                    data : 'begin_date',
-                    render : $.fn.dataTable.render.moment()
-                }, {
-                    'sTitle' : '종료',
-                    data : 'end_date',
-                    render : $.fn.dataTable.render.moment()
-                }, {
-                    'sTitle' : '사유',
-                    data : 'reason'
-                }, {
-                    'sTitle' : '상태',
-                    data : 'state'
+                    'sTitle' : '휴가 코드',
+                    data : 'holiday_id'
                 }
         ];
 
-        url = 'selectAttendacne';
-        callList(url, columns);
+        ordering = [
+            [
+                    1, 'desc'
+            ]
+        ];
+        
+        url = 'selectHoliday';
+        callHolidayList(url, columns, ordering);
     }
 });
 
-$('.white-box').on('click', '#insertAttendanceAction, #insertCommuteAction', function(event) {
+$('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', function(event) {
     csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     csrfToken = $("meta[name='_csrf']").attr("content");
     var list = new Array();
     var i = 0;
-    $('#insertAttendanceForm #attendance').each(function() {
+    $('#insertholidayForm #holiday').each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {
             var data = $(this);
@@ -73,7 +62,7 @@ $('.white-box').on('click', '#insertAttendanceAction, #insertCommuteAction', fun
     });
     list.pop();
     var formData = JSON.stringify(list);
-    var loc = $('#insertAttendanceForm').attr('action');
+    var loc = $('#insertholidayForm').attr('action');
     console.log(loc, formData);
 
     if (preventMultiFlag) {
@@ -119,7 +108,7 @@ $(document).on("click", '#selectAttendacne', function() {
                 data : 'id'
             }, {
                 'sTitle' : '근태 코드',
-                data : 'attendance_cd_id'
+                data : 'holiday_cd_id'
             }, {
                 'sTitle' : '근태 신청일',
                 data : 'application_date',
@@ -192,7 +181,7 @@ $(document).on('click', '#commutingRecords', function() {
                 }
             }, {
                 'sTitle' : '근태',
-                data : 'attendance_id'
+                data : 'holiday_id'
             }, {
                 'sTitle' : '사원번호',
                 data : 'employee_id'
@@ -203,10 +192,10 @@ $(document).on('click', '#commutingRecords', function() {
     callList(url, columns, ordering);
 });
 
-function callList(url, columns, ordering) {
+function callHolidayList(url, columns, ordering) {
     $("#datatables").empty();
-    $('#datatables').append('<table id="attendanceTable" style="width:100%"></table>');
-    currTab = $('#attendanceTable').DataTable({
+    $('#datatables').append('<table id="holidayTable" style="width:100%"></table>');
+    currTab = $('#holidayTable').DataTable({
         "dom" : '<"top"l>rt<"bottom"ip><"clear">',
         order : ordering,
         ajax : {
@@ -219,28 +208,28 @@ function callList(url, columns, ordering) {
         destroy : true,
     });
 
-    if (url == 'selectAttendacne') {
-        $('#datatables').append('<button id="insertAttendance">');
-        $('#attendanceTable_length').after(
-                '<div id = attendanceTable_filter style="text-align: right;"></div>');
-        $('#attendanceTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
-        $('#attendanceTable_filter').append(
+    if (url == 'selectHoliday') {
+        $('#datatables').append('<button id="insertholiday">');
+        $('#holidayTable_length').after(
+                '<div id = holidayTable_filter style="text-align: right;"></div>');
+        $('#holidayTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
+        $('#holidayTable_filter').append(
                 '<input type="search" class="column_filter" id="searchBar">');
-        var searchDiv = $('#attendanceTable_filter').find('label');
-        searchDiv.before('<select id="searchAttendance" style="margin-right:10px">');
+        var searchDiv = $('#holidayTable_filter').find('label');
+        searchDiv.before('<select id="searchholiday" style="margin-right:10px">');
         for (var i = 0; i < attCol.length; i++) {
-            $('#searchAttendance').append('<option value=' + i + '>' + attCol[i] + '</option>');
+            $('#searchholiday').append('<option value=' + i + '>' + attCol[i] + '</option>');
         }
 
-        $('#insertAttendance').append('신규 등록');
+        $('#insertholiday').append('신규 등록');
     } else if (url == 'commuteList') {
         $('#datatables').append('<button id="insertCommute">');
         $('#insertCommute').append('신규 등록');
     }
 }
 
-$('#attendanceTable').ready(function() {
-    $('#searchAttendance').on('click', function() {
+$('#holidayTable').ready(function() {
+    $('#searchholiday').on('click', function() {
         var searchingText = $('#searchBar').val();
         currTab.search('').columns().search('').draw();
         if (this.value == 0) {
@@ -251,7 +240,7 @@ $('#attendanceTable').ready(function() {
     });
 
     $('#searchBar').on('keyup click', function() {
-        var col = $('#searchAttendance').val();
+        var col = $('#searchholiday').val();
         currTab.search('').columns().search('').draw();
         if (col == 0) {
             currTab.search(this.value).draw();

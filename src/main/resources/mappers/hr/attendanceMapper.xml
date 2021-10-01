@@ -5,14 +5,6 @@
 
 <mapper namespace="com.kosmo88.logistics_erp.hr.dao.AttendanceDAO">
 	<!-- 근태 관리 -->
-	<!-- 근태 목록 수 -->
-	<select
-		id="getAttendanceNum"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM attendance
-	</select>
-
 	<!-- 근태 조회 -->
 	<select
 		id="selectAttendacne"
@@ -31,19 +23,7 @@
 		VALUES(#{id}, #{application_date}, #{begin_date}, #{end_date}, #{reason}, #{state},
 		#{attendance_cd_id})
 	</insert>
-	<!-- 근태 현황 -->
-	<!-- <select -->
-	<!-- id="" -->
-	<!-- parameterType="AttendanceDTO" -->
-	<!-- resultType="AttendanceDTO"> -->
-	<!-- SELECT * -->
-	<!-- FROM attendance -->
-	<!-- WHERE state= -->
-	<!-- <if test=""> -->
-	<!-- AND -->
-	<!-- </if> -->
 
-	<!-- </select> -->
 	<!-- 출퇴근 기록부 -->
 	<select
 		id="commutingRecords"
