@@ -107,6 +107,8 @@ $('.white-box').on('click', '#insertAttendanceAction, #insertCommuteAction', fun
 
 // 버튼 눌렀을때
 $(document).on("click", '#selectAttendacne', function() {
+    $(this).parent().parent().find('li').removeClass('active');
+    $(this).parent().addClass('active').addClass('nav-hover');
     columns = [
             {
                 'sTitle' : '#',
@@ -152,6 +154,8 @@ $(document).on("click", '#selectAttendacne', function() {
 });
 
 $(document).on('click', '#commutingRecords', function() {
+    $(this).parent().parent().find('li').removeClass('active');
+    $(this).parent().addClass('active').addClass('custom-click');
     ordering = [
         [
                 0, 'desc'
