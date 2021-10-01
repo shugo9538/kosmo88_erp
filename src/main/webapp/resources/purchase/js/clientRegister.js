@@ -37,9 +37,6 @@ function addItem() {
 	
 	Array.from(newItem.getElementsByClassName("form-control")).forEach(f => f.value = '');
 	
-	
-}
-
     Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
         f.setAttribute("required", true));
   

@@ -1,4 +1,4 @@
-package com.kosmo88.logistics_erp.member.controller;
+package com.kosmo88.logistics_erp.account.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,27 +74,27 @@ public class AccountController {
     //
     // 기초정보관리 - 거래처 목록
     @RequestMapping(value = "/clientList")
-    public String clientList(HttpServletRequest request, Model model) {
+    public String clientList(Model model) {
     	logger.info("/clientList");
     	
-    	service.accountingList(request, model);
-
+    	//service.accountingList(request, model);
+    	service.clientList(model);
         return "account/clientList";
     }
     
-    //------------------------ 장부관리 ------------------------
+    //------------------------ 장부관리/일반전표 ------------------------
     // 장부관리 - 일반전표 목록
     @RequestMapping(value="/slipList")
-    public String slipList(HttpServletRequest request, Model model) {
+    public String slipList(Model model) {
     	logger.info("/slipList");
     	
-    	service.accountingList(request, model);
-    	
+    	//service.accountingList(request, model);
+    	service.slipList(model);
     	return "account/slipList";
     }
     // 장부관리 - 일반전표 등록페이지
     @RequestMapping(value="/slipDetail")
-    public String slipDetail(HttpServletRequest request, Model model) {
+    public String slipDetail(Model model) {
     	logger.info("/slipDetail");
     	
     	
@@ -108,14 +108,14 @@ public class AccountController {
     	
     	return "account/slipModify";
     }
-    
+  //------------------------ 장부관리/매입/매출 전표 ------------------------
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
     public String salesList(HttpServletRequest request, Model model) {
     	logger.info("/salesSlipList");
     	
-    	service.accountingList(request, model);
-    	
+    	//service.accountingList(request, model);
+    	service.salesSlipList(model);
         return "account/salesSlipList";
     }
 
@@ -141,11 +141,11 @@ public class AccountController {
     //------------------------ 금융/자금관리 ------------------------
     // 금융자금 - 통장목록 리스트
     @RequestMapping(value = "/accountList")
-    public String accountList(HttpServletRequest request, Model model) {
+    public String accountList(HttpServletRequest req, Model model) {
     	logger.info("/accountList");
     	
-    	service.accountingList(request, model);
-    	
+    	//service.accountingList(request, model);
+    	service.accountList(req, model);
         return "account/accountList";
     }
     // 금융자금 - 통장 입/출금 내역 상세페이지
@@ -157,17 +157,6 @@ public class AccountController {
     	
     	return "account/accountDetail";
     }
-    /*
-    // 금융자금 - 통장 입/출금 내역 상세페이지 잔액
-    @RequestMapping(value = "/accountBalance")
-    public String accountBalance(HttpServletRequest request, Model model) {
-    	logger.info("/accountBalance");
-    	
-    	service.accountBalance(request, model);
-    	
-    	return "account/accountDetail";
-    }
-    */
     // 금융자금 - 신규통장 추가 페이지
     @RequestMapping(value = "/accountNewDetail")
     public String newAccount(HttpServletRequest request, Model model) {
