@@ -1,5 +1,7 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,8 +28,13 @@ public class WarehouseDaoImpl implements WarehouseDao {
 	}
 
 	@Override
-	public void select() {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.select");
+	public List<WarehouseDto> select() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.select");
+	}
+
+	@Override
+	public WarehouseDto selectOne() {
+		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectOne");
 	}
 
 	@Override
@@ -49,5 +56,7 @@ public class WarehouseDaoImpl implements WarehouseDao {
 	public int selectMaxId() {
 		return  sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectMaxId");
 	}
+
+
 
 }

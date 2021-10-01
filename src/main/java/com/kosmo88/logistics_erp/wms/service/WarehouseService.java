@@ -1,5 +1,6 @@
 package com.kosmo88.logistics_erp.wms.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,18 @@ import com.kosmo88.logistics_erp.wms.util.DtoFunction;
 public class WarehouseService {
 	@Autowired
 	WarehouseDao warehouseDao;
-
+	
+	public void warehouse() {
+	}
+	
+	//관리자 옵션
 	public void add() {
 	}
 
-	public void list() {
+	//관리자 옵션
+	public List<WarehouseDto> list() {
+		List<WarehouseDto> list = warehouseDao.select();
+		return list;
 
 	}
 
@@ -43,8 +51,7 @@ public class WarehouseService {
 	public void delete() {
 	}
 
-	public void view() {
-	}
+	
 
 	public void viewRack() {
 	}

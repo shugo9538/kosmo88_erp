@@ -33,13 +33,22 @@
 	<select id="select"
 		resultType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
 		<!-- select * from warehouse; -->
-		SELECT s.*
-		FROM (
-		SELECT ROWNUM RNUM, w.*
-		FROM WAREHOUSE w
-		) s
-		WHERE RNUM
-		BETWEEN 1 AND 10;
+		select *
+		from warehouse
+<!-- 		SELECT s.* -->
+<!-- 		FROM ( -->
+<!-- 		SELECT ROWNUM RNUM, w.* -->
+<!-- 		FROM WAREHOUSE w -->
+<!-- 		) s -->
+<!-- 		WHERE RNUM -->
+<!-- 		BETWEEN 1 AND 10; -->
+	</select>
+
+	<select id="selectOne"
+		resultType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
+		select *
+		from warehouse
+		where id=1;
 	</select>
 
 	<select id="selectMaxId" resultType="int">

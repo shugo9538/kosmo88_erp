@@ -137,8 +137,7 @@
 			<!--End row-->
 		</div>
 		<!-- End Wrapper-->
-		<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-		<%@ include file="/WEB-INF/views/wms/common/myFooter.jsp"%>
+		<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 
 	</div>
 </body>

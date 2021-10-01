@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/settings.jsp"%>
-<%@ include file="/WEB-INF/views/wms/common/myHeader.jsp"%>
+<%@ include file="/WEB-INF/views/wms/common/vars.jspf"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<%@ include file="/WEB-INF/views/wms/common/css_core.jspf"%>
+<%@ include file="/WEB-INF/views/wms/common/settings.jspf"%>
+</head>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="/WEB-INF/views/common/left_side.jsp"%>
@@ -139,9 +146,9 @@
 				</div>
 				<!--End row-->
 			</div>
-			<!-- End Wrapper-->
-			<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-			<%@ include file="/WEB-INF/views/wms/common/myFooter.jsp"%>
+			<!-- End Wrapper--
+		<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
+			<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 		</div>
 	</div>
 
