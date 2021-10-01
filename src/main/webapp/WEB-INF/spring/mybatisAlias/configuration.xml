@@ -16,8 +16,11 @@
 		<!-- 거래처 DTO -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
-			alias="SalesClientDTO"
-		/>	
+			alias="SalesClientDTO"/>
+		<!-- 담당자 DTO -->
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
+			alias="SalesEmployeeDTO"/>
 			
 			
 		<!-- accounting start -->	
