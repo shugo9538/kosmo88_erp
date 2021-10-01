@@ -38,7 +38,7 @@
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box">
+					<div class="white-box"  id=holidayDatatables>
 					</div>
 				</div>
 			</div>

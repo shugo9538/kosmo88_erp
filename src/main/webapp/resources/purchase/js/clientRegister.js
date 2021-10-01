@@ -14,8 +14,6 @@ $(document).ready(function() {
 	
 });
 
-
-
 $('#clientManagementForm').ready(function(){
 	addItem();
 });
@@ -30,13 +28,22 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.removeAttribute("style");
+<<<<<<< HEAD
+=======
+	
+>>>>>>> a9db1a76d8b1be1f1977977390a0cd59b95b6ec9
 	tmp = newItem.getElementsByTagName('input');
 	for (var j = 0 ; j < tmp.length ; j++) { 
 		tmp[j].className = "form-control"+i;
 	}
 	
 	Array.from(newItem.getElementsByClassName("form-control" + i)).forEach(f => f.removeAttribute("disabled"));
+<<<<<<< HEAD
     Array.from(newItem.getElementsByClassName("form-control" + i)).forEach((f) =>f.setAttribute("required", true));
+=======
+    Array.from(newItem.getElementsByClassName("form-control" + i)).forEach((f) =>
+        f.setAttribute("required", true));
+>>>>>>> a9db1a76d8b1be1f1977977390a0cd59b95b6ec9
   
 	document.getElementById("item-group").appendChild(newItem);
 	i++;

@@ -15,6 +15,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+<<<<<<< HEAD
 	<repositories>
 		<!-- 
 		<repository>
@@ -30,12 +31,20 @@
 			<url>file://${basedir}/lib</url>
 		</repository>
 		 -->
+=======
+<!-- 	<repositories> -->
+>>>>>>> a9db1a76d8b1be1f1977977390a0cd59b95b6ec9
 <!-- 		<repository> -->
-<!-- 			<id>local-repository</id> -->
-<!-- 			<name>local repository</name> -->
-<!-- 			<url>C:\Users\yura\Dropbox\workspace\PJ_team_88/lib</url> -->
+<!-- 			<id>local-repo</id> -->
+<!-- 			<name>yura-repo</name> -->
+<!-- 			<url>file://${project.basedir}/lib</url> -->
 <!-- 		</repository> -->
-	</repositories>
+<!-- 		<repository> -->
+<!-- 			<id>local-repo2</id> -->
+<!-- 			<name>repository-basedir</name> -->
+<!-- 			<url>file://${basedir}/lib</url> -->
+<!-- 		</repository> -->
+<!-- 	</repositories> -->
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -251,6 +260,7 @@
 		</dependency>
 
 		<!-- Yura Persnal -->
+<<<<<<< HEAD
 		<!-- 
 		<dependency>
 			<groupId>yura</groupId>
@@ -261,6 +271,13 @@
 
 
 
+=======
+<!-- 		<dependency> -->
+<!-- 			<groupId>yura</groupId> -->
+<!-- 			<artifactId>dtoFunction</artifactId> -->
+<!-- 			<version>1.0.0</version> -->
+<!-- 		</dependency> -->
+>>>>>>> a9db1a76d8b1be1f1977977390a0cd59b95b6ec9
 
 		<!-- Test -->
 		<dependency>

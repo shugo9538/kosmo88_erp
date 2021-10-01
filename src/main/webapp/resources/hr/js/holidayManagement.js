@@ -17,7 +17,7 @@ $(document).ready(function() {
     // 시작 주소로 처음 구분
     console.log(currLocation.split('/')[5]);
     if (currLocation.split('/')[5] == 'holiday') {
-        $('#datatables').append('<table id="holidayTable"></table>');
+        $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
         columns = [
                 {
                     'sTitle' : '사원 코드',
@@ -40,7 +40,7 @@ $(document).ready(function() {
             ]
         ];
         
-        url = 'selectHoliday';
+        url = '/selectHoliday';
         callHolidayList(url, columns, ordering);
     }
 });
@@ -95,106 +95,106 @@ $('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', functi
 });
 
 // 버튼 눌렀을때
-$(document).on("click", '#selectAttendacne', function() {
-    columns = [
-            {
-                'sTitle' : '#',
-                data : 'r_num',
-                render : function(data) {
-                    return '<input type="checkBox" value="' + data + '">';
-                }
-            }, {
-                'sTitle' : '근태 아이디',
-                data : 'id'
-            }, {
-                'sTitle' : '근태 코드',
-                data : 'holiday_cd_id'
-            }, {
-                'sTitle' : '근태 신청일',
-                data : 'application_date',
-                render : $.fn.dataTable.render.moment()
-            }, {
-                'sTitle' : '시작',
-                data : 'begin_date',
-                render : $.fn.dataTable.render.moment()
-            }, {
-                'sTitle' : '종료',
-                data : 'end_date',
-                render : $.fn.dataTable.render.moment()
-            }, {
-                'sTitle' : '사유',
-                data : 'reason'
-            }, {
-                'sTitle' : '상태',
-                data : 'state'
-            }
-    ];
+//$(document).on("click", '#', function() {
+//    columns = [
+//            {
+//                'sTitle' : '#',
+//                data : 'r_num',
+//                render : function(data) {
+//                    return '<input type="checkBox" value="' + data + '">';
+//                }
+//            }, {
+//                'sTitle' : '근태 아이디',
+//                data : 'id'
+//            }, {
+//                'sTitle' : '근태 코드',
+//                data : 'holiday_cd_id'
+//            }, {
+//                'sTitle' : '근태 신청일',
+//                data : 'application_date',
+//                render : $.fn.dataTable.render.moment()
+//            }, {
+//                'sTitle' : '시작',
+//                data : 'begin_date',
+//                render : $.fn.dataTable.render.moment()
+//            }, {
+//                'sTitle' : '종료',
+//                data : 'end_date',
+//                render : $.fn.dataTable.render.moment()
+//            }, {
+//                'sTitle' : '사유',
+//                data : 'reason'
+//            }, {
+//                'sTitle' : '상태',
+//                data : 'state'
+//            }
+//    ];
+//
+//    ordering = [
+//        [
+//                1, 'desc'
+//        ]
+//    ];
+//    
+//    url = 'selectAttendacne';
+//    callList(url, columns, ordering);
+//});
 
-    ordering = [
-        [
-                1, 'desc'
-        ]
-    ];
-    
-    url = 'selectAttendacne';
-    callList(url, columns, ordering);
-});
-
-$(document).on('click', '#commutingRecords', function() {
-    ordering = [
-        [
-                0, 'desc'
-        ]
-    ];
-    columns = [
-            {
-                'sTitle' : '#',
-                data : 'id',
-                render : function(data, type, row, meta) {
-                    return '<a href="item?id=' + data + '">' + data + '</a>';
-                }
-            }, {
-                'sTitle' : '근무일',
-                data : 'work_date',
-                render : $.fn.dataTable.render.moment()
-            }, {
-                'sTitle' : '시작 시각',
-                data : 'begin_date',
-                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-            }, {
-                'sTitle' : '종료 시각',
-                data : 'end_date',
-                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-            }, {
-                'sTitle' : '야근 시간',
-                data : 'night_time',
-                render : function(data) {
-                    if (data == 0) return '없음';
-                    return data + '시간';
-                }
-            }, {
-                'sTitle' : '초과근무 시간',
-                data : 'over_time',
-                render : function(data) {
-                    if (data == 0) return '없음';
-                    return data + '시간';
-                }
-            }, {
-                'sTitle' : '근태',
-                data : 'holiday_id'
-            }, {
-                'sTitle' : '사원번호',
-                data : 'employee_id'
-            }
-    ];
-
-    url = 'commuteList';
-    callList(url, columns, ordering);
-});
+//$(document).on('click', '#commutingRecords', function() {
+//    ordering = [
+//        [
+//                0, 'desc'
+//        ]
+//    ];
+//    columns = [
+//            {
+//                'sTitle' : '#',
+//                data : 'id',
+//                render : function(data, type, row, meta) {
+//                    return '<a href="item?id=' + data + '">' + data + '</a>';
+//                }
+//            }, {
+//                'sTitle' : '근무일',
+//                data : 'work_date',
+//                render : $.fn.dataTable.render.moment()
+//            }, {
+//                'sTitle' : '시작 시각',
+//                data : 'begin_date',
+//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
+//            }, {
+//                'sTitle' : '종료 시각',
+//                data : 'end_date',
+//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
+//            }, {
+//                'sTitle' : '야근 시간',
+//                data : 'night_time',
+//                render : function(data) {
+//                    if (data == 0) return '없음';
+//                    return data + '시간';
+//                }
+//            }, {
+//                'sTitle' : '초과근무 시간',
+//                data : 'over_time',
+//                render : function(data) {
+//                    if (data == 0) return '없음';
+//                    return data + '시간';
+//                }
+//            }, {
+//                'sTitle' : '근태',
+//                data : 'holiday_id'
+//            }, {
+//                'sTitle' : '사원번호',
+//                data : 'employee_id'
+//            }
+//    ];
+//
+//    url = 'commuteList';
+//    callList(url, columns, ordering);
+//});
 
 function callHolidayList(url, columns, ordering) {
-    $("#datatables").empty();
-    $('#datatables').append('<table id="holidayTable" style="width:100%"></table>');
+    $("#holidayDatatables").empty();
+    $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
     currTab = $('#holidayTable').DataTable({
         "dom" : '<"top"l>rt<"bottom"ip><"clear">',
         order : ordering,
@@ -208,10 +208,9 @@ function callHolidayList(url, columns, ordering) {
         destroy : true,
     });
 
-    if (url == 'selectHoliday') {
-        $('#datatables').append('<button id="insertholiday">');
-        $('#holidayTable_length').after(
-                '<div id = holidayTable_filter style="text-align: right;"></div>');
+    if (url == '/selectHoliday') {
+        $('#holidayDatatables').append('<button id="insertholiday">');
+        $('#holidayTable_length').after('<div id = holidayTable_filter style="text-align: right;"></div>');
         $('#holidayTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
         $('#holidayTable_filter').append(
                 '<input type="search" class="column_filter" id="searchBar">');
@@ -223,11 +222,11 @@ function callHolidayList(url, columns, ordering) {
 
         $('#insertholiday').append('신규 등록');
     } else if (url == 'commuteList') {
-        $('#datatables').append('<button id="insertCommute">');
+        $('#holidayDatatables').append('<button id="insertCommute">');
         $('#insertCommute').append('신규 등록');
     }
 }
-
+$.fn.dataTable.ext.errMode = 'throw';
 $('#holidayTable').ready(function() {
     $('#searchholiday').on('click', function() {
         var searchingText = $('#searchBar').val();
