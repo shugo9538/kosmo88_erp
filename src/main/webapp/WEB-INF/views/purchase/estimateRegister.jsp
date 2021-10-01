@@ -170,7 +170,7 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i> 거래처 전체 목록
 						</h2>
 						<div class="table-responsive">
-							<table id="registeredestimateList" class="display table">
+							<table id="registeredEstimateList" class="display table">
 								<thead>
 									<tr>
 	                                    <!-- p_estimate_list_view -->

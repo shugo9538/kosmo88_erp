@@ -54,15 +54,15 @@ public class EstimateRestController {
     }
     
     
-    /*   
+  
     // 등록한 거래처(구매처) 목록
-    @ResponseBody
-    @RequestMapping(value = "/clientManagement/registeredClientList")
-    public List<PurchaseClientDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
-    	return purchaseService.clientList(req, res);
-    }
+//    @ResponseBody
+//    @RequestMapping(value = "/estimateManagement/registeredEstimateList")
+//    public List<PurchaseClientDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
+//    	return estimateService.estimateList(req, res);
+//    }
 
-
+    /* 
     // 거래처 수정
     @ResponseBody
     @RequestMapping(value = "/updateClient")

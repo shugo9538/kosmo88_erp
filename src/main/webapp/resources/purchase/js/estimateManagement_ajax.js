@@ -18,14 +18,14 @@ $(document).ready(function() {
         	estimateList();
         });
     }
-/*    
-    if (currLocation.split('/')[5] == 'clientRegister') {
+    
+    if (currLocation.split('/')[5] == 'estimateRegister') {
         
-        $('#registeredClientList').ready(function() {
-        	registeredClientList();
+        $('#registeredEstimateList').ready(function() {
+        	registeredEstimateList();
         });
     }
-    
+/*    
     // 거래처, 상품 등록 처리
     $("#insertClient").click(function() {
     	clientRegisterAction(csrfParameter, csrfToken);
@@ -72,7 +72,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
-// 거래처(구매처) 목록
+// 견적서 목록
 function estimateList() {
 	// 테이블 id
 	currTab = $('#estimateList').DataTable({
@@ -178,12 +178,12 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 	event.preventDefault();
 }
 
-/*
-//등록한 거래처(구매처) 목록
-function registeredClientList() {
-    $('#registeredClientList').DataTable({
+
+//등록한 견적서 목록
+function registeredEstimateList() {
+    $('#registeredEstimateList').DataTable({
         ajax : {
-            url : window.location.href + '/registeredClientList', // 현 위치
+            url : window.location.href + '/registeredEstimateList', // 현 위치
             type : 'POST',
             data : csrfData,
             dataSrc : ''
@@ -214,6 +214,7 @@ function registeredClientList() {
     });
 }
 
+/*
 //거래처, 상품 등록 처리
 function clientRegisterAction(csrfParameter, csrfToken) {
 	$('#clientRegisterform').submit(function(event) {
