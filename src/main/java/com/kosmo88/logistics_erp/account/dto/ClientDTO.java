@@ -4,27 +4,19 @@ import java.util.Date;
 
 public class ClientDTO {
 	
-//	ID             NOT NULL NUMBER(5)     
-//	TYPE           NOT NULL VARCHAR2(50)  
-//	NAME           NOT NULL VARCHAR2(100) 
-//	CEO_NAME       NOT NULL VARCHAR2(100) 
-//	REGISTER_NUM   NOT NULL NUMBER(10)    
-//	EMAIL          NOT NULL VARCHAR2(100) 
-//	ADDRESS        NOT NULL VARCHAR2(100) 
-//	REGISTER_DATE  NOT NULL DATE          
-//	DETAIL_ADDRESS NOT NULL VARCHAR2(100) 
-//	ZIP_CODE       NOT NULL NUMBER(5)
-	
 	private int id;
 	private String type;
 	private String name;
 	private String ceo_name;
-	private String register_num;	//int 범위가 넘어가서 long으로 변경
+	private String register_num;
 	private String address;
 	private Date register_date;
 	private String detail_address;
 	private int zip_code;
+	private String phone;
 	private String email;
+	private String enabled;
+	
 	
 	public int getId() {
 		return id;
@@ -80,12 +72,23 @@ public class ClientDTO {
 	public void setZip_code(int zip_code) {
 		this.zip_code = zip_code;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	public String getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 	
 }

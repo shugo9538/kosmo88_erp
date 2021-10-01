@@ -32,6 +32,9 @@ function addItem() {
 	newItem.removeAttribute("style");
 	
 	
+<<<<<<< HEAD
+    Array.from(newItem.getElementsByClassName("form-control")).forEach((f) =>
+=======
 	tmp = newItem.getElementsByTagName('input');
 	for (var j = 0 ; j < tmp.length ; j++) { 
 		tmp[j].className = "form-control"+i;
@@ -39,6 +42,7 @@ function addItem() {
 	
 	Array.from(newItem.getElementsByClassName("form-control" + i)).forEach(f => f.removeAttribute("disabled"));
     Array.from(newItem.getElementsByClassName("form-control" + i)).forEach((f) =>
+>>>>>>> main
         f.setAttribute("required", true));
   
 	document.getElementById("item-group").appendChild(newItem);

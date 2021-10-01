@@ -20,9 +20,6 @@
 <sec:csrfMetaTags/>
 <link rel="icon" href="${RESOURCES_PATH}/assets/images/favicon.png" type="image/png">
 
-<title>Meter - Responsive Admin Dashboard Template</title>
-
-
 <title>우여곡절 ERP</title>
 
 <!--Begin  Page Level  CSS -->

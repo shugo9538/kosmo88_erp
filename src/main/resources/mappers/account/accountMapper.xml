@@ -14,11 +14,10 @@
 <select id="selectClient" resultType="ClientDTO">
 <![CDATA[
 SELECT * 
-FROM (SELECT id, type, name, ceo_name, register_num, address, register_date, zip_code, email, ROWNUM rNum     
+FROM (SELECT id, type, name, ceo_name, register_num, address, register_date, zip_code, email, phone     
 FROM(SELECT * FROM CLIENT
   ORDER BY register_date DESC)
   )
-  WHERE rNum >=#{start} AND rNum <=#{end}
 ]]>
 </select>
 <!-- 3. 신규거래처 등록 -->
@@ -46,11 +45,10 @@ SELECT COUNT(*)as cnt FROM slip
 <select id="selectSlip" resultType="SlipDTO">
 <![CDATA[
 SELECT *
-FROM (SELECT ID, TYPE, REGISTER_DATE, UPDATE_DATE, STATE, DEPARTMENT_ID, DEPARTMENT_REQUEST, ROWNUM rNum   
+FROM (select id, type, register_date, update_date, state, department_id, department_request   
 FROM(SELECT *
   FROM slip
   ORDER BY REGISTER_DATE))
-  WHERE rNum >=#{start} AND rNum <=#{end}
 ]]>
 </select>
 <!-- 3. 일반전표 등록 (update_date 승인일자제외, state제외 default N) -->
@@ -79,14 +77,14 @@ SELECT COUNT(*)as cnt FROM sales_slip WHERE type=#{type}
 </select>
 
 <!-- 2-1. 매입/매출전표 목록조회 -->
-<select id="selectSalesSlip" resultType="SalesSlipDTO" parameterType="java.util.Map">
+<select id="selectSalesSlip" resultType="SalesSlipDTO">
 <![CDATA[
 SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as client_code, 
-       re.name as client_name, re.register_num as client_num, it.name,
+       re.name as client_name, re.register_num as client_num, it.name product_name,
        sl.supply_amount, sl.tax_amount, sl.abstract as abs, sl.sa_type as type, 
-       sl.sl_id as slip_id,rownum
+       sl.sl_id as slip_id
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
-WHERE sl.department_request = re.id AND re.item_id = it.id AND rownum >=#{start} AND rownum <=#{end}
+WHERE sl.department_request = re.id AND re.item_id = it.id
 ]]>
 </select>
 <!-- 2-2. 매입, 매출전표조회 -->
@@ -112,19 +110,25 @@ SELECT COUNT(*) as cnt FROM ACCOUNT
 </select>
 
 <!-- 2. 통장목록 조회 -->
-<select id="selectAccountList" parameterType="java.util.Map" resultType="AccountDTO">
+<select id="selectAccountList" resultType="AccountDTO">
 <![CDATA[
 SELECT *
-FROM(SELECT id, name, account_number, bank, balance, register, account_holder_id, ROWNUM rNUM 
+FROM(SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled
 FROM(SELECT * FROM ACCOUNT
 ORDER BY register))
-WHERE rNUM >=#{start} and rNUM <=#{end}
 ]]>
 </select>
 <!-- 3. 통장목록 조회(단순 조회 페이징처리 없음) -->
-<select id="selectAccountInfo" resultType="AccountDTO">
+<select id="selectAccountInfo" resultType="AccountDTO" parameterType="String">
 SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled 
   FROM ACCOUNT
+  WHERE account_number=#{account_number}
+</select>
+<!-- 4. 통장 계좌번호 조회(중복검사)-->
+<select id="accountConfrim" resultType="AccountDTO" parameterType="String">
+SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled 
+  FROM ACCOUNT
+  WHERE account_number=#{account_number}
 </select>
 <!-- 4. 신규통장 추가처리 -->
 <insert id="insertAccount" parameterType="AccountDTO">

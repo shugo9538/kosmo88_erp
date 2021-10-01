@@ -59,7 +59,6 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
-                                        	<th>번호</th>
                                             <th>거래처코드</th>
                                             <th>거래처유형</th>
                                             <th>거래처명</th>
@@ -72,73 +71,37 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <!-- 등록거래처가 있는경우 -->                     
-                                    <c:if test="${cnt > 0}">
                                     	<c:forEach var="dto" items="${client}">
    											<tr>
-   												<td>${number}
-   													<c:set var="number" value="${number -1 }"/>
-   												</td>
+   												<!-- 거래처코드  -->
                                         		<td>${dto.id}</td>
+   												<!-- 거래처유형  -->
                                         		<td>${dto.type}</td>
+   												<!-- 거래처명  -->
                                         		<td>${dto.name}</td>
+   												<!-- 대표자  -->
                                         		<td>${dto.ceo_name}</td>
+   												<!-- 사업자등록번호  -->
                                         		<td>${dto.register_num}</td>
+   												<!-- 주소지  -->
                                         		<td>${dto.address}</td>
+   												<!-- 우편번호  -->
                                         		<td>${dto.zip_code}</td>
+   												<!-- 이메일  -->
                                         		<td>${dto.email}</td>
+   												<!-- 등록일  -->
                                         		<td>
                                         		<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
                                         		</td>
                                        	    </tr>		                                     		
                                     	</c:forEach>
-                                     </c:if>
-
-                                     <!-- 등록 거래처가 없는경우 -->
-                                     <c:if test="${cnt == 0}">
-                                     	<tr>
-                                     		<td colspan="7" align="center">
-                                     			<span style="color:red"> 등록된 거래처가 없습니다. </span>
-                                     		</td>
-                                     	</tr>
-                                     </c:if>   
                                     </tbody>
-                                    
-                                    <tfoot>
-                                    <!-- 등록거래처가 있는경우 --> 
-                                     <c:if test="${cnt > 0}">
-                                     <tr>
-                                     	<th colspan="8">
-                                     	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
-                                     	<c:if test="${startPage > pageBlock}">
-                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110" style="color:block">[◀◀]</a>
-                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
-                                     	</c:if>
-                                     	
-                                     	<c:forEach var="i" begin="${startPage}" end="${endPage}">
-                                     		<c:if test="${i == currengPage}">
-                                     			<span><b>[${i}]</b></span>
-                                     		</c:if>
-                                     		<c:if test="${i != currengPage}">
-                                     			<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${i}">[${i}]</a>
-                                     		</c:if>
-                                     	</c:forEach>
-                                     	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
-                                     	<c:if test="${pageCount > endPage}">
-                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${startPage + pageBlock}">[▶]</a>
-                                     		<a href="${ROOT_PATH}/account/clientList?categoryNum=110&pageNum=${pageCount}">[▶▶]</a>
-                                     	</c:if>
-                                     	</th>
-                                     	</tr>
-                                     </c:if>
-                                    </tfoot>
                                    </table>  
                             </div>
                        </div>
                    </div>
                </div>
                <!--End row-->
-               
 			    </div>
         <!-- End Wrapper-->
 

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -152,11 +153,11 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			// 거래처관리
 			if (categoryNum == CLIENT) {
 				client = new ArrayList<ClientDTO>();
-				client = accountDAO.selectClient(map);
+				//client = accountDAO.selectClient(map);
 			// 일반전표
 			}else if(categoryNum == SLIP) {
 				slip = new ArrayList<SlipDTO>();
-				slip = accountDAO.selectSlip(map);
+				//slip = accountDAO.selectSlip(map);
 			// 매출전표 목록	
 			}else if (categoryNum == SALES) {
 				map.put("type", SALES_NAME);
@@ -170,11 +171,11 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			// 매입/매출 전체목록
 			}else if(categoryNum == SALESSLIP) {
 				saleslip = new ArrayList<SalesSlipDTO>();
-				saleslip = accountDAO.selectSalesSlip(map);
+				//saleslip = accountDAO.selectSalesSlip(map);
 			// 계좌조회
 			}else if(categoryNum == ACCOUNT) {
 				account = new ArrayList<AccountDTO>();
-				account = accountDAO.selectAccount(map);
+				//account = accountDAO.selectAccount(map);
 			}
 				
 		}
@@ -208,7 +209,69 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		System.out.println("다음페이지 통과 ");
 	}
 	
+	// ------------------------------ 기초정보관리 ------------------------------
+	// 기초정보 관리 - 거래처 목록(ajax) clientList.jsp
+	@Override
+	public void clientList(Model model) {
+		
+		List<ClientDTO> client = new ArrayList<ClientDTO>();
+		
+		client = accountDAO.selectClient();
+		System.out.println("기초정보관리 - 거리처목록 : " + client);
+		
+		model.addAttribute("client", client);
+	
+	}
+	// ------------------------------ 일반전표 ------------------------------
+	// 일반전표 - 일반전표(ajax) slipList.jsp
+	@Override
+	public void slipList(Model model) {
+
+		List<SlipDTO> slip = new ArrayList<SlipDTO>();
+		
+		slip = accountDAO.selectSlip();
+		System.out.println("일반전표관리 - 일반전표 : " + slip);
+		
+		model.addAttribute("slip", slip);
+	}
+	
 	// ------------------------------ 금융/자금관리 ------------------------------
+	// 보유통장 - 전체목록(ajax) accountList.jsp 
+	@Override
+	public void accountList(HttpServletRequest req, Model model) {
+		
+		List<AccountDTO> account = new ArrayList<AccountDTO>();
+		
+		account = accountDAO.selectAccount();
+		System.out.println("금융/자금관리 - 통장목록: " + account);
+		
+		model.addAttribute("account", account);
+		
+	}
+	// 통장 계좌번호 검사
+	@Override
+	public int accountConfrim(String account_number) {
+		return accountDAO.accountConfrim(account_number);
+	}
+	// ------------------------------ 매입/매출장 ------------------------------
+	// 매입/매출장 - 메인(ajax) salesSlipList.jsp
+	@Override
+	public void salesSlipList(Model model) {
+		List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
+		
+		int cnt = 0;
+		cnt = accountDAO.getSalesSlipCnt(); // 매입/매출전표 총 건수
+		
+		saleslip = accountDAO.selectSalesSlip();
+		System.out.println("매입/매출장 목록 : " + saleslip);
+		
+		model.addAttribute("saleslip", saleslip);
+		model.addAttribute("cnt", cnt);
+		
+	}
+	
+	
+	
 	// 신규통장 추가 처리
 	@Override
 	public void accountInsertAction(HttpServletRequest request, Model model) {
@@ -258,12 +321,14 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 		List<AccountDTO> account = new ArrayList<AccountDTO>(); 
 		
-		account = accountDAO.selectAccountInfo();
+		account = accountDAO.selectAccount();
 		System.out.println("통장 정보 조회 : " + account);
 		
 		model.addAttribute("account", account);
 		
 	}
+	
+
 	// 통장 거래내역 추가 단건 추가 처리
 	@Override
 	public void accountSimplAction(HttpServletRequest request, Model model) {
@@ -326,17 +391,19 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		String account_number = request.getParameter("account_number");
 		System.out.println("통장 입출금내역1 : " + account_number);
 		
-		//List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
-		//depositWithdrawalHistoryDTO = accountDAO.selectDepositWithdrawalHistory(account_number);
-		//model.addAttribute("dtos", depositWithdrawalHistoryDTO);
-		//System.out.println("통장입출금내역 dtos : " + depositWithdrawalHistoryDTO);
-		
 		List<BalanceDTO> balanceDTO = new ArrayList<BalanceDTO>();
 		
 		balanceDTO = accountDAO.selectAccountBalance(account_number); 
 
 		model.addAttribute("dtos", balanceDTO);
 		System.out.println("잔액조회 balanceDTO : " + balanceDTO);
+		
+		AccountDTO accountDTO = new AccountDTO();
+		accountDTO = accountDAO.selectAccountInfo(account_number);
+		
+		System.out.println("금융/자금관리 - 단건정보: " + accountDTO);
+		model.addAttribute("dto", accountDTO);
+		
 	}
 	// 통장 입금내역 조회
 	@Override
@@ -384,6 +451,14 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 		model.addAttribute("dto", income);
 	}
+
+
+
+
+
+
+
+
 
 
 

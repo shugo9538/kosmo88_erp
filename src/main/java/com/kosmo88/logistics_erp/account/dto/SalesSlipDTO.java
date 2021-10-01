@@ -13,13 +13,9 @@ public class SalesSlipDTO {
 	private String product_name;// 품명  
 	private int supply_amount;// 공급가액  
 	private int tax_amount;// 세액 
-	//private int supply_sum;// 공급가액 합계
-	//private int tax_sum;// 세액합계
-	//private int total_sum;
 	private String type;// 유형  
 	private String abs;// 요약
 	private int slip_id;// 일반전표 ID
-	
 	
 	
 	public Date getConfirm_date() {
@@ -94,6 +90,5 @@ public class SalesSlipDTO {
 	public void setSlip_id(int slip_id) {
 		this.slip_id = slip_id;
 	}
-	
 	
 }

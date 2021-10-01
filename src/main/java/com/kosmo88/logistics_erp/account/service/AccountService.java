@@ -1,8 +1,11 @@
 package com.kosmo88.logistics_erp.account.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
+
+import com.kosmo88.logistics_erp.account.dto.AccountDTO;
 
 public interface AccountService {
 	
@@ -11,7 +14,7 @@ public interface AccountService {
 	
 	// 기초정보관리
 	// 거래처 목록조회
-	//public void clientList(HttpServletRequest request, Model model);
+	public void clientList(Model model);
 	// 신규 거래처등록
 	//public void clientInsert(HttpServletRequest request, Model model);
 	// 신규 거래처등록 페이지(컨트롤러에서처리)
@@ -25,7 +28,7 @@ public interface AccountService {
 	
 	// 일반전표/장부관리
 	// 일반전표 목록조회
-	//public void slipList(HttpServletRequest request, Model model);
+	public void slipList(Model model);
 	// 일반전표 등록페이지(컨트롤러에서처리)
 	// 일반전표 등록
 	//public void slipInsert(Model model);
@@ -42,7 +45,9 @@ public interface AccountService {
 	
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
-	//public void accountList(HttpServletRequest request, Model model);
+	public void accountList(HttpServletRequest req, Model model);
+	// 통장 계좌번호 중복검사
+	public int accountConfrim(String account_number);
 	// 신규통장 추가 처리
 	public void accountInsertAction(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가 단건 추가 처리 페이지(통장정보조회)
@@ -66,7 +71,7 @@ public interface AccountService {
 	
 	// 매입/매출장
 	// 매입/매출장 전체목록조회
-	//public void salesSlipList(Model model);
+	public void salesSlipList(Model model);
 	// 매입전표 조회
 	//public void purchaseList(Model model);
 	// 매출전표 조회
