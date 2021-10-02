@@ -26,13 +26,13 @@ $(document).ready(function() {
         });
     }
     
-    // 거래처, 상품 등록 처리
+    // 거래처, 거래처 상품 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
 	    /*
-	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -68,7 +68,7 @@ function itemRegister() {
     var list = new Array();
     var i = 0;
     
-    // 2.상품
+    // 2.거래처 상품
     $('#clientRegisterForm #item-group').each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {

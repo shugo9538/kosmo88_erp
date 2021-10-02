@@ -30,7 +30,7 @@ public class ClientDAOImpl implements ClientDAO {
         return sqlSession.insert(STATEMENT + ".registerClient", dto);
     }
 
-    // 상품 등록 처리
+    // 거래처 상품 등록 처리
     @Override
     public int registerItem(PurchaseItemDTO dto) {
         return sqlSession.insert(STATEMENT + ".registerItem", dto);
@@ -48,13 +48,6 @@ public class ClientDAOImpl implements ClientDAO {
         return sqlSession.selectList(STATEMENT + ".getItemDetail", id);
     }
 
-<<<<<<< HEAD
-	// 상품 수정 처리
-	@Override
-	public int updateItem(PurchaseItemDTO idto) {
-		return sqlSession.update(STATEMENT + ".updateItem", idto);
-	}
-=======
     // 거래처 삭제
     @Override
     public int deleteClient(int id) {
@@ -72,5 +65,4 @@ public class ClientDAOImpl implements ClientDAO {
     public int updateItem(PurchaseItemDTO idto) {
         return sqlSession.update(STATEMENT + ".updateItem", idto);
     }
->>>>>>> a9db1a76d8b1be1f1977977390a0cd59b95b6ec9
 }

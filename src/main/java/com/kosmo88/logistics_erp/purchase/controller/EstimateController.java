@@ -40,8 +40,8 @@ public class EstimateController {
     	
     	return "purchase/estimateRegister";
     }
-/*    
-    // 견적서 등록 화면 - 거래처 선택
+    
+    // 견적서 등록 화면 - 견적서 선택
     @RequestMapping(value = "/selectClient")
     public String selectClient(HttpServletRequest req, Model model) {
     	
@@ -49,7 +49,17 @@ public class EstimateController {
     	
     	return "purchase/selectClient";
     }
-*/ 
+    
+    // 견적서 등록 화면 - 견적서 담당자 선택
+    @RequestMapping(value = "/selectEmployee")
+    public String selectEmployee(HttpServletRequest req, Model model) {
+    	
+    	estimateService.selectEmployee(req, model);
+    	
+    	return "purchase/selectEmployee";
+    }    
+    
+ 
     
 /*    
     // 견적서 수정

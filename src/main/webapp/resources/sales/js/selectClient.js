@@ -23,6 +23,7 @@ $(document).ready(function(){
 		$("#employee_dp", opener.document).val(child.find("#c_employee_email").val());
 		$(window.close());
 	});
+	
 	// 상품 값 전달
 	
 });

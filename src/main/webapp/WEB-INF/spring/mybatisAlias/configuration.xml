@@ -101,6 +101,10 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
+			alias="PurchaseEmployeeDTO" />			
 			
 		<!-- purchase dto end -->		
 		

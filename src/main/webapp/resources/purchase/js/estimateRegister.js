@@ -13,10 +13,10 @@ $(document).ready(function() {
 	})
 	
 	// 거래처 선택
-	$("#selectClient").click(function(){
+	$("#selectClient").click(function() {
 		
 		var url = "/logistics_erp/purchase/selectClient"
-		window.open(url, "select", "menubar=no, width=1200, height=700");
+		window.open(url, "selectClient", "menubar=no, width=1500, height=700");
 	});
 	
 	// 거래처 값 전달
@@ -26,8 +26,14 @@ $(document).ready(function() {
 		client[c_id] = $('input[name=c_id]').val();
 		$("#name", opener.document).val("#c_name".val);
 	})
+	
+	// 담당자 선택
+	$("#selectEmployee").click(function(){
+		
+		var url = "/logistics_erp/purchase/selectEmployee"
+		window.open(url, "selectEmployee", "menubar=no, width=1500, height=700");
+	});
 });
-
 
 
 $('#clientManagementForm').ready(function(){

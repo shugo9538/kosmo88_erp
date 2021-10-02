@@ -113,7 +113,7 @@
 										<th style="background-color: #f1f1f1;">추가 버튼</th>
 										<th style="background-color: #f1f1f1;">상품명</th>
 										<th style="background-color: #f1f1f1;">상품종류</th>
-										<th style="background-color: #f1f1f1;">상품가격(구매원가)</th>
+										<th style="background-color: #f1f1f1;">상품가격</th>
 										<th style="background-color: #f1f1f1;">삭제 버튼</th>
 									</tr>
 								</thead>

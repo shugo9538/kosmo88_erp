@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
