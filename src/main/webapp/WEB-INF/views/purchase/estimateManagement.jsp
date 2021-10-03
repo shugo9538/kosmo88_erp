@@ -41,7 +41,7 @@
 							<sec:csrfInput />
 	                     <div class="table-responsive">
 	                    	 <div class="col-md-2 mt-1 mb-4">
-								<input class="btn btn-default" type="button" id="estimateChoiceDeleteBtn" value="견적서 삭제">
+								<input class="btn  btn-default" type="button" id="estimateChoiceDeleteBtn" value="견적서 삭제">
 							 </div>
 							 
 	                         <table id="estimateList" class="display table" style="width:100%">

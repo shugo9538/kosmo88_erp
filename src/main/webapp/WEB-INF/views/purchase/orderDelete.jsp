@@ -12,14 +12,15 @@
 
 <c:if test="${update == true}">
 	<script type="text/javascript">
-		alert("해당 거래처가 삭제되었습니다.");
+		alert("해당 발주서가 삭제되었습니다.");
+		opener.parent.location.reload();
 		window.close();
 	</script>
 </c:if>
 
 <c:if test="${update != true}">
 	<script type="text/javascript">
-		alert("해당 거래처 삭제가 실패하였습니다. 다시 시도해주세요!!");
+		alert("해당 발주서 삭제가 실패하였습니다. 다시 시도해주세요!!");
 		window.history.back();
 	</script>
 </c:if>

@@ -104,7 +104,19 @@
 		
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
-			alias="PurchaseEmployeeDTO" />			
+			alias="PurchaseEmployeeDTO" />
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO"
+			alias="PurchaseInsertEstimateViewDTO" />	
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
+			alias="PurchaseEstimateDetailViewDTO" />
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
+			alias="PurchaseOrderDetailViewDTO" />
 			
 		<!-- purchase dto end -->		
 		

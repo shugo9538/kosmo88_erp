@@ -53,11 +53,14 @@
 		                                </td>
 	                                    <!-- p_estimate_list_view -->
 	                                    <th>발주번호</th> 		<!-- request_id -->
+	                                    <th>발주일자</th> 	 	<!-- begin_date  -->
+	                                    <th>납기요청일자</th>  	<!-- end_date  -->
                                         <th>발주처</th>		<!-- client_name  -->
-                                        <th>발주처 대표자</th>  <!-- client_ceo_name  -->
+                                        <th>대표자</th>  		<!-- client_ceo_name  -->
                                         <th>발주처 연락처</th>  <!-- client_phone  -->
                                         <th>담당자</th>		<!-- employee_name  -->
-                                        <th>요청일자</th> 	 	<!-- begin_date  -->
+                                        <th>주문상태</th>		<!--  -->
+                                        <th>출고상태</th>		<!--  -->
 	                                 </tr>
 	                             </thead>
 	                         </table>							 
