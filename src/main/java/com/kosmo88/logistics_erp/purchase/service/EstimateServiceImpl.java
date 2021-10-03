@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.purchase.dao.EstimateDAO;
 import com.kosmo88.logistics_erp.purchase.dao.ClientDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
@@ -42,6 +43,42 @@ public class EstimateServiceImpl implements EstimateService {
 			}
 		}
 		return true;
+	}
+	
+	// 견적서 등록 화면 - 견적서 거래처 선택
+	@Override
+	public void selectClient(HttpServletRequest req, Model model) {
+		
+		// 거래처 갯수
+		int cnt = estimateDao.getClientCnt();
+		System.out.println("거래처 갯수 : " + cnt);
+		
+		// 거래처가 있을때
+		if (cnt > 0) {
+			// 거래처 리스트
+			List<PurchaseClientDTO> dtos = estimateDao.getClientList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
+	}
+
+	// 견적서 등록 화면 - 견적서 담당자 선택 
+	@Override
+	public void selectEmployee(HttpServletRequest req, Model model) {
+		
+		// 담당자 갯수
+		int cnt = estimateDao.getEmployeeCnt();
+		System.out.println("담당자 갯수 : " + cnt);
+		
+		// 담당자가 있을때
+		if (cnt > 0) {
+			// 담당자 리스트
+			List<PurchaseEmployeeDTO> dtos = estimateDao.getEmployeeList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
 	}
 
 

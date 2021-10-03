@@ -23,5 +23,41 @@
  		   AND state = 'TX_ESTIMATE'
  	</update>
  	
+ 	<!-- 견적서 등록 화면 - 거래처 갯수 -->
+ 	<select id="getClientCnt" resultType="int">
+ 		SELECT COUNT(*)
+ 		  FROM client
+ 		 WHERE TYPE = '구매'
+ 	</select>
+ 	
+ 	<!-- 견적서 등록 화면 - 거래처 리스트 -->
+ 	<select id="getClientList" resultType="PurchaseClientDTO">
+		 SELECT *
+ 		   FROM client
+ 		  WHERE TYPE = '구매'
+ 		  ORDER BY id DESC
+ 	</select>
+ 	
+ 	
+ 	<!-- 견적서 등록 화면 - 담당자 갯수  -->
+ 	<select id="getEmployeeCnt" resultType="int">
+ 		SELECT COUNT(*)
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '구매'
+ 	</select>
+ 	
+ 	
+ 	<!-- 견적서 등록 화면 - 담당자 리스트  -->
+ 	<select id="getEmployeeList" resultType="PurchaseEmployeeDTO">
+ 		SELECT e.id as id, e.name as name, d.name as department_name, e.phone as phone, e.email as email
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '구매'
+		 ORDER BY e.id DESC
+ 	</select>
+ 	
 
 </mapper>

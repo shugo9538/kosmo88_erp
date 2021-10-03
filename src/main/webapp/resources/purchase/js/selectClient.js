@@ -13,10 +13,6 @@ $(document).ready(function(){
 		$(window.close());
 	})
 	
-	// 담당자 값 전달
-	
-	
-	
 	// 상품 값 전달
 	
 	

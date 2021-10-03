@@ -61,7 +61,7 @@ function estimateList() {
                 }, {
                 	data : null,
                     render : function(data, type, row, meta) {
-                        return '<a href="/logistics_erp/sales/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+                        return '<a href="/logistics_erp/sales/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1300, height=900); return false;">' + row.request_id + '</a>'; 
                     }
                 }, {	
                 	data : 'client_name',

@@ -10,10 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
@@ -22,52 +26,74 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	@Autowired
 	SalesEstimateDAO estimateDao;
 	
-	
 	QueryCode state;
-	
-	// 거래처 검색
-	@Override
-	public void clientList(HttpServletRequest req, Model model) {
 
-		List<SalesClientDTO> dto = estimateDao.choiseClient();
-		
-		model.addAttribute("dto", dto);
-		
-	}
-	
-	// 사원 검색
 	@Override
-	public void employeeList(HttpServletRequest req, Model model) {
-
-		List<SalesEmployeeDTO> dto = estimateDao.choiseEmployee();
-		
-		model.addAttribute("dto", dto);
-	}
-	
-	// 견적서 관리 - 견적서 목록(구매)
-	@Override
-	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest request, HttpServletResponse res) {
+	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesEstimateListViewDTO>) estimateDao.getEstimateList();
 	}
 
-	// 견적서 선택 삭제
 	@Override
 	public boolean estimateChoiceDelete(int[] request_id) {
-		// TODO Auto-generated method stub
-		return false;
+		state = QueryCode.UPDATE;
+		
+		for (int i: request_id) {
+			if(!state.check(estimateDao.deleteEstimate(i))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	// 견적서 상세페이지
 	@Override
-	public void estimateDetail(HttpServletRequest req, Model model) {
+	public void selectClient(HttpServletRequest req, Model model) {
+		// 거래처 갯수
+		int cnt = estimateDao.getClientCnt();
+		System.out.println("거래처 갯수 : " + cnt);
 		
-		int id = Integer.parseInt(req.getParameter("request_id"));
+		// 거래처가 있을때
+		if (cnt > 0) {
+			// 거래처 리스트
+			List<SalesClientDTO> dtos = estimateDao.getClientList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
 		
 	}
 
-	
+	@Override
+	public void selectEmployee(HttpServletRequest req, Model model) {
+		// 담당자 갯수
+		int cnt = estimateDao.getEmployeeCnt();
+		System.out.println("담당자 갯수 : " + cnt);
+		
+		// 담당자가 있을때
+		if (cnt > 0) {
+			// 담당자 리스트
+			List<SalesEmployeeDTO> dtos = estimateDao.getEmployeeList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
+		
+	}
 
-	
+	// 견적서 상품 등록
+	@Override
+	public void selectItem(HttpServletRequest req, Model model) {
 
+		// 상품갯수
+		int cnt = estimateDao.getItemCnt();
+		System.out.println("상품 갯수 : " + cnt);
+		
+		if(cnt > 0) {
+			List<SalesItemDTO> dtos = estimateDao.getItemList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}
 	
 }

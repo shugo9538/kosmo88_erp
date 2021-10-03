@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
-import com.kosmo88.logistics_erp.sale.dao.SalesItemDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesClientService {
 

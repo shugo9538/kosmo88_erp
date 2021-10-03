@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesClientDAO {
 

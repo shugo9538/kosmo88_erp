@@ -13,6 +13,7 @@
 <c:if test="${update == true}">
 	<script type="text/javascript">
 		alert("해당 거래처가 삭제되었습니다.");
+		opener.parent.location.reload();
 		window.close();
 	</script>
 </c:if>

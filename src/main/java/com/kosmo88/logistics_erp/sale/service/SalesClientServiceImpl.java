@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.sale.dao.SalesClientDAO;
-import com.kosmo88.logistics_erp.sale.dao.SalesItemDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
@@ -64,10 +64,17 @@ public class SalesClientServiceImpl implements SalesClientService{
 		model.addAttribute("cdto", cdto);
 	}
 
+	// 거래처 삭제(선택 삭제)
 	@Override
 	public boolean clientChoiceDelete(int[] client_id) {
-		// TODO Auto-generated method stub
-		return false;
+		state = QueryCode.UPDATE;
+		
+		for(int i : client_id) {
+			if (!state.check(clientDao.deleteClient(i))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override

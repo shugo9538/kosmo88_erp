@@ -26,12 +26,13 @@ $(document).ready(function() {
         });
     }
     
-    // 거래처, 상품 등록 처리
+    // 거래처, 거래처 상품 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
+	    var flag = false;
 	    /*
-	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -43,73 +44,74 @@ $(document).ready(function() {
 	    
 	    var formData = JSON.stringify(dataObject);
 	    
-	    $.ajax({
-	        type : 'POST',
-	        url : loc + '?' + csrfParameter + '=' + csrfToken,
-	        data : formData,
-	        accept : "application/json",
-	        contentType : "application/json; charset=utf-8",
-	        dataType : 'text',
-	        beforeSend : function(xhr) {
-	            xhr.setRequestHeader(csrfParameter, csrfToken);
-	        },
-	        success : function(data) {
-	        	
-	        },
-	        error : function() {
-	            alert('오류');
-	        },
-	    });
-	    
-	    var list = new Array();
-	    var i = 0;
-	    
-	    // 2.상품
-	    $('#clientRegisterForm #item-group').each(function() {
-	    	var dataObject = new Object();
-	    	$('.form-control').each(function() {
-	    		var data = $(this);
-	    		var name = data.attr('name');
-	    		if (name == 'item_name') name = 'name';
-	    		dataObject[name] = data.val();
-	    	});
-	    	console.log(dataObject);
-	    	list.push(dataObject);
-	    	i++
-	    });
-	    list.pop();
-	    
-	    formData = JSON.stringify(list);
-	    // alert(formData);
-	    
-	    console.log(formData);
-	    loc = window.location.href + '/itemRegisterAction';
-	    
-	    $.ajax({
-	        type : 'POST',
-	        url : loc + '?' + csrfParameter + '=' + csrfToken,
-	        data : formData,
-	        accept : "application/json",
-	        contentType : "application/json; charset=utf-8",
-	        dataType : 'text',
-	        beforeSend : function(xhr) {
-	            xhr.setRequestHeader(csrfParameter, csrfToken);
-	        },
-	        success : function(data) {
-	            if (data) {
-	            	alert('거래처가 등록되었습니다.');
-	            	$('.form-control').each(function() {
-	            		$(this).val('');
-	            	});
-	            	currTab.ajax.reload();
-	            }
-	        },
-	        error : function() {
-	            alert('오류');
-	        },
-	    });
+        $.ajax({
+            type : 'POST',
+            url : loc + '?' + csrfParameter + '=' + csrfToken,
+            data : formData,
+            accept : "application/json",
+            contentType : "application/json; charset=utf-8",
+            dataType : 'text',
+            beforeSend : function(xhr) {
+                xhr.setRequestHeader(csrfParameter, csrfToken);
+            },
+            success : function(data) {
+                itemRegister();
+            },
+            error : function() {
+                alert('오류');
+            },
+        });
 	});  
 });
+
+function itemRegister() {
+    var list = new Array();
+    var i = 0;
+    
+    // 2.거래처 상품
+    $('#clientRegisterForm #item-group').each(function() {
+        var dataObject = new Object();
+        $('.form-control' + i).each(function() {
+            var data = $(this);
+            var name = data.attr('name');
+            if (name == 'item_name') name = 'name';
+            dataObject[name] = data.val();
+        });
+        console.log(dataObject);
+        list.push(dataObject);
+        i++
+    });
+    
+    formData = JSON.stringify(list);
+    // alert(formData);
+    
+    console.log(formData);
+    loc = window.location.href + '/itemRegisterAction';
+    
+    $.ajax({
+        type : 'POST',
+        url : loc + '?' + csrfParameter + '=' + csrfToken,
+        data : formData,
+        accept : "application/json",
+        contentType : "application/json; charset=utf-8",
+        dataType : 'text',
+        beforeSend : function(xhr) {
+            xhr.setRequestHeader(csrfParameter, csrfToken);
+        },
+        success : function(data) {
+            if (data) {
+                alert('거래처가 등록되었습니다.');
+                $('.form-control').each(function() {
+                    $(this).val('');
+                });
+                currTab.ajax.reload();
+            }
+        },
+        error : function() {
+            alert('오류');
+        },
+    });
+}
 
 // 날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {

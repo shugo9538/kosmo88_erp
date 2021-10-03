@@ -17,63 +17,36 @@ $(document).ready(function() {
 	$("#selectClient").click(function(){
 		
 		var url = "/logistics_erp/sales/selectClient"
-		window.open(url, "select", "menubar=no, width=1200, height=700");
+		window.open(url, "select", "menubar=no, width=1400, height=900");
 		
 	});
 	
-	// 거래처 선택
+	// 담당자 선택
 	$("#selectEmployee").click(function(){
 		
 		var url = "/logistics_erp/sales/selectEmployee"
-		window.open(url, "select", "menubar=no, width=1200, height=700");
+		window.open(url, "select", "menubar=no, width=1400, height=900");
 		
 	});
 	
+	// 상품 선택
+	$("#selectItem").click(function(){
+		
+		var url = "/logistics_erp/sales/selectItem"
+		window.open(url, "select", "menubar=no, width=1400, height=900");
+	});
+	
+	
+	
 });
 
 
 
-$('#clientManagementForm').ready(function(){
-	addItem();
-});
+
 
 var i = 0;
 
-// 거래처 상품 등록 추가
-function addItem() {
-	var item = document.getElementById("item");
-	var addItemBtn = document.getElementById("addItem");
-	var newItem = document.createElement("tr");
-	
-	newItem = item.cloneNode(true);
-	newItem.removeAttribute("style");
-	
-	
-	tmp = newItem.getElementsByTagName('input');
-	for (var j = 0 ; j < tmp.length ; j++) { 
-		tmp[j].className = "form-control"+i;
-	}
-	
-	Array.from(newItem.getElementsByClassName("form-control" + i)).forEach(f => f.removeAttribute("disabled"));
-    Array.from(newItem.getElementsByClassName("form-control" + i)).forEach((f) =>
-        f.setAttribute("required", true));
-  
-	document.getElementById("item-group").appendChild(newItem);
-	i++;
-}
 
-// 거래처 상품 삭제
-function delItem(obj) {
-	var itemGroup = document.getElementById("item-group");
-	var selectedItem = $(obj);
-	var item = selectedItem.parent().parent();
-	
-	if (itemGroup.childElementCount < 3) {
-		alert("최소 하나 이상의 상품을 등록해야 합니다.")
-	} else {
-		item.remove();
-	}
-}
 
 // 입력 후 커서 이동
 function nextRegisterNum1(){
@@ -109,6 +82,47 @@ function nextPhone3() {
 		document.clientRegisterForm.zip_code.focus();
 	}
 }
+
+
+//  --------- 상품 수량
+var price;
+var amount;
+
+function init () {
+	price = document.estimateRegisterForm.price.value;
+	amount = document.estimateRegisterForm.amount.value;
+	document.estimateRegisterForm.total_price.value = price;
+	change();
+}
+
+function add () {
+	hm = document.estimateRegisterForm.amount;
+	total_price = document.estimateRegisterForm.total_price;
+	hm.value ++ ;
+
+	total_price.value = parseInt(hm.value) * price;
+}
+
+function del () {
+	hm = document.estimateRegisterForm.amount;
+	total_price = document.estimateRegisterForm.total_price;
+		if (hm.value > 1) {
+			hm.value -- ;
+			total_price.value = parseInt(hm.value) * price;
+		}
+}
+
+function change () {
+	hm = document.estimateRegisterForm.amount;
+	total_price = document.estimateRegisterForm.total_price;
+
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+		total_price.value = parseInt(hm.value) * price;
+}
+
+
 
 
 

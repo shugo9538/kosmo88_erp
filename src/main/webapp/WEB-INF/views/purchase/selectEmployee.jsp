@@ -32,7 +32,7 @@
 	                                 <td><input style="border:none;" type="text" id="c_employee_phone" value="${dto.phone}" readonly></td>
 	                                 <td><input style="border:none;" type="text" id="c_employee_email" value="${dto.email}" readonly></td>
 	                                 <td>
-	                                 	<input class="btn  btn-primary" type="button" id="select" name="${dto.id}" value="선택"/>
+	                                 	<input class="btn  btn-primary" type="button" id="select" name="${dto.name}" value="선택"/>
 	                                 </td>
 	                             </tr>
 	                       		</c:forEach>
@@ -41,7 +41,7 @@
 	                       	<c:if test="${cnt == 0}">
 	                       		<tr>
 	                       			<td colspan="6">
-	                       				"등록된 영업팀 사원이 없습니다."
+	                       				"등록된 구매팀 사원이 없습니다."
 	                       			</td>
 	                       		</tr>
 	                       	</c:if>
@@ -58,6 +58,6 @@
     <!-- end row -->
 </div>
 	
-	<script src="${RESOURCES_PATH}/sales/js/selectEmployee.js"></script>
+	<script src="${RESOURCES_PATH}/purchase/js/selectEmployee.js"></script>
 </body>
 </html>

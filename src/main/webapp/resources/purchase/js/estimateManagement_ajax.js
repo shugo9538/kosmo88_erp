@@ -18,37 +18,100 @@ $(document).ready(function() {
         	estimateList();
         });
     }
-/*    
-    if (currLocation.split('/')[5] == 'clientRegister') {
+    
+    if (currLocation.split('/')[5] == 'estimateRegister') {
         
-        $('#registeredClientList').ready(function() {
-        	registeredClientList();
+        $('#registeredEstimateList').ready(function() {
+        	registeredEstimateList();
         });
     }
     
-    // 거래처, 상품 등록 처리
-    $("#insertClient").click(function() {
-    	clientRegisterAction(csrfParameter, csrfToken);
-    });
-
-
-    // 견적서 삭제(선택삭제) 버튼 눌렀을대
-    $("#deleteEstimate").click(function() {
-    	estimateChoiceDelete(csrfParameter, csrfToken);
-    });
-
-    
-/*
-    // 버튼 눌렀을때
-    $('#selectAttendacne').click(function() {
-        refeshAttendanceList();
-    });
-
-    $('#insertAttendanceAction').click(function() {
-        insertAttendance(csrfParameter, csrfToken);
-    });
-*/    
+    // 견적서, 견적서 상품 등록 처리
+	// '#clientRegisterAction', 버튼 id
+	$('#white-box').on('click', '#estimateRegisterAction', function() {
+	    var loc = $('#estimateRegisterForm').attr('action');
+	    var flag = false;
+	    /*
+	    1. 견적서 등록 {id:'id', type:'type', name:'name' ... }
+	     * */
+	    // $(form id tr id)
+	    var dataObject = new Object();
+	    $('#estimate').find('input').each(function() {
+    		var data = $(this);
+    		dataObject[data.attr('name')] = data.val();
+	    });
+	    console.log(dataObject);
+	    
+	    var formData = JSON.stringify(dataObject);
+	    
+        $.ajax({
+            type : 'POST',
+            url : loc + '?' + csrfParameter + '=' + csrfToken,
+            data : formData,
+            accept : "application/json",
+            contentType : "application/json; charset=utf-8",
+            dataType : 'text',
+            beforeSend : function(xhr) {
+                xhr.setRequestHeader(csrfParameter, csrfToken);
+            },
+            success : function(data) {
+                itemRegister();
+            },
+            error : function() {
+                alert('오류');
+            },
+        });
+	});  
 });
+
+function itemRegister() {
+    var list = new Array();
+    var i = 0;
+    
+    // 2.거래처 상품
+    $('#clientRegisterForm #item-group').each(function() {
+        var dataObject = new Object();
+        $('.form-control' + i).each(function() {
+            var data = $(this);
+            var name = data.attr('name');
+            if (name == 'item_name') name = 'name';
+            dataObject[name] = data.val();
+        });
+        console.log(dataObject);
+        list.push(dataObject);
+        i++
+    });
+    
+    formData = JSON.stringify(list);
+    // alert(formData);
+    
+    console.log(formData);
+    loc = window.location.href + '/itemRegisterAction';
+    
+    $.ajax({
+        type : 'POST',
+        url : loc + '?' + csrfParameter + '=' + csrfToken,
+        data : formData,
+        accept : "application/json",
+        contentType : "application/json; charset=utf-8",
+        dataType : 'text',
+        beforeSend : function(xhr) {
+            xhr.setRequestHeader(csrfParameter, csrfToken);
+        },
+        success : function(data) {
+            if (data) {
+                alert('거래처가 등록되었습니다.');
+                $('.form-control').each(function() {
+                    $(this).val('');
+                });
+                currTab.ajax.reload();
+            }
+        },
+        error : function() {
+            alert('오류');
+        },
+    });
+}
 
 // 날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {
@@ -72,7 +135,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
-// 거래처(구매처) 목록
+// 견적서 목록
 function estimateList() {
 	// 테이블 id
 	currTab = $('#estimateList').DataTable({
@@ -178,125 +241,38 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 	event.preventDefault();
 }
 
-/*
-//등록한 거래처(구매처) 목록
-function registeredClientList() {
-    $('#registeredClientList').DataTable({
+
+//등록한 견적서 목록
+function registeredEstimateList() {
+    currTab = $('#registeredEstimateList').DataTable({
+    		
         ajax : {
-            url : window.location.href + '/registeredClientList', // 현 위치
+            url : window.location.href + '/registeredEstimateList', // 현 위치
             type : 'POST',
             data : csrfData,
             dataSrc : ''
         },
         columns : [
-                {
-                    data : null,
-                    render : function(data, type, row, meta) {
-                        return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.name + '</a>'; 
-                    }
-                }, {
-                	data : 'id',
-                }, {
-                    data : 'register_num',
-                }, {
-                    data : 'ceo_name',
-                }, {
-                    data : 'phone',
-                }, {
-                    data : 'address',
-                }, {
-                    data : 'register_date',
-                    render : $.fn.dataTable.render.moment()
+	        {	
+            	data : null,
+                render : function(data, type, row, meta) {
+                    return '<a href="/logistics_erp/estimate/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
                 }
+            }, {	
+            	data : 'client_name',
+            }, {
+                data : 'client_ceo_name',
+            }, {
+                data : 'client_phone',
+            }, {
+            	data : 'employee_name',	
+            }, {
+                data : 'begin_date',
+                render : $.fn.dataTable.render.moment()
+            }
         ],
         destroy : true,
         retrieve : true
     });
 }
 
-//거래처, 상품 등록 처리
-function clientRegisterAction(csrfParameter, csrfToken) {
-	$('#clientRegisterform').submit(function(event) {
-        var formData = {
-            '_csrf' : $('input[name=_csrf]').val(),
-            'id' : $('input[name=id]').val(),
-            'ceo_name' : $('input[name=ceo_name]').val(),
-            'phone1' : $('input[name=phone1]').val(),
-            'phone2' : $('input[name=phone2]').val(),
-            'phone3' : $('input[name=phone3]').val(),
-            'email' : $('input[name=email]').val(),
-            'register_num1' : $('input[name=register_num1]').val(),
-            'register_num2' : $('input[name=register_num2]').val(),
-            'register_num3' : $('input[name=register_num3]').val(),
-            'zip_code' : $('input[name=zip_code]').val(),
-            'address' : $('input[name=address]').val(),
-            'detail_address' : $('input[name=detail_address]').val(),
-            'item_name' : $('input[name=item_name]').val(),
-            'category' : $('input[name=category]').val(),
-            'price' : $('input[name=price]').val(),
-        };
-        var loc = $('#clientRegisterform').attr('action');
-        $.ajax({
-            type : 'POST',
-            url : loc,
-            data : formData,
-            dataType : 'json',
-            success : function(data) {
-                if (data) {
-                    alert('거래처가 등록되었습니다.');
-                }
-            },
-            error : function() {
-                alert('오류');
-            },
-        });
-
-        event.preventDefault();
-    });
-	
-}
-
-
-
-
-*/
-
-/*
-function insertAttendance(csrfParameter, csrfToken) {
-    $('#insertAttendanceForm').submit(function(event) {
-        var formData = {
-            '_csrf' : $('input[name=_csrf]').val(),
-            'id' : $('input[name=id]').val(),
-            'attendance_cd_id' : $('input[name=attendance_cd_id]').val(),
-            'application_date' : $('input[name=application_date]').val(),
-            'begin_date' : $('input[name=begin_date]').val(),
-            'end_date' : $('input[name=end_date]').val(),
-            'reason' : $('input[name=reason]').val(),
-        };
-        var loc = $('#insertAttendanceForm').attr('action');
-        $.ajax({
-            type : 'POST',
-            url : loc,
-            data : formData,
-            dataType : 'json',
-            success : function(data) {
-                if (data) {
-                    window.close();
-                }
-            },
-            error : function() {
-                alert('오류');
-            },
-        });
-
-        event.preventDefault();
-    });
-}
-
-function refeshAttendanceList() {
-    $('#attendanceTable').ready(function() {
-        $('#attendanceTable').DataTable().clear().draw().destroy();
-        attendanceList();
-    });
-}
-*/
