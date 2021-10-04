@@ -20,6 +20,7 @@
 		)
 	</insert>
 
+<<<<<<< HEAD
 	<!-- warehouse -->
 	<select id="selectList"
 		resultType="com.kosmo88.logistics_erp.wms.dto.V_warehouseDto">
@@ -37,6 +38,37 @@
 		FROM WAREHOUSE
 		WHERE ID=#{id}
 <!-- 		WHERE ID=1 -->
+=======
+	<insert id="insertRack"
+		parameterType="com.kosmo88.logistics_erp.wms.dto.RackDto">
+		INSERT INTO RACK
+		(ID, WAREHOUSE_ID, SECTION, SECTION_NUMBER, CAPACITY) 
+		VALUES
+		(1, 1, 'A', 1, 5);
+		COMMIT;
+	</insert>
+
+	<!-- warehouse -->
+	<select id="select"
+		resultType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
+		<!-- select * from warehouse; -->
+		select *
+		from warehouse
+<!-- 		SELECT s.* -->
+<!-- 		FROM ( -->
+<!-- 		SELECT ROWNUM RNUM, w.* -->
+<!-- 		FROM WAREHOUSE w -->
+<!-- 		) s -->
+<!-- 		WHERE RNUM -->
+<!-- 		BETWEEN 1 AND 10; -->
+	</select>
+
+	<select id="selectOne"
+		resultType="com.kosmo88.logistics_erp.wms.dto.WarehouseDto">
+		select *
+		from warehouse
+		where id=1;
+>>>>>>> 3f375313169fe8de23782103645212b360ff4f43
 	</select>
 
 	<select id="selectMaxId" resultType="int">
@@ -45,6 +77,7 @@
 	</select>
 
 	<!-- rackList -->
+<<<<<<< HEAD
 <!-- 	<select id="selectSection" -->
 <!-- 		resultType="com.kosmo88.logistics_erp.wms.dto.SectionDto"> -->
 <!-- 	<![CDATA[ -->
@@ -55,6 +88,16 @@
 <!--     AND s.item_id != 0; -->
 <!-- 	]]> -->
 <!-- 	</select> -->
+=======
+	<select id="selectRack"
+		resultType="com.kosmo88.logistics_erp.wms.dto.RackDto">
+	<![CDATA[
+	SELECT * 
+	FROM RACK 
+	WHERE WAREHOUSE_ID = 1;
+	]]>
+	</select>
+>>>>>>> 3f375313169fe8de23782103645212b360ff4f43
 
 	<!-- 입고시 insert 처리한다 -->
 	<!-- <insert id="insert"> -->

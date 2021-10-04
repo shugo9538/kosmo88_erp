@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -34,7 +35,9 @@ public interface SalesEstimateDAO {
 	public List<SalesEmployeeDTO> getEmployeeList();
 	
 	// 견적서 상세 페이지
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id);
+	
+	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id);
 	
 	
 }

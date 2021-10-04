@@ -29,11 +29,25 @@ $(document).ready(function() {
 		
 	});
 	
-	// 상품 선택
+	// 상품 선택1
 	$("#selectItem").click(function(){
 		
 		var url = "/logistics_erp/sales/selectItem"
 		window.open(url, "select", "menubar=no, width=1400, height=900");
+	});
+	
+	// 상품 선택2
+	$("#selectItem2").click(function(){
+		
+		var url = "/logistics_erp/sales/selectItem2"
+		window.open(url, "select2", "menubar=no, width=1400, height=900");
+	});
+	
+	// 상품 선택3
+	$("#selectItem3").click(function(){
+		
+		var url = "/logistics_erp/sales/selectItem3"
+		window.open(url, "select3", "menubar=no, width=1400, height=900");
 	});
 	
 	
@@ -115,14 +129,104 @@ function del () {
 function change () {
 	hm = document.estimateRegisterForm.amount;
 	total_price = document.estimateRegisterForm.total_price;
-
+	
 		if (hm.value < 0) {
 			hm.value = 0;
 		}
-		total_price.value = parseInt(hm.value) * price;
+		total_price.value = parseInt(hm.value) * document.estimateRegisterForm.price.value;
+}
+
+//----------------
+var price2;
+var amount2;
+
+function init () {
+	price2 = document.estimateRegisterForm.price2.value;
+	amount2 = document.estimateRegisterForm.amount2.value;
+	document.estimateRegisterForm.total_price2.value = price2;
+	change2();
+}
+
+function salePrice2(){
+//	price = document.estimateRegisterForm.price.value;
+//	console.log("test")
+//	price = document.getElementById("price").getAttribute("value");
+//	console.log(price);
+	init();
+}
+function add2 () {
+	hm = document.estimateRegisterForm.amount2;
+//	total_price = document.estimateRegisterForm.total_price;
+	hm.value ++ ;
+
+	total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.price2.value;
+}
+
+function del2 () {
+	hm = document.estimateRegisterForm.amount2;
+	total_price2 = document.estimateRegisterForm.total_price2;
+		if (hm.value > 1) {
+			hm.value -- ;
+			total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.price2.value;
+		}
+}
+
+function change2 () {
+	console.log("onchange")
+	hm = document.estimateRegisterForm.amount2;
+	total_price2 = document.estimateRegisterForm.total_price2;
+	
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+		total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.price2.value;
 }
 
 
+//----------------
+var price3;
+var amount3;
+
+function init () {
+	price3 = document.estimateRegisterForm.price3.value;
+	amount3 = document.estimateRegisterForm.amount3.value;
+	document.estimateRegisterForm.total_price3.value = price3;
+	change3();
+}
+
+function salePrice3(){
+//	price = document.estimateRegisterForm.price.value;
+//	console.log("test")
+//	price = document.getElementById("price").getAttribute("value");
+//	console.log(price);
+	init();
+}
+function add3 () {
+	hm = document.estimateRegisterForm.amount3;
+//	total_price = document.estimateRegisterForm.total_price;
+	hm.value ++ ;
+
+	total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.price3.value;
+}
+
+function del3 () {
+	hm = document.estimateRegisterForm.amount3;
+	total_price3 = document.estimateRegisterForm.total_price3;
+		if (hm.value > 1) {
+			hm.value -- ;
+			total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.price3.value;
+		}
+}
+
+function change3 () {
+	hm = document.estimateRegisterForm.amount3;
+	total_price3 = document.estimateRegisterForm.total_price3;
+	
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+		total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.price3.value;
+}
 
 
 

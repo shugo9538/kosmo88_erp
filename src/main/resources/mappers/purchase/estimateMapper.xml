@@ -64,18 +64,6 @@
  	
  	</insert>
  	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 
- 
  	<!-- 견적서 상세페이지(거래처, 담당자 정보) -->
  	<select id="getEstimateDetail" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
  		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email

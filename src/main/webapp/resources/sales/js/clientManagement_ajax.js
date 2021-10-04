@@ -251,7 +251,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 }
 
 
-//등록한 거래처(구매처) 목록
+//등록한 거래처 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
     		"order": [[ 1, "desc" ]],

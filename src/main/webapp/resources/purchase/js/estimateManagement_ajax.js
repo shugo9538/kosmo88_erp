@@ -251,7 +251,8 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 
 //등록한 견적서 목록
 function registeredEstimateList() {
-    $('#registeredEstimateList').DataTable({
+    currTab = $('#registeredEstimateList').DataTable({
+    		
     	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredEstimateList', // 현 위치

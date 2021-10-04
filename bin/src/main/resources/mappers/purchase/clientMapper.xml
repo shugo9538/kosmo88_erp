@@ -7,6 +7,10 @@
 <mapper namespace="com.kosmo88.logistics_erp.purchase.dao.ClientDAO">
 
 	<!-- 거래처(구매처) 목록	 -->
+<<<<<<< HEAD
+	
+=======
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
  	<select id="getClientList" resultType="PurchaseClientDTO">
  		SELECT id, name, register_num, ceo_name, phone, address, register_date
  		  FROM client
@@ -14,7 +18,11 @@
  		   AND enabled = 'Y'
  		 ORDER BY id DESC
  	</select>
+<<<<<<< HEAD
+  
+=======
  
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	<!-- 거래처 등록 처리 -->
 	<insert id="registerClient" parameterType="PurchaseInsertClientDTO">
 		INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code, enabled)
