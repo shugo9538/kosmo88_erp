@@ -15,7 +15,7 @@ var positionCodeCol = [
 var attCodeCol = [
         '전체 항목', '근태 코드', '근태 명칭', '근태 유형', '등록여부'
 ];
-
+var currLocation;
 // 페이지 탭 시작 시
 $(document)
         .ready(
@@ -31,34 +31,8 @@ $(document)
                     if (currLocation.split('/')[5] == 'configurations') {
                         $('#configDatatables').append(
                                 '<table id="configTable" style="width:100%"></table>');
-                        columns = [
-                                {
-                                    'sTitle' : '<input type="checkbox" id="checkAll">',
-                                    data : 'id',
-                                    render : function(data) {
-                                        return '<input type="checkBox" class="client_id" name="client_id" value="'
-                                                + data + '">';
-                                    }
-                                }, {
-                                    'sTitle' : '인사 코드',
-                                    data : 'id'
-                                }, {
-                                    'sTitle' : '코드 명칭',
-                                    data : 'name'
-                                }, {
-                                    'sTitle' : '코드 그룹',
-                                    data : 'hr_group_id'
-                                }, {
-                                    'sTitle' : '코드 그룹 명칭',
-                                    data : 'hr_group_name'
-                                }
-                        ];
-
-                        ordering = [
-                            [
-                                    1, 'desc'
-                            ]
-                        ];
+                        columns = hrCodeColumns;
+                        ordering = hrCodeOrder;
 
                         url = '/selectHRCode';
                         callConfigList(url, columns, ordering);
@@ -236,7 +210,6 @@ function callConfigList(url, columns, ordering) {
 
     currTab.on('click', 'tr', function(e, dt, type, indexes) {
         td = $(this).children();
-
     });
 }
 
@@ -277,7 +250,7 @@ var hrCodeColumns = [
             'sTitle' : '인사 코드',
             data : 'id',
             render : function(data) {
-                return '<a id="' + data + '">' + data + '</div>';
+                return '<div id="' + data + '">' + data + '</div>';
             }
         }, {
             'sTitle' : '코드 명칭',
