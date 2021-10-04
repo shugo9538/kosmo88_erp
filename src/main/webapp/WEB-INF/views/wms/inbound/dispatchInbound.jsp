@@ -10,30 +10,30 @@
 <%@ include file="/WEB-INF/views/wms/common/settings.jspf"%>
 </head>
 <body class="sticky-header">
-	<!--Start left side Menu-->
-	<%@ include file="/WEB-INF/views/common/left_side.jsp"%>
-	<!--End left side menu-->
-	<!-- main content start-->
 	<div class="main-content">
-		<!-- header section start-->
-		<%@ include file="/WEB-INF/views/wms/common/myHeader.jspf"%>
-		<!--body wrapper start-->
 		<div class="wrapper">
-			<!--Start Page Title-->
-			<div class="page-title-box">
-				<h4 class="page-title">제목</h4>
-				<ol class="breadcrumb">
-					<li><a href="#">소메뉴</a></li>
-					<li class="active">대메뉴</li>
-				</ol>
-				<div class="clearfix"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="header-title">
+							<i class="fa fa-chevron-circle-right mr-2"></i>입하 지시
+						</h2>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Input Select</label>
+							<div class="col-sm-10">
+								<select class="form-control">
+									<c:forEach var="warehouseDto" items="${warehouseDtoList}">
+										<option></option>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+					</div>
+					<div class="white-box"></div>
+				</div>
 			</div>
-			<!--End Page Title-->
-			<!--Start row-->
-			<div class="row"></div>
-			<!--End row-->
 		</div>
-		<!-- End Wrapper-->
 	</div>
 	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>

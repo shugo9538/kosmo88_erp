@@ -39,42 +39,44 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<form class="form-horizontal" method="post" 
-						action="${ROOT_PATH}/wms/warehouse/addAction" onsubmit="return warehouseAddAction()">
-						
-						<sec:csrfInput/>
-							<h2 class="header-title">창고 정보 입력</h2>
-<!-- 							<div class="form-group"> -->
-<!-- 								<label class="col-sm-1 control-label">창고 번호</label> -->
-<!-- 								<div class="col-sm-5"> -->
-<!-- 									<input class="form-control" value="" type="text" readonly> -->
-<!-- 								</div> -->
+						<form class="form-horizontal" method="post"
+							action="${ROOT_PATH}/wms/warehouse/addAction"
+							onsubmit="return warehouseAddAction()">
 
-<!-- 								<label class="col-sm-1 control-label">등록일</label> -->
-<!-- 								<div class="col-md-5"> -->
-<!-- 									<div class="input-group"> -->
-<!-- 										<input type="text" class="form-control" -->
-<!-- 											placeholder="mm/dd/yyyy" id="datepicker-autoclose"> <span -->
-<!-- 											class="input-group-addon b-0 text-white"><i -->
-<!-- 											class="icon-calender"></i></span> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<sec:csrfInput />
+							<h2 class="header-title">창고 정보 입력</h2>
+							<!-- 							<div class="form-group"> -->
+							<!-- 								<label class="col-sm-1 control-label">창고 번호</label> -->
+							<!-- 								<div class="col-sm-5"> -->
+							<!-- 									<input class="form-control" value="" type="text" readonly> -->
+							<!-- 								</div> -->
+
+							<!-- 								<label class="col-sm-1 control-label">등록일</label> -->
+							<!-- 								<div class="col-md-5"> -->
+							<!-- 									<div class="input-group"> -->
+							<!-- 										<input type="text" class="form-control" -->
+							<!-- 											placeholder="mm/dd/yyyy" id="datepicker-autoclose"> <span -->
+							<!-- 											class="input-group-addon b-0 text-white"><i -->
+							<!-- 											class="icon-calender"></i></span> -->
+							<!-- 									</div> -->
+							<!-- 								</div> -->
+							<!-- 							</div> -->
 							<div class="form-group">
 
 								<label class="col-sm-1 control-label">창고 이름</label>
 								<div class="col-sm-5">
-									<input class="form-control" name="name" type="text" required="true">
+									<input class="form-control" name="name" type="text"
+										required="true">
 								</div>
 
-<!-- 								<label class="col-sm-1 control-label" >창고 종류</label> -->
-<!-- 								<div class="col-sm-5"> -->
-<!-- 									<select class="form-control" name="kind"> -->
-<!-- 										<option>일반창고</option> -->
-<!-- 										<option>야적창고</option> -->
-<!-- 										<option>냉동창고</option> -->
-<!-- 									</select> -->
-<!-- 								</div> -->
+								<!-- 								<label class="col-sm-1 control-label" >창고 종류</label> -->
+								<!-- 								<div class="col-sm-5"> -->
+								<!-- 									<select class="form-control" name="kind"> -->
+								<!-- 										<option>일반창고</option> -->
+								<!-- 										<option>야적창고</option> -->
+								<!-- 										<option>냉동창고</option> -->
+								<!-- 									</select> -->
+								<!-- 								</div> -->
 							</div>
 
 							<div class="form-group">
@@ -82,7 +84,7 @@
 								<label class="col-sm-1 control-label">주소</label>
 								<div class="col-sm-2">
 									<input class="form-control col-sm-2" type="text"
-										id="sample6_postcode" name="zip" placeholder="우편번호">
+										id="sample6_postcode" name="zip" placeholder="우편번호" disabled>
 								</div>
 								<div class="col-sm-1">
 									<button type="button" class="btn btn-default "
@@ -98,8 +100,8 @@
 								</div>
 								<div class="col-sm-6">
 									<input class="form-control" type="text"
-										id="sample6_detailAddress" 
-										name="detailAddr" placeholder="상세주소">
+										id="sample6_detailAddress" name="detailAddr"
+										placeholder="상세주소">
 								</div>
 
 							</div>
@@ -128,38 +130,45 @@
 											<input class="form-control" name="capacity" type="text"
 												disabled>
 										</div>
-										<div role="button" id="delAdditionalForm" class="col-md-1" onclick="delRack(this);">
+										<div role="button" id="delAdditionalForm" class="col-md-1"
+											onclick="delRack(this);">
 											<i class="icon-minus"></i>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div role="button" class="preview col-md-12 md-5" id="addRack" >
-								<i class="icon-plus"  onclick="addRack()"></i> 랙 추가
+							<div role="button" class="preview col-md-12 md-5" id="addRack">
+								<i class="icon-plus" onclick="addRack()"></i> 랙 추가
 							</div>
-							<input type="hidden" id="additionalFormCnt" name="additionalFormCnt" value="1">
-							<button type="submit" class="btn btn-default mt-5"> 등록 </button>
+							<input type="hidden" id="additionalFormCnt"
+								name="additionalFormCnt" value="1">
+							<button type="submit" class="btn btn-default mt-5">등록</button>
 							<button type="button" class="btn btn-default mt-5"
-							onclick="setAdditionalFormNum()"> 테스트 </button>
+								onclick="setAdditionalFormNum()">테스트</button>
 						</form>
 					</div>
 				</div>
 				<!--End row-->
 			</div>
-			<!-- End Wrapper--
+		</div>
+		<!-- End Wrapper-->
 		<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 			<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
-		</div>
+
+
+
 	</div>
 
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script>
 		window.onload = addRack();
 	</script>
+	
+	
 	<!-- 다음 도로명주소 -->
-	<script
-		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
+		<script
+			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
 </body>
 </html>
 

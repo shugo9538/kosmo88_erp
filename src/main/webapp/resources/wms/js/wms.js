@@ -8,6 +8,13 @@ function getCurrentDate() {
   return month + "/" + date + "/" + year;
 }
 
+
+//폼 추가
+document.addEventListener("DomContentLoaded", function(){
+  if(document.getElementById(""))
+  addRack()
+})
+
 function addRack() {
   var rack = document.getElementById("rack");
   // var addRackBtn = document.getElementById("addRack");
@@ -60,8 +67,30 @@ function setAdditionalFormNum() {
   }
 }
 
+
+//이름이 같은 파라미터들 묶어서 보내기
+//1. 같은 파라미터별로 
+//2. 주제단위별로
+//어차피
+function sameNameValuesToArray(paramName) {
+  var additionalForms = Array.from(
+    document.getElementsByClassName("additionalForm")
+  );
+  var arr = [];
+  // var section_number = [];
+  // var capacity = [];
+  additionalForms.forEach(f => Array.from(f.getElementsByTagName(paramName)).forEach(p => section.push(p)))
+  console.log(arr);
+  return arr;
+}
+
+
 function warehouseAddAction() {
   alert("등록되었습니다");
+ // sameNameValuesToArray(section);
+  //sameNameValuesToArray(section_section);
+  //sameNameValuesToArray(capacity);
+
   return true;
 }
 
@@ -106,6 +135,7 @@ function initDateRange() {
   //  Array.from(ranges).= getCurrentDate();
 }
 
+
 function adjustIncludedPage() {
   // var includePages = document.querySelectorAll(".include");
   var includePages = Array.from(document.getElementsByClassName("include"));
@@ -131,3 +161,24 @@ function adjustIncludedPage() {
   //  includePages.forEach(i=>i.querySelector(".page-title-box").remove());
   //  includePages.forEach(i=>i.querySelector(".main-content").setAttribute("class", ""));
 }
+
+//들어가는 메뉴에 따라 다른 그거 탭하기
+$(document).ready(function () {
+  var tab = getParameterByName("tab");
+console.log("선택 탭 : " + tab);
+if(tab != ""){
+    // var li = document.getElementById("li_" + tab);
+    console.log("클릭할 탭 : " + 'tab_'+tab);
+ document.getElementById("tab_" + tab).click();
+}
+})
+
+//퍼온
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+

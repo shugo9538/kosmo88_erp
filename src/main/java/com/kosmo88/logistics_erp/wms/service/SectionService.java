@@ -1,26 +1,31 @@
 package com.kosmo88.logistics_erp.wms.service;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.transform.impl.AddInitTransformer;
 import org.springframework.stereotype.Service;
 
-import com.kosmo88.logistics_erp.wms.dao.RackDao;
-import com.kosmo88.logistics_erp.wms.dto.RackDto;
+import com.kosmo88.logistics_erp.wms.dao.SectionDao;
+import com.kosmo88.logistics_erp.wms.dto.SectionDto;
 import com.kosmo88.logistics_erp.wms.util.DtoFunction;
+import com.kosmo88.logistics_erp.wms.util.MyLog;
 
 @Service
-public class RackService {
+public class SectionService {
 
 	@Autowired
-	RackDao rackDao;
+	SectionDao sectionDao;
 
 	public void list() {
 
+	}
+
+	public List<SectionDto> list(int warehouseId) {
+		List<SectionDto> sectionList = sectionDao.selectList(warehouseId); 
+		MyLog.logList(sectionList);
+		return sectionList;
 	}
 
 	public void add() {
@@ -36,13 +41,13 @@ public class RackService {
 	public void addAction(Map<String, String[]> paramMap, int warehouseId) {
 		int additionalFormCnt = Integer.parseInt(paramMap.get("additionalFormCnt")[0]);
 		System.out.println("additionalFromCnt : " + additionalFormCnt);
-		Set<RackDto> dtoset = DtoFunction.getDtoSetFromIndexedParamMap(paramMap, RackDto.class, additionalFormCnt);
-		for (RackDto rackDto : dtoset) {
-			int maxRackId = rackDao.selectMaxId();
-			rackDto.setId(maxRackId+1);
-			rackDto.setWarehouseId(warehouseId);
-			System.out.println("RackDto 정보 : " + rackDto);
-			rackDao.insert(rackDto);
+		Set<SectionDto> dtoSet = (Set<SectionDto>) DtoFunction.getDtoSetFromParamMap(paramMap, SectionDto.class, additionalFormCnt);
+		for(SectionDto sectionDto : dtoSet) {
+			int maxSectionId = sectionDao.selectMaxId();
+			sectionDto.setId(maxSectionId+1);
+			sectionDto.setWarehouse_id(warehouseId);
+			System.out.println("SectionDto 정보 : " + sectionDto);
+			sectionDao.insert(sectionDto);
 		}
 
 	}
@@ -59,7 +64,7 @@ public class RackService {
 	public void view() {
 	}
 
-	public void viewRack() {
+	public void viewSection() {
 	}
 
 }
