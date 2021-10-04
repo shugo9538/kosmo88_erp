@@ -4,7 +4,6 @@ import java.util.Date;
 
 // 구매 상품 DTO
 public class PurchaseItemDTO {
-	
 	private int id;					// 상품코드
 	private String name;			// 상품명
 	private String category;		// 종류

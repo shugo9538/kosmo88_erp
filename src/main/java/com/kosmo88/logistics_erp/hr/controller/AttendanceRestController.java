@@ -10,14 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.hr.dto.AttendaceDTOWrapper;
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
@@ -32,13 +29,10 @@ public class AttendanceRestController {
     @Autowired
     AttendanceService attendanceService;
 
-    private static List<AttendanceDTO> attendanceList = new ArrayList<>();
-
     // 근태 조회
-    @ResponseBody
     @RequestMapping(value = "/selectAttendacne")
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        return attendanceService.selectAttendacne(req, res);
+        return attendanceService.selectAttendacne();
     }
 
     // 근태 입력
@@ -47,14 +41,23 @@ public class AttendanceRestController {
         for (AttendanceDTO d : dto) {
             attendanceService.insertAttendance(d);
         }
-        
         return true;
     }
     
     // 출퇴근 기록부
-    @ResponseBody
     @RequestMapping(value = "/commuteList")
     public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
         return attendanceService.commuteList(req, res);
+    }
+    
+    // 출퇴근 입력
+    @RequestMapping(value = "/insertCommuteAction")
+    public boolean insertCommuteAction(@RequestBody List<CommuteDTO> dto) {
+        System.out.println(dto.get(0).getEmployee_id());
+        for (CommuteDTO d : dto) {
+            attendanceService.insertCommute(d);
+        }
+        
+        return true;
     }
 }

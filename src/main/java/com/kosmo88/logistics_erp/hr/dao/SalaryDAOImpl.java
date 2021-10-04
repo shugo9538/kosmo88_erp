@@ -10,7 +10,7 @@ import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
 
 @Repository
 public class SalaryDAOImpl implements SalaryDAO {
-    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.HRDAO";
+    private final String STATEMENT = "com.kosmo88.logistics_erp.hr.dao.SalaryDAO";
 
     @Autowired
     SqlSession sqlSession;

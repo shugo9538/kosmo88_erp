@@ -5,8 +5,8 @@ import java.util.Date;
 public class CommuteDTO {
     private int id;
     private Date work_date;
-    private Date begin_date;
-    private Date end_date;
+    private String begin_date;
+    private String end_date;
     private int night_time;
     private int over_time;
     private int attendance_id;
@@ -29,19 +29,19 @@ public class CommuteDTO {
         this.work_date = work_date;
     }
 
-    public Date getBegin_date() {
+    public String getBegin_date() {
         return begin_date;
     }
 
-    public void setBegin_date(Date begin_date) {
+    public void setBegin_date(String begin_date) {
         this.begin_date = begin_date;
     }
 
-    public Date getEnd_date() {
+    public String getEnd_date() {
         return end_date;
     }
 
-    public void setEnd_date(Date end_date) {
+    public void setEnd_date(String end_date) {
         this.end_date = end_date;
     }
 
