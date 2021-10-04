@@ -10,7 +10,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 @Repository
@@ -72,7 +72,7 @@ public class EstimateDAOImpl implements EstimateDAO {
 	
 	// 견적서 등록 처리
 	@Override
-	public int insertEstimate(PurchaseInsertEstimateViewDTO dto) {
+	public int insertEstimate(PurchaseInsertEstimateDTO dto) {
 		return sqlSession.insert(STATEMENT + ".insertEstimate", dto);
 	}
 	

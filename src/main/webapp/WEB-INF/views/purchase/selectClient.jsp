@@ -26,15 +26,15 @@
                                 <!-- 등록된 거래처가 있는 경우 -->
                                 <c:if test="${cnt != 0}">
                                 	<c:forEach var="dto" items="${dtos}">
-                                		<input type="hidden" id="c_email" name="c_email" value="${dto.email}">
-                                		<input type="hidden" id="c_zip_code" name="c_zip_code" value="${dto.zip_code}">
-                                		<input type="hidden" id="c_address" name="c_address" value="${dto.address}">
-                                		<input type="hidden" id="c_detail_address" name="c_detail_address" value="${dto.detail_address}">
+                                		<input type="hidden" id="client_email" value="${dto.email}">
+                                		<input type="hidden" id="client_zip_code" value="${dto.zip_code}">
+                                		<input type="hidden" id="client_address" value="${dto.address}">
+                                		<input type="hidden" id="client_detail_address" value="${dto.detail_address}">
                                 		<tr>
-	                                        <td><input style="border:none;" type="text" id="c_id" name="c_id" value="${dto.id}" readonly></td>
-	                                        <th><input style="border:none;" type="text" id="c_name" name="c_name" value="${dto.name}" readonly></th>
-	                                        <td><input style="border:none;" type="text" id="c_ceo_name" name="c_ceo_name" value="${dto.ceo_name}" readonly></td>
-	                                        <td><input style="border:none;" type="text" id="c_phone" name="c_phone" value="${dto.phone}" readonly></td>
+	                                        <td><input style="border:none;" type="text" id="client_id" value="${dto.id}" readonly></td>
+	                                        <th><input style="border:none;" type="text" id="client_name" value="${dto.name}" readonly></th>
+	                                        <td><input style="border:none;" type="text" id="client_ceo_name" value="${dto.ceo_name}" readonly></td>
+	                                        <td><input style="border:none;" type="text" id="client_phone" value="${dto.phone}" readonly></td>
 	                                        <td><input class="btn  btn-primary" type="button" id="select" name="${dto.id}" value="선택"></td>
 	                                    </tr>
                                 	</c:forEach>

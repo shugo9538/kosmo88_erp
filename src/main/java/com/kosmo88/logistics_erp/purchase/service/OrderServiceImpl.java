@@ -17,7 +17,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO;

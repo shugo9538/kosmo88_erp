@@ -6,7 +6,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 public interface EstimateDAO {
@@ -36,7 +36,7 @@ public interface EstimateDAO {
 	public List<PurchaseEmployeeDTO> getEmployeeList();
 	
 	// 견적서 등록 처리
-	public int insertEstimate(PurchaseInsertEstimateViewDTO dto);
+	public int insertEstimate(PurchaseInsertEstimateDTO dto);
 	
 	// 견적서 상세페이지(거래처, 담당자 정보)
 	public PurchaseEstimateDetailViewDTO getEstimateDetail(int request_id);

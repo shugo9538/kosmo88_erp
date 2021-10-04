@@ -16,7 +16,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
@@ -72,7 +72,7 @@ public class EstimateServiceImpl implements EstimateService {
 
 	// 견적서 등록 처리
 	@Override
-	public boolean estimateRegisterAction(PurchaseInsertEstimateViewDTO dto) {
+	public boolean estimateRegisterAction(PurchaseInsertEstimateDTO dto) {
 		state = QueryCode.INSERT;
 		return state.check(estimateDao.insertEstimate(dto));
 	}

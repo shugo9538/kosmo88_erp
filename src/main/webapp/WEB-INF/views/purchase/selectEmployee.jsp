@@ -26,11 +26,11 @@
 	                       	<c:if test="${cnt != 0}">
 	                       		<c:forEach var="dto" items="${dtos}">
 	                        		<tr>
-	                                 <th><input style="border:none;" type="text" id="c_employee_id" value="${dto.id}" readonly></th>
-	                                 <td><input style="border:none;" type="text" id="c_employee_name" value="${dto.name}" readonly></td>
-	                                 <td><input style="border:none;" type="text" id="c_employee_dp" value="${dto.department_name}" readonly></td>
-	                                 <td><input style="border:none;" type="text" id="c_employee_phone" value="${dto.phone}" readonly></td>
-	                                 <td><input style="border:none;" type="text" id="c_employee_email" value="${dto.email}" readonly></td>
+	                                 <th><input style="border:none;" type="text" id="employee_id" value="${dto.id}" readonly></th>
+	                                 <td><input style="border:none;" type="text" id="employee_name" value="${dto.name}" readonly></td>
+	                                 <td><input style="border:none;" type="text" id="department_name" value="${dto.department_name}" readonly></td>
+	                                 <td><input style="border:none;" type="text" id="employee_phone" value="${dto.phone}" readonly></td>
+	                                 <td><input style="border:none;" type="text" id="employee_email" value="${dto.email}" readonly></td>
 	                                 <td>
 	                                 	<input class="btn  btn-primary" type="button" id="select" name="${dto.name}" value="선택"/>
 	                                 </td>

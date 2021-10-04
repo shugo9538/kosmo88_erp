@@ -13,7 +13,7 @@ import com.kosmo88.logistics_erp.purchase.dao.ClientDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 
 public interface EstimateService {
 	
@@ -27,7 +27,7 @@ public interface EstimateService {
 	public void selectEmployee(HttpServletRequest req, Model model);
 	
 	// 견적서 등록 처리
-	public boolean estimateRegisterAction(PurchaseInsertEstimateViewDTO dto);
+	public boolean estimateRegisterAction(PurchaseInsertEstimateDTO dto);
 	
 	// 견적서 상품 등록 처리
 	

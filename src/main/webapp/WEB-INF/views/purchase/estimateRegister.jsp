@@ -40,8 +40,8 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
                             		<td>
-                            			<input type="hidden" id="id">
-                            			<input type="text" name="name" id="name">
+                            			<input type="hidden" name="client_id" id="client_id">
+                            			<input type="text" name="client_name" id="client_name">
                             			<input type="button" class="btn  btn-primary" id="selectClient" name="selectClient" value="거래처 선택">
                             		</td>
 									<th style="background-color: #f1f1f1;">구분</th>
@@ -52,50 +52,51 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
-										<input type="text" name="ceo_name" id="ceo_name"
+										<input type="text" name="client_ceo_name" id="client_ceo_name"
 										required placeholder="대표자">
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td>
-										<input type="text" name="phone" id="phone" required placeholder="거래처 연락처">
+										<input type="text" name="client_phone" id="client_phone" required placeholder="거래처 연락처">
 									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
 									<td>
-										<input class="input" type="text" id="email" name="email" required placeholder="거래처 이메일">
+										<input class="input" type="text" id="client_email" name="client_email" required placeholder="거래처 이메일">
 									</td>
 									
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
-										<input type="text" name="zip_code"
-										id="zip_code" required placeholder="우편번호">
+										<input type="text" name="client_zip_code"
+										id="client_zip_code" required placeholder="우편번호">
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="address" id="address" placeholder="주소" required>
+										name="client_address" id="client_address" placeholder="주소" required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="detail_address" id="detail_address" placeholder="상세주소" required>
+										name="client_detail_address" id="client_detail_address" placeholder="상세주소" required>
 									</td>
 								</tr>
 								
 								<tr>
                             		<th style="background-color: #f1f1f1;">담당자</th>
                             		<td>
+                            			<input type="hidden" name="employee_id" id="employee_id">
                             			<input type="text" name="employee_name" id="employee_name">
                             			<input type="button" class="btn  btn-primary" id="selectEmployee" value="담당자 선택">
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="employee_dp" id="employee_dp" placeholder="담당자 부서">
+                            			<input type="text" name="department_name" id="department_name" placeholder="담당자 부서">
                             		</td>
                             	</tr>
                             	<tr>
