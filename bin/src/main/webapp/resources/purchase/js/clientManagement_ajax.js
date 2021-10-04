@@ -69,10 +69,14 @@ function itemRegister() {
     var i = 0;
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     // 2.거래처 상품
 =======
     // 2.상품
 >>>>>>> ff5d0d625df406c47f6ceef3bfe7454649b57554
+=======
+    // 2.거래처 상품
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
     $('#clientRegisterForm #item-group').each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {

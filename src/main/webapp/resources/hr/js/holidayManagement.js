@@ -226,6 +226,7 @@ function callHolidayList(url, columns, ordering) {
         $('#insertCommute').append('신규 등록');
     }
 }
+
 $.fn.dataTable.ext.errMode = 'throw';
 $('#holidayTable').ready(function() {
     $('#searchholiday').on('click', function() {

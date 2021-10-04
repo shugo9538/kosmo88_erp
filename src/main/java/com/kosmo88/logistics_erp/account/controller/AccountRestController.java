@@ -23,13 +23,6 @@ public class AccountRestController {
 	@Autowired
 	AccountService accountService;
 	
-	// 계좌등록시 계좌번호 중복체크
-	@ResponseBody
-	@RequestMapping(value="/account/confirm", method= {RequestMethod.GET, RequestMethod.POST})
-	public int accountConfirm(String account_number) {
-		System.out.println("account_number : " + account_number);
-		return accountService.accountConfrim(account_number);
-	}
 	
 	
 	

@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
+<<<<<<< HEAD
+=======
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 import com.kosmo88.logistics_erp.purchase.service.ClientService;
@@ -61,6 +65,7 @@ public class EstimateRestController {
     public List<PurchaseEstimateListViewDTO> registeredEstimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
     }
+<<<<<<< HEAD
 /*
     // 견적서 등록 처리
     @RequestMapping(value = "/estimateRegister/clientRegisterAction")
@@ -68,6 +73,19 @@ public class EstimateRestController {
     	clientService.clientRegisterAction(dto);
     	return true;
     }
+=======
+
+    // 견적서 등록 처리
+    @ResponseBody
+    @RequestMapping(value = "/estimateRegister/estimateRegisterAction")
+    public boolean estimateRegisterAction(@RequestBody PurchaseInsertEstimateDTO dto) {
+    	estimateService.estimateRegisterAction(dto);
+    	return true;
+    }
+}    
+
+/*    
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
     
 	// 견적서 상품 등록 처리
     @RequestMapping(value = "/clientRegister/itemRegisterAction")
@@ -80,4 +98,8 @@ public class EstimateRestController {
     	return true;
     }
 */  
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0

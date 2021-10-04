@@ -19,6 +19,7 @@ $(document).ready(function() {
 		window.open(url, "selectClient", "menubar=no, width=1500, height=700");
 	});
 	
+<<<<<<< HEAD
 	// 거래처 값 전달
 	$(".select").click(function() {
 		var par = $(this).attr('name');
@@ -29,6 +30,10 @@ $(document).ready(function() {
 	
 	// 담당자 선택
 	$("#selectEmployee").click(function(){
+=======
+	// 담당자 선택
+	$("#selectEmployee").click(function() {
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 		
 		var url = "/logistics_erp/purchase/selectEmployee"
 		window.open(url, "selectEmployee", "menubar=no, width=1500, height=700");
@@ -36,7 +41,11 @@ $(document).ready(function() {
 });
 
 
+<<<<<<< HEAD
 $('#clientManagementForm').ready(function(){
+=======
+$('#estimateManagementForm').ready(function(){
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	addItem();
 });
 
@@ -78,6 +87,7 @@ function delItem(obj) {
 	}
 }
 
+<<<<<<< HEAD
 // 입력 후 커서 이동
 function nextRegisterNum1(){
 	if(document.clientRegisterForm.register_num1.value.length >= 3){
@@ -171,5 +181,10 @@ function daumPostcode() {
         }
     }).open();
 }
+=======
+
+
+
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 
 

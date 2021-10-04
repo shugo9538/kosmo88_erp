@@ -13,6 +13,10 @@
 <c:if test="${update == true}">
 	<script type="text/javascript">
 		alert("내용이 수정 되었습니다.");
+<<<<<<< HEAD
+=======
+		opener.parent.location.reload();
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 		window.close();
 	</script>
 </c:if>

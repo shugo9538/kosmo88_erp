@@ -102,12 +102,18 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	public void estimateDetail(HttpServletRequest req, Model model) {
 		int request_id = Integer.parseInt(req.getParameter("request_id"));
 		
+<<<<<<< HEAD
 		SalesEstimateDetailViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
 		List<SalesEstimateDetailViewDTO> idto = estimateDao.getEstimateDetailItem(request_id);
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("idto", idto);
+=======
+		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		
+		model.addAttribute("dto", dto);
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	}
 	
 }

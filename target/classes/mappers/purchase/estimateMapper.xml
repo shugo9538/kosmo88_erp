@@ -59,5 +59,38 @@
 		 ORDER BY e.id DESC
  	</select>
  	
+<<<<<<< HEAD
 
+=======
+ 	<!-- 견적서 등록(request) 처리  -->
+ 	<insert id="insertRequest" parameterType="int">
+ 		
+ 	
+ 	</insert>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 
+ 
+ 	<!-- 견적서 상세페이지(거래처, 담당자 정보) -->
+ 	<select id="getEstimateDetail" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
+ 		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
+ 		  FROM p_estimate_detail_view
+ 	</select>
+ 
+  	<!-- 견적서 상세페이지(상품 정보) -->
+ 	<select id="getEstimateDetailItem" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
+ 		SELECT item_name, item_category, item_purchase_price, item_quantity 
+ 		  FROM p_estimate_detail_view
+ 	</select>
+ 	
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 </mapper>

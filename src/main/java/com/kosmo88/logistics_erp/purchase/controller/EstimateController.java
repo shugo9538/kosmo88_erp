@@ -49,6 +49,7 @@ public class EstimateController {
     	
     	return "purchase/selectClient";
     }
+<<<<<<< HEAD
     
     // 견적서 등록 화면 - 견적서 담당자 선택
     @RequestMapping(value = "/selectEmployee")
@@ -60,26 +61,38 @@ public class EstimateController {
     }
     
  
+=======
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
     
-/*    
-    // 견적서 수정
-    @RequestMapping(value = "/estimateUpdate")
-    public String estimateUpdate(HttpServletRequest req, Model model) {
-
-    	// service.updateEstimate
+    // 견적서 등록 화면 - 견적서 담당자 선택
+    @RequestMapping(value = "/selectEmployee")
+    public String selectEmployee(HttpServletRequest req, Model model) {
     	
-        return "purchase/estimateUpdate";
-    } 
+    	estimateService.selectEmployee(req, model);
+    	
+    	return "purchase/selectEmployee";
+    }
     
-    // 견적서 삭제(단일 삭제)
+    // 견적서 상세페이지
+    @RequestMapping(value = "/estimateDetail")
+    public String estimateDetail(HttpServletRequest req, Model model) {
+
+    	estimateService.estimateDetail(req, model);
+
+    	return "purchase/estimateDetail";
+    }
+    
+ 	// 견적서 삭제(단일 삭제)
     @RequestMapping(value = "/estimateDelete")
     public String estimateDelete(HttpServletRequest req, Model model) {
 
-    	// service.deleteEstimate
-    	// (update)
+    	estimateService.estimateDelete(req, model);
     	
         return "purchase/estimateDelete";
-    }     
+    }   
+    
+    
+/*  
     
     // 견적서 등록
     @RequestMapping(value = "/estimateRegister") 
