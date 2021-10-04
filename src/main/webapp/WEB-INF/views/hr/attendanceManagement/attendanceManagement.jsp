@@ -23,8 +23,13 @@
 			</div>
 			<!--END Page Title-->
 			<!--Start Page Tab-->
+<<<<<<< HEAD
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
+=======
+			<ul class="nav nav-tabs nav-pills custom-nav">
+				<li class="nav-item active">
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 					<a id="selectAttendacne">근태 조회</a>
 				</li>
 				<li class="active">
@@ -38,8 +43,7 @@
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box" id="datatables">
-					</div>
+					<div class="white-box" id="datatables"></div>
 				</div>
 			</div>
 			<!--End row-->

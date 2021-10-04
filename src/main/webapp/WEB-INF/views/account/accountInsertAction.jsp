@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <!-- BEGIN PAGE LEVEL STYLES -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <!-- END PAGE LEVEL STYLES -->
 </head>
 <body>
@@ -30,7 +30,15 @@
 		
 		<c:if test="${insertCnt == 0}">
 			<script type="text/javascript">
-				alert("통장 추가가 실패 하였습니다.");
+			swal("통장목록","신규통장이 추가에 실패하였습니다.","error",{
+				closeOnclickOutside : false,
+				closeEsc: false,
+				buttons : {
+					text : '확인',
+					value : true,
+					timer : 3000
+				}
+			});
 				window.history.back();
 			</script>	
 		</c:if>

@@ -38,6 +38,7 @@
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/hr/holidayManagement.jsp
 					<div class="white-box">
 						<h2 class="header-title">휴가 조회</h2>
 						<div class="table-responsive">
@@ -119,6 +120,9 @@
 							</form>
 						</div>
 					</div>
+=======
+					<div class="white-box" id=holidayDatatables></div>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0:src/main/webapp/WEB-INF/views/hr/holidayManagement/holidayManagement.jsp
 				</div>
 			</div>
 			<!--End row-->

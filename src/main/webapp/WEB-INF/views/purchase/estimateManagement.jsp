@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -42,7 +41,7 @@
 							<sec:csrfInput />
 	                     <div class="table-responsive">
 	                    	 <div class="col-md-2 mt-1 mb-4">
-								<input class="btn btn-default" type="button" id="estimateChoiceDeleteBtn" value="견적서 삭제">
+								<input class="btn  btn-default" type="button" id="estimateChoiceDeleteBtn" value="견적서 삭제">
 							 </div>
 							 
 	                         <table id="estimateList" class="display table" style="width:100%">

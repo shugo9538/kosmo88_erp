@@ -15,6 +15,10 @@
 	                <table id="example" class="display table">
                                 <thead>
                                     <tr>
+                                    	<th></th>
+                                    	<th></th>
+                                    	<th></th>
+                                    	<th></th>
                                         <th>거래처 번호</th>
                                         <th>회사명</th>
                                         <th>대표자명</th>
@@ -24,6 +28,7 @@
                                 </thead>
                                 <tbody>
                                 <!-- 등록된 거래처가 있는 경우 -->
+<<<<<<< HEAD
                                 <c:if test="${cnt > 0}">
                                 	<c:forEach var="dto" items="${dto}">
                                 		<input type="hidden" id="c_email" name="c_email" value="${dto.email}">
@@ -45,6 +50,31 @@
 	                                    </tr>
                                 	</c:forEach>
                                 </c:if>
+=======
+                                <c:if test="${cnt != 0}">
+                                	<c:forEach var="dto" items="${dtos}">
+                                		<tr>
+                                			<td><input type="hidden" id="c_email" name="c_email" value="${dto.email}"></td>
+                                			<td><input type="hidden" id="c_zip_code" name="c_zip_code" value="${dto.zip_code}"></td>
+                                			<td><input type="hidden" id="c_address" name="c_address" value="${dto.address}"></td>
+                                			<td><input type="hidden" id="c_detail_address" name="c_detail_address" value="${dto.detail_address}"></td>
+	                                        <td><input style="border:none;" type="text" id="c_id" name="c_id" value="${dto.id}" readonly></td>
+	                                        <th><input style="border:none;" type="text" id="c_name" name="c_name" value="${dto.name}" readonly></th>
+	                                        <td><input style="border:none;" type="text" id="c_ceo_name" name="c_ceo_name" value="${dto.ceo_name}" readonly></td>
+	                                        <td><input style="border:none;" type="text" id="c_phone" name="c_phone" value="${dto.phone}" readonly></td>
+	                                        <td><input class="btn  btn-primary" type="button" id="select" name="${dto.name}" value="선택"></td>
+	                                    </tr>
+                                	</c:forEach>
+                                </c:if>
+                                <!-- 등록된 거래처가 없는 경우 -->
+                                <c:if test="${cnt == 0}">
+                                	<tr>
+                                		<td colspan="5">
+                                			등록된 거래처가 없습니다.
+                                		</td>
+                                	</tr>
+                                </c:if>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                            </tbody>
                        </table>
                        <div style="text-align:center;" class="form-group mt-5 col-md-12">

@@ -19,20 +19,17 @@ import com.kosmo88.logistics_erp.hr.service.SalaryService;
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @Controller
-@RequestMapping(value = "/hr/salaryManagement")
+@RequestMapping(value = "/hr/salary")
 public class SalaryController {
     private static final Logger logger = LoggerFactory.getLogger(SalaryController.class);
 
     @Autowired
     SalaryService salaryService;
 
-    // 휴가 잔여일수 현황
-//    @RequestMapping(value = "/leftHolidayNum")
+    // 월별 지급 및 현황
     @RequestMapping(value = "")
     public String leftHolidayNum(HttpServletRequest req, HttpServletResponse res) {
-//        salaryService.(req, res);
-        
-        return "hr/salaryManagement";
+        return "hr/salaryManagement/salaryManagement";
     }
     
     // 휴가 사용실적

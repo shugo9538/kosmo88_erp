@@ -65,11 +65,25 @@
 								<a href="${ROOT_PATH}/account/accountNewDetail">통장 추가</a>
 							</li>
 							<li class="active">
-								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
+								<a 
+<%-- 								href="${ROOT_PATH}/account/accountModifyDetail?account_number=" --%>
+									id ="accountModify" onclick="accountModifyDetail();">통장 미사용처리</a>
+							</li>
+							<li>
+								<!-- <button onclick="accountModifyDetail();">버튼테스트</button> -->
+								<!-- <div id="result"></div> -->
 							</li>
 							<li class="active">
+<<<<<<< HEAD
 								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
+=======
+								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 							</li>
+						<%-- 	<li class="active">
+								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
+								<a href="#">거래내역 다건추가</a>
+							</li> --%>
 						</ul>
 					</div>
 					<!-- 메뉴버튼 끝 -->
@@ -79,11 +93,18 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
+<<<<<<< HEAD
                                             <!-- <th>번호</th> -->
+=======
+                                        	<th>
+                                            	<input type="hidden" id="root" value="${ROOT_PATH}">
+                                        	</th>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                                             <th>번호</th>
                                             <th>계좌명</th>
                                             <th>계좌번호</th>
                                             <th>은행</th>
+<<<<<<< HEAD
                                             <th>잔액
                                            	    <!-- 계좌번호 확인  -->
                                     			<script type="text/javascript">
@@ -99,10 +120,14 @@
                                    						alert("계좌번호 :" + arr[i].account_num);
                                     			</script>
                                             </th>
+=======
+                                            <th>잔액</th>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+<<<<<<< HEAD
                                     <!-- 계좌목록이 있는 경우  -->
                                     <c:if test="${cnt > 0}">
                                     	<input type="hidden" id="root" value="${ROOT_PATH}">
@@ -111,6 +136,14 @@
    												<%-- <td>${number}
    													<c:set var="number" value="${number -1 }"/>
    												</td> --%>
+=======
+                                    	<c:forEach var="dto" items="${account}" varStatus="status">
+   											<tr>
+   												<td>
+   													<input type="checkbox" name="check_accountNum" 
+   														onclick="checkbox_accountNum(this);" value="${dto.account_number}"/>
+   												</td>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                                         		<td>${dto.id}</td>
                                         		<td>${dto.name}</td>
                                         		<td>

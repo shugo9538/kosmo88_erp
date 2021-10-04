@@ -30,11 +30,19 @@ public class ClientDAOImpl implements ClientDAO {
 		return sqlSession.insert(STATEMENT + ".registerClient", dto);
 	}
 
+<<<<<<< HEAD
 	// 상품 등록 처리 
 	@Override
 	public int registerItem(PurchaseItemDTO dto) {
 		return sqlSession.insert(STATEMENT + ".registerItem", dto);
 	}
+=======
+    // 거래처 상품 등록 처리
+    @Override
+    public int registerItem(PurchaseItemDTO dto) {
+        return sqlSession.insert(STATEMENT + ".registerItem", dto);
+    }
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 
 	// 상세페이지 - 거래처
 	@Override

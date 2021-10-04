@@ -7,10 +7,11 @@ import org.springframework.ui.Model;
 public interface AccountService {
 	
 	// 회계관리 리스트관리 
-	public void accountingList(HttpServletRequest request, Model model);
+	//public void accountingList(HttpServletRequest request, Model model);
 	
 	// 기초정보관리
 	// 거래처 목록조회
+<<<<<<< HEAD
 	//public void clientList(HttpServletRequest request, Model model);
 	// 신규 거래처등록
 	//public void clientInsert(HttpServletRequest request, Model model);
@@ -28,41 +29,46 @@ public interface AccountService {
 	//public void slipList(HttpServletRequest request, Model model);
 	// 일반전표 등록페이지(컨트롤러에서처리)
 	// 일반전표 등록
+=======
+	public void clientList(Model model);
+	
+	// 일반전표/장부관리
+	// 일반전표 목록조회
+	public void slipList(Model model);
+	// 일반전표 등록 처리
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	//public void slipInsert(Model model);
-	// 일반전표 수정페이지
-	//public void slipModifyDetail(Model model);
 	// 일반전표 수정처 처리
-	//public void slipModifyAction(Model model);
+	public void slipModifyDetail(HttpServletRequest request, Model model);
 	// 일반전표 상태변경(승인/미승인)
-	//public void slipUpdateState(Model model);
-	// 일반전표 삭제처리 페이지
-	//public void slipDeleteDetail(Model model);
-	// 일반전표 삭제처리
-	//public void slipDeleteAction(Model model);
+	public void slipConfirmAction(HttpServletRequest request, Model model);
+	
 	
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
+<<<<<<< HEAD
 	//public void accountList(HttpServletRequest request, Model model);
+=======
+	public void accountList(HttpServletRequest req, Model model);
+	// 통장 계좌번호 중복검사
+	public void accountNumberCheck(HttpServletRequest request, Model model);
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 신규통장 추가 처리
 	public void accountInsertAction(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가 단건 추가 처리 페이지(통장정보조회)
 	public void accountSimplDetail(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가 단건 추가 처리
 	public void accountSimplAction(HttpServletRequest request, Model model);
-	// 통장 거래내역 추가
-	//public void accountInsert(Model model);
+	// 통장 정보 수정 
+	public void accountEnabledDetail(HttpServletRequest request, Model model);
+	// 통장 미사용처리
+	public void accountEnabledAction(HttpServletRequest request, Model model);
 	// 통장 입/출금내역 조회
 	public void accountTransactionHistory(HttpServletRequest request, Model model);
 	// 통장 입금내역 조회
 	public void accountDeposit(HttpServletRequest request, Model model);
 	// 통장 출금내역 조회
 	public void accountWithdrawal(HttpServletRequest request, Model model);
-	// 통장 잔액조회 (전체조회에서 입출금잔액 불러와서 처리)
-	//public void accountBalance(HttpServletRequest request, Model model);
-	// 급여통장 목록조회
-	//public void salaryAccountList(Model model);
-	// 거래처통장 목록조회
-	//public void clientAccountList(Model model);
 	
 	// 매입/매출장
 	// 매입/매출장 전체목록조회

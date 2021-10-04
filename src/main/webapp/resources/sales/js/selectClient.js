@@ -13,8 +13,12 @@ $(document).ready(function(){
 		$(window.close());
 	})
 	
+<<<<<<< HEAD
 	// 담당자 값 전달
 	
 	// 상품 값 전달
+=======
+	
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	
 });
