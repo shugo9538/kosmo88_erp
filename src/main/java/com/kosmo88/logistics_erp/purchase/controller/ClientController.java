@@ -73,7 +73,7 @@ public class ClientController {
     	
     	clientService.clientDelete(req, model);
     	
-    	return "purchase/clientDeleteAction";
+    	return "purchase/clientDelete";
     }
     
 
