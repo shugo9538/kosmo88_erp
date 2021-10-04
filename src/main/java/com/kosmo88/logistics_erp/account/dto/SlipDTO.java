@@ -4,14 +4,6 @@ import java.util.Date;
 
 public class SlipDTO {
 	
-//	ID                 NOT NULL NUMBER(5)    
-//	TYPE               NOT NULL VARCHAR2(50) 
-//	REGISTER_DATE               DATE         
-//	UPDATE_DATE        NOT NULL DATE         
-//	STATE              NOT NULL CHAR(1)      
-//	DEPARTMENT_ID      NOT NULL NUMBER(5)    
-//	DEPARTMENT_REQUEST NOT NULL NUMBER(5) 
-	
 	private int id;
 	private String type;
 	private Date register_date;
@@ -19,8 +11,7 @@ public class SlipDTO {
 	private String state;
 	private int department_id;
 	private int department_request;
-	
-	
+	private String enabled;
 	public int getId() {
 		return id;
 	}
@@ -63,14 +54,17 @@ public class SlipDTO {
 	public void setDepartment_request(int department_request) {
 		this.department_request = department_request;
 	}
-	
+	public String getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 	@Override
 	public String toString() {
-		return "SlipVO [id=" + id + ", type=" + type + ", register_date=" + register_date + ", update_date="
+		return "SlipDTO [id=" + id + ", type=" + type + ", register_date=" + register_date + ", update_date="
 				+ update_date + ", state=" + state + ", department_id=" + department_id + ", department_request="
-				+ department_request + "]";
+				+ department_request + ", enabled=" + enabled + "]";
 	}
-	
-	
 	
 }

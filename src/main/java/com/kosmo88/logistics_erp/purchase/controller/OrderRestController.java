@@ -37,7 +37,7 @@ public class OrderRestController {
     public List<PurchaseOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
-   
+/*    
     // 발주서 삭제(선택삭제)
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderChoiceDelete")
@@ -57,10 +57,10 @@ public class OrderRestController {
     // 등록한 발주서(구매) 목록
     @ResponseBody
     @RequestMapping(value = "/orderRegister/registeredOrderList")
-    public List<PurchaseOrderListViewDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
+    public List<PurchaseOrderDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
-/*    
+    
     // 발주서 등록 처리
     @RequestMapping(value = "/orderRegister/orderRegisterAction")
     public boolean orderRegisterAction(@RequestBody PurchaseInsertOrderDTO dto) {

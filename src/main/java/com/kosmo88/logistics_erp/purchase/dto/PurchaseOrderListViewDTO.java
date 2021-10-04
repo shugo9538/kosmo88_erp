@@ -7,7 +7,6 @@ public class PurchaseOrderListViewDTO {
 	
 	private int request_id;			// 발주번호
 	private Date begin_date;		// 발주일자
-	private Date end_date;			// 납기요청일자   -- 추가
 	private String client_name;		// 발주처
 	private String client_ceo_name; // 발주처 대표자
 	private String client_phone; 	// 발주처 연락처

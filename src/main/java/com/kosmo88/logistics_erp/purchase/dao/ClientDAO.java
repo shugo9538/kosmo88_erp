@@ -14,7 +14,7 @@ public interface ClientDAO {
 	// 거래처 등록 처리
 	public int registerClient(PurchaseInsertClientDTO dto);
 	
-	// 거래처 상품 등록 처리
+	// 상품 등록 처리
 	public int registerItem(PurchaseItemDTO dto);
 	
 	// 상세페이지 - 거래처

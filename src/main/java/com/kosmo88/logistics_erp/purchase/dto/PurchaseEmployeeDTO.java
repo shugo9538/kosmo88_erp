@@ -15,7 +15,6 @@ public class PurchaseEmployeeDTO {
 	private String email;				// 이메일
 	private String enabled;				// 활성화코드
 	private int department_id;			// 부서코드
-	private String department_name;		// 부서이름
 	private int position_id;			// 직급코드
 	
 	public PurchaseEmployeeDTO() {}
@@ -100,14 +99,6 @@ public class PurchaseEmployeeDTO {
 		this.department_id = department_id;
 	}
 
-	public String getDepartment_name() {
-		return department_name;
-	}
-
-	public void setDepartment_name(String department_name) {
-		this.department_name = department_name;
-	}
-
 	public int getPosition_id() {
 		return position_id;
 	}
@@ -115,4 +106,5 @@ public class PurchaseEmployeeDTO {
 	public void setPosition_id(int position_id) {
 		this.position_id = position_id;
 	}
+
 }

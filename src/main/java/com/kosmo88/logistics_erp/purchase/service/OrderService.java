@@ -19,21 +19,20 @@ public interface OrderService {
 	
 	// 상품 등록 처리
 	public boolean itemRegisterAction(PurchaseItemDTO dto);
-*/
 	
 	// 발주서 상세페이지
 	public void orderDetail(HttpServletRequest req, Model model);
 	
 	// 발주서 삭제(선택삭제)
 	public boolean orderChoiceDelete(int[] request_id);
-/*	
+	
 	// 발주서 수정페이지
 	public void orderUpdate(HttpServletRequest req, Model model);
 	
 	// 발주서 수정 처리
 	public void orderUpdateAction(HttpServletRequest req, Model model);
-*/	
+	
 	// 발주서 삭제(상세페이지에서 단일 삭제)
 	public void orderDelete(HttpServletRequest req, Model model);
-	
+*/	
 }
