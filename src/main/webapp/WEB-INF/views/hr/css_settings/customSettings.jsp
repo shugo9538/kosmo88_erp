@@ -26,6 +26,7 @@
 <link href="${RESOURCES_PATH}/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
 <link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
 <link href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables-custom.css" rel="stylesheet" type="text/css"/>
+<link href="${RESOURCES_PATH}/assets/plugins/datatables/css/select.dataTable.min.css" rel="stylesheet" type="text/css"/>
 
   
 <!--End  Page Level  CSS -->

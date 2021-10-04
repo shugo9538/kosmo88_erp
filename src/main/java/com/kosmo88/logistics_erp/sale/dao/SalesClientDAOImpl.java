@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 @Repository
 public class SalesClientDAOImpl implements SalesClientDAO{

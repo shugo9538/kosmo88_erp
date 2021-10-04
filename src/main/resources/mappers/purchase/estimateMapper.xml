@@ -23,5 +23,70 @@
  		   AND state = 'TX_ESTIMATE'
  	</update>
  	
-
+ 	<!-- 견적서 등록 화면 - 거래처 갯수 -->
+ 	<select id="getClientCnt" resultType="int">
+ 		SELECT COUNT(*)
+ 		  FROM client
+ 		 WHERE TYPE = '구매'
+ 	</select>
+ 	
+ 	<!-- 견적서 등록 화면 - 거래처 리스트 -->
+ 	<select id="getClientList" resultType="PurchaseClientDTO">
+		 SELECT *
+ 		   FROM client
+ 		  WHERE TYPE = '구매'
+ 		  ORDER BY id DESC
+ 	</select>
+ 	
+ 	
+ 	<!-- 견적서 등록 화면 - 담당자 갯수  -->
+ 	<select id="getEmployeeCnt" resultType="int">
+ 		SELECT COUNT(*)
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '구매'
+ 	</select>
+ 	
+ 	
+ 	<!-- 견적서 등록 화면 - 담당자 리스트  -->
+ 	<select id="getEmployeeList" resultType="PurchaseEmployeeDTO">
+ 		SELECT e.id as id, e.name as name, d.name as department_name, e.phone as phone, e.email as email
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '구매'
+		 ORDER BY e.id DESC
+ 	</select>
+ 	
+ 	<!-- 견적서 등록(request) 처리  -->
+ 	<insert id="insertRequest" parameterType="int">
+ 		
+ 	
+ 	</insert>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 
+ 
+ 	<!-- 견적서 상세페이지(거래처, 담당자 정보) -->
+ 	<select id="getEstimateDetail" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
+ 		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
+ 		  FROM p_estimate_detail_view
+ 	</select>
+ 
+  	<!-- 견적서 상세페이지(상품 정보) -->
+ 	<select id="getEstimateDetailItem" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
+ 		SELECT item_name, item_category, item_purchase_price, item_quantity 
+ 		  FROM p_estimate_detail_view
+ 	</select>
+ 	
 </mapper>

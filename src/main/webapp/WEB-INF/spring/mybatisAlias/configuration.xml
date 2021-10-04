@@ -22,9 +22,16 @@
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
 			alias="SalesEmployeeDTO"/>
 			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesItemDTO"
+			alias="SalesItemDTO"/>
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO"
+			alias="SalesEstimateListViewDTO"/>
+			
 			
 		<!-- accounting start -->	
-		
 		<!-- 일반전표DTO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.dto.SlipDTO"
 			alias="SlipDTO"/>
@@ -65,6 +72,12 @@
 			type="com.kosmo88.logistics_erp.hr.dto.CommuteDTO"
 			alias="CommuteDTO" />
 		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO"
+			alias="DepartmentCodeDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.EmployeeDTO"
+			alias="EmployeeDTO" />
+		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
 			alias="PaySlipDTO" />
 		<typeAlias
@@ -74,8 +87,17 @@
 			type="com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO"
 			alias="HolidayUsageStatusDTO" />
 		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.HRCodeDTO"
+			alias="HRCodeDTO" />
+		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO"
 			alias="PayStepTableDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
+			alias="PaySlipDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO"
+			alias="PositionCodeDTO" />
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />
@@ -101,6 +123,18 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
+			alias="PurchaseEmployeeDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
+			alias="PurchaseEstimateDetailViewDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
+			alias="PurchaseOrderDetailViewDTO" />	
 			
 		<!-- purchase dto end -->		
 		

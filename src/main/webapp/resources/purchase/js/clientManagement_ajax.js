@@ -26,13 +26,13 @@ $(document).ready(function() {
         });
     }
     
-    // 거래처, 상품 등록 처리
+    // 거래처, 거래처 상품 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
 	    /*
-	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -68,7 +68,7 @@ function itemRegister() {
     var list = new Array();
     var i = 0;
     
-    // 2.상품
+    // 2.거래처 상품
     $('#clientRegisterForm #item-group').each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {
@@ -251,7 +251,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 //등록한 거래처(구매처) 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
-    		"order": [[ 1, "desc" ]],
+    	"order": [[ 1, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredClientList', // 현 위치
             type : 'POST',
@@ -259,13 +259,13 @@ function registeredClientList() {
             dataSrc : ''
         },
         columns : [
-                {
+			    {
+			    	data : 'id',
+			    }, {
                     data : null,
                     render : function(data, type, row, meta) {
                         return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
                     }
-                }, {
-                	data : 'id',
                 }, {
                     data : 'register_num',
                 }, {
