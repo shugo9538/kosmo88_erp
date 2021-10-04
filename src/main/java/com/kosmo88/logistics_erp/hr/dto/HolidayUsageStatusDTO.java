@@ -1,16 +1,16 @@
 package com.kosmo88.logistics_erp.hr.dto;
 
 public class HolidayUsageStatusDTO {
-    private String employee_id;
+    private int employee_id;
     private int use_date;
     private int annual_holiday;
     private int holiday_id;
 
-    public String getEmployee_id() {
+    public int getEmployee_id() {
         return employee_id;
     }
 
-    public void setEmployee_id(String employee_id) {
+    public void setEmployee_id(int employee_id) {
         this.employee_id = employee_id;
     }
 

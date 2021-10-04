@@ -12,5 +12,8 @@ $(document).ready(function() {
 			$("input[name=client_id]").prop("checked", false);
 		}
 	});
+<<<<<<< HEAD
+=======
 	
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 });

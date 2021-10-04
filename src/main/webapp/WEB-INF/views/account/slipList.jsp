@@ -1,47 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../common/settings.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../common/settings.jsp"%>    
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>회계관리 - 일반전표</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title> 회계관리 - 일반전표</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="sticky-header">
 
 
-	<!--Start left side Menu-->
+    <!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
-	<!--End left side menu-->
+    <!--End left side menu-->
 
+    
+    <!-- main content start-->
+    <div class="main-content" >
 
-	<!-- main content start-->
-	<div class="main-content">
+        <!-- header section start-->
+		<%@ include file="../common/header.jsp"%>    
+        <!-- header section end-->
 
-		<!-- header section start-->
-		<%@ include file="../common/header.jsp"%>
-		<!-- header section end-->
-
-		<!--body wrapper start-->
-		<div class="wrapper">
-
-			<!--Start Page Title-->
-			<div class="page-title-box">
-				<h4 class="page-title">전표입력/장부관리</h4>
-				<ol class="breadcrumb">
-					<li><a href="#">승인전표 목록</a></li>
-					<li><a href="#">미승인전표 목록</a></li>
-					<!--  <li class="active">
+        <!--body wrapper start-->
+        <div class="wrapper">
+              
+          <!--Start Page Title-->
+           <div class="page-title-box">
+                <h4 class="page-title">  전표입력/장부관리 </h4>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">승인전표 목록</a>
+                    </li>
+                    <li>
+                        <a href="#">미승인전표 목록</a>
+                    </li>
+                   <!--  <li class="active">
                         Data Table
                     </li> -->
+
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -111,9 +115,10 @@
 
 											<td><c:choose>
 													<c:when test="${dto.department_id == 1}">
+
 	                                        			인사팀
 	                                        			</c:when>
-													<c:when test="${dto.department_id == 2}">
+	                                        			<c:when test="${dto.department_id == 2}">
 	                                        			개발팀
 	                                        			</c:when>
 												</c:choose></td>

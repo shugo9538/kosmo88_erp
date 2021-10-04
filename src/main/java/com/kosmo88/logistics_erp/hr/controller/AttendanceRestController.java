@@ -1,6 +1,8 @@
 package com.kosmo88.logistics_erp.hr.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -29,10 +33,13 @@ public class AttendanceRestController {
     @Autowired
     AttendanceService attendanceService;
 
+    private static List<AttendanceDTO> attendanceList = new ArrayList<>();
+
     // 근태 조회
+    @ResponseBody
     @RequestMapping(value = "/selectAttendacne")
     public ArrayList<AttendanceDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
-        return attendanceService.selectAttendacne();
+        return attendanceService.selectAttendacne(req, res);
     }
 
     // 근태 입력
@@ -41,10 +48,12 @@ public class AttendanceRestController {
         for (AttendanceDTO d : dto) {
             attendanceService.insertAttendance(d);
         }
+        
         return true;
     }
     
     // 출퇴근 기록부
+    @ResponseBody
     @RequestMapping(value = "/commuteList")
     public ArrayList<CommuteDTO> commuteList(HttpServletRequest req, HttpServletResponse res) {
         return attendanceService.commuteList(req, res);
@@ -56,6 +65,7 @@ public class AttendanceRestController {
         System.out.println(dto.get(0).getEmployee_id());
         for (CommuteDTO d : dto) {
             attendanceService.insertCommute(d);
+            System.out.println(d.getEmployee_id());
         }
         
         return true;

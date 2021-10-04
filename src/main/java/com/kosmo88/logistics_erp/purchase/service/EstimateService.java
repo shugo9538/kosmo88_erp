@@ -31,14 +31,13 @@ public interface EstimateService {
 	
 	// 견적서 상품 등록 처리
 	
-	
-	
 	// 견적서 상세페이지
 	public void estimateDetail(HttpServletRequest req, Model model);
 	
 	// 견적서 관리 - 견적서 삭제(선택삭제)
 	public boolean estimateChoiceDelete(int[] request_id);
 	
+
 	// 견적서 삭제(상세페이지에서 단일 삭제)
 	public void estimateDelete(HttpServletRequest req, Model model);
 	

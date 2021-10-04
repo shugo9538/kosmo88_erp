@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.sale.dao.SalesClientDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+//import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
@@ -31,18 +31,18 @@ public class SalesClientServiceImpl implements SalesClientService{
 	}
 
 	// 거래처 등록 처리
-	@Override
-	public boolean clientRegisterAction(SalesInsertClientDTO dto) {
-		state = QueryCode.INSERT;
-		
-		dto.setEmail(dto.getEmail1() + "@" + dto.getEmail2());
-		dto.setPhone(dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
-		dto.setRegister_num(dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
-		dto.setType("판매");
-		dto.setEnabled("Y");
-		
-		return state.check(clientDao.registerClient(dto));
-	}
+//	@Override
+//	public boolean clientRegisterAction(SalesInsertClientDTO dto) {
+//		state = QueryCode.INSERT;
+//		
+//		dto.setEmail(dto.getEmail1() + "@" + dto.getEmail2());
+//		dto.setPhone(dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
+//		dto.setRegister_num(dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
+//		dto.setType("판매");
+//		dto.setEnabled("Y");
+//		
+//		return state.check(clientDao.registerClient(dto));
+//	}
 
 	// 아이템 등록 처리
 	@Override
@@ -131,7 +131,7 @@ public class SalesClientServiceImpl implements SalesClientService{
 		cdto.setZip_code(zip_code);
 		cdto.setPhone(phone);
 		cdto.setEmail(email);
-		cdto.setEnabled("Y");
+		//cdto.setEnabled("Y");
 		
 		state = QueryCode.UPDATE;
 		boolean update;

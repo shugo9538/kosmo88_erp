@@ -12,30 +12,31 @@ var csrfToken;
 
 // document.addEventListener("DOMContentLoaded, function(){"
 $(document).ready(function () {
-	//csrf 토큰값 받아오기?
-	csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	csrfToken = $("meta[name='_csrf']").attr("content");
+    //csrf 토큰값 받아오기?
+    csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+    csrfToken = $("meta[name='_csrf']").attr("content");
 
-	//현재 url에서 명령어 구하기
-	var currLocation = window.location.href;
-	console.log("currLocation : " + currLocation);
+    //현재 url에서 명령어 구하기
+    var currLocation = window.location.href;
+    console.log("currLocation : " + currLocation);
 
-	csrfData[csrfParameter] = csrfToken;
+    csrfData[csrfParameter] = csrfToken;
 
-	var pathArr = currLocation.split('/');
-	var pathIndexLength = pathArr.length;
-	var lastPath = pathArr[pathIndexLength - 1];
-	console.log(lastPath)
+    var pathArr = currLocation.split('/');
+    var pathIndexLength = pathArr.length;
+    var lastPath = pathArr[pathIndexLength - 1];
+    console.log(lastPath)
 
-	switch (lastPath) {
-		case "":
-		case "warehouse":
-			//  $('#receivingStatusList').ready(function() {
-        	receivingStatusList();break;
-		case "info":
-		break;
-	}
+    switch (lastPath) {
+        case "":
+        case "warehouse":
+            //  $('#receivingStatusList').ready(function() {
+            receivingStatusList(); break;
+        case "info":
+            break;
+    }
 })
+
 // 	}
 // 	// '#clientRegisterAction', 버튼 id
 // 	$('#white-box').on('click', '#clientRegisterAction', function() {
@@ -123,47 +124,47 @@ $(document).ready(function () {
 
 
 
-function receivingStatusList(){
-	console.log("----receivingStatusList 실행")
-	   $('#receivingStatusList').append('<table class="table table-hover"></table>');
-        columns = [
-                {
-                    'sTitle' : '#',
-                    data : 'r_num',
-                    render : function(data) {
-                        return '<input type="checkBox" value="' + data + '">';
-                    }
-                }, {
-                    'sTitle' : '앗',
-                    data : 'id'
-                }, {
-                    'sTitle' : '이것은',
-                    data : 'attendance_cd_id'
-				}
-				// , 
-				// {
-                //     'sTitle' : '근태 신청일',
-                //     data : 'application_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '시작',
-                //     data : 'begin_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '종료',
-                //     data : 'end_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '사유',
-                //     data : 'reason'
-                // }, {
-                //     'sTitle' : '상태',
-                //     data : 'state'
-                // }
-        ];
+function receivingStatusList() {
+    console.log("----receivingStatusList 실행")
+    $('#receivingStatusList').append('<table class="table table-hover"></table>');
+    columns = [
+        {
+            'sTitle': '#',
+            data: 'r_num',
+            render: function (data) {
+                return '<input type="checkBox" value="' + data + '">';
+            }
+        }, {
+            'sTitle': '앗',
+            data: 'id'
+        }, {
+            'sTitle': '이것은',
+            data: 'attendance_cd_id'
+        }
+        // , 
+        // {
+        //     'sTitle' : '근태 신청일',
+        //     data : 'application_date',
+        //     render : $.fn.dataTable.render.moment()
+        // }, {
+        //     'sTitle' : '시작',
+        //     data : 'begin_date',
+        //     render : $.fn.dataTable.render.moment()
+        // }, {
+        //     'sTitle' : '종료',
+        //     data : 'end_date',
+        //     render : $.fn.dataTable.render.moment()
+        // }, {
+        //     'sTitle' : '사유',
+        //     data : 'reason'
+        // }, {
+        //     'sTitle' : '상태',
+        //     data : 'state'
+        // }
+    ];
 
-        url = 'selectAttendacne';
-        // callList(url, columns);
+    url = 'selectAttendacne';
+    // callList(url, columns);
 }
 
 
@@ -249,3 +250,7 @@ function receivingStatusList(){
 // 		});
 // 	});
 // }
+
+
+//문서 로딩과 함께 넘겨받은 값으로 탭 선택하기
+//처음 메뉴로 들어갈 때만 발동하기를 원하지만 메뉴 내에서 또 쿼리를 보냈을 때 작동 여부는 보장할 수 없을 듯 하다

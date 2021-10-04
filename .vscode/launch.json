@@ -11,6 +11,14 @@
       "port": 9250,
       "webRoot": "${workspaceFolder}",
       "url": "http://127.0.0.1:2026/p/PJ_team_88/src/main/webapp/resources/wms/js/?_cmAuth\u003dqleixzddiz"
+    },
+    {
+      "name": "Launch receiving.js",
+      "type": "node",
+      "console": "integratedTerminal",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/main/webapp/resources/wms/js/receiving.js",
+      "cwd": "${workspaceFolder}/src/main/webapp/resources/wms/js"
     }
   ]
 }

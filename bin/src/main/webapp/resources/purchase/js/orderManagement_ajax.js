@@ -26,12 +26,20 @@ $(document).ready(function() {
         });
     }
     
+<<<<<<< HEAD
+    // 거래처, 상품 등록 처리
+=======
     // 발주서, 상품 등록 처리
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// '#orderRegisterAction', 버튼 id
 	$('#white-box').on('click', '#orderRegisterAction', function() {
 	    var loc = $('#orderRegisterForm').attr('action');
 	    /*
+<<<<<<< HEAD
+	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+=======
 	     * 1. 발주서 등록 {id:'id', type:'type', name:'name' ... }
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -97,7 +105,11 @@ $(document).ready(function() {
 	        },
 	        success : function(data) {
 	            if (data) {
+<<<<<<< HEAD
+	            	alert('거래처가 등록되었습니다.');
+=======
 	            	alert('발주서가 등록되었습니다.');
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	            	$('.form-control').each(function() {
 	            		$(this).val('');
 	            	});
@@ -149,6 +161,16 @@ function orderList() {
                     render : function(data) {
                         return '<input type="checkBox" class="request_id" name="request_id" value="' + data + '">';
                     }
+<<<<<<< HEAD
+        		}, {
+        			data : 'request_id',
+                }, {
+                    data : null,
+                    render : function(data, type, row, meta) {
+                        return '<a href="/logistics_erp/purchase/orderDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.client_name + '</a>'; 
+                    }
+                }, {
+=======
                 }, {
                     data : null,
                     render : function(data, type, row, meta) {
@@ -157,6 +179,7 @@ function orderList() {
                 }, {
                 	data : 'client_name',
                 }, {	
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                     data : 'client_ceo_name',
                 }, {
                     data : 'client_phone',
@@ -189,7 +212,11 @@ function orderList() {
 			}
 		});
 		
+<<<<<<< HEAD
+		// 거래처 삭제(선택삭제)
+=======
 		// 발주서 삭제(선택삭제)
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	    $(".col-md-2").on("click", "#orderChoiceDeleteBtn", function() {
 	    	var check = $("input:checkbox[name=request_id]:checked").length;
 	    	
@@ -210,7 +237,11 @@ function orderList() {
 	});
 }
 
+<<<<<<< HEAD
+// 거래처 삭제(선택삭제)
+=======
 // 발주서 삭제(선택삭제)
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 function orderChoiceDelete(csrfParameter, csrfToken) {
 	var formData = JSON.stringify($('input[name=request_id]:checked').serialize());
     console.log(formData);
@@ -227,7 +258,11 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
         },
         success : function(data) {
             if (data) {
+<<<<<<< HEAD
+                alert('선택한 거래처가 삭제되었습니다');
+=======
                 alert('선택한 발주서가 삭제되었습니다');
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
             	currTab.ajax.reload();
             }
         },
@@ -240,7 +275,11 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
 }
 
 
+<<<<<<< HEAD
+//등록한 거래처(구매처) 목록
+=======
 //등록한 발주서 목록
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 function registeredOrderList() {
     currTab = $('#registeredOrderList').DataTable({
     		"order": [[ 1, "desc" ]],
@@ -254,6 +293,22 @@ function registeredOrderList() {
                 {
                     data : null,
                     render : function(data, type, row, meta) {
+<<<<<<< HEAD
+                        return '<a href="/logistics_erp/purchase/orderDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
+                    }
+                }, {
+                	data : 'id',
+                }, {
+                    data : 'register_num',
+                }, {
+                    data : 'ceo_name',
+                }, {
+                    data : 'phone',
+                }, {
+                    data : 'address',
+                }, {
+                    data : 'register_date',
+=======
                     	return '<a href="/logistics_erp/purchase/orderDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
                     }
                 }, {
@@ -266,6 +321,7 @@ function registeredOrderList() {
                     data : 'employee_name',
                 }, {
                     data : 'begin_date',
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                     render : $.fn.dataTable.render.moment()
                 }
         ],

@@ -137,10 +137,22 @@
 								</div>
 							</div>
                           <div class="form-group">
+<<<<<<< HEAD
+                            <label class="col-md-3 control-label" for="balance">입금금액 <span class="text-danger">*</span></label>
+                            <div class="col-md-9">
+                              <input class="form-control" type="number" id="balance" name="balance" value="0"  placeholder="입금금액을입력하세요" required>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-md-3 control-label" for="val-withdraw">출금금액 <span class="text-danger">*</span></label>
+                            <div class="col-md-9">
+                              <input class="form-control" type="number" id="val-withdraw" name="val-department_id" value="0" placeholder="출금금액을 입력하세요" required>
+=======
                             <label class="col-md-3 control-label" for="balance">거래금액 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <input class="form-control" type="text" id="balance" name="balance" placeholder="입금금액을입력하세요"
                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1')">
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                             </div>
                           </div>
                           <div class="form-group">

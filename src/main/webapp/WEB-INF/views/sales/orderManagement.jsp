@@ -75,7 +75,7 @@
         <!-- End Wrapper --> 
         
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_sales.jsp"%>
+<%-- 		<%@ include file="./js_sales.jsp"%> --%>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement.js"></script>
 </body>

@@ -5,6 +5,7 @@ import java.util.Date;
 // 구매팀 주문서 전체 목록(조회) 뷰 DTO
 public class PurchaseOrderListViewDTO {
 	
+
 	private int request_id;			// 발주번호
 	private Date begin_date;		// 발주일자
 	private Date end_date;			// 납기요청일자   -- 추가
@@ -31,6 +32,14 @@ public class PurchaseOrderListViewDTO {
 
 	public void setBegin_date(Date begin_date) {
 		this.begin_date = begin_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 
 	public String getClient_name() {

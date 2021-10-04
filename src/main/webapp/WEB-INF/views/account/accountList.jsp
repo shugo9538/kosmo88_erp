@@ -12,6 +12,7 @@
   <meta name="author" content="">
   <link rel="icon" href="assets/images/favicon.png" type="image/png">
   <title>우여곡절 - 계좌조회 </title>
+  <script type="text/javascript" src="${RESOURCES_PATH}/accounting/js/account.js"></script>
 </head>
 
 <body class="sticky-header">
@@ -73,7 +74,11 @@
 								<!-- <div id="result"></div> -->
 							</li>
 							<li class="active">
+<<<<<<< HEAD
+								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
+=======
 								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 							</li>
 						<%-- 	<li class="active">
 								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
@@ -88,9 +93,13 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
+<<<<<<< HEAD
+                                            <!-- <th>번호</th> -->
+=======
                                         	<th>
                                             	<input type="hidden" id="root" value="${ROOT_PATH}">
                                         	</th>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                                             <th>번호</th>
                                             <th>계좌명</th>
                                             <th>계좌번호</th>
@@ -100,6 +109,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                     	<c:forEach var="dto" items="${account}" varStatus="status">
    											<tr>
    												<td>
@@ -110,7 +120,7 @@
                                         		<td>${dto.name}</td>
                                         		<td>
 	                                        		<input type="hidden" id="account_number" name="account_number" value="${dto.account_number}">
-	                                    			<a href="#" id="accountNum" onclick="accountDetail(${dto.account_number});" >
+	                                    			<a href="#" id="accountNum" onclick="accountDetail();" >
 	                                        		${dto.account_number}</a>
                                         		</td>
                                         		<td>${dto.bank}</td>
@@ -122,7 +132,46 @@
                                         		</td>
                                        	    </tr>		                                     		
                                     	</c:forEach>
+                                     
+
+                                     <!-- 보유통장이 없는경우 -->
+                                  <c:if test="${cnt == 0}">
+                                     	<tr>
+                                     		<td colspan="8" align="center">
+                                     			<span style="color:red"> 등록된 통장이 없습니다.</span>
+                                     		</td>
+                                     	</tr>
+                                     </c:if>
                                     </tbody>
+                                    
+                                    <tfoot>
+                                    <!-- 보유통장이 있는경우 --> 
+                                     <c:if test="${cnt > 0}">
+                                     <tr>
+                                     	<th colspan="8">
+                                     	<!-- 맨처음[◀◀] / 이전블럭[◀]  -->
+                                     	<c:if test="${startPage > pageBlock}">
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140" style="color:block">[◀◀]</a>
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${startPage-pageBlock}" style="color:block">[◀]</a>
+                                     	</c:if>
+                                     	
+                                     	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                     		<c:if test="${i == currengPage}">
+                                     			<span><b>[${i}]</b></span>
+                                     		</c:if>
+                                     		<c:if test="${i != currengPage}">
+                                     			<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${i}">[${i}]</a>
+                                     		</c:if>
+                                     	</c:forEach>
+                                     	<!-- 다음블록[▶▶] / 맨마지막블럭[▶]  -->
+                                     	<c:if test="${pageCount > endPage}">
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${startPage + pageBlock}">[▶]</a>
+                                     		<a href="${ROOT_PATH}/account/accountList?categoryNum=140&pageNum=${pageCount}">[▶▶]</a>
+                                     	</c:if>
+                                     	</th>
+                                     	</tr>
+                                     </c:if>
+                                    </tfoot>
                                    </table>  
                             </div>
                        </div>
@@ -132,8 +181,7 @@
         <!-- End Wrapper-->
 			</div>
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="common/accountFooter.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>	
          <!--End footer -->
 
        </div>

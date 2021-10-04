@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+//import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -61,20 +62,21 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	}
 
 	// 견적서 등록 화면 - 담당자 리스트
-	@Override
-	public List<SalesEmployeeDTO> getEmployeeList() {
-		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
-	}
+//	@Override
+//	public List<SalesEmployeeDTO> getEmployeeList() {
+//		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
+//	}
 
+	// 견적서 상세 페이지
 	@Override
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
 	}
-	
-	
 
+	// 견적서 상세 아이템
+	@Override
+	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id) {
+		return sqlSession.selectList(STATEMENT + ".getEstimateDetailItem", request_id);
+	}
 	
-
-	
-
 }

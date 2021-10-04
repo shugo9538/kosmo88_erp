@@ -52,14 +52,14 @@
 								<tbody>
 									<tr>
 										<td>1</td>
-										<td><a href="${ROOT_PATH}/wms/warehouse/view">본사 창고</a></td>
+										<td><a href="${ROOT_PATH}/wms/warehouse/manage">본사 창고</a></td>
 										<td>창고창창</td>
 										<td>고창창고</td>
 										<td><span class="label label-warning">창고중</span></td>
 										<td>
 											<div class="progress progress-striped progress-sm">
 												<div class="progress-bar progress-bar-warning"
-													style="width: 25%;"></div>
+													style="width: 10%;"></div>
 											</div>
 										</td>
 									</tr>

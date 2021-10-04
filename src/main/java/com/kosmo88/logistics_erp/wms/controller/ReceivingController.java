@@ -18,18 +18,18 @@ public class ReceivingController {
 	ReceivingService receivingService;
 
 	@RequestMapping(value = {"/receiving", "/"})
-	public String receivingStatus() {
+	public String receiving() {
 		return "wms/receiving/receiving";
 	}
 
-//	@RequestMapping(value = {"/history"})
-//	public String ReceivingHistory() {
-//		return "wms/receiving/receivingStatus";
-//	}
-//	@RequestMapping("/detail")
-//	public String ReceivingDetail() {
-//		return "wms/receiving/receivingDetail";
-//	}
+	@RequestMapping(value = {"/history"})
+	public String ReceivingHistory() {
+		return "wms/receiving/receivingStatus";
+	}
+	@RequestMapping("/detail")
+	public String ReceivingDetail() {
+		return "wms/receiving/receivingDetail";
+	}
 	
 	
 	

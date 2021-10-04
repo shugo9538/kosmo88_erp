@@ -153,11 +153,11 @@ function estimateList() {
             dataSrc : ''
         },
         columns : [
-	    		{
-	                data : 'request_id',
-	                render : function(data) {
-	                    return '<input type="checkBox" class="request_id" name="request_id" value="' + data + '">';
-	                }
+                {
+                    data : 'request_id',
+                    render : function(data) {
+                        return '<input type="checkBox" class="request_id" name="request_id" value="' + data + '">';
+                    }
                 }, {
                 	data : null,
                     render : function(data, type, row, meta) {
@@ -251,7 +251,8 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 
 //등록한 견적서 목록
 function registeredEstimateList() {
-    $('#registeredEstimateList').DataTable({
+    currTab = $('#registeredEstimateList').DataTable({
+    		
     	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredEstimateList', // 현 위치

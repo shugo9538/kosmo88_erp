@@ -19,9 +19,16 @@ $(document).ready(function() {
 		window.open(url, "selectClient", "menubar=no, width=1500, height=700");
 	});
 	
+	// 거래처 값 전달
+	$(".select").click(function() {
+		var par = $(this).attr('name');
+		var client = {};
+		client[c_id] = $('input[name=c_id]').val();
+		$("#name", opener.document).val("#c_name".val);
+	})
+	
 	// 담당자 선택
-	$("#selectEmployee").click(function() {
-		
+	$("#selectEmployee").click(function(){
 		var url = "/logistics_erp/purchase/selectEmployee"
 		window.open(url, "selectEmployee", "menubar=no, width=1500, height=700");
 	});

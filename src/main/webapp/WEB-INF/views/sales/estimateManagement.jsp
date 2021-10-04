@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -13,70 +12,98 @@
 		<!--body wrapper start-->
 		<div class="wrapper">
 			<!--Start Page Title-->
-            <div class="page-title-box">
-                <h4 class="page-title">견적서 관리</h4>
-                <ol class="breadcrumb">
-                    <li><a href="active">견적서 관리</a></li>
-                </ol>
-                <div class="clearfix"></div>
-            </div>
-            <!--End Page Title-->
-            
-            <ul class="nav nav-pills custom-nav">
+			<div class="page-title-box">
+				<h4 class="page-title">견적서 관리</h4>
+				<ol class="breadcrumb">
+					<li class="active">견적서 관리</li>
+				</ol>
+				<div class="clearfix"></div>
+			</div>
+			<!--End Page Title-->
+			
+			<ul class="nav nav-pills custom-nav">
 				<li class="active"><a href="${ROOT_PATH}/sales/estimateRegister">견적서 등록</a></li>
 			</ul>
-            
-            <!--Start row-->
+
+			<!--Start row-->
             <div class="row">
                 <div class="col-md-12">
-                	<!-- Start white-box -->
                     <div class="white-box">
                         <h2 class="header-title">
                         	<i class="fa fa-chevron-circle-right mr-2"></i>
-                        	견적서 전체 목록
-                        </h2>
-                        <!-- form -->
-                        <form class="form-horizontal" id="estimateManagementForm" name="estimateManagementForm"
-                        	action="${ROOT_PATH}/sales/estimateRegisterAction" method="post">
-	                     	<!-- csrf 토큰 -->
-							<sec:csrfInput />
-	                     <div class="table-responsive">
-	                    	 <div class="col-md-2 mt-1 mb-4">
-								<input class="btn btn-default" type="button" id="estimateChoiceDeleteBtn" value="견적서 삭제">
+                        	견적서 전체 목록 </h2><span style="text-align:right;">(등록된 견적서 : ${cnt}개)</span>
+                        <div class="table-responsive">
+                        	<div class="col-md-2 mt-1">
+								<input class="btn btn-default" type="button" id="delButton" name="delButton" value="품목삭제">
 							 </div>
 							 
-	                         <table id="estimateList" class="display table" style="width:100%">
-	                             <thead>
-	                                 <tr>
-	                                    <td style="text-align:center">
-	                                         <input type="checkbox" id="checkAll" name="checkAll">
-	                                    </td>
-	                                    
-	                                    <!-- p_estimate_list_view -->
-	                                    
-	                                    <th>견적번호</th> 		<!--  request_id  -->
-                                        <th>거래처명</th>		<!--  client_name -->
-                                        <th>거래처대표자명</th> <!--  client_ceo_name -->
-                                        <th>거래처연락처</th>  <!--  client_phone -->
-                                        <th>담당자</th>		<!-- employee_name -->
-                                        <th>요청일자</th> 	 	<!--  begin_date  -->
-	                                 </tr>
-	                             </thead>
-	                         </table>							 
-						 </div>
-						 </form>	
-                       	 <!-- form -->
+                            <table id="example" class="display table">
+                                <thead>
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            <input type="checkbox" name="checkAll" id="checkAll">
+                                        </td>
+                                        <th>견적서 번호</th>
+                                        <th>견적일자</th>
+                                        <th>거래처명</th>
+                                        <th>거래처 당담자</th>
+                                        <th>영업 담당자</th>
+                                        <th>품목명</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- 등록된 거래처가 있는 경우 -->
+                                <c:if test="${cnt > 0}">
+                                	<c:forEach var="dto" items="${dto}">
+                                		<tr>
+	                                        <th style="text-align: center;">
+	                                            <input type="checkbox" name="client_id" id="client_id" value="${dto.id}">
+	                                        </th>
+	                                        <td>${dto.id}</td>
+	                                        <th>
+	                                        	<a href="clientDetail?id=${dto.id}&pageNum=${pageNum}"
+	                                        		onclick="window.open(this.href, 'mywin', 'left=100,  width=1000, height=600, toolbar=1');return false;">${dto.name}</a>
+	                                        </th>
+	                                        <td>${dto.register_num}</td>
+	                                        <td>${dto.ceo_name}</td>
+	                                        <td>${dto.phone}</td>
+	                                        <td>${dto.address}</td>
+	                                        <td>
+	                                        	<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${dto.register_date}"/>
+	                                        </td>
+	                                    </tr>
+                                	</c:forEach>
+                                </c:if>
+                                
+                                <!-- 등록된 거래처가 없는 경우 -->
+                                <c:if test="${cnt == 0}">
+                                	<tr>
+                                		<td colspan="7" align="center">
+                                   			<span style="color:red"> 등록된 견적서처가 없습니다. </span>
+                                   		</td>
+                                	</tr>
+                                </c:if>   
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
                     </div>
-                    <!-- End white-box -->   
-                </div>       
-            </div>           
-            <!--End row-->       
-        </div>               
-        <!-- End Wrapper --> 
+                </div>
+                <!--End row-->
+                
         
+        <!-- End Wrapper-->
+        
+                    </div>
+            	<div>
+            </div>
+        </div>
+		</div>	
+		<!-- End Wrapper-->
+		
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_sales.jsp"%>
-		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
-		<script src="${RESOURCES_PATH}/sales/js/estimateManagement.js"></script>
+		<script src="${RESOURCES_PATH}/sales/js/clientManagement.js"></script>
+		
 </body>
 </html>

@@ -37,7 +37,7 @@ public interface AccountDAO {
 	public int insertSlip(Map<String, Object> map);
 	// 파트별 일반전표 승인 및 request 상태 변경 
 	public int updateSlipState(Map<String, Object> map);
-	public int updateRequestState(Map<String, Object> map);
+
 
 	// 매입,매출장 관리
 	// 매입,매출장 목록
@@ -74,6 +74,7 @@ public interface AccountDAO {
 	public FinancialStatementsDTO selectFinancialStatements();
 	// 손익계산서
 	public IncomeStatementDTO selectIncomeStatement();
+	int updateRequestState(Map<String, Object> map);
 	
 	
 
