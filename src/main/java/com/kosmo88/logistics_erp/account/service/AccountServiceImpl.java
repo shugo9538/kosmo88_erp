@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -251,6 +250,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		model.addAttribute("cnt", cnt);
 		
 	}
+
 	// 신규통장 추가 처리
 	@Override
 	public void accountInsertAction(HttpServletRequest request, Model model) {
@@ -295,9 +295,9 @@ public class AccountServiceImpl implements AccountService, menuCode {
 	@Override
 	public void accountSimplDetail(HttpServletRequest request, Model model) {
 		
-		List<AccountDTO> account = new ArrayList<AccountDTO>(); 
+		AccountDTO account = new AccountDTO(); 
 		
-		account = accountDAO.selectAccount();
+		//account = accountDAO.selectAccountInfo();
 		System.out.println("통장 정보 조회 : " + account);
 		
 		model.addAttribute("account", account);
@@ -362,19 +362,17 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		String account_number = request.getParameter("account_number");
 		System.out.println("통장 입출금내역1 : " + account_number);
 		
+		//List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
+		//depositWithdrawalHistoryDTO = accountDAO.selectDepositWithdrawalHistory(account_number);
+		//model.addAttribute("dtos", depositWithdrawalHistoryDTO);
+		//System.out.println("통장입출금내역 dtos : " + depositWithdrawalHistoryDTO);
+		
 		List<BalanceDTO> balanceDTO = new ArrayList<BalanceDTO>();
 		
 		balanceDTO = accountDAO.selectAccountBalance(account_number); 
 
 		model.addAttribute("dtos", balanceDTO);
 		System.out.println("잔액조회 balanceDTO : " + balanceDTO);
-		
-		AccountDTO accountDTO = new AccountDTO();
-		accountDTO = accountDAO.selectAccountInfo(account_number);
-		
-		System.out.println("금융/자금관리 - 단건정보: " + accountDTO);
-		model.addAttribute("dto", accountDTO);
-		
 	}
 	// 통장 입금내역 조회
 	@Override
@@ -422,6 +420,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 		model.addAttribute("dto", income);
 	}
+
 
 	
 	// 영업팀 수주요청서 

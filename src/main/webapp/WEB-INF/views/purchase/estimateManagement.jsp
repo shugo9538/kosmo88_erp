@@ -15,7 +15,7 @@
             <div class="page-title-box">
                 <h4 class="page-title">견적서 관리</h4>
                 <ol class="breadcrumb">
-                    <li class="active">견적서 관리</li>
+                    <li><a href="active">견적서 관리</a></li>
                 </ol>
                 <div class="clearfix"></div>
             </div>
@@ -50,13 +50,15 @@
 	                                    <td style="text-align:center">
 	                                         <input type="checkbox" id="checkAll" name="checkAll">
 	                                    </td>
+	                                    
 	                                    <!-- p_estimate_list_view -->
-	                                    <th>견적번호</th> 		<!-- request_id -->
-                                        <th>거래처</th>		<!-- client_name  -->
-                                        <th>거래처 대표자</th>  <!-- client_ceo_name  -->
-                                        <th>거래처 연락처</th>  <!-- client_phone  -->
-                                        <th>담당자</th>		<!-- employee_name  -->
-                                        <th>요청일자</th> 	 	<!-- begin_date  -->
+	                                    
+	                                    <th>견적번호</th> 		<!--  request_id  -->
+                                        <th>거래처명</th>		<!--  client_name -->
+                                        <th>거래처대표자명</th> <!--  client_ceo_name -->
+                                        <th>거래처연락처</th>  <!--  client_phone -->
+                                        <th>담당자</th>		<!-- employee_name -->
+                                        <th>요청일자</th> 	 	<!--  begin_date  -->
 	                                 </tr>
 	                             </thead>
 	                         </table>							 

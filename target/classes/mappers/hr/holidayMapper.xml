@@ -7,12 +7,6 @@
 	<!-- 휴가 관리 -->
 	<!-- 휴가 잔여일수 현황 -->
 	<select
-		id="leftHolidayNum"
-		resultType="HolidayUsageStatusDTO">
-		SELECT * FROM holiday_use_status
-	</select>
-
-	<select
 		id="useHolidayNum"
 		resultType="HolidayUsageStatusDTO">
 		SELECT * FROM holiday_use_status

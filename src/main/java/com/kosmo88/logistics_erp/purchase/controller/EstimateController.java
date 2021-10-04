@@ -19,6 +19,7 @@ import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
+// @RestController
 @Controller
 @RequestMapping(value = "/purchase")
 public class EstimateController {

@@ -153,11 +153,11 @@ function estimateList() {
             dataSrc : ''
         },
         columns : [
-	    		{
-	                data : 'request_id',
-	                render : function(data) {
-	                    return '<input type="checkBox" class="request_id" name="request_id" value="' + data + '">';
-	                }
+                {
+                    data : 'request_id',
+                    render : function(data) {
+                        return '<input type="checkBox" class="request_id" name="request_id" value="' + data + '">';
+                    }
                 }, {
                 	data : null,
                     render : function(data, type, row, meta) {

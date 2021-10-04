@@ -1,47 +1,4 @@
-// 입력 후 커서 이동
-function nextRegisterNum1(){
-	if(document.clientRegisterForm.register_num1.value.length >= 3){
-		document.clientRegisterForm.register_num2.focus();
-	}
-}
-function nextRegisterNum2(){
-	if(document.clientRegisterForm.register_num2.value.length >= 2){
-		document.clientRegisterForm.register_num3.focus();
-	}
-}
-function nextRegisterNum3(){
-	if(document.clientRegisterForm.register_num3.value.length >= 5){
-		document.clientRegisterForm.email1.focus();
-	}
-}
 
-function nextPhone1() {
-	if(document.clientRegisterForm.phone1.value.length >= 3) {
-		document.clientRegisterForm.phone2.focus();
-	}
-}
-
-function nextPhone2() {
-	if(document.clientRegisterForm.phone2.value.length >= 4) {
-		document.clientRegisterForm.phone3.focus();
-	}
-}
-
-function nextPhone3() {
-	if(document.clientRegisterForm.phone3.value.length >= 4) {
-		document.clientRegisterForm.zip_code.focus();
-	}
-}
-
-// 이메일 체크
-function selectEmailChk(){
-	if(document.clientRegisterForm.email3.value == 0){ // 직접입력
-		document.clientRegisterForm.email2.value = ""; // input 초기화
-		document.clientRegisterForm.email2.focus();
-	} else {
-		document.clientRegisterForm.email2.value = document.clientRegisterForm.email3.value;
-	}
-}
 
 // 우편번호 및 주소 검색 API
 function daumPostcode() {
@@ -54,7 +11,7 @@ function daumPostcode() {
             var addr = ''; // 주소 변수
             var extraAddr = ''; // 참고항목 변수
 
-            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                 addr = data.roadAddress;
             } else { // 사용자가 지번 주소를 선택했을 경우(J)
@@ -91,3 +48,58 @@ function daumPostcode() {
         }
     }).open();
 }
+
+// 입력후 커서이동
+// 사업자 번호 
+function nextRegisterNum1(){
+	if(document.clientRegisterForm.register_num1.value.length >= 3){
+		document.clientRegisterForm.register_num2.focus();
+	}
+}
+function nextRegisterNum2(){
+	if(document.clientRegisterForm.register_num2.value.length >= 2){
+		document.clientRegisterForm.register_num3.focus();
+	}
+}
+function nextRegisterNum3(){
+	if(document.clientRegisterForm.register_num3.value.length >= 5){
+		document.clientRegisterForm.email1.focus();
+	}
+}
+
+// 해드폰 번호
+function nextPhone1(){
+	if(document.clientRegisterForm.phone1.value.length >= 3){
+		document.clientRegisterForm.phone2.focus();
+	}
+}
+function nextPhone2(){
+	if(document.clientRegisterForm.phone2.value.length >= 4){
+		document.clientRegisterForm.phone3.focus();
+	}
+}
+function nextPhone3(){
+	if(document.clientRegisterForm.phone3.value.length >= 4){
+		document.clientRegisterForm.zip_code.focus();
+	}
+}
+
+function selectEmailChk(){
+	if(document.clientRegisterForm.email3.value == 0){ // 직접입력
+		document.clientRegisterForm.email2.value = ""; // input 초기화
+		document.clientRegisterForm.email2.focus();
+	} else {
+		document.clientRegisterForm.email2.value = document.clientRegisterForm.email3.value;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+

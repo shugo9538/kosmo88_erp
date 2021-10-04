@@ -12,24 +12,23 @@
 		
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
-			alias="SalesClientDTO" />
+			alias="SalesClientDTO"/>	
+
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesItemDTO"
 			alias="SalesItemDTO" />
-		<typeAlias
+		<!-- <typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO"
-			alias="SalesInsertClientDTO" />		
+			alias="SalesInsertClientDTO" />	 -->	
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO"
 			alias="SalesEstimateListViewDTO" />	
-		<typeAlias
+		<!-- <typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
-			alias="SalesEmployeeDTO" />			
+			alias="SalesEmployeeDTO" />	 -->		
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO"
 			alias="SalesEstimateDetailViewDTO" />		
-			
-			
 			
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesItemDTO"
@@ -122,13 +121,12 @@
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
 			alias="PurchaseItemDTO" />
 		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
-			alias="PurchaseInsertClientDTO" />		
-					
-		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
 			alias="PurchaseEstimateListViewDTO" />	
-	
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
+			alias="PurchaseInsertClientDTO" />		
+			
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	

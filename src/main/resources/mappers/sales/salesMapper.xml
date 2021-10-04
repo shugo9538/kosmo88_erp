@@ -3,21 +3,26 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesClientDAO">
+<mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesDAO">
 
+<!-- 거래처 갯수 -->
+<select id="getClientCnt" resultType="int">
+	SELECT COUNT(*) as cnt FROM client WHERE TYPE = '판매' AND ENABLED = 'Y'
+</select>
 <!-- 거래처 조회 -->
-<select id="getClientList" resultType="SalesClientDTO">
-	SELECT id, name, register_num, ceo_name, phone, address, register_date
- 		  FROM client
- 		 WHERE type = '판매'
- 		   AND enabled = 'Y'
- 		 ORDER BY id DESC
+<select id="getClientList" resultType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
+	SELECT *
+      FROM client
+     WHERE type = '판매'
+       AND enabled = 'Y'
+      ORDER BY id DESC
 </select>
 
 <!-- 거래처 상세 페이지 -->
-<select id="getClientDetail" parameterType="int" resultType="SalesClientDTO">
+<select id="getClientDetail" parameterType="int" resultType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
 	SELECT * FROM client WHERE id=#{id}
 </select>
+
 
 <!-- 거래처 등록 처리 -->
 <insert id="registerClient" parameterType="SalesInsertClientDTO">
@@ -26,18 +31,15 @@
 </insert>
 
 <!-- 거래처 수정 -->
-<update id="updateClient" parameterType="SalesClientDTO">
-	UPDATE client
-	   SET ceo_name = #{ceo_name}, register_num = #{register_num}, address = #{address}, detail_address = #{detail_address}, zip_code = #{zip_code}, phone = #{phone}, email = #{email}
-	 WHERE id = #{id}
-	   AND enabled = #{enabled} 
+<update id="updateClient" parameterType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
+	UPDATE client 
+	   SET name=#{name}, ceo_name=#{ceo_name}, phone=#{phone}, email=#{email}, register_num=#{register_num}, zip_code=#{zip_code}, address=#{address}, detail_address=#{detail_address}
+	 WHERE id=#{id} 
 </update>
 
 <!-- 거래처 삭제 -->
-<update id="deleteClient" parameterType="int">
-	UPDATE client
-	   SET enabled='N'
-	 WHERE id = #{id}
-</update>
+<delete id="deleteClient" parameterType="int">
+	DELETE FROM client WHERE id=#{id}
+</delete>
 
 </mapper>

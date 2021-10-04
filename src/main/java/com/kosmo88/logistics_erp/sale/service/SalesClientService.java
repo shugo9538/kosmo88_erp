@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
+//import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesClientService {
@@ -17,7 +17,7 @@ public interface SalesClientService {
 	public List<SalesClientDTO> clientList(HttpServletRequest req, HttpServletResponse res);
 	
 	// 거래처 등록 처리
-	public boolean clientRegisterAction(SalesInsertClientDTO dto);
+	//public boolean clientRegisterAction(SalesInsertClientDTO dto);
 	
 	// 상품 등록 처리
 	public boolean itemRegisterAction(SalesItemDTO dto);

@@ -38,9 +38,8 @@ public class AccountDAOImpl implements AccountDAO {
 	// 신규 거래처 등록
 	@Override
 	public int insertClient() {
-		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertClient");
+		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertClient");	// 거래처 정보 수정
 	}
-	// 거래처 정보 수정
 	@Override
 	public int updeateClient(int register_num) {
 		return sqlSession.update("com.kosmo88.logistics_erp.account.dao.AccountDAO.updeateClient", register_num);
@@ -125,7 +124,7 @@ public class AccountDAOImpl implements AccountDAO {
 	// 등록 계좌정보 조회(계좌거래내역 등록시 계좌정보)
 	@Override
 	public AccountDTO selectAccountInfo(String account_number) {
-		return sqlSession.selectOne(STATEMENT + ".selectAccountInfo", account_number);
+		return sqlSession.selectOne(STATEMENT + ".selectAccountInfo");
 	}
 	// 계좌테이블 계좌번호 중복조회
 	@Override
@@ -174,20 +173,6 @@ public class AccountDAOImpl implements AccountDAO {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 	
-	
-	
-	
-	
+
 }

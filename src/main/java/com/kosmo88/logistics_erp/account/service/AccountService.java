@@ -11,6 +11,7 @@ public interface AccountService {
 	
 	// 기초정보관리
 	// 거래처 목록조회
+
 	public void clientList(Model model);
 	
 	// 일반전표/장부관리
@@ -26,6 +27,7 @@ public interface AccountService {
 	
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
+
 	public void accountList(HttpServletRequest req, Model model);
 	// 통장 계좌번호 중복검사
 	public void accountNumberCheck(HttpServletRequest request, Model model);

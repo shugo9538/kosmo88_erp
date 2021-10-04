@@ -20,7 +20,6 @@
  		UPDATE request
  		   SET enabled = 'N'
  		 WHERE id = #{request_id}
- 		   AND state = 'TX_ESTIMATE'
  	</update>
  	
  	<!-- 견적서 등록 화면 - 거래처 갯수 -->

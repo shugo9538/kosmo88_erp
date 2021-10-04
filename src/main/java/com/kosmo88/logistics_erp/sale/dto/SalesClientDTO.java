@@ -15,15 +15,8 @@ public class SalesClientDTO {
     private int zip_code;    			// number(5)       not null,
     private Date register_date;   	//DATE              NOT NULL,   -- 거래처 등록일
 	private String phone;              // NUMBER(11)     NOT NULL
-    private String enabled;
-	
-    public String getEnabled() {
-		return enabled;
-	}
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
-	}
-	public int getId() {
+    
+    public int getId() {
 		return id;
 	}
 	public void setId(int id) {

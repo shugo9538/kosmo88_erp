@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 @Repository
@@ -25,10 +24,10 @@ public class SalesClientDAOImpl implements SalesClientDAO{
 	}
 
 	// 거래처 등록
-	@Override
-	public int registerClient(SalesInsertClientDTO dto) {
-		return sqlSession.insert(STATEMENT + ".registerClient", dto);
-	}
+//	@Override
+//	public int registerClient(SalesInsertClientDTO dto) {
+//		return sqlSession.insert(STATEMENT + ".registerClient", dto);
+//	}
 
 	@Override
 	public int registerItem(SalesItemDTO dto) {
