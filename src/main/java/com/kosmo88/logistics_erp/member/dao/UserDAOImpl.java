@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.dto.UserDTO;
+import com.kosmo88.logistics_erp.member.dto.UserDTO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
