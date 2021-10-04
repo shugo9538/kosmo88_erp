@@ -19,7 +19,7 @@ public interface ClientService {
 	// 거래처 등록 처리
 	public boolean clientRegisterAction(PurchaseInsertClientDTO dto);
 	
-	// 상품 등록 처리
+	// 거래처 상품 등록 처리
 	public boolean itemRegisterAction(PurchaseItemDTO dto);
 	
 	// 거래처 상세페이지

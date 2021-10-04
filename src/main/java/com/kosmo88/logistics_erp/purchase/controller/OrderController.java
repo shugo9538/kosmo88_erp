@@ -28,7 +28,7 @@ public class OrderController {
     	
         return "purchase/orderManagement";
     }
-/*
+
     // 발주서 등록 화면
     @RequestMapping(value = "/orderRegister")
     public String orderRegister(HttpServletRequest req, Model model) {
@@ -45,31 +45,13 @@ public class OrderController {
     	return "purchase/orderDetail";
     }
     
-    // 발주서 수정페이지
-    @RequestMapping(value = "/orderUpdate")
-    public String orderUpdate(HttpServletRequest req, Model model) {
-    	
-    	orderService.orderUpdate(req, model);
-    	
-    	return "purchase/orderUpdate";
-    }
-    
-    // 발주서 수정 처리
-    @RequestMapping(value = "/orderUpdateAction")
-    public String orderUpdateAction(HttpServletRequest req, Model model) {
-    	
-    	orderService.orderUpdateAction(req, model);
-    	
-    	return "purchase/orderUpdateAction";
-    }
-    
     // 발주서 삭제(상세페이지에서 단일 삭제)
     @RequestMapping(value = "/orderDelete")
     public String orderDelete(HttpServletRequest req, Model model) {
     	
     	orderService.orderDelete(req, model);
     	
-    	return "purchase/orderDeleteAction";
+    	return "purchase/orderDelete";
     }
-*/    
+   
 }

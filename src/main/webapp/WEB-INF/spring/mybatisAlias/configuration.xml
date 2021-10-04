@@ -24,7 +24,6 @@
 			
 			
 		<!-- accounting start -->	
-		
 		<!-- 일반전표DTO -->
 		<typeAlias type="com.kosmo88.logistics_erp.account.dto.SlipDTO"
 			alias="SlipDTO"/>
@@ -116,6 +115,18 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
+			alias="PurchaseEmployeeDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
+			alias="PurchaseEstimateDetailViewDTO" />	
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
+			alias="PurchaseOrderDetailViewDTO" />	
 			
 		<!-- purchase dto end -->		
 		

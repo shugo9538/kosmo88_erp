@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService {
 		return state.check(clientDao.registerClient(dto));
 	}	
 	
-	// 상품 등록 처리
+	// 거래처 상품 등록 처리
 	public boolean itemRegisterAction(PurchaseItemDTO dto) {
 		state = QueryCode.INSERT;
 		return state.check(clientDao.registerItem(dto));
