@@ -65,6 +65,12 @@
 			type="com.kosmo88.logistics_erp.hr.dto.CommuteDTO"
 			alias="CommuteDTO" />
 		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO"
+			alias="DepartmentCodeDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.EmployeeDTO"
+			alias="EmployeeDTO" />
+		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
 			alias="PaySlipDTO" />
 		<typeAlias
@@ -74,8 +80,17 @@
 			type="com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO"
 			alias="HolidayUsageStatusDTO" />
 		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.HRCodeDTO"
+			alias="HRCodeDTO" />
+		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO"
 			alias="PayStepTableDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
+			alias="PaySlipDTO" />
+		<typeAlias
+			type="com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO"
+			alias="PositionCodeDTO" />
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />

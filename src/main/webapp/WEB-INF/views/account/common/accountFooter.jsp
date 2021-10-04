@@ -10,14 +10,10 @@
 <!-- financialStatement.jsp.jsp  -->
 <script src="/logistics_erp/resources/accounting/js/financialStatement.js"></script>
 
-<!-- 통장신규등록페이지  -->
-<!-- accountNewDetail.jsp  -->
-<script src="/logistics_erp/resources/accounting/js/accountNewDetail.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 
-<!-- 일반전표 리스트 페이지  -->
-<!-- slipList.jsp  -->
-<script src="/logistics_erp/resources/accounting/js/slipList.js"></script>
+
+
+
 
 

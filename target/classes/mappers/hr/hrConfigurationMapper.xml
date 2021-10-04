@@ -4,22 +4,46 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kosmo88.logistics_erp.hr.dao.ConfigurationDAO">
-	<!-- 근태 파트 -->
 	<!-- 기초 환경 설정 -->
-	<!-- 근태 항목 조회 -->
+	<!-- 인사코드 항목 조회 -->
 	<select
-		id="attendanceCodeList"
+		id="selectHRCode"
+		resultType="HRCodeDTO">
+		SELECT h.id, h.name, h.hr_group_id, hg.name "hr_group_name"
+		FROM hr h, hr_group hg
+		WHERE hg.id = h.hr_group_id
+	</select>
+
+<!-- 부서코드 항목 조회 -->
+	<select
+		id="selectDepartments"
+		resultType="DepartmentCodeDTO">
+		SELECT *
+		FROM department
+	</select>
+
+<!-- 직급코드 항목 조회 -->
+	<select
+		id="selectPosition"
+		resultType="PositionCodeDTO">
+		SELECT *
+		FROM position
+	</select>
+
+<!-- 근태코드 항목 조회 -->
+	<select
+		id="selectAttendanceCode"
 		resultType="AttendanceCodeDTO">
 		SELECT * FROM attendance_cd
 	</select>
-	
+
 	<!-- 근태 항목 등록 -->
-	<insert
-		id="insertAttendanceCode"
-		parameterType="AttendanceCodeDTO">
-		INSERT INTO attendance_cd (id, name, type, enabled)
-		VALUES(#{id}, #{name}, #{type}, #{enabled})
-	</insert>
+<!-- 	<insert -->
+<!-- 		id="insertAttendanceCode" -->
+<!-- 		parameterType="AttendanceCodeDTO"> -->
+<!-- 		INSERT INTO attendance_cd (id, name, type, enabled) -->
+<!-- 		VALUES(#{id}, #{name}, #{type}, #{enabled}) -->
+<!-- 	</insert> -->
 	<!-- 사원별 휴가 일수 조회 -->
 	<!-- 급여관리 -->
 	<!-- 호봉 테이블 -->

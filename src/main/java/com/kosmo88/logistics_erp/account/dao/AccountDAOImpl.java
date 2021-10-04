@@ -59,29 +59,18 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 일반전표 조회
 	@Override
-	public List<SlipDTO> selectSlipList() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlipList");
-	}
-	// 일반전표 단건 조회
-	@Override
-	public SlipDTO selectSlip(int id) {
-		return sqlSession.selectOne(STATEMENT + ".selectSlip", id);
+	public List<SlipDTO> selectSlip() {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlip");
 	}
 	// 일반전표 등록 (parameter 로 int department_id, int department_request)
 	@Override
 	public int insertSlip(Map<String, Object> map) {
 		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertSlip", map);
 	}
-	// 일반전표 - 부서별 승인 처리  
+	// 일반전표 상태업데이트 (Y/N) 승인/미승인 (parameter 로 int department_id, int department_request)  
 	@Override
 	public int updateSlipState(Map<String, Object> map) {
-		System.out.println("updateSlipState : " + map);
 		return sqlSession.update("com.kosmo88.logistics_erp.account.dao.AccountDAO.updateSlipState", map);
-	}
-	// 일반전표 승인 후 request tbl 상태 변경
-	@Override
-	public int updateRequestState(Map<String, Object> map) {
-		return sqlSession.update("com.kosmo88.logistics_erp.account.dao.AccountDAO.updateRequestState", map);
 	}
 	
 	
@@ -125,23 +114,18 @@ public class AccountDAOImpl implements AccountDAO {
 	// 등록 계좌정보 조회(계좌거래내역 등록시 계좌정보)
 	@Override
 	public AccountDTO selectAccountInfo(String account_number) {
+		System.out.println("dbdbdbdbdbdb");
 		return sqlSession.selectOne(STATEMENT + ".selectAccountInfo", account_number);
 	}
-	// 계좌테이블 계좌번호 중복조회
+	// 계좌번호 중복조회
 	@Override
-	public int accountNumberCheck(String account_number) {
-		return sqlSession.selectOne(STATEMENT + ".accountNumberCheck", account_number);
+	public int accountConfrim(String account_number) {
+		return sqlSession.selectOne(STATEMENT + ".accountConfrim");
 	}
 	// 신규통장 추가처리
 	@Override
 	public int insertAccount(AccountDTO accountDTO) {
 		return sqlSession.insert(STATEMENT + ".insertAccount", accountDTO);
-	}
-	// 등록통장 정보수정
-	@Override
-	public int updateAccountEnabled(String account_number) {
-		
-		return sqlSession.update(STATEMENT + ".updateAccountEnabled", account_number);
 	}
 	// 통장 잔액조회
 	@Override
@@ -153,11 +137,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public int insertAcountHistory(AccountHistoryDTO ahDTO) {
 		System.out.println("dddd : "+ ahDTO);
 		return sqlSession.insert(STATEMENT + ".insertAcountHistory", ahDTO);
-	}
-	//통장 잔액 업데이트
-	@Override
-	public int updateAccountBalance(String account_number) {
-		return sqlSession.insert(STATEMENT + ".updateAccountBalance", account_number);
 	}
 	
 	
@@ -173,10 +152,6 @@ public class AccountDAOImpl implements AccountDAO {
 	public IncomeStatementDTO selectIncomeStatement() {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
-
-
-
-
 
 
 

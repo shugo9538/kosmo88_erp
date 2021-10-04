@@ -6,5 +6,10 @@
 <mapper namespace="com.kosmo88.logistics_erp.hr.dao.PaySlipDAO">
 	<!-- 급여 전표 관리 -->
 	<!-- 전표 생성 -->
+	<select
+		id="totalPaySlip"
+		resultType="PaySlipDTO">
+		select * from salary_request_view
+	</select>
 	<!-- 전표 집계 -->
 </mapper>

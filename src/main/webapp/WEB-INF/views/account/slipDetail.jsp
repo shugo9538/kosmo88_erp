@@ -10,10 +10,28 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title> 회계관리 - 회계팀 일반전표 등록</title>
+  <title> 회계관리 - 거래처 목록</title>
 </head>
 <script type="text/javascript" src="/logistics_erp/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js" ></script>
+<script type="text/javascript">
+	
+	$('#js-validation-slip').validate({ 
+		rules:{
+			'val-id':{
+				required:true,
+				rangelength:[2,10]
+			}
+		},
+		message:{
+			'val-id':{
+				required:"전표번호를 입력해주세요",
+				rangelength:"2자 10자리까지 입력 가능합니다."
+			}
+		}
+	}); 
+	
+</script>
 <body class="sticky-header">
 
 

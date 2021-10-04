@@ -64,21 +64,12 @@
 								<a href="${ROOT_PATH}/account/accountNewDetail">통장 추가</a>
 							</li>
 							<li class="active">
-								<a 
-<%-- 								href="${ROOT_PATH}/account/accountModifyDetail?account_number=" --%>
-									id ="accountModify" onclick="accountModifyDetail();">통장 미사용처리</a>
-							</li>
-							<li>
-								<!-- <button onclick="accountModifyDetail();">버튼테스트</button> -->
-								<!-- <div id="result"></div> -->
-							</li>
-							<li class="active">
 								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
 							</li>
-						<%-- 	<li class="active">
-								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
+							<li class="active">
+								<%-- <a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a> --%>
 								<a href="#">거래내역 다건추가</a>
-							</li> --%>
+							</li>
 						</ul>
 					</div>
 					<!-- 메뉴버튼 끝 -->
@@ -88,24 +79,22 @@
                              <table id="example" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
-                                        	<th>
+                                            <th>
+                                            	번호
                                             	<input type="hidden" id="root" value="${ROOT_PATH}">
-                                        	</th>
-                                            <th>번호</th>
+                                            	</th>
                                             <th>계좌명</th>
                                             <th>계좌번호</th>
                                             <th>은행</th>
-                                            <th>잔액</th>
+                                            <th>잔액
+                                            </th>
                                             <th>등록일</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <!-- 계좌목록이 있는 경우  -->
                                     	<c:forEach var="dto" items="${account}" varStatus="status">
    											<tr>
-   												<td>
-   													<input type="checkbox" name="check_accountNum" 
-   														onclick="checkbox_accountNum(this);" value="${dto.account_number}"/>
-   												</td>
                                         		<td>${dto.id}</td>
                                         		<td>${dto.name}</td>
                                         		<td>

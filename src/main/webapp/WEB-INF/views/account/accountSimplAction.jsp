@@ -15,7 +15,7 @@
 
 		<c:if test="${insertCnt == 1}">
 			<script type="text/javascript">
-				swal("통장거래내역","거래내역이 추가 되었습니다.","success",{
+				swal("통장거래내역","거리내역이 추가 되었습니다.","success",{
 					closeOnclickOutside : false,
 					closeEsc: false,
 					buttons : {
@@ -30,31 +30,8 @@
 		
 		<c:if test="${insertCnt == 0}">
 			<script type="text/javascript">
-			swal("거래내역추가","계좌번호가 확인 되지 않습니다. \n 다시 확인 바랍니다..","error",{
-				closeOnclickOutside : false,
-				closeEsc: false,
-				buttons : {
-					text : '확인',
-					value : true,
-					timer : 3000
-				}
-			});
-			window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>	
-		</c:if>
-		
-		<c:if test="${insertCnt == 2}">
-			<script type="text/javascript">
-			swal("통장잔액","잔액 업데이트에 실패하였습니다.","error",{
-				closeOnclickOutside : false,
-				closeEsc: false,
-				buttons : {
-					text : '확인',
-					value : true,
-					timer : 3000
-				}
-			});
-			window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
+				swal("통장거래내역","거리내역 추가를 실패 하였습니다.","warning");
+				window.history.back();
 			</script>	
 		</c:if>
 

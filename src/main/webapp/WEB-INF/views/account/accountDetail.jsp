@@ -54,7 +54,7 @@
 									<tr>
 										<th>통장별칭</th>
 										<th>거래일자</th>
-										<!-- <th>거래시간</th> -->
+										<th>거래시간</th>
 										<th>은행</th>
 										<th>계좌번호</th>
 										<th>적요</th>
@@ -62,10 +62,10 @@
 										<th>입금</th>
 										<th>출금</th>
 										<th>잔액
-											<!-- <script type="text/javascript">
+											<script type="text/javascript">
 												var result= 1 + 1;
 												document.write(result);
-											</script> -->
+											</script>
 										</th>
 									</tr>
 								</thead>
@@ -78,7 +78,7 @@
 											<tr>
 												<td>${dto.account_name}</td>
 												<td>${dto.transaction_date}</td>
-												<%-- <td>${dto.transaction_date}</td> --%>
+												<td>${dto.transaction_date}</td>
 												<td>${dto.account_bank}</td>
 												<td>${dto.account_number}</td>
 												<td>${dto.abs}</td>

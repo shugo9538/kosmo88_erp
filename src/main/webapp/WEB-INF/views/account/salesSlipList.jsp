@@ -51,20 +51,12 @@
 				<!-- 메뉴버튼 -->
 				<div>
 					<ul class="nav nav-pills custom-nav">
-<<<<<<< HEAD
-						<li class="active"><a
-							href="${ROOT_PATH}/account/purchaseList?categoryNum=131">매입목록</a></li>
-
-						<li class="active"><a
-							href="${ROOT_PATH}/account/salesList?categoryNum=132">매출목록</a></li>
-=======
 						<li class="active">
 							<a href="${ROOT_PATH}/account/purchaseList?categoryNum=131">매입목록</a>
 						</li>
 						<li class="active">
 							<a href="${ROOT_PATH}/account/salesList?categoryNum=132">매출목록</a>
 						</li>
->>>>>>> ff5d0d625df406c47f6ceef3bfe7454649b57554
 					</ul>
 				</div>
 				<!-- 메뉴버튼 끝 -->
@@ -168,8 +160,6 @@
 							</tbody>
 							<tfoot>
 								</c:forEach>
-								</tbody>
-								<tfoot>
 								<tr style="background-color: ghostwhite; font-weight: bold;">
 									<td colspan="5" align="center">합계</td>
 									<td>${cnt}건(매수${cnt}매)</td>
@@ -184,11 +174,7 @@
 									</td>
 									<td colspan="4"></td>
 								</tr>
-<<<<<<< HEAD
-								</tfoot>
-=======
 							</tfoot>
->>>>>>> ff5d0d625df406c47f6ceef3bfe7454649b57554
 						</table>
 					</div>
 				</div>
@@ -197,6 +183,7 @@
 		<!--End row-->
 		<!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
+		<%-- <%@ include file="common/accountFooter.jsp"%> --%>
 		<!--End footer -->
 	</div>
 	<!--End main content -->

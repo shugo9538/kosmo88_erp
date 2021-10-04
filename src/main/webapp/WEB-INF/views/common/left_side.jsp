@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 						<a href="${ROOT_PATH}/hr/configurations">기초정보 환경설정</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/hrManagement">인사카드 관리</a>
+						<a href="${ROOT_PATH}/hr/employee">인사카드 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/hr/attendance/">근태 관리</a>
@@ -46,102 +46,6 @@ pageEncoding="UTF-8"%>
 					<span>회계관리</span>
 				</a>
 				<ul class="sub-menu-list">
-<<<<<<< HEAD
-					<!--
-					<li class="active">
-						<a href="${ROOT_PATH}/account/configurations"> 기초정보 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/account/statementBook"> 전표입력/장부관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/account/financialFunds"> 금융/자금관리</a>
-					</li>
-					  -->
-					<!-- 아래추가사항 -->
-					<li>
-						<a href="${ROOT_PATH}/account/clientList?"> 1. 기초정보 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/account/salesSlipList?"> 2. 매입/매출장</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/account/slipList?"> 3. 일반전표</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/account/accountList?"> 4. 금융/자금관리</a>
-					</li>					
-					<li>
-						<a href="${ROOT_PATH}/account/financialStatement?">5. 결산/재무제표</a>
-					</li>
-				</ul>
-			</li>
-			<li class="menu-list" id="sales">
-				<a href="#">
-					<i class="icon-grid"></i>
-					<span>영업관리</span>
-				</a>
-				<ul class="sub-menu-list">
-					<li>
-						<a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/sales/estimateManagement">견적서 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/sales/#">출하 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/sales/shipmentManagement">판매전표 관리</a>
-					</li>
-				</ul>
-			</li>
-			<li class="menu-list" id="purchase">
-				<a href="#">
-					<i class="icon-envelope-open"></i>
-					<span>구매관리</span>
-				</a>
-				<ul class="sub-menu-list">
-					<li>
-						<a href="${ROOT_PATH}/purchase/clientManagement">거래처 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/purchase/purchaseManagement">구매 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/purchase/#">제품 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/purchase/purchaseSlipManagement">구매전표 관리</a>
-					</li>
-				</ul>
-			</li>
-			<li class="menu-list" id="wms">
-				<a href="#">
-					<i class="icon-loop"></i>
-					<span>WMS</span>
-				</a>
-				<ul class="sub-menu-list">
-					<li>
-						<a href="${ROOT_PATH}/wms/warehouse/">창고 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/wms/stock/">재고 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/wms/receiving/">입고 관리</a>
-					</li>
-					<li>
-						<a href="${ROOT_PATH}/wms/shipping/">출고 관리</a>
-					</li>
-					<li>
-=======
           <!-- 아래추가사항 -->
           <li>
             <a href="${ROOT_PATH}/account/clientList?categoryNum=110">
@@ -237,7 +141,6 @@ pageEncoding="UTF-8"%>
             <a href="${ROOT_PATH}/wms/stock/">재고 관리</a>
           </li>
           <!-- <li>
->>>>>>> ff5d0d625df406c47f6ceef3bfe7454649b57554
 						<a href="${ROOT_PATH}/wms/truck/">차량 관리</a>
 					</li> -->
         </ul>

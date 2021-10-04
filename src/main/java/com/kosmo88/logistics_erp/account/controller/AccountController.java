@@ -97,27 +97,17 @@ public class AccountController {
     public String slipDetail(Model model) {
     	logger.info("/slipDetail");
     	
+    	
     	return "account/slipDetail";
     }
-    // 장부관리 - 일반전표 수정페이지
-    @RequestMapping(value="/slipModifyDetail")
+    // 장부관리 - 일반전표 등록페이지
+    @RequestMapping(value="/slipModify")
     public String slipModify(HttpServletRequest request, Model model) {
-    	logger.info("/slipModifyDetail");
+    	logger.info("/slipModify");
     	
-    	service.slipModifyDetail(request, model);
     	
     	return "account/slipModify";
     }
-    // 장부관리 - 부서별 일반전표 승인처리
-    @RequestMapping(value="/slipConfirmAction")
-    public String slipModifyAction(HttpServletRequest request, Model model) {
-    	logger.info("/slipConfirmAction");
-    	
-    	service.slipConfirmAction(request, model);
-    	
-    	return "account/slipConfirmAction";
-    }
-    
   //------------------------ 장부관리/매입/매출 전표 ------------------------
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
@@ -133,7 +123,7 @@ public class AccountController {
     @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
     	
-    	//service.accountingList(request, model);
+    	service.accountingList(request, model);
     	
         return "account/salesList";
     }
@@ -143,7 +133,7 @@ public class AccountController {
     public String purchase(HttpServletRequest request, Model model) {
     	logger.info("/purchaseList");
     	
-    	//service.accountingList(request, model);
+    	service.accountingList(request, model);
     	
         return "account/purchaseList";
     }
@@ -174,15 +164,6 @@ public class AccountController {
     	
     	return "account/accountNewDetail";
     }
-    // 금융자금 - 신규통장 추가시 계좌번호 중복확인
-    @RequestMapping(value = "/accountNumberCheck")
-    public String accountNumberCheck(HttpServletRequest request, Model model) {
-    	logger.info("/accountNumberCheck");
-    	
-    	service.accountNumberCheck(request, model);
-    	
-    	return "account/accountNumberCheck";
-    }
     // 금융자금 - 신규통장 추가 처리
     @RequestMapping(value = "/accountInsertAction")
     public String newAccountAction(HttpServletRequest request, Model model) {
@@ -191,24 +172,6 @@ public class AccountController {
     	service.accountInsertAction(request, model);
     	
     	return "account/accountInsertAction";
-    }
-    // 금융자금 - 미사용 통장 조회
-    @RequestMapping(value = "/accountEnabledDetail")
-    public String accountModifyDetail(HttpServletRequest request, Model model) {
-    	logger.info("/accountModifyDetail");
-    	
-    	service.accountEnabledDetail(request, model);
-    	
-    	return "account/accountEnabledDetail";
-    }
-    // 금융자금 - 등록통장 미사용 처리
-    @RequestMapping(value = "/accountEnabledAction")
-    public String accountModifyAction(HttpServletRequest request, Model model) {
-    	logger.info("/accountModifyAction");
-    	
-    	service.accountEnabledAction(request, model);
-    	
-    	return "account/accountEnabledAction";
     }
     
     // 금융자금 - 통장 거래내역 단건추가 페이지

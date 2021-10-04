@@ -24,28 +24,21 @@ public class ConfigurationsController {
     @Autowired
     ConfigurationService configService;
     
-    // 근태 항목 관리
-//    @RequestMapping(value = "/attendanceCode")
+    // 기초정보 환경설정 탭
     @RequestMapping(value = "")
-    public String attendanceCodeManagement(HttpServletRequest req, HttpServletResponse res) {
-        configService.attendanceCodeManagement(req, res);
-        
-        return "hr/configurations";
+    public String configurationsManagement(HttpServletRequest req, HttpServletResponse res) {
+        return "hr/configurationManagement/configurationsManagement";
     }
     
-    // 근태 항목 추가
-    @RequestMapping(value = "/insertAttendanceCode")
-    public String insertAttendanceCode(HttpServletRequest req, HttpServletResponse res) {
-        configService.insertAttendanceCode(req, res);
-        
-        return "hr/configurations";
+    // 신규 인사 그룹 코드 등록
+    @RequestMapping(value = "/insertHRGroupCode")
+    public String insertHRGroupCode(HttpServletRequest req, HttpServletResponse res) {
+        return "hr/configurationManagement/insertHRGroupCode";
     }
     
-    // 사원별 휴가 일수 조회
-    @RequestMapping(value = "/employeeHasHoliday")
-    public String employeeHasHoliday(HttpServletRequest req, HttpServletResponse res) {
-        configService.employeeHasHoliday(req, res);
-        
-        return "hr/configurations";
+    // 신규 인사 코드 등록
+    @RequestMapping(value = "/insertHRCode")
+    public String insertHRCode(HttpServletRequest req, HttpServletResponse res) {
+        return "hr/configurationManagement/insertHRCode";
     }
 }
