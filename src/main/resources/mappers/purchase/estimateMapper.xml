@@ -59,13 +59,22 @@
 		 ORDER BY e.id DESC
  	</select>
  	
- 	<!-- 견적서 등록 처리 -->
-<!--  	<insert id="insertEstimate" parameterType="PurchaseInsertEstimateViewDTO">
- 		INSERT INTO P_ESTIMATE_INSERT_VIEW(request_id, request_state, )
- 		 	VALUES (request_seq.nextval,'TX_ESTIMATE', )
+ 	<!-- 견적서 등록(request) 처리  -->
+ 	<insert id="insertRequest" parameterType="int">
+ 		
+ 	
+ 	</insert>
  	
  	
- 	</insert>  -->
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  
  
  	<!-- 견적서 상세페이지(거래처, 담당자 정보) -->

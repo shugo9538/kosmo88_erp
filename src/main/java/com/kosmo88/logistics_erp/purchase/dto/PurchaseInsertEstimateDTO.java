@@ -3,21 +3,10 @@ package com.kosmo88.logistics_erp.purchase.dto;
 // 견적서 등록 DTO
 public class PurchaseInsertEstimateDTO {
 	
-	private int request_id;						// 거래처코드	O
-	private int employee_id;					// 사원번호	O
-	private int client_id;						// 거래처코드   O
-	private String client_name;					// 거래처명
-	private String client_ceo_name;				// 대표자
-	private String client_phone;				// 거래처 연락처
-	private String client_email;				// 거래처 이메일
-	
-	
-	
-	
-	private int item_id;						// 상품코드	O
-	
-	
-	
+	private int request_id;						// 거래처코드	
+	private int employee_id;					// 사원번호	
+	private int client_id;						// 거래처코드   
+	private int item_id;						// 상품코드
 	
 /*	 
  	한건
@@ -39,37 +28,37 @@ public class PurchaseInsertEstimateDTO {
 
 */	
 	public PurchaseInsertEstimateDTO() {}
-	
+
 	public int getRequest_id() {
 		return request_id;
 	}
-	
+
 	public void setRequest_id(int request_id) {
 		this.request_id = request_id;
 	}
-	
+
 	public int getEmployee_id() {
 		return employee_id;
 	}
-	
+
 	public void setEmployee_id(int employee_id) {
 		this.employee_id = employee_id;
 	}
-	
+
 	public int getClient_id() {
 		return client_id;
 	}
-	
+
 	public void setClient_id(int client_id) {
 		this.client_id = client_id;
 	}
-	
+
 	public int getItem_id() {
 		return item_id;
 	}
-	
+
 	public void setItem_id(int item_id) {
 		this.item_id = item_id;
 	}
-	
+
 }

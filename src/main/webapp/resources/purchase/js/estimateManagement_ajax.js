@@ -36,10 +36,16 @@ $(document).ready(function() {
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
-	    $('#estimate').find('input').each(function() {
-    		var data = $(this);
-    		dataObject[data.attr('name')] = data.val();
-	    });
+	    // $('#estimate').find('input').each(function() {
+	    
+	    dataObject[client_id] = $('#estimate').find('input[name=client_id]').val();
+	    dataObject[employee_id] = $('#estimate').find('input[name=employee_id]').val();
+	    dataObject[client_id] = $('#estimate').find('input[name=client_id]').val();
+	    
+	    
+    	//	var data = $(this);
+    	//	dataObject[data.attr('name')] = data.val();
+	    // });
 	    console.log(dataObject);
 	    
 	    var formData = JSON.stringify(dataObject);
@@ -139,6 +145,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 function estimateList() {
 	// 테이블 id
 	currTab = $('#estimateList').DataTable({
+		"order": [[ 1, "desc" ]],
         ajax : {
             url : window.location.href + '/estimateList', // 현 위치
             type : 'POST',
@@ -245,6 +252,7 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 //등록한 견적서 목록
 function registeredEstimateList() {
     $('#registeredEstimateList').DataTable({
+    	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredEstimateList', // 현 위치
             type : 'POST',

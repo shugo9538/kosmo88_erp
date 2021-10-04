@@ -251,7 +251,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 //등록한 거래처(구매처) 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
-    		"order": [[ 1, "desc" ]],
+    	"order": [[ 1, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredClientList', // 현 위치
             type : 'POST',
@@ -259,13 +259,13 @@ function registeredClientList() {
             dataSrc : ''
         },
         columns : [
-                {
+			    {
+			    	data : 'id',
+			    }, {
                     data : null,
                     render : function(data, type, row, meta) {
                         return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
                     }
-                }, {
-                	data : 'id',
                 }, {
                     data : 'register_num',
                 }, {

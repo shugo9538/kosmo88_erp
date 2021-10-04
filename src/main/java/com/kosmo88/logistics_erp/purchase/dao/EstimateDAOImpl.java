@@ -44,20 +44,6 @@ public class EstimateDAOImpl implements EstimateDAO {
 		return sqlSession.selectList(STATEMENT + ".getClientList");
 	}
 	
-	// 견적서 등록 화면 - 상품 갯수
-	@Override
-	public int getItemCnt() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	// 견적서 등록 화면 - 상품 리스트
-	@Override
-	public List<PurchaseItemDTO> getItemList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 	// 견적서 등록 화면 - 담당자 갯수
 	@Override
 	public int getEmployeeCnt() {
@@ -70,11 +56,16 @@ public class EstimateDAOImpl implements EstimateDAO {
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 	
-	// 견적서 등록 처리
+	// 견적서 등록(request) 처리
 	@Override
-	public int insertEstimate(PurchaseInsertEstimateDTO dto) {
-		return sqlSession.insert(STATEMENT + ".insertEstimate", dto);
+	public int insertRequest(PurchaseInsertEstimateDTO dto) {
+		return sqlSession.insert(STATEMENT + ".insertRequest", dto);
 	}
+	
+	
+	
+	
+	
 	
 	// 견적서 상세페이지(거래처, 담당자 정보)
 	@Override

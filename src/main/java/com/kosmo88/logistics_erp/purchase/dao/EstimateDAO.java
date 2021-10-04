@@ -35,8 +35,13 @@ public interface EstimateDAO {
 	// 견적서 등록 화면 - 담당자 리스트
 	public List<PurchaseEmployeeDTO> getEmployeeList();
 	
-	// 견적서 등록 처리
-	public int insertEstimate(PurchaseInsertEstimateDTO dto);
+	// 견적서 등록(request) 처리
+	public int insertRequest(PurchaseInsertEstimateDTO dto);
+	
+	
+	
+	
+	
 	
 	// 견적서 상세페이지(거래처, 담당자 정보)
 	public PurchaseEstimateDetailViewDTO getEstimateDetail(int request_id);

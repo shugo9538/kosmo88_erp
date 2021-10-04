@@ -169,7 +169,8 @@
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="estimateRegisterAction"
-										type="button" value="등록"> <input
+										type="button" value="등록"> 
+									<input
 										class="btn  btn-default" type="reset" value="취소">
 								</div>
 							</div>

@@ -1,13 +1,16 @@
 package com.kosmo88.logistics_erp.purchase.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.purchase.dao.EstimateDAO;
@@ -26,7 +29,16 @@ public class EstimateServiceImpl implements EstimateService {
     @Autowired
     EstimateDAO estimateDao;
     
+    @Autowired
+    private EstimateService self;
+    
+    
     QueryCode state;
+    
+    // Transactional 사용
+    public void estimateRegisterAction(List<PurchaseInsertEstimateDTO> dtos) {
+    	dtos.forEach(dto -> self.estimateRegisterAction(dto));
+    }
 
     // 견적서 관리 - 견적서 목록(구매)
 	@Override
@@ -71,23 +83,25 @@ public class EstimateServiceImpl implements EstimateService {
 	}
 
 	// 견적서 등록 처리
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public boolean estimateRegisterAction(PurchaseInsertEstimateDTO dto) {
+		
 		state = QueryCode.INSERT;
 		
+		// 1. REQUEST tbl 입력
+		estimateDao.insertRequest(dto);
+		
+		
+		// 2. PRODUCT_GROUP tbl 입력
 		
 		
 		
+		// 3. REQ_PRODUCT_LIST tbl 입력
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		return state.check(estimateDao.insertEstimate(dto));
+		return true;
 	}
 
 	// 견적서 상세페이지
