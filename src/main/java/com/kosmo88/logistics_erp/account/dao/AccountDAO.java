@@ -18,7 +18,7 @@ public interface AccountDAO {
 	// 거래처 목록건수
 	public int getClientCnt();
 	// 거래처 목록조회
-	public List<ClientDTO> selectClient(Map<String,Object> map);
+	public List<ClientDTO> selectClient();
 	// 신규 거래처 등록
 	public int insertClient();
 	// 거래처 정보 수정
@@ -30,18 +30,14 @@ public interface AccountDAO {
 	// 일반전표 건수
 	public int getSlipCnt();
 	// 일반전표 조회
-<<<<<<< HEAD
-	public List<SlipDTO> selectSlip(Map<String,Object> map);
-=======
 	public List<SlipDTO> selectSlipList();
 	// 일반전표 단건조회
 	public SlipDTO selectSlip(int id);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 일반전표 등록
 	public int insertSlip(Map<String, Object> map);
 	// 파트별 일반전표 승인 및 request 상태 변경 
 	public int updateSlipState(Map<String, Object> map);
-	public int updateRequestState(Map<String, Object> map);
+
 
 	// 매입,매출장 관리
 	// 매입,매출장 목록
@@ -51,43 +47,21 @@ public interface AccountDAO {
 	// 매입,매출전표 건수
 	public int getSalesSlipCnt();
 	// 매입/매출전표 조회
-<<<<<<< HEAD
-	public List<SalesSlipDTO> selectSalesSlip(Map<String,Object> map);
-	// 매출전표 건수
-	//public int getSalesCnt(int type);
-	// 매출전표 조회
-	//public List<SalesSlipVO> selectSales(Map<String,Object> map);
-	// 매입전표 건수
-	//public int getPurchaseSlipCnt(int type);
-	// 매입전표 조회
-	//public List<SalesSlipVO> selectPurchase(Map<String,Object> map);
-	// 매입/매출전표 추가
-	//public int insertSalesSlip();
-	// 매입/매출전표 수정
-	//public int updateSalesSlip(int id);
-	// 매입/매출전표 삭제
-	//public int deleteSalesSlip(int id);
-=======
 	public List<SalesSlipDTO> selectSalesSlip();
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	
 	// 금융자금관리
 	// 통장 거래내역 건수
 	public int getAccountCnt();
 	// 통장 목록 조회 
-	public List<AccountDTO> selectAccount(Map<String,Object> map);
+	public List<AccountDTO> selectAccount();
 	// 통장 추가처리
 	public int insertAccount(AccountDTO accountDTO);
 	// 통장 정보 미사용 처리
 	public int updateAccountEnabled(String account_number);
 	// 통장 목록 단순 조회(거래내역 추가페이지 계좌정보 뿌릴때)
-<<<<<<< HEAD
-	public List<AccountDTO> selectAccountInfo();
-=======
 	public AccountDTO selectAccountInfo(String account_number);
 	// 통장테이블 계좌번호 중복조회
 	public int accountNumberCheck(String account_number);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 통장 거래내역 추가
 	public int insertAcountHistory(AccountHistoryDTO ahDTO);
 	// 통장 잔액 업데이트
@@ -100,6 +74,7 @@ public interface AccountDAO {
 	public FinancialStatementsDTO selectFinancialStatements();
 	// 손익계산서
 	public IncomeStatementDTO selectIncomeStatement();
+	int updateRequestState(Map<String, Object> map);
 	
 	
 

@@ -3,7 +3,6 @@ package com.kosmo88.logistics_erp.sale.dao;
 import java.util.List;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesClientDAO {
@@ -12,7 +11,7 @@ public interface SalesClientDAO {
 	public List<SalesClientDTO> getClientList();
 	
 	// 거래처 등록 처리
-	public int registerClient(SalesInsertClientDTO dto);
+	//public int registerClient(SalesInsertClientDTO dto);
 	
 	// 상품 등록 처리
 	public int registerItem(SalesItemDTO dto);

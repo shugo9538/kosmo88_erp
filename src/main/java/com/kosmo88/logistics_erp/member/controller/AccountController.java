@@ -77,8 +77,9 @@ public class AccountController {
     public String clientList(HttpServletRequest request, Model model) {
     	logger.info("/clientList");
     	
-    	service.accountingList(request, model);
-
+    	//service.accountingList(request, model);
+    	service.clientList(model);
+    	
         return "account/clientList";
     }
     
@@ -88,7 +89,8 @@ public class AccountController {
     public String slipList(HttpServletRequest request, Model model) {
     	logger.info("/slipList");
     	
-    	service.accountingList(request, model);
+    	//service.accountingList(request, model);
+    	service.slipList(model);
     	
     	return "account/slipList";
     }
@@ -108,9 +110,7 @@ public class AccountController {
     	
     	return "account/slipModify";
     }
-<<<<<<< HEAD:src/main/java/com/kosmo88/logistics_erp/member/controller/AccountController.java
-    
-=======
+
     // 장부관리 - 부서별 일반전표 승인처리
     @RequestMapping(value="/slipConfirmAction")
     public String slipModifyAction(HttpServletRequest request, Model model) {
@@ -122,14 +122,13 @@ public class AccountController {
     }
     
   //------------------------ 장부관리/매입/매출 전표 ------------------------
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0:src/main/java/com/kosmo88/logistics_erp/account/controller/AccountController.java
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
     public String salesList(HttpServletRequest request, Model model) {
     	logger.info("/salesSlipList");
     	
-    	service.accountingList(request, model);
-    	
+    	//service.accountingList(request, model);
+    	service.salesSlipList(model);
         return "account/salesSlipList";
     }
 
@@ -158,7 +157,8 @@ public class AccountController {
     public String accountList(HttpServletRequest request, Model model) {
     	logger.info("/accountList");
     	
-    	service.accountingList(request, model);
+    	//service.accountingList(request, model);
+    	service.accountList(request, model);
     	
         return "account/accountList";
     }

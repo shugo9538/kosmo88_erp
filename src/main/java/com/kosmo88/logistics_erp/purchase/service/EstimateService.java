@@ -37,10 +37,8 @@ public interface EstimateService {
 	// 견적서 관리 - 견적서 삭제(선택삭제)
 	public boolean estimateChoiceDelete(int[] request_id);
 	
-<<<<<<< HEAD
-=======
+
 	// 견적서 삭제(상세페이지에서 단일 삭제)
 	public void estimateDelete(HttpServletRequest req, Model model);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	
 }

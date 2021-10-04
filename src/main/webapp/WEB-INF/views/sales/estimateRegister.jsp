@@ -137,7 +137,7 @@
 									</tr>
 								</thead>
 								<tbody id="item-group">
-<<<<<<< HEAD
+
 									<!-- item1 -->
 									<tr>
 										<td>
@@ -219,7 +219,7 @@
 										</td>
 										<td>
 											<input class="form-control" name="total_price3" id="total_price3" type="text" min="0" readonly> 
-=======
+
 									<tr>
 										<td>
 											<div>
@@ -244,15 +244,11 @@
 										</td>
 										<td>
 											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly> 
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 										</td>
 									</tr>
 								</tbody>
 							</table>
-<<<<<<< HEAD
-							
-=======
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
+
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="estimateRegisterAction"
@@ -297,7 +293,7 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_sales.jsp"%>
+<%-- 		<%@ include file="./js_sales.jsp"%> --%>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/sales/js/estimateRegister.js"></script>
 </body>

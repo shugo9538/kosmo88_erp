@@ -3,7 +3,6 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
 <mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesDAO">
 
 <!-- 거래처 갯수 -->
@@ -24,10 +23,11 @@
 	SELECT * FROM client WHERE id=#{id}
 </select>
 
-<!-- 거래처 등록 -->
-<insert id="registerClient" parameterType="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO">
-	INSERT INTO client (id, type, name, ceo_name, register_num, email, address, detail_address, zip_code, phone, ENABLED)
- 		VALUES(client_seq.nextval, '판매', #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{zip_code}, #{phone}, 'Y')
+
+<!-- 거래처 등록 처리 -->
+<insert id="registerClient" parameterType="SalesInsertClientDTO">
+	INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code, enabled)
+	VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code}, #{enabled})
 </insert>
 
 <!-- 거래처 수정 -->
@@ -41,43 +41,5 @@
 <delete id="deleteClient" parameterType="int">
 	DELETE FROM client WHERE id=#{id}
 </delete>
-=======
-<mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesClientDAO">
-
-<!-- 거래처 조회 -->
-<select id="getClientList" resultType="SalesClientDTO">
-	SELECT id, name, register_num, ceo_name, phone, address, register_date
- 		  FROM client
- 		 WHERE type = '판매'
- 		   AND enabled = 'Y'
- 		 ORDER BY id DESC
-</select>
-
-<!-- 거래처 상세 페이지 -->
-<select id="getClientDetail" parameterType="int" resultType="SalesClientDTO">
-	SELECT * FROM client WHERE id=#{id}
-</select>
-
-<!-- 거래처 등록 처리 -->
-<insert id="registerClient" parameterType="SalesInsertClientDTO">
-	INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code, enabled)
-	VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code}, #{enabled})
-</insert>
-
-<!-- 거래처 수정 -->
-<update id="updateClient" parameterType="SalesClientDTO">
-	UPDATE client
-	   SET ceo_name = #{ceo_name}, register_num = #{register_num}, address = #{address}, detail_address = #{detail_address}, zip_code = #{zip_code}, phone = #{phone}, email = #{email}
-	 WHERE id = #{id}
-	   AND enabled = #{enabled} 
-</update>
-
-<!-- 거래처 삭제 -->
-<update id="deleteClient" parameterType="int">
-	UPDATE client
-	   SET enabled='N'
-	 WHERE id = #{id}
-</update>
->>>>>>> 3f375313169fe8de23782103645212b360ff4f43
 
 </mapper>

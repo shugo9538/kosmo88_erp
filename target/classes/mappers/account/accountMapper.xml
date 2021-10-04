@@ -123,37 +123,12 @@ AND sl.sa_type =#{type} AND rownum >=#{start} AND rownum <=#{end}
 SELECT COUNT(*) as cnt FROM ACCOUNT
 </select>
 <!-- 2. 통장목록 조회 -->
-<<<<<<< HEAD
-<<<<<<< HEAD
-<select id="selectAccountList" parameterType="java.util.Map" resultType="AccountDTO">
-<![CDATA[
-SELECT *
-FROM(SELECT id, name, account_number, bank, balance, register, account_holder_id, ROWNUM rNUM 
-FROM(SELECT * FROM ACCOUNT
-ORDER BY register))
-WHERE rNUM >=#{start} and rNUM <=#{end}
-]]>
-</select>
-<!-- 3. 통장목록 조회(단순 조회 페이징처리 없음) -->
-<select id="selectAccountInfo" resultType="AccountDTO">
-=======
+
 <select id="selectAccountList" resultType="AccountDTO">
 SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled
 FROM ACCOUNT
 WHERE ENABLED = 'Y'
 </select>
-<!-- 3. 통장목록 조회(1건계좌) -->
-<select id="selectAccountInfo" resultType="AccountDTO" parameterType="String">
->>>>>>> 3f375313169fe8de23782103645212b360ff4f43
-SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled 
-  FROM ACCOUNT
-=======
-<select id="selectAccountList" resultType="AccountDTO">
-SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled
-FROM ACCOUNT
-WHERE ENABLED = 'Y'
-</select>
-<<<<<<< HEAD
 <!-- 3. 통장목록 조회(1건계좌) -->
 <select id="selectAccountInfo" resultType="AccountDTO" parameterType="String">
 SELECT id, name, account_number, bank, balance, register, account_holder_id, enabled 
@@ -171,18 +146,6 @@ SELECT COUNT(account_number)
  )
 >>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 </select>
-=======
-<!-- 4. 통장 계좌번호 조회(중복검사)-->
-<select id="accountNumberCheck" parameterType="String" resultType="int">
-SELECT COUNT(account_number)
-  FROM account
- WHERE account_number = #{account_number}
- AND exists(
-            SELECT *
-              FROM account 계좌번호
- )
-</select>
->>>>>>> 3f375313169fe8de23782103645212b360ff4f43
 <!-- 5. 거래내역 추가시 통장 잔액합계 업데이트 -->
 <update id="updateAccountBalance" parameterType="String">
 UPDATE ACCOUNT

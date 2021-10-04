@@ -34,14 +34,6 @@ public class EstimateController {
     	
         return "purchase/estimateManagement";
     }
-<<<<<<< HEAD
-/*    
-    // 견적서 수정
-    @RequestMapping(value = "/estimateUpdate")
-    public String estimateUpdate(HttpServletRequest req, Model model) {
-
-    	// service.updateEstimate
-=======
     
     // 견적서 등록 화면
     @RequestMapping(value = "/estimateRegister")
@@ -64,7 +56,6 @@ public class EstimateController {
     public String selectEmployee(HttpServletRequest req, Model model) {
     	
     	estimateService.selectEmployee(req, model);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
     	
     	return "purchase/selectEmployee";
     }

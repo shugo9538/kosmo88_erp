@@ -15,7 +15,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+//import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -72,9 +72,9 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		// 담당자가 있을때
 		if (cnt > 0) {
 			// 담당자 리스트
-			List<SalesEmployeeDTO> dtos = estimateDao.getEmployeeList();
+			//List<SalesEmployeeDTO> dtos = estimateDao.getEmployeeList();
 			
-			model.addAttribute("dtos", dtos);
+			//model.addAttribute("dtos", dtos);
 		}
 		model.addAttribute("cnt", cnt);
 		

@@ -11,32 +11,13 @@ public interface AccountService {
 	
 	// 기초정보관리
 	// 거래처 목록조회
-<<<<<<< HEAD
-	//public void clientList(HttpServletRequest request, Model model);
-	// 신규 거래처등록
-	//public void clientInsert(HttpServletRequest request, Model model);
-	// 신규 거래처등록 페이지(컨트롤러에서처리)
-	// 거래처 정보수정 페이지
-	//public void clientModifyDetail(HttpServletRequest request, Model model);
-	// 거래처 정보수정 처리
-	//public void clientModifyAction(HttpServletRequest request, Model model);
-	// 거리처 목록삭제 페이지(알럿으로 처리)
-	// 거래처 목록삭제 처리
-	//public void clientDeleteAction(HttpServletRequest request, Model model);
-	
-	// 일반전표/장부관리
-	// 일반전표 목록조회
-	//public void slipList(HttpServletRequest request, Model model);
-	// 일반전표 등록페이지(컨트롤러에서처리)
-	// 일반전표 등록
-=======
+
 	public void clientList(Model model);
 	
 	// 일반전표/장부관리
 	// 일반전표 목록조회
 	public void slipList(Model model);
 	// 일반전표 등록 처리
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	//public void slipInsert(Model model);
 	// 일반전표 수정처 처리
 	public void slipModifyDetail(HttpServletRequest request, Model model);
@@ -46,13 +27,10 @@ public interface AccountService {
 	
 	// 금융자금관리
 	// 통장 거래내역(입/출금) 내역조회
-<<<<<<< HEAD
-	//public void accountList(HttpServletRequest request, Model model);
-=======
+
 	public void accountList(HttpServletRequest req, Model model);
 	// 통장 계좌번호 중복검사
 	public void accountNumberCheck(HttpServletRequest request, Model model);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 신규통장 추가 처리
 	public void accountInsertAction(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가 단건 추가 처리 페이지(통장정보조회)
@@ -72,7 +50,7 @@ public interface AccountService {
 	
 	// 매입/매출장
 	// 매입/매출장 전체목록조회
-	//public void salesSlipList(Model model);
+	public void salesSlipList(Model model);
 	// 매입전표 조회
 	//public void purchaseList(Model model);
 	// 매출전표 조회
