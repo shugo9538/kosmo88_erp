@@ -1,8 +1,0 @@
-<script src="${RESOURCES_PATH}/assets/js/jquery.min.js"></script>
-<script src="${RESOURCES_PATH}/assets/js/bootstrap.min.js"></script>
-<script src="${RESOURCES_PATH}/assets/plugins/moment/moment.js"></script>
-<script src="${RESOURCES_PATH}/assets/js/jquery.slimscroll.js "></script>
-<script src="${RESOURCES_PATH}/assets/js/jquery.nicescroll.js"></script>
-<script src="${RESOURCES_PATH}/assets/js/functions.js"></script>
-<div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 5px; z-index: 100; background: rgb(204, 204, 204); cursor: grab; position: fixed; top: 0px; left: 235px; height: 1170px; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 5px; height: 0px; background-color: rgb(204, 204, 204); background-clip: padding-box; border-radius: 0px;"></div></div>
-<div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 5px; z-index: 100; background: rgb(204, 204, 204); top: 1165px; left: 0px; position: fixed; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 5px; width: 0px; background-color: rgb(204, 204, 204); background-clip: padding-box; border-radius: 0px;"></div></div>
