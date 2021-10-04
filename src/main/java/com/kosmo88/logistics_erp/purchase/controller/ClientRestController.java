@@ -67,7 +67,7 @@ public class ClientRestController {
     	return true;
     }
     
-	// 상품 등록 처리
+	// 거래처 상품 등록 처리
     @RequestMapping(value = "/clientRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
         System.out.println(dtos);

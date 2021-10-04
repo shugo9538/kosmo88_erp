@@ -27,7 +27,7 @@ public class SalesEstimateController {
 	@RequestMapping(value = "/selectClient")
 	public String selectClient(HttpServletRequest req, Model model) {
 		
-		estimateService.clientList(req, model);
+		estimateService.selectClient(req, model);
 		
 		return "sales/selectClient";
 	}
@@ -36,9 +36,18 @@ public class SalesEstimateController {
 	@RequestMapping(value = "/selectEmployee")
 	public String selectEmployee(HttpServletRequest req, Model model) {
 		
-		estimateService.employeeList(req, model);
+		estimateService.selectEmployee(req, model);
 		
 		return "sales/selectEmployee";
+	}
+	
+	// 상품 검색
+	@RequestMapping(value = "/selectItem")
+	public String selectItem(HttpServletRequest req ,Model model) {
+		
+		estimateService.selectItem(req, model);
+		
+		return "sales/selectItem";
 	}
 	
 	// 견적서 관리 - 거래처 목록
@@ -55,6 +64,13 @@ public class SalesEstimateController {
 		return "sales/estimateRegister";
 	}
 	
-	
+	// 견적서 상세 화면
+	@RequestMapping(value = "/estimateDetail")
+	public String estimateDetail(HttpServletRequest req, Model model) {
+		
+		estimateService.estimateDetail(req, model);
+		
+		return "sales/estimateDetail";
+	}
 	
 }

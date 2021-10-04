@@ -17,7 +17,7 @@ public class SalaryDAOImpl implements SalaryDAO {
 
     @Override
     public List<SalaryDTO> monthlyPaymentAndStatus() {
-        return null;
+        return sqlSession.selectList(STATEMENT + ".monthlyPaymentAndStatus");
     }
 
     @Override

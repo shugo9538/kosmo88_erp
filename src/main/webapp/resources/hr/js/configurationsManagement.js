@@ -155,7 +155,7 @@ function callConfigList(url, columns, ordering) {
     currTab = $('#configTable').DataTable({
         "dom" : '<"top"l>rt<"bottom"ip><"clear">',
         order : ordering,
-        select : true, 
+        select : true,
         ajax : {
             url : window.location.href + url,
             type : 'POST',
@@ -233,12 +233,10 @@ function callConfigList(url, columns, ordering) {
             $('#searchHRCode').append('<option value=' + i + '>' + attCodeCol[i] + '</option>');
         }
     }
-    
+
     currTab.on('click', 'tr', function(e, dt, type, indexes) {
         td = $(this).children();
-        td.each(function(i) {
-            console.log(td.eq(i).text());
-        });
+
     });
 }
 
@@ -277,7 +275,10 @@ var hrCodeColumns = [
             }
         }, {
             'sTitle' : '인사 코드',
-            data : 'id'
+            data : 'id',
+            render : function(data) {
+                return '<a id="' + data + '">' + data + '</div>';
+            }
         }, {
             'sTitle' : '코드 명칭',
             data : 'name'

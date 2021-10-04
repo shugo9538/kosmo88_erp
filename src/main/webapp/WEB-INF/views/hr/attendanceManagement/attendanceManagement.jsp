@@ -24,7 +24,7 @@
 			<!--END Page Title-->
 			<!--Start Page Tab-->
 			<ul class="nav nav-tabs nav-pills custom-nav">
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a id="selectAttendacne">근태 조회</a>
 				</li>
 				<li class="nav-item">
@@ -35,8 +35,7 @@
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box" id="datatables">
-					</div>
+					<div class="white-box" id="datatables"></div>
 				</div>
 			</div>
 			<!--End row-->
