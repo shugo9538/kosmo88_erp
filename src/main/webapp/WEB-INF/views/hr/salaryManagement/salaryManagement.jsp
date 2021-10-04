@@ -12,7 +12,7 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">휴가 관리</h4>
+				<h4 class="page-title">급여 관리</h4>
 				<ol class="breadcrumb">
 					<li>
 						<a href="#">휴가 관리</a>
@@ -25,20 +25,21 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-					<a>휴가 잔여일수 현황</a>
+					<a>월별 지급 및 현황</a>
 				</li>
 				<li class="active">
-					<a>휴가 사용실적</a>
+					<a>급여 통계</a>
 				</li>
 				<li class="active">
-					<a>근태 집계표</a>
+					<a>근로 소득</a>
 				</li>
 			</ul>
 			<!--End Page Tab-->
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box" id=holidayDatatables></div>
+					<div class="white-box"  id=holidayDatatables>
+					</div>
 				</div>
 			</div>
 			<!--End row-->

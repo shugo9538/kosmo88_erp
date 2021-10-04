@@ -16,21 +16,41 @@ $(document).ready(function() {
     csrfData[csrfParameter] = csrfToken;
     // 시작 주소로 처음 구분
     console.log(currLocation.split('/')[5]);
-    if (currLocation.split('/')[5] == 'holiday') {
+    if (currLocation.split('/')[5] == 'payslip') {
         $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
         columns = [
                 {
-                    'sTitle' : '사원 코드',
+                    'sTitle' : '요청 번호',
+                    data : 'id'
+                }, {
+                    'sTitle' : '요청서 작성일',
+                    data : 'begin_date',
+                    render : $.fn.dataTable.render.moment()
+                }, {
+                    'sTitle' : '요청서 결재일',
+                    data : 'end_date',
+                    render : $.fn.dataTable.render.moment()
+                }, {
+                    'sTitle' : '이체 현황',
+                    data : 'state'
+                }, {
+                    'sTitle' : '급여 번호',
+                    data : 'salary_id'
+                }, {
+                    'sTitle' : '세전 소득',
+                    data : 'sum_pay'
+                }, {
+                    'sTitle' : '근로 소득',
+                    data : 'income_tax'
+                }, {
+                    'sTitle' : '지급 급여금',
+                    data : null,
+                    render : function(data, type, row, meta) {
+                        return Number(row.sum_pay - row.income_tax);
+                    }
+                }, {
+                    'sTitle' : '사원코드',
                     data : 'employee_id'
-                }, {
-                    'sTitle' : '휴가 사용일',
-                    data : 'use_date'
-                }, {
-                    'sTitle' : '연차',
-                    data : 'annual_holiday'
-                }, {
-                    'sTitle' : '휴가 코드',
-                    data : 'holiday_id'
                 }
         ];
 
@@ -39,9 +59,9 @@ $(document).ready(function() {
                     1, 'desc'
             ]
         ];
-        
-        url = '/selectHoliday';
-        callHolidayList(url, columns, ordering);
+
+        url = '/paySlipList';
+        callPaySlipList(url, columns, ordering);
     }
 });
 
@@ -94,105 +114,7 @@ $('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', functi
     event.preventDefault();
 });
 
-// 버튼 눌렀을때
-//$(document).on("click", '#', function() {
-//    columns = [
-//            {
-//                'sTitle' : '#',
-//                data : 'r_num',
-//                render : function(data) {
-//                    return '<input type="checkBox" value="' + data + '">';
-//                }
-//            }, {
-//                'sTitle' : '근태 아이디',
-//                data : 'id'
-//            }, {
-//                'sTitle' : '근태 코드',
-//                data : 'holiday_cd_id'
-//            }, {
-//                'sTitle' : '근태 신청일',
-//                data : 'application_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '시작',
-//                data : 'begin_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '종료',
-//                data : 'end_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '사유',
-//                data : 'reason'
-//            }, {
-//                'sTitle' : '상태',
-//                data : 'state'
-//            }
-//    ];
-//
-//    ordering = [
-//        [
-//                1, 'desc'
-//        ]
-//    ];
-//    
-//    url = 'selectAttendacne';
-//    callList(url, columns, ordering);
-//});
-
-//$(document).on('click', '#commutingRecords', function() {
-//    ordering = [
-//        [
-//                0, 'desc'
-//        ]
-//    ];
-//    columns = [
-//            {
-//                'sTitle' : '#',
-//                data : 'id',
-//                render : function(data, type, row, meta) {
-//                    return '<a href="item?id=' + data + '">' + data + '</a>';
-//                }
-//            }, {
-//                'sTitle' : '근무일',
-//                data : 'work_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '시작 시각',
-//                data : 'begin_date',
-//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-//            }, {
-//                'sTitle' : '종료 시각',
-//                data : 'end_date',
-//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-//            }, {
-//                'sTitle' : '야근 시간',
-//                data : 'night_time',
-//                render : function(data) {
-//                    if (data == 0) return '없음';
-//                    return data + '시간';
-//                }
-//            }, {
-//                'sTitle' : '초과근무 시간',
-//                data : 'over_time',
-//                render : function(data) {
-//                    if (data == 0) return '없음';
-//                    return data + '시간';
-//                }
-//            }, {
-//                'sTitle' : '근태',
-//                data : 'holiday_id'
-//            }, {
-//                'sTitle' : '사원번호',
-//                data : 'employee_id'
-//            }
-//    ];
-//
-//    url = 'commuteList';
-//    callList(url, columns, ordering);
-//});
-
-function callHolidayList(url, columns, ordering) {
+function callPaySlipList(url, columns, ordering) {
     $("#holidayDatatables").empty();
     $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
     currTab = $('#holidayTable').DataTable({
@@ -208,9 +130,10 @@ function callHolidayList(url, columns, ordering) {
         destroy : true,
     });
 
-    if (url == '/selectHoliday') {
+    if (url == '/paySlipList') {
         $('#holidayDatatables').append('<button id="insertholiday">');
-        $('#holidayTable_length').after('<div id = holidayTable_filter style="text-align: right;"></div>');
+        $('#holidayTable_length').after(
+                '<div id = holidayTable_filter style="text-align: right;"></div>');
         $('#holidayTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
         $('#holidayTable_filter').append(
                 '<input type="search" class="column_filter" id="searchBar">');

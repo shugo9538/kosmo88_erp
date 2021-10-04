@@ -16,21 +16,58 @@ $(document).ready(function() {
     csrfData[csrfParameter] = csrfToken;
     // 시작 주소로 처음 구분
     console.log(currLocation.split('/')[5]);
-    if (currLocation.split('/')[5] == 'holiday') {
+    if (currLocation.split('/')[5] == 'salary') {
         $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
         columns = [
                 {
-                    'sTitle' : '사원 코드',
+                    'sTitle' : 'id',
+                    data : 'id'
+                }, {
+                    'sTitle' : '기본급',
+                    data : 'basic_pay',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '초과근무 수당',
+                    data : 'overtime_pay',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '성과금',
+                    data : 'bonus',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '식대료',
+                    data : 'meal_fee',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '근로 소득',
+                    data : 'income_tax',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '급여일',
+                    data : 'payday',
+                    render : $.fn.dataTable.render.moment()
+                }, {
+                    'sTitle' : '월급(합계)',
+                    data : 'employee_salary',
+                    render: function(data) {
+                        return data.toString().replace(/(\d)(?=(\d\d\d)+$)/g, "$1,") + '원';
+                    }
+                }, {
+                    'sTitle' : '이체 현황',
+                    data : 'payment_status'
+                }, {
+                    'sTitle' : '지급 대상',
                     data : 'employee_id'
-                }, {
-                    'sTitle' : '휴가 사용일',
-                    data : 'use_date'
-                }, {
-                    'sTitle' : '연차',
-                    data : 'annual_holiday'
-                }, {
-                    'sTitle' : '휴가 코드',
-                    data : 'holiday_id'
                 }
         ];
 
@@ -39,9 +76,9 @@ $(document).ready(function() {
                     1, 'desc'
             ]
         ];
-        
-        url = '/selectHoliday';
-        callHolidayList(url, columns, ordering);
+
+        url = '/salaryList';
+        callSalaryList(url, columns, ordering);
     }
 });
 
@@ -95,104 +132,104 @@ $('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', functi
 });
 
 // 버튼 눌렀을때
-//$(document).on("click", '#', function() {
-//    columns = [
-//            {
-//                'sTitle' : '#',
-//                data : 'r_num',
-//                render : function(data) {
-//                    return '<input type="checkBox" value="' + data + '">';
-//                }
-//            }, {
-//                'sTitle' : '근태 아이디',
-//                data : 'id'
-//            }, {
-//                'sTitle' : '근태 코드',
-//                data : 'holiday_cd_id'
-//            }, {
-//                'sTitle' : '근태 신청일',
-//                data : 'application_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '시작',
-//                data : 'begin_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '종료',
-//                data : 'end_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '사유',
-//                data : 'reason'
-//            }, {
-//                'sTitle' : '상태',
-//                data : 'state'
-//            }
-//    ];
+// $(document).on("click", '#', function() {
+// columns = [
+// {
+// 'sTitle' : '#',
+// data : 'r_num',
+// render : function(data) {
+// return '<input type="checkBox" value="' + data + '">';
+// }
+// }, {
+// 'sTitle' : '근태 아이디',
+// data : 'id'
+// }, {
+// 'sTitle' : '근태 코드',
+// data : 'holiday_cd_id'
+// }, {
+// 'sTitle' : '근태 신청일',
+// data : 'application_date',
+// render : $.fn.dataTable.render.moment()
+// }, {
+// 'sTitle' : '시작',
+// data : 'begin_date',
+// render : $.fn.dataTable.render.moment()
+// }, {
+// 'sTitle' : '종료',
+// data : 'end_date',
+// render : $.fn.dataTable.render.moment()
+// }, {
+// 'sTitle' : '사유',
+// data : 'reason'
+// }, {
+// 'sTitle' : '상태',
+// data : 'state'
+// }
+// ];
 //
-//    ordering = [
-//        [
-//                1, 'desc'
-//        ]
-//    ];
+// ordering = [
+// [
+// 1, 'desc'
+// ]
+// ];
 //    
-//    url = 'selectAttendacne';
-//    callList(url, columns, ordering);
-//});
+// url = 'selectAttendacne';
+// callList(url, columns, ordering);
+// });
 
-//$(document).on('click', '#commutingRecords', function() {
-//    ordering = [
-//        [
-//                0, 'desc'
-//        ]
-//    ];
-//    columns = [
-//            {
-//                'sTitle' : '#',
-//                data : 'id',
-//                render : function(data, type, row, meta) {
-//                    return '<a href="item?id=' + data + '">' + data + '</a>';
-//                }
-//            }, {
-//                'sTitle' : '근무일',
-//                data : 'work_date',
-//                render : $.fn.dataTable.render.moment()
-//            }, {
-//                'sTitle' : '시작 시각',
-//                data : 'begin_date',
-//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-//            }, {
-//                'sTitle' : '종료 시각',
-//                data : 'end_date',
-//                render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
-//            }, {
-//                'sTitle' : '야근 시간',
-//                data : 'night_time',
-//                render : function(data) {
-//                    if (data == 0) return '없음';
-//                    return data + '시간';
-//                }
-//            }, {
-//                'sTitle' : '초과근무 시간',
-//                data : 'over_time',
-//                render : function(data) {
-//                    if (data == 0) return '없음';
-//                    return data + '시간';
-//                }
-//            }, {
-//                'sTitle' : '근태',
-//                data : 'holiday_id'
-//            }, {
-//                'sTitle' : '사원번호',
-//                data : 'employee_id'
-//            }
-//    ];
+// $(document).on('click', '#commutingRecords', function() {
+// ordering = [
+// [
+// 0, 'desc'
+// ]
+// ];
+// columns = [
+// {
+// 'sTitle' : '#',
+// data : 'id',
+// render : function(data, type, row, meta) {
+// return '<a href="item?id=' + data + '">' + data + '</a>';
+// }
+// }, {
+// 'sTitle' : '근무일',
+// data : 'work_date',
+// render : $.fn.dataTable.render.moment()
+// }, {
+// 'sTitle' : '시작 시각',
+// data : 'begin_date',
+// render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
+// }, {
+// 'sTitle' : '종료 시각',
+// data : 'end_date',
+// render : $.fn.dataTable.render.moment('YYYY-MM-DD HH:mm:ss', 'A HH시 mm분')
+// }, {
+// 'sTitle' : '야근 시간',
+// data : 'night_time',
+// render : function(data) {
+// if (data == 0) return '없음';
+// return data + '시간';
+// }
+// }, {
+// 'sTitle' : '초과근무 시간',
+// data : 'over_time',
+// render : function(data) {
+// if (data == 0) return '없음';
+// return data + '시간';
+// }
+// }, {
+// 'sTitle' : '근태',
+// data : 'holiday_id'
+// }, {
+// 'sTitle' : '사원번호',
+// data : 'employee_id'
+// }
+// ];
 //
-//    url = 'commuteList';
-//    callList(url, columns, ordering);
-//});
+// url = 'commuteList';
+// callList(url, columns, ordering);
+// });
 
-function callHolidayList(url, columns, ordering) {
+function callSalaryList(url, columns, ordering) {
     $("#holidayDatatables").empty();
     $('#holidayDatatables').append('<table id="holidayTable" style="width:100%"></table>');
     currTab = $('#holidayTable').DataTable({
@@ -208,9 +245,10 @@ function callHolidayList(url, columns, ordering) {
         destroy : true,
     });
 
-    if (url == '/selectHoliday') {
+    if (url == '/salaryList') {
         $('#holidayDatatables').append('<button id="insertholiday">');
-        $('#holidayTable_length').after('<div id = holidayTable_filter style="text-align: right;"></div>');
+        $('#holidayTable_length').after(
+                '<div id = holidayTable_filter style="text-align: right;"></div>');
         $('#holidayTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
         $('#holidayTable_filter').append(
                 '<input type="search" class="column_filter" id="searchBar">');

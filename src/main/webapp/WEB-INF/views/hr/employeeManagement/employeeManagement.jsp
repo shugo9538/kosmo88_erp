@@ -12,12 +12,12 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">휴가 관리</h4>
+				<h4 class="page-title">인사카드 관리</h4>
 				<ol class="breadcrumb">
 					<li>
-						<a href="#">휴가 관리</a>
+						<a href="#">인사카드 관리</a>
 					</li>
-					<li class="active">휴가 잔여일수 현황</li>
+					<li class="active">사원 조회</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -25,20 +25,23 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-					<a>휴가 잔여일수 현황</a>
+					<a id="selectHRCode">인사카드 관리</a>
 				</li>
 				<li class="active">
-					<a>휴가 사용실적</a>
-				</li>
-				<li class="active">
-					<a>근태 집계표</a>
+					<a id="selectDepartments">사원 계정 등록</a>
 				</li>
 			</ul>
 			<!--End Page Tab-->
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box" id=holidayDatatables></div>
+					<div class="white-box">
+						<h2 class="header-title">인사 코드 관리</h2>
+						<div class="table-responsive">
+							<table id="employeeDatatables" class="table table-hover">
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!--End row-->

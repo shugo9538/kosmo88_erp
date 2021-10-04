@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 						<a href="${ROOT_PATH}/hr/configurations">기초정보 환경설정</a>
 					</li>
 					<li>
-						<a href="${ROOT_PATH}/hr/hrManagement">인사카드 관리</a>
+						<a href="${ROOT_PATH}/hr/employee">인사카드 관리</a>
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/hr/attendance/">근태 관리</a>
