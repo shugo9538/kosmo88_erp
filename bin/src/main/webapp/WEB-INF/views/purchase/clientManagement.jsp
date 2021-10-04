@@ -40,7 +40,11 @@
 						<sec:csrfInput />
                      <div class="table-responsive">
                     	 <div class="col-md-2 mt-1 mb-4">
+<<<<<<< HEAD
 							<input class="btn btn-default" type="button" id="clientChoiceDeleteBtn" value="거래처 삭제">
+=======
+							<input class="btn  btn-default" type="button" id="clientChoiceDeleteBtn" value="거래처 삭제">
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 						 </div>
                      	
                          <table id="clientList" class="display table" style="width:100%">

@@ -41,17 +41,24 @@
 							<table id="client" class="display table mt-12" style="width:100%">
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
-									<td><input type="text" name="name" id="name" required
-										placeholder="거래처명"></td>
+									<td>
+										<input type="text" name="name" id="name" required
+										placeholder="거래처명">
+									</td>
 									<th style="background-color: #f1f1f1;">구분</th>
-									<td><input type="text" value="법인" readonly></td>
+									<td>
+										<input type="text" value="법인" readonly>
+									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
-									<td><input type="text" name="ceo_name" id="ceo_name"
-										required placeholder="대표자"></td>
+									<td>
+										<input type="text" name="ceo_name" id="ceo_name"
+										required placeholder="대표자">
+									</td>
 									<th style="background-color: #f1f1f1;">사업자 번호</th>
-									<td><input style="width: 50px;" type="text"
+									<td>
+										<input style="width: 50px;" type="text"
 										id="register_num1" name="register_num1" maxlength="3" required
 										onkeyup="nextRegisterNum1()"> - <input
 										style="width: 50px;" type="text" id="register_num2"
@@ -59,21 +66,25 @@
 										onkeyup="nextRegisterNum2()"> - <input
 										style="width: 50px;" type="text" id="register_num3"
 										name="register_num3" maxlength="5" required
-										onkeyup="nextRegisterNum3()"></td>
+										onkeyup="nextRegisterNum3()">
+									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
-									<td><input class="input" type="text" id="email1"
+									<td>
+										<input class="input" type="text" id="email1"
 										name="email1" maxlength="20" style="width: 100px" required>
-										@ <input class="input" type="text" id="email2" name="email2"
-										maxlength="20" style="width: 80px" required> <select
-										class="input" name="email3" onchange="selectEmailChk();">
+										@ 
+										<input class="input" type="text" id="email2" name="email2"
+										maxlength="20" style="width: 80px" required> 
+										<select class="input" name="email3" onchange="selectEmailChk();">
 											<option value="0">직접입력</option>
 											<option value="naver.com">네이버</option>
-											<option value="google.com">구글</option>
+											<option value="gmail.com">구글</option>
 											<option value="nate.com">네이트</option>
 											<option value="daum.net">다음</option>
-									</select></td>
+										</select>
+									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td><input style="width: 50px;" type="text" id="phone1"
 										name="phone1" maxlength="3" required onkeyup="nextPhone1()">
@@ -85,21 +96,25 @@
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
-									<td colspan="3"><input type="text" name="zip_code"
+									<td colspan="3">
+										<input type="text" name="zip_code"
 										id="zip_code" required placeholder="우편번호">
-										<button type="button" id="search_zip_code"
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
 											name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="3"><input style="width: 350px;" type="text"
+									<td colspan="3">
+										<input style="width: 350px;" type="text"
 										name="address" id="address" placeholder="주소" required>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="3"><input style="width: 350px;" type="text"
+									<td colspan="3">
+										<input style="width: 350px;" type="text"
 										name="detail_address" id="detail_address" placeholder="상세주소"
-										required></td>
+										required>
+									</td>
 								</tr>
 							</table>
 
@@ -113,7 +128,7 @@
 										<th style="background-color: #f1f1f1;">추가 버튼</th>
 										<th style="background-color: #f1f1f1;">상품명</th>
 										<th style="background-color: #f1f1f1;">상품종류</th>
-										<th style="background-color: #f1f1f1;">상품가격(구매원가)</th>
+										<th style="background-color: #f1f1f1;">상품가격</th>
 										<th style="background-color: #f1f1f1;">삭제 버튼</th>
 									</tr>
 								</thead>
@@ -125,12 +140,18 @@
 												<i class="icon-plus"></i>
 											</div>
 										</td>
-										<td><input class="form-control" name="item_name"
-											type="text" placeholder="상품명" disabled></td>
-										<td><input class="form-control" name="category"
-											type="text" placeholder="상품종류" disabled></td>
-										<td><input class="form-control" name="price"
-											type="number" min="0" placeholder="상품가격" disabled></td>
+										<td>
+											<input class="form-control" name="item_name"
+											type="text" placeholder="상품명" disabled>
+										</td>
+										<td>
+											<input class="form-control" name="category"
+											type="text" placeholder="상품종류" disabled>
+										</td>
+										<td>
+											<input class="form-control" name="price"
+											type="number" min="0" placeholder="상품가격" disabled>
+										</td>
 										<td>
 											<div role="button" onclick="delItem(this);">
 												<i class="icon-minus"></i>
@@ -142,7 +163,8 @@
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="clientRegisterAction"
-										type="button" value="등록"> <input
+										type="button" value="등록"> 
+									<input
 										class="btn  btn-default" type="reset" value="취소">
 								</div>
 							</div>
@@ -162,7 +184,7 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i> 거래처 전체 목록
 						</h2>
 						<div class="table-responsive">
-							<table id="registeredClientList" class="display table">
+							<table id="registeredClientList" class="display table" style="width:100%">
 								<thead>
 									<tr>
 										<th>거래처 번호</th>

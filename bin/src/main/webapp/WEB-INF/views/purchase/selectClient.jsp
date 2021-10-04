@@ -24,6 +24,7 @@
                                 </thead>
                                 <tbody>
                                 <!-- 등록된 거래처가 있는 경우 -->
+<<<<<<< HEAD
                                 <c:if test="${cnt > 0}">
                                 	<c:forEach var="dto" items="${dto}">
                                 		<input type="hidden" id="c_email" name="c_email" value="${dto.email}">
@@ -39,6 +40,31 @@
 	                                    </tr>
                                 	</c:forEach>
                                 </c:if>
+=======
+                                <c:if test="${cnt != 0}">
+                                	<c:forEach var="dto" items="${dtos}">
+                                		<input type="hidden" id="client_email" value="${dto.email}">
+                                		<input type="hidden" id="client_zip_code" value="${dto.zip_code}">
+                                		<input type="hidden" id="client_address" value="${dto.address}">
+                                		<input type="hidden" id="client_detail_address" value="${dto.detail_address}">
+                                		<tr>
+	                                        <td><input style="border:none;" type="text" id="client_id" value="${dto.id}" readonly></td>
+	                                        <th><input style="border:none;" type="text" id="client_name" value="${dto.name}" readonly></th>
+	                                        <td><input style="border:none;" type="text" id="client_ceo_name" value="${dto.ceo_name}" readonly></td>
+	                                        <td><input style="border:none;" type="text" id="client_phone" value="${dto.phone}" readonly></td>
+	                                        <td><input class="btn  btn-primary" type="button" id="select" name="${dto.id}" value="선택"></td>
+	                                    </tr>
+                                	</c:forEach>
+                                </c:if>
+                                <!-- 등록된 거래처가 없는 경우 -->
+                                <c:if test="${cnt == 0}">
+                                	<tr>
+                                		<td colspan="5">
+                                			등록된 거래처가 없습니다.
+                                		</td>
+                                	</tr>
+                                </c:if>
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
                            </tbody>
                        </table>
                        <div style="text-align:center;" class="form-group mt-5 col-md-12">

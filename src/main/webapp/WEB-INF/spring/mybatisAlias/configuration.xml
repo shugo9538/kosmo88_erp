@@ -9,10 +9,6 @@
 			alias="UserDTO" />
 		
 		<!-- 영업관리 -->
-		<!--  -->
-		<typeAlias 
-			type="com.kosmo88.logistics_erp.sale.dto.SalesDTO"
-			alias="SaleDTO"/>
 		<!-- 거래처 DTO -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
@@ -116,6 +112,22 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
+			alias="PurchaseEmployeeDTO" />
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO"
+			alias="PurchaseInsertEstimateDTO" />
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
+			alias="PurchaseEstimateDetailViewDTO" />
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
+			alias="PurchaseOrderDetailViewDTO" />
 			
 		<!-- purchase dto end -->		
 		

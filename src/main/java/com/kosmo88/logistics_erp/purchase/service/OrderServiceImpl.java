@@ -13,8 +13,13 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.purchase.dao.ClientDAO;
 import com.kosmo88.logistics_erp.purchase.dao.OrderDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
@@ -26,188 +31,102 @@ public class OrderServiceImpl implements OrderService {
     
     QueryCode state;
     
-    // 구매(구매처) 관리 - 발주서 목록
+    // 구매 관리 - 발주서 목록
 	@Override
 	public List<PurchaseOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<PurchaseOrderListViewDTO>) orderDao.getOrderList();
 	}
-/*    
-    // 발주처 등록 처리 
-	@Override
-	public boolean orderRegisterAction(PurchaseInsertOrderDTO dto) {
-		state = QueryCode.INSERT;
-		
-		dto.setEmail(dto.getEmail1() + "@" + dto.getEmail2());
-//		System.out.println("email :" + dto.getEmail1() + "@" + dto.getEmail2());
-		dto.setPhone(dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
-//		System.out.println("phone :" + dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
-		dto.setRegister_num(dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
-//		System.out.println("register_num :" + dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
-		dto.setType("구매");
-		dto.setEnabled("Y");
-		
-		return state.check(orderDao.registerClient(dto));
-	}	
+/*	
 	
-	// 상품 등록 처리
-	public boolean itemRegisterAction(PurchaseItemDTO dto) {
-		state = QueryCode.INSERT;
-		return state.check(orderDao.registerItem(dto));
+	// 발주서 등록 화면 - 발주서 거래처 선택
+	@Override
+	public void selectClient(HttpServletRequest req, Model model) {
+		
+		// 거래처 갯수
+		int cnt = estimateDao.getClientCnt();
+		System.out.println("거래처 갯수 : " + cnt);
+		
+		// 거래처가 있을때
+		if (cnt > 0) {
+			// 거래처 리스트
+			List<PurchaseClientDTO> dtos = estimateDao.getClientList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
 	}
 
+	// 발주서 등록 화면 - 발주서 담당자 선택 
+	@Override
+	public void selectEmployee(HttpServletRequest req, Model model) {
+		
+		// 담당자 갯수
+		int cnt = estimateDao.getEmployeeCnt();
+		System.out.println("담당자 갯수 : " + cnt);
+		
+		// 담당자가 있을때
+		if (cnt > 0) {
+			// 담당자 리스트
+			List<PurchaseEmployeeDTO> dtos = estimateDao.getEmployeeList();
+			
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", cnt);
+	}
+
+	// 발주서 등록 처리
+	@Override
+	public boolean estimateRegisterAction(PurchaseInsertEstimateViewDTO dto) {
+		state = QueryCode.INSERT;
+		return state.check(estimateDao.insertEstimate(dto));
+	}
+*/
+	
 	// 발주서 상세페이지
 	@Override
-	public void clientDetail(HttpServletRequest req, Model model) {
+	public void orderDetail(HttpServletRequest req, Model model) {
 		
-		// 화면에서 값 가져온다.
-		int id = Integer.parseInt(req.getParameter("id"));	// 거래처코드
+		// 화면에서 값을 받아온다.
+		int request_id = Integer.parseInt(req.getParameter("request_id"));
 		
-		// 상세페이지 - 거래처 목록
-		PurchaseClientDTO cdto = orderDao.getOrderDetail(id);
+		// 발주서 상세페이지(거래처, 담당자 정보)
+		PurchaseOrderDetailViewDTO dto = orderDao.getOrderDetail(request_id);
 		
-		// 상세페이지 - 상품
-		List<PurchaseItemDTO> idtos = orderDao.getItemDetail(id);
+		// 발주서 상세페이지(상품 정보)
+		List<PurchaseOrderDetailViewDTO> idtos = orderDao.getOrderDetailItem(request_id);
 		
-		model.addAttribute("cdto", cdto);
+		model.addAttribute("dto", dto);
 		model.addAttribute("idtos", idtos);
 	}
-
-	// 발주서 삭제(선택삭제)
+	
+	// 구매 관리 - 발주서 삭제(선택삭제)
 	@Override
 	public boolean orderChoiceDelete(int[] request_id) {
 		state = QueryCode.UPDATE;
 		
-		for (int i : request_id) {
-			if (!state.check(orderDao.deleteOrder(i))) {
+		for (int id: request_id) {
+			if(!state.check(orderDao.deleteOrder(id))) {
 				return false;
 			}
 		}
 		return true;
-	}	
-	
-	// 발주처 수정 페이지
-	@Override
-	public void orderUpdate(HttpServletRequest req, Model model) {
-		
-		// 화면에서 값 가져온다.
-		int id = Integer.parseInt(req.getParameter("client_id"));	// 거래처코드
-		
-		// 상세페이지 - 거래처 목록
-		PurchaseClientDTO cdto = orderDao.getOrderDetail(id);
-		
-		// 상세페이지 - 상품
-		List<PurchaseItemDTO> idtos = orderDao.getItemDetail(id);
-		
-		model.addAttribute("cdto", cdto);
-		model.addAttribute("idtos", idtos);
-	}	
-	
-	// 발주처 수정 처리
-	@Override
-	public void orderUpdateAction(HttpServletRequest req, Model model) {
-		
-		PurchaseOrderDTO cdto = new PurchaseOrderDTO();
-		
-		// 화면에서 값을 불러온다.
-		int request_id = Integer.parseInt(req.getParameter("id"));	// 거래처 번호
-		
-		// 대표자명
-		String ceo_name = req.getParameter("ceo_name");
-		
-		String phone1 = req.getParameter("phone1");
-		String phone2 = req.getParameter("phone2");
-		String phone3 = req.getParameter("phone3");
-		
-		// 거래처 연락처
-		String phone = phone1 + "-" + phone2 + "-" + phone3;
-		
-		// 거래처 이메일
-		String email = req.getParameter("email");			
-		
-		String register_num1 = req.getParameter("register_num1");
-		String register_num2 = req.getParameter("register_num2");
-		String register_num3 = req.getParameter("register_num3");
-		
-		// 사업자 번호
-		String register_num = register_num1 + "-" + register_num2 + "-" + register_num3;
-		
-		// 우편번호
-		int zip_code = Integer.parseInt(req.getParameter("zip_code"));
-		
-		// 주소
-		String address = req.getParameter("address");
-		
-		// 상세주소
-		String detail_address = req.getParameter("detail_address");
-		
-		cdto.setId(client_id);
-		cdto.setCeo_name(ceo_name);
-		cdto.setRegister_num(register_num);
-		cdto.setAddress(address);
-		cdto.setDetail_address(detail_address);
-		cdto.setZip_code(zip_code);
-		cdto.setPhone(phone);
-		cdto.setEmail(email);
-		cdto.setEnabled("Y");
-		
-		state = QueryCode.UPDATE;
-		boolean update;
-		
-		// 거래처 등록 처리
-		update = state.check(orderDao.updateClient(cdto));
-		System.out.println("거래처 수정 처리 : " + update);
-		
-		PurchaseItemDTO idto = new PurchaseItemDTO();
-		
-		// 상품명, 상품종류, 상품가격
-		String[] arrItem_id = req.getParameterValues("item_id");
-		String[] arrItem_name = req.getParameterValues("item_name");
-		String[] arrCategory = req.getParameterValues("category");
-		String[] arrPrice = req.getParameterValues("price");
-		
-		int item_id = 0;
-		String category = "";
-		String item_name = "";
-		int price = 0;
-		
-		// 거래처 수정 되었으면
-		if (update) {
-			for(int i = 0; i < arrItem_name.length; i++) {
-				
-				item_id = Integer.parseInt(arrItem_id[i]);
-				item_name = arrItem_name[i];
-				category = arrCategory[i];
-				price = Integer.parseInt(arrPrice[i]);
-				
-				idto.setId(item_id);
-				idto.setName(item_name);
-				idto.setCategory(category);
-				idto.setPrice(price);
-				
-				// 상품 등록 처리
-				update = state.check(orderDao.updateItem(idto));
-				System.out.println("상품 수정 처리 : " + update);
-			}
-		}
-		
-		// 화면으로 값을 보낸다.
-		model.addAttribute("update", update);
 	}
-	
-	// 발주처 삭제(상세페이지에서 단일 삭제)
+
+	// 발주서 삭제(상세페이지에서 단일 삭제)
 	@Override
 	public void orderDelete(HttpServletRequest req, Model model) {
 
-		// 화면에서 값 가져온다.
-		int id = Integer.parseInt(req.getParameter("client_id"));  // 거래처코드
+		// 화면에서 값을 가져온다.
+		int id = Integer.parseInt(req.getParameter("request_id"));
+		
 		state = QueryCode.UPDATE;
 		boolean update = false;
 		
-		// 거래처 삭제 처리
+		// 발주서 삭제 처리
 		update = state.check(orderDao.deleteOrder(id));
-		System.out.println("거래처 삭제 처리 : " + update);
+		System.out.println("발주서 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
-	}
-*/
+	}	
+	
 }

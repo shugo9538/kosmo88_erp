@@ -23,6 +23,10 @@ $(document).ready(function(){
 		$("#employee_dp", opener.document).val(child.find("#c_employee_email").val());
 		$(window.close());
 	});
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 	// 상품 값 전달
 	
 });

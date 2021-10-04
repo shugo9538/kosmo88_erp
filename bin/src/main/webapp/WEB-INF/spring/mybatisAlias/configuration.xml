@@ -9,10 +9,13 @@
 			alias="UserDTO" />
 		
 		<!-- 영업관리 -->
+<<<<<<< HEAD
 		<!--  -->
 		<typeAlias 
 			type="com.kosmo88.logistics_erp.sale.dto.SalesDTO"
 			alias="SaleDTO"/>
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 		<!-- 거래처 DTO -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
@@ -65,12 +68,15 @@
 			type="com.kosmo88.logistics_erp.hr.dto.CommuteDTO"
 			alias="CommuteDTO" />
 		<typeAlias
+<<<<<<< HEAD
 			type="com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO"
 			alias="DepartmentCodeDTO" />
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.EmployeeDTO"
 			alias="EmployeeDTO" />
 		<typeAlias
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
 			alias="PaySlipDTO" />
 		<typeAlias
@@ -80,6 +86,7 @@
 			type="com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO"
 			alias="HolidayUsageStatusDTO" />
 		<typeAlias
+<<<<<<< HEAD
 			type="com.kosmo88.logistics_erp.hr.dto.HRCodeDTO"
 			alias="HRCodeDTO" />
 		<typeAlias
@@ -92,6 +99,11 @@
 			type="com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO"
 			alias="PositionCodeDTO" />
 		<typeAlias
+=======
+			type="com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO"
+			alias="PayStepTableDTO" />
+		<typeAlias
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />
 		<!-- hr dto end -->
@@ -116,6 +128,25 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
 			alias="PurchaseOrderListViewDTO" />	
+<<<<<<< HEAD
+=======
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
+			alias="PurchaseEmployeeDTO" />
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO"
+			alias="PurchaseInsertEstimateDTO" />
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
+			alias="PurchaseEstimateDetailViewDTO" />
+		
+		<typeAlias
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
+			alias="PurchaseOrderDetailViewDTO" />
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 			
 		<!-- purchase dto end -->		
 		

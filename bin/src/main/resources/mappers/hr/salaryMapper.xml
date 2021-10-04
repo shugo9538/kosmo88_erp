@@ -6,6 +6,7 @@
 <mapper namespace="com.kosmo88.logistics_erp.hr.dao.SalaryDAO">
 	<!-- 급여 대장 -->
 	<!-- 월별 지급 및 현황 -->
+<<<<<<< HEAD
 	<select
 		id="monthlyPaymentAndStatus"
 		resultType="SalaryDTO">
@@ -21,6 +22,8 @@
 			 , employee_id
 		  FROM salary
 	</select>
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 	<!-- 급여 통계 -->
 	<!-- 근로 소득 -->
 </mapper>

@@ -226,7 +226,10 @@ function callHolidayList(url, columns, ordering) {
         $('#insertCommute').append('신규 등록');
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 $.fn.dataTable.ext.errMode = 'throw';
 $('#holidayTable').ready(function() {
     $('#searchholiday').on('click', function() {

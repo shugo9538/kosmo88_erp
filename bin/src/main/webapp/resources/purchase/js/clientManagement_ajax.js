@@ -26,13 +26,21 @@ $(document).ready(function() {
         });
     }
     
+<<<<<<< HEAD
     // 거래처, 상품 등록 처리
+=======
+    // 거래처, 거래처 상품 등록 처리
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
 	    /*
+<<<<<<< HEAD
 	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+=======
+	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -68,7 +76,11 @@ function itemRegister() {
     var list = new Array();
     var i = 0;
     
+<<<<<<< HEAD
     // 2.상품
+=======
+    // 2.거래처 상품
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
     $('#clientRegisterForm #item-group').each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {

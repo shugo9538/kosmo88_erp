@@ -24,7 +24,11 @@ pageEncoding="UTF-8"%>
 						<a href="${ROOT_PATH}/hr/configurations">기초정보 환경설정</a>
 					</li>
 					<li>
+<<<<<<< HEAD
 						<a href="${ROOT_PATH}/hr/employee">인사카드 관리</a>
+=======
+						<a href="${ROOT_PATH}/hr/hrManagement">인사카드 관리</a>
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 					</li>
 					<li>
 						<a href="${ROOT_PATH}/hr/attendance/">근태 관리</a>
@@ -89,12 +93,15 @@ pageEncoding="UTF-8"%>
           <li>
             <a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
           </li>
+<<<<<<< HEAD
           <li>
             <a href="${ROOT_PATH}/sales/#">출하 관리</a>
           </li>
           <li>
             <a href="${ROOT_PATH}/sales/shipmentManagement">판매전표 관리</a>
           </li>
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
         </ul>
       </li>
       <li class="menu-list" id="purchase">
@@ -110,6 +117,7 @@ pageEncoding="UTF-8"%>
             <a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a>
           </li>
           <li>
+<<<<<<< HEAD
             <a href="${ROOT_PATH}/purchase/purchaseManagement">구매 관리</a>
           </li>
           <li>
@@ -119,6 +127,9 @@ pageEncoding="UTF-8"%>
             <a href="${ROOT_PATH}/purchase/purchaseSlipManagement"
               >구매전표 관리</a
             >
+=======
+            <a href="${ROOT_PATH}/purchase/orderManagement">구매 관리</a>
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
           </li>
         </ul>
       </li>

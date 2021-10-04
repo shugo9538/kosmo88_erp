@@ -18,6 +18,7 @@ $(document).ready(function() {
         	estimateList();
         });
     }
+<<<<<<< HEAD
 /*    
     if (currLocation.split('/')[5] == 'clientRegister') {
         
@@ -49,6 +50,102 @@ $(document).ready(function() {
     });
 */    
 });
+=======
+    
+    if (currLocation.split('/')[5] == 'estimateRegister') {
+        
+        $('#registeredEstimateList').ready(function() {
+        	registeredEstimateList();
+        });
+    }
+    
+    // 견적서, 견적서 상품 등록 처리
+	// '#clientRegisterAction', 버튼 id
+	$('#white-box').on('click', '#estimateRegisterAction', function() {
+	    var loc = $('#estimateRegisterForm').attr('action');
+	    var flag = false;
+	    /*
+	    1. 견적서 등록 {id:'id', type:'type', name:'name' ... }
+	     * */
+	    // $(form id tr id)
+	    var dataObject = new Object();
+	    $('#estimate').find('input').each(function() {
+    		var data = $(this);
+    		dataObject[data.attr('name')] = data.val();
+	    });
+	    console.log(dataObject);
+	    
+	    var formData = JSON.stringify(dataObject);
+	    
+        $.ajax({
+            type : 'POST',
+            url : loc + '?' + csrfParameter + '=' + csrfToken,
+            data : formData,
+            accept : "application/json",
+            contentType : "application/json; charset=utf-8",
+            dataType : 'text',
+            beforeSend : function(xhr) {
+                xhr.setRequestHeader(csrfParameter, csrfToken);
+            },
+            success : function(data) {
+                itemRegister();
+            },
+            error : function() {
+                alert('오류');
+            },
+        });
+	});  
+});
+
+function itemRegister() {
+    var list = new Array();
+    var i = 0;
+    
+    // 2.거래처 상품
+    $('#clientRegisterForm #item-group').each(function() {
+        var dataObject = new Object();
+        $('.form-control' + i).each(function() {
+            var data = $(this);
+            var name = data.attr('name');
+            if (name == 'item_name') name = 'name';
+            dataObject[name] = data.val();
+        });
+        console.log(dataObject);
+        list.push(dataObject);
+        i++
+    });
+    
+    formData = JSON.stringify(list);
+    // alert(formData);
+    
+    console.log(formData);
+    loc = window.location.href + '/itemRegisterAction';
+    
+    $.ajax({
+        type : 'POST',
+        url : loc + '?' + csrfParameter + '=' + csrfToken,
+        data : formData,
+        accept : "application/json",
+        contentType : "application/json; charset=utf-8",
+        dataType : 'text',
+        beforeSend : function(xhr) {
+            xhr.setRequestHeader(csrfParameter, csrfToken);
+        },
+        success : function(data) {
+            if (data) {
+                alert('거래처가 등록되었습니다.');
+                $('.form-control').each(function() {
+                    $(this).val('');
+                });
+                currTab.ajax.reload();
+            }
+        },
+        error : function() {
+            alert('오류');
+        },
+    });
+}
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 
 // 날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {
@@ -72,7 +169,11 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
+<<<<<<< HEAD
 // 거래처(구매처) 목록
+=======
+// 견적서 목록
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 function estimateList() {
 	// 테이블 id
 	currTab = $('#estimateList').DataTable({
@@ -91,7 +192,11 @@ function estimateList() {
                 }, {
                 	data : null,
                     render : function(data, type, row, meta) {
+<<<<<<< HEAD
                         return '<a href="/logistics_erp/estimate/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+=======
+                        return '<a href="/logistics_erp/purchase/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
                     }
                 }, {	
                 	data : 'client_name',
@@ -178,17 +283,27 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 	event.preventDefault();
 }
 
+<<<<<<< HEAD
 /*
 //등록한 거래처(구매처) 목록
 function registeredClientList() {
     $('#registeredClientList').DataTable({
         ajax : {
             url : window.location.href + '/registeredClientList', // 현 위치
+=======
+
+//등록한 견적서 목록
+function registeredEstimateList() {
+    $('#registeredEstimateList').DataTable({
+        ajax : {
+            url : window.location.href + '/registeredEstimateList', // 현 위치
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
             type : 'POST',
             data : csrfData,
             dataSrc : ''
         },
         columns : [
+<<<<<<< HEAD
                 {
                     data : null,
                     render : function(data, type, row, meta) {
@@ -208,12 +323,32 @@ function registeredClientList() {
                     data : 'register_date',
                     render : $.fn.dataTable.render.moment()
                 }
+=======
+	        {	
+            	data : null,
+                render : function(data, type, row, meta) {
+                    return '<a href="/logistics_erp/purchase/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+                }
+            }, {	
+            	data : 'client_name',
+            }, {
+                data : 'client_ceo_name',
+            }, {
+                data : 'client_phone',
+            }, {
+            	data : 'employee_name',	
+            }, {
+                data : 'begin_date',
+                render : $.fn.dataTable.render.moment()
+            }
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
         ],
         destroy : true,
         retrieve : true
     });
 }
 
+<<<<<<< HEAD
 //거래처, 상품 등록 처리
 function clientRegisterAction(csrfParameter, csrfToken) {
 	$('#clientRegisterform').submit(function(event) {
@@ -300,3 +435,5 @@ function refeshAttendanceList() {
     });
 }
 */
+=======
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7

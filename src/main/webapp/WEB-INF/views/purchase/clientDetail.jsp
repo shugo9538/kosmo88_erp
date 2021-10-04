@@ -11,6 +11,7 @@
                 
                 
                 <form class="form-horizontal">
+                	<input type="hidden" id="client_id" value="${cdto.id}">
 	                <table id="example" class="display table mt-12" style="width:100%">
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 번호</th>
@@ -44,7 +45,7 @@
 	                	<tr>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품명</th>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품종류</th>
-		                	<th style="background-color: #f1f1f1; padding:15px;">상품가격</th>
+		                	<th style="background-color: #f1f1f1; padding:15px;">공급단가</th>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품 등록일</th>
 		                </tr>
 		                
@@ -53,9 +54,11 @@
 		                	<tr>
 		                		<td style="padding:15px;">${idto.name}</td>
 		                		<td style="padding:15px;">${idto.category}</td>
-		                		<td style="padding:15px;">${idto.price}</td>
 		                		<td style="padding:15px;">
-		                			<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${idto.register_date}" />
+		                			<fmt:formatNumber value="${idto.price}" pattern="#,###" />원
+		                		</td>
+		                		<td style="padding:15px;">
+		                			<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${idto.register_date}" />
 		                		</td>
 		                	</tr>
 		                </c:forEach>
@@ -65,7 +68,7 @@
 	                   <input class="btn  btn-primary" type="button" value="수정" 
 	                   	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
 	                   <input class="btn  btn-primary" type="button" value="삭제"
-	                   	onclick="window.location='clientDelete?client_id=${cdto.id}'"/>
+	                   	onclick="clientDelete();"/>
 	                   <input class="btn  btn-defalte" type="button" value="닫기"
 	                   	onclick="window.close();"/>
                     </div>
@@ -74,6 +77,7 @@
         </div>
     </div>
     <!-- end row -->
+    <script src="${RESOURCES_PATH}/purchase/js/clientDetail.js"></script>
 </div>
 </body>
 </html>

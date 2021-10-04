@@ -12,4 +12,8 @@ $(document).ready(function() {
 			$("input[name=client_id]").prop("checked", false);
 		}
 	});
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 93c57a16fe887c0213199b3599ad6f190506bdb7
 });
