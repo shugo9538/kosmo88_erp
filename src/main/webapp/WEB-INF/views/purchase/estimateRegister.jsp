@@ -53,17 +53,17 @@
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
 										<input type="text" name="client_ceo_name" id="client_ceo_name"
-										required placeholder="대표자">
+										readonly required placeholder="대표자">
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td>
-										<input type="text" name="client_phone" id="client_phone" required placeholder="거래처 연락처">
+										<input type="text" name="client_phone" id="client_phone" readonly required placeholder="거래처 연락처">
 									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
 									<td>
-										<input class="input" type="text" id="client_email" name="client_email" required placeholder="거래처 이메일">
+										<input class="input" type="text" id="client_email" name="client_email" readonly required placeholder="거래처 이메일">
 									</td>
 									
 								</tr>
@@ -71,19 +71,19 @@
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
 										<input type="text" name="client_zip_code"
-										id="client_zip_code" required placeholder="우편번호">
+										id="client_zip_code" readonly required placeholder="우편번호">
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="client_address" id="client_address" placeholder="주소" required>
+										name="client_address" id="client_address" readonly placeholder="주소" required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="client_detail_address" id="client_detail_address" placeholder="상세주소" required>
+										name="client_detail_address" id="client_detail_address" readonly placeholder="상세주소" required>
 									</td>
 								</tr>
 								
@@ -96,17 +96,17 @@
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="department_name" id="department_name" placeholder="담당자 부서">
+                            			<input type="text" name="department_name" id="department_name" readonly placeholder="담당자 부서">
                             		</td>
                             	</tr>
                             	<tr>
                             		<th style="background-color: #f1f1f1;">담당자 연락처</th>
                             		<td>
-                            			<input type="text" name="employee_phone" id="employee_phone" placeholder="담당자 연락처">
+                            			<input type="text" name="employee_phone" id="employee_phone" readonly placeholder="담당자 연락처">
                             		</td>
                             		<th style="background-color: #f1f1f1;">담당자 이메일</th>
                             		<td>
-                            			<input type="text" name="employee_email" id="employee_email" placeholder="담당자 이메일">
+                            			<input type="text" name="employee_email" id="employee_email" readonly placeholder="담당자 이메일">
                             		</td>
                             	</tr>
 								
@@ -142,13 +142,13 @@
 											</div>
 										</td>
 										<td><input class="form-control" name="item_name"
-											type="text" placeholder="상품명" disabled>
+											type="text" placeholder="상품명" disabled readonly>
 										</td>
 										<td><input class="form-control" name="category"
-											type="text" placeholder="상품종류" disabled>
+											type="text" placeholder="상품종류" disabled readonly>
 										</td>
 										<td><input class="form-control" name="price"
-											type="number" min="0" placeholder="구매단가" disabled>
+											type="number" min="0" placeholder="구매단가" disabled readonly>
 										</td>
 										<td><input class="form-control" name="quantity"
 											type="number" min="0" placeholder="수량" disabled>

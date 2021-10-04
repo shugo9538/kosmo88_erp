@@ -3,10 +3,22 @@ package com.kosmo88.logistics_erp.purchase.dto;
 // 견적서 등록 DTO
 public class PurchaseInsertEstimateDTO {
 	
-	private int request_id;						// 거래처코드
-	private int employee_id;					// 사원번호
-	private int client_id;						// 거래처코드
-	private int item_id;						// 상품코드
+	private int request_id;						// 거래처코드	O
+	private int employee_id;					// 사원번호	O
+	private int client_id;						// 거래처코드   O
+	private String client_name;					// 거래처명
+	private String client_ceo_name;				// 대표자
+	private String client_phone;				// 거래처 연락처
+	private String client_email;				// 거래처 이메일
+	
+	
+	
+	
+	private int item_id;						// 상품코드	O
+	
+	
+	
+	
 /*	 
  	한건
 	1. REQUEST tbl

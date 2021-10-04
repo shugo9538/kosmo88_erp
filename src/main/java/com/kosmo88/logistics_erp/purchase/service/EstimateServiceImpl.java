@@ -74,6 +74,19 @@ public class EstimateServiceImpl implements EstimateService {
 	@Override
 	public boolean estimateRegisterAction(PurchaseInsertEstimateDTO dto) {
 		state = QueryCode.INSERT;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return state.check(estimateDao.insertEstimate(dto));
 	}
 
