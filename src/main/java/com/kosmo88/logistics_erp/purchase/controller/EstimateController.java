@@ -49,20 +49,6 @@ public class EstimateController {
     	
     	return "purchase/selectClient";
     }
-<<<<<<< HEAD
-    
-    // 견적서 등록 화면 - 견적서 담당자 선택
-    @RequestMapping(value = "/selectEmployee")
-    public String selectEmployee(HttpServletRequest req, Model model) {
-    	
-    	estimateService.selectEmployee(req, model);
-    	
-    	return "purchase/selectEmployee";
-    }
-    
- 
-=======
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
     
     // 견적서 등록 화면 - 견적서 담당자 선택
     @RequestMapping(value = "/selectEmployee")

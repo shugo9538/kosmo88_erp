@@ -35,13 +35,9 @@ public interface SalesEstimateDAO {
 	public List<SalesEmployeeDTO> getEmployeeList();
 	
 	// 견적서 상세 페이지
-<<<<<<< HEAD
 	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id);
 	
 	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id);
-=======
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	
 	
 }

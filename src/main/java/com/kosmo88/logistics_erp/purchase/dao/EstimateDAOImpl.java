@@ -8,13 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
-<<<<<<< HEAD
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-=======
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 @Repository
@@ -48,23 +44,6 @@ public class EstimateDAOImpl implements EstimateDAO {
 		return sqlSession.selectList(STATEMENT + ".getClientList");
 	}
 	
-<<<<<<< HEAD
-	// 견적서 등록 화면 - 상품 갯수
-	@Override
-	public int getItemCnt() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	// 견적서 등록 화면 - 상품 리스트
-	@Override
-	public List<PurchaseItemDTO> getItemList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-=======
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 견적서 등록 화면 - 담당자 갯수
 	@Override
 	public int getEmployeeCnt() {
@@ -76,9 +55,6 @@ public class EstimateDAOImpl implements EstimateDAO {
 	public List<PurchaseEmployeeDTO> getEmployeeList() {
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
-<<<<<<< HEAD
-
-=======
 	
 	// 견적서 등록(request) 처리
 	@Override
@@ -109,7 +85,6 @@ public class EstimateDAOImpl implements EstimateDAO {
 	public List<PurchaseEstimateDetailViewDTO> getEstimateDetailItem(int request_id) {
 		return sqlSession.selectList(STATEMENT + ".getEstimateDetailItem", request_id);
 	}
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 
 
 
