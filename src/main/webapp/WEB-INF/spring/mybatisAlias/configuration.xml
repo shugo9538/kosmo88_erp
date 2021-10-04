@@ -22,6 +22,14 @@
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
 			alias="SalesEmployeeDTO"/>
 			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesItemDTO"
+			alias="SalesItemDTO"/>
+			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO"
+			alias="SalesEstimateListViewDTO"/>
+			
 			
 		<!-- accounting start -->	
 		<!-- 일반전표DTO -->

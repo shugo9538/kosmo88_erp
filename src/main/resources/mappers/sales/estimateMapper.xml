@@ -6,34 +6,71 @@
 
 <mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO">
 
-<!-- 거래처 검색 -->
-<select id="choiseClient" resultType="SalesClientDTO">
-	SELECT * FROM client WHERE type='판매' AND enabled='Y'
-</select>
-
-<!-- 담당자 검색 -->
-<select id="chiseEmployee" resultType="SalesEmployeeDTO">
-	SELECT e.id as id, e.name as name, e.phone as phone, e.email as email, d.name as department_name 
-	  FROM employee e, department d
-  	 WHERE e.department_id = d.id
-       AND e.enabled = 'Y'
-</select>
-
-<!-- 견적서 관리 - 견적서 목록(구매) -->
-<select id="getEstimateList" resultType="PurchaseEstimateListViewDTO">
-	SELECT request_id, begin_date, client_name, client_ceo_name, 
-	       client_phone, employee_name, enabled
-	  FROM P_ESTIMATE_LIST_VIEW
-	 WHERE enabled = 'Y'
-	 ORDER BY request_id
-</select>
-
-<!-- 견적서 관리 - 견적서 삭제(선택삭제) -->
-<update id="deleteEstimate" parameterType="int">
-	UPDATE request
-	   SET enabled = 'N'
-	 WHERE id = #{request_id}
-</update>
+ 	<!-- 견적서 등록 화면 - 거래처 갯수 -->
+ 	<select id="getClientCnt" resultType="int">
+ 		SELECT COUNT(*)
+ 		  FROM client
+ 		 WHERE TYPE = '판매'
+ 	</select>
  	
+	<!-- 거래처 검색 -->
+	<select id="getClientList" resultType="SalesClientDTO">
+		SELECT * FROM client WHERE type='판매' AND enabled='Y' ORDER BY id DESC
+	</select>
+	
+	<!-- 견적서 등록 화면 - 담당자 갯수  -->
+ 	<select id="getEmployeeCnt" resultType="int">
+ 		SELECT COUNT(*)
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '영업'
+ 	</select>
+ 	
+	<!-- 담당자 검색 -->
+	<select id="getEmployeeList" resultType="SalesEmployeeDTO">
+		SELECT e.id as id, e.name as name, d.name as department_name, e.phone as phone, e.email as email
+		  FROM employee e, department d
+		 WHERE e.department_id = d.id
+		   AND e.enabled = 'Y'
+		   AND d.name = '영업'
+		 ORDER BY e.id DESC
+	</select>
+	
+	<!-- 견적서 등록 화면 - 상품 개수 -->
+	<select id="getItemCnt" resultType="int">
+		SELECT COUNT(*) FROM item
+	</select>
+	
+	<!-- 견적서 등록 화면 - 상품 리스트 -->
+	<select id="getItemList" resultType="SalesItemDTO">
+		SELECT * FROM item
+	</select>
+	
+	<!-- 견적서 관리 - 견적서 목록(구매) -->
+	<select id="getEstimateList" resultType="SalesEstimateListViewDTO">
+		SELECT request_id, begin_date, client_name, client_ceo_name, 
+		       client_phone, employee_name, enabled
+		  FROM S_ESTIMATE_LIST_VIEW
+		 WHERE enabled = 'Y'
+		 ORDER BY request_id
+	</select>
+	
+	<!-- 견적서 관리 - 견적서 삭제(선택삭제) -->
+	<update id="deleteEstimate" parameterType="int">
+		UPDATE request
+		   SET enabled = 'N'
+		 WHERE id = #{request_id}
+	</update>
+ 	
+ 	<!-- 견적서 상세 페이지 -->
+ 	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateListViewDTO">
+ 		SELECT request_id, begin_date, client_name, client_ceo_name, 
+		       client_phone, employee_name, enabled
+  FROM S_ESTIMATE_LIST_VIEW
+ WHERE enabled = 'Y'
+   AND request_id = #{request_id}		 
+         ORDER BY request_id
+ 	</select>
 
 </mapper>
