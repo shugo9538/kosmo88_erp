@@ -12,8 +12,7 @@
   <meta name="author" content="">
   <title> 회계관리 - 거래처 목록</title>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js" ></script>
-<body class="sticky-header">
+<body class="sticky-header" onload="accountFocus();">
 
     <!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -25,6 +24,7 @@
 
         <!-- header section start-->
 		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="common/accountHeader.jsp"%>    
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -57,9 +57,8 @@
                    <div class="col-md-12">
                        <div class="white-box">  
                        <h2 class="header-title">거래통장추가</h2><!-- js-validation-bootstrap form-horizontal -->
-                          <form class="account_insert_from" id="account_insert_from" name="account_insert_from" 
-                          action="${ROOT_PATH}/account/accountInsertAction" method="post" >
-							
+                          <form class="account_insert_from" id="account_insert_from" name="account_new_from" 
+                          action="${ROOT_PATH}/account/accountInsertAction" method="post" onsubmit="return accountCheck()">
 							<!-- _csrf TOKEN  -->
 							<sec:csrfInput/>
 							
@@ -68,8 +67,8 @@
 									class="text-danger">*</span></label>
 								<div class="col-md-9">
 									<select class="form-control" id="account_holder_id"
-										name="account_holder_id" required>
-										<option value="">선택을 하세요</option>
+										name="account_holder_id">
+										<option value="0">선택을 하세요</option>
 										<option value="1">회사</option>
 										<option value="2">거래처</option>
 									</select>
@@ -79,13 +78,14 @@
 							<div class="form-group">
                             <label class="col-md-3 control-label" for="name">계좌명 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" id="name" name="name" placeholder="계좌명을 입력하세요" required>
+                              <input class="form-control" type="text" id="name" name="name" placeholder="계좌명을 입력하세요">
+                              	
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="bank">계좌은행<span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <select class="form-control" id="bank" name="bank" required>
+                              <select class="form-control" id="bank" name="bank">
                                 <option value="0">계좌은행을 선택하세요</option>
                                 <option value="우리은행">우리은행</option>
                                 <option value="국민은행">국민은행</option>
@@ -104,13 +104,19 @@
                             <div class="form-group">
                             <label class="col-md-3 control-label" for="account_number">계좌번호<span style="color:red">(숫자만)</span> <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" class="account_number" id="account_number"  name="account_number" placeholder="계좌번호를 입력하세요" required>
+                            <input type ="hidden" name="accountNumberCheck" value="0">	
+                              <input type="hidden" id="root" value="${ROOT_PATH}">
+                              <input class="form-control" type="text" class="account_number" id="account_number"  name="account_number" placeholder="계좌번호를 입력하세요"
+                              		oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1')">
+                              <input class="accountNumChk" name="accountNumChk" type="button" 
+									value="계좌번호 확인" onclick="accountChk();" value="0">	
                             </div>
                           </div>
                             <div class="form-group">
                             <label class="col-md-3 control-label" for="balance">기초잔액<span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="number" id="balance" name="balance" value="0" required>
+                              <input class="form-control" type="text" id="balance" name="balance"
+                              	oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1')">
                             </div>
                           </div>
                           
@@ -127,8 +133,8 @@
                             <label class="col-md-3 control-label">입력체크<span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <div class="checkbox primary">
-                                <input type="checkbox" id="val-terms" name="val-terms" value="1" required>
-                                <label  class="css-input css-checkbox css-checkbox-primary" for="val-terms">
+                                <input type="checkbox" id="inputChk" name="inputChk" value="1">
+                                <label  class="css-input css-checkbox css-checkbox-primary" for="inputChk">
                                 	입력사항을 확인 후 체크 바랍니다.
                                 </label>
                               </div>

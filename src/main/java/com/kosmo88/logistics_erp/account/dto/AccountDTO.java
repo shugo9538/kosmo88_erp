@@ -4,14 +4,6 @@ import java.util.Date;
 
 public class AccountDTO {
 	
-//	ID                NOT NULL NUMBER(5)    
-//	NAME              NOT NULL VARCHAR2(50) 
-//	ACCOUNT_NUMBER    NOT NULL VARCHAR2(50) 
-//	BANK              NOT NULL VARCHAR2(50) 
-//	BALANCE           NOT NULL NUMBER(10)   
-//	REGISTER          NOT NULL DATE         
-//	ACCOUNT_HOLDER_ID NOT NULL NUMBER(5) 
-	
 	private int id; 
 	private String name;
 	private String account_number;

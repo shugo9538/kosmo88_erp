@@ -46,40 +46,54 @@
 				<div class="clearfix"></div>
 			</div>
 			<!--End Page Title-->
-
+		<form  action="${ROOT_PATH}/account/slipConfirmAction" method="post" id="slipFrom" name="slipFrom" onsubmit="return slipCheck()">
+				<input type="hidden" id="root" value="${ROOT_PATH}">
+				<!-- _csrf TOKEN  -->
+				<sec:csrfInput/>
+			
 			<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
 					<!-- 메뉴버튼 -->
 					<div>
 						<ul class="nav nav-pills custom-nav">
-							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
+							<%-- <li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
 									등록</a></li>
 							<li class="active"><a href="${ROOT_PATH}/account/slipModify">일반전표
-									수정</a></li>
+									수정</a></li> --%>
+							<!-- <li class="active"><a href="#">부서별 전표 승인</a></li> -->
 						</ul>
 					</div>
 					<!-- 메뉴버튼 끝 -->
 					<div class="white-box">
-						<h2 class="header-title">일반전표 목록 ( 구매 영업에서 세부내용 오면 뿌릴 항목
-							추가해야함)</h2>
+						<h2 class="header-title">일반전표 목록</h2>
 						<div class="table-responsive">
 							<table id="example" class="table table table-hover m-0">
 								<thead>
 									<tr>
-										<!-- <th>순서</th> -->
+										<th></th>
 										<th>전표번호</th>
 										<th>유형</th>
 										<th>발행일</th>
-										<th>승인일자(notnull바꿔야함)</th>
-										<th>전표승인상태(Y/N)</th>
+										<th>승인일자</th>
+										<th>전표승인상태</th>
 										<th>부서코드</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="dto" items="${slip}">
+										<input type="hidden" name="slip_id" ${dto.id}/>
+									
 										<tr>
-											<td>${dto.id}</td>
+											<td>
+												<input type="checkbox" id="slipid_chk" name="slipid_chk" value="${dto.id}" 
+													onclick="checkbox_slipId(this)">
+											</td>
+											<td>
+											<%-- <a href="${ROOT_PATH}/account/slipModifyDetail?id=${dto.id}">
+												${dto.id}</a> --%>
+											${dto.id}
+											</td>
 											<td>${dto.type}</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 													value="${dto.register_date}" /></td>
@@ -108,11 +122,18 @@
 								</tbody>
 							</table>
 						</div>
+						             <div class="form-group">
+                            <div class="col-md-8 col-md-offset-3">
+                              <button class="btn  btn-primary" type="submit">부서별 전표 승인</button>
+                            </div>
+                          </div>
 					</div>
 				</div>
 			</div>
+			             
+			</form>
 			<!--End row-->
-
+	
 			<!--Start row-->
 			<div class="row">
 				<div class="col-md-12">
@@ -184,6 +205,7 @@
 
 		<!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp" %>
 		<!--End footer -->
 	</div>
 	<!--End main content -->

@@ -14,24 +14,6 @@
 </head>
 <script type="text/javascript" src="/logistics_erp/resources/assets/js/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js" ></script>
-<script type="text/javascript">
-	
-	$('#js-validation-slip').validate({ 
-		rules:{
-			'val-id':{
-				required:true,
-				rangelength:[2,10]
-			}
-		},
-		message:{
-			'val-id':{
-				required:"전표번호를 입력해주세요",
-				rangelength:"2자 10자리까지 입력 가능합니다."
-			}
-		}
-	}); 
-	
-</script>
 <body class="sticky-header">
 
 
@@ -81,32 +63,33 @@
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="val-id">전표번호 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" id="val-id" name="val-id" placeholder=" 전표 번호를 입력 하세요">
+                              <input class="form-control" type="text" id="val-id" name="val-id" value="${slip.id}" readonly>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="val-type">유형<span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <select class="form-control" id="val-type" name="val-type">
-                                <option value="">Please select</option>
-                                <option value="1">1.입금</option>
-                                <option value="2">2.출금</option>
-                                <option value="3">3.매입</option>
-                                <option value="4">4.매출</option>
-                                <option value="5">5.일반</option>
+                                <option value="입금" <c:if test="${slip.type == '입금'}">selected</c:if>>입금</option>
+                                <option value="출금" <c:if test="${slip.type == '출금'}">selected</c:if>>출금</option>
+                                <option value="매입" <c:if test="${slip.type == '매입'}">selected</c:if>>매입</option>
+                                <option value="매출" <c:if test="${slip.type == '매출'}">selected</c:if>>매출</option>
+                                <option value="일반" <c:if test="${slip.type == '일반'}">selected</c:if>>일반</option>
                               </select>
                             </div>
                           </div>
                             <div class="form-group">
                             <label class="col-md-3 control-label" for="val-register_date">발행일 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="date" id="val-register_date" name="val-register_date">
+                              <input class="form-control" type="text" id="val-register_date" 
+                              name="val-register_date" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${slip.register_date}"/>"  readonly>
                             </div>
                           </div>
                             <div class="form-group">
                             <label class="col-md-3 control-label" for="val-update_date">승인일자 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <input class="form-control" type="date" id="val-update_date" name="val-update_date">
+                            <fmt:formatDate pattern="yyyy-MM-dd" value="${slip.update_date}"/>
                             </div>
                           </div>
                           <div class="form-group">
