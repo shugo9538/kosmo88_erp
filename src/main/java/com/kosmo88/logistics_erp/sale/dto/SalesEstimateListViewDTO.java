@@ -11,7 +11,7 @@ public class SalesEstimateListViewDTO {
 	private String client_phone; 	// 거래처연락처
 	private String client_email;    // 거래처 이메일
 	private String employee_name;	// 담당자
-	private String employee_dp;		// 담당자 부서
+	private String department_name;		// 담당자 부서
 	private String employee_phone;  // 담당자 연락처
 	private String employee_email;  // 담당자 이메일
 	private String request_state;	// 상태
@@ -91,12 +91,14 @@ public class SalesEstimateListViewDTO {
 		this.client_email = client_email;
 	}
 
-	public String getEmployee_dp() {
-		return employee_dp;
+	
+
+	public String getDepartment_name() {
+		return department_name;
 	}
 
-	public void setEmployee_dp(String employee_dp) {
-		this.employee_dp = employee_dp;
+	public void setDepartment_name(String department_name) {
+		this.department_name = department_name;
 	}
 
 	public String getEmployee_phone() {

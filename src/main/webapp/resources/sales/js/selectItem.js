@@ -7,7 +7,6 @@ $(document).ready(function(){
 		$("#item_name", opener.document).val(child.find("#c_item_name").val());
 		$("#price", opener.document).val(child.find("#c_price").val());
 		
-		
 		var price = child.find('#c_price').val();
 		console.log(price);
 		$("#price", opener.document).attr('value', price);

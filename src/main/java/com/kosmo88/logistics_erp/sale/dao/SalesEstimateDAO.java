@@ -33,5 +33,8 @@ public interface SalesEstimateDAO {
 	// 견적서 등록 화면 - 담당자 리스트
 	public List<SalesEmployeeDTO> getEmployeeList();
 	
+	// 견적서 상세 페이지
+	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
+	
 	
 }

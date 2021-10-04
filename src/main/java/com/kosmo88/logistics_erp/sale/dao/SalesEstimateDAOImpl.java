@@ -65,6 +65,11 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	public List<SalesEmployeeDTO> getEmployeeList() {
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
+
+	@Override
+	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
+		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
+	}
 	
 	
 

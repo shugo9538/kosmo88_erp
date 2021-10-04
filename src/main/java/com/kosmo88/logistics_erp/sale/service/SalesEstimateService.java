@@ -14,12 +14,15 @@ public interface SalesEstimateService {
 	// 견적서 관리 - 견적서 목록(구매)
 	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res);
 	
-	
+	// 견적서 상세 화면
+	public void estimateDetail(HttpServletRequest req, Model model);
 	
 	
 	
 	// 견적서 관리 - 견적서 삭제(선택삭제)
 	public boolean estimateChoiceDelete(int[] request_id);
+	
+	
 	
 	// 견적서 등록 화면 - 견적서 거래처 선택
 	public void selectClient(HttpServletRequest req, Model model);

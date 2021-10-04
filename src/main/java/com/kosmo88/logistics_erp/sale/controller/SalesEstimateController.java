@@ -68,6 +68,8 @@ public class SalesEstimateController {
 	@RequestMapping(value = "/estimateDetail")
 	public String estimateDetail(HttpServletRequest req, Model model) {
 		
+		estimateService.estimateDetail(req, model);
+		
 		return "sales/estimateDetail";
 	}
 	

@@ -95,5 +95,15 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		
 		model.addAttribute("cnt", cnt);
 	}
+
+	// 견적서 상세 페이지
+	@Override
+	public void estimateDetail(HttpServletRequest req, Model model) {
+		int request_id = Integer.parseInt(req.getParameter("request_id"));
+		
+		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		
+		model.addAttribute("dto", dto);
+	}
 	
 }
