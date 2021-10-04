@@ -7,24 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosmo88.logistics_erp.wms.dao.WarehouseDao;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_datailDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.util.DtoFunction;
+import com.kosmo88.logistics_erp.wms.util.MyLog;
 
 @Service
 public class WarehouseService {
 	@Autowired
 	WarehouseDao warehouseDao;
 	
-	public void warehouse() {
+	public WarehouseDto warehouse(int id) {
+		return warehouseDao.selectOne(id);
 	}
+	
 	
 	//관리자 옵션
 	public void add() {
 	}
 
 	//관리자 옵션
-	public List<WarehouseDto> list() {
-		List<WarehouseDto> list = warehouseDao.select();
+	public List<V_warehouse_datailDto> list() {
+		List<V_warehouse_datailDto> list = warehouseDao.selectList();
+		MyLog.logList(list);
 		return list;
 
 	}
