@@ -65,6 +65,7 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 상세페이지 - 상품
 		List<PurchaseItemDTO> idtos = clientDao.getItemDetail(id);
+		System.out.println(idtos.get(0).getName());
 		
 		model.addAttribute("cdto", cdto);
 		model.addAttribute("idtos", idtos);

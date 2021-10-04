@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
-import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
+import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
+import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO;
-import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
+import com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO;
 
 @Repository
 public class ConfigurationDAOImpl implements ConfigurationDAO {
@@ -19,27 +20,28 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
     SqlSession sqlSession;
 
     @Override
-    public List<AttendanceCodeDTO> attendanceCodeList() {
-        return sqlSession.selectList(STATEMENT + ".attendanceCodeList");
+    public List<HRCodeDTO> selectHRCode() {
+        return sqlSession.selectList(STATEMENT + ".selectHRCode");
     }
 
     @Override
-    public int insertAttendanceCode(AttendanceCodeDTO dto) {
-        return sqlSession.insert(STATEMENT + ".insertAttendanceCode", dto);
+    public List<DepartmentCodeDTO> selectDepartments() {
+        return sqlSession.selectList(STATEMENT + ".selectDepartments");
     }
 
     @Override
-    public HolidayUsageStatusDTO employeeHasHoliday(int employee_id) {
-        return null;
+    public List<PositionCodeDTO> selectPosition() {
+        return sqlSession.selectList(STATEMENT + ".selectPosition");
     }
 
     @Override
-    public List<SalaryDTO> manageSalary() {
-        return null;
+    public List<AttendanceCodeDTO> selectAttendanceCode() {
+        return sqlSession.selectList(STATEMENT + ".selectAttendanceCode");
     }
 
     @Override
-    public PayStepTableDTO salayStepTable() {
-        return null;
+    public List<PayStepTableDTO> selectAnnualSalary() {
+        return sqlSession.selectList(STATEMENT + ".selectAnnualSalary");
     }
+
 }

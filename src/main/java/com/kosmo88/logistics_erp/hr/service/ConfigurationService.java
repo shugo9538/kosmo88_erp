@@ -1,22 +1,44 @@
 package com.kosmo88.logistics_erp.hr.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
+import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
+import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;
+import com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO;
+import com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO;
+
 public interface ConfigurationService {
     // 기초 환경 설정
-    // 근태 항목 목록 조회
-    void attendanceCodeManagement(HttpServletRequest req, HttpServletResponse res);
+    // 인사 코드 조회
+    ArrayList<HRCodeDTO> selectHRCode();
 
-    // 근태 항목 등록
-    void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res);
+    // 부서 코드 조회
+    ArrayList<DepartmentCodeDTO> selectDepartments();
 
-    // 사원별 휴가 일수 조회
-    void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res);
+    // 직급 코드 조회
+    ArrayList<PositionCodeDTO> selectPosition();
 
-    // 급여 관리
-    void manageSalary(HttpServletRequest req, HttpServletResponse res);
+    // 근태 코드 조회
+    ArrayList<AttendanceCodeDTO> selectAttendanceCode();
+    
+    //호봉 테이블
+    ArrayList<PayStepTableDTO> selectAnnualSalary();
 
-    // 호봉 테이블
-    void salayStepTable(HttpServletRequest req, HttpServletResponse res);
+//    void hrCodeManagement(HttpServletRequest req, HttpServletResponse res);
+//    
+//    // 근태 항목 등록
+//    void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res);
+//
+//    // 사원별 휴가 일수 조회
+//    void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res);
+//
+//    // 급여 관리
+//    void manageSalary(HttpServletRequest req, HttpServletResponse res);
+//
+//    // 호봉 테이블
+//    void salayStepTable(HttpServletRequest req, HttpServletResponse res);
 }
