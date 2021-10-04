@@ -9,7 +9,7 @@
 			alias="UserDTO" />
 		
 		<!-- 영업관리  -->
-		<!-- purchase dto start -->
+		
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
 			alias="SalesClientDTO" />
@@ -19,17 +19,16 @@
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO"
 			alias="SalesInsertClientDTO" />		
-					
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO"
 			alias="SalesEstimateListViewDTO" />	
-	
-		
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
 			alias="SalesEmployeeDTO" />			
+		<typeAlias
+			type="com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO"
+			alias="SalesEstimateDetailViewDTO" />		
 			
-		<!-- purchase dto end -->		
 			
 			
 			

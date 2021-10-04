@@ -64,13 +64,14 @@
 	</update>
  	
  	<!-- 견적서 상세 페이지 -->
- 	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateListViewDTO">
- 		SELECT request_id, begin_date, client_name, client_ceo_name, 
-		       client_phone, employee_name, enabled
-  FROM S_ESTIMATE_LIST_VIEW
- WHERE enabled = 'Y'
-   AND request_id = #{request_id}		 
-         ORDER BY request_id
+ 	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateDetailViewDTO">
+ 		SELECT request_id, client_ceo_name, client_phone, client_email, employee_name, employee_phone, department_name, employee_email
+  		  FROM S_ESTIMATE_DETAIL_VIEW
+ 	</select>
+ 	
+ 	<select id="getEstimateDetailItem" parameterType="int" resultType="">
+ 		SELECT item_quantity, item_name, item_category, item_sales_price
+  		  FROM S_ESTIMATE_DETAIL_VIEW
  	</select>
 
 </mapper>

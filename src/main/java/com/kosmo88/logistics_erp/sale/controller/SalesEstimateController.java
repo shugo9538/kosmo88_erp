@@ -50,6 +50,24 @@ public class SalesEstimateController {
 		return "sales/selectItem";
 	}
 	
+	// 상품 검색
+	@RequestMapping(value = "/selectItem2")
+	public String selectItem2(HttpServletRequest req ,Model model) {
+		
+		estimateService.selectItem(req, model);
+		
+		return "sales/selectItem2";
+	}
+		
+	// 상품 검색
+	@RequestMapping(value = "/selectItem3")
+	public String selectItem3(HttpServletRequest req ,Model model) {
+		
+		estimateService.selectItem(req, model);
+		
+		return "sales/selectItem3";
+	}
+	
 	// 견적서 관리 - 거래처 목록
 	@RequestMapping(value="/estimateManagement")
 	public String estimateManagement(HttpServletRequest req, Model model) {

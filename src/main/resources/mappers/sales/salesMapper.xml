@@ -20,7 +20,7 @@
 </select>
 
 <!-- 거래처 등록 처리 -->
-<insert id="registerClient" parameterType="PurchaseInsertClientDTO">
+<insert id="registerClient" parameterType="SalesInsertClientDTO">
 	INSERT INTO client(id, type, name, ceo_name, register_num, email, address, detail_address, phone, zip_code, enabled)
 	VALUES (client_seq.nextval, #{type}, #{name}, #{ceo_name}, #{register_num}, #{email}, #{address}, #{detail_address}, #{phone}, #{zip_code}, #{enabled})
 </insert>
