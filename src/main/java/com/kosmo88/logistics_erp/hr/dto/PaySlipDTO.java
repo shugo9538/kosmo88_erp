@@ -4,14 +4,19 @@ import java.util.Date;
 
 public class PaySlipDTO {
     private int id;
-    private Date begin_date;
-    private Date end_date;
-    private String state;
-    private int salary_id;
-    private int sum_pay;
-    private int income_tax;
-    private String employee_id;
-
+    private String type;
+    private Date register_date;
+    private Date update_date;
+    private char state;
+//    private DepartmentDTO departmentDTO;
+//    private RequestDTO requestDTO;
+//  id  
+//  begin_date  
+//  end_date    
+//  state   
+//  employee_id 
+//  client_id   
+    
     public int getId() {
         return id;
     }
@@ -20,59 +25,47 @@ public class PaySlipDTO {
         this.id = id;
     }
 
-    public Date getBegin_date() {
-        return begin_date;
+    public String getType() {
+        return type;
     }
 
-    public void setBegin_date(Date begin_date) {
-        this.begin_date = begin_date;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getRegister_date() {
+        return register_date;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setRegister_date(Date register_date) {
+        this.register_date = register_date;
     }
 
-    public String getState() {
+    public Date getUpdate_date() {
+        return update_date;
+    }
+
+    public void setUpdate_date(Date update_date) {
+        this.update_date = update_date;
+    }
+
+    public char getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(char state) {
         this.state = state;
     }
-
-    public int getSalary_id() {
-        return salary_id;
-    }
-
-    public void setSalary_id(int salary_id) {
-        this.salary_id = salary_id;
-    }
-
-    public int getSum_pay() {
-        return sum_pay;
-    }
-
-    public void setSum_pay(int sum_pay) {
-        this.sum_pay = sum_pay;
-    }
-
-    public int getIncome_tax() {
-        return income_tax;
-    }
-
-    public void setIncome_tax(int income_tax) {
-        this.income_tax = income_tax;
-    }
-
-    public String getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(String employee_id) {
-        this.employee_id = employee_id;
-    }
+//    public DepartmentDTO getDepartment_id() {
+//        return department_id;
+//    }
+//    public void setDepartment_id(DepartmentDTO departmentDTO) {
+//        this.departmentDTO = departmentDTO;
+//    }
+//    public RequestDTO getRequest_id() {
+//        return requestDTO;
+//    }
+//    public void setRequest_id(RequestDTO requestDTO) {
+//        this.requestDTO = requestDTO;
+//    }
 }

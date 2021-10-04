@@ -1,17 +1,12 @@
 package com.kosmo88.logistics_erp.hr.service;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
-import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 
 public interface HolidayService {
     // 휴가
     // 휴가 잔여일수 현황
-    ArrayList<HolidayUsageStatusDTO> leftHolidayNum();
+    void leftHolidayNum(HttpServletRequest req, HttpServletResponse res);
 
     // 휴가 사용실적
     void useHolidayNum(HttpServletRequest req, HttpServletResponse res);

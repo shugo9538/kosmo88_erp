@@ -22,6 +22,6 @@ public class PaySlipDAOImpl implements PaySlipDAO {
 
     @Override
     public List<PaySlipDTO> totalPaySlip() {
-        return sqlSession.selectList(STATEMENT + ".totalPaySlip");
+        return null;
     }
 }

@@ -19,6 +19,7 @@ import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
+// @RestController
 @Controller
 @RequestMapping(value = "/purchase")
 public class EstimateController {
@@ -33,52 +34,25 @@ public class EstimateController {
     	
         return "purchase/estimateManagement";
     }
-    
-    // 견적서 등록 화면
-    @RequestMapping(value = "/estimateRegister")
-    public String estimateRegister(HttpServletRequest req, Model model) {
-    	
-    	return "purchase/estimateRegister";
-    }
-    
-    // 견적서 등록 화면 - 견적서 거래처 선택
-    @RequestMapping(value = "/selectClient")
-    public String selectClient(HttpServletRequest req, Model model) {
-    	
-    	estimateService.selectClient(req, model);
-    	
-    	return "purchase/selectClient";
-    }
-    
-    // 견적서 등록 화면 - 견적서 담당자 선택
-    @RequestMapping(value = "/selectEmployee")
-    public String selectEmployee(HttpServletRequest req, Model model) {
-    	
-    	estimateService.selectEmployee(req, model);
-    	
-    	return "purchase/selectEmployee";
-    }
-    
-    // 견적서 상세페이지
-    @RequestMapping(value = "/estimateDetail")
-    public String estimateDetail(HttpServletRequest req, Model model) {
+/*    
+    // 견적서 수정
+    @RequestMapping(value = "/estimateUpdate")
+    public String estimateUpdate(HttpServletRequest req, Model model) {
 
-    	estimateService.estimateDetail(req, model);
-
-    	return "purchase/estimateDetail";
-    }
+    	// service.updateEstimate
+    	
+        return "purchase/estimateUpdate";
+    } 
     
- 	// 견적서 삭제(단일 삭제)
+    // 견적서 삭제(단일 삭제)
     @RequestMapping(value = "/estimateDelete")
     public String estimateDelete(HttpServletRequest req, Model model) {
 
-    	estimateService.estimateDelete(req, model);
+    	// service.deleteEstimate
+    	// (update)
     	
         return "purchase/estimateDelete";
-    }   
-    
-    
-/*  
+    }     
     
     // 견적서 등록
     @RequestMapping(value = "/estimateRegister") 

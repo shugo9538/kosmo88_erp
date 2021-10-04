@@ -14,6 +14,8 @@ $(document).ready(function() {
 	
 });
 
+
+
 $('#clientManagementForm').ready(function(){
 	addItem();
 });
@@ -28,6 +30,7 @@ function addItem() {
 	
 	newItem = item.cloneNode(true);
 	newItem.removeAttribute("style");
+	
 	
 	tmp = newItem.getElementsByTagName('input');
 	for (var j = 0 ; j < tmp.length ; j++) { 

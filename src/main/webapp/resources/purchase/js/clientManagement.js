@@ -12,5 +12,4 @@ $(document).ready(function() {
 			$("input[name=client_id]").prop("checked", false);
 		}
 	});
-	
 });

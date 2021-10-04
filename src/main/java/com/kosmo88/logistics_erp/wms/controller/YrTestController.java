@@ -12,7 +12,10 @@ public class YrTestController {
 	@RequestMapping("/yrTest")
 	public String testPage() {
 		return "wms/testPage";
-		
+	}
+	@RequestMapping("/yrTest2")
+	public String testPage2() {
+		return "wms/testPage2";
 	}
 
 }

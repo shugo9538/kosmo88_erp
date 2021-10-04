@@ -18,8 +18,8 @@ public class HolidayDAOImpl implements HolidayDAO {
     SqlSession sqlSession;
 
     @Override
-    public List<HolidayUsageStatusDTO> leftHolidayNum() {
-        return sqlSession.selectList(STATEMENT + ".leftHolidayNum");
+    public List<HolidayDTO> leftHolidayNum() {
+        return null;
     }
 
     @Override

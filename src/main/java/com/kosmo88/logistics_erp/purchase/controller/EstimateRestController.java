@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
@@ -55,34 +52,23 @@ public class EstimateRestController {
     	}
     	return estimateService.estimateChoiceDelete(request_id);
     }
-  
+    
+    
+    /*   
     // 등록한 거래처(구매처) 목록
     @ResponseBody
-    @RequestMapping(value = "/estimateRegister/registeredEstimateList")
-    public List<PurchaseEstimateListViewDTO> registeredEstimateList(HttpServletRequest req, HttpServletResponse res) {
-    	return estimateService.estimateList(req, res);
+    @RequestMapping(value = "/clientManagement/registeredClientList")
+    public List<PurchaseClientDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
+    	return purchaseService.clientList(req, res);
     }
 
-    // 견적서 등록 처리
+
+    // 거래처 수정
     @ResponseBody
-    @RequestMapping(value = "/estimateRegister/estimateRegisterAction")
-    public boolean estimateRegisterAction(@RequestBody PurchaseInsertEstimateDTO dto) {
-    	estimateService.estimateRegisterAction(dto);
-    	return true;
+    @RequestMapping(value = "/updateClient")
+    public String updateClient(HttpServletRequest req, HttpServletResponse res) {
+    	return purchaseService.updateClient(req, res);
     }
-}    
-
-/*    
+	*/
     
-	// 견적서 상품 등록 처리
-    @RequestMapping(value = "/clientRegister/itemRegisterAction")
-    public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
-        System.out.println(dtos);
-    	for (PurchaseItemDTO dto : dtos) {
-    		clientService.itemRegisterAction(dto);
-    		System.out.println(dto.getName());
-    	}
-    	return true;
-    }
-*/  
-
+}

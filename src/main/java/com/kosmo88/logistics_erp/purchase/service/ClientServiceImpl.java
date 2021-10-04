@@ -47,7 +47,7 @@ public class ClientServiceImpl implements ClientService {
 		return state.check(clientDao.registerClient(dto));
 	}	
 	
-	// 거래처 상품 등록 처리
+	// 상품 등록 처리
 	public boolean itemRegisterAction(PurchaseItemDTO dto) {
 		state = QueryCode.INSERT;
 		return state.check(clientDao.registerItem(dto));
@@ -65,7 +65,6 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 상세페이지 - 상품
 		List<PurchaseItemDTO> idtos = clientDao.getItemDetail(id);
-		System.out.println(idtos.get(0).getName());
 		
 		model.addAttribute("cdto", cdto);
 		model.addAttribute("idtos", idtos);

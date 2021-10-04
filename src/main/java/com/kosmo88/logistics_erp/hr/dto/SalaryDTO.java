@@ -10,9 +10,7 @@ public class SalaryDTO {
     private int meal_fee;
     private int income_tax;
     private Date payday;
-    private int employee_salary;
     private String payment_status;
-    private String employee_id;
 
     public int getId() {
         return id;
@@ -70,14 +68,6 @@ public class SalaryDTO {
         this.payday = payday;
     }
 
-    public int getEmployee_salary() {
-        return employee_salary;
-    }
-
-    public void setEmployee_salary(int employee_salary) {
-        this.employee_salary = employee_salary;
-    }
-
     public String getPayment_status() {
         return payment_status;
     }
@@ -85,13 +75,4 @@ public class SalaryDTO {
     public void setPayment_status(String payment_status) {
         this.payment_status = payment_status;
     }
-
-    public String getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(String employee_id) {
-        this.employee_id = employee_id;
-    }
-
 }

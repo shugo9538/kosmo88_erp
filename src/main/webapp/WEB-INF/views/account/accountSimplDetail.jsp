@@ -141,13 +141,13 @@
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="balance">입금금액 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="number" id="balance" name="balance" onchange="change(1);" placeholder="입금금액을입력하세요" required>
+                              <input class="form-control" type="number" id="balance" name="balance" value="0"  placeholder="입금금액을입력하세요" required>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="balance1">출금금액 <span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="val-withdraw">출금금액 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="number" id="balance1" name="balance1" onchange="change(2);" placeholder="출금금액을 입력하세요" required>
+                              <input class="form-control" type="number" id="val-withdraw" name="val-department_id" value="0" placeholder="출금금액을 입력하세요" required>
                             </div>
                           </div>
                         

@@ -29,9 +29,12 @@ public class PaySlipController {
     PaySlipService paySlipService;
 
     // 휴가 잔여일수 현황
+//    @RequestMapping(value = "/leftHolidayNum")
     @RequestMapping(value = "")
     public String leftHolidayNum(HttpServletRequest req, HttpServletResponse res) {
-        return "hr/salarySlipManagement/salarySlipManagement";
+//        paySlipService.leftHolidayNum(req, res);
+        
+        return "hr/slipManagement";
     }
     
     // 휴가 사용실적

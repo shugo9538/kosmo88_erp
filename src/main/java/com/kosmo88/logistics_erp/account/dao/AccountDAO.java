@@ -18,7 +18,7 @@ public interface AccountDAO {
 	// 거래처 목록건수
 	public int getClientCnt();
 	// 거래처 목록조회
-	public List<ClientDTO> selectClient();
+	public List<ClientDTO> selectClient(Map<String,Object> map);
 	// 신규 거래처 등록
 	public int insertClient();
 	// 거래처 정보 수정
@@ -30,7 +30,7 @@ public interface AccountDAO {
 	// 일반전표 건수
 	public int getSlipCnt();
 	// 일반전표 조회
-	public List<SlipDTO> selectSlip();
+	public List<SlipDTO> selectSlip(Map<String,Object> map);
 	// 일반전표 등록
 	public int insertSlip(Map<String, Object> map);
 	// 파트별 전표승인 
@@ -47,7 +47,7 @@ public interface AccountDAO {
 	// 매입,매출전표 건수
 	public int getSalesSlipCnt();
 	// 매입/매출전표 조회
-	public List<SalesSlipDTO> selectSalesSlip();
+	public List<SalesSlipDTO> selectSalesSlip(Map<String,Object> map);
 	// 매출전표 건수
 	//public int getSalesCnt(int type);
 	// 매출전표 조회
@@ -67,13 +67,11 @@ public interface AccountDAO {
 	// 통장 거래내역 건수
 	public int getAccountCnt();
 	// 통장 목록 조회 
-	public List<AccountDTO> selectAccount();
+	public List<AccountDTO> selectAccount(Map<String,Object> map);
 	// 통장 추가처리
 	public int insertAccount(AccountDTO accountDTO);
 	// 통장 목록 단순 조회(거래내역 추가페이지 계좌정보 뿌릴때)
-	public AccountDTO selectAccountInfo(String account_number);
-	// 통장 계좌번호 중복조회
-	public int accountConfrim(String account_number);
+	public List<AccountDTO> selectAccountInfo();
 	// 통장 거래내역 추가
 	public int insertAcountHistory(AccountHistoryDTO ahDTO);
 	// 통장 입출금 거래내역 상세페이지

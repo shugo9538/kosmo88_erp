@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../css_settings/customSettings.jsp"%>
+<%@ include file="../../common/settings.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../../common/left_side.jsp"%>
@@ -23,11 +23,14 @@
 			</div>
 			<!--END Page Title-->
 			<!--Start Page Tab-->
-			<ul class="nav nav-tabs nav-pills custom-nav">
-				<li class="nav-item active">
+			<ul class="nav nav-pills custom-nav">
+				<li class="active">
 					<a id="selectAttendacne">근태 조회</a>
 				</li>
-				<li class="nav-item">
+				<li class="active">
+					<a id="attendanceStatus">근태 현황</a>
+				</li>
+				<li class="active">
 					<a id="commutingRecords">출퇴근 기록부</a>
 				</li>
 			</ul>
@@ -35,7 +38,8 @@
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box" id="datatables"></div>
+					<div class="white-box" id="datatables">
+					</div>
 				</div>
 			</div>
 			<!--End row-->

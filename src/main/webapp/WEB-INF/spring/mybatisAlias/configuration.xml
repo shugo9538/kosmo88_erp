@@ -9,14 +9,15 @@
 			alias="UserDTO" />
 		
 		<!-- 영업관리 -->
+		<!--  -->
+		<typeAlias 
+			type="com.kosmo88.logistics_erp.sale.dto.SalesDTO"
+			alias="SaleDTO"/>
 		<!-- 거래처 DTO -->
 		<typeAlias
 			type="com.kosmo88.logistics_erp.sale.dto.SalesClientDTO"
-			alias="SalesClientDTO"/>
-		<!-- 담당자 DTO -->
-		<typeAlias
-			type="com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO"
-			alias="SalesEmployeeDTO"/>
+			alias="SalesClientDTO"
+		/>	
 			
 			
 		<!-- accounting start -->	
@@ -61,12 +62,6 @@
 			type="com.kosmo88.logistics_erp.hr.dto.CommuteDTO"
 			alias="CommuteDTO" />
 		<typeAlias
-			type="com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO"
-			alias="DepartmentCodeDTO" />
-		<typeAlias
-			type="com.kosmo88.logistics_erp.hr.dto.EmployeeDTO"
-			alias="EmployeeDTO" />
-		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
 			alias="PaySlipDTO" />
 		<typeAlias
@@ -76,17 +71,8 @@
 			type="com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO"
 			alias="HolidayUsageStatusDTO" />
 		<typeAlias
-			type="com.kosmo88.logistics_erp.hr.dto.HRCodeDTO"
-			alias="HRCodeDTO" />
-		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO"
 			alias="PayStepTableDTO" />
-		<typeAlias
-			type="com.kosmo88.logistics_erp.hr.dto.PaySlipDTO"
-			alias="PaySlipDTO" />
-		<typeAlias
-			type="com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO"
-			alias="PositionCodeDTO" />
 		<typeAlias
 			type="com.kosmo88.logistics_erp.hr.dto.SalaryDTO"
 			alias="SalaryDTO" />
@@ -102,32 +88,12 @@
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO"
 			alias="PurchaseItemDTO" />
 		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
-			alias="PurchaseInsertClientDTO" />		
-					
-		<typeAlias
 			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO"
 			alias="PurchaseEstimateListViewDTO" />	
-	
 		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO"
-			alias="PurchaseOrderListViewDTO" />	
-		
-		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO"
-			alias="PurchaseEmployeeDTO" />
+			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO"
+			alias="PurchaseInsertClientDTO" />		
 			
-		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO"
-			alias="PurchaseInsertEstimateDTO" />
-		
-		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO"
-			alias="PurchaseEstimateDetailViewDTO" />
-		
-		<typeAlias
-			type="com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO"
-			alias="PurchaseOrderDetailViewDTO" />
 			
 		<!-- purchase dto end -->		
 		
