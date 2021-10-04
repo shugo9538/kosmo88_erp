@@ -63,6 +63,24 @@
 	                		<th style="background-color: #f1f1f1; padding:10px;">수량</th>
 	                		<th style="background-color: #f1f1f1; padding:10px;">공급가액</th>
 	                	</tr>
+<<<<<<< HEAD
+	                	<c:forEach var="dto" items="${dto}">
+	                	<c:set var="sale_price" value="${dto.item_sales_price * idto.item_quantity}" />
+	                		<td>${dto.item_name}</td>
+	                		<td>${dto.item_category}</td>
+	                		<td>
+	                			<fmt:formatNumber value="${dto.item_sales_price}" pattern="#,###" />원
+	                		</td>
+	                		<td>${dto.item_quantity}</td>
+	                		<%-- <td>
+	                			<fmt:formatNumber value="${dto.item_sales_price}" pattern="#,###" />원
+	                		</td> --%>
+	                		<%-- <c:set var="totalPrice" value="${totalPrice + price}" /> --%>
+	                	</c:forEach>
+	                </table>
+	                <div style="text-align:right;" class="form-group col-md-12">
+	                	<%-- <h3>TOTAL : <fmt:formatNumber value="${totalPrice}" pattern="#,###" />원</h3> --%>
+=======
 	                	<c:forEach var="idto" items="${idtos}">
 	                	<c:set var="price" value="${idto.item_purchase_price * idto.item_quantity}" />
 	                		<td>${idto.item_name}</td>
@@ -79,6 +97,7 @@
 	                </table>
 	                <div style="text-align:right;" class="form-group col-md-12">
 	                	<h3>TOTAL : <fmt:formatNumber value="${totalPrice}" pattern="#,###" />원</h3>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                     </div>
 	                <div style="text-align:center;" class="form-group mt-5 col-md-12">
 	                    <input class="btn  btn-primary" type="button" value="삭제" 

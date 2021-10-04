@@ -62,6 +62,18 @@
 		   SET enabled = 'N'
 		 WHERE id = #{request_id}
 	</update>
+<<<<<<< HEAD
+ 	
+ 	<!-- 견적서 상세 페이지 -->
+ 	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateDetailViewDTO">
+ 		SELECT request_id, client_ceo_name, client_phone, client_email, employee_name, employee_phone, department_name, employee_email
+  		  FROM S_ESTIMATE_DETAIL_VIEW
+ 	</select>
+ 	
+ 	<select id="getEstimateDetailItem" parameterType="int" resultType="">
+ 		SELECT item_quantity, item_name, item_category, item_sales_price
+  		  FROM S_ESTIMATE_DETAIL_VIEW
+=======
  	
  	<!-- 견적서 상세 페이지 -->
  	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateListViewDTO">
@@ -71,6 +83,7 @@
  WHERE enabled = 'Y'
    AND request_id = #{request_id}		 
          ORDER BY request_id
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
  	</select>
 
 </mapper>

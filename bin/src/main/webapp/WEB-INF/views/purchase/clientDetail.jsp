@@ -11,7 +11,10 @@
                 
                 
                 <form class="form-horizontal">
+<<<<<<< HEAD
+=======
                 	<input type="hidden" id="client_id" value="${cdto.id}">
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	                <table id="example" class="display table mt-12" style="width:100%">
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;">거래처 번호</th>
@@ -45,7 +48,11 @@
 	                	<tr>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품명</th>
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품종류</th>
+<<<<<<< HEAD
+		                	<th style="background-color: #f1f1f1; padding:15px;">상품가격</th>
+=======
 		                	<th style="background-color: #f1f1f1; padding:15px;">공급단가</th>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 		                	<th style="background-color: #f1f1f1; padding:15px;">상품 등록일</th>
 		                </tr>
 		                
@@ -54,11 +61,17 @@
 		                	<tr>
 		                		<td style="padding:15px;">${idto.name}</td>
 		                		<td style="padding:15px;">${idto.category}</td>
+<<<<<<< HEAD
+		                		<td style="padding:15px;">${idto.price}</td>
+		                		<td style="padding:15px;">
+		                			<fmt:formatDate pattern="yyyy-MM-dd HH:MM" value="${idto.register_date}" />
+=======
 		                		<td style="padding:15px;">
 		                			<fmt:formatNumber value="${idto.price}" pattern="#,###" />원
 		                		</td>
 		                		<td style="padding:15px;">
 		                			<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${idto.register_date}" />
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 		                		</td>
 		                	</tr>
 		                </c:forEach>
@@ -68,7 +81,11 @@
 	                   <input class="btn  btn-primary" type="button" value="수정" 
 	                   	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
 	                   <input class="btn  btn-primary" type="button" value="삭제"
+<<<<<<< HEAD
+	                   	onclick="window.location='clientDelete?client_id=${cdto.id}'"/>
+=======
 	                   	onclick="clientDelete();"/>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	                   <input class="btn  btn-defalte" type="button" value="닫기"
 	                   	onclick="window.close();"/>
                     </div>
@@ -77,7 +94,10 @@
         </div>
     </div>
     <!-- end row -->
+<<<<<<< HEAD
+=======
     <script src="${RESOURCES_PATH}/purchase/js/clientDetail.js"></script>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 </div>
 </body>
 </html>

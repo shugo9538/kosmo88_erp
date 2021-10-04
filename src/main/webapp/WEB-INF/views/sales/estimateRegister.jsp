@@ -137,6 +137,89 @@
 									</tr>
 								</thead>
 								<tbody id="item-group">
+<<<<<<< HEAD
+									<!-- item1 -->
+									<tr>
+										<td>
+											<div>
+											<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
+											</div>
+											
+										</td>
+										<td>
+											<input class="form-control" name="item_name" id="item_name" type="text" placeholder="상품명">
+										</td>
+										<td>
+										<input class="form-control" name="category" id="category"
+											type="text" placeholder="상품종류">
+										</td>
+										<td>
+											<input class="form-control" name="price" id="price" type="text" value="" placeholder="판매단가" oninput="salePrice()" onchange="salePrice()">
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount" id="amount" type="text"  onchange="change();">
+											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
+										</td>
+										<td>
+											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly>
+										</td>
+									</tr>
+									
+									<!-- item2 -->
+									<tr>
+										<td>
+											<div>
+											<input type="button" class="btn  btn-primary" id="selectItem2" value="상품선택">
+											</div>
+											
+										</td>
+										<td>
+											<input class="form-control" name="item_name2" id="item_name2" type="text" placeholder="상품명">
+										</td>
+										<td>
+										<input class="form-control" name="category2" id="category2"
+											type="text" placeholder="상품종류">
+										</td>
+										<td>
+											<input class="form-control" name="price2" id="price2" type="text" value="" placeholder="판매단가" onchange="salePrice2()">
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount2" id="amount2" type="text"  onchange="change2();">
+											<input style="padding:2px;" type="button" value=" + " onclick="add2();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del2();">                                 
+										</td>
+										<td>
+											<input class="form-control" name="total_price2" id="total_price2" type="text" min="0" readonly> 
+										</td>
+									</tr>
+									
+									<!-- item3 -->
+									<tr>
+										<td>
+											<div>
+											<input type="button" class="btn  btn-primary" id="selectItem3" value="상품선택">
+											</div>
+											
+										</td>
+										<td>
+											<input class="form-control" name="item_name3" id="item_name3" type="text" placeholder="상품명">
+										</td>
+										<td>
+										<input class="form-control" name="category3" id="category3"
+											type="text" placeholder="상품종류">
+										</td>
+										<td>
+											<input class="form-control" name="price3" id="price3" type="text" value="" placeholder="판매단가" oninput="salePrice3()" onchange="salePrice3()">
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount3" id="amount3" type="text"  onchange="change3();">
+											<input style="padding:2px;" type="button" value=" + " onclick="add3();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del3();">                                 
+										</td>
+										<td>
+											<input class="form-control" name="total_price3" id="total_price3" type="text" min="0" readonly> 
+=======
 									<tr>
 										<td>
 											<div>
@@ -161,10 +244,15 @@
 										</td>
 										<td>
 											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly> 
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 										</td>
 									</tr>
 								</tbody>
 							</table>
+<<<<<<< HEAD
+							
+=======
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="estimateRegisterAction"

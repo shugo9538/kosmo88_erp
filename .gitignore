@@ -18,10 +18,36 @@
 *.zip
 *.tar.gz
 *.rar
+.classpath
+.project
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+<<<<<<< HEAD
+pom.xml
+.vscode
+spring-*/src/main/java/META-INF/MANIFEST.MF
+.idea
+out
+test-output
+
+/build
+classes/
+buildSrc/build
+/spring-*/build
+/spring-core/kotlin-coroutines/build
+/framework-bom/build
+/integration-tests/build
+/src/asciidoc/build
+target/
+
+.DS_Store
+.settings
+.springBeans
+.project
+=======
 target/m2e-wtp/*
 
 .vscode/
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0

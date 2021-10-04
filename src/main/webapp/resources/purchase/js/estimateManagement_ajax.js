@@ -36,6 +36,12 @@ $(document).ready(function() {
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
+<<<<<<< HEAD
+	    $('#estimate').find('input').each(function() {
+    		var data = $(this);
+    		dataObject[data.attr('name')] = data.val();
+	    });
+=======
 	    // $('#estimate').find('input').each(function() {
 	    
 	    dataObject[client_id] = $('#estimate').find('input[name=client_id]').val();
@@ -46,6 +52,7 @@ $(document).ready(function() {
     	//	var data = $(this);
     	//	dataObject[data.attr('name')] = data.val();
 	    // });
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	    console.log(dataObject);
 	    
 	    var formData = JSON.stringify(dataObject);
@@ -251,8 +258,13 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 
 //등록한 견적서 목록
 function registeredEstimateList() {
+<<<<<<< HEAD
+    currTab = $('#registeredEstimateList').DataTable({
+    		
+=======
     $('#registeredEstimateList').DataTable({
     	"order": [[ 0, "desc" ]],
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
         ajax : {
             url : window.location.href + '/registeredEstimateList', // 현 위치
             type : 'POST',
@@ -263,7 +275,11 @@ function registeredEstimateList() {
 	        {	
             	data : null,
                 render : function(data, type, row, meta) {
+<<<<<<< HEAD
+                    return '<a href="/logistics_erp/estimate/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+=======
                     return '<a href="/logistics_erp/purchase/estimateDetail?request_id=' + row.request_id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.request_id + '</a>'; 
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                 }
             }, {	
             	data : 'client_name',

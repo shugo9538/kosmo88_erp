@@ -45,6 +45,96 @@
 					<span>회계관리</span>
 				</a>
 				<ul class="sub-menu-list">
+<<<<<<< HEAD
+          <!-- 아래추가사항 -->
+          <li>
+            <a href="${ROOT_PATH}/account/clientList?categoryNum=110">
+              1. 기초정보 관리</a
+            >
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/account/salesSlipList?categoryNum=130">
+              2. 매입/매출장</a
+            >
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/account/slipList?categoryNum=120">
+              3. 일반전표</a
+            >
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/account/accountList?categoryNum=140">
+              4. 금융/자금관리</a
+            >
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/account/financialStatement?categoryNum=150"
+              >5. 결산/재무제표</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="menu-list" id="sales">
+        <a href="#">
+          <i class="icon-grid"></i>
+          <span>영업관리</span>
+        </a>
+        <ul class="sub-menu-list">
+          <li>
+            <a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/sales/estimateManagement">견적서 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a>
+          </li>
+        </ul>
+      </li>
+      <li class="menu-list" id="purchase">
+        <a href="#">
+          <i class="icon-envelope-open"></i>
+          <span>구매관리</span>
+        </a>
+        <ul class="sub-menu-list">
+          <li>
+            <a href="${ROOT_PATH}/purchase/clientManagement">거래처 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/purchase/orderManagement">구매 관리</a>
+          </li>
+        </ul>
+      </li>
+      <li class="menu-list" id="wms">
+        <a href="#">
+          <i class="icon-loop"></i>
+          <span>WMS</span>
+        </a>
+        <ul class="sub-menu-list">
+          <li>
+            <a href="${ROOT_PATH}/wms/warehouse/warehouse">창고 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/wms/receiving/receiving">입고 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/wms/shipping/shipping">출고 관리</a>
+          </li>
+          <li>
+            <a href="${ROOT_PATH}/wms/stock/">재고 관리</a>
+          </li>
+          <!-- <li>
+						<a href="${ROOT_PATH}/wms/truck/">차량 관리</a>
+					</li> -->
+        </ul>
+      </li>
+    </ul>
+    <!--End sidebar nav-->
+  </div>
+=======
 					<!-- 아래추가사항 -->
 					<li>
 						<a href="${ROOT_PATH}/account/clientList?categoryNum=110">기초정보 관리</a>
@@ -120,4 +210,5 @@
 		</ul>
 		<!--End sidebar nav-->
 	</div>
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 </div>

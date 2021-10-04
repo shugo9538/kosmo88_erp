@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -34,6 +35,7 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	@Override
 	public int getClientCnt() {
 		return sqlSession.selectOne(STATEMENT + ".getClientCnt");
+<<<<<<< HEAD
 	}
 
 	// 견적서 등록 화면 - 거래처 리스트
@@ -48,6 +50,22 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectOne(STATEMENT + ".getItemCnt");
 	}
 
+=======
+	}
+
+	// 견적서 등록 화면 - 거래처 리스트
+	@Override
+	public List<SalesClientDTO> getClientList() {
+		return sqlSession.selectList(STATEMENT + ".getClientList");
+	}
+
+	// 견적서 등록 화면 - 상품 갯수
+	@Override
+	public int getItemCnt() {
+		return sqlSession.selectOne(STATEMENT + ".getItemCnt");
+	}
+
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	// 견적서 등록 화면 - 상품 리스트
 	@Override
 	public List<SalesItemDTO> getItemList() {
@@ -66,10 +84,24 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 
+<<<<<<< HEAD
+	// 견적서 상세 페이지
+	@Override
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id) {
+		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
+	}
+
+	// 견적서 상세 아이템
+	@Override
+	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id) {
+		return sqlSession.selectList(STATEMENT + ".getEstimateDetailItem", request_id);
+	}
+=======
 	@Override
 	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
 	}
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 	
 	
 

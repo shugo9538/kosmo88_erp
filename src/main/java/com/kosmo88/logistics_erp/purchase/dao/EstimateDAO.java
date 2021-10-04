@@ -4,9 +4,13 @@ import java.util.List;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
+<<<<<<< HEAD
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
+=======
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 public interface EstimateDAO {
@@ -35,6 +39,8 @@ public interface EstimateDAO {
 	// 견적서 등록 화면 - 담당자 리스트
 	public List<PurchaseEmployeeDTO> getEmployeeList();
 	
+<<<<<<< HEAD
+=======
 	// 견적서 등록(request) 처리
 	public int insertRequest(PurchaseInsertEstimateDTO dto);
 	
@@ -49,4 +55,5 @@ public interface EstimateDAO {
 	// 견적서 상세페이지(상품 정보)
 	public List<PurchaseEstimateDetailViewDTO> getEstimateDetailItem(int request_id);
 	
+>>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 }
