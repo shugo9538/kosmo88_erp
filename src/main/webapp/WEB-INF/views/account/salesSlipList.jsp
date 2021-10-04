@@ -68,7 +68,6 @@ $(function(){
 
 						<li class="active"><a
 							href="${ROOT_PATH}/account/salesList?categoryNum=132">매출목록</a></li>
-
 					</ul>
 				</div>
 				<!-- 메뉴버튼 끝 -->
@@ -173,6 +172,8 @@ $(function(){
 											value="${sum_total + dto.supply_amount + dto.tax_amount}" />
 									</tr>
 								</c:forEach>
+								</tbody>
+								<tfoot>
 								<tr style="background-color: ghostwhite; font-weight: bold;">
 									<td colspan="5" align="center">합계</td>
 									<td>${cnt}건(매수 ${cnt}매)</td>
@@ -184,6 +185,7 @@ $(function(){
 											value="${sum_total}" /></td>
 									<td colspan="4"></td>
 								</tr>
+								</tfoot>
 						</table>
 					</div>
 				</div>
@@ -193,7 +195,6 @@ $(function(){
 
 		<!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
-		<%-- <%@ include file="common/accountFooter.jsp"%> --%>
 		<!--End footer -->
 	</div>
 	<!--End main content -->

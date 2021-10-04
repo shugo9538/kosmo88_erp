@@ -12,10 +12,10 @@
 <!-- END PAGE LEVEL STYLES -->
 </head>
 <body>
-
-		<c:if test="${insertCnt == 1}">
+		<!-- 전표 승인상태 체크 (실패)  -->
+		<c:if test="${NOT_APPROVED == 10}">
 			<script type="text/javascript">
-				swal("통장목록","신규통장이 추가되었습니다. 목록으로 이동합니다.","success",{
+				swal("승인상태","전표의 승인상태를 다시 확인 바랍니다.","error",{
 					closeOnclickOutside : false,
 					closeEsc: false,
 					buttons : {
@@ -24,14 +24,24 @@
 						timer : 3000
 					}
 				});
-				window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
+				window.location="${ROOT_PATH}/account/slipList?categoryNum=140";
 			</script>
 		</c:if>
 		
-		<c:if test="${insertCnt == 0}">
+		<!-- 전표 승인상태 체크 (성공)  -->
+		<c:if test="${SUCCESS == 13}">
 			<script type="text/javascript">
-				alert("통장 추가가 실패 하였습니다.");
-				window.history.back();
+				swal("전표상태","선택하신 전표가 승인 처리 되었습니다.","success",{
+					closeOnclickOutside : false,
+					closeEsc: false,
+					buttons : {
+						text : '확인',
+						value : true,
+						timer : 3000
+					}
+				});
+				window.location="${ROOT_PATH}/account/slipList?categoryNum=140";
+			</script>
 			</script>	
 		</c:if>
 

@@ -12,18 +12,13 @@
   <meta name="author" content="">
   <title> 회계관리 - 거래처 목록</title>
 </head>
-<script type="text/javascript" src="/logistics_erp/resources/assets/js/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js" ></script>
-
-<!-- BEGIN PAGE LEVEL STYLES -->
+<!-- 통장 거래내역 추가 페이지 -->
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- 통장 거래내역 추가 페이지  -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/logistics_erp/resources/accounting/js/datepicker-ko.js"></script>
-
-<!-- END PAGE LEVEL STYLES -->
 <body class="sticky-header">
-
 
     <!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -34,7 +29,8 @@
     <div class="main-content" >
 
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/header.jsp"%> 
+		<%@ include file="common/accountHeader.jsp"%>     
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -87,7 +83,7 @@
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="account_number" style="color:red">은행(db정보)<span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="account_number" style="color:red">등록계좌정보<span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <c:if test="${!empty account}">
                               <select class="form-control" id="account_number" name="account_number" required>
@@ -139,18 +135,12 @@
 								</div>
 							</div>
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="balance">입금금액 <span class="text-danger">*</span></label>
+                            <label class="col-md-3 control-label" for="balance">거래금액 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="number" id="balance" name="balance" onchange="change(1);" placeholder="입금금액을입력하세요" required>
+                              <input class="form-control" type="text" id="balance" name="balance" placeholder="입금금액을입력하세요"
+                              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\.*)\./g, '$1')">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label class="col-md-3 control-label" for="balance1">출금금액 <span class="text-danger">*</span></label>
-                            <div class="col-md-9">
-                              <input class="form-control" type="number" id="balance1" name="balance1" onchange="change(2);" placeholder="출금금액을 입력하세요" required>
-                            </div>
-                          </div>
-                        
                           <div class="form-group">
                             <label class="col-md-3 control-label">승인체크<span class="text-danger">*</span></label>
                             <div class="col-md-9">
@@ -177,7 +167,8 @@
       <!-- End Wrapper-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp" %>	
          <!--End footer -->
        </div>
       <!--End main content -->

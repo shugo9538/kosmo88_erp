@@ -13,7 +13,7 @@
 </head>
 <body>
 
-		<c:if test="${insertCnt == 1}">
+		<c:if test="${updateCnt == 1}">
 			<script type="text/javascript">
 				swal("통장목록","신규통장이 추가되었습니다. 목록으로 이동합니다.","success",{
 					closeOnclickOutside : false,
@@ -28,7 +28,7 @@
 			</script>
 		</c:if>
 		
-		<c:if test="${insertCnt == 0}">
+		<c:if test="${updateCnt == 0}">
 			<script type="text/javascript">
 				alert("통장 추가가 실패 하였습니다.");
 				window.history.back();
