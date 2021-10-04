@@ -13,12 +13,4 @@ $(document).ready(function(){
 		$("#client_detail_address", opener.document).val(child.find("#client_detail_address").val());
 		$(window.close());
 	})
-<<<<<<< HEAD
-	
-	// 상품 값 전달
-	
-	
-	
-=======
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
 });

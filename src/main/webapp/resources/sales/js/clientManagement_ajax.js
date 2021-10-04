@@ -263,14 +263,7 @@ function registeredClientList() {
         },
         columns : [
                 {
-<<<<<<< HEAD
-                    data : null,
-                    render : function(data, type, row, meta) {
-                        return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1400, height=800); return false;">' + row.name + '</a>'; 
-                    }
-=======
                     data : 'id',
->>>>>>> 6b87af15e421a548bdfb5fbc50ddafc3f5be85e0
                 }, {
                 	data : null,
                 	render : function(data, type, row, meta){
