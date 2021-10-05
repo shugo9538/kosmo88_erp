@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.purchase.controller.EstimateController;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.service.SalesEstimateService;
+import com.kosmo88.logistics_erp.util.QueryCode;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -27,6 +29,8 @@ public class SalesEstimateRestController {
 	 
 	 @Autowired
 	 SalesEstimateService estimateService;
+	 
+	 QueryCode state;
 	 
 	// 견적서 관리 - 견적서 목록(구매)
     @ResponseBody
@@ -56,6 +60,15 @@ public class SalesEstimateRestController {
     @RequestMapping(value = "/estimateRegister/registeredEstimateList")
     public List<SalesEstimateListViewDTO> registeredEstimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
+    }
+    
+    // 견적서처 등록
+    @ResponseBody
+    @RequestMapping(value = "/estimateRegister/estimateRegisterAction")
+    public boolean estimateRegisterAction(@RequestBody SalesEstimateDetailViewDTO dto) {
+    	//estimateService.estimateRegisterAction(dto);
+    	
+    	return true;
     }
     
 }
