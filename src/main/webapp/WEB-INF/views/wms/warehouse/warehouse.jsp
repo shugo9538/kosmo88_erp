@@ -104,11 +104,11 @@
 									value="${warehouseDto.address}" readonly>
 							</div>
 						</div>
-						<label class="col-sm-1 control-label">회원</label>
-						<div class="col-sm-5">
-							<input class="form-control" type="text" value="" readonly>
-						</div>
-						<div class="form-group"></div>
+<!-- 						<label class="col-sm-1 control-label">관리자</label> -->
+<!-- 						<div class="col-sm-2"> -->
+<%-- 							<input class="form-control" type="text" value="${warehouseDto.Manager}" readonly> --%>
+<!-- 						</div> -->
+<!-- 						<div class="form-group"></div> -->
 					</div>
 					<div class="tab-pane fade" id="section">
 						<h2 class="header-title">섹션 목록</h2>

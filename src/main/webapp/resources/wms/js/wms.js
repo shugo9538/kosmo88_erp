@@ -12,12 +12,12 @@ function getCurrentDate() {
 //폼 추가
 document.addEventListener("DomContentLoaded", function(){
   if(document.getElementById(""))
-  addRack()
+  addSection()
 })
 
-function addRack() {
+function addSection() {
   var rack = document.getElementById("rack");
-  // var addRackBtn = document.getElementById("addRack");
+  // var addSectionBtn = document.getElementById("addSection");
   var newRack = rack.cloneNode(true);
   newRack.style.display = "block";
   newRack.setAttribute("class", "additionalForm");
@@ -27,13 +27,13 @@ function addRack() {
   Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
     f.setAttribute("required", true)
   );
-  // document.getElementById("rack-group").insertBefore(newRack, addRackBtn);
+  // document.getElementById("rack-group").insertBefore(newRack, addSectionBtn);
   document.getElementById("rack-group").appendChild(newRack);
   document
     .getElementById("additionalFormCnt")
     .setAttribute("value", getAdditionalFormCnt());
 }
-// window.onload = addRack();
+// window.onload = addSection();
 
 function delRack(obj) {
   var rackGroup = document.getElementById("rack-group");
@@ -85,30 +85,7 @@ function sameNameValuesToArray(paramName) {
 }
 
 
-function warehouseAddAction() {
-  alert("등록되었습니다");
- // sameNameValuesToArray(section);
-  //sameNameValuesToArray(section_section);
-  //sameNameValuesToArray(capacity);
 
-  return true;
-}
-
-// function selTab(tab) {
-// 	var tab = $(tab);
-// 	tab.click();
-// 	console.log("dkdkdd");
-// 	console.log(tab);
-
-// 	$('#firstTab').click();
-// 	document.getElementById('firstTab').click();
-// 	document.getElementById('firstli').click();
-// }
-function selTab() {
-  $("#firstTab").click();
-  // document.getElementById('firstTab').click();
-  // document.getElementById('firstli').click();
-}
 
 function log() {
   console.log("sadfas");
@@ -136,31 +113,28 @@ function initDateRange() {
 }
 
 
-function adjustIncludedPage() {
-  // var includePages = document.querySelectorAll(".include");
-  var includePages = Array.from(document.getElementsByClassName("include"));
-  console.log(includePages);
-  // var includePagesHasFilter = Array.from(includePages).filter(i=>i.querySelector(".filter")!=null);
-  var includePagesHasFilter = includePages.filter(
-    (i) => i.querySelector(".filter") != null
-  );
-  console.log(includePagesHasFilter);
+// function adjustIncludedPage() {
+//   var includePages = Array.from(document.getElementsByClassName("include"));
+//   console.log(includePages);
+//   var includePagesHasFilter = includePages.filter(
+//     (i) => i.querySelector(".filter") != null
+//   );
+//   console.log(includePagesHasFilter);
 
-  try {
-    includePages.forEach((i) => i.querySelector(".page-title-box").remove());
-    includePages.forEach((i) =>
-      i.querySelector(".main-content").setAttribute("class", "")
-    );
-    includePagesHasFilter.forEach((i) => {
-      console.log("잉" + i.nodeName);
-      i.querySelector(".filter").remove();
-    });
-  } catch (e) {
-    console.log(e);
-  }
-  //  includePages.forEach(i=>i.querySelector(".page-title-box").remove());
-  //  includePages.forEach(i=>i.querySelector(".main-content").setAttribute("class", ""));
-}
+//   try {
+//     includePages.forEach((i) => i.querySelector(".page-title-box").remove());
+//     includePages.forEach((i) =>
+//       i.querySelector(".main-content").setAttribute("class", "")
+//     );
+//     includePagesHasFilter.forEach((i) => {
+//       console.log("잉" + i.nodeName);
+//       i.querySelector(".filter").remove();
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+
 
 //들어가는 메뉴에 따라 다른 그거 탭하기
 $(document).ready(function () {

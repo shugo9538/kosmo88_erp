@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_datailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.service.SectionService;
 import com.kosmo88.logistics_erp.wms.service.StockService;
@@ -27,16 +29,15 @@ import com.kosmo88.logistics_erp.wms.util.MyLog;
 @RequestMapping(value = "/wms/warehouse")
 public class WarehouseController {
 
-	
 	@Autowired
 	StockService stockService;
 	@Autowired
 	WarehouseService warehouseService;
 	@Autowired
 	SectionService sectionService;
-	
-	
-	
+	@Autowired
+	SectionDao sectionDao;
+
 	@RequestMapping(value = "/add")
 	public String add() {
 		return "wms/warehouse/addWarehouse";
@@ -48,23 +49,38 @@ public class WarehouseController {
 	public String warehouse(HttpServletRequest req, Model model) {
 		int warehouseId = Integer.parseInt(req.getParameter("id"));
 		// 재고 정보
-		List<V_Stock_SectionDto> stock_sectionDtoList = stockService.list(warehouseId);
-
+		List<V_Stock_SectionDto> stock_sectionDtoList = sectionDao.selectList(warehouseId);
 		// 창고 정보
 		WarehouseDto warehouseDto = warehouseService.warehouse(warehouseId);
 
-//		List<SectionDto> sectionDtoList = sectionService.list(warehouseId);
-
-		// 일단 객체 통째로 넣어보기
 		model.addAttribute("warehouseDto", warehouseDto);
 		model.addAttribute("stock_sectionDtoList", stock_sectionDtoList);
-//		model.addAttribute("sectionDtoList", sectionDtoList);
 		return "wms/warehouse/warehouse";
 	}
 
-	@RequestMapping(value = {"/", "/manage", "/list"})
+	@RequestMapping(value = {"/list", "/simpleList" })
+	public String simpleList(Model model) {
+		List<V_warehouse_simpleDto> list = warehouseService.simpleList();
+		model.addAttribute("warehouseDtoList", list);
+		return "wms/warehouse/warehouseList";
+	}
+	
+	@RequestMapping(value="manage")
+	public String manageWarehouse(HttpServletRequest req, Model model){
+		int warehouseId = Integer.parseInt(req.getParameter("id"));
+		// 재고 정보
+		List<V_Stock_SectionDto> stock_sectionDtoList = sectionDao.selectList(warehouseId);
+		// 창고 정보
+		WarehouseDto warehouseDto = warehouseService.warehouse(warehouseId);
+
+		model.addAttribute("warehouseDto", warehouseDto);
+		model.addAttribute("stock_sectionDtoList", stock_sectionDtoList);
+		return "wms/warehouse/manageWarehouse";
+	}
+
+	@RequestMapping(value = "/detailList")
 	public String list(Model model) {
-		List<V_warehouse_datailDto> list = warehouseService.list();
+		List<V_warehouse_detailDto> list = warehouseService.detailList();
 		model.addAttribute("warehouseDtoList", list);
 		return "wms/warehouse/manageWarehouse";
 	}
@@ -73,10 +89,11 @@ public class WarehouseController {
 	public String addAction(HttpServletRequest req, Model model) {
 		Map<String, String[]> paramMap = req.getParameterMap();
 		MyLog.logParamMap(paramMap);
-		int warehouseId = warehouseService.addAction(paramMap);
-		sectionService.addAction(paramMap, warehouseId);
+//		int warehouseId = warehouseService.addAction(paramMap);
+		warehouseService.addAction(paramMap);
+//		sectionService.addAction(paramMap, warehouseId);
 
-		return "wms/warehouse/warehouseList";
+		return "wms/warehouse/manageWarehouse";
 	}
 
 	@RequestMapping("/modify")
@@ -115,8 +132,8 @@ class WarehouseRestController {
 	// 거래처(구매처) 목록
 	@ResponseBody
 	@RequestMapping(value = "/info")
-	public List<V_warehouse_datailDto> warehouseList() {
-		return warehouseService.list();
+	public List<V_warehouse_simpleDto> warehouseList() {
+		return warehouseService.simpleList();
 	}
 
 }

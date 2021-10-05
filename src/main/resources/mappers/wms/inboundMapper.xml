@@ -5,12 +5,30 @@
 
 	<!-- TX_PURCHASE request 를 가져온다 -->
 	<select id="selectList"
-		resultType="com.kosmo88.logistics_erp.wms.dto.V_InboundDto">
-		select * from V_INBOUND
+		resultType="V_purchaseDto">
+		SELECT * FROM V_PURCHASE
 	</select>
 	
-	
-	
-	
+		<select id="selectMaxId"
+		resultType="int">
+		SELECT MAX(ID) 
+		FROM INBOUND
+	</select>
+
+	<select id="selectOne" 
+		parameterType="int"
+		resultType="V_purchaseDto">
+		SELECT * FROM v_PURCHASE
+		WHERE REQUEST_ID = ${request_id}
+	</select>
+
+	<!-- 입하 요청 등록 -->
+	<insert id="insert" parameterType="V_purchaseDto">
+		
+		
+	</insert>
+
+
+
 </mapper>
 
