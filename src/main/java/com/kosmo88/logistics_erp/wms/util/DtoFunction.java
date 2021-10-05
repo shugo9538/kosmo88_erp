@@ -78,65 +78,86 @@ public class DtoFunction {
 		return convertedValue;
 	}
 
-	public static Set getDtoSetFromIndexedParamMap(Map<String, String[]> paramMap, Class clazz,
+	public static Set<?> getDtoSetFromParamMap(Map<String, String[]> paramMap, Class<? extends Object> clazz,
 			int index) {
-		Set<Object> dtoSet = new HashSet<Object>();
-		try {
-			for (int i = 1; i <= index; i++) {
+		logMethodStart();
+		MyLog.logParamMap(paramMap);
 
-				// 컬럼이 되게 많은데, 그중에서 여기에 맞는 컬럼만 찾아야한다.
-				// 생각나는 방법
-				// 1. 번호를 기준으로 선정
-				// 2. 이름을 기준으로 선정
-				Map<String, String[]> newParamMap = new HashMap<String, String[]>();
-				// 람다 내에서는 지역변수 사용이 안돼서 일단 조잡하게 상수 복사..
-				final int j = i;
-				paramMap.entrySet().stream().filter(e -> e.getKey().contains(j + "")).forEach(e2 -> {
-					newParamMap.put(e2.getKey(), e2.getValue());
-				});
-				Object dto = clazz.newInstance();
-				dtoSet.add(getDtoFromParamMap(newParamMap, dto));
-			}
-		} catch (InstantiationException | IllegalAccessException e) {
-			e.printStackTrace();
-		}
-//		DtoFunction.class.String indexedParam;
-//		String param;
-//		String prop;
+		String param;
+		String paramValue;
+		String prop;
+		String propType;
 //		Set<String> settedPropSet = new HashSet<>();
-//		Iterator<String> paramItr = paramSet.iterator();
-//
-//		Class clazz = dto.getClass();
-//		Method[] methods = clazz.getDeclaredMethods();
-//
-//		for (int i = 0; i < index; i++) {
-//			while (paramItr.hasNext()) {
-//				indexedParam = paramItr.next();
-//				paramValue = paramMap.get(indexedParam);
-//				param = indexedParam.replace(indexedParam.charAt(indexedParam.length() - 1) + "", "");
-//				System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
-//
-//				// dto에서 프로퍼티 가져오기
-//				for (Method method : methods) {
-//					prop = methodNameToProperty(method.getName());
-//					if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
-//						try {
-//							for (int j = 0; j < paramValue.length; j++) {
-//								System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName()
-//										+ "실행 - " + paramValue[j] + " => " + prop);
-//								method.invoke(dto, paramValue[j]);
-//							}
-//						} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-//							e.printStackTrace();
-//						}
-//					}
-//				}
-//			}
-//			// 확인용
-//			checkSettedProperties(dto);
-//		}
+		Set<String> paramSet = paramMap.keySet();
+
+		Method[] methods = clazz.getDeclaredMethods();
+
+		Set<Object> dtoSet = new HashSet<>();
+		
+		
+		//일단 총 갯수가 2개 이상인 파라미터에 대해서만 작동하도록 돌려막기....
+		for (int i = 0; i < index; i++) {
+			try {
+				Object dto = clazz.newInstance();
+				Iterator<String> paramItr = paramSet.iterator();
+				while (paramItr.hasNext()) {
+					param = paramItr.next();
+					if(paramMap.get(param).length<index)continue;
+					paramValue = paramMap.get(param)[i];
+//					param = adjustParamName(param);
+//					System.out.println("요청 파라미터 : " + param + "  값 : " + paramValue);
+
+					// dto에서 프로퍼티 가져오기
+					for (Method method : methods) {
+						prop = methodNameToProperty(method.getName());
+						if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
+							try {
+
+								// 이걸 여기서가 아니라 처음부터 받아와서 해야돼.
+								System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName()
+										+ "실행 - " + paramValue + " => " + prop);
+//								paramType = paramValue.getClass().getSimpleName();
+								propType = method.getParameters()[0].getType().getSimpleName();
+//								System.out.println("파라미터 타입 : " + paramType + " 프로퍼티 타입 : " + propType);
+
+//								if (paramType == propType)
+//									method.invoke(dto, paramValue);
+//								else {
+								System.out.println("invoke : " + paramValue.getClass().getSimpleName() + " "
+										+ paramValue + " => " + prop);
+								switch (propType) {
+								case "String":
+									method.invoke(dto, paramValue);
+									break;
+								case "int":
+									method.invoke(dto, Integer.parseInt(paramValue));
+									break;
+								case "Double":
+									method.invoke(dto, Double.parseDouble(paramValue));
+									break;
+								case "Boolean":
+									method.invoke(dto, Boolean.parseBoolean(paramValue));
+									break;
+								case "Date":
+									method.invoke(dto, java.sql.Date.valueOf(paramValue));
+									break;
+								}
+							} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+				System.out.println("dtoSet <= Dto : " + dto);
+				dtoSet.add(dto);
+			} catch (InstantiationException | IllegalAccessException e1) {
+				e1.printStackTrace();
+			}
+		}
 		// 확인용
+		System.out.println("---- 쎗팅된 dtoSet");
 		dtoSet.stream().forEach((d) -> System.out.println(d));
+		System.out.println("뭬야");
 		return dtoSet;
 	}
 
@@ -145,7 +166,6 @@ public class DtoFunction {
 	// set한 프로퍼티의 목록을 Set으로 리턴하면 좋을것같다
 	public static Set<String> setDtoFromParamMap(Map<String, String[]> paramMap, Object dto) {
 		logMethodStart();
-//		Enumeration<String> parameterEnum = request.getParameterNames();
 
 		String param;
 		String[] paramValue;
@@ -166,9 +186,8 @@ public class DtoFunction {
 		while (paramItr.hasNext()) {
 			param = paramItr.next();
 			paramValue = paramMap.get(param);
-			param = adjustParamName(param);
-
-			System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
+//			param = adjustParamName(param);
+//			System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
 
 			// dto에서 프로퍼티 가져오기
 			for (Method method : methods) {

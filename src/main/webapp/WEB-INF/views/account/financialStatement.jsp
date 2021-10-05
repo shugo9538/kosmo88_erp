@@ -218,14 +218,7 @@
                               <td></td>
                               <td>541,997,000</td>
                             </tr>
-                            <tr class="total2">
-                              <td> Ⅱ. 이  익  잉  여  금    </td>
-                              <td></td>
-                              <td>3,629,439,406</td>
-                              <td></td>
-                              <td>2,595,570,600</td>
-                            </tr>
- 							<tr>
+ 							<tr class="total2">
                               <td>(당기순이익)</td>
                               <td></td>
                               <td></td>
@@ -251,7 +244,9 @@
                             <tr>
                               <td>자본총계(당기순이익+)</td>
                               <td></td>
-                              <td>4,171,436,406</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${asset7 - asset4}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>3,137,567,600</td>
                             </tr>

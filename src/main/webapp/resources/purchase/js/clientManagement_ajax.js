@@ -58,7 +58,14 @@ $(document).ready(function() {
                 itemRegister();
             },
             error : function() {
-                alert('오류');
+    			swal({
+    				title:"거래처 등록 오류",
+    				type: "error",
+    				text: "잠시 후 다시 시도해주세요!",
+    				timer: 2500
+    			}, function() {
+    				return false;
+    			});
             },
         });
 	});  
@@ -67,9 +74,8 @@ $(document).ready(function() {
 function itemRegister() {
     var list = new Array();
     var i = 0;
-    
     // 2.거래처 상품
-    $('#clientRegisterForm #item-group').each(function() {
+    $('#clientRegisterForm #item-group').children().each(function() {
         var dataObject = new Object();
         $('.form-control' + i).each(function() {
             var data = $(this);
@@ -81,7 +87,7 @@ function itemRegister() {
         list.push(dataObject);
         i++
     });
-    
+    list.pop();
     formData = JSON.stringify(list);
     // alert(formData);
     
@@ -100,15 +106,28 @@ function itemRegister() {
         },
         success : function(data) {
             if (data) {
-                alert('거래처가 등록되었습니다.');
-                $('.form-control').each(function() {
-                    $(this).val('');
-                });
-                currTab.ajax.reload();
+				swal({
+					title:"거래처 등록 성공",
+					type: "success",
+					text: "거래처가 등록되었습니다.",
+					timer: 2500
+				}, function() {
+	                $('#clientRegisterForm').find('input').each(function() {
+	                	$(this).val('');
+					});
+	                currTab.ajax.reload();
+				});
             }
         },
         error : function() {
-            alert('오류');
+			swal({
+				title:"거래처 등록 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
         },
     });
 }
@@ -235,12 +254,25 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
         },
         success : function(data) {
             if (data) {
-                alert('선택한 거래처가 삭제되었습니다');
-            	currTab.ajax.reload();
+				swal({
+					title:"거래처 삭제",
+					type: "success",
+					text: "선택한 거래처가 삭제되었습니다",
+					timer: 2500
+				}, function() {
+					currTab.ajax.reload();
+				});
             }
         },
         error : function() {
-            alert('오류');
+			swal({
+				title:"거래처 삭제 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
         },
     });
     
@@ -251,7 +283,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 //등록한 거래처(구매처) 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
-    	"order": [[ 1, "desc" ]],
+    	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredClientList', // 현 위치
             type : 'POST',

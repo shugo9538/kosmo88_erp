@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 @Repository
@@ -66,9 +68,28 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 
+	// 견적서 상세
 	@Override
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
+	}
+
+	// 견적서 상세(상품)
+	@Override
+	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id) {
+		return sqlSession.selectList(STATEMENT + ".getEstimateDetailItem", request_id);
+	}
+
+	// 견적서 등록
+	@Override
+	public int registerEstimate(SalesInsertEstimateDTO dto) {
+		return sqlSession.insert(STATEMENT + ".registerEstimate", dto);
+	}
+
+	// 견적서 아이템 등록
+	@Override
+	public int registerItemEstimate(SalesEstimateDetailViewDTO idto) {
+		return sqlSession.insert(STATEMENT + ".registerItemEstimate", idto);
 	}
 	
 	

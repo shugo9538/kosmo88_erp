@@ -3,10 +3,11 @@ var csrfData = {};
 var csrfParameter;
 var csrfToken;
 var preventMultiFlag = false;
-var attCol = [
+var employeeCol = [
         '전체 항목', '인사 코드', '코드 명칭', '코드 그룹', '코드 그룹 명칭'
 ];
 
+// 페이지 탭 시작 시
 $(document).ready(function() {
     var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
     var csrfToken = $("meta[name='_csrf']").attr("content");
@@ -18,104 +19,47 @@ $(document).ready(function() {
     console.log(currLocation.split('/')[5]);
     if (currLocation.split('/')[5] == 'employee') {
         $('#employeeDatatables').append('<table id="employeeTable" style="width:100%"></table>');
-        columns = [
-                {
-                    'sTitle' : '사원 코드',
-                    data : 'id'
-                }, {
-                    'sTitle' : '이름',
-                    data : 'name'
-                }, {
-                    'sTitle' : '사진',
-                    data : 'photo'
-                }, {
-                    'sTitle' : '주민등록번호',
-                    data : 'resident_reg_num'
-                }, {
-                    'sTitle' : '전화번호',
-                    data : 'phone'
-                }, {
-                    'sTitle' : '이메일',
-                    data : 'email'
-                }, {
-                    'sTitle' : '주소',
-                    data : 'address'
-                }, {
-                    'sTitle' : '입사일',
-                    data : 'hire_date'
-                }, {
-                    'sTitle' : '부서 코드',
-                    data : 'department_id'
-                }, {
-                    'sTitle' : '직급명',
-                    data : 'position_id'
-                }
-        ];
-
-        ordering = [
-                [
-                        0, 'desc'
-                ], [
-                        8, 'desc'
-                ], [
-                        9, 'desc'
-                ]
-        ];
+        columns = employeeColumns;
+        ordering = employeeOrder;
 
         url = '/selectEmployee';
         callEmployeeList(url, columns, ordering);
     }
 });
 
-$('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', function(event) {
-    csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-    csrfToken = $("meta[name='_csrf']").attr("content");
-    var list = new Array();
-    var i = 0;
-    $('#insertholidayForm #holiday').each(function() {
-        var dataObject = new Object();
-        $('.form-control' + i).each(function() {
-            var data = $(this);
-            dataObject[data.attr('name')] = data.val();
-        });
-        console.log(dataObject);
-        list.push(dataObject);
-        i++;
-    });
-    list.pop();
-    var formData = JSON.stringify(list);
-    var loc = $('#insertholidayForm').attr('action');
-    console.log(loc, formData);
+// 윗 탭 메뉴 버튼 눌렀을때
+var configTab = '#selectEmployee';
+$(document).on("click", configTab, function() {
+    $(this).parent().parent().find('li').removeClass('active');
+    $(this).parent().addClass('active').addClass('nav-hover');
+    url = '/' + $(this).attr('id');
 
-    if (preventMultiFlag) {
-        alert('처리중입니다.');
-        return false;
-    } else {
-        $.ajax({
-            type : 'POST',
-            url : loc + '?' + csrfParameter + '=' + csrfToken,
-            data : formData,
-            accept : "application/json",
-            contentType : "application/json; charset=utf-8",
-            dataType : 'text',
-            beforeSend : function(xhr) {
-                xhr.setRequestHeader(csrfParameter, csrfToken);
-            },
-            success : function(data) {
-                if (data) {
-                    preventMultiFlag = true;
-                    window.close();
-                }
-            },
-            error : function() {
-                alert('오류');
-            },
-        });
-    }
+    columns = employeeColumns;
+    ordering = employeeOrder;
 
-    event.preventDefault();
+    callEmployeeList(url, columns, ordering);
 });
 
+function setImage(event) { 
+    item = document.getElementById('img');
+    if(item != null) {
+        item.parentNode.removeChild(item);
+    }
+    
+    for (var image of event.target.files) { 
+        var reader = new FileReader(); 
+        reader.onload = function(event) { 
+            var img = document.createElement("img"); 
+            img.setAttribute("src", event.target.result);
+            img.setAttribute("id", "img"); 
+            document.querySelector("div#temp_image").appendChild(img); 
+        };         
+        reader.readAsDataURL(image); 
+    } 
+}
+
+
+// 테이블 호출
 function callEmployeeList(url, columns, ordering) {
     $("#employeeDatatables").empty();
     $('#employeeDatatables').append('<table id="employeeTable" style="width:100%"></table>');
@@ -123,39 +67,50 @@ function callEmployeeList(url, columns, ordering) {
     currTab = $('#employeeTable').DataTable({
         "dom" : '<"top"l>rt<"bottom"ip><"clear">',
         order : ordering,
+        select : true,
         ajax : {
             url : window.location.href + url,
             type : 'POST',
             data : csrfData,
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",  
             dataSrc : ''
         },
         columns : columns,
-        destroy : true,
+        destroy : true
     });
 
-    if (url == '/selectEmployee') {
-        $('#employeeDatatables').append('<button id="insertholiday">');
-        $('#employeeTable_length').after(
-                '<div id = employeeTable_filter style="text-align: right;"></div>');
-        $('#employeeTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
-        $('#employeeTable_filter').append(
-                '<input type="search" class="column_filter" id="searchBar">');
-        var searchDiv = $('#employeeTable_filter').find('label');
-        searchDiv.before('<select id="searchholiday" style="margin-right:10px">');
-        for (var i = 0; i < attCol.length; i++) {
-            $('#searchholiday').append('<option value=' + i + '>' + attCol[i] + '</option>');
-        }
+    $('#employeeTable_length').after(
+            '<div id = employeeTable_filter style="text-align: right;"></div>');
+    $('#employeeTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
+    $('#employeeTable_filter').append('<input type="search" class="column_filter" id="searchBar">');
 
-        $('#insertholiday').append('신규 등록');
-    } else if (url == 'commuteList') {
-        $('#employeeDatatables').append('<button id="insertCommute">');
-        $('#insertCommute').append('신규 등록');
+    $('#employeeDatatables').append('<button id="insertEmployee">');
+    $('#employeeDatatables').append('&nbsp;');
+    $('#employeeDatatables').append('<button id="deleteEmployeeCode">');
+    $('#insertEmployee').append('사원 등록').attr('class',
+            "btn btn-default outline-btn round set-color");
+    $('#deleteEmployeeCode').append('선택 삭제').attr('class', "btn btn-default outline-btn round set-color");
+
+    var searchDiv = $('#employeeTable_filter').find('label');
+    searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');
+    for (var i = 0; i < employeeCol.length; i++) {
+        $('#searchHRCode').append('<option value=' + i + '>' + employeeCol[i] + '</option>');
     }
+
+    currTab.on('click', 'tr', function(e, dt, type, indexes) {
+        $(this).dblclick(function() {
+            td = $(this).children();
+            loc = window.location.href + '/' + td.eq(1).text();
+            console.log(td);
+            var options = "width=1000,height=600,scrollbars=no,menubar=no,status=no,titlebar=no,left=150,top=200";
+            
+            win = window.open(loc, "popupWindow", options);
+        });
+    });
 }
 
-$.fn.dataTable.ext.errMode = 'throw';
-$('#employeeTable').ready(function() {
-    $('#searchholiday').on('click', function() {
+$('#employeeTable_filter').ready(function() {
+    $('#searchHRCode').on('click', function() {
         var searchingText = $('#searchBar').val();
         currTab.search('').columns().search('').draw();
         if (this.value == 0) {
@@ -165,36 +120,65 @@ $('#employeeTable').ready(function() {
         }
     });
 
-    $('#searchBar').on('keyup click', function() {
-        var col = $('#searchholiday').val();
+    $('#searchBar').on('change keyup input', function() {
+        var col = $('#searchHRCode').val();
         currTab.search('').columns().search('').draw();
         if (col == 0) {
+            console.log(col);
+            console.log(this.value);
             currTab.search(this.value).draw();
         } else {
             currTab.columns(col).search(this.value).draw();
         }
-
     });
 });
 
-// 날짜 형식 조정
-$.fn.dataTable.render.moment = function(from, to, locale) {
-    // Argument shifting
-    if (arguments.length === 1) {
-        locale = 'en';
-        to = from;
-        from = 'YYYY-MM-DD';
-    } else if (arguments.length === 2) {
-        locale = 'en';
-    }
+$("#updateEmployee").on('click', function() {
+   window.location = window.location.href + '/updatesEmployee';
+});
 
-    return function(d, type, row) {
-        if (!d) { return type === 'sort' || type === 'type' ? 0 : d; }
+var employeeColumns = [
+        {
+            'sTitle' : '<input type="checkbox">',
+            data : 'id',
+            render : function(data) {
+                return '<input type="checkBox" class="client_id" name="client_id" value="' + data
+                        + '">';
+            }
+        }, {
+            'sTitle' : '사원 코드',
+            data : 'id'
+        }, {
+            'sTitle' : '이름',
+            data : 'name'
+        }, {
+            'sTitle' : '전화번호',
+            data : 'phone'
+        }, {
+            'sTitle' : '이메일',
+            data : 'email'
+        }, {
+            'sTitle' : '입사일',
+            data : 'hire_date',
+            render : $.fn.dataTable.render.moment()
+        }, {
+            'sTitle' : '부서 코드',
+            data : 'department_id'
+        }, {
+            'sTitle' : '직급명',
+            data : 'position_id'
+        }, {
+            'sTitle' : '직급명',
+            data : 'name'
+        }
+];
 
-        var m = window.moment(d, from, locale, true);
-
-        // Order and type get a number value from Moment, everything else
-        // sees the rendered value
-        return m.format(type === 'sort' || type === 'type' ? 'x' : to);
-    };
-};
+var employeeOrder = [
+        [
+                1, 'desc'
+// ], [
+// 9, 'desc'
+// ], [
+// 10, 'desc'
+        ]
+];

@@ -14,6 +14,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 
 public interface EstimateService {
 	
@@ -30,8 +31,7 @@ public interface EstimateService {
 	public boolean estimateRegisterAction(PurchaseInsertEstimateDTO dto);
 	
 	// 견적서 상품 등록 처리
-	
-	
+	public boolean itemRegisterAction(PurchaseInsertEstimateDTO dto);
 	
 	// 견적서 상세페이지
 	public void estimateDetail(HttpServletRequest req, Model model);
@@ -41,5 +41,8 @@ public interface EstimateService {
 	
 	// 견적서 삭제(상세페이지에서 단일 삭제)
 	public void estimateDelete(HttpServletRequest req, Model model);
+	
+	// 거래처 상품 불러오기
+	public List<PurchaseItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res);
 	
 }

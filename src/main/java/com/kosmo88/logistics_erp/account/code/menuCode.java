@@ -15,21 +15,26 @@ public interface menuCode {
 	
 	// 각 부서별 department_id
 	// 각 부서별 요청 코드 departement_request
-	int HR = 1;
-	String HR_STATE = "";
+	
+	//인사100 회계 200 영업 300 구매 400 물류 500
+	
+	int HR = 100;//   
+	String HR_STATE = "RX_SALARY";
 	String PAYMENT_STATE ="이체완료"; // 급여 일반전표 승인
 	
-	int PURCHASE = 200;
-	String PURCHASE_STATE = "TX_PURCHASE";
+	int ACCOUNT = 200;
+	String ACCOUN_STATE  = "UTILITY_BILL";
+	String ACCOUN_UTIL  = "UTILITY_BILL";
 	
 	int SALE = 300;
-	String SALE_STATE = "RX_SALE";
+	String SALE_STATE = "RX_SALE";    
 	
-	int WMS = 400;
-	String WMS_STATE = "";
+	int PURCHASE = 400;
+	String PURCHASE_STATE = "TX_PURCHASE";
 	
-	int ACCOUNT = 500;
-	String ACCOUN_STATE  = "";
+	int WMS = 500;
+	String WMS_STATE = "SHIPPING";
+	
 	
 	// 승인
 	String CONFRIM = "Y";
@@ -41,9 +46,10 @@ public interface menuCode {
 	int UNIDENTIFIED = 11;
 	// 승인전표인경우
 	int APPROVED = 12;
-	
-	// 성공
-	int SUCCESS  = 13;
+	// 전표 최종 상태 변경 및 승인
+	int SUCCESS = 13;
+	// 전표 승인완료 request_tbl 실패
+	int FAIL = 14;
 	
 	
 	

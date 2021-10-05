@@ -24,11 +24,8 @@
 			<!--END Page Title-->
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
-				<li class="active">
-					<a id="selectHRCode">인사카드 관리</a>
-				</li>
-				<li class="active">
-					<a id="selectDepartments">사원 계정 등록</a>
+				<li class="nav-item active">
+					<a id="selectEmployee">인사카드 관리</a>
 				</li>
 			</ul>
 			<!--End Page Tab-->

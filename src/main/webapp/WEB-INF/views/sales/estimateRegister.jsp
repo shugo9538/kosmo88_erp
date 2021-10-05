@@ -29,7 +29,7 @@
 					<div class="white-box" id="white-box">
 						<form class="form-horizontal" name="estimateRegisterForm"
 							id="estimateRegisterForm"
-							action="${ROOT_PATH}/sales/estimateRegister/estimateRegisterAction" method="post">
+							action="${ROOT_PATH}/sales/estimateRegisterAction" method="post">
 							<!-- csrf 토큰 -->
 							<sec:csrfInput />
 							<h2 class="header-title">
@@ -37,9 +37,11 @@
 							</h2>
 
 							<table id="estimate" class="display table mt-12" style="width:100%">
+								
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
                             		<td>
+                            			<input type="hidden" name="client_id" id="client_id">
                             			<input type="text" name="name" id="name">
                             			<input type="button" class="btn  btn-primary" id="selectClient" name="selectClient" value="거래처 선택">
                             		</td>
@@ -89,12 +91,13 @@
 								<tr>
                             		<th style="background-color: #f1f1f1;">담당자</th>
                             		<td>
+                            			<input type="hidden" name="employee_id" id="employee_id">
                             			<input type="text" name="employee_name" id="employee_name">
                             			<input type="button" class="btn  btn-primary" id="selectEmployee" value="담당자 선택">
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="employee_dp" id="employee_dp" placeholder="담당자 부서">
+                            			<input type="text" name="employee_dp" id="department_name" placeholder="담당자 부서">
                             		</td>
                             	</tr>
                             	<tr>
@@ -112,7 +115,6 @@
                             		<td>
                             			<input type="date" name="" id="" >
                             		</td>
-                            		<th style="background-color: #f1f1f1;">담당자 이메일</th>
                             	</tr>
 								
 							</table>
@@ -130,6 +132,7 @@
 										
 										<th style="background-color: #f1f1f1;">상품명</th>
 										<th style="background-color: #f1f1f1;">상품종류</th>
+										<th style="background-color: #f1f1f1;">구매단가</th>
 										<th style="background-color: #f1f1f1;">판매단가</th>
 										<th style="background-color: #f1f1f1;">수량</th>
 										<th style="background-color: #f1f1f1;">공급가액</th>
@@ -137,38 +140,104 @@
 									</tr>
 								</thead>
 								<tbody id="item-group">
+									<!-- item1 -->
 									<tr>
 										<td>
 											<div>
-											<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
+												<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
+												<input type="hidden" name="item_id" id="item_id">
 											</div>
 											
 										</td>
 										<td>
-											<input class="form-control" name="item_name" id="item_name" type="text" placeholder="상품명">
+											<input class="form-control" name="item_name" id="item_name" type="text" placeholder="상품명" readonly required>
 										</td>
 										<td>
-										<input class="form-control" name="category" id="category"
-											type="text" placeholder="상품종류">
+										<input class="form-control" name="category" id="category" type="text" placeholder="상품종류" readonly required>
 										</td>
 										<td>
-											<input class="form-control" name="price" id="price" type="text" value="" placeholder="판매단가">
+											<input class="form-control" name="price" id="price" type="text" value="" placeholder="구매단가" readonly required>
 										</td>
 										<td>
-											<input style="padding:5px; border-color:#dbdbdb;" name="amount" id="amount" type="text" onchange="change();">
+											<input class="form-control" name="sale_price" id="sale_price" type="text" value="" placeholder="판매단가" onchange="price()" readonly required>
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount" id="amount" type="text"  onchange="change();" readonly required>
 											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
 											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
 										</td>
 										<td>
-											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly> 
+											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly required>
+										</td>
+									</tr>
+									
+									<!-- item2 -->
+									<tr>
+										<td>
+											<div>
+											<input type="button" class="btn  btn-primary" id="selectItem2" value="상품선택">
+											</div>
+											
+										</td>
+										<td>
+											<input class="form-control" name="item_name2" id="item_name2" type="text" placeholder="상품명">
+										</td>
+										<td>
+										<input class="form-control" name="category2" id="category2"
+											type="text" placeholder="상품종류">
+										<td>
+											<input class="form-control" name="price2" id="price2" type="text" value="" placeholder="구매단가" >
+										</td>
+										<td>
+											<input class="form-control" name="sale_price2" id="sale_price2" type="text" value="" placeholder="판매단가" onchange="price2()">
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount2" id="amount2" type="text"  onchange="change2();">
+											<input style="padding:2px;" type="button" value=" + " onclick="add2();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del2();">                                 
+										</td>
+										<td>
+											<input class="form-control" name="total_price2" id="total_price2" type="text" min="0" readonly> 
+										</td>
+									</tr>
+									
+									<!-- item3 -->
+									<tr>
+										<td>
+											<div>
+											<input type="button" class="btn  btn-primary" id="selectItem3" value="상품선택">
+											</div>
+											
+										</td>
+										<td>
+											<input class="form-control" name="item_name3" id="item_name3" type="text" placeholder="상품명">
+										</td>
+										<td>
+										<input class="form-control" name="category3" id="category3"
+											type="text" placeholder="상품종류">
+										</td>
+										<td>
+											<input class="form-control" name="price3" id="price3" type="text" value="" placeholder="구매단가" >
+										</td>
+										<td>
+											<input class="form-control" name="sale_price3" id="sale_price3" type="text" value="" placeholder="판매단가" onchange="price3()">
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb;" name="amount3" id="amount3" type="text"  onchange="change3();">
+											<input style="padding:2px;" type="button" value=" + " onclick="add3();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del3();">                                 
+										</td>
+										<td>
+											<input class="form-control" name="total_price3" id="total_price3" type="text" min="0" readonly> 
 										</td>
 									</tr>
 								</tbody>
 							</table>
+							
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="estimateRegisterAction"
-										type="button" value="등록"> <input
+										type="submit" value="등록"> <input
 										class="btn  btn-default" type="reset" value="취소">
 								</div>
 							</div>

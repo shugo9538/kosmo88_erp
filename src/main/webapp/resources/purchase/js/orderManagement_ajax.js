@@ -165,6 +165,22 @@ function orderList() {
                 }, {
                     data : 'begin_date',
                     render : $.fn.dataTable.render.moment()
+                }, {
+                	data : 'begin_date',
+                    render : $.fn.dataTable.render.moment()
+                }, {
+                	data : 'slip_state',
+                	render : function(data) {
+                		if (data == 'R') return '<input class="btn  btn-primary" type="button" id="btn" value="주문요청">';
+                		else if (data == 'N') return '<input class="btn  btn-defalt" type="button" id="btn" value="승인대기">';
+                		else if(data == 'Y') return '<input class="btn  btn-defalt" type="button" id="btn" value="승인완료">';
+                	}
+                }, {
+                	data : 'request_state',
+                	render : function(data) {
+                		if (data == 'TX_PURCHASE') return '<input class="btn  btn-defalt" type="button" id="btn" value="출고준비">';
+                		else if (data == 'TX_RECEIVING') return '<input class="btn  btn-defalt" type="button" id="btn" value="출고완료">';
+                	}
                 }
         ],
         destroy : true,
@@ -243,7 +259,7 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
 //등록한 발주서 목록
 function registeredOrderList() {
     currTab = $('#registeredOrderList').DataTable({
-    		"order": [[ 1, "desc" ]],
+    	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredOrderList', // 현 위치
             type : 'POST',

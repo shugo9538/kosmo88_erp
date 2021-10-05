@@ -8,12 +8,30 @@ public class EmployeeDTO {
     private String resident_reg_num;
     private String photo;
     private String phone;
+    private int zip_code;
+    private String detail_address;
     private String email;
     private String address;
     private Date hire_date;
     private int department_id;
     private int position_id;
     private char enabled;
+
+    public int getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(int zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public String getDetail_address() {
+        return detail_address;
+    }
+
+    public void setDetail_address(String detail_address) {
+        this.detail_address = detail_address;
+    }
 
     public String getId() {
         return id;

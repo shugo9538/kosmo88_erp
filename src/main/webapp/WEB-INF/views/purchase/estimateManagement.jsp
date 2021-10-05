@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -53,7 +55,7 @@
 	                                    <!-- p_estimate_list_view -->
 	                                    <th>견적번호</th> 		<!-- request_id -->
                                         <th>거래처</th>		<!-- client_name  -->
-                                        <th>거래처 대표자</th>  <!-- client_ceo_name  -->
+                                        <th>거래처대표자</th>  <!-- client_ceo_name  -->
                                         <th>거래처 연락처</th>  <!-- client_phone  -->
                                         <th>담당자</th>		<!-- employee_name  -->
                                         <th>요청일자</th> 	 	<!-- begin_date  -->

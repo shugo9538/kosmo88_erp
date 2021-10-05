@@ -18,4 +18,6 @@
 <script src="${RESOURCES_PATH}/hr/js/employeeManagement.js"></script>
 <script src="${RESOURCES_PATH}/hr/js/salaryManagement.js"></script>
 <script src="${RESOURCES_PATH}/hr/js/paySlipManagement.js"></script>
+<script src="${RESOURCES_PATH}/hr/js/insert.js"></script>
+<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
 

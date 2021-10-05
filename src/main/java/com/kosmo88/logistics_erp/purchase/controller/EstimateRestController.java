@@ -70,19 +70,23 @@ public class EstimateRestController {
     	estimateService.estimateRegisterAction(dto);
     	return true;
     }
-}    
-
-/*    
     
 	// 견적서 상품 등록 처리
-    @RequestMapping(value = "/clientRegister/itemRegisterAction")
-    public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
+    @ResponseBody
+    @RequestMapping(value = "/estimateRegister/itemRegisterAction")
+    public boolean itemRegisterAction(@RequestBody List<PurchaseInsertEstimateDTO> dtos) {
         System.out.println(dtos);
-    	for (PurchaseItemDTO dto : dtos) {
-    		clientService.itemRegisterAction(dto);
-    		System.out.println(dto.getName());
+    	for (PurchaseInsertEstimateDTO dto : dtos) {
+    		estimateService.itemRegisterAction(dto);
+    		System.out.println(dto.getItem_id());
     	}
     	return true;
     }
-*/  
-
+    
+    // 거래처 상품 불러오기
+    @ResponseBody
+    @RequestMapping(value = "/estimateRegister/estimateItemList")
+    public List<PurchaseItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
+    	return estimateService.estimateItemList(req, res);
+    }
+}    

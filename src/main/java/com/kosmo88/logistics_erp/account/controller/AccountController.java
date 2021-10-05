@@ -44,26 +44,7 @@ public class AccountController {
         return "account/financialFunds";
     }
 
-    
-    // 달력확인
-    //jQuery
-    @RequestMapping(value = "/jQuery")
-    public String jQuery(HttpServletRequest request, Model model) {
-    	logger.info("/jQuery");
-        return "account/temp/jQuery";
-    }
-    //jQuery
-    @RequestMapping(value = "/jQuery1")
-    public String jQuery1(HttpServletRequest request, Model model) {
-    	logger.info("/jQuery1");
-        return "account/temp/jQuery1";
-    }
-    //jQuery
-    @RequestMapping(value = "/jQuery2")
-    public String jQuery2(HttpServletRequest request, Model model) {
-    	logger.info("/jQuery2");
-    	return "account/temp/jQuery2";
-    }
+
     //jQuery
     @RequestMapping(value = "/sweetalert")
     public String sweetalert(HttpServletRequest request, Model model) {
@@ -71,7 +52,6 @@ public class AccountController {
     	return "account/temp/sweetalert";
     }
     //------------------------ 기초정보관리 ------------------------
-    //
     // 기초정보관리 - 거래처 목록
     @RequestMapping(value = "/clientList")
     public String clientList(Model model) {
@@ -118,6 +98,7 @@ public class AccountController {
     	return "account/slipConfirmAction";
     }
     
+    
   //------------------------ 장부관리/매입/매출 전표 ------------------------
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
@@ -129,25 +110,26 @@ public class AccountController {
         return "account/salesSlipList";
     }
 
-    // 장부관리 - 매입/매출장(매출전표목록)
+    // 장부관리 - 매출전표 조회
     @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
     	
     	//service.accountingList(request, model);
+    	service.salesList(model);
     	
         return "account/salesList";
     }
     
-    // 장부관리 - 매입/매출장(매입전표목록)
+    // 장부관리 - 매입전표 조회
     @RequestMapping(value = "/purchaseList")
     public String purchase(HttpServletRequest request, Model model) {
     	logger.info("/purchaseList");
     	
     	//service.accountingList(request, model);
+    	service.purchaseList(model);
     	
         return "account/purchaseList";
     }
-    
     //------------------------ 금융/자금관리 ------------------------
     // 금융자금 - 통장목록 리스트
     @RequestMapping(value = "/accountList")

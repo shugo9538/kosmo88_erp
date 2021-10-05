@@ -29,11 +29,25 @@ $(document).ready(function() {
 		
 	});
 	
-	// 상품 선택
+	// 상품 선택1
 	$("#selectItem").click(function(){
 		
 		var url = "/logistics_erp/sales/selectItem"
 		window.open(url, "select", "menubar=no, width=1400, height=900");
+	});
+	
+	// 상품 선택2
+	$("#selectItem2").click(function(){
+		
+		var url = "/logistics_erp/sales/selectItem2"
+		window.open(url, "select2", "menubar=no, width=1400, height=900");
+	});
+	
+	// 상품 선택3
+	$("#selectItem3").click(function(){
+		
+		var url = "/logistics_erp/sales/selectItem3"
+		window.open(url, "select3", "menubar=no, width=1400, height=900");
 	});
 	
 	
@@ -88,19 +102,22 @@ function nextPhone3() {
 var price;
 var amount;
 
-function init () {
-	price = document.estimateRegisterForm.price.value;
+function init() {
+	sale_price = document.estimateRegisterForm.sale_price.value;
 	amount = document.estimateRegisterForm.amount.value;
-	document.estimateRegisterForm.total_price.value = price;
+	document.estimateRegisterForm.total_price.value = sale_price;
 	change();
 }
 
+function sale_price(){
+	init();
+}
 function add () {
 	hm = document.estimateRegisterForm.amount;
-	total_price = document.estimateRegisterForm.total_price;
+//	total_price = document.estimateRegisterForm.total_price;
 	hm.value ++ ;
 
-	total_price.value = parseInt(hm.value) * price;
+	total_price.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price.value;
 }
 
 function del () {
@@ -108,21 +125,111 @@ function del () {
 	total_price = document.estimateRegisterForm.total_price;
 		if (hm.value > 1) {
 			hm.value -- ;
-			total_price.value = parseInt(hm.value) * price;
+			total_price.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price.value;
 		}
 }
 
 function change () {
 	hm = document.estimateRegisterForm.amount;
 	total_price = document.estimateRegisterForm.total_price;
-
 		if (hm.value < 0) {
 			hm.value = 0;
 		}
-		total_price.value = parseInt(hm.value) * price;
+		total_price.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price.value;
+}
+
+//----------------
+var sale_price2;
+var amount2;
+
+function init () {
+	sale_price2 = document.estimateRegisterForm.sale_price2.value;
+	amount2 = document.estimateRegisterForm.amount2.value;
+	document.estimateRegisterForm.total_price2.value = sale_price2;
+	change2();
+}
+
+function sale_price2(){
+//	price = document.estimateRegisterForm.price.value;
+//	console.log("test")
+//	price = document.getElementById("price").getAttribute("value");
+//	console.log(price);
+	init();
+}
+function add2 () {
+	hm = document.estimateRegisterForm.amount2;
+//	total_price = document.estimateRegisterForm.total_price;
+	hm.value ++ ;
+
+	total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price2.value;
+}
+
+function del2 () {
+	hm = document.estimateRegisterForm.amount2;
+	total_price2 = document.estimateRegisterForm.total_price2;
+		if (hm.value > 1) {
+			hm.value -- ;
+			total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price2.value;
+		}
+}
+
+function change2 () {
+	console.log("onchange")
+	hm = document.estimateRegisterForm.amount2;
+	total_price2 = document.estimateRegisterForm.total_price2;
+	
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+		total_price2.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price2.value;
 }
 
 
+//----------------
+var sale_price3;
+var amount3;
+
+function init () {
+	sale_price3 = document.estimateRegisterForm.sale_price3.value;
+	amount3 = document.estimateRegisterForm.amount3.value;
+	document.estimateRegisterForm.total_price3.value = sale_price3;
+	change3();
+}
+
+function sale_price3(){
+//	price = document.estimateRegisterForm.price.value;
+//	console.log("test")
+//	price = document.getElementById("price").getAttribute("value");
+//	console.log(price);
+	init();
+}
+function add3 () {
+	hm = document.estimateRegisterForm.amount3;
+//	total_price = document.estimateRegisterForm.total_price;
+	hm.value ++ ;
+
+	total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price3.value;
+}
+
+function del3 () {
+	hm = document.estimateRegisterForm.amount3;
+	total_price3 = document.estimateRegisterForm.total_price3;
+		if (hm.value > 1) {
+			hm.value -- ;
+			total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price3.value;
+		}
+}
+
+function change3 () {
+	console.log("onchange")
+	hm = document.estimateRegisterForm.amount3;
+	total_price3 = document.estimateRegisterForm.total_price3;
+	
+		if (hm.value < 0) {
+			hm.value = 0;
+		}
+		total_price3.value = parseInt(hm.value) * document.estimateRegisterForm.sale_price3.value;
+}
 
 
 

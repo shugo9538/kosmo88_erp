@@ -70,7 +70,7 @@
 										class="input" name="email3" onchange="selectEmailChk();">
 											<option value="0">직접입력</option>
 											<option value="naver.com">네이버</option>
-											<option value="google.com">구글</option>
+											<option value="gmail.com">구글</option>
 											<option value="nate.com">네이트</option>
 											<option value="daum.net">다음</option>
 									</select></td>
@@ -85,9 +85,10 @@
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
-									<td colspan="3"><input type="text" name="zip_code"
+									<td colspan="3">
+										<input type="text" name="zip_code"
 										id="zip_code" required placeholder="우편번호">
-										<button type="button" id="search_zip_code"
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
 											name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
 									</td>
 								</tr>
