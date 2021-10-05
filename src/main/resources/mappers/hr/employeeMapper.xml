@@ -12,4 +12,23 @@
 		SELECT *
 		  FROM employee
 	</select>
+	
+	<insert id="insertEmployee" parameterType="EmployeeDTO">
+		INSERT INTO employee(id, name, photo, resident_reg_num, phone
+						   , email, address, hire_date, department_id
+						   , position_id, enabled, detail_address, zip_code)
+		VALUES(#{id}||employee_seq.nextval, #{name}, #{photo}
+		     , #{resident_reg_num}, #{phone}, #{email}, #{address}
+		     , #{hire_date}, #{department_id}, #{position_id}
+		     , #{enabled}, #{detail_address}, #{zip_code})
+	</insert>
+	
+		<!-- 인사카드 목록 조회-->
+	<select
+		id="detailEmployee"
+		resultType="EmployeeDTO">
+		SELECT *
+		  FROM employee
+		 WHERE id = #{id}
+	</select>
 </mapper>

@@ -23,7 +23,7 @@
 			</div>
 			<!--END Page Title-->
 			<!--Start Page Tab-->
-			<ul class="nav nav-tabs nav-pills custom-nav">
+			<ul class="nav nav-pills custom-nav">
 				<li class="nav-item active">
 					<a id="selectEmployee">인사카드 관리</a>
 				</li>
