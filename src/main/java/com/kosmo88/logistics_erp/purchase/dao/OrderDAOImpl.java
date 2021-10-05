@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO;
 
@@ -29,13 +30,7 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.update(STATEMENT + ".deleteOrder", request_id);
 	}
 
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

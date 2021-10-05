@@ -76,18 +76,4 @@ public class EstimateController {
     	
         return "purchase/estimateDelete";
     }   
-    
-    
-/*  
-    
-    // 견적서 등록
-    @RequestMapping(value = "/estimateRegister") 
-    public String estimateRegister(HttpServletRequest req, Model model) {
-    	
-    	// service.registerEstimate
-    	
-    	return "purchase/estimateRegister";
-    }
-    
-*/    
 }

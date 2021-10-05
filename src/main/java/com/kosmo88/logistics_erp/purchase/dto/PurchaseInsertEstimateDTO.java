@@ -3,10 +3,11 @@ package com.kosmo88.logistics_erp.purchase.dto;
 // 견적서 등록 DTO
 public class PurchaseInsertEstimateDTO {
 	
-	private int request_id;						// 거래처코드	
+	private int request_id;						// 거래처코드
 	private int employee_id;					// 사원번호	
 	private int client_id;						// 거래처코드   
 	private int item_id;						// 상품코드
+	private int quantity;						// 상품수량
 	
 /*	 
  	한건
@@ -59,6 +60,14 @@ public class PurchaseInsertEstimateDTO {
 
 	public void setItem_id(int item_id) {
 		this.item_id = item_id;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }
