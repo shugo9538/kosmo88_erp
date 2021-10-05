@@ -28,6 +28,7 @@
 
 		<!-- header section start-->
 		<%@ include file="../common/header.jsp"%>
+		<%@ include file="common/accountHeader.jsp"%>
 		<!-- header section end-->
 
 		<!--body wrapper start-->
@@ -83,22 +84,33 @@
 								<tbody>
 									<c:forEach var="dto" items="${slip}">
 										<input type="hidden" name="slip_id" ${dto.id}/>
-									
 										<tr>
 											<td>
 												<input type="checkbox" id="slipid_chk" name="slipid_chk" value="${dto.id}" 
 													onclick="checkbox_slipId(this)">
 											</td>
 											<td>
-											<%-- <a href="${ROOT_PATH}/account/slipModifyDetail?id=${dto.id}">
-												${dto.id}</a> --%>
-											${dto.id}
+												<a href="#">${dto.id}</a>
 											</td>
-											<td>${dto.type}</td>
+											<td>
+												<c:choose>
+													<c:when test="${dto.type == 'DEPOSIT'}">
+													입금
+													</c:when>
+													<c:when test="${dto.type == 'WITHDRAW'}">
+													출금
+													</c:when>
+													<c:when test="${dto.type == 'GENERAL'}">
+													일반
+													</c:when>
+												</c:choose>
+											
+											</td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 													value="${dto.register_date}" /></td>
 											<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 													value="${dto.update_date}" /></td>
+											
 											<!-- 전표 승인 여부 확인 -->
 											<td><c:choose>
 													<c:when test="${dto.state eq 'Y'}">
@@ -110,11 +122,23 @@
 												</c:choose></td>
 
 											<td><c:choose>
-													<c:when test="${dto.department_id == 1}">
-	                                        			인사팀
-	                                        			</c:when>
 													<c:when test="${dto.department_id == 2}">
 	                                        			개발팀
+	                                        			</c:when>
+													<c:when test="${dto.department_id == 100}">
+	                                        			인사팀
+	                                        			</c:when>
+													<c:when test="${dto.department_id == 200}">
+	                                        			회계팀
+	                                        			</c:when>
+													<c:when test="${dto.department_id == 300}">
+	                                        			영업팀
+	                                        			</c:when>
+													<c:when test="${dto.department_id == 400}">
+	                                        			구매팀
+	                                        			</c:when>
+													<c:when test="${dto.department_id == 500}">
+	                                        			물류팀
 	                                        			</c:when>
 												</c:choose></td>
 										</tr>
@@ -138,59 +162,43 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="white-box">
-						<h2 class="header-title">전표번호 : 11111</h2>
+						<h2 class="header-title">전표 상세정보</h2> 
+						<h3 class="header-title">전표번호 : 11111 (주문번호 : 22222)</h3>
 						<div class="table-responsive">
 							<table id="example" class="table table table-hover m-0">
 								<thead>
-									<tr>
-										<th>순번</th>
-										<th>구분</th>
-										<th>코드</th>
-										<th>계정과목</th>
-										<th>거래처코드</th>
-										<th>거래처명</th>
-										<th>사업자번호</th>
-										<th>금액</th>
-										<th>적요명</th>
+									<tr class="slip_defail">
+										<th>담당 부서 :</th>
+										<th>담당자 : </th>
+										<th colspan="3">담당자 연락처 :</th>
+									</tr>
+									
+									<tr class="slip_defail">
+										<th>주문일자 : </th>
+										<th>요청일자 : </th>
+										<th>거래처명 : </th>
+										<th>사업자번호 : </th>
+										<th>연락처 : </th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>1</td>
-										<td>차변</td>
-										<td>81900</td>
-										<td>지급임차료</td>
-										<td>00095</td>
-										<td>한국렌트카(주)</td>
-										<td>666-81-12343</td>
-										<td>5,000,000</td>
-										<td>일반매입</td>
-										<td></td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>대변</td>
-										<td>13500</td>
-										<td>부가세대급금</td>
-										<td>00095</td>
-										<td>한국렌트카(주)</td>
-										<td>666-81-12343</td>
-										<td>500,0000</td>
-										<td>매입부가세</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>대변</td>
-										<td>25100</td>
-										<td>외상매입금</td>
-										<td>00095</td>
-										<td>한국렌트카(주)</td>
-										<td>666-81-12343</td>
-										<td>5,500,000</td>
-										<td>외상매입금 발생</td>
-										<td></td>
+										<td>상품명</td>
+										<td>상품종류</td>
+										<td>판매단가</td>
+										<td>수량</td>
+										<td>공급가액</td>
 									</tr>
 								</tbody>
+								<tfoot>
+									<tr>
+										<td>ㅇ</td>
+										<td>ㅇ</td>
+										<td>ㅇ</td>
+										<td>ㅇ</td>
+										<td>ㅇ</td>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>

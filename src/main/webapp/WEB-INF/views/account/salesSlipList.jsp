@@ -9,24 +9,6 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>회계관리 - 일반전표</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- //제이쿼리 ui css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- //제이쿼리 style css -->
-<link rel="stylesheet" href="/resources/demos/style.css">
-<!-- //제이쿼리 js -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!-- //제이쿼리 ui js -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- jQuery datepicker 한국어 전환 -->
-<script src="/logistics_erp/resources/accounting/js/datepicker-ko.js">
-    /* datepicker */
-    $(function() {
-        // 매입매출장 목록
-        $("#statd_date").datepicker(); // 검색시작일
-        $("#end_date").datepicker(); // 검색 마지마막일
-    });
-</script>
 </head>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -157,12 +139,12 @@
 										<!-- 공금가액 + 세액 합계  -->
 										<c:set var="sum_total" value="${sum_total + dto.supply_amount + dto.tax_amount}" />
 									</tr>
+								</c:forEach>
 							</tbody>
 							<tfoot>
-								</c:forEach>
 								<tr style="background-color: ghostwhite; font-weight: bold;">
 									<td colspan="5" align="center">합계</td>
-									<td>${cnt}건(매수${cnt}매)</td>
+									<td>0건(매수0매)</td>
 									<td>
 										<fmt:formatNumber pattern="###,###,###,###" value="${sum_supply}" />
 									</td>

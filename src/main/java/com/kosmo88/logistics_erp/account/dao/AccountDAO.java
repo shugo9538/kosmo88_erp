@@ -39,15 +39,13 @@ public interface AccountDAO {
 	public int updateSlipState(Map<String, Object> map);
 	public int updateRequestState(Map<String, Object> map);
 
-	// 매입,매출장 관리
-	// 매입,매출장 목록
-	public int getSalesPurchaseCnt(String type);
-	// 매입, 매출 목록
-	public List<SalesSlipDTO> selectSalesPurchase(Map<String, Object> map);
-	// 매입,매출전표 건수
-	public int getSalesSlipCnt();
-	// 매입/매출전표 조회
+	// 매입,매출장
+	// 매입,매출장 조회
 	public List<SalesSlipDTO> selectSalesSlip();
+	// 매입전표 조회
+	public List<SalesSlipDTO> selectPurchaseList();
+	// 매출전표 조회
+	public List<SalesSlipDTO> selectSalesList();
 	
 	// 금융자금관리
 	// 통장 거래내역 건수

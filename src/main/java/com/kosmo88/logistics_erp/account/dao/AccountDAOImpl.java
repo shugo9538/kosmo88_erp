@@ -28,39 +28,39 @@ public class AccountDAOImpl implements AccountDAO {
 	// 거래처 목록건수
 	@Override
 	public int getClientCnt() {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.getClientCnt");
+		return sqlSession.selectOne(STATEMENT + ".getClientCnt");
 	}
 	// 거래처 목록조회
 	@Override
 	public List<ClientDTO> selectClient() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectClient");
+		return sqlSession.selectList(STATEMENT + ".selectClient");
 	}
 	// 신규 거래처 등록
 	@Override
 	public int insertClient() {
-		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertClient");
+		return sqlSession.insert(STATEMENT + ".insertClient");
 	}
 	// 거래처 정보 수정
 	@Override
 	public int updeateClient(int register_num) {
-		return sqlSession.update("com.kosmo88.logistics_erp.account.dao.AccountDAO.updeateClient", register_num);
+		return sqlSession.update(STATEMENT + ".updeateClient", register_num);
 	}
 	// 거래처 목록 삭제
 	@Override
 	public int deleteClient(int register_num) {
-		return sqlSession.delete("com.kosmo88.logistics_erp.account.dao.AccountDAO.deleteClient", register_num);
+		return sqlSession.delete(STATEMENT + ".deleteClient", register_num);
 	}
 	
 	// ------------------------------ 일반전표/장부관리 ------------------------------
 	// 일반전표 건수
 	@Override
 	public int getSlipCnt() {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.getSlipCnt");
+		return sqlSession.selectOne(STATEMENT + ".getSlipCnt");
 	}
 	// 일반전표 조회
 	@Override
 	public List<SlipDTO> selectSlipList() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlipList");
+		return sqlSession.selectList(STATEMENT + ".selectSlipList");
 	}
 	// 일반전표 단건 조회
 	@Override
@@ -86,41 +86,32 @@ public class AccountDAOImpl implements AccountDAO {
 	
 	
 	// ------------------------------ 매입/매출전표 ------------------------------
-	// 매입/매출전표 건수
-	@Override
-	public int getSalesSlipCnt() {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.getSalesSlipCnt");
-	}
-	// 매입or매출 전표 건수조회
-	@Override
-	public int getSalesPurchaseCnt(String type) {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.getSalesPurchaseCnt", type); 
-	}
-	
-	// 공급가액 합계조회
-	// 세액 합계조회
-	// 공급가액  + 세액 합계조회
-	// 매입/매출전표 전체목록
+	// 매입매출장 조회
 	@Override
 	public List<SalesSlipDTO> selectSalesSlip() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSalesSlip");
+		return sqlSession.selectList(STATEMENT + ".selectSalesSlip");
 	}
-	// 매입or매출 전표 목록 조회
+	// 매입전표 조회
 	@Override
-	public List<SalesSlipDTO> selectSalesPurchase(Map<String, Object> map){
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSalesPurchase", map); 
+	public List<SalesSlipDTO> selectPurchaseList(){
+		return sqlSession.selectList(STATEMENT + ".selectPurchaseList"); 
 	
+	}
+	// 매출전표 조회
+	@Override
+	public List<SalesSlipDTO> selectSalesList() {
+		return sqlSession.selectList(STATEMENT + ".selectSalesList"); 
 	}
 	// ------------------------------ 금융/자금관리 ------------------------------
 	// 계좌 건수조회
 	@Override
 	public int getAccountCnt() {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.getAccountCnt");
+		return sqlSession.selectOne(STATEMENT + ".getAccountCnt");
 	}
 	// 계좌 목록조회
 	@Override
 	public List<AccountDTO> selectAccount() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectAccountList");
+		return sqlSession.selectList(STATEMENT + ".selectAccountList");
 	}
 	// 등록 계좌정보 조회(계좌거래내역 등록시 계좌정보)
 	@Override
@@ -173,6 +164,7 @@ public class AccountDAOImpl implements AccountDAO {
 	public IncomeStatementDTO selectIncomeStatement() {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
+
 
 
 
