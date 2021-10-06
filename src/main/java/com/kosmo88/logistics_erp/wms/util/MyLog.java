@@ -10,7 +10,7 @@ public class MyLog {
 	}
 	
 	public static void logParamMap(Map<String, String[]> paramMap) {
-     	System.out.println("----파라미터 맵 정보---");
+     	System.out.println("----요청 파라미터 맵 정보---");
      	paramMap.entrySet().stream().forEach((e)->System.out.println("키 : " + e.getKey() + " 밸류 : " + Arrays.asList(e.getValue())));
 		
 	}

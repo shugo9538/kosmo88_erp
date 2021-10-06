@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.wms.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("V_Stock_SectionDto")
 public class V_Stock_SectionDto {
 
 //	stock

@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.wms.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SectionDto")
 public class SectionDto {
 
 	private int id;

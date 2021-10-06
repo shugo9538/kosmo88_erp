@@ -49,135 +49,138 @@
 						<li class="nav-item"><a id="tab-history" class="nav-link"
 							data-toggle="tab" href="#history">입하 내역</a></li>
 					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="tab-content">
+					<div class="tab-content col-md-12">
 						<div class="tab-pane fade active in" id="request">
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i> 입하 지시 조회 필터
 							</h2>
-							<form class="form-horizontal col-md-12">
-								<div class="filter">
-									<div class="form-group">
-										<label class="control-label col-md-1">기간</label>
-										<div class="col-md-4">
-											<div class="input-daterange input-group" id="date-range">
-												<input type="text" class="form-control" name="start">
-												<span class="input-group-addon no-border text-white">to</span>
-												<input type="text" class="form-control" name="end">
+							<div class="col-md-12">
+								<form class="form-horizontal ">
+									<div class="filter">
+										<div class="form-group">
+											<label class="control-label col-md-1">기간</label>
+											<div class="col-md-4">
+												<div class="input-daterange input-group" id="date-range">
+													<input type="text" class="form-control" name="start">
+													<span class="input-group-addon no-border text-white">to</span>
+													<input type="text" class="form-control" name="end">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</form>
-							<!-- 							<div class="col-md-12"> -->
+								</form>
+							</div>
 							<h2 class="header-title">
-								<i class="fa fa-chevron-circle-right mr-2"></i>입하 지시 
+								<i class="fa fa-chevron-circle-right mr-2"></i> 입하 지시 목록
 							</h2>
-							<form class="form-horizontal" id="clientManagementForm"
-								name="clientManagementForm"
-								action="${ROOT_PATH}/purchase/clientRegisterAction"
-								method="post">
-								<!-- csrf 토큰 -->
-								<sec:csrfInput />
-								<div class="table-responsive">
-									<div class="col-md-2 mt-1 mb-4">
-										<input class="btn btn-default" type="button"
-											id="clientChoiceDeleteBtn" value="test">
-									</div>
+							<div class="col-md-12">
+								<form class="form-horizontal" id="clientManagementForm"
+									name="clientManagementForm"
+									action="${ROOT_PATH}/purchase/clientRegisterAction"
+									method="post">
+									<!-- csrf 토큰 -->
+									<sec:csrfInput />
+									<div class="table-responsive">
+										<div class="col-md-2 mt-1 mb-4">
+											<input class="btn btn-default" type="button"
+												id="clientChoiceDeleteBtn" value="test">
+										</div>
 
-									<table id="clientList" class="display table"
-										style="width: 100%">
-										<thead>
-											<tr>
-												<td style="text-align: center"><input type="checkbox"
-													id="checkAll" name="checkAll"></td>
-												<th>품목</th>
-												<th>수량</th>
-												<th>발송</th>
-												<th>요청일</th>
-												<th>입하예정일</th>
-												<th>입하지시</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="inboundDto" items="${inboundDtoList}">
+										<table id="clientList" class="display table"
+											style="width: 100%">
+											<thead>
 												<tr>
-													<td></td>
-													<td>${inboundDto.item_name}</td>
-													<td>${inboundDto.quantity}</td>
-													<td>${inboundDto.client_name}</td>
-													<td>${inboundDto.begin_date}</td>
-													<td>${inboundDto.end_date}</td>
-													<td>
-														<a id="submit" class="button" onclick="dispatchInbound()">입하지시</a>
-													</td>
+													<!-- 												<td style="text-align: center"><input type="checkbox" -->
+													<!-- 													id="checkAll" name="checkAll"></td> -->
+
+													<th>번호</th>
+													<!-- 													<th>품목</th> -->
+													<!-- 													<th>수량</th> -->
+													<th>구매처</th>
+													<th>요청일</th>
+													<th>입하예정일</th>
+													<th>입하지시</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</form>
+											</thead>
+											<tbody>
+												<c:forEach var="purchaseDto" items="${purchaseDtoList}">
+													<tr>
+														<!-- 													<td class="hidden"> -->
+														<td>${purchaseDto.purchase_id}</td>
+														<%-- 														<td>${purchaseDto.item_name}</td> --%>
+														<%-- 														<td>${purchaseDto.quantity}</td> --%>
+														<td>${purchaseDto.client_name}</td>
+														<td>${purchaseDto.begin_date}</td>
+														<td>${purchaseDto.end_date}</td>
+														<td><a id="submit" class="button"
+															onclick="dispatchInbound(${purchaseDto.purchase_id})">입하지시</a>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</form>
+							</div>
 						</div>
-
-
-
-
-
 
 						<div class="tab-pane fade" id="history">
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i> 입하 내역 조회 필터
 							</h2>
-							<form class="form-horizontal col-md-12">
-								<div class="filter">
-									<div class="form-group">
-										<label class="control-label col-md-1">기간</label>
-										<div class="col-md-4">
-											<div class="input-daterange input-group" id="date-range">
-												<input type="text" class="form-control" name="start">
-												<span class="input-group-addon no-border text-white">to</span>
-												<input type="text" class="form-control" name="end">
+
+							<div class="col-md-12">
+								<form class="form-horizontal col-md-12">
+									<div class="filter">
+										<div class="form-group">
+											<label class="control-label col-md-1">기간</label>
+											<div class="col-md-4">
+												<div class="input-daterange input-group" id="date-range">
+													<input type="text" class="form-control" name="start">
+													<span class="input-group-addon no-border text-white">to</span>
+													<input type="text" class="form-control" name="end">
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</form>
+								</form>
+							</div>
 							<!-- 							<div class="col-md-12"> -->
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i>완료 내역
 							</h2>
-							<form class="form-horizontal" id="clientManagementForm"
-								name="clientManagementForm"
-								action="${ROOT_PATH}/purchase/clientRegisterAction"
-								method="post">
-								<!-- csrf 토큰 -->
-								<sec:csrfInput />
-								<div class="table-responsive">
-									<div class="col-md-2 mt-1 mb-4">
-										<input class="btn btn-default" type="button"
-											id="clientChoiceDeleteBtn" value="삭제">
-									</div>
 
-									<table id="clientList" class="display table"
-										style="width: 100%">
-										<thead>
-											<tr>
-												<td style="text-align: center"><input type="checkbox"
-													id="checkAll" name="checkAll"></td>
-												<th>품목</th>
-												<th>수량</th>
-												<th>발송</th>
-												<th>창고</th>
-												<th>섹션</th>
-												<th>입하일</th>
-											</tr>
-										</thead>
-									</table>
-								</div>
-							</form>
+							<div class="col-md-12">
+								<form class="form-horizontal" id="clientManagementForm"
+									name="clientManagementForm"
+									action="${ROOT_PATH}/purchase/clientRegisterAction"
+									method="post">
+									<!-- csrf 토큰 -->
+									<sec:csrfInput />
+									<div class="table-responsive">
+										<div class="col-md-2 mt-1 mb-4">
+											<input class="btn btn-default" type="button"
+												id="clientChoiceDeleteBtn" value="삭제">
+										</div>
+
+										<table id="clientList" class="display table"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<td style="text-align: center"><input type="checkbox"
+														id="checkAll" name="checkAll"></td>
+													<th>번호</th>
+													<!-- 													<th>품목</th> -->
+													<!-- 													<th>수량</th> -->
+													<th>구매처</th>
+													<th>요청일</th>
+													<th>입하예정일</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</form>
+							</div>
 						</div>
 
 					</div>

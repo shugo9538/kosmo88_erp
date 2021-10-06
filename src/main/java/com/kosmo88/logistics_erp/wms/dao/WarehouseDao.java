@@ -6,13 +6,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_datailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
+import com.kosmo88.logistics_erp.wms.util.Vars;
 
 public interface WarehouseDao {
 
 	void insert(WarehouseDto warehouseDto);
-	List<V_warehouse_datailDto> selectList();
+	List<V_warehouse_simpleDto> selectSimpleList();
+	List<V_warehouse_detailDto> selectDetailList();
 	int selectMaxId();
 	WarehouseDto selectOne(int id);
 	void update(WarehouseDto warehouseDto); 
@@ -30,39 +33,44 @@ class WarehouseDaoImpl implements WarehouseDao {
 //	com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert
 	@Override
 	public void insert(WarehouseDto warehouseDto) {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert", warehouseDto);
+		sqlSession.insert(Vars.WAREHOUSE_DAO_PATH + ".insert", warehouseDto);
 	}
-	
 //	@Override
 //	public void insertSection(SectionDto sectionDto) {
-//		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insertSection", sectionDto);
+//		sqlSession.insert(Vars.WAREHOUSE_DAO_PATH + ".insertSection", sectionDto);
 //	}
 
 	@Override
-	public List<V_warehouse_datailDto> selectList() {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectList");
+	public List<V_warehouse_simpleDto> selectSimpleList() {
+		return sqlSession.selectList(Vars.WAREHOUSE_DAO_PATH + ".selectSimpleList");
+//		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectSimpleList");
 	}
 
 	@Override
+	public List<V_warehouse_detailDto> selectDetailList() {
+		return sqlSession.selectList(Vars.WAREHOUSE_DAO_PATH + ".selectDetailList");
+	}
+	
+	@Override
 	public WarehouseDto selectOne(int id) {
-		WarehouseDto warehouseDto = sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectOne", id);
+		WarehouseDto warehouseDto = sqlSession.selectOne(Vars.WAREHOUSE_DAO_PATH + ".selectOne", id);
 		System.out.println(warehouseDto);
 		return warehouseDto;
 	}
 	@Override
 	public int selectMaxId() {
-		return  sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.selectMaxId");
+		return  sqlSession.selectOne(Vars.WAREHOUSE_DAO_PATH + ".selectMaxId");
 	}
 	
 
 	@Override
 	public void update(WarehouseDto warehouseDto) {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.insert");
+		sqlSession.insert(Vars.WAREHOUSE_DAO_PATH + ".insert");
 	}
 
 	@Override
 	public void delete() {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.WarehouseDao.delete");
+		sqlSession.insert(Vars.WAREHOUSE_DAO_PATH + ".delete");
 	}
 
 //	@Override

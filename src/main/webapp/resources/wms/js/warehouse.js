@@ -4,6 +4,15 @@
 // 			adjustIncludedPage();
 // }
 
+function warehouseAddAction() {
+  alert("등록되었습니다");
+ // sameNameValuesToArray(section);
+  //sameNameValuesToArray(section_section);
+  //sameNameValuesToArray(capacity);
+
+  return true;
+}
+
 
 var csrfData = {};
 var currTab;
