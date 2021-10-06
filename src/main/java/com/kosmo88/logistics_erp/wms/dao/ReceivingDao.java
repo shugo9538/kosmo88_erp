@@ -17,9 +17,6 @@ public interface ReceivingDao {
 	List<InboundDto> inboundList(int warehouseId);
 }
 
-
-
-
 @Repository
 class ReceivingDaoImpl implements ReceivingDao{
 
