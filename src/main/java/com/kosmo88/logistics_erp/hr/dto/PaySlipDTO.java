@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.hr.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("PaySlipDTO")
 public class PaySlipDTO {
     private int id;
     private Date begin_date;

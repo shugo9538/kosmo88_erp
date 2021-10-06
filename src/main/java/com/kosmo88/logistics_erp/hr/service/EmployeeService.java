@@ -27,7 +27,10 @@ public interface EmployeeService {
     // 부서코드, 직급코드 불러오기
     void selectCode(HttpServletRequest req, HttpServletResponse res);
 
-    // 인사 수정
+    // 인사 수정 화면
     void updateEmployee(ModelAndView mav, String id);
+
+    // 인사 수정 등록
+    void updateEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res, String id);
 
 }

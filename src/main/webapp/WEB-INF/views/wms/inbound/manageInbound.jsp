@@ -94,26 +94,26 @@
 													<!-- 													id="checkAll" name="checkAll"></td> -->
 
 													<th>번호</th>
-													<th>품목</th>
-													<th>수량</th>
-													<th>발송</th>
+													<!-- 													<th>품목</th> -->
+													<!-- 													<th>수량</th> -->
+													<th>구매처</th>
 													<th>요청일</th>
 													<th>입하예정일</th>
 													<th>입하지시</th>
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="inboundDto" items="${inboundDtoList}">
+												<c:forEach var="purchaseDto" items="${purchaseDtoList}">
 													<tr>
 														<!-- 													<td class="hidden"> -->
-														<td>${inboundDto.purchase_id}</td>
-														<td>${inboundDto.item_name}</td>
-														<td>${inboundDto.quantity}</td>
-														<td>${inboundDto.client_name}</td>
-														<td>${inboundDto.begin_date}</td>
-														<td>${inboundDto.end_date}</td>
+														<td>${purchaseDto.purchase_id}</td>
+														<%-- 														<td>${purchaseDto.item_name}</td> --%>
+														<%-- 														<td>${purchaseDto.quantity}</td> --%>
+														<td>${purchaseDto.client_name}</td>
+														<td>${purchaseDto.begin_date}</td>
+														<td>${purchaseDto.end_date}</td>
 														<td><a id="submit" class="button"
-															onclick="dispatchInbound(${inboundDto.purchase_id})">입하지시</a>
+															onclick="dispatchInbound(${purchaseDto.purchase_id})">입하지시</a>
 														</td>
 													</tr>
 												</c:forEach>
@@ -169,12 +169,12 @@
 												<tr>
 													<td style="text-align: center"><input type="checkbox"
 														id="checkAll" name="checkAll"></td>
-													<th>품목</th>
-													<th>수량</th>
-													<th>발송</th>
-													<th>창고</th>
-													<th>섹션</th>
-													<th>입하일</th>
+													<th>번호</th>
+													<!-- 													<th>품목</th> -->
+													<!-- 													<th>수량</th> -->
+													<th>구매처</th>
+													<th>요청일</th>
+													<th>입하예정일</th>
 												</tr>
 											</thead>
 										</table>

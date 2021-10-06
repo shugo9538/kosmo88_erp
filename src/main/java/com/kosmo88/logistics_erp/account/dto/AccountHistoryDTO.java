@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.account.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("AccountHistoryDTO")
 public class AccountHistoryDTO {
 	
 	// 통장 입출금 

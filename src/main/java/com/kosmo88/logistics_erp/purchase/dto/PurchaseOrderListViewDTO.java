@@ -2,7 +2,10 @@ package com.kosmo88.logistics_erp.purchase.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
 // 구매팀 주문서 전체 목록(조회) 뷰 DTO
+@Alias("PurchaseOrderListViewDTO")
 public class PurchaseOrderListViewDTO {
 	
 	private int request_id;			// 발주번호

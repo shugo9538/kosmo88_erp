@@ -41,10 +41,6 @@ public interface AccountService {
 	public void accountEnabledAction(HttpServletRequest request, Model model);
 	// 통장 입/출금내역 조회
 	public void accountTransactionHistory(HttpServletRequest request, Model model);
-	// 통장 입금내역 조회
-	public void accountDeposit(HttpServletRequest request, Model model);
-	// 통장 출금내역 조회
-	public void accountWithdrawal(HttpServletRequest request, Model model);
 	
 	// 매입/매출장
 	// 매입/매출장 전체목록조회

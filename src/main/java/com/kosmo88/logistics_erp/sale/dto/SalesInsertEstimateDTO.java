@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.sale.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SalesInsertEstimateDTO")
 public class SalesInsertEstimateDTO {
 
 	private int request_id;						// 견적서 코드	

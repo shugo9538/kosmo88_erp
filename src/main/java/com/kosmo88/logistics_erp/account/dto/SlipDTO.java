@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.account.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SlipDTO")
 public class SlipDTO {
 	
 	private int id;

@@ -4,31 +4,47 @@
 
 
 	<!-- TX_PURCHASE request 를 가져온다 -->
-	<select id="selectList"
-		resultType="V_purchaseDto">
+	<select id="selectList" resultType="V_purchaseDto">
 		SELECT * FROM V_PURCHASE
 	</select>
-	
-		<select id="selectMaxId"
-		resultType="int">
-		SELECT MAX(ID) 
-		FROM INBOUND
+
+	<select id="selectProductList" parameterType="int"
+		resultType="V_purchase_productDto">
+		SELECT * FROM V_PURCHASE_PRODUCT
+		WHERE PURCHASE_ID =
+		#{purchase_id}
 	</select>
 
-	<select id="selectOne" 
-		parameterType="int"
+	<select id="selectMaxId" resultType="int">
+<!-- 		SELECT MAX(ID) -->
+<!-- 		SELECT MAX_INBOUND_ID -->
+<!-- 		FROM INBOUND -->
+	SELECT MAX_INBOUND_ID INBOUND_ID
+	FROM DUAL
+	</select>
+
+	<select id="selectOne" parameterType="int"
 		resultType="V_purchaseDto">
 		SELECT * FROM v_PURCHASE
-		WHERE REQUEST_ID = ${request_id}
+		WHERE PURCHASE_ID = #{purchase_id}
 	</select>
 
 	<!-- 입하 요청 등록 -->
-	<insert id="insert" parameterType="V_purchaseDto">
-		
-		
+<!-- 	<insert id="insert" parameterType="V_purchaseDto"> -->
+	<insert id="insert" parameterType="Map">
+		INSERT INTO INBOUND (ID, WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
+		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date}, 'WMS000', #{client_id})
+
 	</insert>
 
 
+	<!-- 구매 비활성화 -->
+	<update id="disablePurchase" parameterType="int">
+		UPDATE REQUEST SET
+		ENABLED = 'N'
+		WHERE ID = #{purchase_id}
+		AND STATE='TX_PURCHASE'
+	</update>
 
 </mapper>
 

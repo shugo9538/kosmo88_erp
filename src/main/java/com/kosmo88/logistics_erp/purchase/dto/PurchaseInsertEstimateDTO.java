@@ -1,10 +1,13 @@
 package com.kosmo88.logistics_erp.purchase.dto;
 
+import org.apache.ibatis.type.Alias;
+
 // 견적서 등록 DTO
+@Alias("PurchaseInsertEstimateDTO")
 public class PurchaseInsertEstimateDTO {
 	
 	private int request_id;						// 거래처코드
-	private int employee_id;					// 사원번호	
+	private String employee_id;					// 사원번호	
 	private int client_id;						// 거래처코드   
 	private int item_id;						// 상품코드
 	private int quantity;						// 상품수량
@@ -38,11 +41,11 @@ public class PurchaseInsertEstimateDTO {
 		this.request_id = request_id;
 	}
 
-	public int getEmployee_id() {
+	public String getEmployee_id() {
 		return employee_id;
 	}
 
-	public void setEmployee_id(int employee_id) {
+	public void setEmployee_id(String employee_id) {
 		this.employee_id = employee_id;
 	}
 

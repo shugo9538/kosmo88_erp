@@ -3,7 +3,6 @@ $(document).ready(function(){
 	// 거래처 값 전달
 	$("input[name]").click(function() {
 		var child = $(this).parents();
-		$("#client_id", opener.document).val(child.find("#c_id").val());
 		$("#name", opener.document).val(child.find("#c_name").val());
 		$("#ceo_name", opener.document).val(child.find("#c_ceo_name").val());
 		$("#phone", opener.document).val(child.find("#c_phone").val());

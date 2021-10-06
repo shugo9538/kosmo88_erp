@@ -2,7 +2,10 @@ package com.kosmo88.logistics_erp.purchase.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
 // 구매 담당자 DTO
+@Alias("PurchaseEmployeeDTO")
 public class PurchaseEmployeeDTO {
 	
 	private String id;					// 사원번호

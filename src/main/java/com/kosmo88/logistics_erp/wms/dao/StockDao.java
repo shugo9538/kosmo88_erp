@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.StockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
+
 public interface StockDao {
 
 	void insert(StockDto stockDto);
@@ -20,7 +21,7 @@ public interface StockDao {
 
 
 @Repository
-class StockDaoImpl implements StockDao{
+class StockDaoImpl implements StockDao {
 	@Autowired
 	SqlSession sqlSession;
 

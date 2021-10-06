@@ -14,4 +14,7 @@ public interface EmployeeDAO {
 
     // 인사 상세
     EmployeeDTO detailEmployee(String id);
+
+    // 인사 수정 등록
+    int updateEmployee(EmployeeDTO dto);
 }
