@@ -65,6 +65,7 @@
 	                	</tr>
 	                	<c:forEach var="idto" items="${idtos}">
 	                	<c:set var="price" value="${idto.item_purchase_price * idto.item_quantity}" />
+	                	<tr>
 	                		<td>${idto.item_name}</td>
 	                		<td>${idto.item_category}</td>
 	                		<td>
@@ -75,6 +76,7 @@
 	                			<fmt:formatNumber value="${price}" pattern="#,###" />원
 	                		</td>
 	                		<c:set var="totalPrice" value="${totalPrice + price}" />
+	                	</tr>	
 	                	</c:forEach>
 	                </table>
 	                <div style="text-align:right;" class="form-group col-md-12">

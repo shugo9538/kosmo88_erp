@@ -92,24 +92,17 @@ function itemRegister() {
 	var i = 0;
 
 	// 2.거래처 상품
-	$('#estimateItemList tbody').children().each(function() {
+	$('#estimateItemList tbody').children().each(function(i) {
 		var dataObject = new Object();
-//		$('.item' + i).each(function() {
-//			var data = $(this);
-//			var name = data.attr('name');
-//			dataObject[name] = data.val();
-//		});
 		
-		dataObject['item_id'] = $('#estimateItemList').find('input[name=item_id]').val();
+		dataObject['item_id'] = $(this).find('input[name=item_id]').val();
 		console.log(dataObject['item_id']);
-		dataObject['quantity'] = $('#estimateItemList').find('input[name=quantity]').val();
+		dataObject['quantity'] = $(this).find('input[name=quantity]').val();
 		console.log(dataObject['quantity']);
 		
 		console.log(dataObject);
 		list.push(dataObject);
-//		i++
 	});
-//	list.pop();
 	formData = JSON.stringify(list);
 	// alert(formData);
 
