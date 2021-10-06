@@ -16,7 +16,6 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -103,32 +102,30 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	public void estimateDetail(HttpServletRequest req, Model model) {
 		int request_id = Integer.parseInt(req.getParameter("request_id"));
 		
-		SalesEstimateDetailViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
-		List<SalesEstimateDetailViewDTO> idto = estimateDao.getEstimateDetailItem(request_id);
-				
 		model.addAttribute("dto", dto);
-		model.addAttribute("idto", idto);
 	}
 
 	// 견적서 등록 처리
 	@Override
-	public void estimateRegisterAction(HttpServletRequest req, Model model) {
+	public boolean estimateRegisterAction(SalesInsertEstimateDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-		SalesInsertEstimateDTO dto = new SalesInsertEstimateDTO();
-		
-//		dto.setClient_id(Integer.parseInt(req.getParameter("client_id")));
-//		dto.setEmployee_id(req.getParameter("employee_id"));
-//		
-//		
-//		dto.setItem_id(Integer.parseInt(req.getParameter("item_id")));
-//		
-//		req.getParameter("amount"); // 수량
-//		req.getParameter("sale_price"); // 판매가격
-		
-		
-		int cnt = estimateDao.registerEstimate(dto);
-		
+	// 아이템 등록 처리
+	@Override
+	public boolean itemRegisterAction(SalesInsertEstimateDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	// 견적서 상품 리스트
+	@Override
+	public List<SalesItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
+		int id = Integer.parseInt(req.getParameter("client_id"));
+		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList(id);
 	}
 	
 }

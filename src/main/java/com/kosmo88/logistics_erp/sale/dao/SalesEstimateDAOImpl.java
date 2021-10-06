@@ -2,15 +2,16 @@ package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 @Repository
@@ -19,6 +20,7 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	
 	@Autowired
 	SqlSession sqlSession;
+	
 
 	// 견적서 관리 - 견적서 목록(구매)
 	@Override
@@ -68,28 +70,15 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 
-	// 견적서 상세
 	@Override
-	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id) {
+	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
 	}
 
-	// 견적서 상세(상품)
+	// 견적서 상품 불러오기
 	@Override
-	public List<SalesEstimateDetailViewDTO> getEstimateDetailItem(int request_id) {
-		return sqlSession.selectList(STATEMENT + ".getEstimateDetailItem", request_id);
-	}
-
-	// 견적서 등록
-	@Override
-	public int registerEstimate(SalesInsertEstimateDTO dto) {
-		return sqlSession.insert(STATEMENT + ".registerEstimate", dto);
-	}
-
-	// 견적서 아이템 등록
-	@Override
-	public int registerItemEstimate(SalesEstimateDetailViewDTO idto) {
-		return sqlSession.insert(STATEMENT + ".registerItemEstimate", idto);
+	public List<SalesItemDTO> getEstimateItemList(int id) {
+		return sqlSession.selectList(STATEMENT + ".getEstimateItemList", id);
 	}
 	
 	

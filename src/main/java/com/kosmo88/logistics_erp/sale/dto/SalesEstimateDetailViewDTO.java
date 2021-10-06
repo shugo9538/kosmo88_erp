@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.sale.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SalesEstimateDetailViewDTO")
 public class SalesEstimateDetailViewDTO {
 
 	private int request_id;				// 견적번호

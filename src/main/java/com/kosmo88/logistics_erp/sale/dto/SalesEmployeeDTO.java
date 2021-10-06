@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.sale.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SalesEmployeeDTO")
 public class SalesEmployeeDTO {
 
 	private String id;					// 사원번호
