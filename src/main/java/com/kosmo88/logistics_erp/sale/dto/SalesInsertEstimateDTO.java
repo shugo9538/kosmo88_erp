@@ -14,6 +14,47 @@ public class SalesInsertEstimateDTO {
 	public SalesInsertEstimateDTO() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public int getRequest_id() {
+		return request_id;
+	}
+
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
+	}
+
+	public String getEmployee_id() {
+		return employee_id;
+	}
+
+	public void setEmployee_id(String employee_id) {
+		this.employee_id = employee_id;
+	}
+
+	public int getClient_id() {
+		return client_id;
+	}
+
+	public void setClient_id(int client_id) {
+		this.client_id = client_id;
+	}
+
+	public int getItem_id() {
+		return item_id;
+	}
+
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+
+	public int getRequest_state() {
+		return request_state;
+	}
+
+	public void setRequest_state(int request_state) {
+		this.request_state = request_state;
+	}
+	
 	
 	
 }

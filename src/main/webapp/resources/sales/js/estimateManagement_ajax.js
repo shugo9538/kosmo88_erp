@@ -29,7 +29,10 @@ $(document).ready(
 
 			// 견적서, 견적서 상품 등록 처리
 			// '#estimateRegisterAction', 버튼 id
-			$('#white-box').on('click','#estimateRegisterAction', function() {
+			$('#white-box').on(
+					'click',
+					'#estimateRegisterAction',
+					function() {
 						var loc = $('#estimateRegisterForm').attr('action');
 						var flag = false;
 						/*
@@ -39,10 +42,12 @@ $(document).ready(
 						var dataObject = new Object();
 						// $('#estimate').find('input').each(function() {
 
-						dataObject[client_id] = $('#estimate').find('input[name=client_id]').val();
-						console.log(dataObject[client_id]);
-						dataObject[employee_id] = $('#estimate').find('input[name=employee_id]').val();
-						console.log(dataObject[employee_id]);
+						dataObject['client_id'] = $('#estimate').find(
+								'input[name=client_id]').val();
+						console.log(dataObject['client_id']);
+						dataObject['employee_id'] = $('#estimate').find(
+								'input[name=employee_id]').val();
+						console.log(dataObject['employee_id']);
 
 						var formData = JSON.stringify(dataObject);
 						console.log(formData);
@@ -62,10 +67,10 @@ $(document).ready(
 							},
 							error : function() {
 								swal({
-									title:"견적서 등록 오류",
-									type: "error",
-									text: "잠시 후 다시 시도해주세요!",
-									timer: 2500
+									title : "견적서 등록 오류",
+									type : "error",
+									text : "잠시 후 다시 시도해주세요!",
+									timer : 2500
 								}, function() {
 									return false;
 								});
@@ -77,14 +82,8 @@ $(document).ready(
 // 거래처 상품 불러오기
 $('#estimateItemCall').on('click', function() {
 
-	var client_id = $('#client_id').val();
+	estimateItemList();
 
-	if (client_id != 'none') {
-		estimateItemList(client_id);
-	} else {
-		alert("거래처를 선택해주세요!!");
-		return false;
-	}
 });
 
 function itemRegister() {
@@ -92,20 +91,19 @@ function itemRegister() {
 	var i = 0;
 
 	// 2.거래처 상품
-	$('#estimateRegisterForm #item-group').children().each(function() {
+	$('#estimateItemList tbody').children().each(function(i) {
 		var dataObject = new Object();
-		$('.form-control' + i).each(function() {
-			var data = $(this);
-			var name = data.attr('name');
-			if (name == 'item_name')
-				name = 'name';
-			dataObject[name] = data.val();
-		});
+
+		dataObject['item_id'] = $(this).find('input[name=item_id]').val();
+		console.log(dataObject['item_id']);
+		dataObject['quantity'] = $(this).find('input[name=quantity]').val();
+		console.log(dataObject['quantity']);
+		dataObject['sale_price'] = $('#estimateItemList').find('input[name=sale_price]').val();
+		console.log(dataObject['sale_price']);
+		
 		console.log(dataObject);
 		list.push(dataObject);
-		i++
 	});
-	list.pop();
 	formData = JSON.stringify(list);
 	// alert(formData);
 
@@ -125,10 +123,10 @@ function itemRegister() {
 		success : function(data) {
 			if (data) {
 				swal({
-					title:"견적서 등록 성공",
-					type: "success",
-					text: "견적서가 등록되었습니다.",
-					timer: 2500
+					title : "견적서 등록 성공",
+					type : "success",
+					text : "견적서가 등록되었습니다.",
+					timer : 2500
 				}, function() {
 					$('#estimateRegisterForm').find('input').each(function() {
 						$(this).val('');
@@ -139,10 +137,10 @@ function itemRegister() {
 		},
 		error : function() {
 			swal({
-				title:"견적서 삭제 오류",
-				type: "error",
-				text: "잠시 후 다시 시도해주세요!",
-				timer: 2500
+				title : "견적서 등록 오류",
+				type : "error",
+				text : "잠시 후 다시 시도해주세요!",
+				timer : 2500
 			}, function() {
 				return false;
 			});
@@ -198,7 +196,7 @@ function estimateList() {
 								{
 									data : null,
 									render : function(data, type, row, meta) {
-										return '<a href="/logistics_erp/purchase/estimateDetail?request_id='
+										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
 												+ '" onclick="window.open(this.href, width=1000, height=700); return false;">'
 												+ row.request_id + '</a>';
@@ -249,6 +247,7 @@ function estimateList() {
 
 				if (result) {
 					estimateChoiceDelete(csrfParameter, csrfToken);
+					return false;
 				} else {
 					return false;
 				}
@@ -277,10 +276,10 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 		success : function(data) {
 			if (data) {
 				swal({
-					title:"견적서 삭제 성공",
-					type: "success",
-					text: "선택한 견적서가 삭제되었습니다",
-					timer: 2500
+					title : "견적서 삭제 성공",
+					type : "success",
+					text : "선택한 견적서가 삭제되었습니다",
+					timer : 2500
 				}, function() {
 					currTab.ajax.reload();
 				});
@@ -288,10 +287,10 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 		},
 		error : function() {
 			swal({
-				title:"견적서 삭제 오류",
-				type: "error",
-				text: "잠시 후 다시 시도해주세요!",
-				timer: 2500
+				title : "견적서 삭제 오류",
+				type : "error",
+				text : "잠시 후 다시 시도해주세요!",
+				timer : 2500
 			}, function() {
 				return false;
 			});
@@ -317,7 +316,7 @@ function registeredEstimateList() {
 								{
 									data : null,
 									render : function(data, type, row, meta) {
-										return '<a href="/logistics_erp/purchase/estimateDetail?request_id='
+										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
 												+ '" onclick="window.open(this.href, width=1000, height=700); return false;">'
 												+ row.request_id + '</a>';
@@ -340,37 +339,43 @@ function registeredEstimateList() {
 }
 
 // 거래처 상품 불러오기
-function estimateItemList(client_id) {
+function estimateItemList() {
 	$("#estimateItemListTable").empty();
 	$("#estimateItemListTable").append(
 			'<table id="estimateItemList" style="width:100%"></table>');
 	currTab = $('#estimateItemList')
 			.DataTable(
 					{
-						"dom" : '<"top">rt<"bottom"><"clear">',
-						"order" : [ [ 1, "desc" ] ],
+						"order" : [ [ 0, "desc" ] ],
+						info : false,
 						ajax : {
-							url : window.location.href
-									+ '/estimateItemList?client_id='
-									+ client_id, // 현 위치
+							url : window.location.href + '/estimateItemList', // 현 위치
 							type : 'POST',
 							data : csrfData,
 							dataSrc : ''
 						},
 						columns : [
 								{
+									'sTitle' : '상품번호',
+									data : 'id',
+									render : function(data) {
+										return '<label style="border:none;" name="item_id" type="text" value="'
+												+ data + '">' + data + '<label>';
+									}
+								},
+								{
 									'sTitle' : '상품명',
 									data : 'name',
 									render : function(data) {
-										return '<input name="item_name" type="text" placeholder="상품명" value="'
-												+ data + '"readonly>';
+										return '<label style="border:none;" name="item_name" type="text" value="'
+												+ data + '">' + data + '<label>';
 									}
 								},
 								{
 									'sTitle' : '상품종류',
 									data : 'category',
 									render : function(data) {
-										return '<input name="category" type="text" placeholder="상품종류" value="'
+										return '<input style="border:none;" name="category" type="text" value="'
 												+ data + '"readonly>';
 									}
 								},
@@ -378,15 +383,23 @@ function estimateItemList(client_id) {
 									'sTitle' : '구매단가',
 									data : 'price',
 									render : function(data) {
-										return '<input name="price" type="number" placeholder="공급단가" value="'
+										return '<input name="price" type="number" value="'
 												+ data + '"readonly>';
+									}
+								},
+								{
+									'sTitle' : '판매단가',
+									data : 'price',
+									render : function(data) {
+										return '<input name="sale_price" type="number" value="'
+												+ data * 1.3 + '"readonly>';
 									}
 								},
 								{
 									'sTitle' : '수량',
 									data : 'id',
 									render : function(data) {
-										return '<input name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)"><input style="padding:3px;" type="button" class="btn btn-primary" value="+" onclick="add(this);"><input style="padding:3px;" type="button" class="btn btn-primary" value="-" onclick="del(this);">';
+										return '<input class="item" name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)"><input style="padding:3px;" type="button" class="btn btn-primary" value="+" onclick="add(this);"><input style="padding:3px;" type="button" class="btn btn-primary" value="-" onclick="del(this);">';
 									}
 								},
 								{
@@ -394,21 +407,51 @@ function estimateItemList(client_id) {
 									data : 'price',
 									render : function(data) {
 										return '<input name="totalprice" type="number" readonly value="'
+												+ +'" id="totalprice'
 												+ data
-												+ '" id="totalprice'
-												+ data + '">';
+												+ '">';
 									}
-								},
-								{
-									'sTitle' : '삭제 버튼',
-									data : 'name',
-									render : function(data) {
-										return '<div role="button"><i class="icon-minus"></i></div>'
-									}
-								} ],
+								},],
 						destroy : true,
 						retrieve : true
 					});
+
+	var cnt = 0;
+	var flag = true;
+	currTab.on('click', 'tr', function(e, dt, type, indexes) {
+		$(this).dblclick(function() {
+			var id = currTab.row(this).data().id;
+			var name = currTab.row(this).data().name;
+			var category = currTab.row(this).data().category;
+			var price = currTab.row(this).data().price;
+			var sale_price = currTab.row(this).data().sale_price;
+			var quantity = currTab.row(this).data().quantiry;
+			var totalprice = currTab.row(this).data().totalprice;
+			
+			if(flag){
+				$('#estimateRegisterList').append('<tr id="item'+cnt+'">');
+				td = $(this).children();
+				var i = 0;
+				td.each(function() {
+					console.log($(this).children().val());
+					$('#item'+cnt).append('<td><input value="'+name+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+category+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+price+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+sale_price+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+quantity+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+totalprice+'" readonly></td>');
+					
+					
+					//$('#col'+i).val(name);
+					i++;
+				});
+				cnt++;
+				flag = false;
+			} else {
+				flag = true;
+			}
+		});
+	});
 
 	// 최소 등록 상품 개수 유효성 검사
 	$('#estimateItemList tbody').on('click', '.icon-minus', function() {
@@ -426,8 +469,10 @@ function estimateItemList(client_id) {
 
 // 상품 수량
 var price;
+var sale_price;
 var quantity;
 
+// 수량 +
 function add(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());
@@ -438,9 +483,12 @@ function add(btn) {
 	price = $(btn).parent().parent().find('input[name=price]');
 	console.log(price.val());
 
+	sale_price = $(btn).parent().parent().find('input[name=sale_price]');
+	console.log(sale_price.val());
+
 	var plus = parseInt(quantity.val()) + 1;
 
-	var total = parseInt(plus) * parseInt(price.val());
+	var total = parseInt(plus) * parseInt(sale_price.val());
 
 	quantity.val(plus);
 	console.log(quantity.val());
@@ -450,6 +498,7 @@ function add(btn) {
 
 }
 
+// 수량 -
 function del(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());
@@ -464,11 +513,12 @@ function del(btn) {
 		quantity.val(minus);
 		console.log(quantity.val());
 
-		var total = parseInt(quantity.val()) * parseInt(price.val());
+		var total = parseInt(quantity.val()) * parseInt(sale_price.val());
 		totalprice.val(total);
 	}
 }
 
+// 수량 변경
 function change(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());
@@ -476,6 +526,8 @@ function change(btn) {
 	console.log(totalprice.val());
 	price = $(btn).parent().parent().find('input[name=price]');
 	console.log(price.val());
+	sale_price = $(btn).parent().parent().find('input[name=sale_price]');
+	console.log(sale_price.val());
 
 	if (parseInt(quantity.val()) <= 1 || quantity.val() == null) {
 		quantity.val(1);

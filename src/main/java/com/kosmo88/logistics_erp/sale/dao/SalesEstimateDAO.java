@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,10 +38,11 @@ public interface SalesEstimateDAO {
 	public List<SalesEmployeeDTO> getEmployeeList();
 	
 	// 상품정보 불러오기
-	public List<SalesItemDTO> getEstimateItemList(int id);
+	public List<SalesItemDTO> getEstimateItemList();
 	
 	// 견적서 상세 페이지
 	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
 	
-	
+	// 견적서 등록 처리
+	public int insertRequest(Map<String, Object> map);
 }

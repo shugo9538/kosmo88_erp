@@ -54,14 +54,20 @@ $(document).ready(function() {
 	            xhr.setRequestHeader(csrfParameter, csrfToken);
 	        },
 	        success : function(data) {
-	        	alert('거래처가 등록되었습니다.');
 	            if (data) {
 	            	alert('거래처가 등록되었습니다.');
 	            	currTab.ajax.reload();
 	            }	
 	        },
 	        error : function() {
-	            alert('오류');
+	        	swal({
+    				title:"거래처 등록 오류",
+    				type: "error",
+    				text: "잠시 후 다시 시도해주세요!",
+    				timer: 2500
+    			}, function() {
+    				return false;
+    			});
 	        },
 	    });
 /*	    
@@ -237,13 +243,26 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
             xhr.setRequestHeader(csrfParameter, csrfToken);
         },
         success : function(data) {
-            if (data) {
-                alert('선택한 거래처가 삭제되었습니다');
-            	currTab.ajax.reload();
+        	if (data) {
+				swal({
+					title:"거래처 삭제",
+					type: "success",
+					text: "선택한 거래처가 삭제되었습니다",
+					timer: 2500
+				}, function() {
+					currTab.ajax.reload();
+				});
             }
         },
         error : function() {
-            alert('오류');
+        	swal({
+				title:"거래처 삭제 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
         },
     });
     
