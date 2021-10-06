@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.hr.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("HolidayUsageStatusDTO")
 public class HolidayUsageStatusDTO {
     private String employee_id;
     private int use_date;

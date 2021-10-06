@@ -127,10 +127,60 @@ public class EmployeeServiceImpl implements EmployeeService {
         ArrayList<DepartmentCodeDTO> departmentCodeDTOs = (ArrayList<DepartmentCodeDTO>) configDAO.selectDepartments();
         ArrayList<PositionCodeDTO> positionCodeDTOs = (ArrayList<PositionCodeDTO>) configDAO.selectPosition();
         EmployeeDTO dto = employeeDAO.detailEmployee(id);
-        
+
         mav.addObject("departmentCodeDTOs", departmentCodeDTOs);
         mav.addObject("positionCodeDTOs", positionCodeDTOs);
         mav.addObject("employee", dto);
     }
 
+    @Override
+    public void updateEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res, String id) {
+        MultipartFile file = req.getFile("photo");
+
+        String photo = "/logistics_erp/resources/hr/image/employee_tmp/" + file.getOriginalFilename();
+
+        EmployeeDTO dto = new EmployeeDTO();
+        String name = req.getParameter("name");
+        String address = req.getParameter("address");
+        int department_id = Integer.parseInt(req.getParameter("department_id"));
+        String email1 = req.getParameter("email1");
+        String email2 = req.getParameter("email2");
+        StringBuilder sb = new StringBuilder(email1).append("@").append(email2);
+        String email = sb.toString();
+        System.out.println(email);
+        Date hire_date = Date.valueOf(req.getParameter("hire_date"));
+        String phone1 = req.getParameter("phone1");
+        String phone2 = req.getParameter("phone2");
+        String phone3 = req.getParameter("phone3");
+        StringBuilder sb2 = new StringBuilder(phone1).append("-").append(phone2).append("-").append(phone3);
+        String phone = sb2.toString();
+        System.out.println(phone);
+        int position_id = Integer.parseInt(req.getParameter("position_id"));
+        String resident_reg_num1 = req.getParameter("resident_reg_num1");
+        String resident_reg_num2 = req.getParameter("resident_reg_num2");
+        StringBuilder sb3 = new StringBuilder(resident_reg_num1).append("-").append(resident_reg_num2);
+        String resident_reg_num = sb3.toString();
+        System.out.println(resident_reg_num);
+        String detail_address = req.getParameter("detail_address");
+        System.out.println("address : " + address);
+        System.out.println("detail_address" + detail_address);
+        int zip_code = Integer.parseInt(req.getParameter("zip_code"));
+
+        dto.setId(id);
+        dto.setPhoto(photo);
+        dto.setName(name);
+        dto.setAddress(address);
+        dto.setDepartment_id(department_id);
+        dto.setEmail(email);
+        dto.setEnabled('Y');
+        dto.setHire_date(hire_date);
+        dto.setPhone(phone);
+        dto.setPosition_id(position_id);
+        dto.setResident_reg_num(resident_reg_num);
+        dto.setDetail_address(detail_address);
+        dto.setZip_code(zip_code);
+
+        state = QueryCode.UPDATE;
+        req.setAttribute("update_code", state.check(employeeDAO.updateEmployee(dto)));
+    }
 }

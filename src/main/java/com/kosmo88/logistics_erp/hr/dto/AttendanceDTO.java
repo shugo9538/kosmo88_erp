@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.hr.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("AttendanceDTO")
 public class AttendanceDTO {
     private int id;
     private Date application_date;
@@ -11,7 +14,7 @@ public class AttendanceDTO {
     private String state;
     private int attendance_cd_id;
     private int r_num;
-    
+
     public AttendanceDTO() {
     }
 
@@ -30,7 +33,7 @@ public class AttendanceDTO {
     public void setApplication_date(Date application_date) {
         this.application_date = application_date;
     }
-    
+
     public Date getBegin_date() {
         return begin_date;
     }
@@ -38,7 +41,7 @@ public class AttendanceDTO {
     public void setBegin_date(Date begin_date) {
         this.begin_date = begin_date;
     }
-    
+
     public Date getEnd_date() {
         return end_date;
     }
@@ -46,7 +49,7 @@ public class AttendanceDTO {
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
-    
+
     public String getReason() {
         return reason;
     }

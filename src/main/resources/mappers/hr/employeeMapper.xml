@@ -4,31 +4,52 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kosmo88.logistics_erp.hr.dao.EmployeeDAO">
-	<!-- 인사카드 관리-->
-	<!-- 인사카드 목록 조회-->
+	<!-- 인사카드 관리 -->
+	<!-- 인사카드 목록 조회 -->
 	<select
 		id="employeeList"
 		resultType="EmployeeDTO">
 		SELECT *
-		  FROM employee
+		FROM employee
 	</select>
-	
-	<insert id="insertEmployee" parameterType="EmployeeDTO">
+
+	<insert
+		id="insertEmployee"
+		parameterType="EmployeeDTO">
 		INSERT INTO employee(id, name, photo, resident_reg_num, phone
-						   , email, address, hire_date, department_id
-						   , position_id, enabled, detail_address, zip_code)
+		, email, address, hire_date, department_id
+		, position_id, enabled, detail_address, zip_code)
 		VALUES(#{id}||employee_seq.nextval, #{name}, #{photo}
-		     , #{resident_reg_num}, #{phone}, #{email}, #{address}
-		     , #{hire_date}, #{department_id}, #{position_id}
-		     , #{enabled}, #{detail_address}, #{zip_code})
+		, #{resident_reg_num}, #{phone}, #{email}, #{address}
+		, #{hire_date}, #{department_id}, #{position_id}
+		, #{enabled}, #{detail_address}, #{zip_code})
 	</insert>
-	
-		<!-- 인사카드 목록 조회-->
+
+	<!-- 인사카드 목록 조회 -->
 	<select
 		id="detailEmployee"
 		resultType="EmployeeDTO">
 		SELECT *
-		  FROM employee
-		 WHERE id = #{id}
+		FROM employee
+		WHERE id = #{id}
 	</select>
+
+	<update
+		id="updateEmployee"
+		parameterType="EmployeeDTO">
+		UPDATE employee
+		SET name = #{name}, 
+			photo = #{photo}, 
+			resident_reg_num = #{resident_reg_num},
+			phone = #{phone},
+			email = #{email}, 
+			address = #{address}, 
+			hire_date = #{hire_date}, 
+			department_id = #{department_id},
+			position_id = #{position_id}, 
+			enabled = #{enabled}, 
+			detail_address = #{detail_address}, 
+			zip_code = #{zip_code}
+		WHERE id = #{id}
+	</update>
 </mapper>

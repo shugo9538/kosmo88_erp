@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.hr.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("DepartmentCodeDTO")
 public class DepartmentCodeDTO {
     private int id;
     private String name;

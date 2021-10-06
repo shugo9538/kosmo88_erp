@@ -30,6 +30,12 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     public EmployeeDTO detailEmployee(String id) {
         return sqlSession.selectOne(STATEMENT + ".detailEmployee", id);
     }
+
+    @Override
+    public int updateEmployee(EmployeeDTO dto) {
+        return sqlSession.update(STATEMENT + ".updateEmployee", dto);
+    }
+    
     
     
 }

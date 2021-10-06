@@ -13,10 +13,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.service.EmployeeService;
 import com.kosmo88.logistics_erp.util.ImageUploadHandler;
@@ -65,5 +67,25 @@ public class EmployeeController {
 
         employeeService.insertEmployee(req, res);
         return "hr/employeeManagement/insertEmployee";
+    }
+    
+    
+    // 인사카드 수정
+    @RequestMapping(value = "/{id}/updateEmployeeAction")
+    public String updateEmployeeAction(@PathVariable("id") String id, MultipartHttpServletRequest req, HttpServletResponse res) {
+        MultipartFile mf = req.getFile("photo");
+        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+        String safeFile = IMG_UPLOAD_DIR + originFileName;
+
+        try {
+            mf.transferTo(new File(safeFile));
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        employeeService.updateEmployeeAction(req, res, id);
+        return "hr/employeeManagement/detailEmployee";
     }
 }

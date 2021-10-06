@@ -30,13 +30,12 @@
 								<th rowspan="2" style="background-color: #f1f1f1;">사진</th>
 								<td colspan="3">
 									<div id="temp_image">
-										<img src="${employee.photo}">
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="3">
-									<input type="file" name="photo" id="photo" accept="/" onchange="setImage(event);" required>
+									<input type="file" name="photo" id="photo" accept="/" onchange="setImage(event);" value="${employee.photo}" required>
 								</td>
 							</tr>
 							<tr>
