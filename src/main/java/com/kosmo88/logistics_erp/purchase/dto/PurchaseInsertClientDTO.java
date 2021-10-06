@@ -3,7 +3,10 @@ package com.kosmo88.logistics_erp.purchase.dto;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.type.Alias;
+
 // 거래처 등록 DTO
+@Alias("PurchaseInsertClientDTO")
 public class PurchaseInsertClientDTO {
 	
 	private int id;						// 거래처코드

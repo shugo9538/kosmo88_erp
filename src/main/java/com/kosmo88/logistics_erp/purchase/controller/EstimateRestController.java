@@ -64,7 +64,6 @@ public class EstimateRestController {
     }
 
     // 견적서 등록 처리
-    @ResponseBody
     @RequestMapping(value = "/estimateRegister/estimateRegisterAction")
     public boolean estimateRegisterAction(@RequestBody PurchaseInsertEstimateDTO dto) {
     	estimateService.estimateRegisterAction(dto);
@@ -72,7 +71,6 @@ public class EstimateRestController {
     }
     
 	// 견적서 상품 등록 처리
-    @ResponseBody
     @RequestMapping(value = "/estimateRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<PurchaseInsertEstimateDTO> dtos) {
         System.out.println(dtos);

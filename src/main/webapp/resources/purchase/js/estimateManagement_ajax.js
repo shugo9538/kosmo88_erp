@@ -39,10 +39,10 @@ $(document).ready(
 						var dataObject = new Object();
 						// $('#estimate').find('input').each(function() {
 
-						dataObject[client_id] = $('#estimate').find('input[name=client_id]').val();
-						console.log(dataObject[client_id]);
-						dataObject[employee_id] = $('#estimate').find('input[name=employee_id]').val();
-						console.log(dataObject[employee_id]);
+						dataObject['client_id'] = $('#estimate').find('input[name=client_id]').val();
+						console.log(dataObject['client_id']);
+						dataObject['employee_id'] = $('#estimate').find('input[name=employee_id]').val();
+						console.log(dataObject['employee_id']);
 
 						var formData = JSON.stringify(dataObject);
 						console.log(formData);
@@ -92,20 +92,24 @@ function itemRegister() {
 	var i = 0;
 
 	// 2.거래처 상품
-	$('#estimateRegisterForm #item-group').children().each(function() {
+	$('#estimateItemList tbody').children().each(function() {
 		var dataObject = new Object();
-		$('.form-control' + i).each(function() {
-			var data = $(this);
-			var name = data.attr('name');
-			if (name == 'item_name')
-				name = 'name';
-			dataObject[name] = data.val();
-		});
+//		$('.item' + i).each(function() {
+//			var data = $(this);
+//			var name = data.attr('name');
+//			dataObject[name] = data.val();
+//		});
+		
+		dataObject['item_id'] = $('#estimateItemList').find('input[name=item_id]').val();
+		console.log(dataObject['item_id']);
+		dataObject['quantity'] = $('#estimateItemList').find('input[name=quantity]').val();
+		console.log(dataObject['quantity']);
+		
 		console.log(dataObject);
 		list.push(dataObject);
-		i++
+//		i++
 	});
-	list.pop();
+//	list.pop();
 	formData = JSON.stringify(list);
 	// alert(formData);
 
@@ -139,7 +143,7 @@ function itemRegister() {
 		},
 		error : function() {
 			swal({
-				title:"견적서 삭제 오류",
+				title:"견적서 등록 오류",
 				type: "error",
 				text: "잠시 후 다시 시도해주세요!",
 				timer: 2500
@@ -249,6 +253,7 @@ function estimateList() {
 
 				if (result) {
 					estimateChoiceDelete(csrfParameter, csrfToken);
+					return false;
 				} else {
 					return false;
 				}
@@ -347,8 +352,8 @@ function estimateItemList(client_id) {
 	currTab = $('#estimateItemList')
 			.DataTable(
 					{
+						"ordering": false,
 						"dom" : '<"top">rt<"bottom"><"clear">',
-						"order" : [ [ 1, "desc" ] ],
 						ajax : {
 							url : window.location.href
 									+ '/estimateItemList?client_id='
@@ -361,9 +366,9 @@ function estimateItemList(client_id) {
 								{
 									'sTitle' : '상품명',
 									data : 'name',
-									render : function(data) {
-										return '<input name="item_name" type="text" placeholder="상품명" value="'
-												+ data + '"readonly>';
+									render : function(data, type, row, meta) {
+										return '<input class="item" name="item_id" type="hidden" value="' + row.id + '"><input name="item_name" type="text" placeholder="상품명" value="'
+												+ row.name + '"readonly>';
 									}
 								},
 								{
@@ -386,7 +391,7 @@ function estimateItemList(client_id) {
 									'sTitle' : '수량',
 									data : 'id',
 									render : function(data) {
-										return '<input name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)"><input style="padding:3px;" type="button" class="btn btn-primary" value="+" onclick="add(this);"><input style="padding:3px;" type="button" class="btn btn-primary" value="-" onclick="del(this);">';
+										return '<input class="item" name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)"><input style="padding:3px;" type="button" class="btn btn-primary" value="+" onclick="add(this);"><input style="padding:3px;" type="button" class="btn btn-primary" value="-" onclick="del(this);">';
 									}
 								},
 								{
@@ -428,6 +433,7 @@ function estimateItemList(client_id) {
 var price;
 var quantity;
 
+// 수량 +
 function add(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());
@@ -450,6 +456,7 @@ function add(btn) {
 
 }
 
+// 수량 -
 function del(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());
@@ -469,6 +476,7 @@ function del(btn) {
 	}
 }
 
+// 수량 변경
 function change(btn) {
 	quantity = $(btn).parent().parent().find('input[name=quantity]');
 	console.log(quantity.val());

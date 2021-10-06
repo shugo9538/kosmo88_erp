@@ -109,7 +109,7 @@ public class EstimateServiceImpl implements EstimateService {
 		boolean insert = false;
 		state = QueryCode.INSERT;
 		
-		map.put("item_quantity", dto.getQuantity());
+		map.put("quantity", dto.getQuantity());
 		map.put("item_id", dto.getItem_id());
 		
 		// product_group tbl 입력
