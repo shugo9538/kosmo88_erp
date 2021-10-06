@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
 
 public interface SectionDao {
 
 	void insert(SectionDto sectionDto);
 	void select();
-	List<V_Stock_SectionDto> selectList(int warehouseId);
+	List<SectionDto> selectList(int warehouseId);
 	int selectMaxId();
-	
+	void update(); 
+	void delete(); 
 }
 
 @Repository
@@ -37,7 +37,7 @@ class SectionDaoImpl implements SectionDao {
 	}
 
 	@Override
-	public List<V_Stock_SectionDto> selectList(int warehouseId) {
+	public List<SectionDto> selectList(int warehouseId) {
 		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectList", warehouseId);
 	}
 
@@ -47,5 +47,17 @@ class SectionDaoImpl implements SectionDao {
 	}
 	
 
+	@Override
+	public void update() {
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.SectionDao.insert");
+	}
+
+	@Override
+	public void delete() {
+		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.SectionDao.insert");
+	}
+
+
 
 }
+

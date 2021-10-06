@@ -89,6 +89,8 @@ public class DtoFunction {
 		String propType;
 //		Set<String> settedPropSet = new HashSet<>();
 		Set<String> paramSet = paramMap.keySet();
+		System.out.println("#$%#$테스트. section[0]: " + paramMap.get("section")[0]);
+		System.out.println("#$%#$테스트. section[1]: " + paramMap.get("section")[1]);
 
 		Method[] methods = clazz.getDeclaredMethods();
 
