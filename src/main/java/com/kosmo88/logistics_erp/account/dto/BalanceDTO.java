@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.account.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("BalanceDTO")
 public class BalanceDTO {
 	
 	private String account_name;		//계좌이름

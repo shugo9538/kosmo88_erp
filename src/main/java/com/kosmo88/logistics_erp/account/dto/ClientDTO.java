@@ -1,7 +1,11 @@
 package com.kosmo88.logistics_erp.account.dto;
 
+
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ClientDTO")
 public class ClientDTO {
 	
 	private int id;

@@ -483,29 +483,6 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		model.addAttribute("dto", accountDTO);
 		
 	}
-	// 통장 입금내역 조회
-	@Override
-	public void accountDeposit(HttpServletRequest request, Model model) {
-
-		//accountDetail.jsp 에서 전달받은 값
-		//String account_number = request.getParameter("account_number");
-		//List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
-		//depositWithdrawalHistoryDTO = accountDAO.selectAccountDeposit(account_number);
-		//model.addAttribute("DepositWithdrawalHistoryDTO", depositWithdrawalHistoryDTO);
-	}
-
-	// 통장 출금내역 조회
-	@Override
-	public void accountWithdrawal(HttpServletRequest request, Model model) {
-		
-		//accountDetail.jsp 에서 전달받은 값
-		//String account_number = request.getParameter("account_number");
-		//List<DepositWithdrawalHistoryDTO> depositWithdrawalHistoryDTO = new ArrayList<DepositWithdrawalHistoryDTO>();
-		//depositWithdrawalHistoryDTO = accountDAO.selectAccountWithdrawal(account_number);
-		//System.out.println("잔액조회 depositWithdrawalHistoryDTO : " + depositWithdrawalHistoryDTO);
-		//model.addAttribute("depositWithdrawalHistoryDTO", depositWithdrawalHistoryDTO);
-		
-	}
 	
 	// ------------------------------ 결산/재무제표 ------------------------------
 	// 재무상태표

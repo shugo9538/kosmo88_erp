@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.account.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("IncomeStatementDTO")
 public class IncomeStatementDTO {
 	
 // 손익계산서
