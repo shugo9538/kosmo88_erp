@@ -34,8 +34,8 @@
 			<!--End row-->
 		</div>
 		<!-- End Wrapper-->
+		<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
-	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 </body>

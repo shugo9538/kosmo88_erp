@@ -39,8 +39,6 @@ $(document).ready(function () {
 		case "buttonAction":
 	}
 })
-
-
 // 	}
 // 	// '#clientRegisterAction', 버튼 id
 // 	$('#white-box').on('click', '#clientRegisterAction', function() {
@@ -127,8 +125,6 @@ $(document).ready(function () {
 // });
 
 
-console.log(document)
-console.log($(document))
 
 function receivingStatusList(){
 	console.log("----receivingStatusList 실행")

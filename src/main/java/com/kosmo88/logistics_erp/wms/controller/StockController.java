@@ -20,9 +20,6 @@ public class StockController {
         return "wms/stock/stockList";
     }
 
-    
-    
-    
     @RequestMapping(value = "/add")
     public String add(Model model) {
         return "wms/stock/addStock";

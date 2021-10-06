@@ -13,106 +13,79 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.wms.dao.SectionDao;
-import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
-import com.kosmo88.logistics_erp.wms.service.SectionService;
-import com.kosmo88.logistics_erp.wms.service.StockService;
+import com.kosmo88.logistics_erp.wms.service.RackService;
 import com.kosmo88.logistics_erp.wms.service.WarehouseService;
 import com.kosmo88.logistics_erp.wms.util.MyLog;
+
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @Controller
 @RequestMapping(value = "/wms/warehouse")
 public class WarehouseController {
+    
+    @Autowired
+    WarehouseService warehouseService;
+   
+    @Autowired
+    RackService rackService;
 
-	@Autowired
-	StockService stockService;
-	@Autowired
-	WarehouseService warehouseService;
-	@Autowired
-	SectionService sectionService;
-	@Autowired
-	SectionDao sectionDao;
 
-	@RequestMapping(value = "/add")
-	public String add() {
-		return "wms/warehouse/addWarehouse";
-	}
+    @RequestMapping(value = "/add")
+    public String add() {
+        return "wms/warehouse/addWarehouse";
+    }
+    
+    @RequestMapping(value= {"/warehouse", "/"})
+    public String warehouse(Model model) {
+    	warehouseService.warehouse();
+        return "wms/warehouse/warehouse";
+    }
+    
+//    폐기
+    @RequestMapping(value = "/list")
+    public String list(Model model) {
+    	List<WarehouseDto> list = warehouseService.list();
+        return "wms/warehouse/warehouseList";
+    }
 
-	// 일단 첫 페이지 진입시에 warehouse하나의 페이지에 모든 페이지를 포함해서 한번에 보내고 Tab으로 설정할 계획이지만
-	// 추후에 ajax로 바꿀 여지가 있다
-	@RequestMapping(value = { "/warehouse", "/" })
-	public String warehouse(HttpServletRequest req, Model model) {
-		int warehouseId = Integer.parseInt(req.getParameter("id"));
-		// 재고 정보
-		List<V_Stock_SectionDto> stock_sectionDtoList = sectionDao.selectList(warehouseId);
-		// 창고 정보
-		WarehouseDto warehouseDto = warehouseService.warehouse(warehouseId);
-
-		model.addAttribute("warehouseDto", warehouseDto);
-		model.addAttribute("stock_sectionDtoList", stock_sectionDtoList);
-		return "wms/warehouse/warehouse";
-	}
-
-	@RequestMapping(value = {"/list", "/simpleList" })
-	public String simpleList(Model model) {
-		List<V_warehouse_simpleDto> list = warehouseService.simpleList();
-		model.addAttribute("warehouseDtoList", list);
-		return "wms/warehouse/warehouseList";
-	}
-	
-	@RequestMapping(value="manage")
-	public String manageWarehouse(HttpServletRequest req, Model model){
-		int warehouseId = Integer.parseInt(req.getParameter("id"));
-		// 재고 정보
-		List<V_Stock_SectionDto> stock_sectionDtoList = sectionDao.selectList(warehouseId);
-		// 창고 정보
-		WarehouseDto warehouseDto = warehouseService.warehouse(warehouseId);
-
-		model.addAttribute("warehouseDto", warehouseDto);
-		model.addAttribute("stock_sectionDtoList", stock_sectionDtoList);
-		return "wms/warehouse/manageWarehouse";
-	}
-
-	@RequestMapping(value = "/detailList")
-	public String list(Model model) {
-		List<V_warehouse_detailDto> list = warehouseService.detailList();
-		model.addAttribute("warehouseDtoList", list);
-		return "wms/warehouse/manageWarehouse";
-	}
 
 	@RequestMapping(value = "/addAction")
-	public String addAction(HttpServletRequest req, Model model) {
-		Map<String, String[]> paramMap = req.getParameterMap();
-		MyLog.logParamMap(paramMap);
-//		int warehouseId = warehouseService.addAction(paramMap);
-		warehouseService.addAction(paramMap);
-//		sectionService.addAction(paramMap, warehouseId);
+    public String addAction(HttpServletRequest req, Model model) {
+     	Map<String, String[]> paramMap = req.getParameterMap();
+     	MyLog.logParamMap(paramMap);
+     	System.out.println("파라미터 맵 값 : " + paramMap);
+    	int warehouseId = warehouseService.addAction(paramMap);
+    	rackService.addAction(paramMap, warehouseId);
+    	
+        return "wms/warehouse/warehouseList";
+    }
 
-		return "wms/warehouse/manageWarehouse";
-	}
+    @RequestMapping(value = "/stock")
+    public String stock(Model model) {
+    	warehouseService.stock();
+        return "wms/warehouse/stock";
+    }
 
-	@RequestMapping("/modify")
-	public String modify(Model model) {
-		warehouseService.modify();
-		return "wms/warehouse/modifyWarehouse";
-	}
+    @RequestMapping("/modify")
+    public String modify(Model model){
+    	warehouseService.modify();
+    	return "wms/warehouse/modifyWarehouse";
+    }
+ 
+    @RequestMapping("/delete")
+    public String delete(Model model){
+    	warehouseService.delete();
+    	return "wms/warehouse/warehouseList";
+    }
 
-	@RequestMapping("/delete")
-	public String delete(Model model) {
-		warehouseService.delete();
-		return "wms/warehouse/warehouseList";
-	}
-
-	@RequestMapping("/viewRack")
-	public String viewRack(Model model) {
-		warehouseService.viewRack();
-		return "wms/warehouse/rackDetail";
-	}
+    
+    @RequestMapping("/viewRack")
+    public String viewRack(Model model) {
+    	warehouseService.viewRack();
+        return "wms/warehouse/rackDetail";
+    }
 
 //    @RequestMapping("/rack")
 //    public String rack(){
@@ -121,19 +94,24 @@ public class WarehouseController {
 
 }
 
+
+
 //아마 객체정보를 response의 body message에 추가하는 메소드가 자동으로 생성되겠지? 
-@SessionAttributes({ "session", "userid" })
+@SessionAttributes({"session", "userid"})
 @RestController
 @RequestMapping(value = "/wms/warehouse")
 class WarehouseRestController {
-	@Autowired
-	WarehouseService warehouseService;
-
-	// 거래처(구매처) 목록
-	@ResponseBody
-	@RequestMapping(value = "/info")
-	public List<V_warehouse_simpleDto> warehouseList() {
-		return warehouseService.simpleList();
-	}
-
+    @Autowired
+    WarehouseService warehouseService;
+    // 거래처(구매처) 목록
+    @ResponseBody
+    @RequestMapping(value = "/info")
+    public List<WarehouseDto> warehouseList() {
+    	return warehouseService.list();
+    }
+    
+   
+  
+    
+    
 }

@@ -24,7 +24,7 @@
 			<%-- <%@ include file="../codeFragment/wmsMenu.jsp"%> --%>
 
 
-
+			
 
 
 			<!--Start row-->
@@ -32,11 +32,9 @@
 				<div class="white-box">
 					<h2 class="header-title">랙 목록</h2>
 					<div class="table-responsive">
-						<table id="rackList" class="display table">
+						<table class="table table-hover">
 							<thead>
 								<tr>
-									<td style="text-align: center"><input type="checkbox"
-										id="checkAll" name="checkAll"></td>
 									<th>#</th>
 									<th>랙 이름</th>
 									<th>창고</th>
@@ -55,6 +53,18 @@
 										<div class="progress progress-striped progress-sm">
 											<div class="progress-bar progress-bar-warning"
 												style="width: 25%;"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>A-2</td>
+									<td>랙창창</td>
+									<td><span class="label label-warning">랙중</span></td>
+									<td>
+										<div class="progress progress-striped progress-sm">
+											<div class="progress-bar progress-bar-warning"
+												style="width: 90%;"></div>
 										</div>
 									</td>
 								</tr>
