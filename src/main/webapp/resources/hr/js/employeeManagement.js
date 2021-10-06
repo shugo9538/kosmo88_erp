@@ -105,6 +105,13 @@ function callEmployeeList(url, columns, ordering) {
             var options = "width=1000,height=600,scrollbars=no,menubar=no,status=no,titlebar=no,left=150,top=200";
             
             win = window.open(loc, "popupWindow", options);
+            
+            var timer = setInterval(function() {
+                if (win.closed) {
+                    clearInterval(timer);
+                    currTab.ajax.reload();
+                }
+            }, 1000);
         });
     });
 }

@@ -25,7 +25,7 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i>
 							인사카드 수정 등록
 						</h2>
-						<table id="client" class="display table mt-12" style="width: 100%">
+						<table id="client" class="display table mt-12" style="width: 100%"> 
 							<tr>
 								<th rowspan="2" style="background-color: #f1f1f1;">사진</th>
 								<td colspan="3">
@@ -147,7 +147,7 @@
 							<tr>
 								<td colspan="4" style="text-align: center;">
 									<input type="submit" id="updateEmployeeAction" value="수정">
-									<input type="reset" value="취소" onclick="window.close();">
+									<input type="reset" value="취소" onclick="window.history.back();">
 								</td>
 							</tr>
 						</table>

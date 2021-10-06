@@ -8,12 +8,20 @@
 
 	<insert id="insert"
 		parameterType="com.kosmo88.logistics_erp.wms.dto.ReceivingDto">
-		INSERT INTO receiving 
+		INSERT INTO receiving
 		(ID, warehouse_id , departure_id, item_id, count)
 		VALUES(
-		#{id}, #{warehouseId}, #{departureId}, #{itemId}, #{count}
+		#{id},
+		#{warehouseId}, #{departureId}, #{itemId}, #{count}
 		)
 	</insert>
+
+	<select id="inboundList" parameterType="int"
+		resultType="InboundDto">
+		SELECT *
+		FROM INBOUND
+		WHERE WAREHOUSE_ID = #{warehouseId}
+	</select>
 
 	<select id="select"
 		resultType="com.kosmo88.logistics_erp.wms.dto.ReceivingDto">

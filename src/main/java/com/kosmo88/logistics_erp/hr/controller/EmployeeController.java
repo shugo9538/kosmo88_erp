@@ -86,6 +86,6 @@ public class EmployeeController {
         }
 
         employeeService.updateEmployeeAction(req, res, id);
-        return "hr/employeeManagement/detailEmployee";
+        return "redirect:/hr/employee/{id}";
     }
 }

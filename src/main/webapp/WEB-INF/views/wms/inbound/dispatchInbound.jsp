@@ -19,23 +19,49 @@
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i>입하 지시
 							</h2>
+
+
+							<table id="clientList" class="display table" style="width: 100%">
+								<thead>
+									<tr>
+<!-- 										<th>번호</th> -->
+										<th>품목</th>
+										<th>수량</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="productDto" items="${productDtoList}">
+										<tr>
+											<td class="hidden">
+<%-- 											<td>${productDto.purchase_id}</td> --%>
+											<td>${productDto.item_name}</td>
+											<td>${productDto.quantity}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+
+
+
 							<div class="form-group">
 								<label class="col-sm-2 control-label">입하 창고 선택</label>
 								<div class="col-sm-10">
-								<div id="inbound"></div>
+									<div id="inbound"></div>
 									<select id="destination" class="form-control input">
 										<c:forEach var="warehouseDto" items="${warehouseDtoList}">
-											<option value="${warehouseDto.warehouse_id}">${warehouseDto.warehouse_name} 여유 용적 ${warehouseDto.capacity_sum-warehouseDto.loaded_sum}</option>
+											<option value="${warehouseDto.warehouse_id}">${warehouseDto.warehouse_name}
+												(여유 섹션 ${warehouseDto.empty_section_count})</option>
 										</c:forEach>
 									</select>
 									<div class="my-5"></div>
 
-<%-- 										<c:forEach var="warehouseDto" items="${warehouseDtoList}"> --%>
-<%-- 											<div>${warehouseDao.warehouse_id}${warehouseDto.warehouse_name}</div> --%>
-<%-- 										</c:forEach> --%>
+									<%-- 										<c:forEach var="warehouseDto" items="${warehouseDtoList}"> --%>
+									<%-- 											<div>${warehouseDao.warehouse_id}${warehouseDto.warehouse_name}</div> --%>
+									<%-- 										</c:forEach> --%>
 
 									<div class="centerBtnContainer">
-										<input type="button" class="btn-default align-self-center" onclick="dispatchAction()" value="입하 지시">
+										<input type="button" class="btn-default align-self-center"
+											onclick="dispatchAction()" value="입하 지시">
 									</div>
 								</div>
 							</div>
