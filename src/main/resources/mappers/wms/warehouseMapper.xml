@@ -33,6 +33,15 @@
 		<!-- select * from warehouse; -->
 		SELECT * FROM V_WAREHOUSE_DEATIL
 	</select>
+	
+		<select id="sectionList"
+			parameterType="int"
+			resultType="V_warehouse_sectionDto">
+			SELECT * FROM V_WAREHOUSE_SECTION
+			WHERE WAREHOUSE_ID = #{warehouseId} 
+<!-- 			AND ITEM_ID = 1 -->
+		</select>
+	
 
 	<select id="selectOne" parameterType="int"
 		resultType="WarehouseDto">

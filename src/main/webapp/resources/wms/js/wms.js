@@ -15,6 +15,18 @@ document.addEventListener("DomContentLoaded", function(){
   addSection()
 })
 
+
+//컨텍스트패스
+function getContextPath() {
+	var hostIndex = location.href.indexOf(location.host) + location.host.length;
+	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
+}
+
+
+
+
+
+
 function addSection() {
   var rack = document.getElementById("rack");
   // var addSectionBtn = document.getElementById("addSection");

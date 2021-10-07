@@ -11,6 +11,7 @@ import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dao.WarehouseDao;
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_sectionDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.util.DtoFunction;
@@ -69,17 +70,8 @@ public class WarehouseService {
 		}
 	}
 
-	public void stock() {
-	}
 
-	public void modify() {
-	}
-
-	public void delete() {
-	}
-
-	
-
-	public void viewRack() {
+	public List<V_warehouse_sectionDto> sectionList(int warehouseId) {
+		return warehouseDao.sectionList(warehouseId);
 	}
 }

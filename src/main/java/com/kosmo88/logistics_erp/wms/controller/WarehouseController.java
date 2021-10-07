@@ -96,26 +96,9 @@ public class WarehouseController {
 		return "wms/warehouse/manageWarehouse";
 	}
 
-	@RequestMapping("/modify")
-	public String modify(Model model) {
-		warehouseService.modify();
-		return "wms/warehouse/modifyWarehouse";
-	}
-
-	@RequestMapping("/delete")
-	public String delete(Model model) {
-		warehouseService.delete();
-		return "wms/warehouse/warehouseList";
-	}
-
-	@RequestMapping("/viewRack")
-	public String viewRack(Model model) {
-		warehouseService.viewRack();
-		return "wms/warehouse/rackDetail";
-	}
-
-//    @RequestMapping("/rack")
-//    public String rack(){
+	
+//    @RequestMapping("/section")
+//    public String section(){
 //    	return "";
 //    }
 

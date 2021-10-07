@@ -35,7 +35,7 @@
 <script src="${RESOURCES_PATH}/assets/pages/dashboard.js"></script>
 
 
-<!-- Validaion(입력 유효성 관련?) -->
+<!-- Validaion(-->
 <script src="${RESOURCES_PATH}/assets/plugins/jquery-validation/jquery.validate.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/validation-custom.js"></script>
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
