@@ -1,3 +1,4 @@
+
 var csrfData = {};
 var currTab;
 var csrfParameter;
@@ -54,10 +55,12 @@ $(document).ready(function() {
 	            xhr.setRequestHeader(csrfParameter, csrfToken);
 	        },
 	        success : function(data) {
-	            if (data) {
-	            	alert('거래처가 등록되었습니다.');
-	            	currTab.ajax.reload();
-	            }	
+	        	swal({
+					title:"거래처 등록 성공",
+					type: "success",
+					text: "거래처가 등록되었습니다.",
+					timer: 2500
+				})	
 	        },
 	        error : function() {
 	        	swal({
@@ -147,7 +150,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 // 거래처(구매처) 목록
 function clientList() {
 	currTab = $('#clientList').DataTable({
-		"order": [[ 1, "desc" ]],
+		"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/clientList', // 현 위치
             // + 요청

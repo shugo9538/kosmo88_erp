@@ -41,7 +41,7 @@
 	<select id="getEstimateList" resultType="SalesEstimateListViewDTO">
 		SELECT request_id, begin_date, client_name, client_ceo_name, 
 		       client_phone, employee_name, enabled
-		  FROM S_ESTIMATE_LIST_VIEW
+		  FROM P_ESTIMATE_LIST_VIEW
 		 WHERE enabled = 'Y'
 		 ORDER BY request_id
 	</select>

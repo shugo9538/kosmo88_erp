@@ -198,7 +198,7 @@ function estimateList() {
 									render : function(data, type, row, meta) {
 										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
-												+ '" onclick="window.open(this.href, width=1000, height=700); return false;">'
+												+ '" onclick="window.open(this.href, width=1500px;, height=700px;); return false;">'
 												+ row.request_id + '</a>';
 									}
 								}, {
@@ -420,29 +420,41 @@ function estimateItemList() {
 	var flag = true;
 	currTab.on('click', 'tr', function(e, dt, type, indexes) {
 		$(this).dblclick(function() {
-			var id = currTab.row(this).data().id;
-			var name = currTab.row(this).data().name;
-			var category = currTab.row(this).data().category;
-			var price = currTab.row(this).data().price;
-			var sale_price = currTab.row(this).data().sale_price;
-			var quantity = currTab.row(this).data().quantiry;
-			var totalprice = currTab.row(this).data().totalprice;
+			console.log(currTab.row(this).data());
+			
+			var arr = [];
+			
+			arr[0] = currTab.row(this).data().id;
+			arr[1] = currTab.row(this).data().name;
+			arr[2] = currTab.row(this).data().category;
+			arr[3] = currTab.row(this).data().price;
+			arr[4] = currTab.row(this).data().sale_price;
+			arr[5] = currTab.row(this).data().quantiry;
+			arr[6] = currTab.row(this).data().totalprice;
+			
+//			var id = currTab.row(this).data().id;
+//			var name = currTab.row(this).data().name;
+//			var category = currTab.row(this).data().category;
+//			var price = currTab.row(this).data().price;
+//			var sale_price = currTab.row(this).data().sale_price;
+//			var quantity = currTab.row(this).data().quantiry;
+//			var totalprice = currTab.row(this).data().totalprice;
 			
 			if(flag){
+				// tr 생성
 				$('#estimateRegisterList').append('<tr id="item'+cnt+'">');
-				td = $(this).children();
+				
+				
 				var i = 0;
+				// td 생성
+				td = $(this).children();
+				
 				td.each(function() {
 					console.log($(this).children().val());
-					$('#item'+cnt).append('<td><input value="'+name+'" readonly></td>');
-					$('#item'+cnt).append('<td><input value="'+category+'" readonly></td>');
-					$('#item'+cnt).append('<td><input value="'+price+'" readonly></td>');
-					$('#item'+cnt).append('<td><input value="'+sale_price+'" readonly></td>');
-					$('#item'+cnt).append('<td><input value="'+quantity+'" readonly></td>');
-					$('#item'+cnt).append('<td><input value="'+totalprice+'" readonly></td>');
+					$('#item'+cnt).append('<td><input value="'+arr[4]+'" readonly></td>');
 					
 					
-					//$('#col'+i).val(name);
+					// tr id 1씩 증가
 					i++;
 				});
 				cnt++;
@@ -452,6 +464,7 @@ function estimateItemList() {
 			}
 		});
 	});
+	
 
 	// 최소 등록 상품 개수 유효성 검사
 	$('#estimateItemList tbody').on('click', '.icon-minus', function() {
@@ -524,8 +537,6 @@ function change(btn) {
 	console.log(quantity.val());
 	totalprice = $(btn).parent().parent().find('input[name=totalprice]');
 	console.log(totalprice.val());
-	price = $(btn).parent().parent().find('input[name=price]');
-	console.log(price.val());
 	sale_price = $(btn).parent().parent().find('input[name=sale_price]');
 	console.log(sale_price.val());
 
@@ -533,6 +544,6 @@ function change(btn) {
 		quantity.val(1);
 	}
 
-	var total = parseInt(quantity.val()) * parseInt(price.val());
+	var total = parseInt(quantity.val()) * parseInt(sale_price.val());
 	totalprice.val(total);
 }

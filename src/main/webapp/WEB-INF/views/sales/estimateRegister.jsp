@@ -123,23 +123,13 @@
 							
 							<div id="estimateItemListTable">
 								<table id="estimateItemList" class="table table-hover" style="width:100%">
-									<thead>
-										<tr>
-											<th style="background-color: #f1f1f1;">상품명</th>
-											<th style="background-color: #f1f1f1;">상품종류</th>
-											<th style="background-color: #f1f1f1;">구매단가</th>
-											<th style="background-color: #f1f1f1;">판매단가</th>
-											<th style="background-color: #f1f1f1;">수량</th>
-											<th style="background-color: #f1f1f1;">공급가액</th>
-											<th style="background-color: #f1f1f1;">삭제 버튼</th>
-										</tr>
-									</thead>
+									
 								</table>
 							</div>
 							
 							
 							<!-- 상품 등록 -->
-							<div style="margin-top:60px;"></div>
+							<div style="margin-top:30px;"></div>
 							
 							<h2 class="header-title" >
 								<i class="fa fa-chevron-circle-right mr-2"></i> 상품 등록
