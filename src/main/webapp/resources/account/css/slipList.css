@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+
+
+/* 일반전표 페이지 */
+.deposit{
+	background-color: #fbe9e7;	
+}
+.withdraw{
+	background-color: #fff3e0;
+}
+.general{
+	background-color: #efebe9;
+}
+
+.deposit .general .general{
+	font-weight : 10px;
+}  
+
+/* 승인 */
+.confirm{
+	color : coral;
+}
+
+/* 기존정보   */
+.slip_defail{
+background-color: #f1f1f1;	
+}
