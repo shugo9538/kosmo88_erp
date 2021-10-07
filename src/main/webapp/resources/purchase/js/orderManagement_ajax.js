@@ -26,64 +26,47 @@ $(document).ready(function() {
         });
     }
     
-    // 발주서, 상품 등록 처리
+    // 주문서, 상품 등록 처리
 	// '#orderRegisterAction', 버튼 id
 	$('#white-box').on('click', '#orderRegisterAction', function() {
 	    var loc = $('#orderRegisterForm').attr('action');
+	    
+	    // 입력 유효성 검사\
+	    if (!$('#request_id').val()) {
+	    	swal("견적서를 선택해주세요!!", "견적서 미선택", "error");
+	    	return false;
+	    } else if (!$('#end_date').val()) {
+	    	swal("납기요청일자를 입력하세요!!", "납기요청일자 입력 누락", "error");
+	    	return false;
+	    }
+	    
+	    // 견적서 상품 불러오기 버튼 클릭(유효성 검사 내용 필요)
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    /*
-	     * 1. 발주서 등록 {id:'id', type:'type', name:'name' ... }
+	     * 1. 주문서 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
-	    $('#order').find('input').each(function() {
-    		var data = $(this);
-    		dataObject[data.attr('name')] = data.val();
-	    });
-	    console.log(dataObject);
+	    
+		dataObject['client_id'] = $('#order').find('#client_id').val();
+		console.log(dataObject['client_id']);
+		dataObject['employee_id'] = $('#order').find('#employee_id').val();
+		console.log(dataObject['employee_id']);
+		dataObject['department_id'] = $('#order').find('#department_id').val();
+		console.log(dataObject['department_id']);
+		dataObject['end_date'] = $('#order').find('#end_date').val();
+		console.log(dataObject['end_date']);
 	    
 	    var formData = JSON.stringify(dataObject);
-	    
-	    $.ajax({
-	        type : 'POST',
-	        url : loc + '?' + csrfParameter + '=' + csrfToken,
-	        data : formData,
-	        accept : "application/json",
-	        contentType : "application/json; charset=utf-8",
-	        dataType : 'text',
-	        beforeSend : function(xhr) {
-	            xhr.setRequestHeader(csrfParameter, csrfToken);
-	        },
-	        success : function(data) {
-	        	
-	        },
-	        error : function() {
-	            alert('오류');
-	        },
-	    });
-	    
-	    var list = new Array();
-	    var i = 0;
-	    
-	    // 2.상품
-	    $('#orderRegisterForm #item-group').each(function() {
-	    	var dataObject = new Object();
-	    	$('.form-control').each(function() {
-	    		var data = $(this);
-	    		var name = data.attr('name');
-	    		if (name == 'item_name') name = 'name';
-	    		dataObject[name] = data.val();
-	    	});
-	    	console.log(dataObject);
-	    	list.push(dataObject);
-	    	i++
-	    });
-	    list.pop();
-	    
-	    formData = JSON.stringify(list);
-	    // alert(formData);
-	    
 	    console.log(formData);
-	    loc = window.location.href + '/itemRegisterAction';
 	    
 	    $.ajax({
 	        type : 'POST',
@@ -96,20 +79,94 @@ $(document).ready(function() {
 	            xhr.setRequestHeader(csrfParameter, csrfToken);
 	        },
 	        success : function(data) {
-	            if (data) {
-	            	alert('발주서가 등록되었습니다.');
-	            	$('.form-control').each(function() {
-	            		$(this).val('');
-	            	});
-	            	currTab.ajax.reload();
-	            }
+	        	itemRegister();
 	        },
 	        error : function() {
-	            alert('오류');
+				swal({
+					title:"주문서 등록 오류",
+					type: "error",
+					text: "잠시 후 다시 시도해주세요!",
+					timer: 2500
+				}, function() {
+					return false;
+				});
 	        },
 	    });
 	});  
 });
+
+// 견적서 상품 불러오기
+$('#orderItemCall').on('click', function() {
+	
+	var request_id = $('#request_id').val();
+	var client_id = $('#client_id').val();
+	
+	if (client_id != 'none') {
+		orderItemList(request_id);
+	} else {
+		swal("견적서를 선택해주세요!");
+		return false;
+	} 
+});
+
+function itemRegister() {
+	var list = new Array();
+	var i = 0;
+
+	// 2.주문서 상품
+	$('#orderItemList tbody').children().each(function(i) {
+		var dataObject = new Object();
+		
+		dataObject['item_id'] = $(this).find('input[name=item_id]').val();
+		console.log(dataObject['item_id']);
+		dataObject['item_quantity'] = $(this).find('input[name=item_quantity]').val();
+		console.log(dataObject['item_quantity']);
+		
+		console.log(dataObject);
+		list.push(dataObject);
+	});
+	formData = JSON.stringify(list);
+
+	console.log(formData);
+	loc = window.location.href + '/itemRegisterAction';
+
+	$.ajax({
+		type : 'POST',
+		url : loc + '?' + csrfParameter + '=' + csrfToken,
+		data : formData,
+		accept : "application/json",
+		contentType : "application/json; charset=utf-8",
+		dataType : 'text',
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(csrfParameter, csrfToken);
+		},
+		success : function(data) {
+			if (data) {
+				swal({
+					title:"주문서 등록 성공",
+					type: "success",
+					text: "주문서가 등록되었습니다.",
+					timer: 2500
+				}, function() {
+					$('#orderRegisterForm').find('input').each(function() {
+						$(this).val('');
+					});
+					currTab.ajax.reload();
+				});
+			}
+		},
+		error : function() {
+			swal({
+				title:"주문서 등록 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
+		},
+	});
+}
 
 // 날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {
@@ -133,7 +190,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
-// 발주서(주문서) 목록
+// 주문서 목록
 function orderList() {
 	currTab = $('#orderList').DataTable({
 		"order": [[ 1, "desc" ]],
@@ -166,20 +223,20 @@ function orderList() {
                     data : 'begin_date',
                     render : $.fn.dataTable.render.moment()
                 }, {
-                	data : 'begin_date',
+                	data : 'end_date',
                     render : $.fn.dataTable.render.moment()
                 }, {
                 	data : 'slip_state',
                 	render : function(data) {
-                		if (data == 'R') return '<input class="btn  btn-primary" type="button" id="btn" value="주문요청">';
-                		else if (data == 'N') return '<input class="btn  btn-defalt" type="button" id="btn" value="승인대기">';
-                		else if(data == 'Y') return '<input class="btn  btn-defalt" type="button" id="btn" value="승인완료">';
+                		if (data == 'R') return '<button class="btn  btn-primary" type="button">주문요청</button>';
+                		else if (data == 'N') return '<button class="btn  btn-defalt" type="button">승인대기</button>';
+                		else if (data == 'Y') return '<button class="btn  btn-defalt" type="button">승인완료</button>';
                 	}
                 }, {
                 	data : 'request_state',
                 	render : function(data) {
-                		if (data == 'TX_PURCHASE') return '<input class="btn  btn-defalt" type="button" id="btn" value="출고준비">';
-                		else if (data == 'TX_RECEIVING') return '<input class="btn  btn-defalt" type="button" id="btn" value="출고완료">';
+                		if (data == 'TX_ORDER') return '<button class="btn  btn-defalt" type="button" id="' + request_id + '">출고준비</button>';
+                		else if (data == 'TX_RECEIVING') return '<button class="btn  btn-defalt" type="button" id="' + request_id + '">출고완료</button>';
                 	}
                 }
         ],
@@ -205,28 +262,33 @@ function orderList() {
 			}
 		});
 		
-		// 발주서 삭제(선택삭제)
+		// 주문서 삭제(선택삭제)
 	    $(".col-md-2").on("click", "#orderChoiceDeleteBtn", function() {
 	    	var check = $("input:checkbox[name=request_id]:checked").length;
 	    	
 	    	if (check == 0) {
-	    		alert("삭제할 발주서를 선택해주세요!!");
+	    		swal("삭제할 주문서를 선택해주세요!!");
 	    		return false;
 	    	} else {
-	    		
-	    		var result = confirm("선택한 발주서를 삭제하시겠습니까?");
-	    		
-	    		if (result) {
-	    			orderChoiceDelete(csrfParameter, csrfToken);
-	    		} else {
-	    			return false;
-	    		}
+	    		swal({
+	    			title : "주문서를 삭제하시겠습니까?",
+	    			text : "삭제할 주문서를 선택 하셨습니다.",
+	    			type : "warning",
+	    			showCancelButton: true,
+	    			cancelButtonText: "아니요",
+	    			confirmButtonColor: "#DD6B55",
+	    			confirmButtonText: "예",
+	    			closeOnConfirm: false
+	    			}, function(){
+	    				orderChoiceDelete(csrfParameter, csrfToken);
+	    			});
+	    		return false;
 	    	}
 	    });
 	});
 }
 
-// 발주서 삭제(선택삭제)
+// 주문서 삭제(선택삭제)
 function orderChoiceDelete(csrfParameter, csrfToken) {
 	var formData = JSON.stringify($('input[name=request_id]:checked').serialize());
     console.log(formData);
@@ -243,12 +305,25 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
         },
         success : function(data) {
             if (data) {
-                alert('선택한 발주서가 삭제되었습니다');
-            	currTab.ajax.reload();
+				swal({
+					title:"주문서 삭제 성공",
+					type: "success",
+					text: "선택한 주문서가 삭제되었습니다.",
+					timer: 2500
+				}, function() {
+	                currTab.ajax.reload();
+				});
             }
         },
         error : function() {
-            alert('오류');
+			swal({
+				title:"주문서 삭제 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
         },
     });
     
@@ -256,7 +331,7 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
 }
 
 
-//등록한 발주서 목록
+//등록한 주문서 목록
 function registeredOrderList() {
     currTab = $('#registeredOrderList').DataTable({
     	"order": [[ 0, "desc" ]],
@@ -283,10 +358,77 @@ function registeredOrderList() {
                 }, {
                     data : 'begin_date',
                     render : $.fn.dataTable.render.moment()
+                }, {
+                	data : 'end_date',
+                	render : $.fn.dataTable.render.moment()
                 }
         ],
         destroy : true,
         retrieve : true
     });
+}
+
+// 견적서 상품 불러오기
+function orderItemList(request_id) {
+	$("#orderItemListTable").empty();
+	$("#orderItemListTable").append(
+			'<table id="orderItemList" style="width:100%"></table>');
+	currTab = $('#orderItemList')
+	.DataTable(
+		{
+			"ordering": false,
+			"dom" : '<"top">rt<"bottom"><"clear">',
+			ajax : {
+				url : window.location.href
+						+ '/orderEstimateItemList?request_id='
+						+ request_id, // 현 위치
+				type : 'POST',
+				data : csrfData,
+				dataSrc : ''
+			},
+			columns : [
+				{
+					'sTitle' : '상품명',
+					data : null,
+					render : function(data, type, row, meta) {
+						return '<input name="item_id" type="hidden" value="' + row.item_id + '"><input name="item_name" type="text" style="border:none;" value="'
+								+ row.item_name + '"readonly>';
+					}
+				},
+				{
+					'sTitle' : '상품종류',
+					data : null,
+					render : function(data, type, row, meta) {
+						return '<input name="item_register_date" type="hidden" value="' + row.item_register_date + '"><input name="item_category" type="text" style="border:none;" value="'
+								+ row.item_category + '"readonly>';
+					}
+				},
+				{
+					'sTitle' : '구매단가',
+					data : 'item_price',
+					render : function(data) {
+						return '<input name="item_price" type="number" style="border:none;" value="'
+								+ data + '"readonly>';
+					}
+				},
+				{
+					'sTitle' : '수량',
+					data : 'item_quantity',
+					render : function(data) {
+						return '<input name="item_quantity" type="number" style="border:none;" value="' + data + '"readonly>';
+					}
+				},
+				{
+					'sTitle' : '공급가액',
+					data : 'item_price',
+					render : function(data, type, row, meta) {
+						if (row.item_price != 0) return '<input type="number" style="border:none;" readonly value="' + row.item_price * row.item_quantity + '">';
+						return '<input type="number" style="border:none;" readonly value="' + row.item_price + '">';
+					}
+				},
+		],
+		destroy : true,
+		retrieve : true
+	});
 }
 

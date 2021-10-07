@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -23,7 +23,7 @@
             <!--End Page Title-->
             
             <ul class="nav nav-pills custom-nav">
-				<li class="active"><a href="${ROOT_PATH}/purchase/orderRegister">발주서 등록</a></li>
+				<li class="active"><a href="${ROOT_PATH}/purchase/orderRegister">주문서 등록</a></li>
 			</ul>
             
             <!--Start row-->
@@ -33,7 +33,7 @@
                     <div class="white-box">
                         <h2 class="header-title">
                         	<i class="fa fa-chevron-circle-right mr-2"></i>
-                        	발주서 전체 목록
+                        	주문서 전체 목록
                         </h2>
                         <!-- form -->
                         <form class="form-horizontal" id="orderManagementForm" name="orderManagementForm"
@@ -42,7 +42,7 @@
 							<sec:csrfInput />
 	                     <div class="table-responsive">
 	                    	 <div class="col-md-2 mt-1 mb-4">
-								<input class="btn btn-default" type="button" id="orderChoiceDeleteBtn" value="발주서 삭제">
+								<input class="btn btn-default" type="button" id="orderChoiceDeleteBtn" value="주문서 삭제">
 							 </div>
 							 
 	                         <table id="orderList" class="display table" style="width:100%">
@@ -52,13 +52,13 @@
 		                                     <input type="checkbox" id="checkAll" name="checkAll">
 		                                </td>
 	                                    <!-- p_order_list_view -->
-	                                    <th>발주번호</th> 		 <!-- request_id -->
-	                                    <th>발주처</th>		 <!-- client_name -->
+	                                    <th>주문번호</th> 		 <!-- request_id -->
+	                                    <th>주문처</th>		 <!-- client_name -->
 	                                    <th>대표자</th>  		 <!-- client_ceo_name -->
-	                                    <th>발주처 연락처</th>   <!-- client_phone -->
+	                                    <th>주문처 연락처</th>   <!-- client_phone -->
 	                                    <th>담당자</th>		 <!-- employee_name -->
+	                                    <th>주문일자</th> 	 	 <!-- begin_date -->
 	                                    <th>납기요청일자</th>  	 <!-- end_date -->
-	                                    <th>발주일자</th> 	 	 <!-- begin_date -->
                                         <th>주문상태</th>		 <!-- slip_state -->
                                         <th>출고상태</th>		 <!-- request_state -->
 	                                 </tr>
@@ -76,7 +76,6 @@
         <!-- End Wrapper --> 
         
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/orderManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/orderManagement.js"></script>
 </body>

@@ -12,6 +12,7 @@ public class PurchaseItemDTO {
 	private String category;		// 종류
 	private Date register_date;		// 상품 등록일
 	private int price;				// 상품가격(구매원가)
+	private int quantity;			// 상품 수량
 	
 	public PurchaseItemDTO() {}
 
@@ -53,6 +54,14 @@ public class PurchaseItemDTO {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

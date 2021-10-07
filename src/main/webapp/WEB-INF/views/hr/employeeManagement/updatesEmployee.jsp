@@ -25,17 +25,19 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i>
 							인사카드 수정 등록
 						</h2>
-						<table id="client" class="display table mt-12" style="width: 100%"> 
+						<table id="client" class="display table mt-12" style="width: 100%">
 							<tr>
 								<th rowspan="2" style="background-color: #f1f1f1;">사진</th>
 								<td colspan="3">
 									<div id="temp_image">
+										<img id="img" src="${employee.photo}">
+										<input type="hidden" name="img" value="${employee.photo}">
 									</div>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="3">
-									<input type="file" name="photo" id="photo" accept="/" onchange="setImage(event);" value="${employee.photo}" required>
+									<input type="file" name="photo" id="photo" accept="/" onchange="setImage(event);" value="${employee.photo}">
 								</td>
 							</tr>
 							<tr>
@@ -67,7 +69,7 @@
 									-
 									<input style="width: 100px;" type="text" id="register_num2" name="resident_reg_num2" maxlength="7" required
 										onkeyup="nextRegisterNum2()" value="${fn:substringAfter(regi, '-')}"
-									
+									>
 								</td>
 								<th style="background-color: #f1f1f1;">이메일</th>
 								<c:set value="${employee.email}" var="email" />

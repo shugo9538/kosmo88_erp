@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <body class="sticky-header">
 	
 <div class="wrapper">
@@ -63,11 +65,12 @@
 	                	</tr>
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:15px;" rowspan="3">거래처 주소</th>
-	                		<td style="padding:15px;" colspan="3">
-	                			<input style="width:100px;" type="text" id="zip_code" name="zip_code" value="${cdto.zip_code}">
-	                			<button type="button" id="search_zip_code" name="search_zip_code" 
-	                                      value="${cdto.zip_code}" onclick="daumPostcode()">우편번호검색</button>
-	                		</td>
+	                		<td colspan="3">
+								<input type="text" name="zip_code"
+								id="zip_code" value="${cdto.zip_code}" required readonly>
+								<button type="button" class="btn  btn-primary" id="search_zip_code"
+									name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
+							</td>
 	                	</tr>
 	                		
 	                	<tr>

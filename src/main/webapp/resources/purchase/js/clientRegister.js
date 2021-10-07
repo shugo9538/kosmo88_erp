@@ -27,6 +27,7 @@ function addItem() {
 	var newItem = document.createElement("tr");
 	
 	newItem = item.cloneNode(true);
+	newItem.setAttribute("class", "item");
 	newItem.removeAttribute("style");
 	
 	tmp = newItem.getElementsByTagName('input');
@@ -49,7 +50,7 @@ function delItem(obj) {
 	var item = selectedItem.parent().parent();
 	
 	if (itemGroup.childElementCount < 3) {
-		alert("최소 하나 이상의 상품을 등록해야 합니다.")
+		swal("최소 하나 이상의 상품을 등록해야 합니다.");
 	} else {
 		item.remove();
 	}

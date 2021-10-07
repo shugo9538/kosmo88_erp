@@ -38,8 +38,10 @@
 		id="updateEmployee"
 		parameterType="EmployeeDTO">
 		UPDATE employee
-		SET name = #{name}, 
+		SET name = #{name},
+		<if test="#{photo} != null">
 			photo = #{photo}, 
+		</if>
 			resident_reg_num = #{resident_reg_num},
 			phone = #{phone},
 			email = #{email}, 

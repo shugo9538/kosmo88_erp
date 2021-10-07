@@ -1,40 +1,81 @@
 // 입력 후 커서 이동
 function nextRegisterNum1() {
-    if (document.updateEmployeeAction.register_num1.value.length >= 6) {
-        document.updateEmployeeAction.register_num2.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.register_num1.value.length >= 6) {
+            document.updateEmployeeAction.register_num2.focus();
+        }
+    } else {
+        if (document.insertEmployeeForm.register_num1.value.length >= 6) {
+            document.insertEmployeeForm.register_num2.focus();
+        }
     }
+
 }
 function nextRegisterNum2() {
-    if (document.updateEmployeeAction.register_num2.value.length >= 7) {
-        document.updateEmployeeAction.email1.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.register_num2.value.length >= 7) {
+            document.updateEmployeeAction.email1.focus();
+        }
+    } else {
+        if (document.insertEmployeeForm.register_num2.value.length >= 7) {
+            document.insertEmployeeForm.email1.focus();
+        }
     }
 }
 
 function nextPhone1() {
-    if (document.updateEmployeeAction.phone1.value.length >= 3) {
-        document.updateEmployeeAction.phone2.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.phone1.value.length >= 3) {
+            document.updateEmployeeAction.phone2.focus();
+        }
+    } else {
+        if (document.insertEmployeeForm.phone1.value.length >= 3) {
+            document.insertEmployeeForm.phone2.focus();
+        }
     }
 }
 
 function nextPhone2() {
-    if (document.updateEmployeeAction.phone2.value.length >= 4) {
-        document.updateEmployeeAction.phone3.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.phone2.value.length >= 4) {
+            document.updateEmployeeAction.phone3.focus();
+        }
+    } else {
+        if (document.insertEmployeeForm.phone2.value.length >= 4) {
+            document.insertEmployeeForm.phone3.focus();
+        }
     }
 }
 
 function nextPhone3() {
-    if (document.updateEmployeeAction.phone3.value.length >= 4) {
-        document.updateEmployeeAction.zip_code.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.phone3.value.length >= 4) {
+            document.updateEmployeeAction.zip_code.focus();
+        }
+    } else {
+
+        if (document.insertEmployeeForm.phone3.value.length >= 4) {
+            document.insertEmployeeForm.zip_code.focus();
+        }
     }
 }
 
 // 이메일 체크
 function selectEmailChk() {
-    if (document.updateEmployeeAction.email3.value == 0) { // 직접입력
-        document.updateEmployeeAction.email2.value = ""; // input 초기화
-        document.updateEmployeeAction.email2.focus();
+    if (document.updateEmployeeAction) {
+        if (document.updateEmployeeAction.email3.value == 0) { // 직접입력
+            document.updateEmployeeAction.email2.value = ""; // input 초기화
+            document.updateEmployeeAction.email2.focus();
+        } else {
+            document.updateEmployeeAction.email2.value = document.updateEmployeeAction.email3.value;
+        }
     } else {
-        document.updateEmployeeAction.email2.value = document.updateEmployeeAction.email3.value;
+        if (document.insertEmployeeForm.email3.value == 0) { // 직접입력
+            document.insertEmployeeForm.email2.value = ""; // input 초기화
+            document.insertEmployeeForm.email2.focus();
+        } else {
+            document.insertEmployeeForm.email2.value = document.insertEmployeeForm.email3.value;
+        }
     }
 }
 
