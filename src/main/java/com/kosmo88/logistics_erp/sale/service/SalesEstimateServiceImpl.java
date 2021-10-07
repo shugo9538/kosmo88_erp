@@ -18,6 +18,7 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -106,7 +107,11 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		
 		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
+		// 견적서 상세페이지(상품정보)
+		List<SalesEstimateDetailViewDTO> idto = estimateDao.getEstimateDetail(request_id);
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("idto", idto); 
 	}
 
 	// 견적서 등록 처리

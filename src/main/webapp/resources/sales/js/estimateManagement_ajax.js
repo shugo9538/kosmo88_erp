@@ -198,7 +198,7 @@ function estimateList() {
 									render : function(data, type, row, meta) {
 										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
-												+ '" onclick="window.open(this.href, width=1500px;, height=700px;); return false;">'
+												+ '" onclick="window.open(this.href, width=1500, height=800); return false;">'
 												+ row.request_id + '</a>';
 									}
 								}, {
@@ -318,7 +318,7 @@ function registeredEstimateList() {
 									render : function(data, type, row, meta) {
 										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
-												+ '" onclick="window.open(this.href, width=1000, height=700); return false;">'
+												+ '" onclick="window.open(this.href, width=1500, height=800); return false;">'
 												+ row.request_id + '</a>';
 									}
 								}, {
