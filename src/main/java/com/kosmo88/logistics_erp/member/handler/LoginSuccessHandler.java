@@ -20,8 +20,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             Authentication authentication) throws IOException, ServletException {
         LoginUserVO vo = (LoginUserVO) authentication.getPrincipal();
 
-        String userid = vo.getUserid();
-        request.setAttribute("userid", userid);
+        String id = vo.getId();
+        request.setAttribute("id", id);
 
         String viewPage = "/";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

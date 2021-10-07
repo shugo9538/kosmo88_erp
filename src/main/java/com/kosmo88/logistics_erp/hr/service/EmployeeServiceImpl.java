@@ -136,8 +136,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res, String id) {
         MultipartFile file = req.getFile("photo");
-
-        String photo = "/logistics_erp/resources/hr/image/employee_tmp/" + file.getOriginalFilename();
+        String photo;
+        if(file != null) {
+            photo = "/logistics_erp/resources/hr/image/employee_tmp/" + file.getOriginalFilename();
+        } else {
+            photo = req.getParameter("img");
+        }
 
         EmployeeDTO dto = new EmployeeDTO();
         String name = req.getParameter("name");
@@ -166,8 +170,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("detail_address" + detail_address);
         int zip_code = Integer.parseInt(req.getParameter("zip_code"));
 
-        dto.setId(id);
         dto.setPhoto(photo);
+        dto.setId(id);
         dto.setName(name);
         dto.setAddress(address);
         dto.setDepartment_id(department_id);
@@ -182,5 +186,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         state = QueryCode.UPDATE;
         req.setAttribute("update_code", state.check(employeeDAO.updateEmployee(dto)));
+    }
+
+    @Override
+    public void signIn(ModelAndView mav, String id) {
+        EmployeeDTO dto = employeeDAO.detailEmployee(id);
+
+        mav.addObject("employee", dto);
     }
 }

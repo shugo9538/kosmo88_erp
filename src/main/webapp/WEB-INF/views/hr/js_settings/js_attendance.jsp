@@ -6,6 +6,10 @@
 
 <!--Begin Page Level Plugin-->
 <script src="${RESOURCES_PATH}/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="${RESOURCES_PATH}/assets/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="${RESOURCES_PATH}/assets/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="${RESOURCES_PATH}/assets/plugins/datatables/js/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/plugins/datatables/js/dataTables.select.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
 <!--End Page Level Plugin-->

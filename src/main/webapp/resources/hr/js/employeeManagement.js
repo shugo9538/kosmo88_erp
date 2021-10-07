@@ -62,10 +62,10 @@ function setImage(event) {
 // 테이블 호출
 function callEmployeeList(url, columns, ordering) {
     $("#employeeDatatables").empty();
-    $('#employeeDatatables').append('<table id="employeeTable" style="width:100%"></table>');
+    $('#employeeDatatables').append('<table id="employeeTable" class="display table dataTable" style="width:100%"></table>');
     console.log(window.location.href + url);
     currTab = $('#employeeTable').DataTable({
-        "dom" : '<"top"l>rt<"bottom"ip><"clear">',
+        "dom" : '<"top"l>rt<"bottom"ip><"clear">B',
         order : ordering,
         select : true,
         ajax : {
@@ -76,20 +76,42 @@ function callEmployeeList(url, columns, ordering) {
             dataSrc : ''
         },
         columns : columns,
-        destroy : true
+        destroy : true,
+        buttons: [
+            {
+                text: '사원 등록',
+                attr: {
+                    class: "btn btn-default outline-btn round set-color",
+                    id: 'insertEmployee'
+                }
+            }, {
+                text: '선택 삭제',
+                attr: {
+                    class: "btn btn-default outline-btn round set-color",
+                    id: 'deleteEmployeeCode'
+                }
+            }, {
+                text: 'PDF 출력',
+                extend: 'pdfHtml5',
+                attr: {
+                    class: "btn btn-default outline-btn round set-color",
+                },
+                messageBottom: 'PDF created by PDFMake with Buttons for DataTables.'
+          }
+        ]
     });
+    currTab.on( 'xhr', function () {
+        var json = currTab.ajax.json();
+        $(json).each(function() {
+            console.log($(this)[0].id);
+        });
+        
+    } );
 
     $('#employeeTable_length').after(
             '<div id = employeeTable_filter style="text-align: right;"></div>');
     $('#employeeTable_filter').append('<label for="searchBar">검색 : &nbsp</label>');
     $('#employeeTable_filter').append('<input type="search" class="column_filter" id="searchBar">');
-
-    $('#employeeDatatables').append('<button id="insertEmployee">');
-    $('#employeeDatatables').append('&nbsp;');
-    $('#employeeDatatables').append('<button id="deleteEmployeeCode">');
-    $('#insertEmployee').append('사원 등록').attr('class',
-            "btn btn-default outline-btn round set-color");
-    $('#deleteEmployeeCode').append('선택 삭제').attr('class', "btn btn-default outline-btn round set-color");
 
     var searchDiv = $('#employeeTable_filter').find('label');
     searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');
@@ -98,6 +120,7 @@ function callEmployeeList(url, columns, ordering) {
     }
 
     currTab.on('click', 'tr', function(e, dt, type, indexes) {
+        console.log(currTab.row(this).data().address);
         $(this).dblclick(function() {
             td = $(this).children();
             loc = window.location.href + '/' + td.eq(1).text();
@@ -143,6 +166,28 @@ $('#employeeTable_filter').ready(function() {
 $("#updateEmployee").on('click', function() {
    window.location = window.location.href + '/updatesEmployee';
 });
+
+$('#pdfmake').on('click', function() {
+    html2canvas($('#white-box')[0]).then(function(canvas) {
+        var imgData = canvas.toDataURL('image/png');
+        
+        var imgWidth = 210; // 이미지 가로 길이(mm) A4 기준
+        var pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+        var imgHeight = canvas.height * imgWidth / canvas.width;
+        var heightLeft = imgHeight;
+        var position = 0;
+        
+        var doc = new jsPDF('p', 'mm', 'a4'); // jspdf객체 생성
+        
+        var imgData = canvas.toDataURL('image/png'); 
+        doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+        doc.save('재직증명서.pdf'); // pdf저장
+      });
+});
+
+$("#signIn").on('click', function() {
+    window.location = window.location.href + '/signIn';
+ });
 
 var employeeColumns = [
         {

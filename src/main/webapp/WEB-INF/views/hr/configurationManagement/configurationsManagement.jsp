@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../css_settings/customSettings.jsp"%>
 <body class="sticky-header">
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-functions.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-performance.js"></script>
 	<!--Start left side Menu-->
 	<%@ include file="../../common/left_side.jsp"%>
 	<!--End left side menu-->

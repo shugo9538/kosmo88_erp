@@ -20,7 +20,7 @@
 						<form action="${ROOT_PATH}/loginAction" method="post">
 							<sec:csrfInput />
 							<div class="form-group">
-								<input class="form-control" type="email" id="login_id" name="userid" placeholder="아이디(이메일)" size="50" required>
+								<input class="form-control" type="email" id="login_id" name="id" placeholder="아이디(이메일)" size="50" required>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="password" id="login_pw" name="password" placeholder="비밀번호" size="50" required>
@@ -29,7 +29,6 @@
 								<div class="pull-left">
 									<div class="checkbox primary">
 										<input id="checkbox-2" type="checkbox">
-										<label for="checkbox-2">Remember me</label>
 									</div>
 								</div>
 								<div class="pull-right">
@@ -42,13 +41,10 @@
 							<div class="form-group">
 								<input type="submit" value="로그인" class="btn btn-primary btn-block">
 							</div>
-							<div class="form-group text-center">
-								계정이 없으신가요?
-								<a href="${ROOT_PATH}/signIn">회원가입</a>
-							</div>
 						</form>
 						<div class="copy-text">
-							<p class="m-0">2017 &copy; Meter admin</p>
+							<p class="m-0">Copyright © 2021 주식회사 우여곡절</p>
+							<p class="m-0">Co.,Ltd All Rights Reserved</p>
 						</div>
 					</div>
 				</div>

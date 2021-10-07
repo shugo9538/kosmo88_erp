@@ -4,20 +4,20 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="com.kosmo88.logistics_erp.account.dao.UserDAO">
+<mapper namespace="com.kosmo88.logistics_erp.member.dao.UserDAO">
 	<select
 		id="getUserData"
 		parameterType="String"
 		resultType="UserDTO">
-		SELECT userid, password, username, tel, advAlert, enabled, authority, key
-		FROM USER_TBL
-		WHERE userid = #{userid}
+		SELECT id, password, employee_id, enabled, authorities
+		FROM member
+		WHERE id = #{id}
 	</select>
 
 	<insert
 		id="insertUser"
 		parameterType="UserDTO">
-		INSERT INTO USER_TBL(userid, password, username, tel, key, advAlert, enabled, authority)
-		VALUES(#{userid}, #{password}, #{username}, #{tel}, #{key}, 'OK', 0, 'ROLE_GUEST')
+		INSERT INTO member(id, password, enabled, authorities, employee_id)
+		VALUES(#{id}, #{password}, #{enabled}, #{authorities}, #{employee_id})
 	</insert>
 </mapper>

@@ -22,7 +22,6 @@ import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.dto.EmployeeDTO;
 import com.kosmo88.logistics_erp.hr.service.EmployeeService;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @RestController
 @RequestMapping(value = "/hr/employee")
@@ -51,6 +50,14 @@ public class EmployeeRestController {
     public ModelAndView updatesEmployee(@PathVariable("id") String id) {
         ModelAndView mav = new ModelAndView("hr/employeeManagement/updatesEmployee");
         employeeService.updateEmployee(mav, id);
+        return mav;
+    }
+    
+    // 인사카드 수정
+    @RequestMapping(value = "/{id}/signIn")
+    public ModelAndView signIn(@PathVariable("id") String id) {
+        ModelAndView mav = new ModelAndView("member/signIn");
+        employeeService.signIn(mav, id);
         return mav;
     }
 }
