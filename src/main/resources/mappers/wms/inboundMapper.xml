@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kosmo88.logistics_erp.wms.dao.InboundDao">
 
 
 	<!-- TX_PURCHASE request 를 가져온다 -->
 	<select id="selectList" resultType="V_purchaseDto">
-		SELECT * FROM V_PURCHASE
+		SELECT *
+		FROM V_PURCHASE
+		WHERE
+		ENABLED = 'Y'
 	</select>
 
-	<select id="selectProductList" parameterType="int"
-		resultType="V_purchase_productDto">
-		SELECT * FROM V_PURCHASE_PRODUCT
-		WHERE PURCHASE_ID =
+	<select id="selectItemList" parameterType="int"
+		resultType="V_request_itemDto">
+		SELECT * FROM V_REQUEST_ITEM
+		WHERE REQUEST_ID =
 		#{purchase_id}
+		AND STATE = 'TX_PURCHASE'
+	</select>
+
+	<select id="allInboundList" resultType="V_inboundDto">
+		SELECT *
+		FROM V_INBOUND
+	</select>
+
+	<select id="dispatchedInboundList" parameterType="int"
+		resultType="V_inboundDto">
+		SELECT *
+		FROM V_INBOUND
+		WHERE WAREHOUSE_ID = #{warehouseId}
 	</select>
 
 	<select id="selectMaxId" resultType="int">
-<!-- 		SELECT MAX(ID) -->
-<!-- 		SELECT MAX_INBOUND_ID -->
-<!-- 		FROM INBOUND -->
-	SELECT MAX_INBOUND_ID INBOUND_ID
-	FROM DUAL
+		SELECT MAX_INBOUND_ID
+		INBOUND_ID
+		FROM DUAL
 	</select>
 
 	<select id="selectOne" parameterType="int"
@@ -30,10 +46,12 @@
 	</select>
 
 	<!-- 입하 요청 등록 -->
-<!-- 	<insert id="insert" parameterType="V_purchaseDto"> -->
+	<!-- <insert id="insert" parameterType="V_purchaseDto"> -->
 	<insert id="insert" parameterType="Map">
-		INSERT INTO INBOUND (ID, WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
-		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date}, 'WMS000', #{client_id})
+		INSERT INTO INBOUND (ID,
+		WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
+		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date},
+		'WMS000', #{client_id})
 
 	</insert>
 

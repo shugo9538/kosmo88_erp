@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouse_sectionDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.util.Vars;
@@ -19,7 +20,8 @@ public interface WarehouseDao {
 	int selectMaxId();
 	WarehouseDto selectOne(int id);
 	void update(WarehouseDto warehouseDto); 
-	void delete(); 
+	void delete();
+	List<V_warehouse_sectionDto> sectionList(int warehouseId); 
 }
 
 
@@ -73,9 +75,11 @@ class WarehouseDaoImpl implements WarehouseDao {
 		sqlSession.insert(Vars.WAREHOUSE_DAO_PATH + ".delete");
 	}
 
-//	@Override
-//	public void selectSection() {
-//	}
+	@Override
+	public List<V_warehouse_sectionDto> sectionList(int warehouseId) {
+		return sqlSession.selectList(Vars.WAREHOUSE_DAO_PATH + ".sectionList", warehouseId);
+	}
+
 
 	
 

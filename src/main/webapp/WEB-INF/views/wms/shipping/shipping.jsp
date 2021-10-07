@@ -273,7 +273,6 @@
 
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_datePicker.jspf"%>
-	<%@ include file="/WEB-INF/views/wms/common/js_multiSelect.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/receiving.js"></script>
 	<!-- Page Level Script -->

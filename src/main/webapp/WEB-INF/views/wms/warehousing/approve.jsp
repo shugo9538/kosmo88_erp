@@ -17,7 +17,7 @@
 					<div class="col-md-12">
 						<div class="white-box">
 							<h2 class="header-title">
-								<i class="fa fa-chevron-circle-right mr-2"></i>입하 지시
+								<i class="fa fa-chevron-circle-right mr-2"></i>입고 등록
 							</h2>
 
 
@@ -47,13 +47,14 @@
 
 
 							<div class="form-group">
-								<label class="col-sm-2 control-label">입하 창고 선택</label>
+								<label class="col-sm-2 control-label">섹션 선택</label>
 								<div class="col-sm-10">
 									<div id="inbound"></div>
 									<select id="destination" class="form-control input">
-										<c:forEach var="warehouseDto" items="${warehouseDtoList}">
-											<option value="${warehouseDto.warehouse_id}">${warehouseDto.warehouse_name}
-												(여유 섹션 ${warehouseDto.empty_section_count})</option>
+										<c:forEach var="sectionDto" items="${sectionDtoList}">
+											<option value="${sectionDto.section_id}">${sectionDto.section_name}
+												(여유 공간 ${sectionDto.capacity-sectionDto.loaded}/
+												${sectionDto.capacity}</option>
 										</c:forEach>
 									</select>
 									<div class="my-5"></div>
@@ -64,7 +65,7 @@
 
 									<div class="centerBtnContainer">
 										<input type="button" class="btn-default align-self-center"
-											onclick="dispatchAction()" value="입하 지시">
+											onclick="approveAction()" value="입고 등록">
 									</div>
 								</div>
 							</div>
@@ -77,6 +78,6 @@
 	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/inbound.js"></script>
+	<script src="${RESOURCES_PATH}/wms/js/warehousing.js"></script>
 </body>
 </html>

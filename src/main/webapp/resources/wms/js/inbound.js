@@ -9,14 +9,10 @@ function dispatchInbound(purchase_id) {
 	dispatchwindow = window.open(getContextPath() + "/wms/inbound/dispatch?purchase_id="+purchase_id, "haha", "width=800,height=600");
 }
 
-
-
-
 function dispatchAction() {
 	var select = document.getElementById("destination");
 	var warehouse_id = select.options[select.selectedIndex].value;
 
-	// alert("입하 지시 처리되었습니다.\n test: inbound_id : " + opener.inbound_id + " warehouse_id : " + warehouse_id)
 
 	// var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
 	var url = getContextPath() + "/wms/inbound/dispatchAction";
@@ -37,8 +33,8 @@ function dispatchAction() {
 	req.send();
 
 	alert("입하 지시 처리되었습니다.\n test: " + query);
-
 	window.close();
+	opener.location.reload();
 }
 
 
@@ -55,6 +51,10 @@ function alertContents(req) {
 
 
 
+//퍼온거
+//location객체의 href(주소)를 얻어와서 location.host의 인덱스 위치와 location.host의 위치를 더한다
+//왜 굳이 다 더하는지는 모르겠다
+//location의 href로 어떻게 잘라서 컨텍스트 패스를 만든다. location객체를 이용하는게 관
 function getContextPath() {
 	var hostIndex = location.href.indexOf(location.host) + location.host.length;
 	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));

@@ -31,11 +31,11 @@ $(document).ready(function () {
 		case "":
 		case "receivingStatus":
 			//  $('#receivingStatusList').ready(function() {
-        	receivingStatusList();
+			receivingStatusList();
 		case "receivingHistory":
-//         $('#receivingHistoryList').ready(function() {
-//         	receivingHistoryList();
-//         });
+		//         $('#receivingHistoryList').ready(function() {
+		//         	receivingHistoryList();
+		//         });
 		case "buttonAction":
 	}
 })
@@ -130,47 +130,47 @@ $(document).ready(function () {
 console.log(document)
 console.log($(document))
 
-function receivingStatusList(){
+function receivingStatusList() {
 	console.log("----receivingStatusList 실행")
-	   $('#receivingStatusList').append('<table class="table table-hover"></table>');
-        columns = [
-                {
-                    'sTitle' : '#',
-                    data : 'r_num',
-                    render : function(data) {
-                        return '<input type="checkBox" value="' + data + '">';
-                    }
-                }, {
-                    'sTitle' : '앗',
-                    data : 'id'
-                }, {
-                    'sTitle' : '이것은',
-                    data : 'attendance_cd_id'
-				}
-				// , 
-				// {
-                //     'sTitle' : '근태 신청일',
-                //     data : 'application_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '시작',
-                //     data : 'begin_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '종료',
-                //     data : 'end_date',
-                //     render : $.fn.dataTable.render.moment()
-                // }, {
-                //     'sTitle' : '사유',
-                //     data : 'reason'
-                // }, {
-                //     'sTitle' : '상태',
-                //     data : 'state'
-                // }
-        ];
+	$('#receivingStatusList').append('<table class="table table-hover"></table>');
+	columns = [
+		{
+			'sTitle': '#',
+			data: 'r_num',
+			render: function (data) {
+				return '<input type="checkBox" value="' + data + '">';
+			}
+		}, {
+			'sTitle': '앗',
+			data: 'id'
+		}, {
+			'sTitle': '이것은',
+			data: 'attendance_cd_id'
+		}
+		// , 
+		// {
+		//     'sTitle' : '근태 신청일',
+		//     data : 'application_date',
+		//     render : $.fn.dataTable.render.moment()
+		// }, {
+		//     'sTitle' : '시작',
+		//     data : 'begin_date',
+		//     render : $.fn.dataTable.render.moment()
+		// }, {
+		//     'sTitle' : '종료',
+		//     data : 'end_date',
+		//     render : $.fn.dataTable.render.moment()
+		// }, {
+		//     'sTitle' : '사유',
+		//     data : 'reason'
+		// }, {
+		//     'sTitle' : '상태',
+		//     data : 'state'
+		// }
+	];
 
-        url = 'selectAttendacne';
-        // callList(url, columns);
+	url = 'selectAttendacne';
+	// callList(url, columns);
 }
 
 
@@ -260,29 +260,35 @@ function receivingStatusList(){
 let submitWindow;
 let warehouse_id;
 
-function submitReceiving(id) {
-	console.log(getContextPath() + "/wms/receiving/submitReceiving");
-	this.id = id;
-	console.log("입고처리 창  id :: " + id);
-	submitWindow = window.open(getContextPath() + "/wms/receiving/submitReceiving?id="+id, "haha", "width=800,height=600");
+function approve(inboundId, warehouseId) {
+	var url = getContextPath() + "/wms/warehousing/approve";
+	var query = "?inboundId=" + inboundId + "&warehouseId=" + warehouseId;
+	console.log("url : " + url);
+	console.log("query : " + query)
+
+	this.inboundId = inboundId;
+	this.warehousId = warehouseId;
+
+	//근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
+	// console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
+	submitWindow = window.open(url + query, "haha", "width=800,height=600");
 }
 
 
 
 
-function dispatchAction() {
+function approveAction(inboundId, warehouseId, sectionId) {
 	var select = document.getElementById("destination");
 	var warehouse_id = select.options[select.selectedIndex].value;
 
-	// alert("입하 지시 처리되었습니다.\n test: inbound_id : " + opener.inbound_id + " warehouse_id : " + warehouse_id)
 
 	// var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
-	var url = getContextPath() + "/wms/inbound/dispatchAction";
+	var url = getContextPath() + "/wms/warehousing/approveAction";
 	console.log("요청 url : " + url);
 
 
 	var req = new XMLHttpRequest();
-	var query = 'warehouse_id=' + warehouse_id + "&purchase_id=" + opener.purchase_id;	
+	var query = 'warehouseId=' + warehouse_id + "&inboundId=" + opener.inboundId + "&sectionId=" + opener.sectionId;
 	console.log("query : " + query);
 
 	if (!req) {
@@ -295,7 +301,19 @@ function dispatchAction() {
 	req.send();
 
 	alert("입하 지시 처리되었습니다.\n test: " + query);
-
 	window.close();
+	opener.location.reload();
+}
+
+
+function alertContents(req) {
+	if (req.readyState === XMLHttpRequest.DONE) {
+		if (req.status === 200) {
+			alert(req.responseText);
+		} else {
+			alert('request에 문제가 있음\nreadyState : ' + req.readyState + "\nstatus : " + req.status);
+		}
+	}
+
 }
 

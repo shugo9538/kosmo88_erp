@@ -80,7 +80,7 @@
 						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=section">섹션
 							정보</a></li>
 					<li><a
-						href="${ROOT_PATH}/wms/receiving/receiving?id=1&tab=request">입고
+						href="${ROOT_PATH}/wms/warehousing/warehousing?id=1&tab=request">입고
 							관리</a></li>
 					<li><a
 						href="${ROOT_PATH}/wms/shipping/shipping?id=1&tab=request">출고
