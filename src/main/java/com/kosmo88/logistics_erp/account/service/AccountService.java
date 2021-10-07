@@ -41,18 +41,14 @@ public interface AccountService {
 	public void accountEnabledAction(HttpServletRequest request, Model model);
 	// 통장 입/출금내역 조회
 	public void accountTransactionHistory(HttpServletRequest request, Model model);
-	// 통장 입금내역 조회
-	public void accountDeposit(HttpServletRequest request, Model model);
-	// 통장 출금내역 조회
-	public void accountWithdrawal(HttpServletRequest request, Model model);
 	
 	// 매입/매출장
 	// 매입/매출장 전체목록조회
 	public void salesSlipList(Model model);
 	// 매입전표 조회
-	//public void purchaseList(Model model);
+	public void purchaseList(Model model);
 	// 매출전표 조회
-	//public void salesList(Model model);
+	public void salesList(Model model);
 	// 매입/매출전표 추가
 	//public void salesSlipInsert(Model model);
 	// 매입/매출전표 수정 페이지

@@ -6,10 +6,13 @@
 
 <!-- 결산/제무재표  -->
 <!-- financialStatement.jsp  -->
-<link rel="stylesheet" href="/logistics_erp/resources/accounting/css/statement.css">
+<link rel="stylesheet" href="/logistics_erp/resources/account/css/statement.css">
 
 <!-- 신규통장 추가/정보수정 페이지  -->
 <!-- accountNewDetail.jsp  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-<link rel="stylesheet" href="/logistics_erp/resources/accounting/css/accountNewModify.css">
+<link rel="stylesheet" href="/logistics_erp/resources/account/css/accountNewModify.css">
+
+<!-- 일반전표 페이지  -->
+<link rel="stylesheet" href="/logistics_erp/resources/account/css/slipList.css">
 

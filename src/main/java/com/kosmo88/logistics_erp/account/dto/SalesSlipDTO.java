@@ -2,6 +2,10 @@ package com.kosmo88.logistics_erp.account.dto;
 
 import java.util.Date;
 //매입/매출장 조회 DTO
+
+import org.apache.ibatis.type.Alias;
+
+@Alias("SalesSlipDTO")
 public class SalesSlipDTO {
 	
 	private Date confirm_date; // 전표일자(slip 테이블 승인일자)  

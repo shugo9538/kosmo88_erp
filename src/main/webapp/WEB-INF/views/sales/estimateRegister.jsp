@@ -117,59 +117,33 @@
 								
 							</table>
 							
-							
+							<div>
+								<button class="btn btn-primary" type="button" id="estimateItemCall">거래처 상품 불러오기</button>
+							</div>
 
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i> 견적서 상품 등록
 							</h2>
-
-							<table id="insertItemTable" class="table table-hover" style="width:100%" >
-								<thead>
-									<tr>
-										<th style="background-color: #f1f1f1;">추가 버튼</th>
-										
-										<th style="background-color: #f1f1f1;">상품명</th>
-										<th style="background-color: #f1f1f1;">상품종류</th>
-										<th style="background-color: #f1f1f1;">판매단가</th>
-										<th style="background-color: #f1f1f1;">수량</th>
-										<th style="background-color: #f1f1f1;">공급가액</th>
-										
-									</tr>
-								</thead>
-								<tbody id="item-group">
-									<tr>
-										<td>
-											<div>
-											<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
-											</div>
-											
-										</td>
-										<td>
-											<input class="form-control" name="item_name" id="item_name" type="text" placeholder="상품명">
-										</td>
-										<td>
-										<input class="form-control" name="category" id="category"
-											type="text" placeholder="상품종류">
-										</td>
-										<td>
-											<input class="form-control" name="price" id="price" type="text" value="" placeholder="판매단가">
-										</td>
-										<td>
-											<input style="padding:5px; border-color:#dbdbdb;" name="amount" id="amount" type="text" onchange="change();">
-											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
-											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
-										</td>
-										<td>
-											<input class="form-control" name="total_price" id="total_price" type="text" min="0" readonly> 
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						
+							<div id="estimateItemListTable">
+								<table id="insertItemTable" class="table table-hover" style="width:100%" >
+									<thead>
+										<tr>
+											<th style="background-color: #f1f1f1;">추가 버튼</th>
+											<th style="background-color: #f1f1f1;">상품명</th>
+											<th style="background-color: #f1f1f1;">상품종류</th>
+											<th style="background-color: #f1f1f1;">판매단가</th>
+											<th style="background-color: #f1f1f1;">수량</th>
+											<th style="background-color: #f1f1f1;">공급가액</th>
+										</tr>
+									</thead>
+								</table>
+							</div>
+								
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
-									<input class="btn  btn-primary" id="estimateRegisterAction"
-										type="button" value="등록"> <input
-										class="btn  btn-default" type="reset" value="취소">
+									<button class="btn  btn-primary" id="estimateRegisterAction">등록</button> 
+									<button class="btn  btn-default" type="reset">취소</button>
 								</div>
 							</div>
 
@@ -188,7 +162,7 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i> 견적서 전체 목록
 						</h2>
 						<div class="table-responsive">
-							<table id="registeredEstimateList" class="display table">
+							<table id="registeredEstimateList" class="display table" style="width:100%">
 								<thead>
 									<tr>
 	                                    <!-- p_estimate_list_view -->

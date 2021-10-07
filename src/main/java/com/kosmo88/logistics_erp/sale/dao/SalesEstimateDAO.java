@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
@@ -24,14 +27,17 @@ public interface SalesEstimateDAO {
 	// 견적서 등록 화면 - 상품 갯수
 	public int getItemCnt();
 	
-	// 견적서 등록 화면 - 상품 리스트
+	// 상품 리스트
 	public List<SalesItemDTO> getItemList();
 	
-	// 견적서 등록 화면 - 담당자 갯수
+	// 담당자 갯수
 	public int getEmployeeCnt();
 	
-	// 견적서 등록 화면 - 담당자 리스트
+	// 담당자 불러오기
 	public List<SalesEmployeeDTO> getEmployeeList();
+	
+	// 상품정보 불러오기
+	public List<SalesItemDTO> getEstimateItemList(int id);
 	
 	// 견적서 상세 페이지
 	public SalesEstimateListViewDTO getEstimateDetail(int request_id);

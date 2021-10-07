@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,6 +20,7 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	
 	@Autowired
 	SqlSession sqlSession;
+	
 
 	// 견적서 관리 - 견적서 목록(구매)
 	@Override
@@ -69,6 +73,12 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	@Override
 	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
+	}
+
+	// 견적서 상품 불러오기
+	@Override
+	public List<SalesItemDTO> getEstimateItemList(int id) {
+		return sqlSession.selectList(STATEMENT + ".getEstimateItemList", id);
 	}
 	
 	

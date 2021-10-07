@@ -17,6 +17,7 @@ import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
@@ -104,6 +105,27 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
 		model.addAttribute("dto", dto);
+	}
+
+	// 견적서 등록 처리
+	@Override
+	public boolean estimateRegisterAction(SalesInsertEstimateDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	// 아이템 등록 처리
+	@Override
+	public boolean itemRegisterAction(SalesInsertEstimateDTO dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	// 견적서 상품 리스트
+	@Override
+	public List<SalesItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
+		int id = Integer.parseInt(req.getParameter("client_id"));
+		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList(id);
 	}
 	
 }

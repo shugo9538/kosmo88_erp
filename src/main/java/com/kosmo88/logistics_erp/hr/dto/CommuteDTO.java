@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.hr.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("CommuteDTO")
 public class CommuteDTO {
     private int id;
     private Date work_date;

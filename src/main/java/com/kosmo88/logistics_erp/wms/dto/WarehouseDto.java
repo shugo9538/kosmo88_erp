@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.wms.dto;
 
 import java.sql.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("WarehouseDto")
 public class WarehouseDto {
 	private int id;
 	private String name;
@@ -40,3 +43,6 @@ public class WarehouseDto {
 	
 	
 }
+
+
+

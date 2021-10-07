@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.account.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("FinancialStatementsDTO")
 public class FinancialStatementsDTO {
 	
 		//당좌자산

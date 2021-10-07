@@ -2,6 +2,9 @@ package com.kosmo88.logistics_erp.hr.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("SalaryDTO")
 public class SalaryDTO {
     private int id;
     private int basic_pay;

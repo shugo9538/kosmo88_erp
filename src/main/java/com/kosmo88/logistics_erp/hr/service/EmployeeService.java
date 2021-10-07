@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.EmployeeDTO;
@@ -15,26 +18,22 @@ public interface EmployeeService {
     // 인사 카드 목록
     ArrayList<EmployeeDTO> employeeManagement();
 
-    // 부서 코드 조회
-    ArrayList<DepartmentCodeDTO> departmentCodeManagement();
+    // 인사카드 등록
+    void insertEmployee(MultipartHttpServletRequest req, HttpServletResponse res);
 
-    // 직급 코드 조회
-    ArrayList<PositionCodeDTO> positionCodeManagement();
-
-    // 근태 코드 조회
-    ArrayList<AttendanceCodeDTO> attendanceCodeManagement();
-
-    void hrCodeManagement(HttpServletRequest req, HttpServletResponse res);
+    // 인사 상세
+    void detailEmployee(ModelAndView mav, String id);
     
-    // 근태 항목 등록
-    void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res);
+    // 부서코드, 직급코드 불러오기
+    void selectCode(HttpServletRequest req, HttpServletResponse res);
 
-    // 사원별 휴가 일수 조회
-    void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res);
+    // 인사 수정 화면
+    void updateEmployee(ModelAndView mav, String id);
 
-    // 급여 관리
-    void manageSalary(HttpServletRequest req, HttpServletResponse res);
+    // 인사 수정 등록
+    void updateEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res, String id);
 
-    // 호봉 테이블
-    void salayStepTable(HttpServletRequest req, HttpServletResponse res);
+    // 회원가입
+    void signIn(ModelAndView mav, String id);
+
 }

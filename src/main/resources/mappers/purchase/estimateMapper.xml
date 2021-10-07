@@ -60,33 +60,44 @@
  	</select>
  	
  	<!-- 견적서 등록(request) 처리  -->
- 	<insert id="insertRequest" parameterType="int">
- 		
- 	
+ 	<insert id="insertRequest" parameterType="java.util.Map">
+ 		INSERT INTO request(id, state, employee_id, client_id)
+ 			VALUES(request_seq.nextval, #{state}, #{employee_id}, #{client_id})
  	</insert>
  	
+ 	<!-- 견적서 등록(PRODUCT_GROUP input) 처리  -->
+ 	<insert id="insertProductGroup" parameterType="java.util.Map">
+ 		INSERT INTO product_group(id, quantity, product_group, item_id)
+ 			VALUES(product_group_seq.nextval, #{quantity}, rpl_seq.nextval, #{item_id})
+ 	</insert>
  	
+ 	<!-- 거래처 상품 불러오기  -->
+ 	<select id="getEstimateItemList" parameterType="int" resultType="PurchaseItemDTO">
+ 		SELECT i.id as id, i.name as name, i.category as category, i.price as price
+		  FROM client c, client_product_list cpl, item i
+		 WHERE c.id = cpl.client_id
+		   AND cpl.item_id = i.id
+		   AND c.id = #{id}
+ 	</select>
  	
+ 	<!-- 견적서 등록(req_product_list tbl) 처리 -->
+ 	<insert id="insertRPL">
+ 		INSERT INTO req_product_list(id, product_group, request_id)
+ 		 	VALUES(req_product_list_seq.nextval, rpl_seq.currval, request_seq.currval)
+ 	</insert>
  	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 
- 
  	<!-- 견적서 상세페이지(거래처, 담당자 정보) -->
  	<select id="getEstimateDetail" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
  		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
  		  FROM p_estimate_detail_view
+ 		 WHERE request_id = #{request_id}
  	</select>
  
   	<!-- 견적서 상세페이지(상품 정보) -->
  	<select id="getEstimateDetailItem" parameterType="int" resultType="PurchaseEstimateDetailViewDTO">
  		SELECT item_name, item_category, item_purchase_price, item_quantity 
- 		  FROM p_estimate_detail_view
+ 		  FROM p_estimate_detail_item_view
+ 		 WHERE request_id = #{request_id}
  	</select>
  	
 </mapper>

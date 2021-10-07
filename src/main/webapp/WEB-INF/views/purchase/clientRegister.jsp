@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script
-	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -42,19 +43,16 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
 									<td>
-										<input type="text" name="name" id="name" required
-										placeholder="거래처명">
+										<input type="text" name="name" id="name" required>
 									</td>
 									<th style="background-color: #f1f1f1;">구분</th>
-									<td>
-										<input type="text" value="법인" readonly>
-									</td>
+									<td>법인</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
 										<input type="text" name="ceo_name" id="ceo_name"
-										required placeholder="대표자">
+										required>
 									</td>
 									<th style="background-color: #f1f1f1;">사업자 번호</th>
 									<td>
@@ -98,7 +96,7 @@
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
 										<input type="text" name="zip_code"
-										id="zip_code" required placeholder="우편번호">
+										id="zip_code" required readonly>
 										<button type="button" class="btn  btn-primary" id="search_zip_code"
 											name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
 									</td>
@@ -106,13 +104,13 @@
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="address" id="address" placeholder="주소" required>
+										name="address" id="address" required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="detail_address" id="detail_address" placeholder="상세주소"
+										name="detail_address" id="detail_address"
 										required>
 									</td>
 								</tr>
@@ -142,15 +140,15 @@
 										</td>
 										<td>
 											<input class="form-control" name="item_name"
-											type="text" placeholder="상품명" disabled>
+											type="text" disabled>
 										</td>
 										<td>
 											<input class="form-control" name="category"
-											type="text" placeholder="상품종류" disabled>
+											type="text" disabled>
 										</td>
 										<td>
 											<input class="form-control" name="price"
-											type="number" min="0" placeholder="상품가격" disabled>
+											type="number" min="0" disabled>
 										</td>
 										<td>
 											<div role="button" onclick="delItem(this);">
@@ -162,10 +160,10 @@
 							</table>
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
-									<input class="btn  btn-primary" id="clientRegisterAction"
-										type="button" value="등록"> 
-									<input
-										class="btn  btn-default" type="reset" value="취소">
+									<button class="btn  btn-primary" id="clientRegisterAction"
+										type="button">등록</button> 
+									<button
+										class="btn  btn-default" type="reset">취소</button>
 								</div>
 							</div>
 

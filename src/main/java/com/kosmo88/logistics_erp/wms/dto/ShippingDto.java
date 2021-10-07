@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.wms.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("ShippingDto")
 public class ShippingDto {
 
 	private int id;

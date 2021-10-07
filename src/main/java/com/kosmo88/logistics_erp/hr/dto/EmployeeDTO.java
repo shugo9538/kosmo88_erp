@@ -2,18 +2,41 @@ package com.kosmo88.logistics_erp.hr.dto;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("EmployeeDTO")
 public class EmployeeDTO {
     private String id;
     private String name;
     private String resident_reg_num;
     private String photo;
     private String phone;
+    private int zip_code;
+    private String detail_address;
     private String email;
     private String address;
     private Date hire_date;
     private int department_id;
+    private String department_name;
     private int position_id;
+    private String position_name;
     private char enabled;
+
+    public int getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(int zip_code) {
+        this.zip_code = zip_code;
+    }
+
+    public String getDetail_address() {
+        return detail_address;
+    }
+
+    public void setDetail_address(String detail_address) {
+        this.detail_address = detail_address;
+    }
 
     public String getId() {
         return id;
@@ -103,4 +126,19 @@ public class EmployeeDTO {
         this.enabled = enabled;
     }
 
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getPosition_name() {
+        return position_name;
+    }
+
+    public void setPosition_name(String position_name) {
+        this.position_name = position_name;
+    }
 }

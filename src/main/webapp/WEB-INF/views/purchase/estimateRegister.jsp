@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<link href="${RESOURCES_PATH}/purchase/css/custom.css" rel="stylesheet" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -16,7 +19,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">견적서 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">견적서 관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서 관리</a></li>
 					<li class="active">견적서 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -40,30 +43,28 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
                             		<td>
-                            			<input type="hidden" name="client_id" id="client_id">
-                            			<input type="text" name="client_name" id="client_name">
-                            			<input type="button" class="btn  btn-primary" id="selectClient" name="selectClient" value="거래처 선택">
+                            			<input type="hidden" name="client_id" id="client_id" value="none">
+                            			<input type="text" name="client_name" id="client_name" readonly>
+                            			<button type="button" class="btn  btn-primary" id="selectClient" name="selectClient">거래처 선택</button>
                             		</td>
 									<th style="background-color: #f1f1f1;">구분</th>
-									<td>
-										<input type="text" value="법인" readonly>
-									</td>
+									<td>법인</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
 										<input type="text" name="client_ceo_name" id="client_ceo_name"
-										readonly required placeholder="대표자">
+										readonly required>
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td>
-										<input type="text" name="client_phone" id="client_phone" readonly required placeholder="거래처 연락처">
+										<input type="text" name="client_phone" id="client_phone" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
 									<td>
-										<input class="input" type="text" id="client_email" name="client_email" readonly required placeholder="거래처 이메일">
+										<input class="input" type="text" id="client_email" name="client_email" readonly required>
 									</td>
 									
 								</tr>
@@ -71,19 +72,19 @@
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
 										<input type="text" name="client_zip_code"
-										id="client_zip_code" readonly required placeholder="우편번호">
+										id="client_zip_code" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="client_address" id="client_address" readonly placeholder="주소" required>
+										name="client_address" id="client_address" readonly>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="client_detail_address" id="client_detail_address" readonly placeholder="상세주소" required>
+										name="client_detail_address" id="client_detail_address" readonly required>
 									</td>
 								</tr>
 								
@@ -91,22 +92,22 @@
                             		<th style="background-color: #f1f1f1;">담당자</th>
                             		<td>
                             			<input type="hidden" name="employee_id" id="employee_id">
-                            			<input type="text" name="employee_name" id="employee_name">
-                            			<input type="button" class="btn  btn-primary" id="selectEmployee" value="담당자 선택">
+                            			<input type="text" name="employee_name" id="employee_name" readonly>
+                            			<button type="button" class="btn  btn-primary" id="selectEmployee">담당자 선택</button>
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="department_name" id="department_name" readonly placeholder="담당자 부서">
+                            			<input type="text" name="department_name" id="department_name" readonly>
                             		</td>
                             	</tr>
                             	<tr>
                             		<th style="background-color: #f1f1f1;">담당자 연락처</th>
                             		<td>
-                            			<input type="text" name="employee_phone" id="employee_phone" readonly placeholder="담당자 연락처">
+                            			<input type="text" name="employee_phone" id="employee_phone" readonly>
                             		</td>
                             		<th style="background-color: #f1f1f1;">담당자 이메일</th>
                             		<td>
-                            			<input type="text" name="employee_email" id="employee_email" readonly placeholder="담당자 이메일">
+                            			<input type="text" name="employee_email" id="employee_email" readonly>
                             		</td>
                             	</tr>
 								
@@ -117,14 +118,13 @@
 							</h2>
 							
 							<div class="col-md-2 mt-1 mb-4">
-								<input class="btn  btn-primary" type="button" id="selectItem" value="거래처 상품 선택">
+								<button class="btn  btn-primary" type="button" id="estimateItemCall">거래처 상품 불러오기</button>
 							</div>
 							
-							
-							<table id="insertItemTable" class="table table-hover" style="width:100%">
+							<div id="estimateItemListTable">
+							<table id="estimateItemList" class="table table-hover" style="width:100%">
 								<thead>
 									<tr>
-										<th style="background-color: #f1f1f1;">추가 버튼</th>
 										<th style="background-color: #f1f1f1;">상품명</th>
 										<th style="background-color: #f1f1f1;">상품종류</th>
 										<th style="background-color: #f1f1f1;">구매단가</th>
@@ -133,45 +133,15 @@
 										<th style="background-color: #f1f1f1;">삭제 버튼</th>
 									</tr>
 								</thead>
-								<tbody id="item-group">
-									<tr id="item" style="display: none;">
-										<td>
-											<div role="button" class="preview col-md-12 md-5"
-												id="addItem" onclick="addItem();">
-												<i class="icon-plus"></i>
-											</div>
-										</td>
-										<td><input class="form-control" name="item_name"
-											type="text" placeholder="상품명" disabled readonly>
-										</td>
-										<td><input class="form-control" name="category"
-											type="text" placeholder="상품종류" disabled readonly>
-										</td>
-										<td><input class="form-control" name="price"
-											type="number" min="0" placeholder="구매단가" disabled readonly>
-										</td>
-										<td><input class="form-control" name="quantity"
-											type="number" min="0" placeholder="수량" disabled>
-										</td>
-										<td>
-											<input class="form-control" name="totalprice"
-											type="number" min="0" disabled readonly>
-										</td>
-										<td>
-											<div role="button" onclick="delItem(this);">
-												<i class="icon-minus"></i>
-											</div>
-										</td>
-									</tr>
-								</tbody>
 							</table>
+							</div>
 							 
 							<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
-									<input class="btn  btn-primary" id="estimateRegisterAction"
-										type="button" value="등록"> 
-									<input
-										class="btn  btn-default" type="reset" value="취소">
+									<button class="btn  btn-primary" id="estimateRegisterAction"
+										type="button">등록</button>
+									<button
+										class="btn  btn-default" type="reset">취소</button>
 								</div>
 							</div>
 
@@ -190,7 +160,7 @@
 							<i class="fa fa-chevron-circle-right mr-2"></i> 견적서 전체 목록
 						</h2>
 						<div class="table-responsive">
-							<table id="registeredEstimateList" class="display table">
+							<table id="registeredEstimateList" class="display table" style="width:100%">
 								<thead>
 									<tr>
 	                                    <!-- p_estimate_list_view -->

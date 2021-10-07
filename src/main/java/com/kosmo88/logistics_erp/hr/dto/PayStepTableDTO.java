@@ -1,5 +1,8 @@
 package com.kosmo88.logistics_erp.hr.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("PayStepTableDTO")
 public class PayStepTableDTO {
     private String position;
     private int salary;
