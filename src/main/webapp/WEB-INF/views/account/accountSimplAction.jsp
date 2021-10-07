@@ -13,64 +13,51 @@
 </head>
 <body>
 
-		<c:if test="${insertCnt == 1}">
-			<script type="text/javascript">
-				swal("통장거래내역","거래내역이 추가 되었습니다.","success",{
-					closeOnclickOutside : false,
-					closeEsc: false,
-					buttons : {
-						text : '확인',
-						value : true,
-						timer : 3000
-					}
-				});
-				window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>
-		</c:if>
-		
-		<c:if test="${insertCnt == 0}">
-			<script type="text/javascript">
-			swal("거래내역추가","계좌번호가 확인 되지 않습니다. \n 다시 확인 바랍니다..","error",{
-				closeOnclickOutside : false,
-				closeEsc: false,
-				buttons : {
-					text : '확인',
-					value : true,
-					timer : 3000
-				}
-			});
-			window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>	
-		</c:if>
-		
-		<c:if test="${insertCnt == 2}">
-			<script type="text/javascript">
-			swal("통장잔액","잔액 업데이트에 실패하였습니다.","error",{
-				closeOnclickOutside : false,
-				closeEsc: false,
-				buttons : {
-					text : '확인',
-					value : true,
-					timer : 3000
-				}
-			});
-			window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>	
-		</c:if>
+	<c:if test="${insertCnt == 1}">
+		<script type="text/javascript">
+			swal(
+					{
+						title : "통장거래내역",
+						type : "success",
+						text : "거래내역이 추가 되었습니다",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/accountList?categoryNum=140";
+					});
+		</script>
+	</c:if>
 
-<!--Begin core plugin -->
-<script src="/logistics_erp/resources/assets/js/jquery.min.js"></script>
-<script src="/logistics_erp/resources/assets/js/bootstrap.min.js"></script>
-<script src="/logistics_erp/resources/assets/plugins/moment/moment.js"></script>
-<script  src="/logistics_erp/resources/assets/js/jquery.slimscroll.js "></script>
-<script src="/logistics_erp/resources/assets/js/jquery.nicescroll.js"></script>
-<script src="/logistics_erp/resources/assets/js/functions.js"></script>
-<!-- End core plugin -->
-		
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/logistics_erp/resources/assets/plugins/sweetalert/sweet-alert.js"></script>
-<script src="/logistics_erp/resources/assets/pages/jquery.sweet-alert.custom.js"></script>
-<!-- BEGIN PAGE LEVEL SCRIPTS -->		
-	
+	<c:if test="${insertCnt == 0}">
+		<script type="text/javascript">
+			swal(
+					{
+						title : "거래내역추가",
+						type : "error",
+						text : "계좌번호가 확인 되지 않습니다. \n 다시 확인 바랍니다.",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/accountList?categoryNum=140";
+					});
+		</script>
+	</c:if>
+
+
+	<c:if test="${insertCnt == 2}">
+		<script type="text/javascript">
+			swal(
+					{
+						title : "통장잔액",
+						type : "error",
+						text : "잔액 업데이트에 실패하였습니다.",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/accountList?categoryNum=140";
+					});
+		</script>
+	</c:if>
+
 </body>
 </html>

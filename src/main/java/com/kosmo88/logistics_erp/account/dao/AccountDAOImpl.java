@@ -102,6 +102,21 @@ public class AccountDAOImpl implements AccountDAO {
 	public List<SalesSlipDTO> selectSalesList() {
 		return sqlSession.selectList(STATEMENT + ".selectSalesList"); 
 	}
+	// 매입,매출전표 공급가액/세액 합계
+	@Override
+	public SalesSlipDTO selectSalesSlipSum() {
+		return sqlSession.selectOne(STATEMENT +  ".selectSalesSlipSum");
+	}
+	// 매입 매출전표 건수
+	@Override
+	public int getSalesSlipCnt() {
+		return sqlSession.selectOne(STATEMENT +  ".getSalesSlipCnt");
+	}
+	// 일반전표 승인 후 (구매/영업) 매출 매입 전표 생성
+	@Override
+	public int insertSalesSlip(Map<String, Object> map) {
+		return sqlSession.insert(STATEMENT +  ".insertSalesSlip", map);
+	}
 	// ------------------------------ 금융/자금관리 ------------------------------
 	// 계좌 건수조회
 	@Override
@@ -151,8 +166,6 @@ public class AccountDAOImpl implements AccountDAO {
 		return sqlSession.insert(STATEMENT + ".updateAccountBalance", account_number);
 	}
 	
-	
-	
 	// ------------------------------ 결산/재무제표 ------------------------------
 	// 제무재표
 	@Override
@@ -168,17 +181,6 @@ public class AccountDAOImpl implements AccountDAO {
 
 
 
-
-
-
-
-
-
-
-
-
-	
-	
 	
 	
 	

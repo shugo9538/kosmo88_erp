@@ -22,6 +22,8 @@ public interface AccountService {
 	public void slipModifyDetail(HttpServletRequest request, Model model);
 	// 일반전표 상태변경(승인/미승인)
 	public void slipConfirmAction(HttpServletRequest request, Model model);
+	// 일반전표 세부내역
+	public void slipInfoAction(HttpServletRequest request, Model model);
 	
 	
 	// 금융자금관리
@@ -35,8 +37,6 @@ public interface AccountService {
 	public void accountSimplDetail(HttpServletRequest request, Model model);
 	// 통장 거래내역 추가 단건 추가 처리
 	public void accountSimplAction(HttpServletRequest request, Model model);
-	// 통장 정보 수정 
-	public void accountEnabledDetail(HttpServletRequest request, Model model);
 	// 통장 미사용처리
 	public void accountEnabledAction(HttpServletRequest request, Model model);
 	// 통장 입/출금내역 조회
@@ -49,16 +49,7 @@ public interface AccountService {
 	public void purchaseList(Model model);
 	// 매출전표 조회
 	public void salesList(Model model);
-	// 매입/매출전표 추가
-	//public void salesSlipInsert(Model model);
-	// 매입/매출전표 수정 페이지
-	//public void salesSlipModifyDetail(Model model);
-	// 매입/매출전표 수정 처리
-	//public void salesSlipModifyAction(Model model);
-	// 매입/매출전표 삭제처리페이지
-	//public void salesSlipDeletaDetail(Model model);
-	// 매입/매출전표 삭제처리
-	//public void salesSlipDeletaDetailAction(Model model);
+	
 	
 	// 결산/제무재표
 	// 재무상태표 조회

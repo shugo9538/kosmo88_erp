@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../common/settings.jsp"%>     
+<%@ include file="../common/settings.jsp"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +26,8 @@
     <div class="main-content" >
 
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/header.jsp"%>
+		<%@ include file="common/accountHeader.jsp"%>    
         <!-- header section end-->
 
 
@@ -66,7 +67,7 @@
 							<li class="active">
 								<a 
 <%-- 								href="${ROOT_PATH}/account/accountModifyDetail?account_number=" --%>
-									id ="accountModify" onclick="accountModifyDetail();">통장 미사용처리</a>
+									id ="accountModify" onclick="accountEnabled();">통장 미사용처리</a>
 							</li>
 							<li>
 								<!-- <button onclick="accountModifyDetail();">버튼테스트</button> -->

@@ -91,8 +91,8 @@
                             <tr>
                               <!-- <td>      현금 및 현금성자산(보통예금)</td> -->
                               <td>  
-                              <input type="hidden" id="accountTitle" value="계정과목">
-                              <a href="#" onclick="accountTitleDetail();">    
+                              <input type="hidden" id="salesCost" value="보통예금">
+                              <a href="#" onclick="salesCost();">    
                                	현금 및 현금성자산(보통예금)</a>
                               </td>
                               <td class="red">
@@ -105,7 +105,8 @@
                             <tr>
                               <!-- <td>      매   출    채   권(외상매출금)</td> -->
                               <td>
-               					<a href="#"> 매   출    채   권(외상매출금)</a>              
+                              <input type="hidden" id="sales" value="매출채권">
+               					<a href="#" onclick="sales();"> 매   출    채   권(외상매출금)</a>              
                               </td>
                               <td class="red">
                               	<fmt:formatNumber value="${accounts_receivable}" pattern="###,###,###,###"/>	

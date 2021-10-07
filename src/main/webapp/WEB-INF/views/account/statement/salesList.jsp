@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../common/settings.jsp"%>    
+<%@ include file="../common/accountsettings.jsp"%>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,13 +14,13 @@
 <body class="sticky-header">
 
     <!--Start left side Menu-->
-	<%@ include file="../common/left_side.jsp"%>
+	<%-- <%@ include file="../../common/left_side.jsp"%> --%>
     <!--End left side menu-->
 
     <!-- main content start-->
     <div class="main-content" >
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/accountDetailHeader.jsp"%>     
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -134,7 +134,7 @@
                <!--End row-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../../common/footer.jsp"%>	
          <!--End footer -->
        </div>
       <!--End main content -->
