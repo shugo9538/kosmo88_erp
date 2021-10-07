@@ -12,7 +12,6 @@ import com.kosmo88.logistics_erp.wms.util.Vars;
 public interface ShippingDao {
 	void insert();
 	List<ShippingDto> select();
-	void selectRack();
 	void update(); 
 	void delete(); 
 }
@@ -31,9 +30,6 @@ class ShippingDaoImpl implements ShippingDao{
 		return sqlSession.selectList(Vars.SHIPPING_DAO_PATH +".select");
 	}
 
-	@Override
-	public void selectRack() {
-	}
 
 	@Override
 	public void update() {

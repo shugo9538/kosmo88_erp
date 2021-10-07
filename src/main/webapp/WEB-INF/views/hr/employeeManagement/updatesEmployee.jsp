@@ -67,7 +67,7 @@
 									-
 									<input style="width: 100px;" type="text" id="register_num2" name="resident_reg_num2" maxlength="7" required
 										onkeyup="nextRegisterNum2()" value="${fn:substringAfter(regi, '-')}"
-									
+								>	
 								</td>
 								<th style="background-color: #f1f1f1;">이메일</th>
 								<c:set value="${employee.email}" var="email" />

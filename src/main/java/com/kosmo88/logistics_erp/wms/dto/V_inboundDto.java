@@ -4,36 +4,36 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("InboundDto")
-public class InboundDto {
-
+@Alias("V_inboundDto")
+public class V_inboundDto {
 	int id;
-	int request_id;
 	int warehouse_id;
+	String warehouse_name;
 	Date begin_date;
 	Date end_date;
 	String employee_id;
-	String client_id;
-	char isapproved;
 
+	int client_id;
+	String client_name;
+	char enabled;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-			
-	public int getRequest_id() {
-		return request_id;
-	}
-	public void setRequest_id(int request_id) {
-		this.request_id = request_id;
-	}
 	public int getWarehouse_id() {
 		return warehouse_id;
 	}
 	public void setWarehouse_id(int warehouse_id) {
 		this.warehouse_id = warehouse_id;
+	}
+	public String getWarehouse_name() {
+		return warehouse_name;
+	}
+	public void setWarehouse_name(String warehouse_name) {
+		this.warehouse_name = warehouse_name;
 	}
 	public Date getBegin_date() {
 		return begin_date;
@@ -53,27 +53,31 @@ public class InboundDto {
 	public void setEmployee_id(String employee_id) {
 		this.employee_id = employee_id;
 	}
-	public String getClient_id() {
+	public int getClient_id() {
 		return client_id;
 	}
-	public void setClient_id(String client_id) {
+	public void setClient_id(int client_id) {
 		this.client_id = client_id;
 	}
-
-
-	public char getIsapproved() {
-		return isapproved;
+	public String getClient_name() {
+		return client_name;
 	}
-	public void setIsapproved(char isapproved) {
-		this.isapproved = isapproved;
+	public void setClient_name(String client_name) {
+		this.client_name = client_name;
 	}
+	public char getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(char enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "InboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
+		return "V_InboundDto [id=" + id + ", warehouse_id=" + warehouse_id + ", warehouse_name=" + warehouse_name
 				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", employee_id=" + employee_id
-				+ ", client_id=" + client_id + ", isapproved=" + isapproved + "]";
+				+ ", client_id=" + client_id + ", client_name=" + client_name + ", enabled=" + enabled + "]";
 	}
-	
-	
-}
 
+
+}
