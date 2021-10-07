@@ -64,6 +64,14 @@ public class SalesEstimateRestController {
     @ResponseBody
     @RequestMapping(value = "/estimateRegister/estimateRegisterAction")
     public boolean estimateRegisterAction(@RequestBody SalesInsertEstimateDTO dto) {
+    	estimateService.estimateRegisterAction(dto);
+    	return true;
+    }
+    
+    // 견적서 상품 등록 처리
+    @ResponseBody
+    @RequestMapping(value = "/estimateRegister/itemRegisterAction")
+    public boolean itemRegisterAction(@RequestBody List<SalesInsertEstimateDTO> dto) {
     	
     	return true;
     }

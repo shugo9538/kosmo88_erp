@@ -8,14 +8,14 @@ import com.kosmo88.logistics_erp.member.dto.UserDTO;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-    private static final String STATEMENT = "com.kosmo88.logistics_erp.account.dao.UserDAO";
+    private static final String STATEMENT = "com.kosmo88.logistics_erp.member.dao.UserDAO";
 
     @Autowired
     SqlSession sqlSession;
 
     @Override
-    public UserDTO getUserData(String userid) {
-        return sqlSession.selectOne(STATEMENT + ".getUserData", userid);
+    public UserDTO getUserData(String id) {
+        return sqlSession.selectOne(STATEMENT + ".getUserData", id);
     }
 
     @Override

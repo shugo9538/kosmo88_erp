@@ -3,6 +3,8 @@
 <%@ include file="../common/settings.jsp"%>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -85,9 +87,10 @@
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
-									<td colspan="3"><input type="text" name="zip_code"
-										id="zip_code" required placeholder="우편번호">
-										<button type="button" id="search_zip_code"
+									<td colspan="3">
+										<input type="text" name="zip_code"
+										id="zip_code" required readonly>
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
 											name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
 									</td>
 								</tr>

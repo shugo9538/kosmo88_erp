@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
-@SessionAttributes({ "session", "userid" })
+@SessionAttributes({"session", "id"})
 @Controller
 @RequestMapping(value = "/hr/attendance")
 public class AttendanceController {
