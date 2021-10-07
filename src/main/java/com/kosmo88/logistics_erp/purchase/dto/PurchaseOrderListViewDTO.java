@@ -10,13 +10,14 @@ public class PurchaseOrderListViewDTO {
 	
 	private int request_id;			// 발주번호
 	private Date begin_date;		// 발주일자
-	private Date end_date;			// 납기요청일자   -- 추가
+	private Date end_date;			// 납기요청일자
 	private String client_name;		// 발주처
 	private String client_ceo_name; // 발주처 대표자
 	private String client_phone; 	// 발주처 연락처
 	private String employee_name;	// 구매 담당자
-	private String request_state;	// 상태
 	private String enabled;			// 활성화코드('Y', 'N')
+	private String slip_state;		// 승인상태(전표 회계){R, Y, N}
+	private String request_state;   // 출고상태{SALE, PURCHASE, ESTIMATE, ORDER}
 	
 	public PurchaseOrderListViewDTO() {}
 
@@ -34,6 +35,14 @@ public class PurchaseOrderListViewDTO {
 
 	public void setBegin_date(Date begin_date) {
 		this.begin_date = begin_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
 
 	public String getClient_name() {
@@ -68,6 +77,22 @@ public class PurchaseOrderListViewDTO {
 		this.employee_name = employee_name;
 	}
 
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getSlip_state() {
+		return slip_state;
+	}
+
+	public void setSlip_state(String slip_state) {
+		this.slip_state = slip_state;
+	}
+
 	public String getRequest_state() {
 		return request_state;
 	}
@@ -76,12 +101,4 @@ public class PurchaseOrderListViewDTO {
 		this.request_state = request_state;
 	}
 
-	public String getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
-	}
-	
 }

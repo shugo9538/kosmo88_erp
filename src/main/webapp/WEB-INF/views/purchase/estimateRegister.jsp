@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="./js_purchase.jsp"%>	
 <%@ include file="../common/settings.jsp"%>
 <link href="${RESOURCES_PATH}/purchase/css/custom.css" rel="stylesheet" type="text/css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -44,7 +43,7 @@
 									<th style="background-color: #f1f1f1;">거래처명</th>
                             		<td>
                             			<input type="hidden" name="client_id" id="client_id" value="none">
-                            			<input type="text" name="client_name" id="client_name" readonly>
+                            			<input type="text" style="border:none;" name="client_name" id="client_name" readonly placeholder="거래처명">
                             			<button type="button" class="btn  btn-primary" id="selectClient" name="selectClient">거래처 선택</button>
                             		</td>
 									<th style="background-color: #f1f1f1;">구분</th>
@@ -53,37 +52,37 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
-										<input type="text" name="client_ceo_name" id="client_ceo_name"
+										<input type="text" style="border:none;" name="client_ceo_name" id="client_ceo_name"
 										readonly required>
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td>
-										<input type="text" name="client_phone" id="client_phone" readonly required>
+										<input type="text" style="border:none;" name="client_phone" id="client_phone" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
 									<td>
-										<input class="input" type="text" id="client_email" name="client_email" readonly required>
+										<input class="input" style="border:none;" type="text" id="client_email" name="client_email" readonly required>
 									</td>
 									
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
-										<input type="text" name="client_zip_code"
+										<input type="text" style="border:none;" name="client_zip_code"
 										id="client_zip_code" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
-										<input style="width: 350px;" type="text"
+										<input style="width: 350px; border:none;" type="text"
 										name="client_address" id="client_address" readonly>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
-										<input style="width: 350px;" type="text"
+										<input style="width: 350px; border:none;" type="text"
 										name="client_detail_address" id="client_detail_address" readonly required>
 									</td>
 								</tr>
@@ -92,22 +91,22 @@
                             		<th style="background-color: #f1f1f1;">담당자</th>
                             		<td>
                             			<input type="hidden" name="employee_id" id="employee_id">
-                            			<input type="text" name="employee_name" id="employee_name" readonly>
+                            			<input type="text" style="border:none;" name="employee_name" id="employee_name" readonly placeholder="담당자">
                             			<button type="button" class="btn  btn-primary" id="selectEmployee">담당자 선택</button>
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="department_name" id="department_name" readonly>
+                            			<input type="text" style="border:none;" name="department_name" id="department_name" readonly>
                             		</td>
                             	</tr>
                             	<tr>
                             		<th style="background-color: #f1f1f1;">담당자 연락처</th>
                             		<td>
-                            			<input type="text" name="employee_phone" id="employee_phone" readonly>
+                            			<input type="text" style="border:none;" name="employee_phone" id="employee_phone" readonly>
                             		</td>
                             		<th style="background-color: #f1f1f1;">담당자 이메일</th>
                             		<td>
-                            			<input type="text" name="employee_email" id="employee_email" readonly>
+                            			<input type="text" style="border:none;" name="employee_email" id="employee_email" readonly>
                             		</td>
                             	</tr>
 								
@@ -181,7 +180,6 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateRegister.js"></script>
 </body>

@@ -6,16 +6,16 @@
 
 <mapper namespace="com.kosmo88.logistics_erp.purchase.dao.OrderDAO">
 
-	<!-- 구매 관리 - 발주서 목록(구매) -->
+	<!-- 구매 관리 - 주문서 목록(구매) -->
  	<select id="getOrderList" resultType="PurchaseOrderListViewDTO">
-		SELECT request_id, begin_date, client_name, client_ceo_name,
-		       client_phone, employee_name, enabled
+		SELECT request_id, begin_date, end_date, client_name, client_ceo_name,
+		       client_phone, employee_name, enabled, slip_state, request_state
 		  FROM P_ORDER_LIST_VIEW
 		 WHERE enabled = 'Y'
 		 ORDER BY request_id
  	</select>
  	
- 	<!-- 구매 관리 - 발주서 삭제(선택삭제) -->
+ 	<!-- 구매 관리 - 주문서 삭제(선택삭제) -->
  	<update id="deleteOrder" parameterType="int">
  		UPDATE request
  		   SET enabled = 'N'
@@ -23,18 +23,65 @@
  		   AND state = 'TX_ORDER'
  	</update>
  	
- 	<!-- 발주서 상세페이지(거래처, 담당자 정보) -->
+ 	<!-- 주문서 상세페이지(거래처, 담당자 정보) -->
  	<select id="getOrderDetail" parameterType="int" resultType="PurchaseOrderDetailViewDTO">
  		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
  		  FROM p_order_detail_view
+ 		 WHERE request_id = #{request_id}
  	</select>
  
-  	<!-- 발주서 상세페이지(상품 정보) -->
+  	<!-- 주문서 상세페이지(상품 정보) -->
  	<select id="getOrderDetailItem" parameterType="int" resultType="PurchaseOrderDetailViewDTO">
  		SELECT item_name, item_category, item_purchase_price, item_quantity 
  		  FROM p_order_detail_view
+ 		 WHERE request_id = #{request_id}
  	</select>
  	
+ 	<!-- 주문서 등록 화면 - 견적서 갯수  -->
+ 	<select id="getEstimateCnt" resultType="int">
+		SELECT COUNT(*)
+		  FROM p_orderEstimate_List_View
+ 	</select>
  	
+ 	<!-- 주문서 등록 화면 - 견적서 리스트 -->
+ 	<select id="getEstimateList" resultType="PurchaseOrderEstimateListDTO">
+ 		SELECT request_id, begin_date, employee_id, employee_name, employee_phone, employee_email, client_id, client_name, client_zip_code,
+     		   client_address, client_detail_address, client_ceo_name, client_phone, client_email, department_id, department_name
+  		  FROM p_orderEstimate_List_View
+ 	</select>
+ 	
+ 	<!-- 견적서 상품 불러오기 -->
+ 	<select id="getOrderEstimateItemList" parameterType="int" resultType="PurchaseOrderItemDTO">
+		SELECT i.id as item_id, i.name as item_name, i.category as item_category, i.register_date as item_register_date, i.price as item_price, p.quantity as item_quantity, r.id as request_id 
+		  FROM request r, req_product_list q, product_group p, item i
+		 WHERE r.id = q.request_id
+		   AND q.product_group = p.product_group
+		   AND p.item_id = i.id
+		   AND r.id = #{id}
+ 	</select>
+ 	
+ 	 <!-- 주문서 등록(request) 처리  -->
+ 	<insert id="insertRequest" parameterType="java.util.Map">
+ 		INSERT INTO request(id, state, employee_id, client_id)
+ 			VALUES(request_seq.nextval, #{state}, #{employee_id}, #{client_id})
+ 	</insert>
+ 	
+ 	<!-- 주문서(전표)(slip) 처리 -->
+ 	<insert id="insertSlip" parameterType="java.util.Map">
+ 		INSERT INTO slip(id, type, department_id, department_request)
+ 			VALUES(slip_seq.nextval, #{type}, #{department_id}, request_seq.currval)
+ 	</insert>
+ 	
+ 	<!-- 주문서 등록(product_group) 처리  -->
+ 	<insert id="insertProductGroup" parameterType="java.util.Map">
+ 		INSERT INTO product_group(id, quantity, product_group, item_id)
+ 			VALUES(product_group_seq.nextval, #{quantity}, rpl_seq.nextval, #{item_id})
+ 	</insert>
+ 	
+ 	<!-- 주문서 등록(req_product_list tbl) 처리 -->
+ 	<insert id="insertRPL">
+ 		INSERT INTO req_product_list(id, product_group, request_id)
+ 		 	VALUES(req_product_list_seq.nextval, rpl_seq.currval, request_seq.currval)
+ 	</insert>
 
 </mapper>

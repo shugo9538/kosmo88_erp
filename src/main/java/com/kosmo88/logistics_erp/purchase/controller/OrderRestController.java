@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO;
 import com.kosmo88.logistics_erp.purchase.service.OrderService;
 
@@ -31,14 +33,14 @@ public class OrderRestController {
     @Autowired
     OrderService orderService;
     
-    // 구매 관리 - 발주서 목록
+    // 구매 관리 - 주문서 목록
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderList")
     public List<PurchaseOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
    
-    // 발주서 삭제(선택삭제)
+    // 주문서 삭제(선택삭제)
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderChoiceDelete")
     public boolean orderChoiceDelete(@RequestBody String data) {
@@ -54,14 +56,14 @@ public class OrderRestController {
     	return orderService.orderChoiceDelete(request_id);
     }
     
-    // 등록한 발주서(구매) 목록
+    // 등록한 주문서(구매) 목록
     @ResponseBody
     @RequestMapping(value = "/orderRegister/registeredOrderList")
     public List<PurchaseOrderListViewDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
-/*    
-    // 발주서 등록 처리
+    
+    // 주문서 등록 처리
     @RequestMapping(value = "/orderRegister/orderRegisterAction")
     public boolean orderRegisterAction(@RequestBody PurchaseInsertOrderDTO dto) {
     	orderService.orderRegisterAction(dto);
@@ -70,11 +72,18 @@ public class OrderRestController {
     
 	// 상품 등록 처리
     @RequestMapping(value = "/orderRegister/itemRegisterAction")
-    public boolean itemRegisterAction(@RequestBody List<OrderItemDTO> dtos) {
-    	for (OrderItemDTO dto : dtos) {
+    public boolean itemRegisterAction(@RequestBody List<PurchaseOrderItemDTO> dtos) {
+    	for (PurchaseOrderItemDTO dto : dtos) {
     		orderService.itemRegisterAction(dto);
     	}
     	return true;
+    }   
+    
+    // 견적서 상품 불러오기
+    @ResponseBody
+    @RequestMapping(value = "/orderRegister/orderEstimateItemList")
+    public List<PurchaseOrderItemDTO> orderEstimateItemList(HttpServletRequest req, HttpServletResponse res) {
+    	return orderService.orderEstimateItemList(req, res);
     }
-*/    
+    
 }

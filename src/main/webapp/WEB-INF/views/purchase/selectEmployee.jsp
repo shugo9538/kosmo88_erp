@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<%@ include file="./js_purchase.jsp"%>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	
@@ -20,6 +21,7 @@
 	                            <th>담당자 부서</th>
 	                            <th>담당자 연락처</th>
 	                            <th>담당자 이메일</th>
+	                            <th></th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
