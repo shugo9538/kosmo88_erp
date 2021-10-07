@@ -37,21 +37,11 @@
 		 ORDER BY e.id DESC
 	</select>
 	
-	<!-- 견적서 등록 화면 - 상품 개수 -->
-	<select id="getItemCnt" resultType="int">
-		SELECT COUNT(*) FROM item
-	</select>
-	
-	<!-- 견적서 등록 화면 - 상품 리스트 -->
-	<select id="getItemList" resultType="SalesItemDTO">
-		SELECT * FROM item
-	</select>
-	
 	<!-- 견적서 관리 - 견적서 목록(구매) -->
 	<select id="getEstimateList" resultType="SalesEstimateListViewDTO">
 		SELECT request_id, begin_date, client_name, client_ceo_name, 
 		       client_phone, employee_name, enabled
-		  FROM S_ESTIMATE_LIST_VIEW
+		  FROM P_ESTIMATE_LIST_VIEW
 		 WHERE enabled = 'Y'
 		 ORDER BY request_id
 	</select>
@@ -67,10 +57,20 @@
  	<select id="getEstimateDetail" parameterType="int" resultType="SalesEstimateListViewDTO">
  		SELECT request_id, begin_date, client_name, client_ceo_name, 
 		       client_phone, employee_name, enabled
-  FROM S_ESTIMATE_LIST_VIEW
- WHERE enabled = 'Y'
-   AND request_id = #{request_id}		 
+  		  FROM S_ESTIMATE_LIST_VIEW
+ 		 WHERE enabled = 'Y'
+   		   AND request_id = #{request_id}		 
          ORDER BY request_id
  	</select>
+ 	
+ 	<select id="getEstimateItemList" resultType="SalesItemDTO">
+ 		SELECT * FROM item
+ 	</select>
+ 	
+ 	<!-- 견적서 등록 -->
+ 	<insert id="insertRequest" parameterType="java.util.Map">
+ 		INSERT INTO request (id, state, employee_id, client_id)
+ 			VALUES(request_seq.nextval, #{state}, #{employee_id}, #{client_id})
+ 	</insert>
 
 </mapper>

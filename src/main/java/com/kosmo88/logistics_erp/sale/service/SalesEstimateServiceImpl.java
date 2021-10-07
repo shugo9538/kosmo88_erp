@@ -1,7 +1,9 @@
 package com.kosmo88.logistics_erp.sale.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -110,8 +112,17 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	// 견적서 등록 처리
 	@Override
 	public boolean estimateRegisterAction(SalesInsertEstimateDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		state = QueryCode.INSERT;
+		
+		map.put("state", "RX_ESTIMATE");
+		map.put("employee_id", dto.getEmployee_id());
+		map.put("client_id", dto.getClient_id());
+		
+		// EQUEST tbl 입력
+		return state.check(estimateDao.insertRequest(map));
 	}
 
 	// 아이템 등록 처리
@@ -121,11 +132,10 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		return false;
 	}
 
-	// 견적서 상품 리스트
+	// 상품 불러오기
 	@Override
 	public List<SalesItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
-		int id = Integer.parseInt(req.getParameter("client_id"));
-		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList(id);
+		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList();
 	}
 	
 }
