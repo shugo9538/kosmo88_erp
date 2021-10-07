@@ -1,6 +1,6 @@
 package com.kosmo88.logistics_erp.account.code;
 
-public interface menuCode {
+public interface MenuCode {
 	
 /*	static int CLIENT = 110; //거래처 관리
 	static int SLIP = 120; // 장부관리 - 일반전표
