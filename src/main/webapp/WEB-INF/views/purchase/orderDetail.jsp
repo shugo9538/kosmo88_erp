@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	
 <div class="wrapper">
@@ -7,7 +8,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="white-box">
-                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-12 mb-5">발 주 서</h2>
+                <h2 style="font-size:34px; text-align:center;" class="header-title col-md-12 mb-5">주 문 서</h2>
                 
                 
                 <form class="js-validation-bootstrap form-horizontal ">
@@ -15,7 +16,7 @@
                 	
 	                <table id="example" class="display table mt-12">
 	                	<tr>
-	                		<th style="background-color: #f1f1f1; padding:10px;">발주서 번호</th>
+	                		<th style="background-color: #f1f1f1; padding:10px;">주문서 번호</th>
 	                		<td style="padding:10px;">${dto.request_id}</td>
 	                		<th style="background-color: #f1f1f1; padding:10px;">요청일자</th>
 	                		<td style="padding:10px;">

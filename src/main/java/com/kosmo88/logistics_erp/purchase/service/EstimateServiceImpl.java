@@ -90,12 +90,13 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		state = QueryCode.INSERT;
 		
-		
 		map.put("state", "TX_ESTIMATE");
 		map.put("employee_id", dto.getEmployee_id());
 		map.put("client_id", dto.getClient_id());
+		System.out.println("담당자 코드 : " + dto.getEmployee_id());
+		System.out.println("거래처 코드 : " + dto.getClient_id());
 		
-		// EQUEST tbl 입력
+		// request tbl 입력
 		return state.check(estimateDao.insertRequest(map));
 	}
 
@@ -111,13 +112,18 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		map.put("quantity", dto.getQuantity());
 		map.put("item_id", dto.getItem_id());
+		System.out.println("상품 수량 : " + dto.getQuantity());
+		System.out.println("상품 코드 : " + dto.getItem_id());
 		
 		// product_group tbl 입력
 		insert = state.check(estimateDao.insertProductGroup(map));
 		System.out.println("product_group tbl 입력 : " + insert);
 		
 		// req_product_list tbl 입력
-		return state.check(estimateDao.insertRPL());
+		insert = state.check(estimateDao.insertRPL());
+		System.out.println("req_product_list tbl 입력 : " + insert);
+		
+		return insert;
 	}
 	
 	// 견적서 상세페이지
@@ -171,9 +177,9 @@ public class EstimateServiceImpl implements EstimateService {
 	@Override
 	public List<PurchaseItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
 
-		int id = Integer.parseInt(req.getParameter("client_id"));
+		int client_id = Integer.parseInt(req.getParameter("client_id"));
 		
-		return (ArrayList<PurchaseItemDTO>) estimateDao.getEstimateItemList(id);
+		return (ArrayList<PurchaseItemDTO>) estimateDao.getEstimateItemList(client_id);
 	}
 
 }

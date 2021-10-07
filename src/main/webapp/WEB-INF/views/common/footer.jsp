@@ -21,3 +21,5 @@
 <script src="${RESOURCES_PATH}/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
 <!--End Page Level Plugin-->
+
+
