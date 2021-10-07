@@ -8,7 +8,7 @@
             window.close();
         </script>
 	</c:if>
-	<div class="wrapper">
+	<div class="wrapper" id="employee">
 		<!--Start row : 근태 항목 입력 -->
 		<!--Start row-->
 		<div class="row">
@@ -19,7 +19,7 @@
 						<i class="fa fa-chevron-circle-right mr-2"></i>
 						인사카드
 					</h2>
-					<table id="client" class="display table mt-12" style="width: 100%">
+					<table class="display table mt-12" style="width: 100%">
 						<tr>
 							<th style="background-color: #f1f1f1;">사진</th>
 							<td colspan="3">
@@ -81,6 +81,11 @@
 							<td colspan="4" style="text-align: center;">
 								<input type="button" id="updateEmployee" value="수정">
 								<input type="reset" value="취소" onclick="window.close();">
+								<input type="button" value="재직증명서" id="pdfmake">
+								<c:if test="">
+									계정없을때
+								</c:if>
+								<input type="button" value="계정생성" id="signIn">
 							</td>
 						</tr>
 					</table>

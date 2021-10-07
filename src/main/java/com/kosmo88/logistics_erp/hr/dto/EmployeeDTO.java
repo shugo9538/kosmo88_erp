@@ -17,7 +17,9 @@ public class EmployeeDTO {
     private String address;
     private Date hire_date;
     private int department_id;
+    private String department_name;
     private int position_id;
+    private String position_name;
     private char enabled;
 
     public int getZip_code() {
@@ -124,4 +126,19 @@ public class EmployeeDTO {
         this.enabled = enabled;
     }
 
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getPosition_name() {
+        return position_name;
+    }
+
+    public void setPosition_name(String position_name) {
+        this.position_name = position_name;
+    }
 }

@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kosmo88.logistics_erp.hr.service.EmployeeService;
 import com.kosmo88.logistics_erp.util.ImageUploadHandler;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @MultipartConfig(location = "D:\\Dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\hr\\image\\employee_tmp", fileSizeThreshold = 1024
         * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -54,25 +53,29 @@ public class EmployeeController {
     @RequestMapping(value = "/insertEmployeeAction")
     public String insertEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res) {
         MultipartFile mf = req.getFile("photo");
-        String originFileName = mf.getOriginalFilename(); // 원본 파일 명
-        String safeFile = IMG_UPLOAD_DIR + originFileName;
 
-        try {
-            mf.transferTo(new File(safeFile));
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (mf != null) {
+            System.out.println("this null");
+            String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+            String safeFile = IMG_UPLOAD_DIR + originFileName;
+
+            try {
+                mf.transferTo(new File(safeFile));
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         employeeService.insertEmployee(req, res);
         return "hr/employeeManagement/insertEmployee";
     }
-    
-    
+
     // 인사카드 수정
     @RequestMapping(value = "/{id}/updateEmployeeAction")
-    public String updateEmployeeAction(@PathVariable("id") String id, MultipartHttpServletRequest req, HttpServletResponse res) {
+    public String updateEmployeeAction(@PathVariable("id") String id, MultipartHttpServletRequest req,
+            HttpServletResponse res) {
         MultipartFile mf = req.getFile("photo");
         String originFileName = mf.getOriginalFilename(); // 원본 파일 명
         String safeFile = IMG_UPLOAD_DIR + originFileName;

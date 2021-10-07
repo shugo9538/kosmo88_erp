@@ -16,12 +16,12 @@
 							<sec:csrfInput />
 							<div class="form-group">
 								<input class="form-control" type="email" id="signup_id" name="userid" placeholder="아이디(이메일)" maxlength="50"
-									required
+									value="${employee.id}@uyeogogjeol.org" required
 								>
 							</div>
 							<div class="form-group">
 								<input class="form-control" type="text" id="signup_name" name="username" placeholder="이름" maxlength="50"
-									required
+									value="${employee.id}" required
 								>
 							</div>
 							<div class="form-group">
@@ -35,32 +35,20 @@
 								>
 							</div>
 							<div class="form-group">
-								<input class="form-control" type="text" id="signup_phone" name="tel" placeholder="휴대폰번호" maxlength="11"
-									onkeyup="telCheck();" required
-								>
-								<div class="pull-left" id="telChecker" name="telChecker" value="0">(-)없이 번호만 작성해주세요</div>
+								<c:if test="${employee.department_id == 200}">
+									<input class="form-control" type="text" id="authority" name="authority" value="ACCOUNT" required readonly>
+								</c:if>
+								<c:if test="${employee.department_id != 200}">
+									<input class="form-control" type="text" id="authority" name="authority" value="MEMBER" required readonly>
+								</c:if>
 							</div>
 							<div class="form-group">
-								<div class="pull-left">
-									<div class="checkbox primary">
-										<input id="checkbox-1" type="checkbox">
-										<label for="checkbox-1">
-											I accept
-											<a href="#">Terms and Conditions</a>
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="form-group">
-								<input type="submit" value="Sign Up" class="btn btn-primary btn-block">
-							</div>
-							<div class="form-group text-center">
-								계정이 있으십니까?
-								<a href="login.html">로그인</a>
+								<input type="submit" value="계정 생성" class="btn btn-primary btn-block">
 							</div>
 						</form>
 						<div class="copy-text">
-							<p class="m-0">2017 &copy; Meter admin</p>
+							<p class="m-0">Copyright © 2021 주식회사 우여곡절</p>
+							<p class="m-0">Co.,Ltd All Rights Reserved</p>
 						</div>
 					</div>
 				</div>
