@@ -31,6 +31,59 @@ $(document).ready(function() {
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
+	    
+	    // 입력 유효성 검사
+	    
+	    if(!$('#name').val()) {
+	    	swal("거래처명을 입력하세요!!", "거래처명 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#ceo_name').val()) {
+	    	swal("대표자를 입력하세요!!", "대표자 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num1').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num2').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num3').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#email1').val()) {
+	    	swal("이메일을 입력하세요!!", "이메일 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#email2').val()) {
+	    	swal("이메일을 입력하세요!!", "이메일 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone1').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone2').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone3').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#zip_code').val()) {
+	    	swal("우편번호를 입력하세요!!", "우편번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#address').val()) {
+	    	swal("주소를 입력하세요!!", "주소 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#detail_address').val()) {
+	    	swal("상세주소를 입력하세요!!", "상세주소 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=item_name]').val()) {
+	    	swal("상품명을 입력하세요!!", "상품명 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=category]').val()) {
+	    	swal("상품 종류를 입력하세요!!", "상품 종류 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=price]').val()) {
+	    	swal("상품가격을 입력하세요!!", "상품가격 입력 누락", "error");
+	    	return false;
+	    }
+	    
 	    /*
 	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
@@ -89,7 +142,6 @@ function itemRegister() {
     });
     list.pop();
     formData = JSON.stringify(list);
-    // alert(formData);
     
     console.log(formData);
     loc = window.location.href + '/itemRegisterAction';
@@ -221,17 +273,22 @@ function clientList() {
 	    	var check = $("input:checkbox[name=client_id]:checked").length;
 	    	
 	    	if (check == 0) {
-	    		alert("삭제할 거래처를 선택해주세요!!");
+	    		swal("삭제할 거래처를 선택해주세요!!");
 	    		return false;
 	    	} else {
-	    		
-	    		var result = confirm("선택한 거래처를 삭제하시겠습니까?");
-	    		
-	    		if (result) {
-	    			clientChoiceDelete(csrfParameter, csrfToken);
-	    		} else {
-	    			return false;
-	    		}
+	    		swal({
+	    			title : "거래처를 삭제하시겠습니까?",
+	    			text : "삭제할 거래처를 선택 하셨습니다.",
+	    			type : "warning",
+	    			showCancelButton: true,
+	    			cancelButtonText: "아니요",
+	    			confirmButtonColor: "#DD6B55",
+	    			confirmButtonText: "예",
+	    			closeOnConfirm: false
+	    			}, function(){
+	    				clientChoiceDelete(csrfParameter, csrfToken);
+	    			});
+	    		return false;
 	    	}
 	    });
 	});

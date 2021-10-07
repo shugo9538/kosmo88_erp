@@ -13,42 +13,35 @@
 </head>
 <body>
 
-		<c:if test="${updateCnt == 1}">
-			<script type="text/javascript">
-				swal("통장목록","신규통장이 추가되었습니다. 목록으로 이동합니다.","success",{
-					closeOnclickOutside : false,
-					closeEsc: false,
-					buttons : {
-						text : '확인',
-						value : true,
-						timer : 3000
-					}
-				});
-				window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>
-		</c:if>
-		
-		<c:if test="${updateCnt == 0}">
-			<script type="text/javascript">
-				alert("통장 추가가 실패 하였습니다.");
-				window.history.back();
-			</script>	
-		</c:if>
+	<c:if test="${updateCnt == 1}">
+		<script type="text/javascript">
+			swal(
+					{
+						title : "통장미사용",
+						type : "success",
+						text : "선택하신 통장이 미사용 처리 되었습니다.",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/accountList?categoryNum=140";
+					});
+		</script>
+	</c:if>
 
+	<c:if test="${updateCnt == 0}">
+		<script type="text/javascript">
+			swal(
+					{
+						title : "통장목록",
+						type : "error",
+						text : "미사용 처리가 되지 않았습니다. \n통장목록을 다시 확인 바랍니다.",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/slipList?categoryNum=140";
+					});
+		</script>
+	</c:if>
 
-<!--Begin core plugin -->
-<script src="/logistics_erp/resources/assets/js/jquery.min.js"></script>
-<script src="/logistics_erp/resources/assets/js/bootstrap.min.js"></script>
-<script src="/logistics_erp/resources/assets/plugins/moment/moment.js"></script>
-<script  src="/logistics_erp/resources/assets/js/jquery.slimscroll.js "></script>
-<script src="/logistics_erp/resources/assets/js/jquery.nicescroll.js"></script>
-<script src="/logistics_erp/resources/assets/js/functions.js"></script>
-<!-- End core plugin -->
-		
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/logistics_erp/resources/assets/plugins/sweetalert/sweet-alert.js"></script>
-<script src="/logistics_erp/resources/assets/pages/jquery.sweet-alert.custom.js"></script>
-<!-- BEGIN PAGE LEVEL SCRIPTS -->		
-	
 </body>
 </html>

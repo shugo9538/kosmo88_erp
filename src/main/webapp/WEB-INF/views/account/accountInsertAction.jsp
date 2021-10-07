@@ -12,51 +12,33 @@
 <!-- END PAGE LEVEL STYLES -->
 </head>
 <body>
-
 		<c:if test="${insertCnt == 1}">
-			<script type="text/javascript">
-				swal("통장목록","신규통장이 추가되었습니다. 목록으로 이동합니다.","success",{
-					closeOnclickOutside : false,
-					closeEsc: false,
-					buttons : {
-						text : '확인',
-						value : true,
-						timer : 3000
-					}
-				});
-				window.location="${ROOT_PATH}/account/accountList?categoryNum=140";
-			</script>
-		</c:if>
-		
-		<c:if test="${insertCnt == 0}">
-			<script type="text/javascript">
-			swal("통장목록","신규통장이 추가에 실패하였습니다.","error",{
-				closeOnclickOutside : false,
-				closeEsc: false,
-				buttons : {
-					text : '확인',
-					value : true,
-					timer : 3000
-				}
-			});
-				window.history.back();
-			</script>	
-		</c:if>
-
-
-<!--Begin core plugin -->
-<script src="/logistics_erp/resources/assets/js/jquery.min.js"></script>
-<script src="/logistics_erp/resources/assets/js/bootstrap.min.js"></script>
-<script src="/logistics_erp/resources/assets/plugins/moment/moment.js"></script>
-<script  src="/logistics_erp/resources/assets/js/jquery.slimscroll.js "></script>
-<script src="/logistics_erp/resources/assets/js/jquery.nicescroll.js"></script>
-<script src="/logistics_erp/resources/assets/js/functions.js"></script>
-<!-- End core plugin -->
-		
-<!-- BEGIN PAGE LEVEL SCRIPTS -->
-<script src="/logistics_erp/resources/assets/plugins/sweetalert/sweet-alert.js"></script>
-<script src="/logistics_erp/resources/assets/pages/jquery.sweet-alert.custom.js"></script>
-<!-- BEGIN PAGE LEVEL SCRIPTS -->		
+		<script type="text/javascript">
+			swal(
+					{
+						title : "통장목록",
+						type : "success",
+						text : "신규통장이 추가되었습니다.",
+						timer : 2500
+					},
+					function() {
+						window.location = "${ROOT_PATH}/account/accountList?categoryNum=140";
+					});
+		</script>
+	</c:if>
 	
+		<c:if test="${insertCnt == 0}">
+		<script type="text/javascript">
+
+			swal({
+				title : "통장목록",
+				type : "error",
+				text : "신규통장이 추가에 실패하였습니다.",
+				timer : 2500
+			}, function() {
+				window.history.back();
+			});
+		</script>
+	</c:if>
 </body>
 </html>

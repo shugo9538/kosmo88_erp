@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<%@ include file="./js_purchase.jsp"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -43,7 +42,7 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
 									<td>
-										<input type="text" name="name" id="name" required>
+										<input type="text" name="name" id="name">
 									</td>
 									<th style="background-color: #f1f1f1;">구분</th>
 									<td>법인</td>
@@ -80,7 +79,7 @@
 											<option value="naver.com">네이버</option>
 											<option value="gmail.com">구글</option>
 											<option value="nate.com">네이트</option>
-											<option value="daum.net">다음</option>
+											<option value="hanmail.net">다음</option>
 										</select>
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
@@ -203,7 +202,6 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
-		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
 </body>

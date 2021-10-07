@@ -46,6 +46,12 @@ public interface AccountDAO {
 	public List<SalesSlipDTO> selectPurchaseList();
 	// 매출전표 조회
 	public List<SalesSlipDTO> selectSalesList();
+	// 매입/출전표 합계 (공급가액, 세액, 합계)
+	public SalesSlipDTO selectSalesSlipSum();
+	// 매입/매출 전표 계산서
+	public int getSalesSlipCnt();
+	// 매입 전표 생성 ( 일반전표 승인시 ) 
+	public int insertSalesSlip(Map<String, Object> map);
 	
 	// 금융자금관리
 	// 통장 거래내역 건수

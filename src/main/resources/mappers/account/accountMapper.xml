@@ -43,13 +43,10 @@ SELECT COUNT(*)as cnt FROM slip
 </select>
 <!-- 2. 일반전표 조회 -->
 <select id="selectSlipList" resultType="SlipDTO">
-<![CDATA[
-SELECT *
-FROM (select id, type, register_date, update_date, state, department_id, department_request   
-FROM(SELECT *
-  FROM slip
-  ORDER BY REGISTER_DATE))
-]]>
+SELECT id, type, register_date, update_date, state, department_id, department_request 
+  FROM SLIP
+ WHERE STATE NOT IN ('R')
+ ORDER BY register_date DESC
 </select>
 <!-- 2.1 일반전표 단건조회  -->
 <select id="selectSlip" resultType="SlipDTO">
@@ -80,9 +77,6 @@ WHERE
 EXISTS (SELECT 1 FROM SLIP s WHERE s.department_request = r.id)
 AND r.id = #{dpart_req}
 </update>
-<!-- 5. 일반전표 수정 -->
-<!-- 6. 일반전표 삭제  enabled 처리  -->
-
 
 <!-- 장부관리-매입/매출장 -->
 <!-- 2-1. 매입/매출전표 목록조회 -->
@@ -111,14 +105,41 @@ AND sl.sa_type = '매입'
 SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as client_code, 
        re.name as client_name, re.register_num as client_num, it.name as product_name,
        sl.supply_amount, sl.tax_amount, sl.abstract as abs, sl.sa_type as type,  
-       sl.sl_id as slip_id, rownum
+       sl.sl_id as slip_id
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 WHERE sl.department_request = re.id AND re.item_id = it.id
 AND sl.sa_type = '매출'
 </select>
-<!-- 4. 매입/매출전표 등록 -->
-<!-- 5. 매입/매출전표 수정 -->
-<!-- 6. 매입/매출전표 삭제 enabled 처리 -->
+<!-- 2-3. 매입/매출전표 합계-->
+<select id="selectSalesSlipSum" resultType="SalesSlipDTO">
+SELECT SUM(supply_amount) AS sum_supply,
+       SUM(tax_amount) AS sum_tax,
+       SUM(supply_amount + tax_amount) AS sum_total
+FROM sales_slip
+</select>
+<!--2-3. 매입,매출 전표 건수조회  -->
+<select id="getSalesSlipCnt" resultType="int">
+SELECT COUNT(*) 
+  FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
+WHERE sl.department_request = re.id AND re.item_id = it.id
+</select>
+<!-- 2-4. 매입/매출 전표 발행 (승인시 자동발행) -->
+<insert id="insertSalesSlip" parameterType="java.util.Map">
+INSERT ALL
+
+    WHEN slip_id = #{slip_id} THEN
+    
+    INTO SALES_SLIP (ID, ACCOUNT_TITLE, SUPPLY_AMOUNT, TAX_AMOUNT, TYPE, ABSTRACT, SLIP_ID)
+            VALUES(sales_slip_seq.NEXTVAL, '상품', sum_supply, sum_tax, type, '상품매출', slip_id)  
+SELECT *
+    FROM ACCOUNT_CHECK_VIEW 
+ WHERE slip_id = #{slip_id}
+   AND request_id = #{dpart_req}
+   AND state = #{state}
+   AND department_id = #{dpart_id}
+   AND type = #{type}
+</insert>
+<!-- 2-5. 매입/매출전표 삭제 enabled 처리 -->
 
 <!-- 금융/자금관리  -->
 <!-- 1. 통장건수 조회  -->
@@ -195,9 +216,6 @@ GROUP BY ac.name, ac.bank, ac.balance,
      ah.account_number, ah.type, ah.balance, ah.abstract, ah.transaction_date
 </select> 
 
-  
-<!-- 12. 통장입출금내역 삭제 enabled-->
-
 <!-- 결산/재무제표 -->
 <!-- 1. 재무제표 -->
 <select id="financialstatements" resultType="FinancialStatementsDTO">
@@ -208,7 +226,7 @@ FROM FinancialStatements
 <!-- 2. 손익계산서 -->
 <select id="incomeStatement" resultType="IncomeStatementDTO">
 SELECT sa.id, sa.sales_cost, sa.basic_product, sa.current_product,
-       ad.employee_salary
+       ad.TOTAL_SALARY employee_salary
   FROM ACCOUNT_SALES_VIEW sa, ACCOUNT_administrative_VIEW ad
  WHERE sa.id = ad.id
 </select>

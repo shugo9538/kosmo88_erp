@@ -21,6 +21,11 @@ public class SalesSlipDTO {
 	private String abs;// 요약
 	private int slip_id;// 일반전표 ID
 	
+	// 매입매출전표 합계
+	private int sum_supply;
+	private int sum_tax;
+	private int sum_total;
+	
 	
 	public Date getConfirm_date() {
 		return confirm_date;
@@ -94,5 +99,35 @@ public class SalesSlipDTO {
 	public void setSlip_id(int slip_id) {
 		this.slip_id = slip_id;
 	}
+	
+	
+	public int getSum_supply() {
+		return sum_supply;
+	}
+	public void setSum_supply(int sum_supply) {
+		this.sum_supply = sum_supply;
+	}
+	public int getSum_tax() {
+		return sum_tax;
+	}
+	public void setSum_tax(int sum_tax) {
+		this.sum_tax = sum_tax;
+	}
+	public int getSum_total() {
+		return sum_total;
+	}
+	public void setSum_total(int sum_total) {
+		this.sum_total = sum_total;
+	}
+	@Override
+	public String toString() {
+		return "SalesSlipDTO [confirm_date=" + confirm_date + ", id=" + id + ", account_title=" + account_title
+				+ ", client_code=" + client_code + ", client_name=" + client_name + ", client_num=" + client_num
+				+ ", product_name=" + product_name + ", supply_amount=" + supply_amount + ", tax_amount=" + tax_amount
+				+ ", type=" + type + ", abs=" + abs + ", slip_id=" + slip_id + ", sum_supply=" + sum_supply
+				+ ", sum_tax=" + sum_tax + ", sum_total=" + sum_total + "]";
+	}
+	
+	
 	
 }

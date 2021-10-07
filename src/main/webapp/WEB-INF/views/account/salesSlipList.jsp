@@ -8,25 +8,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>회계관리 - 일반전표</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- //제이쿼리 ui css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- //제이쿼리 style css -->
-<link rel="stylesheet" href="/resources/demos/style.css">
-<!-- //제이쿼리 js -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<!-- //제이쿼리 ui js -->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- jQuery datepicker 한국어 전환 -->
-<script src="/logistics_erp/resources/accounting/js/datepicker-ko.js">
-    /* datepicker */
-    $(function() {
-        // 매입매출장 목록
-        $("#statd_date").datepicker(); // 검색시작일
-        $("#end_date").datepicker(); // 검색 마지마막일
-    });
-</script>
+<title>회계관리 - 매입/매출장</title>
 </head>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -36,7 +18,10 @@
 	<div class="main-content">
 		<!-- header section start-->
 		<%@ include file="../common/header.jsp"%>
-		<%-- <%@ include file="common/accountHeader.jsp" %>   --%>
+		<%@ include file="common/accountHeader.jsp" %>
+		 <c:set var="now" value="<%=new java.util.Date()%>" />
+ 		<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set>  
+		
 		<!-- header section end-->
 		<!--body wrapper start-->
 		<div class="wrapper">
@@ -63,37 +48,9 @@
 				<div class="white-box">
 					<div class="title" style="text-align-last: center">
 						<h2 class="header-title">매입/매출장</h2>
-						<h2 class="header-title">2021년</h2>
+						<h2 class="header-title"><c:out value="${sysYear}"/>년</h2>
 					</div>
-					<!--Start row-->
-					<div class="row">
-						<div class="col-md-12">
-							<form action="#" class="form-horizontal">
-								<div class="form-group">
-									<label class="control-label col-md-4">검색 일자</label>
-									<div class="input-daterange input-group" id="date-range">
-										<div class="col-md-3">
-											<input type="text" class="form-control" name="start" id="statd_date" readonly />
-										</div>
-										<div class="col-md-1">
-											<input type="text" class="form-control" readonly value="~">
-										</div>
-										<div class="col-md-3">
-											<input type="text" class="form-control" name="end" id="end_date" readonly />
-										</div>
-										<div class=" col-md-3">
-											<select class="form-control" id="salesPurchase">
-												<option value="0" selected>선택</option>
-												<option value="1">매출</option>
-												<option value="2">매입</option>
-											</select>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-					<!--End row-->
+					<!-- 테이블 시작  -->
 					<div class="table-responsive">
 						<c:set var="sum_supply" value="0" />
 						<c:set var="sum_tax" value="0" />
@@ -157,20 +114,20 @@
 										<!-- 공금가액 + 세액 합계  -->
 										<c:set var="sum_total" value="${sum_total + dto.supply_amount + dto.tax_amount}" />
 									</tr>
+								</c:forEach>
 							</tbody>
 							<tfoot>
-								</c:forEach>
 								<tr style="background-color: ghostwhite; font-weight: bold;">
 									<td colspan="5" align="center">합계</td>
-									<td>${cnt}건(매수${cnt}매)</td>
+									<td>${getCnt}건(매수${getCnt}매)</td>
 									<td>
-										<fmt:formatNumber pattern="###,###,###,###" value="${sum_supply}" />
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_supply}" />
 									</td>
 									<td>
-										<fmt:formatNumber pattern="###,###,###,###" value="${sum_tax}" />
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_tax}" />
 									</td>
 									<td>
-										<fmt:formatNumber pattern="###,###,###,###" value="${sum_total}" />
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_total}" />
 									</td>
 									<td colspan="4"></td>
 								</tr>

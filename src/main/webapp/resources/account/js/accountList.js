@@ -39,16 +39,31 @@ function checkbox_accountNum(element){
 }
 
 // 통장리스트에서 accountList.jsp -> 정보수정 페이지로 이동 accountModifyDetail.jsp
-function accountModifyDetail(){
+function accountEnabled(){
 	
 	if (checkedNum == undefined){
-		alert("미사용 하실 계좌를 선택 바랍니다..");
+		swal("계좌선택","계좌를 선택 바랍니다","error");
+		return false;
+	}else {
+		swal({
+			title : "선택하신 전표를 승인 하시 겠습니까?",
+			text : "승인 전표를 선택 하셨습니다.",
+			type : "warning",
+			showCancelButton: true,
+			cancelButtonText: "아니요",
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "예",
+			closeOnConfirm: false
+			}, function(){
+				//swal("Deleted!", "Your imaginary file has been deleted.", "success");  -- 요거 주석 해제하면 
+				location.href=rootPath.value + "/account/accountEnabledAction?account_number=" + checkedNum;
+			});
 		return false;
 	}
 	
 	//const url = rootPath.value + "/account/accountModifyDetail?account_number=" + checkedNum;
 	//window.open(url, "accountModifyDetail", "menubar=no, width=800, height=900");	
-	location.href=rootPath.value + "/account/accountEnabledAction?account_number=" + checkedNum;
+	//location.href=rootPath.value + "/account/accountEnabledAction?account_number=" + checkedNum;
 	return false;
 }
 

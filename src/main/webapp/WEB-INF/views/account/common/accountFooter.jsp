@@ -13,11 +13,16 @@
 <!-- 통장신규등록페이지  -->
 <!-- accountNewDetail.jsp  -->
 <script src="/logistics_erp/resources/account/js/accountNewDetail.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
 
 <!-- 일반전표 리스트 페이지  -->
 <!-- slipList.jsp  -->
 <script src="/logistics_erp/resources/account/js/slipList.js"></script>
+
+<!-- 거래내역 등록 페이지지  -->
+<!-- accountSimplDetail.jsp  -->
+<script src="/logistics_erp/resources/account/js/accountSimplDetail.js"></script>
+
+<!-- 회계 알럿 js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 

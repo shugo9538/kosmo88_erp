@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,8 +78,15 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 
 	// 견적서 상품 불러오기
 	@Override
-	public List<SalesItemDTO> getEstimateItemList(int id) {
-		return sqlSession.selectList(STATEMENT + ".getEstimateItemList", id);
+	public List<SalesItemDTO> getEstimateItemList() {
+		return sqlSession.selectList(STATEMENT + ".getEstimateItemList");
+	}
+
+	// 견적서 등록 처리
+	@Override
+	public int insertRequest(Map<String, Object> map) {
+		
+		return sqlSession.insert(STATEMENT + ".insertRequest", map);
 	}
 	
 	

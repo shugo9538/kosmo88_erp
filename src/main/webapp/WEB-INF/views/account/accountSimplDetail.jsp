@@ -18,7 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="/logistics_erp/resources/accounting/js/datepicker-ko.js"></script>
-<body class="sticky-header">
+<body class="sticky-header" onload="accountSimplFocus();">
 
     <!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -62,8 +62,8 @@
                    <div class="col-md-12">
                        <div class="white-box">  
                        <h2 class="header-title">통장거래내역추가</h2><!-- js-validation-bootstrap form-horizontal -->
-                          <form class="js-validation-slip" id="js-validation-slip" 
-                          action="${ROOT_PATH}/account/accountSimplAction" method="post">
+                          <form class="js-validation-slip" id="account_simple_from" name="account_simple_from" 
+                          action="${ROOT_PATH}/account/accountSimplAction" method="post" onsubmit="return accountSimpleCheck();">
                           <!-- CSRF Token  -->
                           <sec:csrfInput/>
                          	
@@ -88,8 +88,8 @@
                             <label class="col-md-3 control-label" for="account_number" style="color:red">등록계좌정보<span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <c:if test="${!empty account}">
-                              <select class="form-control" id="account_number" name="account_number" required>
-                                <option value="">계좌은행을 선택하세요</option>
+                              <select class="form-control" id="account_number" name="account_number">
+                                <option value="0">계좌은행을 선택하세요</option>
                               	<c:forEach var="dto" items="${account}">
                                 <option value="${dto.account_number}">${dto.name}-${dto.bank}(${dto.account_number})</option>
                             	 </c:forEach>
@@ -123,14 +123,14 @@
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="abs">적요 <span class="text-danger">*</span></label>
                             <div class="col-md-9">
-                              <input class="form-control" type="text" id="abs" name="abs" placeholder="상태" required>
+                              <input class="form-control" type="text" id="abs" name="abs" placeholder="적요를 입력하세요">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="col-md-3 control-label" for="type">유형 <span class="text-danger">*</span></label>
 								<div class="col-md-9">
-									<select class="form-control" id="type" name="type" required>
-										<option value="">입/출금 유형</option>
+									<select class="form-control" id="type" name="type">
+										<option value="0">입/출금 유형</option>
 										<option value="입금">입금</option>
 										<option value="출금">출금</option>
 									</select>
@@ -147,8 +147,8 @@
                             <label class="col-md-3 control-label">승인체크<span class="text-danger">*</span></label>
                             <div class="col-md-9">
                               <div class="checkbox primary">
-                                <input type="checkbox" id="val-terms" name="val-terms" value="1" required>
-                                <label  class="css-input css-checkbox css-checkbox-primary" for="val-terms" >
+                                <input type="checkbox" id="val-terms" name="inputChk" value="1">
+                                <label  class="css-input css-checkbox css-checkbox-primary" for="inputChk" >
                                 	입력사항을 확인 후 체크 바랍니다.
                                 </label>
                               </div>

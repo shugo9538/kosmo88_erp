@@ -116,6 +116,7 @@ public class SalesClientServiceImpl implements SalesClientService{
 		
 		// 우편번호
 		int zip_code = Integer.parseInt(req.getParameter("zip_code"));
+		System.out.println("zip_code:" + zip_code);
 		
 		// 주소
 		String address = req.getParameter("address");

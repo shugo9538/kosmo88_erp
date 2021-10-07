@@ -13,37 +13,37 @@ function accountCheck() {
 
 	// 계좌소유주 선택
 	if (document.account_new_from.account_holder_id.value == 0) {
-		alert("소유주를 선택하세요");
+		swal("소유주"," 선택 해주시기 바랍니다.","info");
 		document.account_new_from.account_holder_id.focus();
 		return false;
 		// 계좌은행 선택
 	} else if (document.account_new_from.bank.value == 0) {
-		alert("계좌은행을 선택하세요");
+		swal("계좌은행","은행 선택을 바랍니다.","info");
 		document.account_new_from.bank.focus();
 		return false;
 		// 계좌별칭 선택
 	} else if (!document.account_new_from.name.value) {
-		alert("계좌별칭을 입력하세요");
+		swal("계좌별칭","입력이 되지 않았습니다.\n 확인 후 입력 바랍니다.","info");
 		document.account_new_from.name.focus();
 		return false;
 		// 계좌번호를 입력하세요
 	} else if (!document.account_new_from.account_number.value) {
-		alert("계좌번호 입력 하세요");
+		swal("계좌번호","입력이 되지 않았습니다.\n 확인 후 입력 바랍니다.","info");
 		document.account_new_from.account_number.focus();
 		return false;
 		// 계좌번호 중복확인 체크accountNumberCheck
 	} else if (document.account_new_from.accountNumberCheck.value == 0) {
-		alert("계좌번호 중복 확인을 해주세요");
+		swal("계좌번호","계좌번호 중복 확인을 해주세요.","info");
 		document.account_new_from.accountNumChk.focus();
 		return false;
 		// 기초잔액 체크 0이하 또는 문자열 x
 	} else if (!document.account_new_from.balance.value) {
-		alert("기초잔액을 0 또는 0 이상입력 하세요");
+		swal("기초잔액","0 또는 0 이상입력 하세요.","info");
 		document.account_new_from.balance.focus();
 		return false;
 	}// 입력사항을 확인 후 체크 박스 선택
 	else if (!document.account_new_from.inputChk.checked) {
-		alert("입력 사항을 다시 한번 확인 후 체크를 하시기 바랍니다.");
+		swal("기초잔액","0 또는 0 이상입력 하세요.","info");
 		document.account_new_from.inputChk.focus();
 		return false;
 	}
@@ -55,7 +55,7 @@ function accountCheck() {
 function accountChk() {
 
 	if (!document.account_new_from.account_number.value) {
-		alert("계좌번호 입력 후 중복확인 바랍니다.");
+		swal("중복확인","쨔사 중복확인 해~.","warning");
 		document.account_new_from.account_number.focus();
 		return false;
 	} else {

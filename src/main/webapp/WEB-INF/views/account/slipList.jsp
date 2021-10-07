@@ -10,9 +10,10 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
+ <!-- BEGIN PAGE LEVEL STYLES -->
+ <link href="/logistics_erp/resources/account/sweetalert/sweetalert.css" rel="stylesheet"/>
+ <!-- END PAGE LEVEL STYLES -->
 <title>회계관리 - 일반전표</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="sticky-header">
@@ -33,13 +34,14 @@
 
 		<!--body wrapper start-->
 		<div class="wrapper">
-
+		
 			<!--Start Page Title-->
 			<div class="page-title-box">
 				<h4 class="page-title">전표입력/장부관리</h4>
 				<ol class="breadcrumb">
 					<li><a href="#">승인전표 목록</a></li>
-					<li><a href="#">미승인전표 목록</a></li>
+					<li><a href="#" id="alerttest">미승인전표 목록</a> 
+					</li>
 					<!--  <li class="active">
                         Data Table
                     </li> -->
@@ -58,11 +60,8 @@
 					<!-- 메뉴버튼 -->
 					<div>
 						<ul class="nav nav-pills custom-nav">
-							<%-- <li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
+							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
 									등록</a></li>
-							<li class="active"><a href="${ROOT_PATH}/account/slipModify">일반전표
-									수정</a></li> --%>
-							<!-- <li class="active"><a href="#">부서별 전표 승인</a></li> -->
 						</ul>
 					</div>
 					<!-- 메뉴버튼 끝 -->
@@ -84,24 +83,25 @@
 								<tbody>
 									<c:forEach var="dto" items="${slip}">
 										<input type="hidden" name="slip_id" ${dto.id}/>
+										<input type="hidden" id="root" value="${ROOT_PATH}">
 										<tr>
 											<td>
 												<input type="checkbox" id="slipid_chk" name="slipid_chk" value="${dto.id}" 
 													onclick="checkbox_slipId(this)">
 											</td>
 											<td>
-												<a href="#">${dto.id}</a>
+												<a href="#" id="slip_" onclick="slip_Id(${dto.id})">${dto.id}</a>
 											</td>
 											<td>
 												<c:choose>
 													<c:when test="${dto.type == 'DEPOSIT'}">
-													입금
+													<span  class="deposit">입금</span>
 													</c:when>
 													<c:when test="${dto.type == 'WITHDRAW'}">
-													출금
+													<span  class="withdraw">출금</span>
 													</c:when>
 													<c:when test="${dto.type == 'GENERAL'}">
-													일반
+													<span  class="general">일반</span>
 													</c:when>
 												</c:choose>
 											
@@ -114,7 +114,7 @@
 											<!-- 전표 승인 여부 확인 -->
 											<td><c:choose>
 													<c:when test="${dto.state eq 'Y'}">
-														<span style="color: red">승인</span>
+														<span class="confirm">승인</span>
 													</c:when>
 													<c:when test="${dto.state eq 'N'}">
 														<span>미승인</span>
@@ -122,6 +122,9 @@
 												</c:choose></td>
 
 											<td><c:choose>
+													<c:when test="${dto.department_id == 1}">
+	                                        			인사팀
+	                                        			</c:when>
 													<c:when test="${dto.department_id == 2}">
 	                                        			개발팀
 	                                        			</c:when>
@@ -148,7 +151,7 @@
 						</div>
 						             <div class="form-group">
                             <div class="col-md-8 col-md-offset-3">
-                              <button class="btn  btn-primary" type="submit">부서별 전표 승인</button>
+                              <button class="btn  btn-primary" id="sa-warning" type="submit">부서별 전표 승인</button>
                             </div>
                           </div>
 					</div>
@@ -208,9 +211,7 @@
 
 		</div>
 		<!-- End Wrapper-->
-
-
-
+		
 		<!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
 		<%@ include file="common/accountFooter.jsp" %>

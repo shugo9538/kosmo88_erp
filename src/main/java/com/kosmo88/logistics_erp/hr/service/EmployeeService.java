@@ -33,4 +33,7 @@ public interface EmployeeService {
     // 인사 수정 등록
     void updateEmployeeAction(MultipartHttpServletRequest req, HttpServletResponse res, String id);
 
+    // 회원가입
+    void signIn(ModelAndView mav, String id);
+
 }

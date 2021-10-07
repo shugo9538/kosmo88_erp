@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<%@ include file="./js_purchase.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@ include file="../common/header.jsp"%>
 <meta charset="UTF-8">
 <title></title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 </head>
 <body>
 
 <c:if test="${update == true}">
 	<script type="text/javascript">
 		swal({
-			title:"발주서 삭제 성공",
+			title:"주문서 삭제 성공",
 			type: "success",
-			text: "해당 발주서가 삭제되었습니다.",
+			text: "해당 주문서가 삭제되었습니다.",
 			timer: 2500
 		}, function() {
 			window.close();
@@ -28,7 +27,7 @@
 <c:if test="${update != true}">
 	<script type="text/javascript">
 	swal({
-		title:"발주서 삭제 실패",
+		title:"주문서 삭제 실패",
 		type: "error",
 		text: "잠시 후 다시 시도해주세요!!",
 		timer: 2500

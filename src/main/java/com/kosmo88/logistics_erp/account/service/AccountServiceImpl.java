@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.kosmo88.logistics_erp.account.code.menuCode;
@@ -24,7 +25,7 @@ import com.kosmo88.logistics_erp.account.dto.SalesSlipDTO;
 import com.kosmo88.logistics_erp.account.dto.SlipDTO;
 
 @Service
-public class AccountServiceImpl implements AccountService, menuCode {
+public class AccountServiceImpl implements AccountService {
 	
 	@Autowired
 	AccountDAO accountDAO;
@@ -75,6 +76,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 	}
 	// 일반전표 - 부서별 일반전표 승인처리
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public void slipConfirmAction(HttpServletRequest request, Model model) {
 		
@@ -94,7 +96,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			}
 			
 			System.out.println("slipList 값 : " + slipList);
-			int updateCnt = 0;
+			
 			
 			// 리스트로 담아놓은 slipDTO 다시 꺼내자
 			for (int i = 0; i < slipList.size(); i++) {
@@ -108,11 +110,13 @@ public class AccountServiceImpl implements AccountService, menuCode {
 				String state = dto.getState();		   // 일반전표tbl상태
 				int dpart_req = dto.getDepartment_request(); // request_tbl 아이디
 				
+				String type = dto.getType();
+				
 				System.out.println(" slip_id : " + slip_id);
 				System.out.println(" dpart_id : " + dpart_id);
 				System.out.println(" state : " + state);
 				System.out.println(" dpart_req : " + dpart_req);
-				
+				System.out.println(" type : " + type);
 				
 				//회계팀 일반전표 기준
 				/*
@@ -125,28 +129,34 @@ public class AccountServiceImpl implements AccountService, menuCode {
 				
 				// 일반전표 승인상태 'N' 일때 들어온다.
 				if (state.equals("N")) {
+					int updateCnt = 0;
+					
 						System.out.println("===");
+						System.out.println("state : " + state);
 						System.out.println("dpart_id : " + dpart_id);
 						System.out.println("===");
 						
 						// 부서코드는 0 이상으로 각 부서별 코드번호는 ( 인사100, 회계 200, 영업 300, 구매 400, 물류 500 )
 						if (dpart_id > 0) {
+							map.put("slip_id", slip_id);
+							map.put("dpart_req", dpart_req);
+							
+							map.put("dpart_id", dpart_id);
+							map.put("state", state);
+							map.put("type", type);
 							
 							// 각 부서코드가 들어올때 각 부서별 코드번호로 각 항목으로 들어간다.
 							switch(dpart_id) {
 							// 인사팀
 							case menuCode.HR:
-								
-								map.put("slip_id", slip_id);
-								map.put("dpart_req", dpart_req);
 								map.put("new_state",menuCode.HR_STATE);
 								updateCnt = accountDAO.updateSlipState(map);
-								
 								System.out.println("인사팀 전표 승인: " + updateCnt);
 								
 								if (updateCnt == 1) {
 									updateCnt = accountDAO.updateRequestState(map);
 									System.out.println("인사팀 updateCnt : " + updateCnt);
+									
 									switch(updateCnt) {
 									case 1:
 										model.addAttribute("SUCCESS", menuCode.SUCCESS);
@@ -157,20 +167,27 @@ public class AccountServiceImpl implements AccountService, menuCode {
 											System.out.println("인사팀 REQUEST_TBL UPDATE 실패");
 											break;
 									}
+									System.out.println("인사팀입니다.");
+								}else {
+									model.addAttribute("FAIL", menuCode.FAIL);
+									System.out.println("인사팀 일반전표 업데이트 실패하였습니다.");
 								}
 								break;
 							// 구매팀	
 							case menuCode.PURCHASE:
-								map.put("slip_id", slip_id);
-								map.put("dpart_req", dpart_req);
 								map.put("new_state", menuCode.PURCHASE_STATE);
 								updateCnt = accountDAO.updateSlipState(map);
-								
 								System.out.println("구매팀 전표 승인: " + updateCnt);
 								
 								if(updateCnt == 1) {
 									updateCnt = accountDAO.updateRequestState(map);
 									System.out.println("구매팀 updateCnt : " + updateCnt);
+									System.out.println("구매팀 전표 승인 : " + updateCnt);
+									System.out.println("==========================");
+									
+									updateCnt = accountDAO.insertSalesSlip(map);
+									System.out.println("구매팀 매출전표 발행 : " + updateCnt);
+									
 									switch(updateCnt) {
 									case 1:
 										model.addAttribute("SUCCESS", menuCode.SUCCESS);
@@ -181,21 +198,26 @@ public class AccountServiceImpl implements AccountService, menuCode {
 										System.out.println("구매팀 REQUEST_TBL UPDATE 실패");
 										break;
 									}
-									
+									System.out.println("구매팀입니다.");
+								}else {
+									model.addAttribute("FAIL", menuCode.FAIL);
+									System.out.println("구매팀 일반전표 업데이트 실패하였습니다.");
 								}
 								break;
 							// 영업팀	
 							case menuCode.SALE:
-								map.put("slip_id", slip_id);
-								map.put("dpart_req", dpart_req);
 								map.put("new_state", menuCode.SALE_STATE);
 								updateCnt = accountDAO.updateSlipState(map);
-								
 								System.out.println("영업팀 전표 승인 : " + updateCnt);
+								System.out.println("==========================");
+								
+								updateCnt = accountDAO.insertSalesSlip(map);
+								System.out.println("영업팀 매출전표 발행 : " + updateCnt);
 								
 								if (updateCnt == 1) {
 									updateCnt = accountDAO.updateRequestState(map);
 									System.out.println("영업팀 updateCnt : " + updateCnt);
+									
 									switch(updateCnt) {
 									case 1:
 										model.addAttribute("SUCCESS", menuCode.SUCCESS);
@@ -206,15 +228,17 @@ public class AccountServiceImpl implements AccountService, menuCode {
 										System.out.println("영업팀 REQUEST_TBL UPDATE 실패");
 										break;
 									}
+									System.out.println("영업팀입니다.");
+									
+								}else {
+									model.addAttribute("FAIL", menuCode.FAIL);
+									System.out.println("영업팀 일반전표 업데이트 실패하였습니다.");
 								}
 								break;
 							// 물류팀	
 							case menuCode.WMS:
-								map.put("slip_id", slip_id);
-								map.put("dpart_req", dpart_req);
 								map.put("new_state",menuCode.WMS_STATE);
 								updateCnt = accountDAO.updateSlipState(map);
-								
 								System.out.println("물류팀 전표 승인: " + updateCnt);
 								
 								if(updateCnt == 1) {
@@ -231,12 +255,14 @@ public class AccountServiceImpl implements AccountService, menuCode {
 										System.out.println("물류팀 REQUEST_TBL UPDATE 실패");
 										break;
 									}
+									System.out.println("물류팀입니다.");
+								}else {
+									model.addAttribute("FAIL", menuCode.FAIL);
+									System.out.println("물류팀 일반전표 업데이트 실패하였습니다.");
 								}
 								break;
 							// 회계팀
 							case menuCode.ACCOUNT:
-								map.put("slip_id", slip_id);
-								map.put("dpart_req", dpart_req);
 								map.put("new_state",menuCode.ACCOUN_STATE);
 								updateCnt = accountDAO.updateSlipState(map);
 								
@@ -256,11 +282,20 @@ public class AccountServiceImpl implements AccountService, menuCode {
 										System.out.println("회계팀 REQUEST_TBL UPDATE 실패");
 										break;
 									}
+									System.out.println("회계팀입니다.");
+								}else {
+									model.addAttribute("FAIL", menuCode.FAIL);
+									System.out.println("회계팀 일반전표 업데이트 실패하였습니다.");
 								}
+								break;
+								// 부서번호가 없을경우
+								default:
+									model.addAttribute("UNIDENTIFIED", menuCode.UNIDENTIFIED);
+									System.out.println(" 없는 부서 번호 입니다. 다시 확인 바랍니다.");
 								break;
 							}
 						}else {
-							System.out.println("부서아이디가 확인 되지 않습니다.");
+							System.out.println(" 부서코드가 올바르지 않습니다. 다시 확인 바랍니다.");
 							model.addAttribute("UNIDENTIFIED", menuCode.UNIDENTIFIED);
 						}
 				}else {
@@ -268,7 +303,83 @@ public class AccountServiceImpl implements AccountService, menuCode {
 					model.addAttribute("NOT_APPROVED", menuCode.NOT_APPROVED);
 				}
 			}
-			model.addAttribute("updateCnt", updateCnt);
+	}
+	// 일반전표 세부내역 (승인시 확인)
+	@Override
+	public void slipInfoAction(HttpServletRequest request, Model model) {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		SlipDTO slipDTO = new SlipDTO();
+
+		System.out.println("일반전표 세부내역");
+
+		slipDTO = accountDAO.selectSlip(id);
+
+		model.addAttribute("slipDTO", slipDTO);
+
+		if (slipDTO != null) {
+
+			int slip_id = slipDTO.getId();
+			String type = slipDTO.getType();
+			int dept_req = slipDTO.getDepartment_request();
+			int dept_id = slipDTO.getDepartment_id();
+			String state = slipDTO.getState();
+
+			if (type.equals("GENERAL")) {
+				
+				switch(dept_id) {
+				case menuCode.HR:
+					
+					break;
+				case menuCode.ACCOUNT:
+					
+					break;
+				case menuCode.WMS:
+					
+					break;
+				case menuCode.PURCHASE:
+					
+					break;
+					
+				case menuCode.SALE:
+					
+					break;
+				default:
+					
+					break;
+				}
+
+			} else if (type.equals("DEPOSIT") || type.equals("WITHDRAW")) {
+				
+				switch(dept_id) {
+				case menuCode.HR:
+					
+					break;
+				case menuCode.ACCOUNT:
+					
+					break;
+				case menuCode.WMS:
+					
+					break;
+				case menuCode.PURCHASE:
+					
+					break;
+					
+				case menuCode.SALE:
+					
+					break;
+				default:
+					
+					break;
+				}
+				
+			} else {
+
+			}
+
+		}
+
 	}
 	// ------------------------------ 매입/매출장 ------------------------------
 		// 매입/매출장 - 메인(ajax) salesSlipList.jsp
@@ -280,13 +391,23 @@ public class AccountServiceImpl implements AccountService, menuCode {
 			System.out.println("매입/매출장 목록 : " + saleslip);
 			
 			model.addAttribute("saleslip", saleslip);
+			
+			SalesSlipDTO sum = new SalesSlipDTO();
+			sum = accountDAO.selectSalesSlipSum();
+			
+			model.addAttribute("sum", sum);
+			
+			int getCnt = 0;
+			getCnt = accountDAO.getSalesSlipCnt();
+			model.addAttribute("getCnt", getCnt);
+			
 		}
 		// 매입 전표 조회
 		@Override
 		public void purchaseList(Model model) {
 			List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
 			
-			saleslip = accountDAO.selectSalesSlip();
+			saleslip = accountDAO.selectPurchaseList();
 			System.out.println("매입전표 조회 : " + saleslip);
 			
 			model.addAttribute("saleslip", saleslip);
@@ -296,7 +417,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		public void salesList(Model model) {
 			List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
 			
-			saleslip = accountDAO.selectSalesSlip();
+			saleslip = accountDAO.selectSalesList();
 			System.out.println("매출전표 조회 : " + saleslip);
 			
 			model.addAttribute("saleslip", saleslip);
@@ -332,24 +453,6 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		System.out.println("selectCnt : " + selectCnt);
 	
 	}
-	// 통장정보 수정 페이지
-	@Override
-	public void accountEnabledDetail(HttpServletRequest request, Model model) {
-		
-		String account_number = request.getParameter("account_number");
-		
-		System.out.println("account_number" + account_number);
-		
-		AccountDTO dto = new AccountDTO();
-		
-		dto = accountDAO.selectAccountInfo(account_number);
-		
-		System.out.println("홀더" + dto.getAccount_holder_id());
-		
-		model.addAttribute("dto",dto);
-		
-	}
-	
 	// 통장정보 미사용 처리
 	@Override
 	public void accountEnabledAction(HttpServletRequest request, Model model) {
@@ -506,6 +609,7 @@ public class AccountServiceImpl implements AccountService, menuCode {
 		
 		model.addAttribute("dto", income);
 	}
+
 
 
 	

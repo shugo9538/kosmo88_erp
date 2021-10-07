@@ -51,6 +51,12 @@ public class AccountController {
     	logger.info("/sweetalert");
     	return "account/temp/sweetalert";
     }
+    //jQuery
+    @RequestMapping(value = "/yooooooooo")
+    public String yooooooooo(HttpServletRequest request, Model model) {
+    	logger.info("/yooooooooo");
+    	return "account/temp/yooooooooo";
+    }
     //------------------------ 기초정보관리 ------------------------
     // 기초정보관리 - 거래처 목록
     @RequestMapping(value = "/clientList")
@@ -97,6 +103,15 @@ public class AccountController {
     	
     	return "account/slipConfirmAction";
     }
+    // 장부관리 - 일반전표 상세내역 
+    @RequestMapping(value="/slipInfoAction")
+    public String slipInfoAction(HttpServletRequest request, Model model) {
+    	logger.info("/slipInfoAction");
+    	
+    	service.slipInfoAction(request, model);
+    	
+    	return "account/slipList";
+    }  
     
     
   //------------------------ 장부관리/매입/매출 전표 ------------------------
@@ -174,15 +189,6 @@ public class AccountController {
     	
     	return "account/accountInsertAction";
     }
-    // 금융자금 - 미사용 통장 조회
-    @RequestMapping(value = "/accountEnabledDetail")
-    public String accountModifyDetail(HttpServletRequest request, Model model) {
-    	logger.info("/accountModifyDetail");
-    	
-    	service.accountEnabledDetail(request, model);
-    	
-    	return "account/accountEnabledDetail";
-    }
     // 금융자금 - 등록통장 미사용 처리
     @RequestMapping(value = "/accountEnabledAction")
     public String accountModifyAction(HttpServletRequest request, Model model) {
@@ -230,12 +236,22 @@ public class AccountController {
         return "account/financialStatement";
     }
     // 재무제표(계정과목 상세페이지)
-    @RequestMapping(value = "/accountTitleDetail")
-    public String accountTitleDetail(Model model) {
+    @RequestMapping(value = "/salesCost")
+    public String salesCost(Model model) {
     	
-    	return "account/accountTitleDetail";
+    	service.salesSlipList(model);
+    	
+    	return "account/statement/salesCost";
     }
-    
+    // 재무제표(계정과목 상세페이지)
+    @RequestMapping(value = "/sales")
+    public String sales(Model model) {
+    	
+    	service.salesList(model);
+    	
+    	return "account/statement/salesList";
+    }
+//-------------------------- 손익 계산서 -------------------------    
     // 손익계산서
     @RequestMapping(value = "/incomeStatement")
     public String incomeStatement(Model model) {

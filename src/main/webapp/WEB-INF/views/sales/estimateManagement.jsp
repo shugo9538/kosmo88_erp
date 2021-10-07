@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<!-- alert 추가  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -78,5 +81,6 @@
 		<%@ include file="./js_sales.jsp"%>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement.js"></script>
+		
 </body>
 </html>
