@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -59,8 +58,8 @@
 	                                    <th>담당자</th>		 <!-- employee_name -->
 	                                    <th>주문일자</th> 	 	 <!-- begin_date -->
 	                                    <th>납기요청일자</th>  	 <!-- end_date -->
-                                        <th>주문상태</th>		 <!-- slip_state -->
-                                        <th>출고상태</th>		 <!-- request_state -->
+                                        <th>승인상태</th>		 <!-- slip_state -->
+                                        <th>입고상태</th>		 <!-- request_state -->
 	                                 </tr>
 	                             </thead>
 	                         </table>							 
@@ -76,6 +75,7 @@
         <!-- End Wrapper --> 
         
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/orderManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/orderManagement.js"></script>
 </body>

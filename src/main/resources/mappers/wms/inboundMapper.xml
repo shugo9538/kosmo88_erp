@@ -10,15 +10,14 @@
 		SELECT *
 		FROM V_PURCHASE
 		WHERE
-		ENABLED = 'Y'
+		STATE = 'TX_PURCHASE'
 	</select>
 
 	<select id="selectItemList" parameterType="int"
-		resultType="V_request_itemDto">
-		SELECT * FROM V_REQUEST_ITEM
-		WHERE REQUEST_ID =
+		resultType="V_purchase_itemDto">
+		SELECT * FROM V_PURCHASE_ITEM
+		WHERE PURCHASE_ID =
 		#{purchase_id}
-		AND STATE = 'TX_PURCHASE'
 	</select>
 
 	<select id="allInboundList" resultType="V_inboundDto">
@@ -34,14 +33,13 @@
 	</select>
 
 	<select id="selectMaxId" resultType="int">
-		SELECT MAX_INBOUND_ID
-		INBOUND_ID
+		SELECT MAX_ID('INBOUND')
 		FROM DUAL
 	</select>
 
 	<select id="selectOne" parameterType="int"
 		resultType="V_purchaseDto">
-		SELECT * FROM v_PURCHASE
+		SELECT * FROM V_PURCHASE
 		WHERE PURCHASE_ID = #{purchase_id}
 	</select>
 
@@ -57,9 +55,10 @@
 
 
 	<!-- 구매 비활성화 -->
-	<update id="disablePurchase" parameterType="int">
+	<update id="updateState" parameterType="int">
 		UPDATE REQUEST SET
-		ENABLED = 'N'
+<!-- 		ENABLED = 'N' -->
+		STATE = 'TX_INBOUND'
 		WHERE ID = #{purchase_id}
 		AND STATE='TX_PURCHASE'
 	</update>

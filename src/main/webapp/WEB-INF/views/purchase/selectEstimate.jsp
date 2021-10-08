@@ -80,7 +80,6 @@
     </div>
     <!-- end row -->
 </div>
-	
 	<script src="${RESOURCES_PATH}/purchase/js/selectEstimate.js"></script>
 </body>
 </html>

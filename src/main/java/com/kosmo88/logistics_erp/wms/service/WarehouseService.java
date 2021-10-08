@@ -12,7 +12,7 @@ import com.kosmo88.logistics_erp.wms.dao.WarehouseDao;
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_sectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouseDto;
 import com.kosmo88.logistics_erp.wms.dto.WarehouseDto;
 import com.kosmo88.logistics_erp.wms.util.DtoFunction;
 import com.kosmo88.logistics_erp.wms.util.MyLog;
@@ -23,21 +23,20 @@ public class WarehouseService {
 	WarehouseDao warehouseDao;
 	@Autowired
 	SectionDao sectionDao;
-	
+
 	public WarehouseDto warehouse(int id) {
 		return warehouseDao.selectOne(id);
 	}
-	
-	
-	//관리자 옵션
+
+	// 관리자 옵션
 	public void add() {
 	}
 
-	//관리자 옵션
-	public List<V_warehouse_simpleDto> simpleList() {
-		List<V_warehouse_simpleDto> Simplelist = warehouseDao.selectSimpleList();
-		MyLog.logList(Simplelist);
-		return Simplelist;
+	// 관리자 옵션
+	public List<V_warehouseDto> warehouseList() {
+		List<V_warehouseDto> warehouseList = warehouseDao.selectWarehouseList();
+//		MyLog.logList(warehouseList);
+		return warehouseList;
 	}
 
 	public List<V_warehouse_detailDto> detailList() {
@@ -46,7 +45,7 @@ public class WarehouseService {
 		return detailList;
 
 	}
-	
+
 	public void addAction(Map<String, String[]> paramMap) {
 		WarehouseDto warehouseDto = new WarehouseDto();
 		DtoFunction.setDtoFromParamMap(paramMap, warehouseDto);
@@ -56,22 +55,32 @@ public class WarehouseService {
 		System.out.println("WarehouseDto 정보 : " + warehouseDto);
 		warehouseDao.insert(warehouseDto);
 
-		int warehouseId = maxId+1;
+		int warehouseId = maxId + 1;
 
+		// 섹션 등록
 		int additionalFormCnt = Integer.parseInt(paramMap.get("additionalFormCnt")[0]);
 		System.out.println("additionalFromCnt : " + additionalFormCnt);
-		Set<SectionDto> dtoSet = (Set<SectionDto>) DtoFunction.getDtoSetFromParamMap(paramMap, SectionDto.class, additionalFormCnt);
-		for(SectionDto sectionDto : dtoSet) {
-			int maxSectionId = sectionDao.selectMaxId();
-			sectionDto.setId(maxSectionId+1);
+		Set<SectionDto> dtoSet = (Set<SectionDto>) DtoFunction.getDtoSetFromParamMap(paramMap, SectionDto.class,
+				additionalFormCnt);
+		for (SectionDto sectionDto : dtoSet) {
 			sectionDto.setWarehouse_id(warehouseId);
-//			System.out.println("SectionDto 정보 : " + sectionDto);
 			sectionDao.insert(sectionDto);
 		}
 	}
 
-
 	public List<V_warehouse_sectionDto> sectionList(int warehouseId) {
 		return warehouseDao.sectionList(warehouseId);
+	}
+
+	public void addSection(Map<String, String[]> paramMap, int warehouseId) {
+
+		int additionalFormCnt = Integer.parseInt(paramMap.get("additionalFormCnt")[0]);
+		System.out.println("additionalFromCnt : " + additionalFormCnt);
+		Set<SectionDto> dtoSet = (Set<SectionDto>) DtoFunction.getDtoSetFromParamMap(paramMap, SectionDto.class,
+				additionalFormCnt);
+		for (SectionDto sectionDto : dtoSet) {
+			sectionDto.setWarehouse_id(warehouseId);
+			sectionDao.insert(sectionDto);
+		}
 	}
 }

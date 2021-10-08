@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
+import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
+import com.kosmo88.logistics_erp.wms.dto.V_section_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_section_stockDto;
 import com.kosmo88.logistics_erp.wms.util.DtoFunction;
 import com.kosmo88.logistics_erp.wms.util.MyLog;
 
@@ -23,8 +25,9 @@ public class SectionService {
 
 	}
 
-	public List<V_Stock_SectionDto> list(int warehouseId) {
-		List<V_Stock_SectionDto> sectionList = sectionDao.selectList(warehouseId); 
+	public List<V_sectionDto> list(int warehouseId) {
+//		List<V_section_detailDto> sectionList = sectionDao.selectList(warehouseId); 
+		List<V_sectionDto> sectionList = sectionDao.sectionList(warehouseId); 
 		MyLog.logList(sectionList);
 		return sectionList;
 	}

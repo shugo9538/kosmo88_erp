@@ -12,9 +12,9 @@ public class V_purchaseDto {
 	String client_name;
 	Date begin_date;
 	Date end_date;
-	int item_id;
-	String item_name;
-	int quentity;
+	char enabled;
+	int item_count;
+	String state;
 	public int getPurchase_id() {
 		return purchase_id;
 	}
@@ -45,30 +45,33 @@ public class V_purchaseDto {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public int getItem_id() {
-		return item_id;
+	public char getEnabled() {
+		return enabled;
 	}
-	public void setItem_id(int item_id) {
-		this.item_id = item_id;
+	public void setEnabled(char enabled) {
+		this.enabled = enabled;
 	}
-	public String getItem_name() {
-		return item_name;
+	public int getItem_count() {
+		return item_count;
 	}
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
+	public void setItem_count(int item_count) {
+		this.item_count = item_count;
 	}
-	public int getQuentity() {
-		return quentity;
+	public String getState() {
+		return state;
 	}
-	public void setQuentity(int quentity) {
-		this.quentity = quentity;
+	public void setState(String state) {
+		this.state = state;
 	}
 	@Override
 	public String toString() {
 		return "V_purchaseDto [purchase_id=" + purchase_id + ", client_id=" + client_id + ", client_name=" + client_name
-				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", item_id=" + item_id + ", item_name="
-				+ item_name + ", quentity=" + quentity + "]";
+				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", enabled=" + enabled + ", item_count="
+				+ item_count + ", state=" + state + "]";
 	}
+
+	
+	
 	
 	
 	

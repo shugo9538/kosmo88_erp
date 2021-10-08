@@ -1,7 +1,6 @@
 `<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -17,7 +16,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">주문서 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="${ROOT_PATH}/purchase/orderManagement">주문서 관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/orderManagement">구매 관리</a></li>
 					<li class="active">주문서 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -151,7 +150,6 @@
 									<button class="btn  btn-default" type="reset">취소</button>
 								</div>
 							</div>
-
 						</form>
 					</div>
 					<!-- end white-box -->
@@ -189,6 +187,7 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/orderManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/orderRegister.js"></script>
 </body>

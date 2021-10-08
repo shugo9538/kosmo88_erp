@@ -167,4 +167,14 @@ public class OrderServiceImpl implements OrderService {
 		return insert;
 	}
 
+	// 주문 승인 요청
+	@Override
+	public boolean orderApproval(int id) {
+		
+		boolean update = false;
+		state = QueryCode.UPDATE;
+		
+		return state.check(orderDao.requestApproval(id));
+	}
+
 }

@@ -30,20 +30,20 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="itemDto" items="${itemDtoList}">
+									<c:forEach var="purchaseItemDto" items="${purchaseItemDtoList}">
 										<tr>
 											<td class="hidden">
 												<%-- 											<td>${productDto.purchase_id}</td> --%>
-											<td>${itemDto.item_name}</td>
-											<td>${itemDto.quantity}</td>
+											<td>${purchaseItemDto.item_name}</td>
+											<td>${purchaseItemDto.quantity}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-<!-- 							<div class="col-md-2 mt-1 mb-4"> -->
-<!-- 								<input class="btn btn-default" type="button" -->
-<!-- 									id="clientChoiceDeleteBtn" value="test" onclick=reloadOpener()> -->
-<!-- 							</div> -->
+							<!-- 							<div class="col-md-2 mt-1 mb-4"> -->
+							<!-- 								<input class="btn btn-default" type="button" -->
+							<!-- 									id="clientChoiceDeleteBtn" value="test" onclick=reloadOpener()> -->
+							<!-- 							</div> -->
 
 
 							<div class="form-group">
@@ -52,8 +52,13 @@
 									<div id="inbound"></div>
 									<select id="destination" class="form-control input">
 										<c:forEach var="warehouseDto" items="${warehouseDtoList}">
-											<option value="${warehouseDto.warehouse_id}">${warehouseDto.warehouse_name}
-												(여유 섹션 ${warehouseDto.empty_section_count})</option>
+											<c:if
+												test="${warehouseDto.section_count
+													-warehouseDto.used_section_count>0}">
+												<option value="${warehouseDto.id}">${warehouseDto.name}
+													(여유 섹션 ${warehouseDto.section_count
+													-warehouseDto.used_section_count})</option>
+											</c:if>
 										</c:forEach>
 									</select>
 									<div class="my-5"></div>
@@ -64,7 +69,7 @@
 
 									<div class="centerBtnContainer">
 										<input type="button" class="btn-default align-self-center"
-											onclick="dispatchAction()" value="입하 지시">
+											onclick="dispatchAction(${purchaseId})" value="입하 지시">
 									</div>
 								</div>
 							</div>

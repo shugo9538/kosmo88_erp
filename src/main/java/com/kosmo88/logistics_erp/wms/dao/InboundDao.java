@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kosmo88.logistics_erp.wms.dto.InboundDto;
 import com.kosmo88.logistics_erp.wms.dto.V_inboundDto;
 import com.kosmo88.logistics_erp.wms.dto.V_purchaseDto;
-import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
+import com.kosmo88.logistics_erp.wms.dto.V_purchase_itemDto;
 import com.kosmo88.logistics_erp.wms.util.MyLog;
 import com.kosmo88.logistics_erp.wms.util.Vars;
 
@@ -24,8 +24,8 @@ public interface InboundDao {
 	void insert(V_purchaseDto dto, int inbound_id, int warehouse_id);
 	int selectMaxId();
 	V_purchaseDto selectOne(int purahcse_id);
-	List<V_request_itemDto> selectItemList(int purchase_id);
-	void disablePurchase(int purchaseId);
+	List<V_purchase_itemDto> selectItemList(int purchase_id);
+	void updateState(int purchaseId);
 
 }
 
@@ -85,13 +85,13 @@ class InboundDaoImpl implements InboundDao{
 	}
 
 	@Override
-	public List<V_request_itemDto> selectItemList(int purchase_id) {
+	public List<V_purchase_itemDto> selectItemList(int purchase_id) {
 		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectItemList", purchase_id);
 	}
 
 	@Override
-	public void disablePurchase(int purchase_id) {
-		sqlSession.update(Vars.DAO_PATH + ".InboundDao.disablePurchase", purchase_id);
+	public void updateState(int purchase_id) {
+		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateState", purchase_id);
 	}
 	
 	
