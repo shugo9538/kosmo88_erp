@@ -43,7 +43,7 @@
 									<th style="background-color: #f1f1f1;">거래처명</th>
                             		<td>
                             			<input type="hidden" name="client_id" id="client_id" value="none">
-                            			<input type="text" name="client_name" id="client_name" readonly>
+                            			<input type="text" style="border:none;" name="client_name" id="client_name" readonly placeholder="거래처명">
                             			<button type="button" class="btn  btn-primary" id="selectClient" name="selectClient">거래처 선택</button>
                             		</td>
 									<th style="background-color: #f1f1f1;">구분</th>
@@ -52,37 +52,37 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
-										<input type="text" name="client_ceo_name" id="client_ceo_name"
+										<input type="text" style="border:none;" name="client_ceo_name" id="client_ceo_name"
 										readonly required>
 									</td>
 									<th style="background-color: #f1f1f1;">거래처 연락처</th>
 									<td>
-										<input type="text" name="client_phone" id="client_phone" readonly required>
+										<input type="text" style="border:none;" name="client_phone" id="client_phone" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처 이메일</th>
 									<td>
-										<input class="input" type="text" id="client_email" name="client_email" readonly required>
+										<input class="input" style="border:none;" type="text" id="client_email" name="client_email" readonly required>
 									</td>
 									
 								</tr>
 								<tr>
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
-										<input type="text" name="client_zip_code"
+										<input type="text" style="border:none;" name="client_zip_code"
 										id="client_zip_code" readonly required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
-										<input style="width: 350px;" type="text"
+										<input style="width: 350px; border:none;" type="text"
 										name="client_address" id="client_address" readonly>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
-										<input style="width: 350px;" type="text"
+										<input style="width: 350px; border:none;" type="text"
 										name="client_detail_address" id="client_detail_address" readonly required>
 									</td>
 								</tr>
@@ -91,29 +91,29 @@
                             		<th style="background-color: #f1f1f1;">담당자</th>
                             		<td>
                             			<input type="hidden" name="employee_id" id="employee_id">
-                            			<input type="text" name="employee_name" id="employee_name" readonly>
+                            			<input type="text" style="border:none;" name="employee_name" id="employee_name" readonly placeholder="담당자">
                             			<button type="button" class="btn  btn-primary" id="selectEmployee">담당자 선택</button>
 	                             	</td>
                             		<th style="background-color: #f1f1f1;">담당자 부서</th>
                             		<td>
-                            			<input type="text" name="department_name" id="department_name" readonly>
+                            			<input type="text" style="border:none;" name="department_name" id="department_name" readonly>
                             		</td>
                             	</tr>
                             	<tr>
                             		<th style="background-color: #f1f1f1;">담당자 연락처</th>
                             		<td>
-                            			<input type="text" name="employee_phone" id="employee_phone" readonly>
+                            			<input type="text" style="border:none;" name="employee_phone" id="employee_phone" readonly>
                             		</td>
                             		<th style="background-color: #f1f1f1;">담당자 이메일</th>
                             		<td>
-                            			<input type="text" name="employee_email" id="employee_email" readonly>
+                            			<input type="text" style="border:none;" name="employee_email" id="employee_email" readonly>
                             		</td>
                             	</tr>
 								
 							</table>
 
 							<!-- 상품 목록 -->
-							<h2 class="header-title">
+							<!-- <h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i> 상품 목록
 							</h2>
 							
@@ -125,7 +125,7 @@
 								<table id="estimateItemList" class="table table-hover" style="width:100%">
 									
 								</table>
-							</div>
+							</div> -->
 							
 							
 							<!-- 상품 등록 -->
@@ -139,17 +139,45 @@
 								<table id="estimateRegisterList" class="table table-hover" style="width:100%">
 									<thead>
 										<tr>
+											<th style="background-color: #f1f1f1;">상품번호</th>
 											<th style="background-color: #f1f1f1;">상품명</th>
 											<th style="background-color: #f1f1f1;">상품종류</th>
 											<th style="background-color: #f1f1f1;">구매단가</th>
 											<th style="background-color: #f1f1f1;">판매단가</th>
 											<th style="background-color: #f1f1f1;">수량</th>
 											<th style="background-color: #f1f1f1;">공급가액</th>
-											<th style="background-color: #f1f1f1;">삭제 버튼</th>
 										</tr>
 									</thead>
 									<tbody>
-										
+										<tr>
+										<td>
+											<div>
+												<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
+												<input type="hidden" name="item_id" id="item_id">
+											</div>
+											
+										</td>
+										<td>
+											<input style="border:none;" class="form-control" name="item_name" id="item_name" type="text" placeholder="상품명" required>
+										</td>
+										<td>
+										<input style="border:none;" class="form-control" name="category" id="category" type="text" placeholder="상품종류" required>
+										</td>
+										<td>
+											<input style="border:none;" class="form-control" name="price" id="price" type="text" value="" placeholder="구매단가" required>
+										</td>
+										<td>
+											<input style="border:none;" class="form-control" name="sales_price" id="sales_price" type="text" value="" placeholder="판매단가" onchange="price()" required>
+										</td>
+										<td>
+											<input style="padding:5px; border-color:#dbdbdb; name="quantity" id="quantity" type="text"  onchange="change();" readonly required>
+											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
+											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
+										</td>
+										<td>
+											<input style="border:none;" class="form-control" name="total_price" id="total_price" type="text" min="0" placeholder="공급가액" required>
+										</td>
+									</tr>
 									</tbody>
 								</table>
 							</div>

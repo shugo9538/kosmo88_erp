@@ -18,7 +18,7 @@
 		auto-config="true"
 		use-expressions="true">
 
-		<security:intercept-url
+		<!-- <security:intercept-url
 			pattern="/hr/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
 		
@@ -36,7 +36,7 @@
 			
 		<security:intercept-url
 			pattern="/wms/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
+			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
 
 		<security:intercept-url
 			pattern="/**"

@@ -9,11 +9,10 @@ public class SalesInsertEstimateDTO {
 	private String employee_id;					// 사원번호	
 	private int client_id;						// 거래처코드   
 	private int item_id;						// 상품코드
-	private int request_state;					// 리퀘스트 
+	private int quantity;
+	private int sales_price;
 	
-	public SalesInsertEstimateDTO() {
-		// TODO Auto-generated constructor stub
-	}
+	public SalesInsertEstimateDTO() {}
 
 	public int getRequest_id() {
 		return request_id;
@@ -47,13 +46,23 @@ public class SalesInsertEstimateDTO {
 		this.item_id = item_id;
 	}
 
-	public int getRequest_state() {
-		return request_state;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setRequest_state(int request_state) {
-		this.request_state = request_state;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
+
+	public int getSales_price() {
+		return sales_price;
+	}
+
+	public void setSales_price(int sales_price) {
+		this.sales_price = sales_price;
+	}
+
+	
 	
 	
 	

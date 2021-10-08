@@ -10,15 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -30,8 +27,15 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	@Autowired
 	SalesEstimateDAO estimateDao;
 	
+	@Autowired
+	private SalesEstimateService self;
+	
 	QueryCode state;
 
+	public void estimateRegisterAction(List<SalesInsertEstimateDTO> dtos) {
+		dtos.forEach(dto -> self.estimateRegisterAction(dto));
+	}
+	
 	@Override
 	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesEstimateListViewDTO>) estimateDao.getEstimateList();
@@ -131,10 +135,28 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	}
 
 	// 아이템 등록 처리
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public boolean itemRegisterAction(SalesInsertEstimateDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		boolean insert = false;
+		state = QueryCode.INSERT;
+		
+		map.put("quantity", dto.getQuantity());
+		map.put("item_id", dto.getItem_id());
+		map.put("sales_price", dto.getSales_price());
+		System.out.println("상품 수량 : " + dto.getQuantity());
+		System.out.println("상품 코드 : " + dto.getItem_id());
+		System.out.println("판매 가격 : " + dto.getSales_price());
+		
+		insert = state.check(estimateDao.insertProductGroup(map));
+		System.out.println("product_group tbl 입력 : " + insert);
+		
+		insert = state.check(estimateDao.insertRPL());
+		System.out.println("req_product_list tbl 입력 : " + insert);
+		
+		return insert;
 	}
 
 	// 상품 불러오기

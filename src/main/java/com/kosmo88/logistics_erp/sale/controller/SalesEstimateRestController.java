@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.purchase.controller.EstimateController;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -25,7 +24,7 @@ import com.kosmo88.logistics_erp.sale.service.SalesEstimateService;
 @RestController
 @RequestMapping(value = "/sales")
 public class SalesEstimateRestController {
-	 private static final Logger logger = LoggerFactory.getLogger(EstimateController.class);
+	 private static final Logger logger = LoggerFactory.getLogger(SalesEstimateRestController.class);
 	 
 	 @Autowired
 	 SalesEstimateService estimateService;
@@ -53,7 +52,7 @@ public class SalesEstimateRestController {
     	return estimateService.estimateChoiceDelete(request_id);
     }
   
-    // 등록한 거래처(구매처) 목록
+    // 등록한 거래처 목록
     @ResponseBody
     @RequestMapping(value = "/estimateRegister/registeredEstimateList")
     public List<SalesEstimateListViewDTO> registeredEstimateList(HttpServletRequest req, HttpServletResponse res) {
@@ -71,8 +70,12 @@ public class SalesEstimateRestController {
     // 견적서 상품 등록 처리
     @ResponseBody
     @RequestMapping(value = "/estimateRegister/itemRegisterAction")
-    public boolean itemRegisterAction(@RequestBody List<SalesInsertEstimateDTO> dto) {
-    	
+    public boolean itemRegisterAction(@RequestBody List<SalesInsertEstimateDTO> dtos) {
+    	System.out.println(dtos);
+    	for(SalesInsertEstimateDTO dto : dtos) {
+    		estimateService.itemRegisterAction(dto);
+    		System.out.println(dto.getItem_id());
+    	}
     	return true;
     }
     

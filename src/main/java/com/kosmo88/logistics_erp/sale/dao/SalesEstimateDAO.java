@@ -25,7 +25,7 @@ public interface SalesEstimateDAO {
 	// 견적서 등록 화면 - 거래처 리스트
 	public List<SalesClientDTO> getClientList();
 	
-	// 견적서 등록 화면 - 상품 갯수
+	// 상품 갯수
 	public int getItemCnt();
 	
 	// 상품 리스트
@@ -43,6 +43,12 @@ public interface SalesEstimateDAO {
 	// 견적서 상세 페이지
 	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
 	
-	// 견적서 등록 처리
+	// 견적서 등록(REQUEST input) 처리
 	public int insertRequest(Map<String, Object> map);
+	
+	// 견적서 등록(PRODUCT_GROUP input) 처리
+	public int insertProductGroup(Map<String, Object> map);
+	
+	// 견적서 등록(req_product_list tbl) 처리
+	public int insertRPL();
 }
