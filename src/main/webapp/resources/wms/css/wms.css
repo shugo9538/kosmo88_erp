@@ -1,0 +1,15 @@
+/* .tab{
+	background:white !important;
+	border-bottom:none;
+	border-radius: 15% 15% 0% 0/ 30% 30% 0% 0%;
+}
+
+.tab:target{
+	background:yellow !important;
+	color:yellow;
+}
+ */
+
+.centerBtnContainer {
+	text-align: center;
+}

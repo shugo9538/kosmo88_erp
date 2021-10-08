@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.custom-nav>li.active>a {
+    background-color: #232f3a;
+    color: #d8d4d4;
+}
+
+.nav-tabs>li>a {
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #f8f8f8;
+    border-bottom-color: transparent;
+}
+
+.set-color {
+    background-color: #232f3a !important;
+    color: #d8d4d4 !important;
+}
