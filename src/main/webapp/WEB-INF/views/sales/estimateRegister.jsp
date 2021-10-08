@@ -148,6 +148,9 @@
 											<th style="background-color: #f1f1f1;">삭제 버튼</th>
 										</tr>
 									</thead>
+									<tbody>
+										
+									</tbody>
 								</table>
 							</div>
 							 

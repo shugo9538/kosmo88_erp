@@ -444,14 +444,14 @@ function estimateItemList() {
 				// tr 생성
 				$('#estimateRegisterList').append('<tr id="item'+cnt+'">');
 				
-				
 				var i = 0;
 				// td 생성
 				td = $(this).children();
-				
+				console.log(td);
 				td.each(function() {
 					console.log($(this).children().val());
-					$('#item'+cnt).append('<td><input type="test "name ="" value="'+arr[4]+'" readonly></td>');
+					
+					$('#item'+cnt).append('<td><input type="text" name ="" value="'+arr[2]+'" readonly></td>');
 					
 					
 					// tr id 1씩 증가
