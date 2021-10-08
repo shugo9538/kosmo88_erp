@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
@@ -18,7 +17,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">거래처 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">거래처 관리</a></li>
+					<li><a href="${ROOT_PATH}/purchase/clientManagement">거래처 관리</a></li>
 					<li class="active">거래처 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -202,6 +201,7 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/clientRegister.js"></script>
 </body>

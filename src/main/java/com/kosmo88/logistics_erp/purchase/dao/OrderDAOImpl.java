@@ -86,8 +86,11 @@ public class OrderDAOImpl implements OrderDAO {
 	public int insertRPL() {
 		return sqlSession.insert(STATEMENT + ".insertRPL");
 	}
-	
-	
-	
+
+	// 주문 승인 요청
+	@Override
+	public int requestApproval(int id) {
+		return sqlSession.update(STATEMENT + ".requestApproval", id);
+	}
 
 }

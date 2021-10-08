@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp"%>
 <meta charset="UTF-8">
 <title></title>
 </head>
@@ -19,6 +18,7 @@
 			text: "해당 주문서가 삭제되었습니다.",
 			timer: 2500
 		}, function() {
+			opener.parent.location.reload();
 			window.close();
 		});
 	</script>	
@@ -37,6 +37,5 @@
 	</script>	
 </c:if>
 
-<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
