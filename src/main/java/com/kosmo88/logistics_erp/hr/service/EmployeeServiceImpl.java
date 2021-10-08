@@ -70,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         System.out.println("address : " + address);
         System.out.println("detail_address" + detail_address);
         int zip_code = Integer.parseInt(req.getParameter("zip_code"));
-        switch (position_id) {
+        switch (department_id) {
         case 100:
             id = "HR";
             break;
