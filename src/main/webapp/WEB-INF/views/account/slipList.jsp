@@ -54,7 +54,7 @@
 				<div class="col-md-12">
 					<!-- 메뉴버튼 -->
 					<div>
-						<%-- <ul class="nav nav-pills custom-nav">
+<%-- 						<ul class="nav nav-pills custom-nav">
 							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
 									등록</a></li>
 						</ul> --%>

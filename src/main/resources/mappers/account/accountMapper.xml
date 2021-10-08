@@ -82,7 +82,7 @@ AND r.id = #{dpart_req}
 	<if test="dept_id == 1">
 SELECT sl.id AS slip_id, sl.type type, sl.state state
        , sl.department_id, sl.department_request
-       , sal.*
+       , sal.sum_pay sum_total, sal.income_tax sum_tax
        , em.id employee_id, em.name employee_name, em.photo employee_photo
        , em.email employee_email, em.hire_date
   FROM SLIP sl JOIN REQUEST re 

@@ -352,6 +352,7 @@ public class AccountServiceImpl implements AccountService {
 					
 					slipList = accountDAO.selectSlipInfo(slipmap);
 					System.out.println("slipList :" + slipList);
+					model.addAttribute("slipList", slipList);
 					model.addAttribute("dept_id",dept_id);
 					/*
 					if (slipList != null) {
