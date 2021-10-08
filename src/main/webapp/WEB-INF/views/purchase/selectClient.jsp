@@ -64,7 +64,6 @@
     </div>
     <!-- end row -->
 </div>
-	
 	<script src="${RESOURCES_PATH}/purchase/js/selectClient.js"></script>
 </body>
 </html>

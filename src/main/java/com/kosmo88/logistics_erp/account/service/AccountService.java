@@ -23,7 +23,7 @@ public interface AccountService {
 	// 일반전표 상태변경(승인/미승인)
 	public void slipConfirmAction(HttpServletRequest request, Model model);
 	// 일반전표 세부내역
-	public void slipInfoAction(HttpServletRequest request, Model model);
+	public void slipDetailInfo(HttpServletRequest request, Model model);
 	
 	
 	// 금융자금관리

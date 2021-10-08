@@ -66,37 +66,27 @@ function accountEnabled(){
 	//location.href=rootPath.value + "/account/accountEnabledAction?account_number=" + checkedNum;
 	return false;
 }
+//----------------------------------------------------------------------------------------
 
-	
+//엑셀버튼	
+$(document).ready( function() {
+    $('#account_list').DataTable( {
+        dom: 'frtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">통장목록</i>',
+            sheetName: '커밋3팀 통장목록',
+            messageBottom : '커밋 3팀'
+        }
+        ]
+    } );
+});
+
+//----------------------------------------------------------------------------------------
 
 
 
-
-
-//accountNewDetail.jsp
-
-
-
-
-//-----
-// namaing rule : commnd + verd : doSometing
-// tyscirpt
-let success ="성공 하였습니다.";
-let fallier ="실패 하였습니다.";
-let happy ="축하합니다.";
-
-function log(message){
-	console.log(message);
-}
-//log(message);
-
-//2. Prameter
-function changeName(obj){
-	obj.name = 'coder';
-}
-const ellie = {name: 'ellie'};
-//changeName(ellie);
-//console.log(ellie);
-
-//3. Default prameter (added in ES6)
-//4. Rest parameters (added in ES6)

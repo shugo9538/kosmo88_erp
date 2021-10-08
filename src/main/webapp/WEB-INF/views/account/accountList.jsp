@@ -65,16 +65,14 @@
 								<a href="${ROOT_PATH}/account/accountNewDetail">통장 추가</a>
 							</li>
 							<li class="active">
-								<a 
-<%-- 								href="${ROOT_PATH}/account/accountModifyDetail?account_number=" --%>
-									id ="accountModify" onclick="accountEnabled();">통장 미사용처리</a>
+								<a 	id ="accountModify" onclick="accountEnabled();">통장 미사용처리</a>
 							</li>
 							<li>
 								<!-- <button onclick="accountModifyDetail();">버튼테스트</button> -->
 								<!-- <div id="result"></div> -->
 							</li>
 							<li class="active">
-								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 단건추가</a>
+								<a href="${ROOT_PATH}/account/accountSimplDetail">거래내역 추가</a>
 							</li>
 						<%-- 	<li class="active">
 								<a href="${ROOT_PATH}/account/accountMultitDetail">거래내역 다건추가</a>
@@ -86,7 +84,7 @@
 					<div class="white-box">
                            <h2 class="header-title">통장 목록</h2>
                             <div class="table-responsive">
-                             <table id="example" class="table table table-hover m-0"><!-- display table  -->
+                             <table id="account_list" class="table table table-hover m-0"><!-- display table  -->
                                     <thead>
                                         <tr>
                                         	<th>
@@ -124,7 +122,7 @@
                                        	    </tr>		                                     		
                                     	</c:forEach>
                                     </tbody>
-                                   </table>  
+                                   </table> 
                             </div>
                        </div>
                    </div>

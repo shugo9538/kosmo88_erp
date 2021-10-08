@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	
 <div class="wrapper">
@@ -18,7 +17,7 @@
 	                	<tr>
 	                		<th style="background-color: #f1f1f1; padding:10px;">주문서 번호</th>
 	                		<td style="padding:10px;">${dto.request_id}</td>
-	                		<th style="background-color: #f1f1f1; padding:10px;">요청일자</th>
+	                		<th style="background-color: #f1f1f1; padding:10px;">주문일자</th>
 	                		<td style="padding:10px;">
 	                			<fmt:formatDate value="${dto.begin_date}" pattern="yyyy-MM-dd HH:mm" />
 	                		</td>
@@ -66,16 +65,18 @@
 	                	</tr>
 	                	<c:forEach var="idto" items="${idtos}">
 	                	<c:set var="price" value="${idto.item_purchase_price * idto.item_quantity}" />
-	                		<td>${idto.item_name}</td>
-	                		<td>${idto.item_category}</td>
-	                		<td>
-	                			<fmt:formatNumber value="${idto.item_purchase_price}" pattern="#,###" />원
-	                		</td>
-	                		<td>${idto.item_quantity}</td>
-	                		<td>
-	                			<fmt:formatNumber value="${price}" pattern="#,###" />원
-	                		</td>
-	                		<c:set var="totalPrice" value="${totalPrice + price}" />
+		                	<tr>
+		                		<td>${idto.item_name}</td>
+		                		<td>${idto.item_category}</td>
+		                		<td>
+		                			<fmt:formatNumber value="${idto.item_purchase_price}" pattern="#,###" />원
+		                		</td>
+		                		<td>${idto.item_quantity}</td>
+		                		<td>
+		                			<fmt:formatNumber value="${price}" pattern="#,###" />원
+		                		</td>
+		                		<c:set var="totalPrice" value="${totalPrice + price}" />
+		                	</tr>	
 	                	</c:forEach>
 	                </table>
 	                <div style="text-align:right;" class="form-group col-md-12">
@@ -92,6 +93,7 @@
         </div>
     </div>
     <!-- end row -->
+    <%@ include file="./js_purchase.jsp"%>
     <script src="${RESOURCES_PATH}/purchase/js/orderDetail.js"></script>
 </div>
 </body>

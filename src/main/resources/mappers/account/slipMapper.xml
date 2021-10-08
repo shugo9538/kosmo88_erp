@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.kosmo88.logistics_erp.account.dao.SlipDAO">
+
+<!-- 전표 상세내역 -->
+
+<!-- 1. 일반전표 세부내역  -->
+<select id="selectSlipInfo" parameterType="int">
+	
+	<if test="300">
+		SELECT *
+ 		  FROM ACCOUNT_SALES_ISSUE_VIEW
+	</if>
+	<if test="400">
+		SELECT *
+ 		  FROM ACCOUNT_PURCHASE_ISSUE_VIEW
+	</if>
+</select>
+</mapper>
