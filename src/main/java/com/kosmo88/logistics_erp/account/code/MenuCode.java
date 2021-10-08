@@ -1,6 +1,6 @@
 package com.kosmo88.logistics_erp.account.code;
 
-public interface menuCode {
+public interface MenuCode {
 	
 /*	static int CLIENT = 110; //거래처 관리
 	static int SLIP = 120; // 장부관리 - 일반전표
@@ -18,7 +18,7 @@ public interface menuCode {
 	
 	//인사100 회계 200 영업 300 구매 400 물류 500
 	
-	int HR = 100;//   
+	int HR = 1;//   
 	String HR_STATE = "RX_SALARY";
 	String PAYMENT_STATE ="이체완료"; // 급여 일반전표 승인
 	
@@ -50,6 +50,8 @@ public interface menuCode {
 	int SUCCESS = 13;
 	// 전표 승인완료 request_tbl 실패
 	int FAIL = 14;
+	// 매출전표 발행 실패
+	int SLIP_CREATE_FAIL = 15;
 	
 	
 	

@@ -24,7 +24,9 @@
         <!-- header section start-->
 		<%@ include file="../common/header.jsp"%>  
 		<%@ include file="common/accountHeader.jsp" %>
-		<%@ include file="statement/incomeStatementSetting.jsp"%>    
+		<%@ include file="statement/incomeStatementSetting.jsp"%> 
+		<c:set var="now" value="<%=new java.util.Date()%>" />
+ 		<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set>   
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -53,11 +55,11 @@
                 <div class="col-md-12">
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">손익계산서</h2>
-		                    <h3 class="header-title">제 18기(당)기 2021.09.19 현재 </h3>
+		                    <h1 class="header-title">손익계산서</h1>
+		                    <h2 class="header-title">제 18기(당)기<c:out value="${sysYear}"/></h2>
 	                    </div>
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table id="incomeStatment" class="table table table-hover m-0">
                           <thead>
                             <tr>
                               <th>과목</th>

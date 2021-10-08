@@ -121,13 +121,8 @@ public class SalesSlipDTO {
 	}
 	@Override
 	public String toString() {
-		return "SalesSlipDTO [confirm_date=" + confirm_date + ", id=" + id + ", account_title=" + account_title
-				+ ", client_code=" + client_code + ", client_name=" + client_name + ", client_num=" + client_num
-				+ ", product_name=" + product_name + ", supply_amount=" + supply_amount + ", tax_amount=" + tax_amount
-				+ ", type=" + type + ", abs=" + abs + ", slip_id=" + slip_id + ", sum_supply=" + sum_supply
-				+ ", sum_tax=" + sum_tax + ", sum_total=" + sum_total + "]";
+		return "SalesSlipDTO [sum_supply=" + sum_supply + ", sum_tax=" + sum_tax + ", sum_total=" + sum_total + "]";
 	}
-	
 	
 	
 }
