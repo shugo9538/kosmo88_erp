@@ -63,12 +63,6 @@ class InboundDaoImpl implements InboundDao{
 		paramMap.put("begin_date", dto.getBegin_date());
 		paramMap.put("end_date", dto.getEnd_date());
 		paramMap.put("client_id", dto.getClient_id());
-		//특정 창고에서 V_inbound를 조회하기 위해 warehouseId값이 필요한데, 쿼리 말고 서비스에서 저장해도 좋을듯하다
-		//1. warehouse_id를 넣어서 새 테이블생성
-		//2. 어차피 다른 정보들이 같으므로 request사용하되 ,warehouse_id 정보 집어넣기
-		//2-1. 연결 테이블
-		//하나의 요청과 창고는 1대 다 관계이다
-
 		
 		sqlSession.insert(Vars.INBOUND_DAO_PATH+".insert", paramMap);
 	}

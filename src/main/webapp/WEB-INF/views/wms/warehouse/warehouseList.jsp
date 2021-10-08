@@ -207,13 +207,13 @@
 													<div class="form-group">
 														<label class="col-md-1 control-label">구역</label>
 														<div class="col-md-2">
-															<input class="form-control" name="section" type="text"
-																disabled>
+															<input class="form-control" id="section" name="section" type="text"
+																value="A" disabled>
 														</div>
 														<label class="col-md-1 control-label">용적</label>
 														<div class="col-md-2">
-															<input class="form-control" name="capacity" type="text"
-																disabled>
+															<input class="form-control" id="capacity" name="capacity" type="text"
+																value="10" disabled>
 														</div>
 														<div role="button" id="delAdditionalForm" class="col-md-1"
 															onclick="removeNode(this);">
@@ -223,8 +223,8 @@
 												</div>
 											</div>
 											<div role="button" class="preview col-md-12 my-5"
-												id="addSection" onclick="cloneForm()">
-												<i class="icon-plus""></i>섹션 추가
+												id="addSection" onclick="cloneSection()">
+												<i class="icon-plus"></i>섹션 추가
 											</div>
 											<input type="hidden" id="additionalFormCnt"
 												name="additionalFormCnt" value="1">
@@ -261,7 +261,9 @@
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
 	<script>
-		window.onload = cloneForm();
+		window.onload = function(){
+			cloneForm();
+		}
 	</script>
 </body>
 </html>
