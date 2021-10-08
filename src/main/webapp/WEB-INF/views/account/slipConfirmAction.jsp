@@ -56,6 +56,20 @@
 			});
 			</script>
 		</c:if>			
+		
+		<!-- 매입매출전표 발행  -->
+		<c:if test="${SLIP_CREATE_FAIL == 15}">
+			<script type="text/javascript">
+			swal({
+				title:"매입/매출",
+				type: "error",
+				text: "전표가 발행 되지 않았습니다. 매입 매출장을 확인 바랍니다.",
+				timer: 2500
+			}, function() {
+				window.location="${ROOT_PATH}/account/slipList?categoryNum=140";
+			});
+			</script>
+		</c:if>			
 				
 		<!-- 전표 승인상태 체크 (성공)  -->
 		<c:if test="${SUCCESS == 13}">

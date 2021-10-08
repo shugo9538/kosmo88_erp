@@ -13,7 +13,6 @@ function slipCheck() {
 	 * return false; }
 	 */
 
-
 	// 체크박스 체크여부 확인
 	var slipid_chk = document.getElementsByName("slipid_chk");
 	var count = 0;
@@ -69,28 +68,25 @@ function checkbox_slipId(element){
 	console.log("checkedId : " + checkedId);
 }
 
-// 전표 번호 선택시 전표 상세정보 뿌리기
+//전표 번호 선택
 function slip_Id(emlement){
 	
-	
-	const rootPath = document.getElementById("root"); // 패키지 경로
-	console.log("element : " + emlement);
-	
-	var result = swal(emlement + "번 전표를 선택 하셨습니다.","","info");
-	//const url = rootPath.value + "/account/accountDetail?slip_id=" + emlement;
-	
-	
+		root = document.getElementById("root"); // 패키지 경로
+		console.log("element : " + emlement);
+		console.log("rootPath : " + rootPath.value);
+		const url = rootPath.value + "/account/slipDetailInfo?slip_id=" + emlement;
+		
 	swal({
 		title : emlement + "번 전표를 선택 하셨습니다.",
-		text : "승인 전표를 선택 하셨습니다.",
+		text : "",
 		type : "info"}, function(){
-			window.location.href = rootPath.value + "/account/slipInfoAction?id=" + emlement;
+			window.open(url, "accountDetail", "menubar=no, width=1000, height=750");
+			
 		});
 }
 
-/*document.getElementsByName("slip_").onclick = function(){
-	alert("ddddd");
-}*/
+
+
 
 
 

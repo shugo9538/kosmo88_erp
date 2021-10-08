@@ -18,7 +18,7 @@ public interface MenuCode {
 	
 	//인사100 회계 200 영업 300 구매 400 물류 500
 	
-	int HR = 100;//   
+	int HR = 1;//   
 	String HR_STATE = "RX_SALARY";
 	String PAYMENT_STATE ="이체완료"; // 급여 일반전표 승인
 	
@@ -50,6 +50,8 @@ public interface MenuCode {
 	int SUCCESS = 13;
 	// 전표 승인완료 request_tbl 실패
 	int FAIL = 14;
+	// 매출전표 발행 실패
+	int SLIP_CREATE_FAIL = 15;
 	
 	
 	
