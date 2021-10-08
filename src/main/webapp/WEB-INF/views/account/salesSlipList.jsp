@@ -104,7 +104,16 @@
 										<td>
 											<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount + dto.tax_amount}" />
 										</td>
-										<td>${dto.type}</td>
+										<td>
+											<c:choose>
+												<c:when test="${dto.type eq 'DEPOSIT'}">
+													<span>매출</span>
+												</c:when>
+												<c:when test="${dto.type eq 'WITHDRAW'}">
+													<span>매입</span>
+												</c:when>											
+											</c:choose>
+										</td>
 										<td>${dto.abs}</td>
 										<td>${dto.slip_id}</td>
 										<!-- 공급가액 합계  -->

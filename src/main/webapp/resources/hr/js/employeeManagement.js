@@ -100,6 +100,7 @@ function callEmployeeList(url, columns, ordering) {
           }
         ]
     });
+    
     currTab.on( 'xhr', function () {
         var json = currTab.ajax.json();
         $(json).each(function() {

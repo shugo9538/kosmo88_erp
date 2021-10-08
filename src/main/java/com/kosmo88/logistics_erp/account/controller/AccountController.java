@@ -103,17 +103,16 @@ public class AccountController {
     	
     	return "account/slipConfirmAction";
     }
-    // 장부관리 - 일반전표 상세내역 
-    @RequestMapping(value="/slipInfoAction")
-    public String slipInfoAction(HttpServletRequest request, Model model) {
-    	logger.info("/slipInfoAction");
+    // 장부관리 - 부서별 일반전표 승인처리
+    @RequestMapping(value="/slipDetailInfo")
+    public String slipDetailInfo(HttpServletRequest request, Model model) {
+    	logger.info("/slipDetailInfo");
     	
-    	service.slipInfoAction(request, model);
+    	service.slipDetailInfo(request, model);
     	
-    	return "account/slipList";
-    }  
-    
-    
+    	return "account/slipDetailInfo";
+    }
+    // 일반전표 - 부서별 일반전표 정보
   //------------------------ 장부관리/매입/매출 전표 ------------------------
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
@@ -128,8 +127,7 @@ public class AccountController {
     // 장부관리 - 매출전표 조회
     @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
-    	
-    	//service.accountingList(request, model);
+    	logger.info("/salesList");
     	service.salesList(model);
     	
         return "account/salesList";
@@ -140,9 +138,7 @@ public class AccountController {
     public String purchase(HttpServletRequest request, Model model) {
     	logger.info("/purchaseList");
     	
-    	//service.accountingList(request, model);
     	service.purchaseList(model);
-    	
         return "account/purchaseList";
     }
     //------------------------ 금융/자금관리 ------------------------
@@ -151,9 +147,9 @@ public class AccountController {
     public String accountList(HttpServletRequest req, Model model) {
     	logger.info("/accountList");
     	
-    	//service.accountingList(request, model);
     	service.accountList(req, model);
-        return "account/accountList";
+        
+    	return "account/accountList";
     }
     // 금융자금 - 통장 입/출금 내역 상세페이지
     @RequestMapping(value = "/accountDetail")
@@ -217,15 +213,6 @@ public class AccountController {
     	
     	return "account/accountSimplAction";
     }
-    // 금융자금 - 통장 거래내역 추가(다건)
-    @RequestMapping(value = "/accountMultitDetail")
-    public String accountMultitDetail(HttpServletRequest request, Model model) {
-    	logger.info("/accountMultitDetail");
-    	
-    	
-    	return "account/accountMultitDetail";
-    }
-    
     //------------------------ 결산/재무제표------------------------
     // 결산/재무제표(재무상태표)
     @RequestMapping(value = "/financialStatement")
