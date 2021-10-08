@@ -34,8 +34,8 @@
 			<div class="page-title-box">
 				<h4 class="page-title"></h4>
 				<ol class="breadcrumb">
-					<li>입하 관리</li>
-					<li class="active">입하 지시</li>
+					<li>출하 관리</li>
+					<li class="active">출하 지시</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -44,15 +44,15 @@
 			<!-- 				<div class="col-sm-12"> -->
 			<ul class="nav nav-tabs">
 				<li class="nav-item active"><a id="tab_request"
-					class="nav-link " data-toggle="tab" href="#request">입하 지시</a></li>
+					class="nav-link " data-toggle="tab" href="#request">출하 지시</a></li>
 				<li class="nav-item"><a id="tab-history" class="nav-link"
-					data-toggle="tab" href="#history">입하 내역</a></li>
+					data-toggle="tab" href="#history">출하 내역</a></li>
 			</ul>
 			<div class="tab-content col-sm-12">
 				<div class="tab-pane fade active in" id="request">
 <!-- 					<div> -->
 <!-- 						<h2 class="header-title col-xs-12"> -->
-<!-- 							<i class="fa fa-chevron-circle-right mr-2"></i> 입하 지시 조회 필터 -->
+<!-- 							<i class="fa fa-chevron-circle-right mr-2"></i> 출하 지시 조회 필터 -->
 <!-- 						</h2> -->
 <!-- 						<form class="form-horizontal "> -->
 <!-- 							<div class="filter"> -->
@@ -74,12 +74,12 @@
 
 					<div>
 						<h2 class="header-title col-xs-12 mt-5">
-							<i class="fa fa-chevron-circle-right mr-2"></i> 입하 지시 목록
+							<i class="fa fa-chevron-circle-right mr-2"></i> 출하 지시 목록
 						</h2>
 
 						<form class="form-horizontal col-sm-12" id="clientManagementForm"
 							name="clientManagementForm"
-							action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
+							action="${ROOT_PATH}/sales/clientRegisterAction" method="post">
 							<!-- csrf 토큰 -->
 							<sec:csrfInput />
 							<div class="table-responsive">
@@ -92,27 +92,27 @@
 									<thead>
 										<tr>
 											<th style="text-align: center"><input type="checkBox"
-												class="purchase_id" value="450"></th>
+												class="sales_id" value="450"></th>
 											<!-- 													<th>품목</th> -->
 											<!-- 													<th>수량</th> -->
-											<th>구매처</th>
+											<th>판매처</th>
 											<th>요청일</th>
-											<th>입하예정일</th>
+											<th>출하예정일</th>
 											<th>품목수</th>
-											<th>입하지시</th>
+											<th>출하지시</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="purchaseDto" items="${purchaseDtoList}">
+										<c:forEach var="salesDto" items="${salesDtoList}">
 											<tr>
 												<td style="text-align: center"><input type="checkBox"
-													class="purchase_id" value="450"></td>
-												<td>${purchaseDto.client_name}</td>
-												<td>${purchaseDto.begin_date}</td>
-												<td>${purchaseDto.end_date}</td>
-												<td>${purchaseDto.item_count}</td>
+													class="sales_id" value="450"></td>
+												<td>${salesDto.client_name}</td>
+												<td>${salesDto.begin_date}</td>
+												<td>${salesDto.end_date}</td>
+												<td>${salesDto.item_count}</td>
 												<td><a id="submit" class="button"
-													onclick="dispatchInbound(${purchaseDto.purchase_id})">입하지시</a>
+													onclick="dispatchOutbound(${salesDto.sales_id})">출하지시</a>
 												</td>
 											</tr>
 										</c:forEach>
@@ -127,7 +127,7 @@
 
 <!-- 					<div class="col-sm-12"> -->
 <!-- 						<h2 class="header-title"> -->
-<!-- 							<i class="fa fa-chevron-circle-right mr-2"></i> 입하 내역 조회 필터 -->
+<!-- 							<i class="fa fa-chevron-circle-right mr-2"></i> 출하 내역 조회 필터 -->
 <!-- 						</h2> -->
 <!-- 						<form class="form-horizontal col-sm-12"> -->
 <!-- 							<div class="filter"> -->
@@ -143,7 +143,7 @@
 
 <!-- 									<label class="col-sm-2 control-label">창고별</label> -->
 <!-- 									<div class="col-sm-4"> -->
-<!-- 										<div id="inbound"></div> -->
+<!-- 										<div id="outbound"></div> -->
 <!-- 										<select id="destination" class="form-control input"> -->
 <%-- 											<c:forEach var="warehouseDto" items="${warehouseDtoList}"> --%>
 <%-- 												<option value="${warehouseDto.id}">${warehouseDto.name} --%>
@@ -166,7 +166,7 @@
 
 						<form class="form-horizontal col-sm-12" id="clientManagementForm"
 							name="clientManagementForm"
-							action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
+							action="${ROOT_PATH}/sales/clientRegisterAction" method="post">
 							<!-- csrf 토큰 -->
 							<sec:csrfInput />
 							<div class="table-responsive">
@@ -181,21 +181,21 @@
 											<td style="text-align: center"><input type="checkbox"
 												id="checkAll" name="checkAll"></td>
 											<!-- 													<th>번호</th> -->
-											<th>구매처</th>
-											<th>입하 창고</th>
+											<th>판매처</th>
+											<th>출하 창고</th>
 											<th>요청일</th>
-											<th>입하예정일</th>
+											<th>출하예정일</th>
 										</tr>
 									</thead>
-									<c:forEach var="inboundDto" items="${inboundDtoList}">
+									<c:forEach var="outboundDto" items="${outboundDtoList}">
 										<tr>
 											<td style="text-align: center"><input type="checkBox"
-												class="inbound_id" value="450"></td>
-											<%-- 													<td>${inboundDto.id}</td> --%>
-											<td>${inboundDto.client_name}</td>
-											<td>${inboundDto.warehouse_name}</td>
-											<td>${inboundDto.begin_date}</td>
-											<td>${inboundDto.end_date}</td>
+												class="outbound_id" value="450"></td>
+											<%-- 													<td>${outboundDto.id}</td> --%>
+											<td>${outboundDto.client_name}</td>
+											<td>${outboundDto.warehouse_name}</td>
+											<td>${outboundDto.begin_date}</td>
+											<td>${outboundDto.end_date}</td>
 										</tr>
 									</c:forEach>
 									</tbody>
@@ -218,7 +218,7 @@
 	<script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
 
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/inbound.js"></script>
+	<script src="${RESOURCES_PATH}/wms/js/outbound.js"></script>
 	<!-- Page Le->
 
 	<!-- datepicker	 -->

@@ -38,10 +38,10 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
 			<div class="page-title-box">
-				<h4 class="page-title">입고 현황</h4>
+				<h4 class="page-title">출고 현황</h4>
 				<ol class="breadcrumb">
-					<li>입고 관리</li>
-					<li class="active">입고 현황</li>
+					<li>출고 관리</li>
+					<li class="active">출고 현황</li>
 				</ol>
 				<div class="clearfix"></div>
 			</div>
@@ -49,44 +49,45 @@
 
 			<ul class="nav nav-tabs">
 				<li class="nav-item active"><a id="tab_request"
-					class="nav-link " data-toggle="tab" href="#request">입고 요청 현황</a></li>
+					class="nav-link " data-toggle="tab" href="#request">출고 요청 현황</a></li>
 				<li class="nav-item"><a id="tab-history" class="nav-link"
-					data-toggle="tab" href="#history">입고 내역</a></li>
+					data-toggle="tab" href="#history">출고 내역</a></li>
 			</ul>
 			<!-- 				<div class="col-sm-12"> -->
 			<div class="tab-content col-sm-12">
 				<div class="tab-pane fade active in" id="request">
-					<h2 class="header-title  col-xs-12">
-						<i class="fa fa-chevron-circle-right mr-2"></i> 입고 요청 조회 필터
-					</h2>
-					<div class="col-sm-12">
-						<form class="form-horizontal">
-							<div class="filter">
-								<div class="form-group">
-									<label class="control-label col-sm-1">기간</label>
-									<div class="col-sm-4">
-										<div class="input-daterange input-group" id="date-range">
-											<input type="text" class="form-control" name="start">
-											<span class="input-group-addon no-border text-white">to</span>
-											<input type="text" class="form-control" name="end">
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					
-					<button role=button style="{border:1px solid; background:yellow}" onclick="alert('hello')">b</button>
-					<button role=button style="{border:1px solid; background:yellow}" onclick="swal('입력확인하슈', '잘못 입력했다 짜샤~", "error");">b</button>
+				
+				
+				
+<!-- 					<h2 class="header-title  col-xs-12"> -->
+<!-- 						<i class="fa fa-chevron-circle-right mr-2"></i> 출고 요청 조회 필터 -->
+<!-- 					</h2> -->
+<!-- 					<div class="col-sm-12"> -->
+<!-- 						<form class="form-horizontal"> -->
+<!-- 							<div class="filter"> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									<label class="control-label col-sm-1">기간</label> -->
+<!-- 									<div class="col-sm-4"> -->
+<!-- 										<div class="input-daterange input-group" id="date-range"> -->
+<!-- 											<input type="text" class="form-control" name="start"> -->
+<!-- 											<span class="input-group-addon no-border text-white">to</span> -->
+<!-- 											<input type="text" class="form-control" name="end"> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</form> -->
+<!-- 					</div> -->
+				
 					
 					<!-- 							<div class="col-sm-12"> -->
 					<h2 class="header-title col-xs-12 mt-5">
-						<i class="fa fa-chevron-circle-right mr-2"></i>입고 요청
+						<i class="fa fa-chevron-circle-right mr-2"></i>출고 요청
 					</h2>
 					<div class="col-sm-12">
 						<form class="form-horizontal" id="clientManagementForm"
 							name="clientManagementForm"
-							action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
+							action="${ROOT_PATH}/sales/clientRegisterAction" method="post">
 							<!-- csrf 토큰 -->
 							<sec:csrfInput />
 							<div class="table-responsive">
@@ -99,24 +100,24 @@
 									<thead>
 										<tr>
 											<th style="text-align: center"><input type="checkBox"
-												class="purchase_id" value="450"></th>
-											<th>구매처</th>
+												class="sales_id" value="450"></th>
+											<th>판매처</th>
 											<th>요청일</th>
-											<th>입하예정일</th>
-											<th>입고처리</th>
+											<th>출하예정일</th>
+											<th>출고처리</th>
 										</tr>
 									</thead>
-									<c:forEach var="inboundDto" items="${inboundDtoList}">
+									<c:forEach var="outboundDto" items="${outboundDtoList}">
 										<tbody>
 											<tr>
 												<td style="text-align: center"><input type="checkBox"
-													class="purchase_id" value="450"></td>
-												<%-- 													<td>${inboundDto.id}</td> --%>
-												<td>${inboundDto.client_name}</td>
-												<td>${inboundDto.begin_date}</td>
-												<td>${inboundDto.end_date}</td>
+													class="sales_id" value="450"></td>
+												<%-- 													<td>${outboundDto.id}</td> --%>
+												<td>${outboundDto.client_name}</td>
+												<td>${outboundDto.begin_date}</td>
+												<td>${outboundDto.end_date}</td>
 												<td><a id="submit" class="button"
-													onclick="approve(${inboundDto.id}, ${warehouseId})">입고처리</a></td>
+													onclick="approve(${outboundDto.id}, ${warehouseId})">출고처리</a></td>
 											</tr>
 										</tbody>
 									</c:forEach>
@@ -132,30 +133,34 @@
 
 
 				<div class="tab-pane fade" id="history">
-					<h2 class="header-title">
-						<i class="fa fa-chevron-circle-right mr-2"></i> 입고 내역 조회 필터
-					</h2>
-					<form class="form-horizontal">
-						<div class="filter">
-							<div class="form-group">
-								<label class="control-label col-sm-1">기간</label>
-								<div class="col-sm-4">
-									<div class="input-daterange input-group" id="date-range">
-										<input type="text" class="form-control" name="start">
-										<span class="input-group-addon no-border text-white">to</span>
-										<input type="text" class="form-control" name="end">
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+				
+				
+<!-- 	<h2 class="header-title"> -->
+<!-- 						<i class="fa fa-chevron-circle-right mr-2"></i> 출고 내역 조회 필터 -->
+<!-- 					</h2> -->
+<!-- 					<form class="form-horizontal"> -->
+<!-- 						<div class="filter"> -->
+<!-- 							<div class="form-group"> -->
+<!-- 								<label class="control-label col-sm-1">기간</label> -->
+<!-- 								<div class="col-sm-4"> -->
+<!-- 									<div class="input-daterange input-group" id="date-range"> -->
+<!-- 										<input type="text" class="form-control" name="start"> -->
+<!-- 										<span class="input-group-addon no-border text-white">to</span> -->
+<!-- 										<input type="text" class="form-control" name="end"> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+					
+					
 					<!-- 							<div class="col-sm-12"> -->
 					<h2 class="header-title col-xs-12 mt-5">
-						<i class="fa fa-chevron-circle-right mr-2"></i>입고 내역
+						<i class="fa fa-chevron-circle-right mr-2"></i>출고 내역
 					</h2>
 					<form class="form-horizontal" id="clientManagementForm"
 						name="clientManagementForm"
-						action="${ROOT_PATH}/purchase/clientRegisterAction" method="post">
+						action="${ROOT_PATH}/sales/clientRegisterAction" method="post">
 						<!-- csrf 토큰 -->
 						<sec:csrfInput />
 						<div class="table-responsive">
@@ -174,7 +179,7 @@
 										<th>발송</th>
 										<th>창고</th>
 										<th>섹션</th>
-										<th>입고일</th>
+										<th>출고일</th>
 									</tr>
 								</thead>
 							</table>
@@ -199,7 +204,7 @@
 	<script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
 
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/warehousing.js"></script>
+	<script src="${RESOURCES_PATH}/wms/js/outbound.js"></script>
 	<!-- Page Level Script -->
 	
 	

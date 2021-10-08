@@ -2,17 +2,15 @@ package com.kosmo88.logistics_erp.wms.dto;
 
 import org.apache.ibatis.type.Alias;
 
-//뷰로 사용
-@Alias("SectionDto")
-public class SectionDto {
+@Alias("V_section_detailDto")
+public class V_section_detailDto {
 
 	private int id;
 	private int warehouse_id;
-	private String section;
+	private String warehouse_name;
+	private String name;
 	private int capacity;
 	private int loaded;
-	
-	
 	public int getId() {
 		return id;
 	}
@@ -25,12 +23,17 @@ public class SectionDto {
 	public void setWarehouse_id(int warehouse_id) {
 		this.warehouse_id = warehouse_id;
 	}
-	
-	public String getSection() {
-		return section;
+	public String getWarehouse_name() {
+		return warehouse_name;
 	}
-	public void setSection(String section) {
-		this.section = section;
+	public void setWarehouse_name(String warehouse_name) {
+		this.warehouse_name = warehouse_name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getCapacity() {
 		return capacity;
@@ -46,8 +49,8 @@ public class SectionDto {
 	}
 	@Override
 	public String toString() {
-		return "SectionDto [id=" + id + ", warehouse_id=" + warehouse_id + ", section=" + section + ", capacity="
-				+ capacity + ", loaded=" + loaded + "]";
+		return "V_section_detailDto [id=" + id + ", warehouse_id=" + warehouse_id + ", warehouse_name=" + warehouse_name
+				+ ", name=" + name + ", capacity=" + capacity + ", loaded=" + loaded + "]";
 	}
 	
 	

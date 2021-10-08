@@ -4,8 +4,8 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("V_request_itemDto")
-public class V_request_itemDto {
+@Alias("V_purchase_itemDto")
+public class V_purchase_itemDto {
 
 	private int request_id;
 	private Date begin_date;

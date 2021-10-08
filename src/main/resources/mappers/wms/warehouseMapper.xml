@@ -16,16 +16,16 @@
 		INSERT INTO WAREHOUSE
 		(ID, NAME, ADDRESS)
 		VALUES(
-		#{id},
-		#{name}, #{address}
+<!-- 		#{id}, #{name}, #{address} -->
+		MAX_ID('WAREHOUSE')+1, #{name}, #{address}
 		)
 	</insert>
 
 	<!-- warehouse -->
-	<select id="selectSimpleList"
-		resultType="V_warehouse_simpleDto">
+	<select id="selectWarehouseList"
+		resultType="V_warehouseDto">
 		<!-- select * from warehouse; -->
-		SELECT * FROM V_WAREHOUSE_SIMPLE
+		SELECT * FROM V_WAREHOUSE
 	</select>
 
 	<select id="selectDetailList"
@@ -41,8 +41,16 @@
 			WHERE WAREHOUSE_ID = #{warehouseId} 
 <!-- 			AND ITEM_ID = 1 -->
 		</select>
+		
+		<select id="selectWarehouse" parameterType="int"
+		resultType="V_WarehouseDto">
+		SELECT *
+		FROM V_WAREHOUSE
+		WHERE ID = #{warehouseId}
+		<!-- WHERE ID=1 -->
+	</select>
 	
-
+<!-- 보류 -->
 	<select id="selectOne" parameterType="int"
 		resultType="WarehouseDto">
 		SELECT *
@@ -52,8 +60,8 @@
 	</select>
 
 	<select id="selectMaxId" resultType="int">
-		SELECT MAX(ID) FROM
-		WAREHOUSE
+		SELECT MAX_ID('WAREHOUSE') 
+		FROM DUAL
 	</select>
 
 

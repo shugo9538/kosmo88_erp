@@ -84,30 +84,34 @@
 											<tr>
 												<!-- 												<td style="text-align: center"><input type="checkbox" -->
 												<!-- 													id="checkAll" name="checkAll"></td> -->
-												<th>#</th>
+												<!-- 												<th>#</th> -->
 												<th>창고명</th>
-												<th>랙 수</th>
-												<th>전체 용적</th>
+												<th>섹션수</th>
+												<th>총용적</th>
+												<th>사용용적</th>
+												<th>등록일</th>
 												<th>포화도</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="dto" items="${warehouseDtoList}">
+											<c:forEach var="warehouseDto" items="${warehouseDtoList}">
 												<tr>
-													<td>1</td>
+													<!-- 													<td>1</td> -->
 													<td><a
-														href="${ROOT_PATH}/wms/warehouse/manage?id=${dto.warehouse_id}">
-															${dto.warehouse_name} </a></td>
-													<td>${dto.section_count}</td>
-													<td>${dto.capacity_sum}</td>
+														href="${ROOT_PATH}/wms/warehouse/manage?id=${warehouseDto.id}">
+															${warehouseDto.name} </a></td>
+													<td>${warehouseDto.section_count}</td>
+													<td>${warehouseDto.capacity_sum}</td>
+													<td>${warehouseDto.used_section_count}</td>
+													<td>${warehouseDto.register_date}</td>
 													<td>
 														<div class="progress progress-striped progress-sm">
 															<fmt:formatNumber var="loadRate"
-																value="${dto.loaded_sum/dto.capacity_sum*100}"
+																value="${warehouseDto.loaded_sum/warehouseDto.capacity_sum*100}"
 																pattern="#.##" />
 
 															<div class="progress-bar progress-bar-warning"
-																style="width:${(dto.loaded_sum)/(dto.capacity_sum+0.0)*100}%;"></div>
+																style="width:${(warehouseDto.loaded_sum)/(warehouseDto.capacity_sum+0.0)*100}%;"></div>
 														</div>
 												</tr>
 											</c:forEach>
@@ -118,14 +122,15 @@
 						</div>
 						<div class="tab-pane fade" id="add">
 							<h2 class="header-title">
-								<i class="fa fa-chevron-circle-right mr-2"></i>창고 요청
+								<i class="fa fa-chevron-circle-right mr-2"></i>창고 추가
 							</h2>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="white-box">
 										<form class="form-horizontal" method="post"
 											action="${ROOT_PATH}/wms/warehouse/addAction"
-											onsubmit="return warehouseAddAction()">
+											onsubmit="return addAction()">
+<!-- 											onsubmit="return warehouseAddAction()"> -->
 
 											<sec:csrfInput />
 											<h2 class="header-title">창고 정보 입력</h2>
@@ -196,13 +201,13 @@
 
 
 
-											<h2 class="header-title col-md-12 my-5">랙 등록</h2>
-											<div id="rack-group" class="col-md-12">
-												<div id="rack" style="display: none;">
+											<h2 class="header-title col-md-12 my-5">섹션 등록</h2>
+											<div id="section-group" class="col-md-12">
+												<div id="sectionForm" style="display: none;">
 													<div class="form-group">
 														<label class="col-md-1 control-label">구역</label>
 														<div class="col-md-2">
-															<input class="form-control" name="name" type="text"
+															<input class="form-control" name="section" type="text"
 																disabled>
 														</div>
 														<label class="col-md-1 control-label">용적</label>
@@ -211,15 +216,15 @@
 																disabled>
 														</div>
 														<div role="button" id="delAdditionalForm" class="col-md-1"
-															onclick="delRack(this);">
+															onclick="removeNode(this);">
 															<i class="icon-minus"></i>
 														</div>
 													</div>
 												</div>
 											</div>
 											<div role="button" class="preview col-md-12 my-5"
-												id="addSection" onclick="addSection()">
-												<i class="icon-plus""></i> 랙 추가
+												id="addSection" onclick="cloneForm()">
+												<i class="icon-plus""></i>섹션 추가
 											</div>
 											<input type="hidden" id="additionalFormCnt"
 												name="additionalFormCnt" value="1">
@@ -251,14 +256,12 @@
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/warehouse.js"></script>
-	<script>
-		window.onload = addSection();
-	</script>
-	<script src="${RESOURCES_PATH}/wms/js/warehouse.js"></script>
-
 	<!-- 다음 도로명주소 -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
+	<script>
+		window.onload = cloneForm();
+	</script>
 </body>
 </html>
