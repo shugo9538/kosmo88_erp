@@ -10,54 +10,22 @@ function getCurrentDate() {
 
 
 //폼 추가
-document.addEventListener("DomContentLoaded", function(){
-  if(document.getElementById(""))
-  addSection()
+document.addEventListener("DomContentLoaded", function () {
+  if (document.getElementById(""))
+    addSection()
 })
 
 
 //컨텍스트패스
 function getContextPath() {
-	var hostIndex = location.href.indexOf(location.host) + location.host.length;
-	return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
+  var hostIndex = location.href.indexOf(location.host) + location.host.length;
+  return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
 }
 
 
 
 
 
-
-function addSection() {
-  var rack = document.getElementById("rack");
-  // var addSectionBtn = document.getElementById("addSection");
-  var newRack = rack.cloneNode(true);
-  newRack.style.display = "block";
-  newRack.setAttribute("class", "additionalForm");
-  Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
-    f.removeAttribute("disabled")
-  );
-  Array.from(newRack.getElementsByClassName("form-control")).forEach((f) =>
-    f.setAttribute("required", true)
-  );
-  // document.getElementById("rack-group").insertBefore(newRack, addSectionBtn);
-  document.getElementById("rack-group").appendChild(newRack);
-  document
-    .getElementById("additionalFormCnt")
-    .setAttribute("value", getAdditionalFormCnt());
-}
-// window.onload = addSection();
-
-function delRack(obj) {
-  var rackGroup = document.getElementById("rack-group");
-  if (document.getElementsByClassName("additionalForm").length < 2) {
-    alert("최소 하나 이상의 랙은 등록해야 합니다.");
-  } else {
-    obj.parentElement.parentElement.remove();
-    document
-      .getElementById("additionalFormCnt")
-      .setAttribute("value", getAdditionalFormCnt());
-  }
-}
 
 function getAdditionalFormCnt() {
   return document.getElementsByClassName("additionalForm").length;
@@ -151,20 +119,102 @@ function initDateRange() {
 //들어가는 메뉴에 따라 다른 그거 탭하기
 $(document).ready(function () {
   var tab = getParameterByName("tab");
-console.log("선택 탭 : " + tab);
-if(tab != ""){
+  console.log("선택 탭 : " + tab);
+  if (tab != "") {
     // var li = document.getElementById("li_" + tab);
-    console.log("클릭할 탭 : " + 'tab_'+tab);
- document.getElementById("tab_" + tab).click();
-}
+    console.log("클릭할 탭 : " + 'tab_' + tab);
+    document.getElementById("tab_" + tab).click();
+  }
 })
 
 //퍼온
 function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+  return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+//swal은 매개변수로 객체하나랑 리스너가 들어간다?
+function success(title, text, listener) {
+  swal({
+    title: title,
+    type: "success",
+    text: text,
+    timer: 2000
+  },
+    listener
+    // function () {
+    //   location.reload();
+    // }
+  )
+
+}
+
+function error(title, text, listener) {
+  swal({
+    title: title,
+    type: "error",
+    text: text,
+    timer: 2000
+  },
+    listener
+    // function () {
+    //   location.reload();
+    // }
+  )
 }
 
 
+function addAction() {
+  //  swal({
+  //     title: title,
+  //     type: "error",
+  //     text: text ,
+  //     timer: 2000
+  //   }, 
+  //  function(){
+  //    return false;
+  //  }
+  //   )
+  alert('등록되었습니다');
+  return true;
+
+}
+
+function cloneForm() {
+  var sectionForm = document.getElementById('sectionForm');
+  console.log(sectionForm);
+  // var addSectionBtn = document.getElementById("addSection");
+  var newSection = sectionForm.cloneNode(true);
+  newSection.style.display = "block";
+  newSection.setAttribute("class", "additionalForm");
+  Array.from(newSection.getElementsByClassName("form-control")).forEach((f) =>
+    f.removeAttribute("disabled")
+  );
+  Array.from(newSection.getElementsByClassName("form-control")).forEach((f) =>
+    f.setAttribute("required", true)
+  );
+  // document.getElementById("rack-group").insertBefore(newRack, addSectionBtn);
+  document.getElementById("section-group").appendChild(newSection);
+  document
+    .getElementById("additionalFormCnt")
+    .setAttribute("value", getAdditionalFormCnt());
+}
+// window.onload = addSection();
+
+function removeNode(obj) {
+  var sectionGroup = document.getElementById("section-group");
+  if (document.getElementsByClassName("additionalForm").length < 2) {
+    alert("최소 하나 이상의 랙은 등록해야 합니다.");
+  } else {
+    obj.parentElement.parentElement.remove();
+    document
+      .getElementById("additionalFormCnt")
+      .setAttribute("value", getAdditionalFormCnt());
+  }
+}
+
+
+//
+// function success(){swal('성공', '', '', 1500); location.reload()}

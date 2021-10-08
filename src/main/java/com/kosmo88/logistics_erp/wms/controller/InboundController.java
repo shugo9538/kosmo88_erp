@@ -14,9 +14,10 @@ import com.kosmo88.logistics_erp.wms.dao.InboundDao;
 import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.V_inboundDto;
 import com.kosmo88.logistics_erp.wms.dto.V_purchaseDto;
-import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_sectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_warehouse_simpleDto;
+import com.kosmo88.logistics_erp.wms.dto.V_purchase_itemDto;
+import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
+import com.kosmo88.logistics_erp.wms.dto.V_section_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_warehouseDto;
 import com.kosmo88.logistics_erp.wms.service.InboundService;
 import com.kosmo88.logistics_erp.wms.service.WarehouseService;
 
@@ -37,7 +38,7 @@ public class InboundController {
 	@RequestMapping("/manageInbound")
 	public String manageInbound(Model model) {
 		List<V_purchaseDto> purchaseDtoList = inboundService.manageInbound();
-		List<V_warehouse_simpleDto> list = warehouseService.simpleList();
+		List<V_warehouseDto> list = warehouseService.warehouseList();
 		List<V_inboundDto> inboundDtoList = inboundDao.allInboundList();
 		model.addAttribute("purchaseDtoList", purchaseDtoList);
 		model.addAttribute("warehouseDtoList", list);
@@ -48,11 +49,15 @@ public class InboundController {
 	@RequestMapping("/dispatch")
 	public String dispatchInbound(HttpServletRequest req, Model model) {
 //		List<V_warehouseDto> list = warehouseService.list();
-		int purchase_id = Integer.parseInt(req.getParameter("purchase_id"));
-		List<V_request_itemDto> itemDtoList = inboundService.productDtoList(purchase_id);
-		List<V_warehouse_simpleDto> list = warehouseService.simpleList();
-		model.addAttribute("itemDtoList", itemDtoList);
-		model.addAttribute("warehouseDtoList", list);
+		int purchaseId = Integer.parseInt(req.getParameter("purchaseId"));
+		List<V_purchase_itemDto> purchaseItemDtoList = inboundService.productDtoList(purchaseId);
+		List<V_warehouseDto> warehouseDtoist = warehouseService.warehouseList();
+		model.addAttribute("purchaseItemDtoList", purchaseItemDtoList);
+		model.addAttribute("warehouseDtoList", warehouseDtoist);
+		//구매품목 개수
+		int itemCount = purchaseItemDtoList.size();
+		model.addAttribute("ItemCount", itemCount);
+		model.addAttribute("purchaseId", purchaseId);
 		return "wms/inbound/dispatchInbound";
 	}
 	
@@ -64,19 +69,20 @@ public class InboundController {
 		List<V_inboundDto> inboundDtoList = inboundDao.dispatchedInboundList(warehouseId);
 		model.addAttribute("inboundDtoList", inboundDtoList);
 		model.addAttribute("warehouseId", warehouseId);
-		return "wms/warehousing/warehousing";
+		return "wms/inbound/warehousing";
 	}
 
 	@RequestMapping(value = "/approve")
 	public String approve(HttpServletRequest req, Model model) {
 		int inboundId = Integer.parseInt(req.getParameter("inboundId"));
 		int warehouseId = Integer.parseInt(req.getParameter("warehouseId"));
-		List<V_request_itemDto> itemDtoList = inboundService.productDtoList(inboundId);
+		List<V_purchase_itemDto> itemDtoList = inboundService.productDtoList(inboundId);
 
-	List<V_warehouse_sectionDto> sectionDtolist = sectionDao.sectionList(warehouseId);
+//	List<V_warehouse_sectionDto> sectionDtolist = sectionDao.sectionList(warehouseId);
+	List<V_sectionDto> sectionDtolist = sectionDao.sectionList(warehouseId);
 		model.addAttribute("itemDtoList", itemDtoList);
 		model.addAttribute("sectionDtoList", sectionDtolist);
-		return "wms/warehousing/approve";
+		return "wms/inbound/approve";
 	}
 
 	

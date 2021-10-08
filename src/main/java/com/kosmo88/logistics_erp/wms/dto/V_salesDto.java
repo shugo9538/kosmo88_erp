@@ -4,10 +4,10 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("V_purchaseDto")
-public class V_purchaseDto {
+@Alias("V_salesDto")
+public class V_salesDto {
 
-	int purchase_id;
+	int sales_id;
 	int client_id;
 	String client_name;
 	Date begin_date;
@@ -15,11 +15,11 @@ public class V_purchaseDto {
 	char enabled;
 	int item_count;
 	String state;
-	public int getPurchase_id() {
-		return purchase_id;
+	public int getSales_id() {
+		return sales_id;
 	}
-	public void setPurchase_id(int purchase_id) {
-		this.purchase_id = purchase_id;
+	public void setSales_id(int sales_id) {
+		this.sales_id = sales_id;
 	}
 	public int getClient_id() {
 		return client_id;
@@ -65,13 +65,10 @@ public class V_purchaseDto {
 	}
 	@Override
 	public String toString() {
-		return "V_purchaseDto [purchase_id=" + purchase_id + ", client_id=" + client_id + ", client_name=" + client_name
+		return "V_salesDto [sales_id=" + sales_id + ", client_id=" + client_id + ", client_name=" + client_name
 				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", enabled=" + enabled + ", item_count="
 				+ item_count + ", state=" + state + "]";
 	}
-
-	
-	
 	
 	
 	

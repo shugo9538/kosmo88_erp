@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.kosmo88.logistics_erp.wms.dao.InboundDao">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosmo88.logistics_erp.wms.dao.OutboundDao">
 
-
-	<!-- TX_PURCHASE request 를 가져온다 -->
-	<select id="selectList" resultType="V_purchaseDto">
+<!-- RX_PURCHASE request 를 가져온다 -->
+	<select id="selectSalesList" resultType="V_salesDto">
 		SELECT *
-		FROM V_PURCHASE
+		FROM V_SALES
 		WHERE
-		STATE = 'TX_PURCHASE'
+		STATE = 'RX_SALES'
 	</select>
 
 	<select id="selectItemList" parameterType="int"
-		resultType="V_purchase_itemDto">
-		SELECT * FROM V_PURCHASE_ITEM
-		WHERE PURCHASE_ID =
-		#{purchase_id}
+		resultType="V_sales_itemDto">
+		SELECT * FROM V_SALES_ITEM
+		WHERE SALES_ID =
+		#{sales_id}
 	</select>
 
 	<select id="allInboundList" resultType="V_inboundDto">
 		SELECT *
-		FROM V_INBOUND
+		FROM V_OUTBOUND
 	</select>
 
 	<select id="dispatchedInboundList" parameterType="int"
 		resultType="V_inboundDto">
 		SELECT *
-		FROM V_INBOUND
+		FROM V_OUTBOUND
 		WHERE WAREHOUSE_ID = #{warehouseId}
 	</select>
 
 	<select id="selectMaxId" resultType="int">
-		SELECT MAX_ID('INBOUND')
+		SELECT MAX_OUTBOUND_ID
+		OUTBOUND_ID
 		FROM DUAL
 	</select>
 
 	<select id="selectOne" parameterType="int"
-		resultType="V_purchaseDto">
-		SELECT * FROM V_PURCHASE
-		WHERE PURCHASE_ID = #{purchase_id}
+		resultType="V_salesDto">
+		SELECT * FROM V_SALES
+		WHERE SALES_ID = #{sales_id}
 	</select>
 
 	<!-- 입하 요청 등록 -->
-	<!-- <insert id="insert" parameterType="V_purchaseDto"> -->
+	<!-- <insert id="insert" parameterType="V_salesDto"> -->
 	<insert id="insert" parameterType="Map">
-		INSERT INTO INBOUND (ID,
+		INSERT INTO OUTBOUND (ID,
 		WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
 		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date},
 		'WMS000', #{client_id})
@@ -58,10 +56,10 @@
 	<update id="updateState" parameterType="int">
 		UPDATE REQUEST SET
 <!-- 		ENABLED = 'N' -->
-		STATE = 'TX_INBOUND'
-		WHERE ID = #{purchase_id}
-		AND STATE='TX_PURCHASE'
+		STATE = 'RX_OUTBOUND'
+		WHERE ID = #{sales_id}
+		AND STATE='RX_SALES'
 	</update>
-
 </mapper>
+
 

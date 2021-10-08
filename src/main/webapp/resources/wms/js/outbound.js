@@ -1,3 +1,63 @@
+//자바스크립트의 this는 호출한 객체를 가리킨다? 기본 window
+let dispatchWindow;
+let warehouse_id;
+
+function dispatchoutbound(sales_id) {
+	console.log(getContextPath() + "/wms/outbound/dispatch");
+	this.sales_id = sales_id;
+	console.log("출하 지시창 오. sales_id : " + sales_id);
+	dispatchwindow = window.open(getContextPath() + "/wms/outbound/dispatch?sales_id="+sales_id, "haha", "width=800,height=600");
+}
+
+function dispatchAction() {
+	var select = document.getElementById("destination");
+	var warehouse_id = select.options[select.selectedIndex].value;
+
+
+	// var url = getContextPath() + "/wms/outbound/dispatchAction?warehouse_id=" + warehouse_id
+	var url = getContextPath() + "/wms/outbound/dispatchAction";
+	console.log("요청 url : " + url);
+
+
+	var req = new XMLHttpRequest();
+	var query = 'warehouse_id=' + warehouse_id + "&sales_id=" + opener.sales_id;	
+	console.log("query : " + query);
+
+	if (!req) {
+		alert('XMLHTTP 인스턴스 생성 불가');
+		return false;
+	}
+
+	req.onreadystatechange = alertContents(req);
+	req.open('GET', url + "?" + query, true);
+	req.send();
+
+	alert("출하 지시 처리되었습니다.\n test: " + query);
+	window.close();
+	opener.location.reload();
+}
+
+
+function alertContents(req) {
+	if (req.readyState === XMLHttpRequest.DONE) {
+		if (req.status === 200) {
+			alert(req.responseText);
+		} else {
+			alert('request에 문제가 있음\nreadyState : ' + req.readyState + "\nstatus : " + req.status);
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+//warehousing에 있던거
+
 // window.onload=function(){
 // 		selTab();
 // 			initDatePicker();
@@ -199,7 +259,7 @@ function receivingStatusList() {
 // 			}, {
 // 				data: null,
 // 				render: function (data, type, row, meta) {
-// 					return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.name + '</a>';
+// 					return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.name + '</a>';
 // 				}
 // 			}, {
 // 				data: 'register_num',
@@ -258,37 +318,37 @@ function receivingStatusList() {
 // }
 
 let submitWindow;
-let warehouse_id;
+// let warehouse_id;
 
-function approve(inboundId, warehouseId) {
-	var url = getContextPath() + "/wms/warehousing/approve";
-	var query = "?inboundId=" + inboundId + "&warehouseId=" + warehouseId;
+function approve(outboundId, warehouseId) {
+	var url = getContextPath() + "/wms/outbound/approve";
+	var query = "?outboundId=" + outboundId + "&warehouseId=" + warehouseId;
 	console.log("url : " + url);
 	console.log("query : " + query)
 
-	this.inboundId = inboundId;
+	this.outboundId = outboundId;
 	this.warehousId = warehouseId;
 
 	//근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
-	// console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
+	// console.log("출고처리 창  오픈  outboundId : " + outboundId + " warehouseId : " + warehouseId);
 	submitWindow = window.open(url + query, "haha", "width=800,height=600");
 }
 
 
 
 
-function approveAction(inboundId, warehouseId, sectionId) {
+function approveAction(outboundId, warehouseId, sectionId) {
 	var select = document.getElementById("destination");
 	var warehouse_id = select.options[select.selectedIndex].value;
 
 
-	// var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
-	var url = getContextPath() + "/wms/warehousing/approveAction";
+	// var url = getContextPath() + "/wms/outbound/dispatchAction?warehouse_id=" + warehouse_id
+	var url = getContextPath() + "/wms/boundng/approveAction";
 	console.log("요청 url : " + url);
 
 
 	var req = new XMLHttpRequest();
-	var query = 'warehouseId=' + warehouse_id + "&inboundId=" + opener.inboundId + "&sectionId=" + opener.sectionId;
+	var query = 'warehouseId=' + warehouse_id + "&outboundId=" + opener.outboundId + "&sectionId=" + opener.sectionId;
 	console.log("query : " + query);
 
 	if (!req) {
@@ -300,7 +360,7 @@ function approveAction(inboundId, warehouseId, sectionId) {
 	req.open('GET', url + "?" + query, true);
 	req.send();
 
-	alert("입하 지시 처리되었습니다.\n test: " + query);
+	alert("출하 지시 처리되었습니다.\n test: " + query);
 	window.close();
 	opener.location.reload();
 }

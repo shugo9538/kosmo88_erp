@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="StockDao">
-<!-- 	namespace="com.kosmo88.logistics_erp.wms.dao.StockDao"> -->
+	namespace="com.kosmo88.logistics_erp.wms.dao.StockDao">
+<!-- 	namespace="StockDao"> -->
 
 
 
@@ -21,11 +21,20 @@
 	</select>
 
 <!-- stockList -->
-		<select id="selectList"
+		<select id="sectionStockList"
 			parameterType="int"
-			resultType="com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto">
-			SELECT * FROM V_STOCK_SECTION
+			resultType="V_stock_detailDto">
+			SELECT * FROM V_STOCK_DETAIL
+			WHERE SECTION_ID = #{warehouseId} 
+<!-- 			AND ITEM_ID = 1 -->
+		</select>
+		
+			<select id="warehouseStockList"
+			parameterType="int"
+			resultType="V_stock_detailDto">
+			SELECT * FROM V_STOCK_DETAIL
 			WHERE WAREHOUSE_ID = #{warehouseId} 
 <!-- 			AND ITEM_ID = 1 -->
 		</select>
+		
 	</mapper>    	
