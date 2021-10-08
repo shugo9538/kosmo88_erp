@@ -198,19 +198,19 @@
 
 								<sec:csrfInput />
 
-								<input type="hidden" name="warehouseId" value="${id}">
+								<input type="hidden" name="warehouseId" value="${warehouseId}">
 								<div id="section-group" class="col-md-12">
 									<div id="sectionForm" style="display: none;">
 										<div class="form-group">
 											<label class="col-md-1 control-label">구역</label>
 											<div class="col-md-2">
-												<input class="form-control" id="section" name="section" type="text"
-													value="${lastSection}" disabled>
+												<input class="form-control" id="section" name="section"
+													type="text" value="${lastSection}" disabled>
 											</div>
 											<label class="col-md-1 control-label">용적</label>
 											<div class="col-md-2">
-												<input class="form-control" id="capacity" name="capacity" type="text"
-													disabled>
+												<input class="form-control" id="capacity" name="capacity"
+													type="text" value="10" disabled>
 											</div>
 											<div role="button" id="delAdditionalForm" class="col-md-1"
 												onclick="removeSection(this);">
@@ -219,15 +219,16 @@
 										</div>
 									</div>
 								</div>
-								<div role="button" class="preview col-xs-12 my-5"
-									id="addSection" onclick="cloneSection()">
-									<i class="icon-plus""></i>섹션 추가
+								<div role="button" class="preview col-xs-12 my-5" id="addSection">
+									<span onclick="cloneSection()"><i class="icon-plus"></i>섹션 추가</span>
 								</div>
 								<input type="hidden" id="additionalFormCnt"
 									name="additionalFormCnt" value="1">
-								<button type="submit" class="btn btn-default mt-5">등록</button>
-								<button type="button" class="btn btn-default mt-5"
-									onclick="getNewSection('A')">테스트</button>
+								<div class="col-xs-2">
+									<button type="submit" class="btn btn-default mt-5">등록</button>
+								</div>
+								<!-- 								<button type="button" class="btn btn-default mt-5" -->
+								<!-- 									onclick="getNewSection('A')">테스트</button> -->
 							</form>
 						</div>
 					</div>
