@@ -198,7 +198,7 @@ function estimateList() {
 									render : function(data, type, row, meta) {
 										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
-												+ '" onclick="window.open(this.href, width=1500px;, height=700px;); return false;">'
+												+ '" onclick="window.open(this.href, width=1500, height=800); return false;">'
 												+ row.request_id + '</a>';
 									}
 								}, {
@@ -318,7 +318,7 @@ function registeredEstimateList() {
 									render : function(data, type, row, meta) {
 										return '<a href="/logistics_erp/sales/estimateDetail?request_id='
 												+ row.request_id
-												+ '" onclick="window.open(this.href, width=1000, height=700); return false;">'
+												+ '" onclick="window.open(this.href, width=1500, height=800); return false;">'
 												+ row.request_id + '</a>';
 									}
 								}, {
@@ -451,7 +451,7 @@ function estimateItemList() {
 				
 				td.each(function() {
 					console.log($(this).children().val());
-					$('#item'+cnt).append('<td><input value="'+arr[4]+'" readonly></td>');
+					$('#item'+cnt).append('<td><input type="test "name ="" value="'+arr[4]+'" readonly></td>');
 					
 					
 					// tr id 1씩 증가
