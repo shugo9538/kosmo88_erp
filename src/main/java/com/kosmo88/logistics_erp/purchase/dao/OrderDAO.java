@@ -46,4 +46,7 @@ public interface OrderDAO {
 	// 주문서 등록(REQ_PRODUCT_LIST) 처리
 	public int insertRPL();
 	
+	// 주문 승인 요청
+	public int requestApproval(int id);
+	
 }

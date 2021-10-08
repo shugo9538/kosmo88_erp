@@ -8,17 +8,26 @@ import org.apache.ibatis.type.Alias;
 public class InboundDto {
 
 	int id;
+	int request_id;
 	int warehouse_id;
 	Date begin_date;
 	Date end_date;
 	String employee_id;
 	String client_id;
+	char isapproved;
 
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+			
+	public int getRequest_id() {
+		return request_id;
+	}
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
 	}
 	public int getWarehouse_id() {
 		return warehouse_id;
@@ -50,18 +59,19 @@ public class InboundDto {
 	public void setClient_id(String client_id) {
 		this.client_id = client_id;
 	}
-	public char getEnabled() {
-		return enabled;
-	}
-	public void setEnabled(char enabled) {
-		this.enabled = enabled;
-	}
-	char enabled;
 
+
+	public char getIsapproved() {
+		return isapproved;
+	}
+	public void setIsapproved(char isapproved) {
+		this.isapproved = isapproved;
+	}
 	@Override
 	public String toString() {
-		return "InboundDto [id=" + id + ", warehouse_id=" + warehouse_id + ", begin_date=" + begin_date + ", end_date="
-				+ end_date + ", employee_id=" + employee_id + ", client_id=" + client_id + ", enabled=" + enabled + "]";
+		return "InboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
+				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", employee_id=" + employee_id
+				+ ", client_id=" + client_id + ", isapproved=" + isapproved + "]";
 	}
 	
 	

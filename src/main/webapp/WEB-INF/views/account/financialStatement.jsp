@@ -23,6 +23,8 @@
 		<%@ include file="../common/header.jsp"%>
 		<%@ include file="common/accountHeader.jsp"%>
 		<%@ include file="statement/financialStatementSetting.jsp" %>
+		 <c:set var="now" value="<%=new java.util.Date()%>" />
+ 		<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set>
 		      
         <!-- header section end-->
 
@@ -51,11 +53,11 @@
                 <div class="col-md-12">
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">재무상태표</h2>
-		                    <h3 class="header-title">제 18기(당)기 2021.09.19 현재 </h3>
+		                    <h1 class="header-title">재무상태표</h1>
+		                    <h2 class="header-title">제 18기(당)기<c:out value="${sysYear}"/></h2>
 	                    </div>
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table id="finacialStatment" class="table table table-hover m-0">
                           <thead>
                             <tr>
                               <th>과목</th>
@@ -72,10 +74,12 @@
                               <td></td>
                               <td></td>
                             </tr>
-                            <tr class="total2">
+                            <tr class="warning">
                               <td> Ⅰ. 유  동    자  산  </td>
                               <td></td>
-                              <td></td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${asset1 + asset2}" pattern="###,###,###,###"/>
+                              </td>
                               <td></td>
                               <td>2,764,422,100</td>
                             </tr>
@@ -142,7 +146,7 @@
                               <td>322,710,000</td>
                               <td></td>
                             </tr>
-                            <tr class="total1">
+                            <tr class="info">
                               <td>자    산    총    계</td>
                               <td></td>
                               <td class="red">
@@ -151,7 +155,7 @@
                               <td></td>
                               <td>5,134,878,100</td>
                             </tr>
-                            <tr>
+                            <tr class="warning">
                               <td> 부             채 </td>
                               <td></td>
                               <td></td>
@@ -185,7 +189,7 @@
                               <td>543,185,000</td>
                               <td></td>
                             </tr>
-                            <tr class="total1">
+                            <tr  class="info">
                               <td>부    채    총    계</td>
                               <td></td>
                               <td class="red">
@@ -201,7 +205,7 @@
                               <td></td>
                               <td></td>
                             </tr>
-                            <tr class="total2">
+                            <tr  class="info">
                               <td> Ⅰ. 자      본      금  </td>
                               <td></td>
                                <td class="red">
@@ -219,7 +223,7 @@
                               <td></td>
                               <td>541,997,000</td>
                             </tr>
- 							<tr class="total2">
+ 							<tr  class="info">
                               <td>(당기순이익)</td>
                               <td></td>
                               <td></td>
@@ -251,7 +255,7 @@
                               <td></td>
                               <td>3,137,567,600</td>
                             </tr>
-                            <tr class="total1">
+                            <tr  class="info">
                               <td>부채및자본총계</td>
                               <td></td>
                               <td class="red">

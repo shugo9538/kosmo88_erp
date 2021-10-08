@@ -1,269 +1,261 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<script
-		src="${RESOURCES_PATH}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-	<script
-		src="${RESOURCES_PATH}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-	<script>
-		// Date Picker
-		jQuery('#datepicker').datepicker();
-		jQuery('#datepicker-autoclose').datepicker({
-			autoclose : true,
-			todayHighlight : true
-		});
-		jQuery('#datepicker-inline').datepicker();
-		jQuery('#datepicker-multiple-date').datepicker({
-			format : "mm/dd/yyyy",
-			clearBtn : true,
-			multidate : true,
-			multidateSeparator : ","
-		});
-		jQuery('#date-range').datepicker({
-			toggleActive : true
-		});
+	pageEncoding="UTF-8"%>
+<%-- <%@ include file="/WEB-INF/views/wms/common/vars.jspf"%> --%>
 
-		
-		//Date range picker
-		$('.input-daterange-datepicker').daterangepicker({
-			buttonClasses : [ 'btn', 'btn-sm' ],
-			applyClass : 'btn-default',
-			cancelClass : 'btn-white'
-		});
-		$('.input-daterange-timepicker').daterangepicker({
-			timePicker : true,
-			timePickerIncrement : 30,
-			locale : {
-				format : 'MM/DD/YYYY h:mm A'
-			},
-			buttonClasses : [ 'btn', 'btn-sm' ],
-			applyClass : 'btn-default',
-			cancelClass : 'btn-white'
-		});
-		$('.input-limit-datepicker').daterangepicker({
-			format : 'MM/DD/YYYY',
-			minDate : '06/01/2015',
-			maxDate : '06/30/2015',
-			buttonClasses : [ 'btn', 'btn-sm' ],
-			applyClass : 'btn-default',
-			cancelClass : 'btn-white',
-			dateLimit : {
-				days : 6
-			}
-		});
+<script
+	src="${RESOURCES_PATH}/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+<script
+	src="${RESOURCES_PATH}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script>
+	// Date Picker
+	jQuery('#datepicker').datepicker();
+	jQuery('#datepicker-autoclose').datepicker({
+		autoclose : true,
+		todayHighlight : true
+	});
+	jQuery('#datepicker-inline').datepicker();
+	jQuery('#datepicker-multiple-date').datepicker({
+		format : "mm/dd/yyyy",
+		clearBtn : true,
+		multidate : true,
+		multidateSeparator : ","
+	});
+	jQuery('#date-range').datepicker({
+		toggleActive : true
+	});
 
-		$('#reportrange span').html(
-				moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - '
-						+ moment().format('MMMM D, YYYY'));
+	//Date range picker
+	$('.input-daterange-datepicker').daterangepicker({
+		buttonClasses : [ 'btn', 'btn-sm' ],
+		applyClass : 'btn-default',
+		cancelClass : 'btn-white'
+	});
+	$('.input-daterange-timepicker').daterangepicker({
+		timePicker : true,
+		timePickerIncrement : 30,
+		locale : {
+			format : 'MM/DD/YYYY h:mm A'
+		},
+		buttonClasses : [ 'btn', 'btn-sm' ],
+		applyClass : 'btn-default',
+		cancelClass : 'btn-white'
+	});
+	$('.input-limit-datepicker').daterangepicker({
+		format : 'MM/DD/YYYY',
+		minDate : '06/01/2015',
+		maxDate : '06/30/2015',
+		buttonClasses : [ 'btn', 'btn-sm' ],
+		applyClass : 'btn-default',
+		cancelClass : 'btn-white',
+		dateLimit : {
+			days : 6
+		}
+	});
 
-		$('#reportrange')
-				.daterangepicker(
-						{
-							format : 'MM/DD/YYYY',
-							startDate : moment().subtract(29, 'days'),
-							endDate : moment(),
-							minDate : '01/01/2012',
-							maxDate : '12/31/2015',
-							dateLimit : {
-								days : 60
-							},
-							showDropdowns : true,
-							showWeekNumbers : true,
-							timePicker : false,
-							timePickerIncrement : 1,
-							timePicker12Hour : true,
-							ranges : {
-								'Today' : [ moment(), moment() ],
-								'Yesterday' : [ moment().subtract(1, 'days'),
-										moment().subtract(1, 'days') ],
-								'Last 7 Days' : [ moment().subtract(6, 'days'),
-										moment() ],
-								'Last 30 Days' : [
-										moment().subtract(29, 'days'), moment() ],
-								'This Month' : [ moment().startOf('month'),
-										moment().endOf('month') ],
-								'Last Month' : [
-										moment().subtract(1, 'month').startOf(
-												'month'),
-										moment().subtract(1, 'month').endOf(
-												'month') ]
-							},
-							opens : 'left',
-							drops : 'down',
-							buttonClasses : [ 'btn', 'btn-sm' ],
-							applyClass : 'btn-default',
-							cancelClass : 'btn-white',
-							separator : ' to ',
-							locale : {
-								applyLabel : 'Submit',
-								cancelLabel : 'Cancel',
-								fromLabel : 'From',
-								toLabel : 'To',
-								customRangeLabel : 'Custom',
-								daysOfWeek : [ 'Su', 'Mo', 'Tu', 'We', 'Th',
-										'Fr', 'Sa' ],
-								monthNames : [ 'January', 'February', 'March',
-										'April', 'May', 'June', 'July',
-										'August', 'September', 'October',
-										'November', 'December' ],
-								firstDay : 1
-							}
+	$('#reportrange span').html(
+			moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - '
+					+ moment().format('MMMM D, YYYY'));
+
+	$('#reportrange')
+			.daterangepicker(
+					{
+						format : 'MM/DD/YYYY',
+						startDate : moment().subtract(29, 'days'),
+						endDate : moment(),
+						minDate : '01/01/2012',
+						maxDate : '12/31/2015',
+						dateLimit : {
+							days : 60
 						},
-						function(start, end, label) {
-							console.log(start.toISOString(), end.toISOString(),
-									label);
-							$('#reportrange span').html(
-									start.format('MMMM D, YYYY') + ' - '
-											+ end.format('MMMM D, YYYY'));
-						});
-	</script>
-	<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
-		<div class="calendar left">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_start" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+						showDropdowns : true,
+						showWeekNumbers : true,
+						timePicker : false,
+						timePickerIncrement : 1,
+						timePicker12Hour : true,
+						ranges : {
+							'Today' : [ moment(), moment() ],
+							'Yesterday' : [ moment().subtract(1, 'days'),
+									moment().subtract(1, 'days') ],
+							'Last 7 Days' : [ moment().subtract(6, 'days'),
+									moment() ],
+							'Last 30 Days' : [ moment().subtract(29, 'days'),
+									moment() ],
+							'This Month' : [ moment().startOf('month'),
+									moment().endOf('month') ],
+							'Last Month' : [
+									moment().subtract(1, 'month').startOf(
+											'month'),
+									moment().subtract(1, 'month')
+											.endOf('month') ]
+						},
+						opens : 'left',
+						drops : 'down',
+						buttonClasses : [ 'btn', 'btn-sm' ],
+						applyClass : 'btn-default',
+						cancelClass : 'btn-white',
+						separator : ' to ',
+						locale : {
+							applyLabel : 'Submit',
+							cancelLabel : 'Cancel',
+							fromLabel : 'From',
+							toLabel : 'To',
+							customRangeLabel : 'Custom',
+							daysOfWeek : [ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr',
+									'Sa' ],
+							monthNames : [ 'January', 'February', 'March',
+									'April', 'May', 'June', 'July', 'August',
+									'September', 'October', 'November',
+									'December' ],
+							firstDay : 1
+						}
+					},
+					function(start, end, label) {
+						console.log(start.toISOString(), end.toISOString(),
+								label);
+						$('#reportrange span').html(
+								start.format('MMMM D, YYYY') + ' - '
+										+ end.format('MMMM D, YYYY'));
+					});
+</script>
+<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
+	<div class="calendar left">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_start" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="calendar right">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_end" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="calendar right">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_end" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="ranges">
-			<div class="range_inputs">
-				<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
-					type="button">Apply</button>
-				<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
-			</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="ranges">
+		<div class="range_inputs">
+			<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
+				type="button">Apply</button>
+			<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
 		</div>
 	</div>
-	<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
-		<div class="calendar left">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_start" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+</div>
+<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
+	<div class="calendar left">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_start" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="calendar right">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_end" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="calendar right">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_end" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="ranges">
-			<div class="range_inputs">
-				<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
-					type="button">Apply</button>
-				<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
-			</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="ranges">
+		<div class="range_inputs">
+			<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
+				type="button">Apply</button>
+			<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
 		</div>
 	</div>
-	<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
-		<div class="calendar left">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_start" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+</div>
+<div class="daterangepicker dropdown-menu ltr show-calendar opensright">
+	<div class="calendar left">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_start" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="calendar right">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_end" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="calendar right">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_end" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="ranges">
-			<div class="range_inputs">
-				<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
-					type="button">Apply</button>
-				<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
-			</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="ranges">
+		<div class="range_inputs">
+			<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
+				type="button">Apply</button>
+			<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
 		</div>
 	</div>
-	<div class="daterangepicker dropdown-menu ltr opensleft">
-	
-		<div class="calendar left">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_start" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+</div>
+<div class="daterangepicker dropdown-menu ltr opensleft">
+
+	<div class="calendar left">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_start" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="calendar right">
-			<div class="daterangepicker_input">
-				<input class="input-mini form-control" type="text"
-					name="daterangepicker_end" value=""><i
-					class="fa fa-calendar glyphicon glyphicon-calendar"></i>
-				<div class="calendar-time" style="display: none;">
-					<div></div>
-					<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
-				</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="calendar right">
+		<div class="daterangepicker_input">
+			<input class="input-mini form-control" type="text"
+				name="daterangepicker_end" value=""><i
+				class="fa fa-calendar glyphicon glyphicon-calendar"></i>
+			<div class="calendar-time" style="display: none;">
+				<div></div>
+				<i class="fa fa-clock-o glyphicon glyphicon-time"></i>
 			</div>
-			<div class="calendar-table"></div>
 		</div>
-		<div class="ranges">
-			<ul>
-				<li data-range-key="Today">Today</li>
-				<li data-range-key="Yesterday">Yesterday</li>
-				<li data-range-key="Last 7 Days">Last 7 Days</li>
-				<li data-range-key="Last 30 Days">Last 30 Days</li>
-				<li data-range-key="This Month">This Month</li>
-				<li data-range-key="Last Month">Last Month</li>
-				<li data-range-key="Custom">Custom</li>
-			</ul>
-			<div class="range_inputs">
-				<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
-					type="button">Submit</button>
-				<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
-			</div>
+		<div class="calendar-table"></div>
+	</div>
+	<div class="ranges">
+		<ul>
+			<li data-range-key="Today">Today</li>
+			<li data-range-key="Yesterday">Yesterday</li>
+			<li data-range-key="Last 7 Days">Last 7 Days</li>
+			<li data-range-key="Last 30 Days">Last 30 Days</li>
+			<li data-range-key="This Month">This Month</li>
+			<li data-range-key="Last Month">Last Month</li>
+			<li data-range-key="Custom">Custom</li>
+		</ul>
+		<div class="range_inputs">
+			<button class="applyBtn btn btn-sm btn-default" disabled="disabled"
+				type="button">Submit</button>
+			<button class="cancelBtn btn btn-sm btn-white" type="button">Cancel</button>
 		</div>
 	</div>
-</body>
-</html>
+</div>

@@ -26,7 +26,8 @@
     <div class="main-content" >
 
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/header.jsp"%> 
+		<%@ include file="common/accountHeader.jsp"%>   
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -106,7 +107,8 @@
         <!-- End Wrapper-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp"%>	
          <!--End footer -->
        </div>
       <!--End main content -->

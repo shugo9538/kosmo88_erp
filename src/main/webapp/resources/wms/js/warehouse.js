@@ -1,16 +1,45 @@
-// window.onload=function(){
-// 		selTab();
-// 			initDatePicker();
-// 			adjustIncludedPage();
+//====== 랙등록
+
+let submitWindow;
+// let warehouse_id;
+
+function addSection(inboundId, warehouseId) {
+    var url = getContextPath() + "/wms/warehouse/addSection";
+    var query = "?sectionId=" + sectionId + "&warehouseId=" + warehouseId;
+    console.log("url : " + url);
+    console.log("query : " + query)
+
+    this.inboundId = inboundId;
+    this.warehousId = warehouseId;
+
+    //근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
+    // console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
+    submitWindow = window.open(url + query, "haha", "width=800,height=600");
+}
+
+//=================
+// function addAction() {
+//     success('성공', '등록되었습니다', function(){return true;})
+//   swal("성공", "등록되었습니다", 'success', 1500);
+
+//   return true;
 // }
 
-function warehouseAddAction() {
-  alert("등록되었습니다");
- // sameNameValuesToArray(section);
-  //sameNameValuesToArray(section_section);
-  //sameNameValuesToArray(capacity);
+function addWarehouseAction() {
+    success('성공', '등록되었습니다', function () { return true })
+    //   swal("성공", "등록되었습니다", 'success', 1500);
 
-  return true;
+    //   return true;
+}
+
+
+function addSectionAction() {
+    swal("성공", "등록되었습니다", 'success', 1500);
+    // sameNameValuesToArray(section);
+    //sameNameValuesToArray(section_section);
+    //sameNameValuesToArray(capacity);
+
+    return true;
 }
 
 
@@ -45,6 +74,76 @@ $(document).ready(function () {
             break;
     }
 })
+
+function getNewSection(lastSection) {
+    var newSection;
+    var length = lastSection.length;
+    var firstDigit;
+    var secondDigit;
+    if (length == 1) {
+        if (lastSection != 'Z')
+            newSection = String.fromCharCode(lastSection.charCodeAt(0) + 1);
+        else if (lastSection == 'Z')
+            newSection = 'AA';
+        else if (length == 2) {
+            firstDigit = String.fromCharCode(lastSection.charCodeAt(0) + 1);
+            secondDigit = String.fromCharCode(lastSection.charCodeAt(1) + 1);
+            console.log("firstDigit : " + firstDigit + " secondDigit : " + secondDigit)
+            if (secondDigit != 'Z')
+                secondDigit = String.fromCharCode(secondDigit.charCodeAt(0) + 1);
+            else if (secondDigit == 'Z')
+                secondDigit = 'A'
+            firstDigit = secondDigit = String.fromCharCode(secondDigit.charCodeAt(0) + 1);
+
+        }
+    }
+    newSection = firstDigit + secondDigit;
+    console.log("newSection : " + newSection)
+    return newSection
+}
+
+
+function cloneSection() {
+    var sectionForm = document.getElementById("sectionForm");
+    var newSection = sectionForm.cloneNode(true);
+    var sectionList = document.getElementsByName('section');
+    var lastSection = sectionList.item(sectionList.length - 1).getAttribute('value');
+    console.log("lastSection : " + lastSection)
+    // console.log(newSection.getElementsByClassName('form-control'));
+    newSection_section = getNewSection(lastSection);
+    console.log("nss: " +newSection_section)
+    newSection.getElementsByClassName('form-control').item(0).setAttribute("value", newSection_section);
+
+    newSection.style.display = "block";
+    newSection.setAttribute("class", "additionalForm");
+    Array.from(newSection.getElementsByClassName("form-control")).forEach((f) =>
+        f.removeAttribute("disabled")
+    );
+    Array.from(newSection.getElementsByClassName("form-control")).forEach((f) =>
+        f.setAttribute("required", true)
+    );
+    // document.getElementById("rack-group").insertBefore(newRack, addSectionBtn);
+    document.getElementById("section-group").appendChild(newSection);
+    document
+        .getElementById("additionalFormCnt")
+        .setAttribute("value", getAdditionalFormCnt());
+}
+// window.onload = addSection();
+
+
+
+function removeSection(obj) {
+    var sectionGroup = document.getElementById("section-group");
+    if (document.getElementsByClassName("additionalForm").length < 2) {
+        alert("최소 하나 이상의 랙은 등록해야 합니다.");
+    } else {
+        obj.parentElement.parentElement.remove();
+        document
+            .getElementById("additionalFormCnt")
+            .setAttribute("value", getAdditionalFormCnt());
+    }
+}
+
 
 // 	}
 // 	// '#clientRegisterAction', 버튼 id
@@ -177,6 +276,10 @@ function receivingStatusList() {
 }
 
 
+function getNewSection() {
+
+    return
+}
 // 거래처(구매처) 목록
 // function receivingHistoryList() {
 // 	currTab = $('#clientList').DataTable({

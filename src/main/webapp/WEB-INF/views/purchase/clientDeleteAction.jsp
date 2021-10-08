@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="./js_purchase.jsp"%>    
+    pageEncoding="UTF-8"%>    
 <%@ include file="../common/settings.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -40,5 +39,6 @@
 </c:if>
 
 <%@ include file="../common/footer.jsp"%>
+<%@ include file="./js_purchase.jsp"%>
 </body>
 </html>

@@ -93,16 +93,16 @@ public class DtoFunction {
 		Method[] methods = clazz.getDeclaredMethods();
 
 		Set<Object> dtoSet = new HashSet<>();
-		
-		
-		//일단 총 갯수가 2개 이상인 파라미터에 대해서만 작동하도록 돌려막기....
+
+		// 일단 총 갯수가 2개 이상인 파라미터에 대해서만 작동하도록 돌려막기....
 		for (int i = 0; i < index; i++) {
 			try {
 				Object dto = clazz.newInstance();
 				Iterator<String> paramItr = paramSet.iterator();
 				while (paramItr.hasNext()) {
 					param = paramItr.next();
-					if(paramMap.get(param).length<index)continue;
+					if (paramMap.get(param).length < index)
+						continue;
 					paramValue = paramMap.get(param)[i];
 //					param = adjustParamName(param);
 //					System.out.println("요청 파라미터 : " + param + "  값 : " + paramValue);
@@ -161,6 +161,7 @@ public class DtoFunction {
 		return dtoSet;
 	}
 
+	// 보류 : get으로 대체
 	// 요청 파라미터로 Dto 초기화(insert 하기 전 dto에 데이터 담을 때 사용)
 	// 요청 파라미터의 name 과 프로퍼티 이름은 같아야 한다
 	// set한 프로퍼티의 목록을 Set으로 리턴하면 좋을것같다
@@ -245,6 +246,7 @@ public class DtoFunction {
 		return settedPropSet;
 	}
 
+	// 보류 : clss를 받도록 개선
 	public static Object getDtoFromParamMap(Map<String, String[]> paramMap, Object dto) {
 		logMethodStart();
 //	Enumeration<String> parameterEnum = request.getParameterNames();
@@ -323,6 +325,97 @@ public class DtoFunction {
 				}
 			}
 		}
+		// 확인용
+		checkSettedProperties(dto);
+		return dto;
+	}
+
+	// 보류 : clss를 받도록 개선
+	public static Object getDtoFromParamMap(Map<String, String[]> paramMap, Class<?> clazz) {
+		logMethodStart();
+//		Enumeration<String> parameterEnum = request.getParameterNames();
+
+		String param;
+		String[] paramValue;
+		String prop;
+		Set<String> settedPropSet = new HashSet<>();
+		Set<String> paramSet = paramMap.keySet();
+		Iterator<String> paramItr = paramSet.iterator();
+
+		String paramType;
+		String propType;
+
+		Object dto = null;
+
+		try {
+			dto = clazz.newInstance();
+
+			Method[] methods = clazz.getDeclaredMethods();
+			// 파라미터 이름,값 가져오기
+			// 하나의 키에 대해 값이 여러개일 수 있다
+			// 1. 하나인지 여러개인지 체크
+			// 2. 각 값에 대해서 다 대입하도록? > 타입이 컬렉션이어야 한다
+			while (paramItr.hasNext()) {
+				param = paramItr.next();
+				paramValue = paramMap.get(param);
+				param = adjustParamName(param);
+
+				System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
+
+				// dto에서 프로퍼티 가져오기
+				for (Method method : methods) {
+					prop = methodNameToProperty(method.getName());
+					if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
+
+						for (int i = 0; i < paramValue.length; i++) {
+							System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName() + "실행 - "
+									+ paramValue[i] + " => " + prop);
+							paramType = paramValue[i].getClass().getSimpleName();
+							propType = method.getParameters()[0].getType().getSimpleName();
+							System.out.println("파라미터 타입 : " + paramType + " 프로퍼티 타입 : " + propType);
+
+							if (paramType == propType)
+								method.invoke(dto, paramValue[i]);
+							else {
+								System.out.println("paramvalue" + " " + paramValue.getClass().getSimpleName() + " "
+										+ paramValue[i]);
+								switch (propType) {
+								case "String":
+									method.invoke(dto, paramValue[0]);
+									break;
+								case "int":
+									method.invoke(dto, Integer.parseInt(paramValue[0]));
+									break;
+								case "Double":
+									method.invoke(dto, Double.parseDouble(paramValue[0]));
+									break;
+								case "Boolean":
+									method.invoke(dto, Boolean.parseBoolean(paramValue[0]));
+									break;
+								case "Date":
+									method.invoke(dto, java.sql.Date.valueOf(paramValue[0]));
+									break;
+								}
+//								method.invoke(dto, castParamType(paramValue, propType));
+							}
+						}
+					}
+//						if (paramValue.length == 1) {
+//							method.invoke(dto, paramValue[0]);
+//							settedPropSet.add(prop);
+//						} else if (paramValue.length > 1) {
+					// 파라미터 값이 여러개일 경우의 처리 필요
+					// 여러개이면 아마 콜렉션에 추가하는 식으로
+					// 이럴 경우엔 setter가 add가 될 것이다
+//						}
+
+				}
+			}
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+				| InstantiationException e) {
+			e.printStackTrace();
+		}
+
 		// 확인용
 		checkSettedProperties(dto);
 		return dto;

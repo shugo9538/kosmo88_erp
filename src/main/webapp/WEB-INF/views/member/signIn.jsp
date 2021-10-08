@@ -36,10 +36,10 @@
 							</div>
 							<div class="form-group">
 								<c:if test="${employee.department_id == 200}">
-									<input class="form-control" type="text" id="authority" name="authority" value="ACCOUNT" required readonly>
+									<input class="form-control" type="text" id="authority" name="authority" value="ROLE_ADMIN" required readonly>
 								</c:if>
 								<c:if test="${employee.department_id != 200}">
-									<input class="form-control" type="text" id="authority" name="authority" value="MEMBER" required readonly>
+									<input class="form-control" type="text" id="authority" name="authority" value="ROLE_USER" required readonly>
 								</c:if>
 							</div>
 							<div class="form-group">

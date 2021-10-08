@@ -7,15 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_Stock_SectionDto;
+import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
 
 public interface SectionDao {
 
 	void insert(SectionDto sectionDto);
+
+//	List<V_section_detailDto> selectList(int warehouseId);
+//	List<V_warehouse_sectionDto> sectionList(int warehouseId);
+	List<V_sectionDto> sectionList(int warehouseId);
+
 	void select();
-	List<V_Stock_SectionDto> selectList(int warehouseId);
+
+	String selectLastSection(int warehouseId);
 	int selectMaxId();
-	
+	String selectNewSection(int warehouseId);
+
 }
 
 @Repository
@@ -36,16 +43,28 @@ class SectionDaoImpl implements SectionDao {
 		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.SectionDao.select");
 	}
 
+//	@Override
+//	public List<V_section_detailDto> selectList(int warehouseId) {
+//		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectList", warehouseId);
+//	}
 	@Override
-	public List<V_Stock_SectionDto> selectList(int warehouseId) {
-		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectList", warehouseId);
+	public List<V_sectionDto> sectionList(int warehouseId) {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.SectionDao.sectionList", warehouseId);
 	}
 
 	@Override
 	public int selectMaxId() {
 		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectMaxId");
 	}
-	
 
+	@Override
+	public String selectNewSection(int warehouseId) {
+		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectNewSection", warehouseId);
+	}
+
+	@Override
+	public String selectLastSection(int warehouseId) {
+		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectLastSection", warehouseId);
+	}
 
 }

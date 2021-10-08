@@ -29,7 +29,7 @@ public class LogAdvice {
 	public void beforeLog(JoinPoint jp) {
 		logger.info("---- 메소드 실행 : " + jp.getSignature().toShortString() + "----");
 		logger.info("--아-규멘또 : " + Arrays.toString(jp.getArgs()));
-		logger.info("------------------------------------------------------------");
+//		logger.info("------------------------------------------------------------");
 	}
 
 //	@After("wms()")
@@ -41,13 +41,9 @@ public class LogAdvice {
 	@AfterReturning(value = "wms()", returning = "obj")
 	public void afterReturningLog(JoinPoint jp, Object obj) {
 		logger.info("---- 메소드 종료 : " + jp.getSignature().toShortString() + "----");
-//		System.out.println("afterAllMethod " + jp.getSignature());
 		System.out.println("return: " + obj);
-		logger.info("------------------------------------------------------------");
+//		logger.info("------------------------------------------------------------");
 	}
 
-//	@Around("wms()")
-//	public void proceed(ProceedingJoinPoint jp) {
-//	}
 
 }// end of class SampleAdvice{}

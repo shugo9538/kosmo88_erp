@@ -68,9 +68,7 @@
 					class="icon-loop"></i> <span>물류 관리</span>
 			</a>
 				<ul class="sub-menu-list">
-					<li><a
-						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=stock">재고
-							관리</a></li>
+
 					<li>
 						<!-- 추후에 Id는 로그인한 회원정보에서 가져온다 --> <a
 						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=warehouse">창고
@@ -80,13 +78,18 @@
 						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=section">섹션
 							정보</a></li>
 					<li><a
-						href="${ROOT_PATH}/wms/receiving/receiving?id=1&tab=request">입고
+						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=stock">재고
 							관리</a></li>
 					<li><a
-						href="${ROOT_PATH}/wms/shipping/shipping?id=1&tab=request">출고
+						href="${ROOT_PATH}/wms/inbound/warehousing?id=1&tab=request">입고
+							관리</a></li>
+					<li><a
+						href="${ROOT_PATH}/wms/outbound/shipping?id=1&tab=request">출고
 							관리</a></li>
 					<li><a href="${ROOT_PATH}/wms/warehouse/list">창고 관리(괸리자)</a></li>
 					<li><a href="${ROOT_PATH}/wms/inbound/manageInbound">입하
+							지시(괸리자)</a></li>
+					<li><a href="${ROOT_PATH}/wms/outbound/manageOutbound">출하
 							지시(괸리자)</a></li>
 				</ul></li>
 		</ul>

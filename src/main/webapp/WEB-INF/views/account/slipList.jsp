@@ -10,14 +10,9 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
- <!-- BEGIN PAGE LEVEL STYLES -->
- <link href="/logistics_erp/resources/account/sweetalert/sweetalert.css" rel="stylesheet"/>
- <!-- END PAGE LEVEL STYLES -->
 <title>회계관리 - 일반전표</title>
 </head>
-
 <body class="sticky-header">
-
 
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -59,10 +54,10 @@
 				<div class="col-md-12">
 					<!-- 메뉴버튼 -->
 					<div>
-						<ul class="nav nav-pills custom-nav">
+						<%-- <ul class="nav nav-pills custom-nav">
 							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
 									등록</a></li>
-						</ul>
+						</ul> --%>
 					</div>
 					<!-- 메뉴버튼 끝 -->
 					<div class="white-box">
@@ -82,7 +77,6 @@
 								</thead>
 								<tbody>
 									<c:forEach var="dto" items="${slip}">
-										<input type="hidden" name="slip_id" ${dto.id}/>
 										<input type="hidden" id="root" value="${ROOT_PATH}">
 										<tr>
 											<td>
@@ -90,7 +84,7 @@
 													onclick="checkbox_slipId(this)">
 											</td>
 											<td>
-												<a href="#" id="slip_" onclick="slip_Id(${dto.id})">${dto.id}</a>
+												<a href="#" id="selectSlipInfo" onclick="slip_Id(${dto.id})">${dto.id}</a>
 											</td>
 											<td>
 												<c:choose>
@@ -160,15 +154,15 @@
 			             
 			</form>
 			<!--End row-->
-	
-			<!--Start row-->
+<!-- 	
+			Start row
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box">
+					<div class="white-box" id="datatables">
 						<h2 class="header-title">전표 상세정보</h2> 
 						<h3 class="header-title">전표번호 : 11111 (주문번호 : 22222)</h3>
 						<div class="table-responsive">
-							<table id="example" class="table table table-hover m-0">
+							<table id="slipInfo" class="table table table-hover m-0">
 								<thead>
 									<tr class="slip_defail">
 										<th>담당 부서 :</th>
@@ -207,9 +201,9 @@
 					</div>
 				</div>
 			</div>
-			<!--End row-->
+			End row
 
-		</div>
+ -->		</div>
 		<!-- End Wrapper-->
 		
 		<!--Start  Footer -->
