@@ -59,7 +59,6 @@
     </div>
     <!-- end row -->
 </div>
-	
 	<script src="${RESOURCES_PATH}/purchase/js/selectEmployee.js"></script>
 </body>
 </html>

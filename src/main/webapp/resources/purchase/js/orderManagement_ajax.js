@@ -1,5 +1,6 @@
 var csrfData = {};
-var currTab;
+let currTab;
+let regiTab;
 var csrfParameter;
 var csrfToken;
 
@@ -31,7 +32,7 @@ $(document).ready(function() {
 	$('#white-box').on('click', '#orderRegisterAction', function() {
 	    var loc = $('#orderRegisterForm').attr('action');
 	    
-	    // 입력 유효성 검사\
+	    // 입력 유효성 검사
 	    if (!$('#request_id').val()) {
 	    	swal("견적서를 선택해주세요!!", "견적서 미선택", "error");
 	    	return false;
@@ -39,16 +40,6 @@ $(document).ready(function() {
 	    	swal("납기요청일자를 입력하세요!!", "납기요청일자 입력 누락", "error");
 	    	return false;
 	    }
-	    
-	    // 견적서 상품 불러오기 버튼 클릭(유효성 검사 내용 필요)
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
 	    
 	    /*
 	     * 1. 주문서 등록 {id:'id', type:'type', name:'name' ... }
@@ -97,76 +88,16 @@ $(document).ready(function() {
 
 // 견적서 상품 불러오기
 $('#orderItemCall').on('click', function() {
-	
 	var request_id = $('#request_id').val();
 	var client_id = $('#client_id').val();
-	
-	if (client_id != 'none') {
+	console.log(client_id);
+	if (client_id != 'none'|| 0) {
 		orderItemList(request_id);
 	} else {
 		swal("견적서를 선택해주세요!");
 		return false;
 	} 
 });
-
-function itemRegister() {
-	var list = new Array();
-	var i = 0;
-
-	// 2.주문서 상품
-	$('#orderItemList tbody').children().each(function(i) {
-		var dataObject = new Object();
-		
-		dataObject['item_id'] = $(this).find('input[name=item_id]').val();
-		console.log(dataObject['item_id']);
-		dataObject['item_quantity'] = $(this).find('input[name=item_quantity]').val();
-		console.log(dataObject['item_quantity']);
-		
-		console.log(dataObject);
-		list.push(dataObject);
-	});
-	formData = JSON.stringify(list);
-
-	console.log(formData);
-	loc = window.location.href + '/itemRegisterAction';
-
-	$.ajax({
-		type : 'POST',
-		url : loc + '?' + csrfParameter + '=' + csrfToken,
-		data : formData,
-		accept : "application/json",
-		contentType : "application/json; charset=utf-8",
-		dataType : 'text',
-		beforeSend : function(xhr) {
-			xhr.setRequestHeader(csrfParameter, csrfToken);
-		},
-		success : function(data) {
-			if (data) {
-				swal({
-					title:"주문서 등록 성공",
-					type: "success",
-					text: "주문서가 등록되었습니다.",
-					timer: 2500
-				}, function() {
-					$('#orderRegisterForm').find('input').each(function() {
-						$(this).val('');
-					});
-					currTab.ajax.reload();
-				});
-			}
-		},
-		error : function() {
-			swal({
-				title:"주문서 등록 오류",
-				type: "error",
-				text: "잠시 후 다시 시도해주세요!",
-				timer: 2500
-			}, function() {
-				return false;
-			});
-		},
-	});
-}
 
 // 날짜 형식 조정
 $.fn.dataTable.render.moment = function(from, to, locale) {
@@ -192,6 +123,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 
 // 주문서 목록
 function orderList() {
+	// 테이블 id
 	currTab = $('#orderList').DataTable({
 		"order": [[ 1, "desc" ]],
         ajax : {
@@ -226,17 +158,18 @@ function orderList() {
                 	data : 'end_date',
                     render : $.fn.dataTable.render.moment()
                 }, {
-                	data : 'slip_state',
-                	render : function(data) {
-                		if (data == 'R') return '<button class="btn  btn-primary" type="button">주문요청</button>';
-                		else if (data == 'N') return '<button class="btn  btn-defalt" type="button">승인대기</button>';
-                		else if (data == 'Y') return '<button class="btn  btn-defalt" type="button">승인완료</button>';
+                	data : null,
+                	render : function(data, type, row, meta) {
+                		if (row.slip_state == 'R') return '<button class="btn  btn-primary" type="button" name="orderRequest" value="' + row.request_id + '">승인요청</button>';
+                		else if (row.slip_state == 'N') return '<button class="btn  btn-defalt" type="button">승인대기</button>';
+                		else if (row.slip_state == 'Y') return '승인완료';
                 	}
                 }, {
                 	data : 'request_state',
                 	render : function(data) {
-                		if (data == 'TX_ORDER') return '<button class="btn  btn-defalt" type="button" id="' + request_id + '">출고준비</button>';
-                		else if (data == 'TX_RECEIVING') return '<button class="btn  btn-defalt" type="button" id="' + request_id + '">출고완료</button>';
+                		if (data == 'TX_ORDER') return '<button class="btn  btn-defalt" type="button">입고준비</button>';
+                		else if (data == 'TX_PURCHASE') return '<button class="btn  btn-defalt" type="button">입고준비</button>';
+                		else if (data == 'TX_INBOUND') return '입고완료';
                 	}
                 }
         ],
@@ -326,14 +259,13 @@ function orderChoiceDelete(csrfParameter, csrfToken) {
 			});
         },
     });
-    
     event.preventDefault();
 }
 
 
 //등록한 주문서 목록
 function registeredOrderList() {
-    currTab = $('#registeredOrderList').DataTable({
+	regiTab = $('#registeredOrderList').DataTable({
     	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredOrderList', // 현 위치
@@ -361,8 +293,7 @@ function registeredOrderList() {
                 }, {
                 	data : 'end_date',
                 	render : $.fn.dataTable.render.moment()
-                }
-        ],
+                }],
         destroy : true,
         retrieve : true
     });
@@ -431,4 +362,142 @@ function orderItemList(request_id) {
 		retrieve : true
 	});
 }
+
+// 상품 등록
+function itemRegister() {
+	var list = new Array();
+	var i = 0;
+
+	// 2.주문서 상품
+	$('#orderItemList tbody').children().each(function(i) {
+		var dataObject = new Object();
+		
+		dataObject['item_id'] = $(this).find('input[name=item_id]').val();
+		console.log(dataObject['item_id']);
+		dataObject['item_quantity'] = $(this).find('input[name=item_quantity]').val();
+		console.log(dataObject['item_quantity']);
+		
+		console.log(dataObject);
+		list.push(dataObject);
+	});
+	formData = JSON.stringify(list);
+
+	console.log(formData);
+	loc = window.location.href + '/itemRegisterAction';
+
+	$.ajax({
+		type : 'POST',
+		url : loc + '?' + csrfParameter + '=' + csrfToken,
+		data : formData,
+		accept : "application/json",
+		contentType : "application/json; charset=utf-8",
+		dataType : 'text',
+		beforeSend : function(xhr) {
+			xhr.setRequestHeader(csrfParameter, csrfToken);
+		},
+		success : function(data) {
+			if (data) {
+				swal({
+					title:"주문서 등록 성공",
+					type: "success",
+					text: "주문서가 등록되었습니다.",
+					timer: 2500
+				}, function() {
+					$('#orderRegisterForm').find('input').each(function() {
+						if($(this).attr('type') == 'hidden') {
+							$(this).val('none');
+						} else {
+							$(this).val('');
+						}
+					});
+					$("#orderItemListTable").empty();
+					$("#orderItemListTable").append('<table id="orderItemList" style="width:100%"></table>');
+					$("#orderItemList").DataTable({
+						"dom" : '<"top">rt<"bottom"><"clear">',
+						columns : [
+							{
+								'sTitle' : '상품명',
+							},
+							{
+								'sTitle' : '상품종류',
+							},
+							{
+								'sTitle' : '구매단가',
+							},
+							{
+								'sTitle' : '수량',
+							},
+							{
+								'sTitle' : '공급가액',
+							},
+					],
+					destroy : true,
+					retrieve : true
+					});
+					regiTab.ajax.reload();
+				});
+			}
+		},
+		error : function() {
+			swal({
+				title:"주문서 등록 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
+		},
+	});
+}
+
+// 승인요청
+function approval(id) {
+	
+	$.ajax({
+		url : window.location.href + '/orderApproval?id=' + id,
+		type : 'GET',
+		success : function(data) {
+		    if (data) {
+				swal({
+					title:"승인 요청 성공",
+					type: "success",
+					text: "승인 요청 하였습니다.",
+					timer: 2500
+				}, function() {
+		            currTab.ajax.reload();
+				});
+		    }			
+		},
+		error : function() {
+			swal({
+				title:"승인 요청 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
+			}, function() {
+				return false;
+			});
+		}
+	});
+}
+
+// 승인요청 버튼 클릭
+$('#orderManagementForm').on("click", "button[name=orderRequest]", function() {
+	var id = $(this).val();
+	
+	swal({
+		title : "승인요청 하시겠습니까?",
+		text : "주문서를 선택하셨습니다.",
+		type : "info",
+		showCancelButton: true,
+		cancelButtonText: "아니요",
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "예",
+		closeOnConfirm: false
+		}, function(){
+			approval(id);
+		});
+	return false;
+});
 

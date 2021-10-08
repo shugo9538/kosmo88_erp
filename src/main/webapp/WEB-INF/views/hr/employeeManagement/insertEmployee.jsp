@@ -59,8 +59,12 @@
 									>
 									-
 									<input style="width: 100px;" type="text" id="register_num2" name="resident_reg_num2" maxlength="7" required
+<<<<<<< HEAD
+										onkeyup="nextRegisterNum2()">
+=======
 										onkeyup="nextRegisterNum2()"
 									>
+>>>>>>> a1311ea175304e5b993bbaf2c3e3a082cb3fd047
 								</td>
 								<th style="background-color: #f1f1f1;">이메일</th>
 								<td>

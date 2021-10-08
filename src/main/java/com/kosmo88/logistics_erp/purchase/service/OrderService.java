@@ -37,5 +37,7 @@ public interface OrderService {
 	// 견적서 상품 불러오기
 	public List<PurchaseOrderItemDTO> orderEstimateItemList(HttpServletRequest req, HttpServletResponse res);
 	
+	// 주문 승인 요청
+	public boolean orderApproval(int id);
 	
 }
