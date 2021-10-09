@@ -91,6 +91,7 @@
         </div>
     </div>
     <!-- end row -->
+    <%@ include file="./js_sales.jsp"%>
     <script src="${RESOURCES_PATH}/sales/js/estimateDetail.js"></script>
 </div>
 </body>

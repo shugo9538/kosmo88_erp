@@ -71,4 +71,13 @@ public class SalesEstimateController {
 		return "sales/estimateDetail";
 	}
 	
+	// 견적서 삭제
+	@RequestMapping(value = "/estimateDelete")
+	public String estimateDelete(HttpServletRequest req, Model model) {
+		
+		estimateService.estimateDelete(req, model);
+		
+		return "sales/estimateDelete";
+	}
+	
 }

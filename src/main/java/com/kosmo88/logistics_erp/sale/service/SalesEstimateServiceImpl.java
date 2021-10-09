@@ -173,5 +173,23 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	public List<SalesItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList();
 	}
+
+	// 견적서 삭제(상세페이지에서 단일 삭제)
+	@Override
+	public void estimateDelete(HttpServletRequest req, Model model) {
+		
+		// 화면에서 값을 가져온다.
+		int id = Integer.parseInt(req.getParameter("request_id"));
+		
+		state = QueryCode.UPDATE;
+		boolean update = false;
+		
+		// 거래처 삭제 처리
+		update = state.check(estimateDao.deleteEstimate(id));
+		System.out.println("견적서 삭제 처리 : " + update);
+		
+		model.addAttribute("update", update);
+		
+	}
 	
 }

@@ -25,6 +25,9 @@ public interface SalesEstimateService {
 	// 견적서 상세 화면
 	public void estimateDetail(HttpServletRequest req, Model model);
 	
+	// 견적서 삭제
+	public void estimateDelete(HttpServletRequest req, Model model);
+	
 	// 견적서 관리 - 견적서 삭제(선택삭제)
 	public boolean estimateChoiceDelete(int[] request_id);
 	

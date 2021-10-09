@@ -41,6 +41,17 @@ public class SalesOrderController {
 		return "sales/orderDetail";
 	}
 	
+	// 주문서 삭제 페이지
+	@RequestMapping(value = "/orderDelete")
+	public String orderDelete(HttpServletRequest req, Model model) {
+		
+		System.out.println("삭제 전");
+		orderService.orderDelete(req, model);
+		System.out.println("삭제 후");
+		
+		return "sales/orderDelete";
+	}
+	
 	// 견적서 불러오기
 	@RequestMapping(value = "/selectEstimate")
 	public String selectEstimate(HttpServletRequest req, Model model) {

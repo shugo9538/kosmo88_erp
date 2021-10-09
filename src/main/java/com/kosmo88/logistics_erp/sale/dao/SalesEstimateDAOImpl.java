@@ -26,7 +26,7 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT+ ".getEstimateList");
 	}
 
-	// 견적서 삭제(선택삭제)
+	// 견적서 삭제
 	@Override
 	public int deleteEstimate(int request_id) {
 		return sqlSession.update(STATEMENT + ".deleteEstimate", request_id);

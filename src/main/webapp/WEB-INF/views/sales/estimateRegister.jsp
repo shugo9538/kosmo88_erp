@@ -113,7 +113,7 @@
 							</table>
 
 							<!-- 상품 목록 -->
-							<!-- <h2 class="header-title">
+							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i> 상품 목록
 							</h2>
 							
@@ -125,7 +125,7 @@
 								<table id="estimateItemList" class="table table-hover" style="width:100%">
 									
 								</table>
-							</div> -->
+							</div> 
 							
 							
 							<!-- 상품 등록 -->
