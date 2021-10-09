@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -107,15 +108,23 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	// 견적서 상세 페이지
 	@Override
 	public void estimateDetail(HttpServletRequest req, Model model) {
-		int request_id = Integer.parseInt(req.getParameter("request_id"));
 		
-		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		// 환면에서 값을 받아온다.
+		int request_id = Integer.parseInt(req.getParameter("request_id"));
+		System.out.println("request_id : " + request_id);
+		
+		// 견적서 상세페이지(거래처, 담당자)
+		SalesEstimateDetailViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
 		// 견적서 상세페이지(상품정보)
-		// List<SalesEstimateDetailViewDTO> idto = estimateDao.getEstimateDetail(request_id);
+		SalesEstimateDetailViewDTO idto = estimateDao.getEstimateDetailItem(request_id);
+		System.out.println(idto.getItem_name());
+		System.out.println(idto.getItem_category());
+		System.out.println(idto.getItem_quantity());
+		System.out.println(idto.getItem_sales_price());
 		
 		model.addAttribute("dto", dto);
-		// model.addAttribute("idto", idto); 
+		model.addAttribute("idto", idto); 
 	}
 
 	// 견적서 등록 처리

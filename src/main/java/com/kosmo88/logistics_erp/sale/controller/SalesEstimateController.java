@@ -48,7 +48,7 @@ public class SalesEstimateController {
 		return "sales/selectItem";
 	}
 	
-	// 견적서 관리 - 거래처 목록
+	// 거래처 목록
 	@RequestMapping(value="/estimateManagement")
 	public String estimateManagement(HttpServletRequest req, Model model) {
 		

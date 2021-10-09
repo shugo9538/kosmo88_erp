@@ -4,10 +4,10 @@ import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("SalesEstimateDetailViewDTO")
-public class SalesEstimateDetailViewDTO {
+@Alias("SalesOrderDetailViewDTO")
+public class SalesOrderDetailViewDTO {
 
-	private int request_id;				// 견적번호
+	private int request_id;				// 발주번호
 	private Date begin_date;			// 요청일자
 	private String employee_name;		// 담당자
 	private String employee_phone;		// 담당자연락처
@@ -20,10 +20,20 @@ public class SalesEstimateDetailViewDTO {
 	private String item_name;			// 상품명
 	private String item_category;		// 종류
 	private int item_purchase_price;    // 공급단가
-	private int item_sales_price;				// 판매가
+	private int item_sales_price;       // 판매단가
 	private String department_name; 	// 부서명
 	
-	public SalesEstimateDetailViewDTO() {}
+	public SalesOrderDetailViewDTO() {}
+
+	
+	public int getItem_sales_price() {
+		return item_sales_price;
+	}
+
+	public void setItem_sales_price(int item_sales_price) {
+		this.item_sales_price = item_sales_price;
+	}
+
 
 	public int getRequest_id() {
 		return request_id;
@@ -129,14 +139,6 @@ public class SalesEstimateDetailViewDTO {
 		this.item_purchase_price = item_purchase_price;
 	}
 
-	public int getItem_sales_price() {
-		return item_sales_price;
-	}
-
-	public void setItem_sales_price(int item_sales_price) {
-		this.item_sales_price = item_sales_price;
-	}
-
 	public String getDepartment_name() {
 		return department_name;
 	}
@@ -144,5 +146,6 @@ public class SalesEstimateDetailViewDTO {
 	public void setDepartment_name(String department_name) {
 		this.department_name = department_name;
 	}
+	
 	
 }

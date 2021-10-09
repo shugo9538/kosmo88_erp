@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -41,7 +42,10 @@ public interface SalesEstimateDAO {
 	public List<SalesItemDTO> getEstimateItemList();
 	
 	// 견적서 상세 페이지
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id);
+	
+	// 견적서 상세페이지(상품)
+	public SalesEstimateDetailViewDTO getEstimateDetailItem(int request_id);
 	
 	// 견적서 등록(REQUEST input) 처리
 	public int insertRequest(Map<String, Object> map);

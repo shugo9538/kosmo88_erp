@@ -276,24 +276,28 @@ function estimateList() {
 			var check = $("input:checkbox[name=request_id]:checked").length;
 
 			if (check == 0) {
-				alert("삭제할 견적서를 선택해주세요!!");
+				swal("삭제할 견적서를 선택해주세요!!");
 				return false;
 			} else {
-
-				var result = confirm("선택한 견적서를 삭제하시겠습니까?");
-
-				if (result) {
-					estimateChoiceDelete(csrfParameter, csrfToken);
-					return false;
-				} else {
-					return false;
-				}
+				swal({
+					title : "견적서를 삭제하시겠습니까?",
+					text : "삭제할 견적서를 선택 하셨습니다.",
+					type : "warning",
+					showCancelButton: true,
+					cancelButtonText: "아니요",
+					confirmButtonColor: "#DD6B55",
+					confirmButtonText: "예",
+					closeOnConfirm: false
+					}, function(){
+						estimateChoiceDelete(csrfParameter, csrfToken);
+					});
+				return false;
 			}
 		});
 	});
 }
 
-// 견적서 삭제(선택삭제)
+//견적서 삭제(선택삭제)
 function estimateChoiceDelete(csrfParameter, csrfToken) {
 	var formData = JSON.stringify($('input[name=request_id]:checked')
 			.serialize());
@@ -313,10 +317,10 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 		success : function(data) {
 			if (data) {
 				swal({
-					title : "견적서 삭제 성공",
-					type : "success",
-					text : "선택한 견적서가 삭제되었습니다",
-					timer : 2500
+					title:"견적서 삭제 성공",
+					type: "success",
+					text: "선택한 견적서가 삭제되었습니다",
+					timer: 2500
 				}, function() {
 					currTab.ajax.reload();
 				});
@@ -324,10 +328,10 @@ function estimateChoiceDelete(csrfParameter, csrfToken) {
 		},
 		error : function() {
 			swal({
-				title : "견적서 삭제 오류",
-				type : "error",
-				text : "잠시 후 다시 시도해주세요!",
-				timer : 2500
+				title:"견적서 삭제 오류",
+				type: "error",
+				text: "잠시 후 다시 시도해주세요!",
+				timer: 2500
 			}, function() {
 				return false;
 			});

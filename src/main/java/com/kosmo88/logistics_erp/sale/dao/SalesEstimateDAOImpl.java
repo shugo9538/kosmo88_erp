@@ -3,15 +3,13 @@ package com.kosmo88.logistics_erp.sale.dao;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -22,7 +20,6 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	@Autowired
 	SqlSession sqlSession;
 	
-
 	// 견적서 목록
 	@Override
 	public List<SalesEstimateListViewDTO> getEstimateList() {
@@ -71,33 +68,44 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 
+
+	// 견적서 상세페이지
+	@Override
+	public List<SalesItemDTO> getEstimateItemList() {
+		return sqlSession.selectList(STATEMENT + ".getEstimateItemList");
+	}
+	
 	// 견적서 상세페이지(거래처, 담당자 정보)
 	@Override
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id) {
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id) {
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetail", request_id) ;
 	}
 
 	// 견적서 상세페이지(상품 정보)
 	@Override
-	public List<SalesItemDTO> getEstimateItemList() {
-		return sqlSession.selectList(STATEMENT + ".getEstimateItemList");
+	public SalesEstimateDetailViewDTO getEstimateDetailItem(int request_id) {
+		return sqlSession.selectOne(STATEMENT + ".getEstimateDetailItem", request_id);
 	}
-
+	
+	
 	// 견적서 등록 처리
 	@Override
 	public int insertRequest(Map<String, Object> map) {
 		return sqlSession.insert(STATEMENT + ".insertRequest", map);
 	}
 
+	// 견적서 등록 그룹 처리
 	@Override
 	public int insertProductGroup(Map<String, Object> map) {
 		return sqlSession.insert(STATEMENT + ".insertProductGroup", map);
 	}
 
+	// 견적서 그룹 목록 처리
 	@Override
 	public int insertRPL() {
 		return sqlSession.insert(STATEMENT + ".insertRPL");
 	}
+
 	
 	
 
