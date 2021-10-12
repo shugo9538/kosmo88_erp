@@ -90,7 +90,7 @@
 							<div class="col-sm-2">
 								<input type="text" class="form-control"
 									value="${warehouseDto.section_count
-										-warehouseDto.used_section_count}"
+										-warehouseDto.stock_count}"
 									readonly>
 							</div>
 						</div>
@@ -105,7 +105,7 @@
 							<div class="col-sm-2">
 								<input type="text" class="form-control"
 									value="${warehouseDto.capacity_sum
-										-warehouseDto.loaded_sum}"
+										-warehouseDto.count_sum}"
 									readonly>
 							</div>
 
@@ -141,11 +141,11 @@
 												<td>${sectionDto.warehouse_name}</td>
 												<td>(${sectionDto.capacity})</td>
 												<td><c:choose>
-														<c:when test="${section_loaded>0}">
-															사용 가능	
+														<c:when test="${sectionDto.sum_count>0}">
+															사용중
 														</c:when>
 														<c:otherwise>
-															사용중
+															사용 가능	
 														</c:otherwise>
 													</c:choose></td>
 
@@ -169,22 +169,22 @@
 										<!-- 											id="checkAll" name="checkAll"></td> -->
 										<th>물품</th>
 										<th>수량</th>
-										<th>창고</th>
+<!-- 										<th>창고</th> -->
 										<th>섹션</th>
-										<th>입고일</th>
+										<th>입고일(최소)</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="stock_detailDto" items="${stock_detailDtoList}"
+									<c:forEach var="stockDto" items="${stockDtoList}"
 										varStatus="varStatus">
 										<tr>
 											<%-- 											<td>${varStatus.index}</td> --%>
 											<td>${stockDto.item_name}</td>
-											<td>${stockDto.count}</td>
-											<td>${stockDto.warehouse_name}</td>
-											<td>${stockDto.section_name}</td>
+											<td>${stockDto.sum_count}</td>
+<%-- 											<td>${stockDto.warehouse_name}</td> --%>
+											<td>${stockDto.section}</td>
 											<%-- 													(${stockDto.loaded+(0.0)}/${sectionDto.capacity}) --%>
-											<td>${stockDto.register_date}</td>
+											<td>${stockDto.min_register_date}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

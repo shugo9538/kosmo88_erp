@@ -18,8 +18,7 @@ import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dao.StockDao;
 import com.kosmo88.logistics_erp.wms.dao.WarehouseDao;
 import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
-import com.kosmo88.logistics_erp.wms.dto.V_section_detailDto;
-import com.kosmo88.logistics_erp.wms.dto.V_stock_detailDto;
+import com.kosmo88.logistics_erp.wms.dto.V_stockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouseDto;
 import com.kosmo88.logistics_erp.wms.dto.V_warehouse_detailDto;
 import com.kosmo88.logistics_erp.wms.service.SectionService;
@@ -45,10 +44,6 @@ public class WarehouseController {
 	@Autowired
 	StockDao stockDao;
 
-	@RequestMapping(value = "/add")
-	public String add() {
-		return "wms/warehouse/addWarehouse";
-	}
 
 	// 일단 첫 페이지 진입시에 warehouse하나의 페이지에 모든 페이지를 포함해서 한번에 보내고 Tab으로 설정할 계획이지만
 	// 추후에 ajax로 바꿀 여지가 있다
@@ -66,7 +61,7 @@ public class WarehouseController {
 //		model.addAttribute("section_detailDtoList", section_detailDtoList);
 
 		// 재고 정보
-		List<V_stock_detailDto> stockDtoList = stockDao.warehouseStockList(warehouseId);
+		List<V_stockDto> stockDtoList = stockDao.selectStockList(warehouseId);
 		model.addAttribute("stockDtoList", stockDtoList);
 
 		return "wms/warehouse/warehouse";
@@ -75,12 +70,12 @@ public class WarehouseController {
 	// 보류
 	@RequestMapping(value = { "/list", "/warehouseList" })
 	public String warehouseList(Model model) {
-//		List<V_warehouseDto> list = warehouseService.warehouseList();
 		List<V_warehouseDto> list = warehouseDao.selectWarehouseList();
 
 		model.addAttribute("warehouseDtoList", list);
 		return "wms/warehouse/warehouseList";
 	}
+
 
 	@RequestMapping(value = "manage")
 	public String manageWarehouse(HttpServletRequest req, Model model) {
@@ -95,8 +90,8 @@ public class WarehouseController {
 		model.addAttribute("sectionDtoList", sectionDtoList);
 
 		// 재고 정보
-		List<V_stock_detailDto> stock_detailDtoList = stockDao.warehouseStockList(warehouseId);
-		model.addAttribute("stock_detailDtoList", stock_detailDtoList);
+//		List<V_stock_detailDto> stock_detailDtoList = stockDao.warehouseStockList(warehouseId);
+//		model.addAttribute("stock_detailDtoList", stock_detailDtoList);
 		model.addAttribute("warehouseId", warehouseId);
 		model.addAttribute("lastSection", sectionDao.selectLastSection(warehouseId));
 
@@ -129,7 +124,10 @@ public class WarehouseController {
 //		MyLog.logParamMap(paramMap);
 		warehouseService.addSection(paramMap, warehouseId);
 
-
+		//list
+		List<V_warehouseDto> list = warehouseDao.selectWarehouseList();
+		model.addAttribute("warehouseDtoList", list);
+		
 		return "wms/warehouse/warehouseList";
 	}
 

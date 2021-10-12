@@ -5,6 +5,7 @@
 <mapper namespace="com.kosmo88.logistics_erp.wms.dao.InboundDao">
 
 
+<!-- 입하 -->
 	<!-- TX_PURCHASE request 를 가져온다 -->
 	<select id="selectList" resultType="V_purchaseDto">
 		SELECT *
@@ -14,10 +15,9 @@
 	</select>
 
 	<select id="selectItemList" parameterType="int"
-		resultType="V_purchase_itemDto">
-		SELECT * FROM V_PURCHASE_ITEM
-		WHERE PURCHASE_ID =
-		#{purchase_id}
+		resultType="V_request_itemDto">
+		SELECT * FROM V_REQUEST_ITEM
+		WHERE REQUEST_ID = #{request_id}
 	</select>
 
 	<select id="allInboundList" resultType="V_inboundDto">
@@ -30,6 +30,15 @@
 		SELECT *
 		FROM V_INBOUND
 		WHERE WAREHOUSE_ID = #{warehouseId}
+		AND WAREHOUSED_DATE IS NULL
+	</select>
+	
+	<select id="selectWarehousedInboundList" parameterType="int"
+		resultType="V_inboundDto">
+		SELECT *
+		FROM V_INBOUND
+		WHERE WAREHOUSE_ID = #{warehouseId}
+		AND WAREHOUSED_DATE IS NOT NULL
 	</select>
 
 	<select id="selectMaxId" resultType="int">
@@ -43,14 +52,12 @@
 		WHERE PURCHASE_ID = #{purchase_id}
 	</select>
 
+
 	<!-- 입하 요청 등록 -->
 	<!-- <insert id="insert" parameterType="V_purchaseDto"> -->
-	<insert id="insert" parameterType="Map">
-		INSERT INTO INBOUND (ID,
-		WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
-		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date},
-		'WMS000', #{client_id})
-
+	<insert id="insertInbound" parameterType="Map">
+		INSERT INTO INBOUND (ID, REQUEST_ID, WAREHOUSE_ID)
+		VALUES(#{inbound_id}, #{purchase_id}, #{warehouse_id})	
 	</insert>
 
 
@@ -59,9 +66,24 @@
 		UPDATE REQUEST SET
 <!-- 		ENABLED = 'N' -->
 		STATE = 'TX_INBOUND'
-		WHERE ID = #{purchase_id}
+		WHERE ID = #{request_id}
 		AND STATE='TX_PURCHASE'
 	</update>
+	
+
+	<update id="updateWarehoused" parameterType="int">
+		UPDATE INBOUND SET 
+		WAREHOUSED_DATE = SYSDATE
+		WHERE REQUEST_ID = #{request_id}
+	</update> 
+	
+	
+	<update id="updateWarehousedDate" parameterType="int">
+		UPDATE INBOUND SET
+		WAREHOUSED_DATE = SYSDATE
+		WHERE REQUEST_ID = #{request_id}
+	</update>
+
 
 </mapper>
 

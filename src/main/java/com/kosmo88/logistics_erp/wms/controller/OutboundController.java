@@ -35,9 +35,9 @@ public class OutboundController {
 	public OutboundController() {
 	}
 
-	@RequestMapping(value = { "/shipping", "/" })
+	@RequestMapping(value = { "/manageShipping", "/" })
 	public String ShippingList() {
-		return "wms/outbound/shipping";
+		return "wms/outbound/manageShipping";
 	}
 
 	// 관리자

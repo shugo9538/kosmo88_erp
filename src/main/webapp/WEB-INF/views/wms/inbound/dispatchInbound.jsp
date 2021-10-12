@@ -52,12 +52,14 @@
 									<div id="inbound"></div>
 									<select id="destination" class="form-control input">
 										<c:forEach var="warehouseDto" items="${warehouseDtoList}">
+										<c:set var="validSection" value="${warehouseDto.section_count - warehouseDto.stock_count}"/>
 											<c:if
-												test="${warehouseDto.section_count
-													-warehouseDto.used_section_count>0}">
+												test="${validSection>=itemCount}"
+ 													> 
+<!-- 													-warehouseDto.stock_count>0}"> -->
 												<option value="${warehouseDto.id}">${warehouseDto.name}
-													(여유 섹션 ${warehouseDto.section_count
-													-warehouseDto.used_section_count})</option>
+													 (여유 섹션 ${validSection})</option>
+<%-- 													(여유 섹션 ${warehouseDto.section_count -warehouseDto.stock_count})</option> --%>
 											</c:if>
 										</c:forEach>
 									</select>

@@ -4,8 +4,8 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("V_inboundDto")
-public class V_inboundDto {
+@Alias("V_inbound_itemDto")
+public class V_inbound_itemDto {
 	int id;
 	int request_id;
 	int warehouse_id;
@@ -17,7 +17,6 @@ public class V_inboundDto {
 	Date warehoused_date;
 	int client_id;
 	String client_name;
-	int count_item;
 
 	public int getId() {
 		return id;
@@ -90,19 +89,13 @@ public class V_inboundDto {
 	
 	
 	
-	public int getCount_item() {
-		return count_item;
-	}
-	public void setCount_item(int count_item) {
-		this.count_item = count_item;
-	}
+	
 	@Override
 	public String toString() {
-		return "V_inboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
+		return "V_inbound_itemDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
 				+ ", warehouse_name=" + warehouse_name + ", begin_date=" + begin_date + ", end_date=" + end_date
 				+ ", employee_id=" + employee_id + ", approved_date=" + approved_date + ", warehoused_date="
-				+ warehoused_date + ", client_id=" + client_id + ", client_name=" + client_name + ", count_item="
-				+ count_item + "]";
+				+ warehoused_date + ", client_id=" + client_id + ", client_name=" + client_name + "]";
 	}
 
 	
