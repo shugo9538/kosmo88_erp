@@ -38,7 +38,7 @@
                 <h4 class="page-title">기초정보 관리</h4>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">신규거래처 등록</a>
+                        <a href="${ROOT_PATH}/account/clientDetail">신규거래처 등록</a>
                     </li>
                     <li>
                         <a href="#">거래처 정보 수정</a>

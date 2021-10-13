@@ -11,7 +11,7 @@ public class FCMUtil {
         FirebaseOptions options;
         try {
             options = FirebaseOptions.builder().setCredentials(GoogleCredentials.getApplicationDefault())
-                    .setDatabaseUrl("https://<DATABASE_NAME>.firebaseio.com/").build();
+                    .setDatabaseUrl("https://kosmo88erp-38a3c.firebaseio.com/").build();
 
             if (FirebaseApp.getApps().isEmpty()) {
                 FirebaseApp.initializeApp(options);
@@ -45,12 +45,14 @@ public class FCMUtil {
             // registration token.
             String response = FirebaseMessaging.getInstance().send(message);
             // Response is a message ID string.
-            System.out.println("Successfully sent message: " + message);
+            System.out.println("Successfully sent message: " + response);
             
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
+        
 
     }
 

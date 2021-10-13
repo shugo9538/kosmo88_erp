@@ -69,9 +69,18 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 일반전표 등록 (parameter 로 int department_id, int department_request)
 	@Override
-	public int insertSlip(Map<String, Object> map) {
-		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertSlip", map);
+	public int insertSlip(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertSlip", slipDTO);
 	}
+	@Override
+	public int insertRequest(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertRequest", slipDTO);
+	}
+	@Override
+	public int insertOperating_expense(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertOperating_expense", slipDTO);
+	}
+
 	// 일반전표 - 부서별 승인 처리  
 	@Override
 	public int updateSlipState(Map<String, Object> map) {
@@ -92,9 +101,9 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 일반전표 - 상세내역2
 	@Override
-	public List<SlipDTO> selectOrdrDetail(Map<String, Object> map) {
+	public SlipDTO selectOrdrDetail(Map<String, Object> map) {
 		System.out.println("selectOrdrDetail : " + map);
-		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectOrdrDetail", map);
+		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectOrdrDetail", map);
 	}
 
 	
