@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemListViewDTO;
 
 @Repository
 public class ClientDAOImpl implements ClientDAO {
@@ -17,11 +18,22 @@ public class ClientDAOImpl implements ClientDAO {
     @Autowired
     SqlSession sqlSession;
 
+    // (구매처)상품 관리 - (구매처)상품 목록
+	@Override
+	public List<PurchaseItemListViewDTO> getItemList() {
+		return sqlSession.selectList(STATEMENT + ".getItemList");
+	}
+
+	// 사업자번호 중복확인
+	@Override
+	public int dupchkRegiNum(String register_num) {
+		return sqlSession.selectOne(STATEMENT + ".dupchkRegiNum", register_num);
+	}
+	
     // 거래처(구매처) 관리 - 거래처 목록
     @Override
     public List<PurchaseClientDTO> getClientList() {
-        List<PurchaseClientDTO> list = sqlSession.selectList(STATEMENT + ".getClientList");
-        return list;
+        return sqlSession.selectList(STATEMENT + ".getClientList");
     }
 
     // 거래처 등록 처리
@@ -65,4 +77,5 @@ public class ClientDAOImpl implements ClientDAO {
     public int updateItem(PurchaseItemDTO idto) {
         return sqlSession.update(STATEMENT + ".updateItem", idto);
     }
+
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemListViewDTO;
 import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -29,6 +30,14 @@ public class ClientRestController {
     
     @Autowired
     ClientService clientService;
+    
+    // (구매처)상품 관리 - (구매처)상품 목록
+    @ResponseBody
+    @RequestMapping(value = "/itemManagement/itemList")
+    public List<PurchaseItemListViewDTO> itemList(HttpServletRequest req, HttpServletResponse res) {
+    	return clientService.itemList(req, res);
+    }
+    
     
     // 거래처(구매처) 목록
     @ResponseBody

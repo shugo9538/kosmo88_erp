@@ -1,7 +1,6 @@
 package com.kosmo88.logistics_erp.purchase.dto;
 
 import java.util.Date;
-import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 

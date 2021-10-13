@@ -6,8 +6,24 @@
 
 <mapper namespace="com.kosmo88.logistics_erp.purchase.dao.ClientDAO">
 
-	<!-- 거래처(구매처) 목록	 -->
+	<!-- (구매처)상품 관리 - (구매처)상품 목록  -->
+	<select id="getItemList" resultType="PurchaseItemListViewDTO">
+		SELECT i.id as item_id, i.name as item_name, i.category as item_category, i.register_date as item_register_date, i.price as item_price, c.name as client_name, c.register_num as client_register_num
+		  FROM client c, client_product_list cpl, item i
+		 WHERE c.id = cpl.client_id
+		   AND cpl.item_id = i.id
+	</select>
 	
+	<!-- 사업자번호 중복확인 -->
+	<select id="dupchkRegiNum" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		  FROM client
+		 WHERE register_num = #{register_num}
+		   AND type = '구매'
+		   AND enabled = 'Y'
+	</select>
+
+	<!-- 거래처(구매처) 목록	 -->
  	<select id="getClientList" resultType="PurchaseClientDTO">
  		SELECT id, name, register_num, ceo_name, phone, address, register_date
  		  FROM client

@@ -5,9 +5,16 @@ import java.util.List;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemListViewDTO;
 
 public interface ClientDAO {
 
+	// (구매처)상품 관리 - (구매처)상품 목록
+	public List<PurchaseItemListViewDTO> getItemList();
+	
+	// 사업자번호 중복확인
+	public int dupchkRegiNum(String register_num);
+	
     // 거래처(구매처) 관리 - 거래처 목록
 	public List<PurchaseClientDTO> getClientList();
 	

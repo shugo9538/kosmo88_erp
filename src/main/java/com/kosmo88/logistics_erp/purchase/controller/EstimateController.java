@@ -1,7 +1,6 @@
 package com.kosmo88.logistics_erp.purchase.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +9,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.kosmo88.logistics_erp.purchase.service.ClientService;
 import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})

@@ -26,14 +26,49 @@ $(document).ready(function() {
         });
     }
     
+    // 사업자번호 중복 확인
+    $('#duplicate_chk').on('click', function() {
+    	
+    	var num1 = $('#register_num1').val();
+    	console.log(num1);
+    	var num2 = $('#register_num2').val();
+    	console.log(num2);
+    	var num3 = $('#register_num3').val();
+    	console.log(num3);
+    	var num = num1 + '-' + num2 + '-' + num3
+    	console.log(num);
+    	
+    	if (!$('#register_num1').val()) {
+    		swal("사업자 번호를 입력하세요!!", "사업자 번호 입력 누락", "error");
+    		return false;
+    	} else if (!$('#register_num2').val()) {
+    		swal("사업자 번호를 입력하세요!!", "사업자 번호 입력 누락", "error");
+    		return false;
+    	} else if (!$('#register_num3').val()) {
+    		swal("사업자 번호를 입력하세요!!", "사업자 번호 입력 누락", "error");
+    		return false;
+    	} else {
+    		
+    		var _width = '650';
+    		var _height = '380';
+    		 
+    		// 팝업을 가운데 위치시키기
+    		var _left = Math.ceil(( window.screen.width - _width )/2);
+    		var _top = Math.ceil(( window.screen.height - _height )/2);
+    		
+    		var url = "dupchkRegiNum?register_num=" + num;
+    		window.open(url, "dupchkRegiNum", 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
+    	}
+    });
+    
     // 거래처, 거래처 상품 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
+	    var checkNum = parseInt($('#dup_chk').val());
 	    
 	    // 입력 유효성 검사
-	    
 	    if(!$('#name').val()) {
 	    	swal("거래처명을 입력하세요!!", "거래처명 입력 누락", "error");
 	    	return false;
@@ -48,6 +83,9 @@ $(document).ready(function() {
 	    	return false;
 	    } else if(!$('#register_num3').val()) {
 	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!(checkNum == 1)) {
+	    	swal("중복확인 체크 해주세요!!", "사업자번호 중복확인 체크 필요", "error");
 	    	return false;
 	    } else if(!$('#email1').val()) {
 	    	swal("이메일을 입력하세요!!", "이메일 입력 누락", "error");
@@ -167,6 +205,7 @@ function itemRegister() {
 	                $('#clientRegisterForm').find('input').each(function() {
 	                	$(this).val('');
 					});
+	                $("#dup_chk").val(0);
 	                currTab.ajax.reload();
 				});
             }
@@ -231,7 +270,8 @@ function clientList() {
                 }, {
                     data : null,
                     render : function(data, type, row, meta) {
-                        return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1000, height=700); return false;">' + row.name + '</a>'; 
+                    	// option = "'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes'";
+                        return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
                     }
                 }, {
                     data : 'register_num',
@@ -353,6 +393,7 @@ function registeredClientList() {
 			    }, {
                     data : null,
                     render : function(data, type, row, meta) {
+                    	// option = width=1200, height=700;
                         return '<a href="/logistics_erp/purchase/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
                     }
                 }, {

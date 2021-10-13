@@ -14,6 +14,7 @@ import com.kosmo88.logistics_erp.purchase.dao.ClientDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemListViewDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
@@ -24,6 +25,25 @@ public class ClientServiceImpl implements ClientService {
     
     QueryCode state;
     
+    // (구매처)상품 관리 - (구매처)상품 목록
+	@Override
+	public List<PurchaseItemListViewDTO> itemList(HttpServletRequest req, HttpServletResponse res) {
+		return (ArrayList<PurchaseItemListViewDTO>) clientDao.getItemList();
+	}
+    
+	// 사업자번호 중복확인
+	@Override
+	public void dupchkRegiNum(HttpServletRequest req, Model model) {
+		
+		String register_num = req.getParameter("register_num");
+		
+		int dupchk = 0;
+		
+		dupchk = clientDao.dupchkRegiNum(register_num);
+		
+		model.addAttribute("dupchk", dupchk);
+	}
+	
     // 거래처(구매처) 관리 - 거래처 목록
 	@Override
 	public List<PurchaseClientDTO> clientList(HttpServletRequest req, HttpServletResponse res) {
@@ -36,11 +56,8 @@ public class ClientServiceImpl implements ClientService {
 		state = QueryCode.INSERT;
 		
 		dto.setEmail(dto.getEmail1() + "@" + dto.getEmail2());
-//		System.out.println("email :" + dto.getEmail1() + "@" + dto.getEmail2());
 		dto.setPhone(dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
-//		System.out.println("phone :" + dto.getPhone1() + "-" + dto.getPhone2() + "-" + dto.getPhone3());
 		dto.setRegister_num(dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
-//		System.out.println("register_num :" + dto.getRegister_num1() + "-" + dto.getRegister_num2() + "-" + dto.getRegister_num3());
 		dto.setType("구매");
 		dto.setEnabled("Y");
 		
@@ -48,6 +65,7 @@ public class ClientServiceImpl implements ClientService {
 	}	
 	
 	// 거래처 상품 등록 처리
+	@Override
 	public boolean itemRegisterAction(PurchaseItemDTO dto) {
 		state = QueryCode.INSERT;
 		return state.check(clientDao.registerItem(dto));

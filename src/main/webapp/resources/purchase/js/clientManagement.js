@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	
 	// 전체 체크박스 클릭
-	$("#checkAll").click(function(){
+	$("#checkAll").on('click', function(){
 		// 전체 체크박스가 클릭상태이면
 		if($("#checkAll").is(":checked")) {
 			// 전체 체크
