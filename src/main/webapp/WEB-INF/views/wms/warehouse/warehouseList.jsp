@@ -86,8 +86,7 @@
 												<!-- 													id="checkAll" name="checkAll"></td> -->
 												<!-- 												<th>#</th> -->
 												<th>창고명</th>
-												<th>섹션수</th>
-												<th>총용적</th>
+												<th>사용섹션수</th>
 												<th>사용용적</th>
 												<th>등록일</th>
 												<th>포화도</th>
@@ -100,18 +99,17 @@
 													<td><a
 														href="${ROOT_PATH}/wms/warehouse/manage?id=${warehouseDto.id}">
 															${warehouseDto.name} </a></td>
-													<td>${warehouseDto.section_count}</td>
-													<td>${warehouseDto.capacity_sum}</td>
-													<td>${warehouseDto.used_section_count}</td>
+													<td>${warehouseDto.stock_count}/${warehouseDto.section_count}</td>
+													<td>${warehouseDto.count_sum}/${warehouseDto.capacity_sum}</td>
 													<td>${warehouseDto.register_date}</td>
 													<td>
 														<div class="progress progress-striped progress-sm">
 															<fmt:formatNumber var="loadRate"
-																value="${warehouseDto.loaded_sum/warehouseDto.capacity_sum*100}"
+																value="${warehouseDto.count_sum/warehouseDto.capacity_sum*100}"
 																pattern="#.##" />
 
 															<div class="progress-bar progress-bar-warning"
-																style="width:${(warehouseDto.loaded_sum)/(warehouseDto.capacity_sum+0.0)*100}%;"></div>
+																style="width:${(warehouseDto.count_sum)/(warehouseDto.capacity_sum+0.0)*100}%;"></div>
 														</div>
 												</tr>
 											</c:forEach>
@@ -213,7 +211,7 @@
 														<label class="col-md-1 control-label">용적</label>
 														<div class="col-md-2">
 															<input class="form-control" id="capacity" name="capacity" type="text"
-																value="10" disabled>
+																value="1000" disabled>
 														</div>
 														<div role="button" id="delAdditionalForm" class="col-md-1"
 															onclick="removeNode(this);">

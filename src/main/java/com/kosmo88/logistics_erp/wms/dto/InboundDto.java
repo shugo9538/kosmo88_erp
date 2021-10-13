@@ -10,19 +10,16 @@ public class InboundDto {
 	int id;
 	int request_id;
 	int warehouse_id;
-	Date begin_date;
-	Date end_date;
-	String employee_id;
-	String client_id;
-	char isapproved;
-
+	Date approved_date;
+	Date warehoused_date;
+	
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-			
 	public int getRequest_id() {
 		return request_id;
 	}
@@ -35,44 +32,25 @@ public class InboundDto {
 	public void setWarehouse_id(int warehouse_id) {
 		this.warehouse_id = warehouse_id;
 	}
-	public Date getBegin_date() {
-		return begin_date;
+	public Date getApproved_date() {
+		return approved_date;
 	}
-	public void setBegin_date(Date begin_date) {
-		this.begin_date = begin_date;
+	public void setApproved_date(Date approved_date) {
+		this.approved_date = approved_date;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	
+	public Date getWarehoused_date() {
+		return warehoused_date;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
-	}
-	public String getEmployee_id() {
-		return employee_id;
-	}
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
-	}
-	public String getClient_id() {
-		return client_id;
-	}
-	public void setClient_id(String client_id) {
-		this.client_id = client_id;
-	}
-
-
-	public char getIsapproved() {
-		return isapproved;
-	}
-	public void setIsapproved(char isapproved) {
-		this.isapproved = isapproved;
+	public void setWarehoused_date(Date warehoused_date) {
+		this.warehoused_date = warehoused_date;
 	}
 	@Override
 	public String toString() {
 		return "InboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
-				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", employee_id=" + employee_id
-				+ ", client_id=" + client_id + ", isapproved=" + isapproved + "]";
+				+ ", approved_date=" + approved_date + ", warehoused_date=" + warehoused_date + "]";
 	}
+	
 	
 	
 }

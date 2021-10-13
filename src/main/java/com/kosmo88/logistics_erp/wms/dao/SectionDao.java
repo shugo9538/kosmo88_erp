@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +9,24 @@ import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.SectionDto;
 import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
+import com.kosmo88.logistics_erp.wms.dto.V_section_detailDto;
 
 public interface SectionDao {
 
 	void insert(SectionDto sectionDto);
 
-//	List<V_section_detailDto> selectList(int warehouseId);
+	List<V_sectionDto> selectValidSectionList(Map paramMap);
+
+	// List<V_section_detailDto> selectList(int warehouseId);
 //	List<V_warehouse_sectionDto> sectionList(int warehouseId);
 	List<V_sectionDto> sectionList(int warehouseId);
 
 	void select();
 
 	String selectLastSection(int warehouseId);
+
 	int selectMaxId();
+
 	String selectNewSection(int warehouseId);
 
 }
@@ -65,6 +71,11 @@ class SectionDaoImpl implements SectionDao {
 	@Override
 	public String selectLastSection(int warehouseId) {
 		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectLastSection", warehouseId);
+	}
+
+	@Override
+	public List<V_sectionDto> selectValidSectionList(Map paramMap) {
+		return sqlSession.selectList("com.kosmo88.logistics_erp.wms.dao.SectionDao.selectValidSectionList", paramMap);
 	}
 
 }

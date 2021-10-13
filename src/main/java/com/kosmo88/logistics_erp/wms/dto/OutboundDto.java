@@ -4,17 +4,14 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("OutnboundDto")
+@Alias("OutboundDto")
 public class OutboundDto {
 
 	int id;
 	int request_id;
 	int warehouse_id;
-	Date begin_date;
-	Date end_date;
-	String employee_id;
-	String client_id;
-	char isapproved;
+	Date approved_date;
+	Date shipped_date;
 	public int getId() {
 		return id;
 	}
@@ -33,42 +30,26 @@ public class OutboundDto {
 	public void setWarehouse_id(int warehouse_id) {
 		this.warehouse_id = warehouse_id;
 	}
-	public Date getBegin_date() {
-		return begin_date;
+	public Date getApproved_date() {
+		return approved_date;
 	}
-	public void setBegin_date(Date begin_date) {
-		this.begin_date = begin_date;
+	public void setApproved_date(Date approved_date) {
+		this.approved_date = approved_date;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	public Date getShipped_date() {
+		return shipped_date;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
-	}
-	public String getEmployee_id() {
-		return employee_id;
-	}
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
-	}
-	public String getClient_id() {
-		return client_id;
-	}
-	public void setClient_id(String client_id) {
-		this.client_id = client_id;
-	}
-	public char getIsapproved() {
-		return isapproved;
-	}
-	public void setIsapproved(char isapproved) {
-		this.isapproved = isapproved;
+	public void setShipped_date(Date shipped_date) {
+		this.shipped_date = shipped_date;
 	}
 	@Override
 	public String toString() {
 		return "OutboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
-				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", employee_id=" + employee_id
-				+ ", client_id=" + client_id + ", isapproved=" + isapproved + "]";
+				+ ", approved_date=" + approved_date + ", shipped_date=" + shipped_date + "]";
 	}
+	
+	
+
 
 	
 }

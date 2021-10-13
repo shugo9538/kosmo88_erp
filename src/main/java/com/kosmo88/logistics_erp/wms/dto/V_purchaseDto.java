@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("V_purchaseDto")
 public class V_purchaseDto {
 
-	int purchase_id;
+	int request_id;
 	int client_id;
 	String client_name;
 	Date begin_date;
@@ -15,11 +15,11 @@ public class V_purchaseDto {
 	char enabled;
 	int item_count;
 	String state;
-	public int getPurchase_id() {
-		return purchase_id;
+	public int getRequest_id() {
+		return request_id;
 	}
-	public void setPurchase_id(int purchase_id) {
-		this.purchase_id = purchase_id;
+	public void setRequest_id(int request_id) {
+		this.request_id = request_id;
 	}
 	public int getClient_id() {
 		return client_id;
@@ -65,14 +65,10 @@ public class V_purchaseDto {
 	}
 	@Override
 	public String toString() {
-		return "V_purchaseDto [purchase_id=" + purchase_id + ", client_id=" + client_id + ", client_name=" + client_name
+		return "V_purchaseDto [request_id=" + request_id + ", client_id=" + client_id + ", client_name=" + client_name
 				+ ", begin_date=" + begin_date + ", end_date=" + end_date + ", enabled=" + enabled + ", item_count="
 				+ item_count + ", state=" + state + "]";
 	}
-
-	
-	
-	
 	
 	
 
