@@ -22,6 +22,13 @@ public class SlipServiceImpl implements SlipService {
 		int slip_id = Integer.parseInt(request.getParameter("slip_id"));
 		return (List<SlipDTO>) slipDAO.selectSlipInfo(slip_id);
 	}
+	
+	// 전표 알람 발송
+	@Override
+	public void slipConfirmAlert(String tokenId, String title, String content) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }	
 

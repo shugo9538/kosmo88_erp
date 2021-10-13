@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.hr.dto.EmployeeDTO;
+import com.kosmo88.logistics_erp.hr.dto.SearchEmployeeDTO;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -19,6 +20,11 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<EmployeeDTO> employeeList() {
         return sqlSession.selectList(STATEMENT + ".employeeList");
+    }
+
+    @Override
+    public List<SearchEmployeeDTO> searchEmployeeList() {
+        return sqlSession.selectList(STATEMENT + ".searchEmployeeList");
     }
 
     @Override

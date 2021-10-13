@@ -49,7 +49,7 @@
                                      <td style="text-align:center">
                                          <input type="checkbox" id="checkAll" name="checkAll">
                                      </td>
-                                     <th>거래처 번호</th>
+                                     <th>거래처번호</th>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>

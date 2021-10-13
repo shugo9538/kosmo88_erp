@@ -1,5 +1,7 @@
 $('#insertAttendanceForm').ready(function(){
-    addAttendance();
+    if($(this).find('form').attr('id') == 'insertAttendanceForm') {
+        addAttendance();
+    }
 });
 var i = 0;
 function addAttendance() {

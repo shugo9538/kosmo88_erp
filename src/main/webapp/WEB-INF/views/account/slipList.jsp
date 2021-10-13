@@ -54,10 +54,10 @@
 				<div class="col-md-12">
 					<!-- 메뉴버튼 -->
 					<div>
-						<%-- <ul class="nav nav-pills custom-nav">
-							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">일반전표
-									등록</a></li>
-						</ul> --%>
+						<ul class="nav nav-pills custom-nav">
+							<li class="active"><a href="${ROOT_PATH}/account/slipDetail">회계지출결의
+									</a></li>
+						</ul>
 					</div>
 					<!-- 메뉴버튼 끝 -->
 					<div class="white-box">

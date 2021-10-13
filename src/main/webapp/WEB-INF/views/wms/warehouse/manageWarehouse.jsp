@@ -12,7 +12,8 @@
 <%@ include file="/WEB-INF/views/wms/common/settings.jspf"%>
 
 </head>
-<body class="sticky-header">
+<!-- <body class="sticky-header"> -->
+<body>
 
 	<!--Start left side Menu-->
 	<%@ include file="/WEB-INF/views/common/left_side.jsp"%>
@@ -115,11 +116,10 @@
 								<input type="text" class="form-control"
 									value="${warehouseDto.section_count}" readonly>
 							</div>
-							<label class="col-sm-2 control-label">가용섹션</label>
+							<label class="col-sm-2 control-label">사용섹션</label>
 							<div class="col-sm-2">
 								<input type="text" class="form-control"
-									value="${warehouseDto.section_count
-										-warehouseDto.used_section_count}"
+									value="${warehouseDto.stock_count}"
 									readonly>
 							</div>
 						</div>
@@ -130,11 +130,10 @@
 								<input type="text" class="form-control"
 									value="${warehouseDto.capacity_sum}" readonly>
 							</div>
-							<label class="col-sm-2 control-label">가용용적</label>
+							<label class="col-sm-2 control-label">사용용적</label>
 							<div class="col-sm-2">
 								<input type="text" class="form-control"
-									value="${warehouseDto.capacity_sum
-										-warehouseDto.loaded_sum}"
+									value="${warehouseDto.count_sum}"
 									readonly>
 							</div>
 
@@ -165,17 +164,18 @@
 										<c:forEach var="sectionDto" items="${sectionDtoList}"
 											varStatus="varStatus">
 											<tr>
-												<td><a id="submit" class="button"
-													onclick="addRack(${purchaseDto.purchase_id})">${sectionDto.section}</a>
-													<%-- 												<a href="${ROOT_PATH}/wms/warehouse/addSection">${sectionDto.section}</a></td> --%>
+												<td>${sectionDto.section }</td>
+<!-- 												<td><a id="submit" class="button" -->
+<%-- 													onclick="addRack(${purchaseDto.purchase_id})">${sectionDto.section}</a> --%>
+<%-- 																									<a href="${ROOT_PATH}/wms/warehouse/addSection">${sectionDto.section}</a></td> --%>
 												<td>${sectionDto.warehouse_name}</td>
-												<td>(${sectionDto.capacity})</td>
+												<td>(${sectionDto.sum_count}/${sectionDto.capacity})</td>
 												<td><c:choose>
-														<c:when test="${section_loaded>0}">
-															사용 가능	
+														<c:when test="${sectionDto.sum_count>0}">
+															사용중	
 														</c:when>
 														<c:otherwise>
-															사용중
+															사용 가능
 														</c:otherwise>
 													</c:choose></td>
 
@@ -198,19 +198,19 @@
 
 								<sec:csrfInput />
 
-								<input type="hidden" name="warehouseId" value="${id}">
+								<input type="hidden" name="warehouseId" value="${warehouseId}">
 								<div id="section-group" class="col-md-12">
 									<div id="sectionForm" style="display: none;">
 										<div class="form-group">
 											<label class="col-md-1 control-label">구역</label>
 											<div class="col-md-2">
-												<input class="form-control" id="section" name="section" type="text"
-													value="${lastSection}" disabled>
+												<input class="form-control" id="section" name="section"
+													type="text" value="${lastSection}" disabled>
 											</div>
 											<label class="col-md-1 control-label">용적</label>
 											<div class="col-md-2">
-												<input class="form-control" id="capacity" name="capacity" type="text"
-													disabled>
+												<input class="form-control" id="capacity" name="capacity"
+													type="text" value="1000" disabled>
 											</div>
 											<div role="button" id="delAdditionalForm" class="col-md-1"
 												onclick="removeSection(this);">
@@ -219,15 +219,16 @@
 										</div>
 									</div>
 								</div>
-								<div role="button" class="preview col-xs-12 my-5"
-									id="addSection" onclick="cloneSection()">
-									<i class="icon-plus""></i>섹션 추가
+								<div role="button" class="preview col-xs-12 my-5" id="addSection">
+									<span onclick="cloneSection()"><i class="icon-plus"></i>섹션 추가</span>
 								</div>
 								<input type="hidden" id="additionalFormCnt"
 									name="additionalFormCnt" value="1">
-								<button type="submit" class="btn btn-default mt-5">등록</button>
-								<button type="button" class="btn btn-default mt-5"
-									onclick="getNewSection('A')">테스트</button>
+								<div class="col-xs-2">
+									<button type="submit" class="btn btn-default mt-5">등록</button>
+								</div>
+								<!-- 								<button type="button" class="btn btn-default mt-5" -->
+								<!-- 									onclick="getNewSection('A')">테스트</button> -->
 							</form>
 						</div>
 					</div>

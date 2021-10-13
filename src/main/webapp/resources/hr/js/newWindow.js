@@ -50,6 +50,24 @@ $(document)
                         }
                         event.preventDefault();
                         win = window.open(url, "popupWindow", options);
+                        
+                        var timer = setInterval(function() {
+                            if (win.closed) {
+                                clearInterval(timer);
+                                currTab.ajax.reload();
+                            }
+                        }, 1000);
+                    });
+                    
+                    var salaryList = '#insertSalary';
+                    $('#salaryDatatables').on('click', salaryList, function(event) {
+                        var url;
+                        if ($(this).attr('id') == 'insertSalary') {
+                            url = currLocation + '/insertSalary';
+                        }
+                        
+                        event.preventDefault();
+                        win = window.open(url, "popupWindow", options);
 
                         var timer = setInterval(function() {
                             if (win.closed) {

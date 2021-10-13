@@ -86,8 +86,7 @@
 												<!-- 													id="checkAll" name="checkAll"></td> -->
 												<!-- 												<th>#</th> -->
 												<th>창고명</th>
-												<th>섹션수</th>
-												<th>총용적</th>
+												<th>사용섹션수</th>
 												<th>사용용적</th>
 												<th>등록일</th>
 												<th>포화도</th>
@@ -100,18 +99,17 @@
 													<td><a
 														href="${ROOT_PATH}/wms/warehouse/manage?id=${warehouseDto.id}">
 															${warehouseDto.name} </a></td>
-													<td>${warehouseDto.section_count}</td>
-													<td>${warehouseDto.capacity_sum}</td>
-													<td>${warehouseDto.used_section_count}</td>
+													<td>${warehouseDto.stock_count}/${warehouseDto.section_count}</td>
+													<td>${warehouseDto.count_sum}/${warehouseDto.capacity_sum}</td>
 													<td>${warehouseDto.register_date}</td>
 													<td>
 														<div class="progress progress-striped progress-sm">
 															<fmt:formatNumber var="loadRate"
-																value="${warehouseDto.loaded_sum/warehouseDto.capacity_sum*100}"
+																value="${warehouseDto.count_sum/warehouseDto.capacity_sum*100}"
 																pattern="#.##" />
 
 															<div class="progress-bar progress-bar-warning"
-																style="width:${(warehouseDto.loaded_sum)/(warehouseDto.capacity_sum+0.0)*100}%;"></div>
+																style="width:${(warehouseDto.count_sum)/(warehouseDto.capacity_sum+0.0)*100}%;"></div>
 														</div>
 												</tr>
 											</c:forEach>
@@ -207,13 +205,13 @@
 													<div class="form-group">
 														<label class="col-md-1 control-label">구역</label>
 														<div class="col-md-2">
-															<input class="form-control" name="section" type="text"
-																disabled>
+															<input class="form-control" id="section" name="section" type="text"
+																value="A" disabled>
 														</div>
 														<label class="col-md-1 control-label">용적</label>
 														<div class="col-md-2">
-															<input class="form-control" name="capacity" type="text"
-																disabled>
+															<input class="form-control" id="capacity" name="capacity" type="text"
+																value="1000" disabled>
 														</div>
 														<div role="button" id="delAdditionalForm" class="col-md-1"
 															onclick="removeNode(this);">
@@ -223,8 +221,8 @@
 												</div>
 											</div>
 											<div role="button" class="preview col-md-12 my-5"
-												id="addSection" onclick="cloneForm()">
-												<i class="icon-plus""></i>섹션 추가
+												id="addSection" onclick="cloneSection()">
+												<i class="icon-plus"></i>섹션 추가
 											</div>
 											<input type="hidden" id="additionalFormCnt"
 												name="additionalFormCnt" value="1">
@@ -261,7 +259,9 @@
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/daumAddress.js"></script>
 	<script>
-		window.onload = cloneForm();
+		window.onload = function(){
+			cloneForm();
+		}
 	</script>
 </body>
 </html>

@@ -1,60 +1,135 @@
+//csrf 토큰 넣기. common으로 보내기
+
+
+
+//초기화
+//warehousing
+document.addEventListener("DOMContentLoaded", function () {
+  // console.log(location.href.indexOf('wms/inbound/warehousing'))
+  var bodyClass = document.querySelector("body").getAttribute("class");
+  console.log("bodyClass : " + bodyClass);
+  // if(location.href.indexOf('wms/inbound/warehousing')){
+  if ((bodyClass = warehousing)) {
+    var items = document.getElementsByClassName("item");
+    var sections = document.getElementsByClassName("section");
+    console.log(
+      "items : " +
+      Array.from(items)
+        .map((i) => i.innerHTML)
+        .toString()
+    );
+    console.log("sections : " + sections);
+    // console.log('sections : ' + Array.from(sections).map(s=>s.innerHTML)..toString())
+  }
+
+  //재고가 있으면 해당 섹션 select 잠그기
+  //가능하다면 해당 옵션을 기억해서 다른데서 제거하고싶다
+  for (var section of sections) {
+    console.log("?" + section.hasAttribute("selected"));
+    if (section.hasAttribute("selected")) {
+      console.log("section.parentElement : " + section.parentElement.nodeName);
+      section.parentElement.addEventListener("focus", function () {
+        this.initialSelect = this.selectedIndex;
+        console.log("this.initialSelect :" + this.initialSelect);
+        console.log("this.selectedIndex:" + this.selectedIndex);
+      });
+      section.parentElement.addEventListener("change", function () {
+        this.selectedIndex = this.initialSelect;
+        console.log("this.initialSelect :" + this.initialSelect);
+        console.log("this.selectedIndex:" + this.selectedIndex);
+      });
+    }
+  }
+
+
+  //select 자동으로 채워넣기
+  // var sections = Array.from(document.getElementById('section')).filter(e=>e.querySelector('.selected')==null);
+  // console.log('length :' +sections.length)
+  // console.log(sections.toString())
+  // // var sections = document.querySelectorAll('#section').forEach();
+  // var lastSection = sections[sections.length - 1];
+  // var sectionValues = lastSection.childNodes;
+  // console.log(lastSection);
+  // for (var section of sections) {
+  //   var sectionOptions = section.child
+  //   for (var sectionValue of sectionValues) {
+  //     console.log('sectionValue : ' + sectionValue.innerHTML);
+
+  //   }
+  // }
+
+
+
+});
+
 //자바스크립트의 this는 호출한 객체를 가리킨다? 기본 window
 let dispatchWindow;
 let warehouse_id;
 
-function dispatchInbound(purchaseId) {
-	console.log(getContextPath() + "/wms/inbound/dispatch");
-	this.purchase_id = purchaseId;
-	console.log("입하 지시창 오. purchase_id : " + purchaseId);
-	dispatchwindow = window.open(getContextPath() + "/wms/inbound/dispatch?purchaseId="+purchaseId, "haha", "width=800,height=600");
+function dispatchInbound(requestId) {
+  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfToken = $("meta[name='_csrf']").attr("content");
+  
+  console.log(getContextPath() + "/wms/inbound/dispatch");
+  this.requestId = requestId;
+  console.log("입하 지시창 오. requestId : " + requestId);
+  dispatchwindow = window.open(
+    getContextPath() + "/wms/inbound/dispatch?requestId=" + requestId,
+    "haha",
+    "width=800,height=600"
+  );
 }
 
-function dispatchAction() {
-	var select = document.getElementById("destination");
-	var warehouse_id = select.options[select.selectedIndex].value;
+function dispatchAction(requestId) {
+  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfToken = $("meta[name='_csrf']").attr("content");
+
+  var select = document.getElementById("destination");
+  var warehouseId = select.options[select.selectedIndex].value;
+
+  // var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
+  var url = getContextPath() + "/wms/inbound/dispatchAction";
+  console.log("요청 url : " + url);
+
+  var xhr = new XMLHttpRequest();
+  var query =
+    // "warehouseId=" + warehouseId + "&=" + opener.requestId;
+    "warehouseId=" + warehouseId + "&requestId=" + opener.requestId
+  console.log("query : " + query);
+
+  if (!xhr) {
+    alert("XMLHTTP 인스턴스 생성 불가");
+    return false;
+  }
+
+  xhr.onreadystatechange = alertContents(xhr);
+  // xhr.open("GET", url + "?" + query, true);
+   xhr.open("POST", url, true);
+   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  // xhr.setRequestHeader(csrfParameter, csrfToken)
+  xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken)
+   xhr.send(query);
 
 
-	// var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
-	var url = getContextPath() + "/wms/inbound/dispatchAction";
-	console.log("요청 url : " + url);
-
-
-	var req = new XMLHttpRequest();
-	var query = 'warehouse_id=' + warehouse_id + "&purchase_id=" + opener.purchase_id;	
-	console.log("query : " + query);
-
-	if (!req) {
-		alert('XMLHTTP 인스턴스 생성 불가');
-		return false;
-	}
-
-	req.onreadystatechange = alertContents(req);
-	req.open('GET', url + "?" + query, true);
-	req.send();
-
-	alert("입하 지시 처리되었습니다.\n test: " + query);
-	window.close();
-	opener.location.reload();
+  alert("입하 지시 되었습니다.\n test: " + query);
+  window.close();
+  opener.location.reload();
 }
-
 
 function alertContents(req) {
-	if (req.readyState === XMLHttpRequest.DONE) {
-		if (req.status === 200) {
-			alert(req.responseText);
-		} else {
-			alert('request에 문제가 있음\nreadyState : ' + req.readyState + "\nstatus : " + req.status);
-		}
-	}
-
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if (req.status === 200) {
+      alert(req.responseText);
+    } else {
+      alert(
+        "request에 문제가 있음\nreadyState : " +
+        req.readyState +
+        "\nstatus : " +
+        req.status
+      );
+    }
+  }
 }
-
-
-
-
-
-
-
 
 //warehousing에 있던거
 
@@ -64,7 +139,6 @@ function alertContents(req) {
 // 			adjustIncludedPage();
 // }
 
-
 var csrfData = {};
 var currTab;
 var csrfParameter;
@@ -72,34 +146,33 @@ var csrfToken;
 
 // document.addEventListener("DOMContentLoaded, function(){"
 $(document).ready(function () {
-	//csrf 토큰값 받아오기?
-	csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-	csrfToken = $("meta[name='_csrf']").attr("content");
+  //csrf 토큰값 받아오기?
+  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfToken = $("meta[name='_csrf']").attr("content");
 
-	//현재 url에서 명령어 구하기
-	var currLocation = window.location.href;
-	console.log("currLocation : " + currLocation);
+  //현재 url에서 명령어 구하기
+  var currLocation = window.location.href;
+  console.log("currLocation : " + currLocation);
 
-	csrfData[csrfParameter] = csrfToken;
+  csrfData[csrfParameter] = csrfToken;
 
-	var pathArr = currLocation.split('/');
-	var pathIndexLength = pathArr.length;
-	var lastPath = pathArr[pathIndexLength - 1];
-	console.log(lastPath)
+  var pathArr = currLocation.split("/");
+  var pathIndexLength = pathArr.length;
+  var lastPath = pathArr[pathIndexLength - 1];
+  console.log(lastPath);
 
-	switch (lastPath) {
-		case "":
-		case "receivingStatus":
-			//  $('#receivingStatusList').ready(function() {
-			receivingStatusList();
-		case "receivingHistory":
-		//         $('#receivingHistoryList').ready(function() {
-		//         	receivingHistoryList();
-		//         });
-		case "buttonAction":
-	}
-})
-
+  switch (lastPath) {
+    case "":
+    case "receivingStatus":
+      //  $('#receivingStatusList').ready(function() {
+      receivingStatusList();
+    case "receivingHistory":
+    //         $('#receivingHistoryList').ready(function() {
+    //         	receivingHistoryList();
+    //         });
+    case "buttonAction":
+  }
+});
 
 // 	}
 // 	// '#clientRegisterAction', 버튼 id
@@ -183,56 +256,56 @@ $(document).ready(function () {
 // 	            alert('오류');
 // 	        },
 // 	    });
-// 	});  
+// 	});
 // });
 
-
-console.log(document)
-console.log($(document))
+console.log(document);
+console.log($(document));
 
 function receivingStatusList() {
-	console.log("----receivingStatusList 실행")
-	$('#receivingStatusList').append('<table class="table table-hover"></table>');
-	columns = [
-		{
-			'sTitle': '#',
-			data: 'r_num',
-			render: function (data) {
-				return '<input type="checkBox" value="' + data + '">';
-			}
-		}, {
-			'sTitle': '앗',
-			data: 'id'
-		}, {
-			'sTitle': '이것은',
-			data: 'attendance_cd_id'
-		}
-		// , 
-		// {
-		//     'sTitle' : '근태 신청일',
-		//     data : 'application_date',
-		//     render : $.fn.dataTable.render.moment()
-		// }, {
-		//     'sTitle' : '시작',
-		//     data : 'begin_date',
-		//     render : $.fn.dataTable.render.moment()
-		// }, {
-		//     'sTitle' : '종료',
-		//     data : 'end_date',
-		//     render : $.fn.dataTable.render.moment()
-		// }, {
-		//     'sTitle' : '사유',
-		//     data : 'reason'
-		// }, {
-		//     'sTitle' : '상태',
-		//     data : 'state'
-		// }
-	];
+  console.log("----receivingStatusList 실행");
+  $("#receivingStatusList").append('<table class="table table-hover"></table>');
+  columns = [
+    {
+      sTitle: "#",
+      data: "r_num",
+      render: function (data) {
+        return '<input type="checkBox" value="' + data + '">';
+      },
+    },
+    {
+      sTitle: "앗",
+      data: "id",
+    },
+    {
+      sTitle: "이것은",
+      data: "attendance_cd_id",
+    },
+    // ,
+    // {
+    //     'sTitle' : '근태 신청일',
+    //     data : 'application_date',
+    //     render : $.fn.dataTable.render.moment()
+    // }, {
+    //     'sTitle' : '시작',
+    //     data : 'begin_date',
+    //     render : $.fn.dataTable.render.moment()
+    // }, {
+    //     'sTitle' : '종료',
+    //     data : 'end_date',
+    //     render : $.fn.dataTable.render.moment()
+    // }, {
+    //     'sTitle' : '사유',
+    //     data : 'reason'
+    // }, {
+    //     'sTitle' : '상태',
+    //     data : 'state'
+    // }
+  ];
 
-	url = 'selectAttendacne';
-	// callList(url, columns);
+  url = "selectAttendacne";
+  // callList(url, columns);
 }
-
 
 // 거래처(구매처) 목록
 // function receivingHistoryList() {
@@ -289,7 +362,7 @@ function receivingStatusList() {
 // 				// 전체 체크박스 false
 // 				$("#checkAll").prop("checked", false);
 
-// 				// 두 수량이 같으면	
+// 				// 두 수량이 같으면
 // 			} else {
 // 				// 전체 체크박스 true
 // 				$("#checkAll").prop("checked", true);
@@ -320,60 +393,72 @@ function receivingStatusList() {
 let submitWindow;
 // let warehouse_id;
 
-function approve(inboundId, warehouseId) {
-	var url = getContextPath() + "/wms/inbound/approve";
-	var query = "?inboundId=" + inboundId + "&warehouseId=" + warehouseId;
-	console.log("url : " + url);
-	console.log("query : " + query)
+function warehousing(requestId, warehouseId) {
+  var url = getContextPath() + "/wms/inbound/warehousing";
+  var query = "?requestId=" + requestId + "&warehouseId=" + warehouseId;
+  console.log("url : " + url);
+  console.log("query : " + query);
 
-	this.inboundId = inboundId;
-	this.warehousId = warehouseId;
+  this.requestId = requestId;
+  this.warehousId = warehouseId;
 
-	//근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
-	// console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
-	submitWindow = window.open(url + query, "haha", "width=800,height=600");
+  //근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
+  // console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
+  submitWindow = window.open(url + query, "haha", "width=800,height=600");
 }
 
+function disableSameOption(value) { }
 
+function warehousingAction() {
+  //   var select = document.getElementById("destination");
+// var itemIdArr = document.getElementsByName('itemId');   
+// var quantityArr = document.getElementsByName('itemId');   
+// var itemIdArr = document.getElementsByName('itemId');   
 
+  //   var url = getContextPath() + "/wms/inbound/warehousingAction";
+  //   console.log("요청 url : " + url);
+  //   var req = new XMLHttpRequest();
 
-function approveAction(inboundId, warehouseId, sectionId) {
-	var select = document.getElementById("destination");
-	var warehouse_id = select.options[select.selectedIndex].value;
+  //   var itemIds = document.getElementsByClassName("itemId");
+  //   var itemNames = document.getElementsByClassName("item");
+  //   var sections = document.getElementsByName("section");
 
+  //   var query =
+  //     "warehouseId=" +
+  //     warehouse_id +
+  //     "&inboundId=" +
+  //     opener.inboundId +
+  //     "&sectionId=" +
+  //     opener.sectionId;
+  //   console.log("query : " + query);
 
-	// var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
-	var url = getContextPath() + "/wms/boundin/approveAction";
-	console.log("요청 url : " + url);
+  //   if (!req) {
+  //     alert("XMLHTTP 인스턴스 생성 불가");
+  //     return false;
+  //   }
 
+  //   req.onreadystatechange = alertContents(req);
+  //   req.open("POST", url + "?" + query, true);
+  //   req.send();
 
-	var req = new XMLHttpRequest();
-	var query = 'warehouseId=' + warehouse_id + "&inboundId=" + opener.inboundId + "&sectionId=" + opener.sectionId;
-	console.log("query : " + query);
-
-	if (!req) {
-		alert('XMLHTTP 인스턴스 생성 불가');
-		return false;
-	}
-
-	req.onreadystatechange = alertContents(req);
-	req.open('GET', url + "?" + query, true);
-	req.send();
-
-	alert("입하 지시 처리되었습니다.\n test: " + query);
-	window.close();
-	opener.location.reload();
+  alert("입고 처리되었습니다.\n");
+    // window.close();
+  opener.location.reload();
+  
+  return true;
 }
-
 
 function alertContents(req) {
-	if (req.readyState === XMLHttpRequest.DONE) {
-		if (req.status === 200) {
-			alert(req.responseText);
-		} else {
-			alert('request에 문제가 있음\nreadyState : ' + req.readyState + "\nstatus : " + req.status);
-		}
-	}
-
+  if (req.readyState === XMLHttpRequest.DONE) {
+    if (req.status === 200) {
+      alert(req.responseText);
+    } else {
+      alert(
+        "request에 문제가 있음\nreadyState : " +
+        req.readyState +
+        "\nstatus : " +
+        req.status
+      );
+    }
+  }
 }
-

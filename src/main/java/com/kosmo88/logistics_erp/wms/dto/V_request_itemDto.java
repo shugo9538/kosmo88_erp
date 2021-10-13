@@ -4,9 +4,10 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("V_purchase_itemDto")
-public class V_purchase_itemDto {
+@Alias("V_request_itemDto")
+public class V_request_itemDto {
 
+	private int id;
 	private int request_id;
 	private Date begin_date;
 	private Date end_date;
@@ -14,10 +15,15 @@ public class V_purchase_itemDto {
 	private String employee_id;
 	private int client_id;
 	private char enabled;
-	private int product_list_id;
 	private int item_id;
 	private String item_name;
 	private int quantity;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getRequest_id() {
 		return request_id;
 	}
@@ -60,12 +66,6 @@ public class V_purchase_itemDto {
 	public void setEnabled(char enabled) {
 		this.enabled = enabled;
 	}
-	public int getProduct_list_id() {
-		return product_list_id;
-	}
-	public void setProduct_list_id(int product_list_id) {
-		this.product_list_id = product_list_id;
-	}
 	public int getItem_id() {
 		return item_id;
 	}
@@ -84,19 +84,14 @@ public class V_purchase_itemDto {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "V_request_itemDto [request_id=" + request_id + ", begin_date=" + begin_date + ", end_date=" + end_date
-				+ ", state=" + state + ", employee_id=" + employee_id + ", client_id=" + client_id + ", enabled="
-				+ enabled + ", product_list_id=" + product_list_id + ", item_id=" + item_id + ", item_name=" + item_name
+		return "V_request_itemDto [id=" + id + ", request_id=" + request_id + ", begin_date=" + begin_date
+				+ ", end_date=" + end_date + ", state=" + state + ", employee_id=" + employee_id + ", client_id="
+				+ client_id + ", enabled=" + enabled + ", item_id=" + item_id + ", item_name=" + item_name
 				+ ", quantity=" + quantity + "]";
 	}
 	
 	
 	
-	
-	
-
 }

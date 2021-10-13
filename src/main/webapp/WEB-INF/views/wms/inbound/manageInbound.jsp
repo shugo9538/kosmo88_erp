@@ -92,7 +92,7 @@
 									<thead>
 										<tr>
 											<th style="text-align: center"><input type="checkBox"
-												class="purchase_id" value="450"></th>
+												class="requestId" value="450"></th>
 											<!-- 													<th>품목</th> -->
 											<!-- 													<th>수량</th> -->
 											<th>구매처</th>
@@ -106,13 +106,13 @@
 										<c:forEach var="purchaseDto" items="${purchaseDtoList}">
 											<tr>
 												<td style="text-align: center"><input type="checkBox"
-													class="purchase_id" value="450"></td>
+													class="requestId" value="450"></td>
 												<td>${purchaseDto.client_name}</td>
 												<td>${purchaseDto.begin_date}</td>
 												<td>${purchaseDto.end_date}</td>
 												<td>${purchaseDto.item_count}</td>
 												<td><a id="submit" class="button"
-													onclick="dispatchInbound(${purchaseDto.purchase_id})">입하지시</a>
+													onclick="dispatchInbound(${purchaseDto.request_id})">입하지시</a>
 												</td>
 											</tr>
 										</c:forEach>

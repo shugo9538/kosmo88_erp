@@ -44,7 +44,7 @@
 <c:set var="end_product" value="${dto.basic_product + dto.current_product}"/>
 
 <!-- 매출책, 매출총이익 -->
-<!-- 매출총이익 = 상품매출 + 재품매출 -->
+<!-- 매출총이익 = 상품매출 + 제품매출 -->
 <c:set var="income1" value="${sales_cost}"/>
 
 
@@ -52,26 +52,55 @@
 <!-- 직원급여  -->
 <c:set var="employee_salary" value="${dto.employee_salary}"/>
 <!-- 복리후생비 -->
+<c:set var="employee_benefits" value="${dto.employee_benefits}"></c:set>
+<!-- 여비교통비 -->
+<c:set var="travel_expenses" value="${dto.travel_expenses}"></c:set>
+<!-- 접대비 -->
+<c:set var="entertainment" value="${dto.entertainment}"></c:set>
+<!-- 통신비 -->
+<c:set var="communication_cost" value="${dto.communication_cost}"></c:set>
+<!-- 수도광열비 -->
+<c:set var="water_utility_bill" value="${dto.water_utility_bill}"></c:set>
+<!-- 세금과공과금 -->
+<c:set var="taxes_and_duties" value="${dto.taxes_and_duties}"></c:set>
+<!-- 지급임차료 -->
+<c:set var="paid_rent" value="${dto.paid_rent}"></c:set>
+<!-- 보험료 -->
+<c:set var="premium" value="${dto.premium}"></c:set>
+<!-- 차량유지비 -->
+<c:set var="vehicle_maintenance_cost" value="${dto.vehicle_maintenance_cost}"></c:set>
+<!-- 사무용품비 -->
+<c:set var="office_supplies" value="${dto.office_supplies}"></c:set>
 <!-- 소모품비 -->
-<!-- 복리후생비 -->
-<!-- 복리후생비 -->
+<c:set var="consumables_cost" value="${dto.consumables_cost}"></c:set>
+
 <!-- 판관비합계(계정과목 추가시 합산) -->
-<c:set var="income2" value="${employee_salary}"/>
- 
+
+<c:set var="income2" value="${employee_salary + employee_benefits + travel_expenses + entertainment + communication_cost + water_utility_bill + taxes_and_duties + paid_rent + premium + vehicle_maintenance_cost + office_supplies + consumables_cost}"/>
+
 <!-- 영업이익  -->
 <!-- 영업이익 = 매출총이익 - 판관리비  -->
 <c:set var="income3" value="${income1 - income2}"/>             	
+
 <!-- 영업외수익 non-operating income  -->
-<!-- 영업활동외적으로 벌어들인 수입(예) 이자수입,수입임대료,유형자산처분이익등  -->              	
-<c:set var="income4" value="0"/>             	
+<c:set var="interest_income" value="${dto.interest_income}"/>
+
+<!-- 영업활동외적으로 벌어들인 수입(예) 이자수입,수입임대료,유형자산처분이익등  --> 
+<c:set var="income4" value="${dto.interest_income}"/>             	
+
 <!-- 영업외비용 non-operating expenses -->
+<!-- 이자비용  -->
+<c:set var="interest_expense" value="${dto.interest_expense}"/>
+
 <!-- 영업활동외적으로 나간 지출 (예) 이자비용  -->              	
-<c:set var="income5" value="0"/>             	
+<c:set var="income5" value="${dto.interest_expense}"/>             	
 
 <!-- 법인세 차감전 순이익  -->
 <c:set var="income6" value="${income3 + income4 -income5}"/>             	
+
 <!-- 법인세비용  -->
-<c:set var="income7" value="0"/>             	
+<c:set var="income7" value="${dto.corporate_tax}"/>             	
+
 <!-- 당기순이익 -->
 <!-- 당기순이익 = 법인세차감전순이익 - 법인세비용  -->
 <c:set var="income8" value="${income6 - income7}"/>             	

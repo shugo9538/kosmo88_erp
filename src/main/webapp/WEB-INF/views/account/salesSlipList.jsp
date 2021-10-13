@@ -47,8 +47,8 @@
 				<!-- 메뉴버튼 끝 -->
 				<div class="white-box">
 					<div class="title" style="text-align-last: center">
-						<h2 class="header-title">매입/매출장</h2>
-						<h2 class="header-title"><c:out value="${sysYear}"/>년</h2>
+						<h2 class="header-title" style="font-size:35px">매입/매출장</h2><br>
+						<h2 class="header-title"><c:out value="${sysYear}"/></h2>
 					</div>
 					<!-- 테이블 시작  -->
 					<div class="table-responsive">
@@ -149,7 +149,7 @@
 		<!--End row-->
 		<!--Start  Footer -->
 		<%@ include file="../common/footer.jsp"%>
-		<%-- <%@ include file="common/accountFooter.jsp"%> --%>
+		<%@ include file="common/accountFooter.jsp"%>
 		<!--End footer -->
 	</div>
 	<!--End main content -->

@@ -35,4 +35,4 @@
 </head>
 
 <!-- accountDetail.jsp -->
-<link href="/logistics_erp/resources/account/css/accountDetail_style.css" rel="stylesheet">
+<link href="/logistics_erp/resources/accounting/css/accountDetail_style.css" rel="stylesheet">

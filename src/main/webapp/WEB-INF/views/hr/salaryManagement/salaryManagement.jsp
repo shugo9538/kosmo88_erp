@@ -25,20 +25,17 @@
 			<!--Start Page Tab-->
 			<ul class="nav nav-pills custom-nav">
 				<li class="active">
-					<a>월별 지급 및 현황</a>
+					<a id="salaryList">월별 지급 및 현황</a>
 				</li>
-				<li class="active">
-					<a>급여 통계</a>
-				</li>
-				<li class="active">
-					<a>근로 소득</a>
+				<li>
+					<a id="salaryStatistics">급여 통계</a>
 				</li>
 			</ul>
 			<!--End Page Tab-->
 			<!--Start row : 근태 항목 관리 -->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="white-box"  id=holidayDatatables>
+					<div class="white-box" id="salaryDatatables">
 					</div>
 				</div>
 			</div>

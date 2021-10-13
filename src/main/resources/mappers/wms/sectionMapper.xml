@@ -23,8 +23,10 @@
 	
 	<select id="selectLastSection" 
 	parameterType="int" resultType="string">
-		SELECT * 
-		FROM V_LAST_SECTION
+<!-- 		SELECT *  -->
+<!-- 		FROM V_LAST_SECTION -->
+<!-- 		WHRER WAREHOUSE_ID=#{warehouseId} -->
+		SELECT F_GET_LAST_SECTION(#{WAREHOUSE}) FROM DUAL
 	</select>
 
 	<select id="selectNewSection" 
@@ -44,10 +46,20 @@
 		<!-- AND ITEM_ID = 1 -->
 	</select>
 
-<!-- 	<select id="sectionList" parameterType="int" -->
-<!-- 		resultType="V_warehouse_sectionDto"> -->
-<!-- 		SELECT * FROM V_WAREHOUSE_SECTION -->
-<!-- 		WHERE WAREHOUSE_ID = #{warehouseId} -->
-		<!-- AND ITEM_ID = 1 -->
-<!-- 	</select> -->
+
+	<!-- 빈 섹션 -->
+	<select id="selectValidSectionList" parameterType="Map"
+		resultType="V_sectionDto">
+		SELECT ROWNUM, S.* 
+		FROM V_SECTION S 
+		WHERE (ITEM_ID IS NULL 
+		OR ITEM_NAME IN 
+			<foreach collection="itemArr" item="item" separator="," open="(" close=")" >
+				#{item}
+			</foreach>
+			)
+		AND S.WAREHOUSE_ID = #{warehouseId}
+<!-- 		AND ROWNUM BETWEEN 1 AND #{rowNum} -->
+	</select>
+
 </mapper>    	

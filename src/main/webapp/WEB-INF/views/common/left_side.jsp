@@ -22,9 +22,7 @@
 							환경설정</a></li>
 					<li><a href="${ROOT_PATH}/hr/employee">인사카드 관리</a></li>
 					<li><a href="${ROOT_PATH}/hr/attendance/">근태 관리</a></li>
-					<li><a href="${ROOT_PATH}/hr/holiday">휴가 관리</a></li>
 					<li><a href="${ROOT_PATH}/hr/salary">급여관리</a></li>
-					<li><a href="${ROOT_PATH}/hr/payslip">전표 관리</a></li>
 				</ul></li>
 			<li class="menu-list" id="account"><a href="#"> <i
 					class="icon-layers"></i> <span>회계관리</span>
@@ -57,6 +55,8 @@
 					class="icon-envelope-open"></i> <span>구매관리</span>
 			</a>
 				<ul class="sub-menu-list">
+					<li><a href="${ROOT_PATH}/purchase/itemManagement">상품
+							관리</a></li>
 					<li><a href="${ROOT_PATH}/purchase/clientManagement">거래처
 							관리</a></li>
 					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서
@@ -79,12 +79,12 @@
 							정보</a></li>
 					<li><a
 						href="${ROOT_PATH}/wms/warehouse/warehouse?id=1&tab=stock">재고
+							정보</a></li>
+					<li><a
+						href="${ROOT_PATH}/wms/inbound/manageWarehousing?id=1&tab=request">입고
 							관리</a></li>
 					<li><a
-						href="${ROOT_PATH}/wms/inbound/warehousing?id=1&tab=request">입고
-							관리</a></li>
-					<li><a
-						href="${ROOT_PATH}/wms/outbound/shipping?id=1&tab=request">출고
+						href="${ROOT_PATH}/wms/outbound/manageShipping?id=1&tab=request">출고
 							관리</a></li>
 					<li><a href="${ROOT_PATH}/wms/warehouse/list">창고 관리(괸리자)</a></li>
 					<li><a href="${ROOT_PATH}/wms/inbound/manageInbound">입하

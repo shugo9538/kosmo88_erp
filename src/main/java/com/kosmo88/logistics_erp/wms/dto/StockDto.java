@@ -1,27 +1,23 @@
 package com.kosmo88.logistics_erp.wms.dto;
 
+import java.sql.Date;
+
 import org.apache.ibatis.type.Alias;
 
 @Alias("StockDto")
 public class StockDto {
 
 	private int id;
-	private int warehouse_id;
 	private int section_id;
 	private int item_id;
 	private int count;
-	
+	private String type;
+	private Date register_date;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getWarehouse_id() {
-		return warehouse_id;
-	}
-	public void setWarehouse_id(int warehouse_id) {
-		this.warehouse_id = warehouse_id;
 	}
 	public int getSection_id() {
 		return section_id;
@@ -41,13 +37,25 @@ public class StockDto {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Date getRegister_date() {
+		return register_date;
+	}
+	public void setRegister_date(Date register_date) {
+		this.register_date = register_date;
+	}
 	@Override
 	public String toString() {
-		return "StockDto [id=" + id + ", warehouse_id=" + warehouse_id + ", section_id=" + section_id + ", item_id="
-				+ item_id + ", count=" + count + "]";
+		return "StockDto [id=" + id + ", section_id=" + section_id + ", item_id=" + item_id + ", count=" + count
+				+ ", type=" + type + ", register_date=" + register_date + "]";
 	}
 	
-	
+
 	
 
 }
