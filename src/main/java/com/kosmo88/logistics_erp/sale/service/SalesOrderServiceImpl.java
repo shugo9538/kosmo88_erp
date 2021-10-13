@@ -50,7 +50,7 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		map.put("employee_id", dto.getEmployee_id());
 		map.put("client_id", dto.getClient_id());
 		map.put("end_date", dto.getEnd_date());
-		map.put("type", "WITHDRAW");
+		map.put("type", "DEPOSIT");
 		map.put("department_id", dto.getDepartment_id());
 		System.out.println("담당자 id : " + dto.getEmployee_id());
 		System.out.println("거래처 id : " + dto.getClient_id());
@@ -103,10 +103,6 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		
 		// 주문서 상세페이지(상품 정보)
 		SalesOrderDetailViewDTO idto = orderDao.getOrderDetailItem(request_id);
-		System.out.println(idto.getItem_name());
-		System.out.println(idto.getItem_category());
-		System.out.println(idto.getItem_quantity());
-		System.out.println(idto.getItem_sales_price());
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("idto", idto);

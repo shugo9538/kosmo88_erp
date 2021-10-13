@@ -39,6 +39,9 @@ $(document).ready(function() {
 	    } else if (!$('#end_date').val()) {
 	    	swal("납기요청일자를 입력하세요!!", "납기요청일자 입력 누락", "error");
 	    	return false;
+	    } else if ($('#orderItemCall').val() != 1){
+	    	swal("하나 이상의 상품을 입력하세요!!", "상품 미선택", "error");
+	    	return false;
 	    }
 	    
 	    /*
@@ -71,6 +74,8 @@ $(document).ready(function() {
 	        },
 	        success : function(data) {
 	        	itemRegister();
+	        	
+	        	
 	        },
 	        error : function() {
 				swal({
@@ -90,9 +95,13 @@ $(document).ready(function() {
 $('#orderItemCall').on('click', function() {
 	var request_id = $('#request_id').val();
 	var client_id = $('#client_id').val();
+	
 	console.log(client_id);
 	if (client_id != 'none'|| 0) {
 		orderItemList(request_id);
+		
+		$('#orderRegisterForm').find('#orderItemCall').val('1');
+		
 	} else {
 		swal("견적서를 선택해주세요!");
 		return false;
@@ -126,6 +135,18 @@ function orderList() {
 	// 테이블 id
 	currTab = $('#orderList').DataTable({
 		"order": [[ 1, "desc" ]],
+		dom: 'frtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">주문서목록 다운로드</i>',
+            sheetName: '영업팀 주문서 목록',
+            messageBottom : '커밋 3팀'
+        }
+        ],
         ajax : {
             url : window.location.href + '/orderList', // 현 위치
             type : 'POST',
@@ -160,16 +181,16 @@ function orderList() {
                 }, {
                 	data : null,
                 	render : function(data, type, row, meta) {
-                		if (row.slip_state == 'R') return '<button class="btn  btn-primary" type="button" name="orderRequest" value="' + row.request_id + '">승인요청</button>';
+                		if (row.slip_state == 'R') return '<button class="btn  btn-primary" type="button" name="orderRequest" value="' + row.request_id + '">주문요청</button>';
                 		else if (row.slip_state == 'N') return '<button class="btn  btn-defalt" type="button">승인대기</button>';
-                		else if (row.slip_state == 'Y') return '승인완료';
+                		else if (row.slip_state == 'Y') return '<label style="color:blue;"><i class="fa fa-check">승인완료</label>';
                 	}
                 }, {
                 	data : 'request_state',
                 	render : function(data) {
                 		if (data == 'RX_ORDER') return '<button class="btn  btn-defalt" type="button">출고준비</button>';
                 		else if (data == 'RX_SALES') return '<button class="btn  btn-defalt" type="button">출고준비</button>';
-                		else if (data == 'RX_OUTOFBOUND') return '출고완료';
+                		else if (data == 'RX_OUTOFBOUND') return '<label style="color:blue;"><i class="fa fa-check">출고완료</label>';
                 	}
                 }
         ],
@@ -448,6 +469,7 @@ function itemRegister() {
 					destroy : true,
 					retrieve : true
 					});
+					$('#orderRegisterForm').find('#orderItemCall').val('');
 					regiTab.ajax.reload();
 				});
 			}
@@ -464,6 +486,7 @@ function itemRegister() {
 		},
 	});
 }
+
 
 // 승인요청
 function approval(id) {

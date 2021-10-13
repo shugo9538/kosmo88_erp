@@ -15,12 +15,13 @@
 <c:if test="${update == true}">
 	<script type="text/javascript">
 		swal({
-			title:"거래처 삭제",
+			title:"거래처 삭제 성공",
 			type: "success",
 			text: "해당 거래처가 삭제되었습니다.",
 			timer: 2500
 		}, function() {
-			window.location= "/logistics_erp/sales/clientManagement"
+			opener.parent.location.reload();
+			window.close();
 		});
 	</script>
 </c:if>

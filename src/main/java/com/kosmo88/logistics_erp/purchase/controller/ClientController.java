@@ -26,7 +26,7 @@ public class ClientController {
     @Autowired
     ClientService clientService;
     
-    // 거래처(구매처) 관리 - 거래처 목록
+    // 거래처(구매처) 관리 - 거래처 목록S
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
     	

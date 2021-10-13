@@ -3,7 +3,8 @@
 <div class="left-side sticky-left-side">
 	<!--logo-->
 	<div class="logo">
-		<a href="${ROOT_PATH}/">우여곡절 ERP</a>
+		<a href="${ROOT_PATH}/">KU ERP</a>
+		<p>Kosmo Ubiquitous</p>
 	</div>
 	<div class="logo-icon text-center">
 		<a href="${ROOT_PATH}/"> <img
@@ -15,7 +16,7 @@
 		<!--Sidebar nav-->
 		<ul class="nav nav-pills nav-stacked custom-nav">
 			<li class="menu-list" id="hr"><a href="${ROOT_PATH}/"> <i
-					class="icon-home"></i> <span>인사관리</span>
+					class="ti-user"></i> <span>인사관리</span>
 			</a>
 				<ul class="sub-menu-list">
 					<li class="active"><a href="${ROOT_PATH}/hr/configurations">기초정보
@@ -27,7 +28,7 @@
 					<li><a href="${ROOT_PATH}/hr/payslip">전표 관리</a></li>
 				</ul></li>
 			<li class="menu-list" id="account"><a href="#"> <i
-					class="icon-layers"></i> <span>회계관리</span>
+					class="ion-calculator"></i> <span>회계관리</span>
 			</a>
 				<ul class="sub-menu-list">
 					<!-- 아래추가사항 -->
@@ -45,7 +46,7 @@
 					</li>
 				</ul></li>
 			<li class="menu-list" id="sales"><a href="#"> <i
-					class="icon-grid"></i> <span>영업관리</span>
+					class="icon-briefcase"></i> <span>영업관리</span>
 			</a>
 				<ul class="sub-menu-list">
 					<li><a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a></li>
@@ -54,7 +55,7 @@
 					<li><a href="${ROOT_PATH}/sales/orderManagement">판매 관리</a></li>
 				</ul></li>
 			<li class="menu-list" id="purchase"><a href="#"> <i
-					class="icon-envelope-open"></i> <span>구매관리</span>
+					class="icon-docs"></i> <span>구매관리</span>
 			</a>
 				<ul class="sub-menu-list">
 					<li><a href="${ROOT_PATH}/purchase/clientManagement">거래처
@@ -65,7 +66,7 @@
 					</li>
 				</ul></li>
 			<li class="menu-list" id="wms"><a href="#"> <i
-					class="icon-loop"></i> <span>물류 관리</span>
+					class="ti-truck"></i> <span>물류 관리</span>
 			</a>
 				<ul class="sub-menu-list">
 

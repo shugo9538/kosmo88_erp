@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$("#selectEstimate").click(function() {
 		
 		var url = "/logistics_erp/sales/selectEstimate"
-		window.open(url, "selectEstimate", "menubar=no, width=1500, height=700");
+		window.open(url, "selectEstimate", "menubar=no, width=1500, height=800");
 	});
 	
 });

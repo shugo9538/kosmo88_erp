@@ -19,7 +19,7 @@
             <div class="page-title-box">
                 <h4 class="page-title">견적서 관리</h4>
                 <ol class="breadcrumb">
-                    <li><a href="active">견적서 관리</a></li>
+                    <li>견적서 관리</li>
                 </ol>
                 <div class="clearfix"></div>
             </div>
@@ -81,6 +81,9 @@
 		<%@ include file="./js_sales.jsp"%>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/sales/js/estimateManagement.js"></script>
-		
+		<!-- 엑셀 출력  -->
+		<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 </body>
 </html>
