@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEmployeeDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dao.SalesEstimateDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertEstimateDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
@@ -29,8 +28,15 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	@Autowired
 	SalesEstimateDAO estimateDao;
 	
+	@Autowired
+	private SalesEstimateService self;
+	
 	QueryCode state;
 
+	public void estimateRegisterAction(List<SalesInsertEstimateDTO> dtos) {
+		dtos.forEach(dto -> self.estimateRegisterAction(dto));
+	}
+	
 	@Override
 	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesEstimateListViewDTO>) estimateDao.getEstimateList();
@@ -102,11 +108,23 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	// 견적서 상세 페이지
 	@Override
 	public void estimateDetail(HttpServletRequest req, Model model) {
-		int request_id = Integer.parseInt(req.getParameter("request_id"));
 		
-		SalesEstimateListViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		// 환면에서 값을 받아온다.
+		int request_id = Integer.parseInt(req.getParameter("request_id"));
+		System.out.println("request_id : " + request_id);
+		
+		// 견적서 상세페이지(거래처, 담당자)
+		SalesEstimateDetailViewDTO dto = estimateDao.getEstimateDetail(request_id);
+		
+		// 견적서 상세페이지(상품정보)
+		SalesEstimateDetailViewDTO idto = estimateDao.getEstimateDetailItem(request_id);
+		System.out.println(idto.getItem_name());
+		System.out.println(idto.getItem_category());
+		System.out.println(idto.getItem_quantity());
+		System.out.println(idto.getItem_sales_price());
 		
 		model.addAttribute("dto", dto);
+		model.addAttribute("idto", idto); 
 	}
 
 	// 견적서 등록 처리
@@ -126,16 +144,52 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	}
 
 	// 아이템 등록 처리
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public boolean itemRegisterAction(SalesInsertEstimateDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		boolean insert = false;
+		state = QueryCode.INSERT;
+		
+		map.put("quantity", dto.getQuantity());
+		map.put("item_id", dto.getItem_id());
+		map.put("sales_price", dto.getSales_price());
+		System.out.println("상품 수량 : " + dto.getQuantity());
+		System.out.println("상품 코드 : " + dto.getItem_id());
+		System.out.println("판매 가격 : " + dto.getSales_price());
+		
+		insert = state.check(estimateDao.insertProductGroup(map));
+		System.out.println("product_group tbl 입력 : " + insert);
+		
+		insert = state.check(estimateDao.insertRPL());
+		System.out.println("req_product_list tbl 입력 : " + insert);
+		
+		return insert;
 	}
 
 	// 상품 불러오기
 	@Override
 	public List<SalesItemDTO> estimateItemList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesItemDTO>) estimateDao.getEstimateItemList();
+	}
+
+	// 견적서 삭제(상세페이지에서 단일 삭제)
+	@Override
+	public void estimateDelete(HttpServletRequest req, Model model) {
+		
+		// 화면에서 값을 가져온다.
+		int id = Integer.parseInt(req.getParameter("request_id"));
+		
+		state = QueryCode.UPDATE;
+		boolean update = false;
+		
+		// 거래처 삭제 처리
+		update = state.check(estimateDao.deleteEstimate(id));
+		System.out.println("견적서 삭제 처리 : " + update);
+		
+		model.addAttribute("update", update);
+		
 	}
 	
 }

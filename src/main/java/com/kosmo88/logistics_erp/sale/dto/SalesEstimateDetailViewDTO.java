@@ -16,14 +16,11 @@ public class SalesEstimateDetailViewDTO {
 	private String client_ceo_name;		// 거래처대표자명
 	private String client_phone;		// 거래처 연락처
 	private String client_email;		// 거래처 이메일
-	private String client_zipCode;      // 거래처 우편번호
-	private String client_address;      // 거래처 주소
-	private String client_detail_address; // 거래처 상세주소
 	private int item_quantity;			// 상품 수량
 	private String item_name;			// 상품명
 	private String item_category;		// 종류
 	private int item_purchase_price;    // 공급단가
-	private int item_sales_price;	// 판매단가
+	private int item_sales_price;				// 판매가
 	private String department_name; 	// 부서명
 	
 	public SalesEstimateDetailViewDTO() {}
@@ -147,31 +144,5 @@ public class SalesEstimateDetailViewDTO {
 	public void setDepartment_name(String department_name) {
 		this.department_name = department_name;
 	}
-
-	public String getClient_zipCode() {
-		return client_zipCode;
-	}
-
-	public void setClient_zipCode(String client_zipCode) {
-		this.client_zipCode = client_zipCode;
-	}
-
-	public String getClient_address() {
-		return client_address;
-	}
-
-	public void setClient_address(String client_address) {
-		this.client_address = client_address;
-	}
-
-	public String getClient_detail_address() {
-		return client_detail_address;
-	}
-
-	public void setClient_detail_address(String client_detail_address) {
-		this.client_detail_address = client_detail_address;
-	}
-	
-	
 	
 }

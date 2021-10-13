@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderListViewDTO;
 import com.kosmo88.logistics_erp.purchase.service.OrderService;
@@ -86,4 +83,11 @@ public class OrderRestController {
     	return orderService.orderEstimateItemList(req, res);
     }
     
+    // 주문 승인 요청
+    @ResponseBody
+    @RequestMapping(value = "/orderManagement/orderApproval")
+	public boolean orderApproval(HttpServletRequest req, HttpServletResponse res) {
+		int id = Integer.parseInt(req.getParameter("id"));
+		return orderService.orderApproval(id);
+    }	
 }

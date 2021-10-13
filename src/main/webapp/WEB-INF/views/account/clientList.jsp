@@ -26,7 +26,8 @@
     <div class="main-content" >
 
         <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
+		<%@ include file="../common/header.jsp"%> 
+		<%@ include file="common/accountHeader.jsp"%>   
         <!-- header section end-->
 
         <!--body wrapper start-->
@@ -37,7 +38,7 @@
                 <h4 class="page-title">기초정보 관리</h4>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="#">신규거래처 등록</a>
+                        <a href="${ROOT_PATH}/account/clientDetail">신규거래처 등록</a>
                     </li>
                     <li>
                         <a href="#">거래처 정보 수정</a>
@@ -106,7 +107,8 @@
         <!-- End Wrapper-->
 
         <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp"%>	
          <!--End footer -->
        </div>
       <!--End main content -->

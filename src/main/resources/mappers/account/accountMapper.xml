@@ -12,13 +12,11 @@
 </select>
 <!-- 2. 거래처 목록조회 -->
 <select id="selectClient" resultType="ClientDTO">
-<![CDATA[
 SELECT * 
 FROM (SELECT id, type, name, ceo_name, register_num, address, register_date, zip_code, email, phone     
 FROM(SELECT * FROM CLIENT
   ORDER BY register_date DESC)
   )
-]]>
 </select>
 <!-- 3. 신규거래처 등록 -->
 <insert id="insertClient">
@@ -55,16 +53,41 @@ SELECT id, type, register_date, update_date, state, department_id, department_re
   WHERE id = #{id}
 </select>
 <!-- 3. 일반전표 등록 (update_date 승인일자제외, state제외 default N) -->
+<insert id="insertRequest">
+INSERT INTO request
+        VALUES(request_seq.nextval, sysdate, sysdate, 'TX_ACCOUNT' ,#{employee_id}, #{client_id}, 'Y')
+</insert>
+<insert id="insertOperating_expense">
+INSERT INTO operating_expense (id, account_title, expenses, abstract, request_id)
+    VALUES(operating_expense_seq.nextval, #{account_title},#{expenses},#{abs},REQUEST_SEQ.CURRVAL) 
+</insert>
 <insert id="insertSlip">
-INSERT INTO slip(id, type, register_date, department_id, department_request)
-    VALUES(#{id}, #{type}, SYSDATE, #{department_id}, #{department_request})
+INSERT INTO slip (id, type, register_date, state, department_id, department_request)
+        VALUES(slip_seq.nextvaL, #{type}, SYSDATE, 'N', #{department_id}, request_seq.currval) 
 </insert>
 <!-- 4. 파트별 일반전표 전표승인 -->
 <update id="updateSlipState" parameterType="java.util.Map">
 UPDATE SLIP s
 
 SET state = 'Y', update_date = SYSDATE
-WHERE state = 'N' 
+WHERE state = 'N'
+
+<if test="dpart_id == 100">
+AND type = 'GENERAL'
+</if>
+<if test="dpart_id == 200">
+AND type = 'GENERAL'
+</if>
+<if test="dpart_id == 300">
+AND type = 'DEPOSIT'
+</if>
+<if test="dpart_id == 400">
+AND type = 'WITHDRAW'
+</if>
+<if test="dpart_id == 500">
+AND type = 'GENERAL'
+</if>
+ 
 AND EXISTS (SELECT 1 FROM REQUEST r WHERE s.department_request = r.id)
 AND s.id = #{slip_id}
 </update>
@@ -77,18 +100,72 @@ WHERE
 EXISTS (SELECT 1 FROM SLIP s WHERE s.department_request = r.id)
 AND r.id = #{dpart_req}
 </update>
+<!--  -->
+<select id="selectSlipInfo" parameterType="java.util.Map" resultType="SlipDTO">
+	<if test="dept_id == 1">
+SELECT sl.id AS slip_id, sl.type type, sl.state state
+       , sl.department_id, sl.department_request
+       , sal.sum_pay sum_total, sal.income_tax sum_tax
+       , em.id employee_id, em.name employee_name, em.photo employee_photo
+       , em.email employee_email, em.hire_date
+  FROM SLIP sl JOIN REQUEST re 
+    ON sl.department_request = re.id
+  JOIN SALARY_REQUEST_VIEW sal
+    ON re.id = sal.id
+  JOIN EMPLOYEE em
+    ON em.id = sal.employee_id
+ WHERE sl.id=#{slip_id}
+	</if>
+	
+	<if test="dept_id == 300">
+		SELECT *
+ 		  FROM account_sales_issue_view
+ 		  WHERE slip_id = #{slip_id}
+	</if>
+	
+	<if test="dept_id == 400">
+		SELECT *
+ 		  FROM account_purchase_issue_view
+ 		  WHERE slip_id = #{slip_id}
+	</if>
+</select>
+<select id="selectOrdrDetail" parameterType="java.util.Map" resultType="SlipDTO">
+	
+	<if test="dept_id == 300 || dept_id == 400">
+	SELECT r.id request_id, e.department_id department_name, c.name client_name,
+     c.ceo_name client_ceo_name, c.phone client_phone, c.email client_email,
+     e.name employee_name, e.phone employee_phone, e.email employee_email
+	FROM REQUEST r, CLIENT c, EMPLOYEE e
+	WHERE r.client_id = c.id
+	  AND r.employee_id = e.id
+	  AND r.id = #{dept_req}
+	</if>
 
+	<if test="dept_id == 200">
+	SELECT 
+      r.id request_id, e.department_id department_name, c.name client_name,
+      c.ceo_name client_ceo_name, c.phone client_phone, c.email client_email,
+      e.name employee_name, e.phone employee_phone, e.email employee_email,
+      op.account_title, op.expenses, op.abstract abs
+	FROM REQUEST r, CLIENT c, EMPLOYEE e, operating_expense op, slip sl
+	WHERE r.client_id = c.id
+	  AND r.employee_id = e.id
+	  AND r.id = op.request_id
+	  AND sl.department_request = r.id
+	  AND sl.id = #{slip_id}
+	</if>
+</select>
 <!-- 장부관리-매입/매출장 -->
 <!-- 2-1. 매입/매출전표 목록조회 -->
 <select id="selectSalesSlip" resultType="SalesSlipDTO">
-<![CDATA[
+
 SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as client_code, 
        re.name as client_name, re.register_num as client_num, it.name product_name,
        sl.supply_amount, sl.tax_amount, sl.abstract as abs, sl.sa_type as type, 
        sl.sl_id as slip_id
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 WHERE sl.department_request = re.id AND re.item_id = it.id
-]]>
+
 </select>
 <!-- 2-2. 매입전표조회 -->
 <select id="selectPurchaseList" resultType="SalesSlipDTO">
@@ -98,7 +175,7 @@ SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as clie
        sl.sl_id as slip_id, rownum
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 WHERE sl.department_request = re.id AND re.item_id = it.id
-AND sl.sa_type = '매입'
+AND sl.sa_type = 'WITHDRAW'
 </select>
 <!-- 2-2.  매출전표조회 -->
 <select id="selectSalesList" resultType="SalesSlipDTO">
@@ -108,7 +185,7 @@ SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as clie
        sl.sl_id as slip_id
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 WHERE sl.department_request = re.id AND re.item_id = it.id
-AND sl.sa_type = '매출'
+AND sl.sa_type = 'DEPOSIT'
 </select>
 <!-- 2-3. 매입/매출전표 합계-->
 <select id="selectSalesSlipSum" resultType="SalesSlipDTO">
@@ -118,12 +195,12 @@ SELECT SUM(supply_amount) AS sum_supply,
 FROM sales_slip
 </select>
 <!--2-3. 매입,매출 전표 건수조회  -->
-<select id="getSalesSlipCnt" resultType="int">
+<select id="getSalesSlipCnt" parameterType="String" resultType="int">
 SELECT COUNT(*) 
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
-WHERE sl.department_request = re.id AND re.item_id = it.id
+			WHERE sl.department_request = re.id AND re.item_id = it.id
 </select>
-<!-- 2-4. 매입/매출 전표 발행 (승인시 자동발행) -->
+<!-- 2-4. 매출 전표 발행 ( 영업팀 일반반전표 승인 후 자동발행) -->
 <insert id="insertSalesSlip" parameterType="java.util.Map">
 INSERT ALL
 
@@ -132,14 +209,30 @@ INSERT ALL
     INTO SALES_SLIP (ID, ACCOUNT_TITLE, SUPPLY_AMOUNT, TAX_AMOUNT, TYPE, ABSTRACT, SLIP_ID)
             VALUES(sales_slip_seq.NEXTVAL, '상품', sum_supply, sum_tax, type, '상품매출', slip_id)  
 SELECT *
-    FROM ACCOUNT_CHECK_VIEW 
+    FROM ACCOUNT_SALES_ISSUE_VIEW 
  WHERE slip_id = #{slip_id}
    AND request_id = #{dpart_req}
-   AND state = #{state}
+   AND state = 'Y'
    AND department_id = #{dpart_id}
-   AND type = #{type}
+   AND type = 'DEPOSIT'
 </insert>
-<!-- 2-5. 매입/매출전표 삭제 enabled 처리 -->
+<!-- 2.5 매입/매출 전표 발행 ( 구매팀일반전표 승인 후 자동발행 ) -->
+<insert id="insertPurchaseSlip" parameterType="java.util.Map">
+INSERT ALL
+
+    WHEN slip_id = #{slip_id} THEN
+    
+    INTO SALES_SLIP (ID, ACCOUNT_TITLE, SUPPLY_AMOUNT, TAX_AMOUNT, TYPE, ABSTRACT, SLIP_ID)
+            VALUES(sales_slip_seq.NEXTVAL, '상품', sum_supply, sum_tax, type, '상품매입', slip_id)  
+SELECT *
+    FROM ACCOUNT_PURCHASE_ISSUE_VIEW 
+ WHERE slip_id = #{slip_id}
+   AND request_id = #{dpart_req}
+   AND state = 'Y'
+   AND department_id = #{dpart_id}
+   AND type = 'WITHDRAW'
+</insert>
+<!-- 2-6. 매입/매출전표 삭제 enabled 처리 -->
 
 <!-- 금융/자금관리  -->
 <!-- 1. 통장건수 조회  -->
@@ -199,8 +292,6 @@ UPDATE ACCOUNT
 INSERT INTO account_history(account_number, type, balance, abstract ,transaction_date)    
 	VALUES(#{account_number}, #{type}, #{balance}, #{abs}, #{transaction_date})		 
 </insert>
-<!-- 9. 입금내역조회 -->
-<!-- 10. 출금내역조회 -->
 
 <!-- 11. 통장 입출금내역 및 잔액조회(잔액만 따로불러오면 테이블 변형일어나서 조인해서 사용) -->
 <select id="selectAccountBalance" resultType="BalanceDTO">
@@ -226,7 +317,10 @@ FROM FinancialStatements
 <!-- 2. 손익계산서 -->
 <select id="incomeStatement" resultType="IncomeStatementDTO">
 SELECT sa.id, sa.sales_cost, sa.basic_product, sa.current_product,
-       ad.TOTAL_SALARY employee_salary
+       ad.employee_salary, ad.employee_benefits, ad.travel_expenses, ad.entertainment,
+       ad.communication_cost,ad.water_utility_bill, ad.taxes_and_duties, ad.paid_rent, ad.premium,
+       ad.vehicle_maintenance_cost, ad.office_supplies, ad.consumables_cost, ad.interest_income,
+       ad.interest_expense, ad.corporate_tax
   FROM ACCOUNT_SALES_VIEW sa, ACCOUNT_administrative_VIEW ad
  WHERE sa.id = ad.id
 </select>

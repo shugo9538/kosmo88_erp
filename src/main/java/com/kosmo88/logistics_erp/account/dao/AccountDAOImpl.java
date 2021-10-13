@@ -69,9 +69,18 @@ public class AccountDAOImpl implements AccountDAO {
 	}
 	// 일반전표 등록 (parameter 로 int department_id, int department_request)
 	@Override
-	public int insertSlip(Map<String, Object> map) {
-		return sqlSession.insert("com.kosmo88.logistics_erp.account.dao.AccountDAO.insertSlip", map);
+	public int insertSlip(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertSlip", slipDTO);
 	}
+	@Override
+	public int insertRequest(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertRequest", slipDTO);
+	}
+	@Override
+	public int insertOperating_expense(SlipDTO slipDTO) {
+		return sqlSession.insert(STATEMENT + ".insertOperating_expense", slipDTO);
+	}
+
 	// 일반전표 - 부서별 승인 처리  
 	@Override
 	public int updateSlipState(Map<String, Object> map) {
@@ -81,9 +90,22 @@ public class AccountDAOImpl implements AccountDAO {
 	// 일반전표 승인 후 request tbl 상태 변경
 	@Override
 	public int updateRequestState(Map<String, Object> map) {
+		System.out.println("updateRequestState : " + map);
 		return sqlSession.update("com.kosmo88.logistics_erp.account.dao.AccountDAO.updateRequestState", map);
 	}
-	
+	// 일반전표 상세내역1
+	@Override
+	public List<SlipDTO> selectSlipInfo(Map<String, Object> map) {
+		System.out.println("selectSlipInfo : " + map);
+		return sqlSession.selectList("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectSlipInfo", map);
+	}
+	// 일반전표 - 상세내역2
+	@Override
+	public SlipDTO selectOrdrDetail(Map<String, Object> map) {
+		System.out.println("selectOrdrDetail : " + map);
+		return sqlSession.selectOne("com.kosmo88.logistics_erp.account.dao.AccountDAO.selectOrdrDetail", map);
+	}
+
 	
 	// ------------------------------ 매입/매출전표 ------------------------------
 	// 매입매출장 조회
@@ -112,11 +134,19 @@ public class AccountDAOImpl implements AccountDAO {
 	public int getSalesSlipCnt() {
 		return sqlSession.selectOne(STATEMENT +  ".getSalesSlipCnt");
 	}
-	// 일반전표 승인 후 (구매/영업) 매출 매입 전표 생성
+	// 일반전표 승인 후 (영업) 매출 전표 생성
 	@Override
 	public int insertSalesSlip(Map<String, Object> map) {
+		System.out.println("insertSalesSlip : " + map);
 		return sqlSession.insert(STATEMENT +  ".insertSalesSlip", map);
 	}
+	// 일반전표 승인 후 (구매) 매입 전표 생성
+	@Override
+	public int insertPurchaseSlip(Map<String, Object> map) {
+		System.out.println("insertPurchaseSlip : " + map);
+		return sqlSession.insert(STATEMENT +  ".insertPurchaseSlip", map);
+	}
+
 	// ------------------------------ 금융/자금관리 ------------------------------
 	// 계좌 건수조회
 	@Override
@@ -177,6 +207,8 @@ public class AccountDAOImpl implements AccountDAO {
 	public IncomeStatementDTO selectIncomeStatement() {
 		return sqlSession.selectOne(STATEMENT + ".incomeStatement");
 	}
+
+
 
 
 

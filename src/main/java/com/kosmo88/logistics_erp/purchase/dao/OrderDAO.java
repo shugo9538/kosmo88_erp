@@ -3,9 +3,6 @@ package com.kosmo88.logistics_erp.purchase.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderEstimateListDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderItemDTO;
@@ -45,5 +42,8 @@ public interface OrderDAO {
 	
 	// 주문서 등록(REQ_PRODUCT_LIST) 처리
 	public int insertRPL();
+	
+	// 주문 승인 요청
+	public int requestApproval(int id);
 	
 }

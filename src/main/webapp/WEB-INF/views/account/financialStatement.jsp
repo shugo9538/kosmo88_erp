@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>    
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +23,9 @@
 		<%@ include file="../common/header.jsp"%>
 		<%@ include file="common/accountHeader.jsp"%>
 		<%@ include file="statement/financialStatementSetting.jsp" %>
+		
+		 <c:set var="now" value="<%=new java.util.Date()%>" />
+ 		<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set>
 		      
         <!-- header section end-->
 
@@ -51,16 +54,15 @@
                 <div class="col-md-12">
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">재무상태표</h2>
-		                    <h3 class="header-title">제 18기(당)기 2021.09.19 현재 </h3>
+		                    <h1 class="header-title"  style="font-size:35px">재무상태표</h1>
+		                    <h2 class="header-title">제 01기(당)기<c:out value="${sysYear}"/></h2>
 	                    </div>
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table id="finacialStatment" class="table table table-hover m-0">
                           <thead>
                             <tr>
                               <th>과목</th>
-                              <th colspan="2">제 18(당)기</th>
-                              <th colspan="2">제 17(전)기</th>
+                              <th colspan="2">제 01(당)기</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -69,15 +71,13 @@
                               <!-- root 경로 -->
                               <td><input type="hidden" id="root" value="${ROOT_PATH}"></td>
                               <td></td>
-                              <td></td>
-                              <td></td>
                             </tr>
-                            <tr class="total2">
+                            <tr class="warning">
                               <td> Ⅰ. 유  동    자  산  </td>
                               <td></td>
-                              <td></td>
-                              <td></td>
-                              <td>2,764,422,100</td>
+                              <td class="red">
+                              	<fmt:formatNumber value="${asset1 + asset2}" pattern="###,###,###,###"/>
+                              </td>
                             </tr>
                             <tr>
                               <td> (1) 당  좌    자  산 </td>
@@ -85,8 +85,6 @@
                               <td class="red">
                               	<fmt:formatNumber value="${asset1}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>1,956,562,100</td>
                             </tr>
                             <tr>
                               <!-- <td>      현금 및 현금성자산(보통예금)</td> -->
@@ -99,8 +97,6 @@
                               	<fmt:formatNumber value="${cash_asets}" pattern="###,###,###,###"/>
                               </td>
                               <td></td>
-                              <td>686,488,500</td>
-                              <td></td>
                             </tr>
                             <tr>
                               <!-- <td>      매   출    채   권(외상매출금)</td> -->
@@ -112,8 +108,6 @@
                               	<fmt:formatNumber value="${accounts_receivable}" pattern="###,###,###,###"/>	
                               </td>
                               <td></td>
-                              <td>731,651,000</td>
-                              <td></td>
                             </tr>
                             <tr>
                               <td>      부 가 세 대  급 금</td>
@@ -121,8 +115,6 @@
                               	<fmt:formatNumber value="${vatPayment}" pattern="###,###,###,###"/>
                               </td>
                               <td></td>
-                              <td></td>
-                              <td>314,356,000</td>
                             </tr>
                             <tr>
                               <td> (2) 재  고    자  산 </td>
@@ -130,8 +122,6 @@
                               <td class="red">
                               	<fmt:formatNumber value="${asset2}" pattern="###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>807,860,000</td>
                             </tr>
                             <tr>
                               <td>      상              품</td>
@@ -139,22 +129,16 @@
                               <fmt:formatNumber value="${inventory_assets}" pattern="###,###,###,###"/>
                               </td>
                               <td></td>
-                              <td>322,710,000</td>
-                              <td></td>
                             </tr>
-                            <tr class="total1">
+                            <tr class="info">
                               <td>자    산    총    계</td>
                               <td></td>
                               <td class="red">
                               <fmt:formatNumber value="${asset3}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>5,134,878,100</td>
                             </tr>
-                            <tr>
+                            <tr class="warning">
                               <td> 부             채 </td>
-                              <td></td>
-                              <td></td>
                               <td></td>
                               <td></td>
                             </tr>
@@ -164,16 +148,12 @@
                               <td class="red">
                               	<fmt:formatNumber value="${asset4}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>1,942,210,500</td>
                             </tr>
                             <tr>
                               <td>      매   입    채   무(외상매입금)</td>
                               <td class="red">
                               	<fmt:formatNumber value="${purchase_receivable}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>678,710,000</td>
                               <td></td>
                             </tr>
                             <tr>
@@ -182,33 +162,25 @@
                               	<fmt:formatNumber value="${vatDeposit}" pattern="###,###,###,###"/>
                               </td>
                               <td></td>
-                              <td>543,185,000</td>
-                              <td></td>
                             </tr>
-                            <tr class="total1">
+                            <tr  class="info">
                               <td>부    채    총    계</td>
                               <td></td>
                               <td class="red">
                               	<fmt:formatNumber value="${asset4}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>1,997,310,500</td>
                             </tr>
                             <tr>
                               <td>자본</td>
                               <td></td>
                               <td></td>
-                              <td></td>
-                              <td></td>
                             </tr>
-                            <tr class="total2">
+                            <tr  class="info">
                               <td> Ⅰ. 자      본      금  </td>
                               <td></td>
                                <td class="red">
                              	 <fmt:formatNumber value="${asset5}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>541,997,000</td>
                             </tr>
                             <tr>
                               <td>      자     본       금</td>
@@ -216,29 +188,16 @@
                               <td class="red">
                              	 <fmt:formatNumber value="${capital}" pattern="###,###,###,###" />
                               </td>
-                              <td></td>
-                              <td>541,997,000</td>
                             </tr>
- 							<tr class="total2">
+ 							<tr  class="info">
                               <td>(당기순이익)</td>
-                              <td></td>
-                              <td></td>
                               <td></td>
                               <td></td>
                             </tr>                           
 							<tr>
-                              <td>
-                               		  당기 :1,509,072,120     
+                              <td class="red">
+                           		    당기 :<fmt:formatNumber value="${income8}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>   전기 :     1,509,072,120</td>
-                              <td></td>
-                              <td></td>
                               <td></td>
                               <td></td>
                             </tr>
@@ -246,19 +205,15 @@
                               <td>자본총계(당기순이익+)</td>
                               <td></td>
                               <td class="red">
-                              	<fmt:formatNumber value="${asset7 - asset4}" pattern="###,###,###,###"/>
+                              	<fmt:formatNumber value="${asset7 - asset4 + income8}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>3,137,567,600</td>
                             </tr>
-                            <tr class="total1">
+                            <tr  class="info">
                               <td>부채및자본총계</td>
                               <td></td>
                               <td class="red">
                               	<fmt:formatNumber value="${asset7}" pattern="###,###,###,###"/>
                               </td>
-                              <td></td>
-                              <td>5,134,878,100</td>
                             </tr>
                         </table>
                      </div>

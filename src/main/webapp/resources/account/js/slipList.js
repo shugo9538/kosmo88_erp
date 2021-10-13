@@ -13,7 +13,6 @@ function slipCheck() {
 	 * return false; }
 	 */
 
-
 	// 체크박스 체크여부 확인
 	var slipid_chk = document.getElementsByName("slipid_chk");
 	var count = 0;
@@ -69,29 +68,58 @@ function checkbox_slipId(element){
 	console.log("checkedId : " + checkedId);
 }
 
-// 전표 번호 선택시 전표 상세정보 뿌리기
+//전표 번호 선택
 function slip_Id(emlement){
 	
-	
-	const rootPath = document.getElementById("root"); // 패키지 경로
-	console.log("element : " + emlement);
-	
-	var result = swal(emlement + "번 전표를 선택 하셨습니다.","","info");
-	//const url = rootPath.value + "/account/accountDetail?slip_id=" + emlement;
-	
-	
+		root = document.getElementById("root"); // 패키지 경로
+		console.log("element : " + emlement);
+		console.log("rootPath : " + rootPath.value);
+		const url = rootPath.value + "/account/slipDetailInfo?slip_id=" + emlement;
+		
 	swal({
 		title : emlement + "번 전표를 선택 하셨습니다.",
-		text : "승인 전표를 선택 하셨습니다.",
+		text : "",
 		type : "info"}, function(){
-			window.location.href = rootPath.value + "/account/slipInfoAction?id=" + emlement;
+			window.open(url, "accountDetail", "menubar=no, width=1000, height=750");
+			
 		});
 }
 
-/*document.getElementsByName("slip_").onclick = function(){
-	alert("ddddd");
-}*/
 
 
 
 
+//-------------------------------- slipDetail --------------------------------
+// 지출결의 페이지 포커스설정
+function slipDetail() {
+	document.slip_detail_form.abs.focus();
+}
+
+//계좌추가 이력 유효성 체크
+function slipDetailChk() {
+
+	// 계좌소유주 선택
+	if (document.slip_detail_form.account_title.value == 0) {
+		swal("지출계정"," 선택 해주시기 바랍니다.","info");
+		document.slip_detail_form.account_title.focus();
+		return false;
+		// 적요입력
+	} else if (document.slip_detail_form.client_id.value  == 0) {
+		swal("거래처명","선택 되지 않았습니다.\n 확인 후 입력 바랍니다.","info");
+		document.slip_detail_form.client_id.focus();
+		return false;
+	} else if (! document.slip_detail_form.abs.value) {
+		swal("지출내용","입력이 되지 않았습니다.\n 확인 후 입력 바랍니다.","info");
+		document.slip_detail_form.abs.focus();
+		return false;
+	} else if (document.slip_detail_form.expenses.value <= 0) {
+		swal("지출금액","0 또는 0 이상입력 하세요.","info");
+		document.slip_detail_form.expenses.focus();
+		return false;
+	}// 입력사항을 확인 후 체크 박스 선택
+	else if (! document.slip_detail_form.inputChk.checked) {
+		swal("입력확인","입력사항을 반드시 확인 바랍니다.","info");
+		document.slip_detail_form.inputChk.focus();
+		return false;
+	}
+}

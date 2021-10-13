@@ -10,8 +10,15 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertClientDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
+import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemListViewDTO;
 
 public interface ClientService {
+	
+	// (구매처)상품 관리 - (구매처)상품 목록
+	public List<PurchaseItemListViewDTO> itemList(HttpServletRequest req, HttpServletResponse res);
+	
+	// 사업자번호 중복확인
+	public void dupchkRegiNum(HttpServletRequest req, Model model);
 	
 	// 거래처(구매처) 관리 - 거래처 목록
 	public List<PurchaseClientDTO> clientList(HttpServletRequest req, HttpServletResponse res);

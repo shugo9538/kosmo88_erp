@@ -59,8 +59,10 @@ public class OrderServiceImpl implements OrderService {
 		
 		for (int id: request_id) {
 			if(!state.check(orderDao.deleteOrder(id))) {
+				System.out.println(state.check(orderDao.deleteOrder(id)));
 				return false;
 			}
+			System.out.println(state.check(orderDao.deleteOrder(id)));
 		}
 		return true;
 	}
@@ -165,6 +167,15 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println("req_product_list tbl 입력 : " + insert);
 		
 		return insert;
+	}
+
+	// 주문 승인 요청
+	@Override
+	public boolean orderApproval(int id) {
+		
+		state = QueryCode.UPDATE;
+		
+		return state.check(orderDao.requestApproval(id));
 	}
 
 }

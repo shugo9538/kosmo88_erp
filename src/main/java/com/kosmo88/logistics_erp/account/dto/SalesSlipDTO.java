@@ -15,16 +15,16 @@ public class SalesSlipDTO {
 	private String client_name; // 거래처명  
 	private String client_num;// 사업자번호  
 	private String product_name;// 품명  
-	private int supply_amount;// 공급가액  
-	private int tax_amount;// 세액 
+	private long supply_amount;// 공급가액  
+	private long tax_amount;// 세액 
 	private String type;// 유형  
 	private String abs;// 요약
 	private int slip_id;// 일반전표 ID
 	
 	// 매입매출전표 합계
-	private int sum_supply;
-	private int sum_tax;
-	private int sum_total;
+	private long sum_supply;
+	private long sum_tax;
+	private long sum_total;
 	
 	
 	public Date getConfirm_date() {
@@ -69,16 +69,16 @@ public class SalesSlipDTO {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public int getSupply_amount() {
+	public long getSupply_amount() {
 		return supply_amount;
 	}
-	public void setSupply_amount(int supply_amount) {
+	public void setSupply_amount(long supply_amount) {
 		this.supply_amount = supply_amount;
 	}
-	public int getTax_amount() {
+	public long getTax_amount() {
 		return tax_amount;
 	}
-	public void setTax_amount(int tax_amount) {
+	public void setTax_amount(long tax_amount) {
 		this.tax_amount = tax_amount;
 	}
 	public String getType() {
@@ -99,24 +99,22 @@ public class SalesSlipDTO {
 	public void setSlip_id(int slip_id) {
 		this.slip_id = slip_id;
 	}
-	
-	
-	public int getSum_supply() {
+	public long getSum_supply() {
 		return sum_supply;
 	}
-	public void setSum_supply(int sum_supply) {
+	public void setSum_supply(long sum_supply) {
 		this.sum_supply = sum_supply;
 	}
-	public int getSum_tax() {
+	public long getSum_tax() {
 		return sum_tax;
 	}
-	public void setSum_tax(int sum_tax) {
+	public void setSum_tax(long sum_tax) {
 		this.sum_tax = sum_tax;
 	}
-	public int getSum_total() {
+	public long getSum_total() {
 		return sum_total;
 	}
-	public void setSum_total(int sum_total) {
+	public void setSum_total(long sum_total) {
 		this.sum_total = sum_total;
 	}
 	@Override
@@ -127,7 +125,6 @@ public class SalesSlipDTO {
 				+ ", type=" + type + ", abs=" + abs + ", slip_id=" + slip_id + ", sum_supply=" + sum_supply
 				+ ", sum_tax=" + sum_tax + ", sum_total=" + sum_total + "]";
 	}
-	
 	
 	
 }

@@ -34,11 +34,17 @@ public interface AccountDAO {
 	// 일반전표 단건조회
 	public SlipDTO selectSlip(int id);
 	// 일반전표 등록
-	public int insertSlip(Map<String, Object> map);
+	public int insertRequest(SlipDTO slipDTO);
+	public int insertOperating_expense(SlipDTO slipDTO);
+	public int insertSlip(SlipDTO slipDTO);
 	// 파트별 일반전표 승인 및 request 상태 변경 
 	public int updateSlipState(Map<String, Object> map);
 	public int updateRequestState(Map<String, Object> map);
-
+	// 전표정보
+	public List<SlipDTO> selectSlipInfo(Map<String, Object> slipmap);
+	// 구매/영업 전표정보
+	public SlipDTO selectOrdrDetail(Map<String, Object> map);
+	
 	// 매입,매출장
 	// 매입,매출장 조회
 	public List<SalesSlipDTO> selectSalesSlip();
@@ -50,8 +56,12 @@ public interface AccountDAO {
 	public SalesSlipDTO selectSalesSlipSum();
 	// 매입/매출 전표 계산서
 	public int getSalesSlipCnt();
-	// 매입 전표 생성 ( 일반전표 승인시 ) 
+	// 매출 전표 생성 ( 영업팀 일반전표 승인시 ) 
 	public int insertSalesSlip(Map<String, Object> map);
+	// 매입 전표 생성 ( 구매팀 일반전표 승인시 ) 
+	public int insertPurchaseSlip(Map<String, Object> map);
+
+	
 	
 	// 금융자금관리
 	// 통장 거래내역 건수

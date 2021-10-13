@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="./js_purchase.jsp"%>    
+    pageEncoding="UTF-8"%>   
 <%@ include file="../common/settings.jsp"%>
+<%@ include file="./js_purchase.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/header.jsp"%>
 <meta charset="UTF-8">
 <title></title>
 </head>
@@ -38,6 +37,5 @@
 	</script>
 </c:if>
 
-<%@ include file="../common/footer.jsp"%>
 </body>
 </html>

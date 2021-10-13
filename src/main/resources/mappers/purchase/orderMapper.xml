@@ -20,12 +20,12 @@
  		UPDATE request
  		   SET enabled = 'N'
  		 WHERE id = #{request_id}
- 		   AND state = 'TX_ORDER'
+ 		   AND state IN ('TX_ORDER', 'TX_PURCHASE', 'TX_INBOUND')
  	</update>
  	
  	<!-- 주문서 상세페이지(거래처, 담당자 정보) -->
  	<select id="getOrderDetail" parameterType="int" resultType="PurchaseOrderDetailViewDTO">
- 		SELECT request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
+ 		SELECT distinct request_id, begin_date, client_name, client_ceo_name, client_phone, client_email, employee_name, department_name, employee_phone, employee_email
  		  FROM p_order_detail_view
  		 WHERE request_id = #{request_id}
  	</select>
@@ -62,8 +62,8 @@
  	
  	 <!-- 주문서 등록(request) 처리  -->
  	<insert id="insertRequest" parameterType="java.util.Map">
- 		INSERT INTO request(id, state, employee_id, client_id)
- 			VALUES(request_seq.nextval, #{state}, #{employee_id}, #{client_id})
+ 		INSERT INTO request(id, state, employee_id, client_id, end_date)
+ 			VALUES(request_seq.nextval, #{state}, #{employee_id}, #{client_id}, #{end_date})
  	</insert>
  	
  	<!-- 주문서(전표)(slip) 처리 -->
@@ -83,5 +83,12 @@
  		INSERT INTO req_product_list(id, product_group, request_id)
  		 	VALUES(req_product_list_seq.nextval, rpl_seq.currval, request_seq.currval)
  	</insert>
+ 	
+ 	<!-- 주문 승인 요청 -->
+ 	<update id="requestApproval" parameterType="int">
+ 		UPDATE p_order_Request_View 
+ 		   SET state = 'N'
+ 		 WHERE id = #{id}
+ 	</update>
 
 </mapper>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="./js_purchase.jsp"%>	
 <%@ include file="../common/settings.jsp"%>
 <link href="${RESOURCES_PATH}/purchase/css/custom.css" rel="stylesheet" type="text/css">
 <body class="sticky-header">
@@ -180,6 +179,7 @@
 		</div>
 		<!-- End Wrapper-->
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateRegister.js"></script>
 </body>

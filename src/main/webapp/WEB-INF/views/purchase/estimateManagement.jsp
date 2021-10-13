@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -55,7 +54,7 @@
 	                                    <th>견적번호</th> 		<!-- request_id -->
                                         <th>거래처</th>		<!-- client_name  -->
                                         <th>거래처대표자</th>  <!-- client_ceo_name  -->
-                                        <th>거래처 연락처</th>  <!-- client_phone  -->
+                                        <th>거래처연락처</th>  <!-- client_phone  -->
                                         <th>담당자</th>		<!-- employee_name  -->
                                         <th>요청일자</th> 	 	<!-- begin_date  -->
 	                                 </tr>
@@ -71,8 +70,8 @@
             <!--End row-->       
         </div>               
         <!-- End Wrapper --> 
-        
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/estimateManagement.js"></script>
 </body>

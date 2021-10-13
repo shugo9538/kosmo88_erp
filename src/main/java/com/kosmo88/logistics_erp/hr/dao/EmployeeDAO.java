@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kosmo88.logistics_erp.hr.dto.EmployeeDTO;
+import com.kosmo88.logistics_erp.hr.dto.SearchEmployeeDTO;
 
 public interface EmployeeDAO {
     // 인사 카드 관리
     List<EmployeeDTO> employeeList();
+    
+    // 인사 카드 관리
+    List<SearchEmployeeDTO> searchEmployeeList();
     
     // 인사카드 등록
     int insertEmployee(EmployeeDTO dto);

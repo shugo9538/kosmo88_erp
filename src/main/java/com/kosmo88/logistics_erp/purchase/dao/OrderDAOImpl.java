@@ -7,9 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseEstimateListViewDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
-import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderEstimateListDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderItemDTO;
@@ -86,8 +83,11 @@ public class OrderDAOImpl implements OrderDAO {
 	public int insertRPL() {
 		return sqlSession.insert(STATEMENT + ".insertRPL");
 	}
-	
-	
-	
+
+	// 주문 승인 요청
+	@Override
+	public int requestApproval(int id) {
+		return sqlSession.update(STATEMENT + ".requestApproval", id);
+	}
 
 }

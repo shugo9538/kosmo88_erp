@@ -1,16 +1,33 @@
 package com.kosmo88.logistics_erp.account.controller;
 
+import java.io.FileInputStream;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.client.RestTemplate;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.kosmo88.logistics_erp.account.service.AccountService;
+import com.kosmo88.logistics_erp.account.utilTest.FcmUtil;
+import com.kosmo88.logistics_erp.account.utilTest.FirebasePushMessage;
+import com.kosmo88.logistics_erp.util.FCMUtil;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
@@ -43,14 +60,6 @@ public class AccountController {
     	
         return "account/financialFunds";
     }
-
-
-    //jQuery
-    @RequestMapping(value = "/sweetalert")
-    public String sweetalert(HttpServletRequest request, Model model) {
-    	logger.info("/sweetalert");
-    	return "account/temp/sweetalert";
-    }
     //jQuery
     @RequestMapping(value = "/yooooooooo")
     public String yooooooooo(HttpServletRequest request, Model model) {
@@ -66,6 +75,22 @@ public class AccountController {
     	//service.accountingList(request, model);
     	service.clientList(model);
         return "account/clientList";
+    }
+    // 기초정보관리 - 거래처 등록 페이지
+    @RequestMapping(value = "/clientDetail")
+    public String clientDetail(HttpServletRequest request, Model model) {
+    	logger.info("/clientDetail");
+    	
+    	
+    	return "account/clientDetail";
+    }
+    // 기초정보관리 - 거래처 등록
+    @RequestMapping(value = "/clientInsertAction")
+    public String clientInsertAction(HttpServletRequest request, Model model) {
+    	logger.info("/clientInsertAction");
+    	
+    	service.clientInsertAction(request, model);
+    	return "account/clientInsertAction";
     }
     
     //------------------------ 장부관리/일반전표 ------------------------
@@ -83,7 +108,18 @@ public class AccountController {
     public String slipDetail(Model model) {
     	logger.info("/slipDetail");
     	
+    	service.clientList(model);
+    	
     	return "account/slipDetail";
+    }
+    // 장부관리 - 일반전표 지출결의 등록
+    @RequestMapping(value="/slipInsertAction")
+    public String slipDetailAction(HttpServletRequest request, Model model) {
+    	logger.info("/slipDetailAction");
+    	
+    	service.slipInsertAction(request, model);
+    	
+    	return "account/slipInsertAction";
     }
     // 장부관리 - 일반전표 수정페이지
     @RequestMapping(value="/slipModifyDetail")
@@ -103,17 +139,15 @@ public class AccountController {
     	
     	return "account/slipConfirmAction";
     }
-    // 장부관리 - 일반전표 상세내역 
-    @RequestMapping(value="/slipInfoAction")
-    public String slipInfoAction(HttpServletRequest request, Model model) {
-    	logger.info("/slipInfoAction");
+    // 장부관리 - 부서별 일반전표 세부정보
+    @RequestMapping(value="/slipDetailInfo")
+    public String slipDetailInfo(HttpServletRequest request, Model model) {
+    	logger.info("/slipDetailInfo");
     	
-    	service.slipInfoAction(request, model);
+    	service.slipDetailInfo(request, model);
     	
-    	return "account/slipList";
-    }  
-    
-    
+    	return "account/slipDetailInfo";
+    }
   //------------------------ 장부관리/매입/매출 전표 ------------------------
     // 장부관리 - 매입,매출전표 목록
     @RequestMapping(value = "/salesSlipList")
@@ -128,8 +162,7 @@ public class AccountController {
     // 장부관리 - 매출전표 조회
     @RequestMapping(value = "/salesList")
     public String salesSlip(HttpServletRequest request, Model model) {
-    	
-    	//service.accountingList(request, model);
+    	logger.info("/salesList");
     	service.salesList(model);
     	
         return "account/salesList";
@@ -140,9 +173,7 @@ public class AccountController {
     public String purchase(HttpServletRequest request, Model model) {
     	logger.info("/purchaseList");
     	
-    	//service.accountingList(request, model);
     	service.purchaseList(model);
-    	
         return "account/purchaseList";
     }
     //------------------------ 금융/자금관리 ------------------------
@@ -151,9 +182,9 @@ public class AccountController {
     public String accountList(HttpServletRequest req, Model model) {
     	logger.info("/accountList");
     	
-    	//service.accountingList(request, model);
     	service.accountList(req, model);
-        return "account/accountList";
+        
+    	return "account/accountList";
     }
     // 금융자금 - 통장 입/출금 내역 상세페이지
     @RequestMapping(value = "/accountDetail")
@@ -217,20 +248,12 @@ public class AccountController {
     	
     	return "account/accountSimplAction";
     }
-    // 금융자금 - 통장 거래내역 추가(다건)
-    @RequestMapping(value = "/accountMultitDetail")
-    public String accountMultitDetail(HttpServletRequest request, Model model) {
-    	logger.info("/accountMultitDetail");
-    	
-    	
-    	return "account/accountMultitDetail";
-    }
-    
     //------------------------ 결산/재무제표------------------------
     // 결산/재무제표(재무상태표)
     @RequestMapping(value = "/financialStatement")
     public String financialStatement(Model model) {
-
+    	logger.info("/financialStatement");
+    	
     	service.financialStatementsSelect(model);
     	
         return "account/financialStatement";
@@ -238,6 +261,7 @@ public class AccountController {
     // 재무제표(계정과목 상세페이지)
     @RequestMapping(value = "/salesCost")
     public String salesCost(Model model) {
+    	logger.info("/salesCost");
     	
     	service.salesSlipList(model);
     	
@@ -260,4 +284,78 @@ public class AccountController {
     	
         return "account/incomeStatement";
     }
+//-------------------------- fcm -------------------------   
+    // fcm
+    @RequestMapping(value = "/fcm")
+    public String fcmtest(HttpServletRequest request, HttpServletRequest reponse, Model model) throws Exception{
+    	logger.debug("========================== fcm ddd ==========================");
+    	
+    	String tokenId = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+    	String title = "KU ERP Kosmo Ultimate ERP"; 
+    	String content = "발주서 승인 되었습니다.";
+    	
+    	FcmUtil fcm = new FcmUtil();
+    	fcm.send_FCM(tokenId, title, content);
+    	
+    	model.addAttribute("successCnt", 1);
+    	
+    	return "account/slipSendAction";
+    }
+    
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/fcmTest", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
+    public String fcmTest(HttpServletRequest request, HttpServletRequest reponse, Model model) throws Exception {
+    	try {
+    		
+    	String path = "C:\\dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\account\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json";           
+        String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
+        String[] SCOPES = { MESSAGING_SCOPE };
+        
+        GoogleCredential googleCredential = GoogleCredential
+                .fromStream(new FileInputStream(path))
+                .createScoped(Arrays.asList(SCOPES));
+		googleCredential.refreshToken();
+		
+		
+		HttpHeaders headers = new HttpHeaders();
+        headers.add("content-type" , MediaType.APPLICATION_JSON_VALUE);
+        headers.add("Authorization", "Bearer " + googleCredential.getAccessToken());
+        
+        JSONObject notification = new JSONObject();
+        notification.put("title", "아우우우");
+        notification.put("body", "흑흑흑");
+        
+        JSONObject message = new JSONObject();
+        message.put("token", "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ");
+        message.put("notification", notification);
+        
+        JSONObject jsonParams = new JSONObject();
+        jsonParams.put("message", message);
+        
+        HttpEntity<JSONObject> httpEntity = new HttpEntity<JSONObject>(jsonParams, headers);
+        RestTemplate rt = new RestTemplate();  
+        
+        ResponseEntity<String> res = rt.exchange("https://fcm.googleapis.com/v1/projects/kosmo88erp-38a3c/messages:send"
+                , HttpMethod.POST
+                , httpEntity
+                , String.class);
+        
+	        if (res.getStatusCode() != HttpStatus.OK) {
+	        	logger.debug("FCM-Exception");
+	        	logger.debug(res.getStatusCode().toString());
+	        	logger.debug(res.getHeaders().toString());
+	        	logger.debug(res.getBody().toString());
+	            
+	        } else {
+	        	logger.debug(res.getStatusCode().toString());
+	        	logger.debug(res.getHeaders().toString());
+	        	logger.debug(res.getBody().toLowerCase());
+	            
+	        }
+	    }catch (Exception e) {
+	        e.printStackTrace();
+	    }
+		return null;
+	}
 }
+

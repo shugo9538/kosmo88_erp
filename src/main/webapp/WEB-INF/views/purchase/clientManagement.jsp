@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<%@ include file="./js_purchase.jsp"%>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -50,7 +49,7 @@
                                      <td style="text-align:center">
                                          <input type="checkbox" id="checkAll" name="checkAll">
                                      </td>
-                                     <th>거래처 번호</th>
+                                     <th>거래처번호</th>
                                      <th>회사명</th>
                                      <th>사업자번호</th>
                                      <th>대표자명</th>
@@ -70,6 +69,7 @@
 		<!-- End Wrapper-->
 		
 		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="./js_purchase.jsp"%>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/purchase/js/clientManagement.js"></script>
 		

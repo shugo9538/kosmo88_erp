@@ -50,7 +50,7 @@
                 <div class="col-md-12">
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">매입전표 목록</h2>
+		                    <h1 class="header-title">매입전표 목록</h1>
 		                    <h2 class="header-title">2021년</h2>
 	                    </div>
 	                    
@@ -76,7 +76,7 @@
 	                <!--End row-->
 	                    
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table id="purchaseList" class="table table-bordered">
                                     <thead>
                                         <tr>
                                         	<th>전표일자</th>
@@ -122,7 +122,16 @@
                                         		<td>
                                         		<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount + dto.tax_amount}"/>
                                         		</td>
-                                        		<td>${dto.type}</td>
+                                        		<td>
+                                        		<c:choose>
+												<c:when test="${dto.type eq 'DEPOSIT'}">
+													<span>매출</span>
+												</c:when>
+												<c:when test="${dto.type eq 'WITHDRAW'}">
+													<span>매입</span>
+												</c:when>
+												</c:choose>
+												</td>
                                         		<td>${dto.abs}</td>
                                         		<td>${dto.slip_id}</td>
                                         		<c:set var="sum_supply" value="${sum_supply + dto.supply_amount}"/>

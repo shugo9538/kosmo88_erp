@@ -10,7 +10,6 @@ public class PurchaseOrderDetailViewDTO {
 	
 	private int request_id;				// 발주번호
 	private Date begin_date;			// 요청일자
-	private Date end_date;				// 요청일자
 	private String employee_name;		// 담당자
 	private String employee_phone;		// 담당자연락처
 	private String employee_email;		// 담당자 이메일
