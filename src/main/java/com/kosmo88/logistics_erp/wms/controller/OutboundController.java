@@ -59,11 +59,11 @@ public class OutboundController {
 	@RequestMapping(value = { "/manageShipping", "/" })
 	public String ShippingList(HttpServletRequest req, Model model) {
 		int warehouseId = Integer.parseInt(req.getParameter("id"));
-//		List<V_outboundDto> outboundDtoList = outboundDao.selectDispatchedOutboundList(warehouseId);
-//		List<V_outboundDto> shippedOutboundDtoList = outboundDao.selectShippedOutboundList(warehouseId);
-//		model.addAttribute("outboundDtoList", outboundDtoList);
-//		model.addAttribute("shippedOutboundDtoList", shippedOutboundDtoList);
-//		model.addAttribute("warehouseId", warehouseId);
+		List<V_outboundDto> outboundDtoList = outboundDao.selectDispatchedOutboundList(warehouseId);
+		List<V_outboundDto> shippedOutboundDtoList = outboundDao.selectShippedOutboundList(warehouseId);
+		model.addAttribute("outboundDtoList", outboundDtoList);
+		model.addAttribute("shippedOutboundDtoList", shippedOutboundDtoList);
+		model.addAttribute("warehouseId", warehouseId);
 		return "wms/outbound/manageShipping";
 	}
 	

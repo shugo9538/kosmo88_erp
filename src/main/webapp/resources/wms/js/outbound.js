@@ -64,6 +64,13 @@ function getStock(warehouseId){
 
 
 
+function shipping(warehouseId){
+	csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	csrfToken = $("meta[name='_csrf']").attr("content");
+	console.log("csrfParameter : " + csrfParameter + " csrfToken : " + csrfToken)	
+	
+
+}
 
 
 

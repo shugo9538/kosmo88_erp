@@ -43,7 +43,7 @@
 	<select id="selectShippedOutboundList" parameterType="int"
 		resultType="V_inboundDto">
 		SELECT *
-		FROM V_OUNBOUND
+		FROM V_OUTBOUND
 		WHERE WAREHOUSE_ID = #{warehouseId}
 		AND SHIPPED_DATE IS NOT NULL
 	</select>

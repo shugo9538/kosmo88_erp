@@ -15,6 +15,7 @@ import com.kosmo88.logistics_erp.wms.util.Vars;
 
 public interface OutboundDao {
 	void updateState(int requestId);
+	void updateShippedDate(int requestId);
 	List<V_outboundDto> selectDispatchedOutboundList(int warehouseId);
 	List<V_request_itemDto> selectItemList(int requestId);
 	int selectMaxId();
@@ -90,6 +91,11 @@ class OutboundDaoImpl implements OutboundDao{
 	@Override
 	public List<V_outboundDto> selectShippedOutboundList(int warehouseId) {
 		return sqlSession.selectList(Vars.DAO_PATH + ".OutboundDao.selectShippedOutboundList", warehouseId);
+	}
+	
+	@Override
+	public void updateShippedDate(int requestId) {
+		sqlSession.update(Vars.OUTBOUND_DAO_PATH+".updateShippedDate", requestId);
 	}
 	
 
