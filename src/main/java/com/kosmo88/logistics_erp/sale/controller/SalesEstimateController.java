@@ -1,7 +1,6 @@
 package com.kosmo88.logistics_erp.sale.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.sale.service.SalesClientService;
 import com.kosmo88.logistics_erp.sale.service.SalesEstimateService;
 
 //@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
@@ -50,7 +48,7 @@ public class SalesEstimateController {
 		return "sales/selectItem";
 	}
 	
-	// 견적서 관리 - 거래처 목록
+	// 거래처 목록
 	@RequestMapping(value="/estimateManagement")
 	public String estimateManagement(HttpServletRequest req, Model model) {
 		
@@ -71,6 +69,15 @@ public class SalesEstimateController {
 		estimateService.estimateDetail(req, model);
 		
 		return "sales/estimateDetail";
+	}
+	
+	// 견적서 삭제
+	@RequestMapping(value = "/estimateDelete")
+	public String estimateDelete(HttpServletRequest req, Model model) {
+		
+		estimateService.estimateDelete(req, model);
+		
+		return "sales/estimateDelete";
 	}
 	
 }

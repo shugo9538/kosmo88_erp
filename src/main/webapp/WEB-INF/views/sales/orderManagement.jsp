@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
-<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <body class="sticky-header">
 	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
@@ -16,9 +13,9 @@
 		<div class="wrapper">
 			<!--Start Page Title-->
             <div class="page-title-box">
-                <h4 class="page-title">판매 관리</h4>
+                <h4 class="page-title">구매 관리</h4>
                 <ol class="breadcrumb">
-                    <li><a href="active">주문서 관리</a></li>
+                    <li class="active">구매 관리</li>
                 </ol>
                 <div class="clearfix"></div>
             </div>
@@ -47,21 +44,22 @@
 								<input class="btn btn-default" type="button" id="orderChoiceDeleteBtn" value="주문서 삭제">
 							 </div>
 							 
-	                         <table id="estimateList" class="display table" style="width:100%">
+	                         <table id="orderList" class="display table" style="width:100%">
 	                             <thead>
-	                                 <tr>
-	                                    <td style="text-align:center">
-	                                         <input type="checkbox" id="checkAll" name="checkAll">
-	                                    </td>
-	                                    
-	                                    <!-- p_estimate_list_view -->
-	                                    
-	                                    <th>견적번호</th> 		<!--  request_id  -->
-                                        <th>거래처명</th>		<!--  client_name -->
-                                        <th>거래처대표자명</th> <!--  client_ceo_name -->
-                                        <th>거래처연락처</th>  <!--  client_phone -->
-                                        <th>담당자</th>		<!-- employee_name -->
-                                        <th>요청일자</th> 	 	<!--  begin_date  -->
+	                             	<tr>
+		                                <td style="text-align:center">
+		                                     <input type="checkbox" id="checkAll" name="checkAll">
+		                                </td>
+	                                    <!-- p_order_list_view -->
+	                                    <th>주문번호</th> 		 <!-- request_id -->
+	                                    <th>주문처</th>		 <!-- client_name -->
+	                                    <th>대표자</th>  		 <!-- client_ceo_name -->
+	                                    <th>주문처 연락처</th>   <!-- client_phone -->
+	                                    <th>담당자</th>		 <!-- employee_name -->
+	                                    <th>주문일자</th> 	 	 <!-- begin_date -->
+	                                    <th>납기요청일자</th>  	 <!-- end_date -->
+                                        <th>승인상태</th>		 <!-- slip_state -->
+                                        <th>입고상태</th>		 <!-- request_state -->
 	                                 </tr>
 	                             </thead>
 	                         </table>							 
@@ -69,7 +67,7 @@
 						 </form>	
                        	 <!-- form -->
                     </div>
-                    <!-- End white-box -->   
+                    <!-- End white-box -->
                 </div>       
             </div>           
             <!--End row-->       
@@ -78,7 +76,7 @@
         
 		<%@ include file="../common/footer.jsp"%>
 		<%@ include file="./js_sales.jsp"%>
-		<script src="${RESOURCES_PATH}/sales/js/estimateManagement_ajax.js"></script>
-		<script src="${RESOURCES_PATH}/sales/js/estimateManagement.js"></script>
+		<script src="${RESOURCES_PATH}/sales/js/orderManagement_ajax.js"></script>
+		<script src="${RESOURCES_PATH}/sales/js/orderManagement.js"></script>
 </body>
 </html>

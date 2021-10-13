@@ -1,18 +1,22 @@
 package com.kosmo88.logistics_erp.sale.dto;
 
+import java.util.Date;
+
 import org.apache.ibatis.type.Alias;
 
-@Alias("SalesInsertEstimateDTO")
-public class SalesInsertEstimateDTO {
+//주문서 등록 DTO
+@Alias("SalesInsertOrderDTO")
+public class SalesInsertOrderDTO {
 
-	private int request_id;						// 견적서 코드	
-	private String employee_id;					// 사원번호	
-	private int client_id;						// 거래처코드   
+	private int request_id;						// 거래처코드
+	private String employee_id;					// 사원번호
+	private int client_id;						// 거래처코드
 	private int item_id;						// 상품코드
-	private int quantity;
-	private int sales_price;
+	private int department_id;					// 부서코드
+	private int quantity;						// 상품수량
+	private Date end_date;						// 납기요청일자
 	
-	public SalesInsertEstimateDTO() {}
+	public SalesInsertOrderDTO() {}
 
 	public int getRequest_id() {
 		return request_id;
@@ -46,6 +50,14 @@ public class SalesInsertEstimateDTO {
 		this.item_id = item_id;
 	}
 
+	public int getDepartment_id() {
+		return department_id;
+	}
+
+	public void setDepartment_id(int department_id) {
+		this.department_id = department_id;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -54,16 +66,13 @@ public class SalesInsertEstimateDTO {
 		this.quantity = quantity;
 	}
 
-	public int getSales_price() {
-		return sales_price;
+	public Date getEnd_date() {
+		return end_date;
 	}
 
-	public void setSales_price(int sales_price) {
-		this.sales_price = sales_price;
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
 	}
-
-	
-	
 	
 	
 }

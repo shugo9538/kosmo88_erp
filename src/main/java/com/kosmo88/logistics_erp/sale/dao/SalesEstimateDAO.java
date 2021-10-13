@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEmployeeDTO;
+import com.kosmo88.logistics_erp.sale.dto.SalesEstimateDetailViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesEstimateListViewDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
@@ -25,7 +26,7 @@ public interface SalesEstimateDAO {
 	// 견적서 등록 화면 - 거래처 리스트
 	public List<SalesClientDTO> getClientList();
 	
-	// 견적서 등록 화면 - 상품 갯수
+	// 상품 갯수
 	public int getItemCnt();
 	
 	// 상품 리스트
@@ -41,8 +42,17 @@ public interface SalesEstimateDAO {
 	public List<SalesItemDTO> getEstimateItemList();
 	
 	// 견적서 상세 페이지
-	public SalesEstimateListViewDTO getEstimateDetail(int request_id);
+	public SalesEstimateDetailViewDTO getEstimateDetail(int request_id);
 	
-	// 견적서 등록 처리
+	// 견적서 상세페이지(상품)
+	public SalesEstimateDetailViewDTO getEstimateDetailItem(int request_id);
+	
+	// 견적서 등록(REQUEST input) 처리
 	public int insertRequest(Map<String, Object> map);
+	
+	// 견적서 등록(PRODUCT_GROUP input) 처리
+	public int insertProductGroup(Map<String, Object> map);
+	
+	// 견적서 등록(req_product_list tbl) 처리
+	public int insertRPL();
 }
