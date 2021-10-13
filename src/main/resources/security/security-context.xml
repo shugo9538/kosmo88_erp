@@ -17,9 +17,8 @@
 	<security:http
 		auto-config="true"
 		use-expressions="true">
-
-<!--  
-		<security:intercept-url
+<--
+    <security:intercept-url
 			pattern="/hr/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
 		
@@ -42,7 +41,7 @@
 		<security:intercept-url
 			pattern="/**"
 			access="permitAll" />
-			
+
 		<security:form-login
 			login-page="/login"
 			login-processing-url="/loginAction"

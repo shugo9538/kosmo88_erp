@@ -2,17 +2,17 @@
 $(document).ready(function() {
 	
 	// 거래처 선택
-	$("#selectClient").click(function() {
+	$("#selectClient").on('click', function() {
 		
 		var url = "/logistics_erp/purchase/selectClient"
-		window.open(url, "selectClient", "menubar=no, width=1500, height=700");
+		window.open(url, "selectClient", 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes');
 	});
 	
 	// 담당자 선택
-	$("#selectEmployee").click(function() {
+	$("#selectEmployee").on('click', function() {
 		
 		var url = "/logistics_erp/purchase/selectEmployee"
-		window.open(url, "selectEmployee", "menubar=no, width=1500, height=700");
+		window.open(url, "selectEmployee", 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes');
 	});
 });
 
