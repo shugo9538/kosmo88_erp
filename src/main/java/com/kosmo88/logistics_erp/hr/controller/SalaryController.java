@@ -26,25 +26,22 @@ public class SalaryController {
     @Autowired
     SalaryService salaryService;
 
-    // 월별 지급 및 현황
+    // 급여관리 화면
     @RequestMapping(value = "")
     public String leftHolidayNum(HttpServletRequest req, HttpServletResponse res) {
         return "hr/salaryManagement/salaryManagement";
     }
     
-    // 휴가 사용실적
-    @RequestMapping(value = "/useHolidayNum")
-    public String useHolidayNum(HttpServletRequest req, HttpServletResponse res) {
-//        salaryService.useHolidayNum(req, res);
-        
-        return "hr/holidayManagement";
+    // 월급 지급 등록
+    @RequestMapping(value = "/insertSalary")
+    public String insertSalary(HttpServletRequest req, HttpServletResponse res) {
+        return "hr/salaryManagement/insertSalary";
     }
     
-    // 근태 집계표
-    @RequestMapping(value = "/attendanceTable")
-    public String attendanceTable(HttpServletRequest req, HttpServletResponse res) {
-//        salaryService.attendanceTable(req, res);
-        
-        return "hr/holidayManagement";
+    // 월급 지급 등록
+    @RequestMapping(value = "/insertSalary/searchEmployee")
+    public String searchEmployee(HttpServletRequest req, HttpServletResponse res) {
+        salaryService.selectEmployee(req, res);
+        return "hr/salaryManagement/searchEmployee";
     }
 }

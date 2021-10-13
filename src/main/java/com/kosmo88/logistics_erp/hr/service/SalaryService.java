@@ -15,6 +15,12 @@ public interface SalaryService {
     // 급여 통계
     void salaryStatistics(HttpServletRequest req, HttpServletResponse res);
 
+    // 사원 검색
+    void selectEmployee(HttpServletRequest req, HttpServletResponse res);
+    
     // 근로소득
     void earnedIncome(HttpServletRequest req, HttpServletResponse res);
+    
+    // 급여 전표
+    boolean insertSalaryAction(SalaryDTO dto);
 }
