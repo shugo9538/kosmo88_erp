@@ -41,7 +41,7 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
 									<td>
-										<input type="text" name="name" id="name">
+										<input type="text" name="name" id="name" placeholder="거래처명">
 									</td>
 									<th style="background-color: #f1f1f1;">구분</th>
 									<td>법인</td>
@@ -49,7 +49,7 @@
 								<tr>
 									<th style="background-color: #f1f1f1;">대표자</th>
 									<td>
-										<input type="text" name="ceo_name" id="ceo_name"
+										<input type="text" name="ceo_name" id="ceo_name" placeholder="대표자"
 										required>
 									</td>
 									<th style="background-color: #f1f1f1;">사업자 번호</th>
@@ -63,6 +63,9 @@
 										style="width: 50px;" type="text" id="register_num3"
 										name="register_num3" maxlength="5" required
 										onkeyup="nextRegisterNum3()">
+										<input type="hidden" id="dup_chk" value="0">
+										<button type="button" class="btn  btn-primary" id="duplicate_chk"
+											onclick="duplicateChk()">중복확인</button>
 									</td>
 								</tr>
 								<tr>
@@ -102,13 +105,13 @@
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="address" id="address" required>
+										name="address" id="address" placeholder="주소" required>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="3">
 										<input style="width: 350px;" type="text"
-										name="detail_address" id="detail_address"
+										name="detail_address" id="detail_address" placeholder="상세주소"
 										required>
 									</td>
 								</tr>

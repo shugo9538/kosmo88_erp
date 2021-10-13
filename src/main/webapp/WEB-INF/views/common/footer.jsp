@@ -20,3 +20,11 @@
 <!--Begin Page Level Plugin-->
 <script src="${RESOURCES_PATH}/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
 <script src="${RESOURCES_PATH}/assets/pages/table-data.js"></script>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Chatbot"
+  agent-id="93c009a0-03a9-4f66-ae86-e30713eaf6b1"
+  language-code="ko"
+></df-messenger>

@@ -57,6 +57,8 @@
 					class="icon-envelope-open"></i> <span>구매관리</span>
 			</a>
 				<ul class="sub-menu-list">
+					<li><a href="${ROOT_PATH}/purchase/itemManagement">상품
+							관리</a></li>
 					<li><a href="${ROOT_PATH}/purchase/clientManagement">거래처
 							관리</a></li>
 					<li><a href="${ROOT_PATH}/purchase/estimateManagement">견적서

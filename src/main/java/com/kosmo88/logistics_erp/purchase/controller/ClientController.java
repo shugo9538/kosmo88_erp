@@ -1,7 +1,6 @@
 package com.kosmo88.logistics_erp.purchase.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +9,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.purchase.service.ClientService;
 
@@ -25,6 +22,23 @@ public class ClientController {
     
     @Autowired
     ClientService clientService;
+    
+    // (구매처)상품 관리 - (구매처)상품 목록
+    @RequestMapping(value = "/itemManagement")
+    public String itemManagement(HttpServletRequest req, Model model) {
+    	
+    	return "purchase/itemManagement";
+    }
+    
+    // 사업자번호 중복확인
+    @RequestMapping(value = "/dupchkRegiNum")
+    public String dupchkRegiNum(HttpServletRequest req, Model model) {
+    	
+    	clientService.dupchkRegiNum(req, model);
+    	
+    	return "purchase/dupchkRegiNum";
+    }
+    
     
     // 거래처(구매처) 관리 - 거래처 목록
     @RequestMapping(value = "/clientManagement")
