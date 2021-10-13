@@ -3,8 +3,10 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 	<!-- MyBatis 설정 시작 -->
 	<!-- 컨넥션풀 -->
 	<bean
@@ -47,8 +49,27 @@
 	<bean
 		id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property
-			name="dataSource"
-			ref="dataSource" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+
+	<!-- aop -->
+	<aop:config>
+	 <aop:pointcut id="wmsController" expression="execution(* com.kosmo88.logistics_erp.wms.controller.*.*(..))" /> 
+	 <aop:pointcut id="wmsService" expression="execution(* com.kosmo88.logistics_erp.wms.service.*.*(..))"/> 
+	 <aop:pointcut id="wms" expression="execution(* com.kosmo88.logistics_erp.wms..*.*(..))"/> 
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="wmsController"></aop:advisor>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="wmsService"></aop:advisor>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="wms"></aop:advisor>
+	</aop:config>
+	
+	<!-- Advisor 생성 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" rollback-for="RuntimeException"></tx:method>
+			<tx:method name="select*" read-only="true"></tx:method>
+			<tx:method name="update*" rollback-for="RuntimeException"></tx:method>
+			<tx:method name="delete*" rollback-for="RuntimeException"></tx:method>
+		</tx:attributes>
+	</tx:advice>
 </beans>

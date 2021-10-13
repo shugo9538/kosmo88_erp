@@ -55,7 +55,7 @@
 	                    </div>
 	                    
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table  id="salesList" class="table table-bordered">
                                     <thead>
                                         <tr>
                                         	<th>전표일자</th>

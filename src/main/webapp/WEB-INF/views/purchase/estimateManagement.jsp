@@ -54,7 +54,7 @@
 	                                    <th>견적번호</th> 		<!-- request_id -->
                                         <th>거래처</th>		<!-- client_name  -->
                                         <th>거래처대표자</th>  <!-- client_ceo_name  -->
-                                        <th>거래처 연락처</th>  <!-- client_phone  -->
+                                        <th>거래처연락처</th>  <!-- client_phone  -->
                                         <th>담당자</th>		<!-- employee_name  -->
                                         <th>요청일자</th> 	 	<!-- begin_date  -->
 	                                 </tr>

@@ -11,8 +11,11 @@ public class V_sectionDto {
 	private String warehouse_name;
 	private String section;
 	private int capacity;
-	private int loaded;
-	private int stock_count_sum;
+	private int sum_count;
+	private int item_id;
+	private String item_name;
+	
+	
 	
 	public int getId() {
 		return id;
@@ -32,7 +35,6 @@ public class V_sectionDto {
 	public void setWarehouse_name(String warehouse_name) {
 		this.warehouse_name = warehouse_name;
 	}
-	
 	public String getSection() {
 		return section;
 	}
@@ -45,24 +47,32 @@ public class V_sectionDto {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	public int getLoaded() {
-		return loaded;
+	public int getSum_count() {
+		return sum_count;
 	}
-	public void setLoaded(int loaded) {
-		this.loaded = loaded;
+	public void setSum_count(int sum_count) {
+		this.sum_count = sum_count;
 	}
-	public int getStock_count_sum() {
-		return stock_count_sum;
+	public int getItem_id() {
+		return item_id;
 	}
-	public void setStock_count_sum(int stock_count_sum) {
-		this.stock_count_sum = stock_count_sum;
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
 	}
 	@Override
 	public String toString() {
 		return "V_sectionDto [id=" + id + ", warehouse_id=" + warehouse_id + ", warehouse_name=" + warehouse_name
-				+ ", section=" + section + ", capacity=" + capacity + ", loaded=" + loaded + ", stock_count_sum="
-				+ stock_count_sum + "]";
+				+ ", section=" + section + ", capacity=" + capacity + ", sum_count=" + sum_count + ", item_id="
+				+ item_id + ", item_name=" + item_name + "]";
 	}
+
+	
 	
 
 	

@@ -78,12 +78,12 @@ $(document).ready( function() {
             attr:{
             	class: "btn btn-primary"
             },
-            text:'<i class="fa fa-download">통장목록</i>',
+            text:'<i class="fa fa-download"> 통장목록 다운로드 </i>',
             sheetName: '커밋3팀 통장목록',
             messageBottom : '커밋 3팀'
         }
         ]
-    } );
+    });
 });
 
 //----------------------------------------------------------------------------------------

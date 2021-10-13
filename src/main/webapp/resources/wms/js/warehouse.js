@@ -75,32 +75,7 @@ $(document).ready(function () {
     }
 })
 
-function getNewSection(lastSection) {
-    var newSection;
-    var length = lastSection.length;
-    var firstDigit;
-    var secondDigit;
-    if (length == 1) {
-        if (lastSection != 'Z')
-            newSection = String.fromCharCode(lastSection.charCodeAt(0) + 1);
-        else if (lastSection == 'Z')
-            newSection = 'AA';
-        else if (length == 2) {
-            firstDigit = String.fromCharCode(lastSection.charCodeAt(0) + 1);
-            secondDigit = String.fromCharCode(lastSection.charCodeAt(1) + 1);
-            console.log("firstDigit : " + firstDigit + " secondDigit : " + secondDigit)
-            if (secondDigit != 'Z')
-                secondDigit = String.fromCharCode(secondDigit.charCodeAt(0) + 1);
-            else if (secondDigit == 'Z')
-                secondDigit = 'A'
-            firstDigit = secondDigit = String.fromCharCode(secondDigit.charCodeAt(0) + 1);
 
-        }
-    }
-    newSection = firstDigit + secondDigit;
-    console.log("newSection : " + newSection)
-    return newSection
-}
 
 
 function cloneSection() {
@@ -111,7 +86,7 @@ function cloneSection() {
     console.log("lastSection : " + lastSection)
     // console.log(newSection.getElementsByClassName('form-control'));
     newSection_section = getNewSection(lastSection);
-    console.log("nss: " +newSection_section)
+    console.log("nss: " + newSection_section)
     newSection.getElementsByClassName('form-control').item(0).setAttribute("value", newSection_section);
 
     newSection.style.display = "block";
@@ -129,6 +104,39 @@ function cloneSection() {
         .setAttribute("value", getAdditionalFormCnt());
 }
 // window.onload = addSection();
+
+function getNewSection(lastSection) {
+    var newSection;
+    var length = lastSection.length;
+    console.log('length : ' + length);
+    var firstDigit;
+    var secondDigit;
+    var lastSectionCharArr;
+    if (length == 1) {
+        if (lastSection != 'Z')
+            newSection = String.fromCharCode(lastSection.charCodeAt(0) + 1);
+        else if (lastSection == 'Z')
+            newSection = 'AA';
+    }
+    else if (length == 2) {
+        // lastSectionCharArr = lastSection.split();
+        // firstDigit = lastSectionCharArr[0];
+        // secondDigit = lastSectionCharArr[1];
+        firstDigit = String.fromCharCode(lastSection.charCodeAt(0));
+        secondDigit = String.fromCharCode(lastSection.charCodeAt(1));
+        console.log("firstDigit : " + firstDigit + " secondDigit : " + secondDigit)
+        if (secondDigit != 'Z')
+            secondDigit = String.fromCharCode(secondDigit.charCodeAt(0) + 1);
+        else if (secondDigit == 'Z') {
+            secondDigit = 'A';
+            firstDigit = String.fromCharCode(firstDigit.charCodeAt(0) + 1);
+        }
+        newSection = firstDigit + secondDigit;
+    }
+    console.log("newSection : " + newSection)
+    return newSection
+}
+
 
 
 
@@ -276,10 +284,7 @@ function receivingStatusList() {
 }
 
 
-function getNewSection() {
 
-    return
-}
 // 거래처(구매처) 목록
 // function receivingHistoryList() {
 // 	currTab = $('#clientList').DataTable({

@@ -27,7 +27,7 @@ public interface MenuCode {
 	String ACCOUN_UTIL  = "UTILITY_BILL";
 	
 	int SALE = 300;
-	String SALE_STATE = "RX_SALE";    
+	String SALES_STATE = "RX_SALES";    
 	
 	int PURCHASE = 400;
 	String PURCHASE_STATE = "TX_PURCHASE";
@@ -52,8 +52,28 @@ public interface MenuCode {
 	int FAIL = 14;
 	// 매출전표 발행 실패
 	int SLIP_CREATE_FAIL = 15;
+	// 요청코드 실패
+	int REQUEST_CODE_FAIL = 16;
+	// 사원번호 유/무
+	int EMPLOYEE_ID = 17;
+	//  지출결의 등록 실패
+	int EXPENSE = 18; 
 	
 	
+	// 안드로이드 디바이스 토큰
+	//String TOKENID = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+	String SEND = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+	String COMPANY = "KU ERP Kosmo Ultimate ERP"; 
+	
+	
+	// 승인 안내
+	String HR_SEND = "급여 이체가 되었습니다. \n 즐거운 하루 보내세요~"; 
+	String SALES_SEND = "재형아 받아라~ \n 즐거운 하루 보내세요~";
+	String PURCHASE_SEND = "지훈아 받아라~ \n 즐거운 하루 보내세요~";
+	String ACCOUNT_SEND = "회계야 받아라~ \n 즐거운 하루 보내세요~";
+	
+	//알람
+	String ALERT = "";
 	
 	
 	

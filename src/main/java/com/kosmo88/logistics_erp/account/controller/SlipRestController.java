@@ -37,5 +37,21 @@ public class SlipRestController {
     	return slipService.slipDetailInfo(request, response);
     } 
 	
+	@ResponseBody
+    @RequestMapping(value = "/fcm")
+    public String fcmtest(HttpServletRequest request, HttpServletRequest reponse) throws Exception{
+    	logger.debug("========================== fcm ddd ==========================");
+    	
+    	String tokenId = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+    	String title = "KU ERP Kosmo Ultimate ERP"; 
+    	String content = "발주서 승인 되었습니다.";
+    	
+    	//FcmUtil fcm = new FcmUtil();
+    	//fcm.send_FCM(tokenId, title, content);
+    	
+    	
+    	return "account/slipSendAction";
+    }
+	
 	
 }

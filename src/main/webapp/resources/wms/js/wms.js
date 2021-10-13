@@ -1,3 +1,29 @@
+//ajax 관련
+function setPostCsrfHeader(url, query) {
+  // csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfParameter = 'X-XSRF-TOKEN'
+  csrfToken = $("meta[name='_csrf']").attr("content");
+
+  url = getContextPath() + "/wms/inbound/dispatchAction";
+  console.log("요청 url : " + url);
+
+  var xhr = new XMLHttpRequest();
+  console.log("query : " + query);
+
+  if (!xhr) {
+    alert("XMLHTTP 인스턴스 생성 불가");
+    return false;
+  }
+
+  xhr.onreadystatechange = alertContents(xhr);
+   xhr.open("POST", url, true);
+   xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken)
+   xhr.send(query);
+}
+
+
+
+
 function getCurrentDate() {
   var newDate = new Date();
   var year = newDate.getFullYear().toString();

@@ -10,17 +10,24 @@
 		id="monthlyPaymentAndStatus"
 		resultType="SalaryDTO">
 		SELECT id
-		     , basic_pay
-		     , overtime_pay
-		     , bonus
-		     , meal_fee
-		     , income_tax
-		     , payday
-			 , (basic_pay + overtime_pay + bonus + meal_fee - income_tax) employee_salary
-			 , payment_status
-			 , employee_id
-		  FROM salary
+		, basic_pay
+		, overtime_pay
+		, bonus
+		, meal_fee
+		, income_tax
+		, payday
+		, (basic_pay + overtime_pay + bonus + meal_fee - income_tax) employee_salary
+		, payment_status
+		, employee_id
+		FROM salary
 	</select>
 	<!-- 급여 통계 -->
 	<!-- 근로 소득 -->
+
+	<insert
+		id="insertSalaryAction"
+		parameterType="SalaryDTO">
+		INSERT INTO salary(id, overtime_pay, bonus, meal_fee, income_tax, payday, payment_status, employee_id, basic_pay)
+		VALUES(salary_seq.nextval,#{overtime_pay},#{bonus},#{meal_fee},#{income_tax},#{payday},#{payment_status},#{employee_id},#{basic_pay})
+	</insert>
 </mapper>

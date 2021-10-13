@@ -18,7 +18,7 @@ public class StockService {
 
 	public List<V_section_stockDto> list(int warehouseId) {
 //		List<StockDto> stockList = stockDao.selectList(warehouseId); 
-		List<V_section_stockDto> stock_sectionDtoList = stockDao.sectionStockList(warehouseId); 
+		List<V_section_stockDto> stock_sectionDtoList = stockDao.selectStockDetailList(warehouseId); 
 		MyLog.logList(stock_sectionDtoList);
 		return stock_sectionDtoList;
 	}

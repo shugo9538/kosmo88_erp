@@ -3,6 +3,12 @@
 <mapper namespace="com.kosmo88.logistics_erp.wms.dao.OutboundDao">
 
 <!-- RX_PURCHASE request 를 가져온다 -->
+<select id="allOutboundList" resultType="V_outboundDto">
+		SELECT *
+		FROM V_OUTBOUND
+	</select>
+
+
 	<select id="selectSalesList" resultType="V_salesDto">
 		SELECT *
 		FROM V_SALES
@@ -12,42 +18,48 @@
 
 	<select id="selectItemList" parameterType="int"
 		resultType="V_sales_itemDto">
-		SELECT * FROM V_SALES_ITEM
-		WHERE SALES_ID =
-		#{sales_id}
+		SELECT * FROM V_REQUEST_ITEM
+		WHERE REQUEST_ID = #{requestId}
 	</select>
 
-	<select id="allInboundList" resultType="V_inboundDto">
-		SELECT *
-		FROM V_OUTBOUND
-	</select>
-
-	<select id="dispatchedInboundList" parameterType="int"
-		resultType="V_inboundDto">
+	<select id="selectDispatchedOutboundList" parameterType="int"
+		resultType="V_outboundDto">
 		SELECT *
 		FROM V_OUTBOUND
 		WHERE WAREHOUSE_ID = #{warehouseId}
 	</select>
 
 	<select id="selectMaxId" resultType="int">
-		SELECT MAX_OUTBOUND_ID
-		OUTBOUND_ID
+		SELECT MAX_ID('OUTBOUND')
 		FROM DUAL
 	</select>
 
 	<select id="selectOne" parameterType="int"
 		resultType="V_salesDto">
 		SELECT * FROM V_SALES
-		WHERE SALES_ID = #{sales_id}
+		WHERE REQUEST_ID = #{requestId}
 	</select>
+	
+	<select id="selectShippedOutboundList" parameterType="int"
+		resultType="V_inboundDto">
+		SELECT *
+		FROM V_OUNBOUND
+		WHERE WAREHOUSE_ID = #{warehouseId}
+		AND SHIPPED_DATE IS NOT NULL
+	</select>
+	
+	
+	<update id="updateShippedDate" parameterType="int">
+		UPDATE OUTBOUND SET
+		SHIPPED_DATE = SYSDATE
+		WHERE REQUEST_ID = #{requestId}
+	</update>
 
-	<!-- 입하 요청 등록 -->
+	<!-- 출하 요청 등록 -->
 	<!-- <insert id="insert" parameterType="V_salesDto"> -->
-	<insert id="insert" parameterType="Map">
-		INSERT INTO OUTBOUND (ID,
-		WAREHOUSE_ID, BEGIN_DATE, END_DATE, EMPLOYEE_ID, CLIENT_ID)
-		VALUES(#{inbound_id}, #{warehouse_id}, #{begin_date}, #{end_date},
-		'WMS000', #{client_id})
+	<insert id="insertOutbound" parameterType="Map">
+		INSERT INTO OUTBOUND (ID, REQUEST_ID, WAREHOUSE_ID)
+		VALUES(#{inboundId},#{requestId} , #{warehouseId})
 
 	</insert>
 
@@ -57,7 +69,7 @@
 		UPDATE REQUEST SET
 <!-- 		ENABLED = 'N' -->
 		STATE = 'RX_OUTBOUND'
-		WHERE ID = #{sales_id}
+		WHERE ID = #{requestId}
 		AND STATE='RX_SALES'
 	</update>
 </mapper>

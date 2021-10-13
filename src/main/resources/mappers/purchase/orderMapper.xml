@@ -20,7 +20,7 @@
  		UPDATE request
  		   SET enabled = 'N'
  		 WHERE id = #{request_id}
- 		   AND state = 'TX_ORDER'
+ 		   AND state IN ('TX_ORDER', 'TX_PURCHASE', 'TX_INBOUND')
  	</update>
  	
  	<!-- 주문서 상세페이지(거래처, 담당자 정보) -->

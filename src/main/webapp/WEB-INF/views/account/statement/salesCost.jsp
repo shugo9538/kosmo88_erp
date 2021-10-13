@@ -33,17 +33,6 @@
 			<!--End Page Title-->
 			<!-- Start responsive Table-->
 			<div class="col-md-12">
-				<!-- 메뉴버튼 -->
-				<div>
-					<ul class="nav nav-pills custom-nav">
-						<li class="active">
-							<a href="${ROOT_PATH}/account/purchaseList?categoryNum=131">매입목록</a>
-						</li>
-						<li class="active">
-							<a href="${ROOT_PATH}/account/salesList?categoryNum=132">매출목록</a>
-						</li>
-					</ul>
-				</div>
 				<!-- 메뉴버튼 끝 -->
 				<div class="white-box">
 					<div class="title" style="text-align-last: center">
