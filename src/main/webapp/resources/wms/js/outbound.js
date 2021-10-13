@@ -1,17 +1,17 @@
 //자바스크립트의 this는 호출한 객체를 가리킨다? 기본 window
 let dispatchWindow;
-let warehouse_id;
+let warehouseId;
 
-function dispatchoutbound(sales_id) {
+function dispatchOutbound(requestId) {
 	console.log(getContextPath() + "/wms/outbound/dispatch");
-	this.sales_id = sales_id;
-	console.log("출하 지시창 오. sales_id : " + sales_id);
-	dispatchwindow = window.open(getContextPath() + "/wms/outbound/dispatch?sales_id="+sales_id, "haha", "width=800,height=600");
+	this.requestId = requestId;
+	console.log("출하 지시창 오픈. requestId : " + requestId);
+	dispatchwindow = window.open(getContextPath() + "/wms/outbound/dispatch?requestId="+requestId, "haha", "width=800,height=600");
 }
 
 function dispatchAction() {
 	var select = document.getElementById("destination");
-	var warehouse_id = select.options[select.selectedIndex].value;
+	var warehouseId = select.options[select.selectedIndex].value;
 
 
 	// var url = getContextPath() + "/wms/outbound/dispatchAction?warehouse_id=" + warehouse_id
@@ -20,7 +20,7 @@ function dispatchAction() {
 
 
 	var req = new XMLHttpRequest();
-	var query = 'warehouse_id=' + warehouse_id + "&sales_id=" + opener.sales_id;	
+	var query = 'warehouseId=' + warehouseId + "&requestId=" + opener.requestId;	
 	console.log("query : " + query);
 
 	if (!req) {
@@ -50,19 +50,21 @@ function alertContents(req) {
 }
 
 
+function getStock(warehouseId){
+	console.log('getStock() 실행. warehouseId : ' + warehouseId)
+	document.getElementById('stockList').innerHTML = 
+	'<h5>재고 여부</h5>';
+
+
+	csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	csrfToken = $("meta[name='_csrf']").attr("content");
+
+	//ajax 해볼까
+}	
 
 
 
 
-
-
-//warehousing에 있던거
-
-// window.onload=function(){
-// 		selTab();
-// 			initDatePicker();
-// 			adjustIncludedPage();
-// }
 
 
 var csrfData = {};

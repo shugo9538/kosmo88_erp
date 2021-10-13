@@ -169,9 +169,9 @@
 <%-- 													onclick="addRack(${purchaseDto.purchase_id})">${sectionDto.section}</a> --%>
 <%-- 																									<a href="${ROOT_PATH}/wms/warehouse/addSection">${sectionDto.section}</a></td> --%>
 												<td>${sectionDto.warehouse_name}</td>
-												<td>(${sectionDto.count}/${sectionDto.capacity})</td>
+												<td>(${sectionDto.sum_count}/${sectionDto.capacity})</td>
 												<td><c:choose>
-														<c:when test="${sectionDto.count>0}">
+														<c:when test="${sectionDto.sum_count>0}">
 															사용중	
 														</c:when>
 														<c:otherwise>

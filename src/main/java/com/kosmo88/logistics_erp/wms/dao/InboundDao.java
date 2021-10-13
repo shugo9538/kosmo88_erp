@@ -16,17 +16,16 @@ import com.kosmo88.logistics_erp.wms.util.Vars;
 
 public interface InboundDao {
 	List<V_purchaseDto> selectList();
-	void updateWarehoused(int request_id);
+	void updateWarehousedDate(int requestId);
 	//	void insert(V_purchaseDto dto, int maxId);
 	List<V_inboundDto> allInboundList();
-	List<V_inboundDto> dispatchedInboundList(int warehouseId);
-	List<V_inboundDto> selectWarehousedInboundList(int warehouse_id);
-	void insertInbound(V_purchaseDto dto, int inbound_id, int warehouse_id);
+	List<V_inboundDto> selectDispatchedInboundList(int warehouseId);
+	List<V_inboundDto> selectWarehousedInboundList(int warehouseId);
+	void insertInbound(V_purchaseDto dto, int inbound_id, int warehouseId);
 	int selectMaxId();
 	V_purchaseDto selectOne(int purahcse_id);
-	List<V_request_itemDto> selectItemList(int purchase_id);
-	void updateState(int purchaseId);
-	void updateWarehousedDate(int request_id);
+	List<V_request_itemDto> selectItemList(int requestId);
+	void updateState(int requestId);
 
 }
 
@@ -53,28 +52,28 @@ class InboundDaoImpl implements InboundDao{
 	
 	
 	@Override
-	public List<V_inboundDto> dispatchedInboundList(int warehouseId) {
-		return sqlSession.selectList(Vars.INBOUND_DAO_PATH+".dispatchedInboundList", warehouseId);
+	public List<V_inboundDto> selectDispatchedInboundList(int warehouseId) {
+		return sqlSession.selectList(Vars.INBOUND_DAO_PATH+".selectDispatchedInboundList", warehouseId);
 	}
 
 	
 	@Override
 	public void insertInbound(V_purchaseDto dto, int inboundId, int warehouseId) {
 		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("inbound_id", inboundId);
-		paramMap.put("warehouse_id", warehouseId);
-		paramMap.put("purchase_id", dto.getPurchase_id());
-		paramMap.put("begin_date", dto.getBegin_date());
-		paramMap.put("end_date", dto.getEnd_date());
-		paramMap.put("client_id", dto.getClient_id());
+		paramMap.put("inboundId", inboundId);
+		paramMap.put("warehouseId", warehouseId);
+		paramMap.put("requestId", dto.getRequest_id());
+//		paramMap.put("begin_date", dto.getBegin_date());
+//		paramMap.put("end_date", dto.getEnd_date());
+//		paramMap.put("client_id", dto.getClient_id());
 		
 		sqlSession.insert(Vars.INBOUND_DAO_PATH+".insertInbound", paramMap);
 	}
 	
 
 	@Override
-	public V_purchaseDto selectOne(int purchase_id) {
-		V_purchaseDto dto = sqlSession.selectOne(Vars.DAO_PATH + ".InboundDao.selectOne",purchase_id);
+	public V_purchaseDto selectOne(int requestId) {
+		V_purchaseDto dto = sqlSession.selectOne(Vars.DAO_PATH + ".InboundDao.selectOne", requestId);
 		return dto;
 	}
 
@@ -84,30 +83,25 @@ class InboundDaoImpl implements InboundDao{
 	}
 
 	@Override
-	public List<V_request_itemDto> selectItemList(int request_id) {
-		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectItemList", request_id);
+	public List<V_request_itemDto> selectItemList(int requestId) {
+		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectItemList", requestId);
 	}
 
 	@Override
-	public void updateState(int request_id) {
-		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateState", request_id);
+	public void updateState(int requestId) {
+		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateState", requestId);
 	}
 	
+
 	@Override
-	public void updateWarehoused(int request_id) {
-		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateState", request_id);
+	public void updateWarehousedDate(int requestId) {
+		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateWarehousedDate", requestId);
 	}
 
 
 	@Override
-	public void updateWarehousedDate(int request_id) {
-		sqlSession.update(Vars.DAO_PATH + ".InboundDao.updateWarehousedDate", request_id);
-	}
-
-
-	@Override
-	public List<V_inboundDto> selectWarehousedInboundList(int warehouse_id) {
-		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectWarehousedInboundList", warehouse_id);
+	public List<V_inboundDto> selectWarehousedInboundList(int warehouseId) {
+		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectWarehousedInboundList", warehouseId);
 	}
 	
 	

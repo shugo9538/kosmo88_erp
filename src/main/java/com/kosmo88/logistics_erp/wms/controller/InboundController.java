@@ -54,15 +54,15 @@ public class InboundController {
 	@RequestMapping("/dispatch")
 	public String dispatchInbound(HttpServletRequest req, Model model) {
 //		List<V_warehouseDto> list = warehouseService.list();
-		int purchaseId = Integer.parseInt(req.getParameter("purchaseId"));
-		List<V_request_itemDto> purchaseItemDtoList = inboundService.productDtoList(purchaseId);
+		int requestId = Integer.parseInt(req.getParameter("requestId"));
+		List<V_request_itemDto> purchaseItemDtoList = inboundService.productDtoList(requestId);
 		List<V_warehouseDto> warehouseDtoist = warehouseService.warehouseList();
 		model.addAttribute("purchaseItemDtoList", purchaseItemDtoList);
 		model.addAttribute("warehouseDtoList", warehouseDtoist);
 		//구매품목 개수
 		int itemCount = purchaseItemDtoList.size();
 		model.addAttribute("itemCount", itemCount);
-		model.addAttribute("purchaseId", purchaseId);
+		model.addAttribute("requestIdId", requestId);
 		return "wms/inbound/dispatchInbound";
 	}
 	
@@ -71,7 +71,7 @@ public class InboundController {
 	@RequestMapping(value = { "/manageWarehousing", "/" })
 	public String manageWarehousing(HttpServletRequest req, Model model) {
 		int warehouseId = Integer.parseInt(req.getParameter("id"));
-		List<V_inboundDto> inboundDtoList = inboundDao.dispatchedInboundList(warehouseId);
+		List<V_inboundDto> inboundDtoList = inboundDao.selectDispatchedInboundList(warehouseId);
 		List<V_inboundDto> warehousedInboundDtoList = inboundDao.selectWarehousedInboundList(warehouseId);
 		model.addAttribute("inboundDtoList", inboundDtoList);
 		model.addAttribute("warehousedInboundDtoList", warehousedInboundDtoList);
@@ -118,10 +118,12 @@ class InboundRestController {
 	//ajax 아직
 	@RequestMapping("/dispatchAction")
 	public void dispatchAction(HttpServletRequest req) {
-		int warehouseId = Integer.parseInt(req.getParameter("warehouse_id"));
-		int purchaseId = Integer.parseInt(req.getParameter("purchase_id"));
-		System.out.println("warehouseId : " + warehouseId + " inboundId : " + purchaseId);
-		inboundService.dispatchAction(warehouseId, purchaseId);
+		MyLog.logParamMap(req.getParameterMap());
+		
+		int warehouseId = Integer.parseInt(req.getParameter("warehouseId"));
+		int requestId = Integer.parseInt(req.getParameter("requestId"));
+		System.out.println("warehouseId : " + warehouseId + " inboundId : " + requestId);
+		inboundService.dispatchAction(warehouseId, requestId);
 	}
 	
 	
@@ -137,15 +139,8 @@ class InboundRestController {
 		MyLog.logParamMap(paramMap);
 		int requestId = Integer.parseInt(req.getParameter("requestId"));
 		inboundService.warehousingAction(paramMap, requestId);
-//		DtoFunction.getDtoSetFromParamMap(paramMap, StockDto.class, 2);
 		System.out.println(paramMap.toString());
-//		DtoFunction.getDtoSetFromParamMap(paramMap, StockDto.class, index)
 
-//		int warehouseId = Integer.parseInt(req.getParameter("warehouse_id"));
-//		int requestId = Integer.parseInt(req.getParameter("request_id"));
-//		inboundService.warehousingAction(warehouseId, requestId);
-		
-		
 		//상태코드 대신 inbound에 날짜 넣기
 		inboundDao.updateWarehousedDate(requestId);
 	}

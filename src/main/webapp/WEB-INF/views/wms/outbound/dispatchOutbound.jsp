@@ -17,7 +17,7 @@
 					<div class="col-md-12">
 						<div class="white-box">
 							<h2 class="header-title">
-								<i class="fa fa-chevron-circle-right mr-2"></i>입하 지시
+								<i class="fa fa-chevron-circle-right mr-2"></i>출하 지시
 							</h2>
 
 
@@ -30,12 +30,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="purchaseItemDto" items="${purchaseItemDtoList}">
+									<c:forEach var="salesItemDto" items="${salesItemDtoList}">
 										<tr>
 											<td class="hidden">
-												<%-- 											<td>${productDto.purchase_id}</td> --%>
-											<td>${purchaseItemDto.item_name}</td>
-											<td>${purchaseItemDto.quantity}</td>
+												<%-- 											<td>${productDto.sales_id}</td> --%>
+											<td>${salesItemDto.item_name}</td>
+											<td>${salesItemDto.quantity}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -46,32 +46,28 @@
 							<!-- 							</div> -->
 
 
-							<div class="form-group">
-								<label class="col-sm-2 control-label">입하 창고 선택</label>
+<!-- 							<div class="form-group"> -->
+								<label class="col-sm-2 control-label">출하 창고 선택</label>
+
 								<div class="col-sm-10">
-									<div id="inbound"></div>
-									<select id="destination" class="form-control input">
+									<div id="outbound"></div>
+									<select id="destination" class="form-control input"
+										onchange="getStock(1)">
+										<option>== 창고 선택 ==</option>
 										<c:forEach var="warehouseDto" items="${warehouseDtoList}">
-										<c:set var="validSection" value="${warehouseDto.section_count - warehouseDto.stock_count}"/>
-											<c:if
-												test="${validSection>=itemCount}"
- 													> 
-<!-- 													-warehouseDto.stock_count>0}"> -->
-												<option value="${warehouseDto.id}">${warehouseDto.name}
-													 (여유 섹션 ${validSection})</option>
-<%-- 													(여유 섹션 ${warehouseDto.section_count -warehouseDto.stock_count})</option> --%>
-											</c:if>
+											<c:set var="validSection"
+												value="${warehouseDto.section_count - warehouseDto.stock_count}" />
+											<option value="${warehouseDto.id}">${warehouseDto.name}
+											</option>
 										</c:forEach>
 									</select>
 									<div class="my-5"></div>
 
-									<%-- 										<c:forEach var="warehouseDto" items="${warehouseDtoList}"> --%>
-									<%-- 											<div>${warehouseDao.warehouse_id}${warehouseDto.warehouse_name}</div> --%>
-									<%-- 										</c:forEach> --%>
 
 									<div class="centerBtnContainer">
+										<div id="stockList"></div>
 										<input type="button" class="btn-default align-self-center"
-											onclick="dispatchAction(${requestId})" value="입하 지시">
+											onclick="dispatchAction(${salesId})" value="출하 지시">
 									</div>
 								</div>
 							</div>
@@ -84,6 +80,6 @@
 	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
-	<script src="${RESOURCES_PATH}/wms/js/inbound.js"></script>
+	<script src="${RESOURCES_PATH}/wms/js/outbound.js"></script>
 </body>
 </html>

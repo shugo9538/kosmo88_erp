@@ -1,3 +1,7 @@
+//csrf 토큰 넣기. common으로 보내기
+
+
+
 //초기화
 //warehousing
 document.addEventListener("DOMContentLoaded", function () {
@@ -39,20 +43,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   //select 자동으로 채워넣기
-  var sections = Array.from(document.getElementById('section')).filter(e=>e.querySelector('.selected')==null);
-  console.log('length :' +sections.length)
-  console.log(sections.toString())
-  // var sections = document.querySelectorAll('#section').forEach();
-  var lastSection = sections[sections.length - 1];
-  var sectionValues = lastSection.childNodes;
-  console.log(lastSection);
-  for (var section of sections) {
-    var sectionOptions = section.child
-    for (var sectionValue of sectionValues) {
-      console.log('sectionValue : ' + sectionValue.innerHTML);
+  // var sections = Array.from(document.getElementById('section')).filter(e=>e.querySelector('.selected')==null);
+  // console.log('length :' +sections.length)
+  // console.log(sections.toString())
+  // // var sections = document.querySelectorAll('#section').forEach();
+  // var lastSection = sections[sections.length - 1];
+  // var sectionValues = lastSection.childNodes;
+  // console.log(lastSection);
+  // for (var section of sections) {
+  //   var sectionOptions = section.child
+  //   for (var sectionValue of sectionValues) {
+  //     console.log('sectionValue : ' + sectionValue.innerHTML);
 
-    }
-  }
+  //   }
+  // }
 
 
 
@@ -62,40 +66,52 @@ document.addEventListener("DOMContentLoaded", function () {
 let dispatchWindow;
 let warehouse_id;
 
-function dispatchInbound(purchaseId) {
+function dispatchInbound(requestId) {
+  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfToken = $("meta[name='_csrf']").attr("content");
+  
   console.log(getContextPath() + "/wms/inbound/dispatch");
-  this.purchase_id = purchaseId;
-  console.log("입하 지시창 오. purchase_id : " + purchaseId);
+  this.requestId = requestId;
+  console.log("입하 지시창 오. requestId : " + requestId);
   dispatchwindow = window.open(
-    getContextPath() + "/wms/inbound/dispatch?purchaseId=" + purchaseId,
+    getContextPath() + "/wms/inbound/dispatch?requestId=" + requestId,
     "haha",
     "width=800,height=600"
   );
 }
 
-function dispatchAction() {
+function dispatchAction(requestId) {
+  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  csrfToken = $("meta[name='_csrf']").attr("content");
+
   var select = document.getElementById("destination");
-  var warehouse_id = select.options[select.selectedIndex].value;
+  var warehouseId = select.options[select.selectedIndex].value;
 
   // var url = getContextPath() + "/wms/inbound/dispatchAction?warehouse_id=" + warehouse_id
   var url = getContextPath() + "/wms/inbound/dispatchAction";
   console.log("요청 url : " + url);
 
-  var req = new XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
   var query =
-    "warehouse_id=" + warehouse_id + "&purchase_id=" + opener.purchase_id;
+    // "warehouseId=" + warehouseId + "&=" + opener.requestId;
+    "warehouseId=" + warehouseId + "&requestId=" + opener.requestId
   console.log("query : " + query);
 
-  if (!req) {
+  if (!xhr) {
     alert("XMLHTTP 인스턴스 생성 불가");
     return false;
   }
 
-  req.onreadystatechange = alertContents(req);
-  req.open("GET", url + "?" + query, true);
-  req.send();
+  xhr.onreadystatechange = alertContents(xhr);
+  // xhr.open("GET", url + "?" + query, true);
+   xhr.open("POST", url, true);
+   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  // xhr.setRequestHeader(csrfParameter, csrfToken)
+  xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken)
+   xhr.send(query);
 
-  alert("입하 지시 처리되었습니다.\n test: " + query);
+
+  alert("입하 지시 되었습니다.\n test: " + query);
   window.close();
   opener.location.reload();
 }
@@ -395,7 +411,9 @@ function disableSameOption(value) { }
 
 function warehousingAction() {
   //   var select = document.getElementById("destination");
-  //   var warehouse_id = select.options[select.selectedIndex].value;
+// var itemIdArr = document.getElementsByName('itemId');   
+// var quantityArr = document.getElementsByName('itemId');   
+// var itemIdArr = document.getElementsByName('itemId');   
 
   //   var url = getContextPath() + "/wms/inbound/warehousingAction";
   //   console.log("요청 url : " + url);
@@ -423,9 +441,8 @@ function warehousingAction() {
   //   req.open("POST", url + "?" + query, true);
   //   req.send();
 
-  //   alert("입고 처리되었습니다.\n test: " + query);
   alert("입고 처리되었습니다.\n");
-    window.close();
+    // window.close();
   opener.location.reload();
   
   return true;

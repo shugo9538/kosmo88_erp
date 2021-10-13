@@ -60,7 +60,7 @@ public class InboundService {
 	@Transactional
 	public void warehousingAction(int waerhouseId, int requestId) {
 		// inbound warehoused 처리
-		inboundDao.updateWarehoused(requestId);
+		inboundDao.updateWarehousedDate(requestId);
 		
 		
 		// 구매 정보를 토대로 재고 정보 작성
@@ -84,20 +84,17 @@ public class InboundService {
 
 	
 	
-	@Transactional
+//	@Transactional
 	public void warehousingAction(Map<String, String[]> paramMap,int requestId) {
-		// inbound warehoused 처리
-		inboundDao.updateWarehoused(requestId);
+		// 1. inbound.warehoused_date update
+		inboundDao.updateWarehousedDate(requestId);
 		
-		// 구매 정보를 토대로 재고 정보 작성
+		// 2. 구매 정보를 토대로 재고 정보 작성
 		String[] itemIdArr = paramMap.get("itemId");
 		String[] itemNameArr = paramMap.get("itemName");
 		String[] quantityArr = paramMap.get("quantity");
 		String[] sectionIdArr = paramMap.get("section");
 
-		
-		
-		//테스트
 		for(int i = 0; i<itemIdArr.length; i++) {
 			int itemId = Integer.parseInt(itemIdArr[i]);
 			int quantity = Integer.parseInt(quantityArr[i]);
@@ -109,6 +106,7 @@ public class InboundService {
 			stockDao.insertStock(stockDto);
 		}
 
+		// 3. request state => 'TX_INBOUND'
 		inboundDao.updateState(requestId);
 	}
 }
