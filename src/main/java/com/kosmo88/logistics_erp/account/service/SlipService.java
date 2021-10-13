@@ -12,6 +12,7 @@ public interface SlipService {
 	// 일반전표 세부내역
 	public List<SlipDTO> slipDetailInfo(HttpServletRequest request, HttpServletResponse response);
 	
-	
+	// 전표 승인 알람 발송
+	public void slipConfirmAlert(String tokenId, String title, String content);
 
 }

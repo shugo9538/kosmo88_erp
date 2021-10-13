@@ -50,12 +50,12 @@
                 <div class="col-md-12">
                  <div class="white-box">
 	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">매입전표 목록</h2>
+		                    <h1 class="header-title">매입전표 목록</h1>
 		                    <h2 class="header-title">2021년</h2>
 	                    </div>
 	                    
                      <div class="table-responsive">
-                         <table class="table table-bordered">
+                         <table id="purchaseList" class="table table-bordered">
                                     <thead>
                                         <tr>
                                         	<th>전표일자</th>

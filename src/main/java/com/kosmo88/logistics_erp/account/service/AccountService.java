@@ -12,16 +12,19 @@ public interface AccountService {
 	// 기초정보관리
 	// 거래처 목록조회
 	public void clientList(Model model);
-	
+	// 거래처 등록
+	public void clientInsertAction(HttpServletRequest request, Model model);
 	// 일반전표/장부관리
 	// 일반전표 목록조회
 	public void slipList(Model model);
 	// 일반전표 등록 처리
-	//public void slipInsert(Model model);
+	public void slipInsertAction(HttpServletRequest request, Model model);
 	// 일반전표 수정처 처리
 	public void slipModifyDetail(HttpServletRequest request, Model model);
 	// 일반전표 상태변경(승인/미승인)
 	public void slipConfirmAction(HttpServletRequest request, Model model);
+	// 전표 승인 알람 발송
+	public void slipConfirmAlert(String tokenId, String title, String content);
 	// 일반전표 세부내역
 	public void slipDetailInfo(HttpServletRequest request, Model model);
 	
