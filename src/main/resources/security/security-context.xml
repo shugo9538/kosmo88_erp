@@ -41,7 +41,7 @@
 		<security:intercept-url
 			pattern="/**"
 			access="permitAll" />
-			
+
 		<security:form-login
 			login-page="/login"
 			login-processing-url="/loginAction"

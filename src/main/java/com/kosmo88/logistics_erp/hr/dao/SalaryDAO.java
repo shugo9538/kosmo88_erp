@@ -14,4 +14,6 @@ public interface SalaryDAO {
 
     // 근로소득
     int earnedIncome();
+    
+    int insertSalaryAction(SalaryDTO dto);
 }

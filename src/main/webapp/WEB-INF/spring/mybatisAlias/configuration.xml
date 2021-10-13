@@ -2,6 +2,10 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false"/>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
 	<typeAliases>
 		<package name="com.kosmo88.logistics_erp.member.dto" />
 		<package name="com.kosmo88.logistics_erp.account.dto" />
@@ -10,4 +14,5 @@
 		<package name="com.kosmo88.logistics_erp.sale.dto" />
 		<package name="com.kosmo88.logistics_erp.purchase.dto" />
 	</typeAliases>
+
 </configuration>
