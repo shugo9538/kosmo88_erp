@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.apache.ibatis.type.Alias;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Alias("EmployeeDTO")
 public class EmployeeDTO {
     private String id;
@@ -15,6 +17,7 @@ public class EmployeeDTO {
     private String detail_address;
     private String email;
     private String address;
+    @JsonFormat(pattern="yy-MM-dd")
     private Date hire_date;
     private int department_id;
     private String department_name;

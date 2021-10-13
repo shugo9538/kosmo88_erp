@@ -213,16 +213,12 @@ var employeeColumns = [
         }, {
             'sTitle' : '입사일',
             data : 'hire_date',
-            render : $.fn.dataTable.render.moment()
         }, {
             'sTitle' : '부서 코드',
-            data : 'department_id'
+            data : 'department_name'
         }, {
             'sTitle' : '직급명',
-            data : 'position_id'
-        }, {
-            'sTitle' : '직급명',
-            data : 'name'
+            data : 'position_name'
         }
 ];
 

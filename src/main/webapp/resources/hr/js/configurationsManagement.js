@@ -47,25 +47,25 @@ $(document).on("click", configTab, function() {
     url = '/' + $(this).attr('id');
 
     switch (url) {
-    case '/selectHRCode':
-        columns = hrCodeColumns;
-        ordering = hrCodeOrder;
-        break;
-
-    case '/selectDepartments':
-        columns = departmentCodeColumns;
-        ordering = departmentCodeOrder;
-        break;
-
-    case '/selectPosition':
-        columns = positionCodeColumns;
-        ordering = positionCodeOrder;
-        break;
-
-    default:
-        columns = attendanceCodeColumns;
-        ordering = attendanceCodeOrder;
-        break;
+        case '/selectHRCode':
+            columns = hrCodeColumns;
+            ordering = hrCodeOrder;
+            break;
+    
+        case '/selectDepartments':
+            columns = departmentCodeColumns;
+            ordering = departmentCodeOrder;
+            break;
+    
+        case '/selectPosition':
+            columns = positionCodeColumns;
+            ordering = positionCodeOrder;
+            break;
+    
+        default:
+            columns = attendanceCodeColumns;
+            ordering = attendanceCodeOrder;
+            break;
     }
 
     callConfigList(url, columns, ordering);

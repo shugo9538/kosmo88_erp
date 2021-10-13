@@ -9,14 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
-import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.dto.SalaryDTO;
 import com.kosmo88.logistics_erp.hr.service.SalaryService;
 
@@ -34,5 +31,15 @@ public class SalaryRestController {
     @RequestMapping(value = "/salaryList")
     public ArrayList<SalaryDTO> selectAttendacne(HttpServletRequest req, HttpServletResponse res) {
         return salaryService.monthlyPaymentAndStatus();
+    }
+
+    // 급여 입력
+    @RequestMapping(value = "/insertSalaryAction")
+    public boolean insertSalaryAction(@RequestBody List<SalaryDTO> dto) {
+        boolean result = true;
+        for (SalaryDTO d : dto) {
+            if (!salaryService.insertSalaryAction(d)) result = false;
+        }
+        return result;
     }
 }
