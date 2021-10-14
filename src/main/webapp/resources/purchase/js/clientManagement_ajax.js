@@ -249,6 +249,17 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 function clientList() {
 	currTab = $('#clientList').DataTable({
 		"order": [[ 1, "desc" ]],
+		dom: 'frtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">거래처목록 다운로드</i>',
+            sheetName: '구매팀 거래처 목록',
+            messageBottom : '커밋 3팀'
+		}],		
         ajax : {
             url : window.location.href + '/clientList', // 현 위치
             // + 요청
