@@ -190,7 +190,7 @@ function orderList() {
                 	render : function(data) {
                 		if (data == 'RX_ORDER') return '<button class="btn  btn-defalt" type="button">출고준비</button>';
                 		else if (data == 'RX_SALES') return '<button class="btn  btn-defalt" type="button">출고준비</button>';
-                		else if (data == 'RX_OUTOFBOUND') return '<label style="color:blue;"><i class="fa fa-check">출고완료</label>';
+                		else if (data == 'RX_OUTBOUND') return '<label style="color:blue;"><i class="fa fa-check">출고완료</label>';
                 	}
                 }
         ],

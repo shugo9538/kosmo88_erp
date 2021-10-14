@@ -23,9 +23,6 @@ public class ClientController {
     @Autowired
     ClientService clientService;
     
-<<<<<<< HEAD
-    // 거래처(구매처) 관리 - 거래처 목록S
-=======
     // (구매처)상품 관리 - (구매처)상품 목록
     @RequestMapping(value = "/itemManagement")
     public String itemManagement(HttpServletRequest req, Model model) {
@@ -44,7 +41,6 @@ public class ClientController {
     
     
     // 거래처(구매처) 관리 - 거래처 목록
->>>>>>> 1ebd9b61cb2bd344925240b4e6c388b5044a3f17
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
     	

@@ -56,12 +56,7 @@
 	                		<td style="padding:15px;" colspan="3"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${cdto.register_date}"/></td>
 	                	</tr>
 	                </table>
-	                
-	                
-                </form>
-                
-                </div>
-                <div style="text-align:center;" class="form-group mt-5 col-md-12">
+	                 <div style="text-align:center;" class="form-group mt-5 col-md-12">
                             <input class="btn  btn-primary" type="button" value="수정"
                             	onclick="window.location='clientUpdate?client_id=${cdto.id}'"/>
                             <input class="btn  btn-primary" type="button" value="삭제"
@@ -69,6 +64,11 @@
                             <input class="btn  btn-defalte" type="button" value="닫기"
                             	onclick="window.close();"/>
                     </div>
+	                
+                </form>
+                
+                </div>
+               
             </div>
         </div>
     </div>
