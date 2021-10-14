@@ -1,10 +1,10 @@
-function estimateDelete() {
+function clientDelete() {
 	
-	var request_id = document.getElementById('request_id').value;
+	var client_id = document.getElementById('client_id').value;
 	
 	swal({
-		title : "견적서를 삭제하시겠습니까?",
-		text : "삭제할 견적서를 선택 하셨습니다.",
+		title : "거래처를 삭제하시겠습니까?",
+		text : "삭제할 거래처를 선택 하셨습니다.",
 		type : "warning",
 		showCancelButton: true,
 		cancelButtonText: "아니요",
@@ -12,16 +12,16 @@ function estimateDelete() {
 		confirmButtonText: "예",
 		closeOnConfirm: false
 		}, function(){
-			window.location="estimateDelete?request_id=" + request_id;
+			window.location="clientDelete?client_id=" + client_id;
 		});
 	return false;
 }
+
 
 $('#pdfmake').on('click', function() {
     html2canvas($('#white-box')[0]).then(function(canvas) {
         
     	var client_name = document.getElementById('client_name').value;
-    	var request_id = document.getElementById('request_id').value;
     	
     	var imgData = canvas.toDataURL('image/png');
         
@@ -35,8 +35,7 @@ $('#pdfmake').on('click', function() {
         
         var imgData = canvas.toDataURL('image/png'); 
         doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-        doc.save(request_id + '.' + client_name + '.pdf'); // pdf저장
+        doc.save(client_name + '.pdf'); // pdf저장
       });
 });
-
 

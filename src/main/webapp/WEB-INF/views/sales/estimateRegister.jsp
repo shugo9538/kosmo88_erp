@@ -113,19 +113,19 @@
 							</table>
 
 							<!-- 상품 목록 -->
-							<h2 class="header-title">
-								<i class="fa fa-chevron-circle-right mr-2"></i> 상품 목록
-							</h2>
+<!-- 							<h2 class="header-title"> -->
+<!-- 								<i class="fa fa-chevron-circle-right mr-2"></i> 상품 목록 -->
+<!-- 							</h2> -->
 							
-							<div class="col-md-2 mt-1 mb-4">
-								<button class="btn  btn-primary" type="button" id="estimateItemCall">상품 목록 불러오기</button>
-							</div>
+<!-- 							<div class="col-md-2 mt-1 mb-4"> -->
+<!-- 								<button class="btn  btn-primary" type="button" id="estimateItemCall">상품 목록 불러오기</button> -->
+<!-- 							</div> -->
 							
-							<div id="estimateItemListTable">
-								<table id="estimateItemList" class="table table-hover" style="width:100%">
+<!-- 							<div id="estimateItemListTable"> -->
+<!-- 								<table id="estimateItemList" class="table table-hover" style="width:100%"> -->
 									
-								</table>
-							</div> 
+<!-- 								</table> -->
+<!-- 							</div>  -->
 							
 							
 							<!-- 상품 등록 -->
@@ -170,7 +170,7 @@
 											<input style="border:none;" class="form-control" name="sales_price" id="sales_price" type="text" value="" placeholder="판매단가" onchange="price()" required>
 										</td>
 										<td>
-											<input style="padding:5px; border-color:#dbdbdb; name="quantity" id="quantity" type="text"  onchange="change();" readonly required>
+											<input style="padding:5px; border-color:#dbdbdb;" name="quantity" id="quantity" type="text"  onchange="change();" readonly required>
 											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
 											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
 										</td>
