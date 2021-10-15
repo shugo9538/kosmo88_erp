@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$("#selectClient").click(function(){
 		
 		var url = "/logistics_erp/sales/selectClient"
-		window.open(url, "select", "menubar=no, width=1400, height=900");
+		window.open(url, "select", "menubar=no, width=1500, height=800");
 		
 	});
 	
@@ -13,14 +13,14 @@ $(document).ready(function() {
 	$("#selectEmployee").click(function(){
 		
 		var url = "/logistics_erp/sales/selectEmployee"
-		window.open(url, "select", "menubar=no, width=1400, height=900");
+		window.open(url, "select", "menubar=no, width=1500, height=800");
 	});
 	
 	// 상품 선택
 	$("#selectItem").click(function(){
 		
 		var url = "/logistics_erp/sales/selectItem"
-		window.open(url, "select", "menubar=no, width=1400, height=900");
+		window.open(url, "select", "menubar=no, width=1500, height=800");
 	});
 });
 

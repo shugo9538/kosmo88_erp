@@ -1,16 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/settings.jsp"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <body class="sticky-header">
 	
 <div class="wrapper">
 	<!--Start row-->
     <div class="row">
         <div class="col-md-12">
-            <div class="white-box">
+            <div class="white-box" id="white-box">
+            
+            	<!-- 거래처 PDF 출력 -->
+	           <div  style="text-align:right;" class="dt-buttons">
+	               	<button class="btn btn-danger" type="button" id="pdfmake">
+	               		<span>
+	               			<i class="fa fa-download">
+	               				PDF 다운로드
+	               			</i>
+	               		</span>
+	               	</button>
+               </div>  
+            
                 <h2 style="font-size:34px; text-align:center;" class="header-title col-md-12 mb-5">견 적 서</h2>
                 
                 
                 <form class="js-validation-bootstrap form-horizontal ">
+                	<input type="hidden" id="client_name" value="${dto.client_name}">
                 	<input type="hidden" id="request_id" value="${dto.request_id}">
                 	
 	                <table id="example" class="display table mt-12">
@@ -93,6 +107,8 @@
     <!-- end row -->
     <%@ include file="./js_sales.jsp"%>
     <script src="${RESOURCES_PATH}/sales/js/estimateDetail.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+	<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </div>
 </body>
 </html>

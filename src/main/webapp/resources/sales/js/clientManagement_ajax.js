@@ -27,12 +27,66 @@ $(document).ready(function() {
         });
     }
     
-    // 거래처, 상품 등록 처리
+ // 거래처, 거래처 상품 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
+	    var flag = false;
+	    
+	    // 입력 유효성 검사
+	    
+	    if(!$('#name').val()) {
+	    	swal("거래처명을 입력하세요!!", "거래처명 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#ceo_name').val()) {
+	    	swal("대표자를 입력하세요!!", "대표자 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num1').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num2').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#register_num3').val()) {
+	    	swal("사업자 번호를 입력하세요!!", "사업자번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#email1').val()) {
+	    	swal("이메일을 입력하세요!!", "이메일 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#email2').val()) {
+	    	swal("이메일을 입력하세요!!", "이메일 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone1').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone2').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#phone3').val()) {
+	    	swal("연락처를 입력하세요!!", "연락처 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#zip_code').val()) {
+	    	swal("우편번호를 입력하세요!!", "우편번호 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#address').val()) {
+	    	swal("주소를 입력하세요!!", "주소 입력 누락", "error");
+	    	return false;
+	    } else if(!$('#detail_address').val()) {
+	    	swal("상세주소를 입력하세요!!", "상세주소 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=item_name]').val()) {
+	    	swal("상품명을 입력하세요!!", "상품명 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=category]').val()) {
+	    	swal("상품 종류를 입력하세요!!", "상품 종류 입력 누락", "error");
+	    	return false;
+	    } else if(!$('.item input[name=price]').val()) {
+	    	swal("상품가격을 입력하세요!!", "상품가격 입력 누락", "error");
+	    	return false;
+	    }
+	    
 	    /*
-	     * 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
+	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	     * */
 	    // $(form id tr id)
 	    var dataObject = new Object();
@@ -44,26 +98,21 @@ $(document).ready(function() {
 	    
 	    var formData = JSON.stringify(dataObject);
 	    
-	    $.ajax({
-	        type : 'POST',
-	        url : loc + '?' + csrfParameter + '=' + csrfToken,
-	        data : formData,
-	        accept : "application/json",
-	        contentType : "application/json; charset=utf-8",
-	        dataType : 'text',
-	        beforeSend : function(xhr) {
-	            xhr.setRequestHeader(csrfParameter, csrfToken);
-	        },
-	        success : function(data) {
-	        	swal({
-					title:"거래처 등록 성공",
-					type: "success",
-					text: "거래처가 등록되었습니다.",
-					timer: 2500
-				})	
-	        },
-	        error : function() {
-	        	swal({
+        $.ajax({
+            type : 'POST',
+            url : loc + '?' + csrfParameter + '=' + csrfToken,
+            data : formData,
+            accept : "application/json",
+            contentType : "application/json; charset=utf-8",
+            dataType : 'text',
+            beforeSend : function(xhr) {
+                xhr.setRequestHeader(csrfParameter, csrfToken);
+            },
+            success : function(data) {
+                itemRegister();
+            },
+            error : function() {
+    			swal({
     				title:"거래처 등록 오류",
     				type: "error",
     				text: "잠시 후 다시 시도해주세요!",
@@ -71,57 +120,8 @@ $(document).ready(function() {
     			}, function() {
     				return false;
     			});
-	        },
-	    });
-/*	    
-	    var list = new Array();
-	    var i = 0;
-	    
-	    // 2.상품
-	    $('#clientRegisterForm #item-group').each(function() {
-	    	var dataObject = new Object();
-	    	$('.form-control').each(function() {
-	    		var data = $(this);
-	    		var name = data.attr('name');
-	    		if (name == 'item_name') name = 'name';
-	    		dataObject[name] = data.val();
-	    	});
-	    	console.log(dataObject);
-	    	list.push(dataObject);
-	    	i++
-	    });
-	    list.pop();
-	    
-	    formData = JSON.stringify(list);
-	    // alert(formData);
-	    
-	    console.log(formData);
-	    loc = window.location.href + '/itemRegisterAction';
-	    
-	    $.ajax({
-	        type : 'POST',
-	        url : loc + '?' + csrfParameter + '=' + csrfToken,
-	        data : formData,
-	        accept : "application/json",
-	        contentType : "application/json; charset=utf-8",
-	        dataType : 'text',
-	        beforeSend : function(xhr) {
-	            xhr.setRequestHeader(csrfParameter, csrfToken);
-	        },
-	        success : function(data) {
-	            if (data) {
-	            	alert('거래처가 등록되었습니다.');
-	            	$('.form-control').each(function() {
-	            		$(this).val('');
-	            	});
-	            	currTab.ajax.reload();
-	            }
-	        },
-	        error : function() {
-	            alert('오류');
-	        },
-	    });
-*/	    
+            },
+        });
 	});  
 });
 
@@ -151,6 +151,18 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 function clientList() {
 	currTab = $('#clientList').DataTable({
 		"order": [[ 0, "desc" ]],
+		dom: 'frtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">거래처목록 다운로드</i>',
+            sheetName: '영업팁 거래처 목록',
+            messageBottom : '커밋 3팀'
+        }
+        ],
         ajax : {
             url : window.location.href + '/clientList', // 현 위치
             // + 요청
@@ -160,6 +172,7 @@ function clientList() {
             type : 'POST',
             data : csrfData,
             dataSrc : ''
+            
         },
         columns : [
                 {
@@ -172,7 +185,7 @@ function clientList() {
                 }, {
                     data : null,
                     render : function(data, type, row, meta) {
-                        return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1400, height=800); return false;">' + row.name + '</a>'; 
+                        return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
                     }
                 }, {
                     data : 'register_num',
@@ -276,7 +289,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 //등록한 거래처(구매처) 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
-    		"order": [[ 1, "desc" ]],
+    	"order": [[ 0, "desc" ]],
         ajax : {
             url : window.location.href + '/registeredClientList', // 현 위치
             type : 'POST',
@@ -284,13 +297,13 @@ function registeredClientList() {
             dataSrc : ''
         },
         columns : [
-                {
-                    data : 'id',
-                }, {
-                	data : null,
-                	render : function(data, type, row, meta){
-                		return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>';
-                	}
+			    {
+			    	data : 'id',
+			    }, {
+                    data : null,
+                    render : function(data, type, row, meta) {
+                        return '<a href="/logistics_erp/sales/clientDetail?id=' + row.id + '" onclick="window.open(this.href, width=1200, height=700); return false;">' + row.name + '</a>'; 
+                    }
                 }, {
                     data : 'register_num',
                 }, {
@@ -308,4 +321,3 @@ function registeredClientList() {
         retrieve : true
     });
 }
-

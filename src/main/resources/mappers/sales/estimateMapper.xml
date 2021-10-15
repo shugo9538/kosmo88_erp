@@ -44,7 +44,7 @@
 	
 	<!-- 견적서 등록 화면 - 상품 리스트 -->
 	<select id="getItemList" resultType="SalesItemDTO">
-		SELECT * FROM item
+		SELECT * FROM item ORDER BY id DESC
 	</select>
 	
 	<!-- 견적서 관리 - 견적서 목록(구매) -->

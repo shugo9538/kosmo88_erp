@@ -62,8 +62,11 @@
                              </thead>
                          </table>
                      </div>
-                 	</form>    
-                 </div>
+                 	</form> 
+                 	
+                 	
+		               
+		           </div>
                </div>
 	        </div>
 	        <!--End row-->
@@ -74,5 +77,9 @@
 		<%@ include file="./js_sales.jsp"%>
 		<script src="${RESOURCES_PATH}/sales/js/clientManagement_ajax.js"></script>
 		<script src="${RESOURCES_PATH}/sales/js/clientManagement.js"></script>
+		<!-- 엑셀 출력  -->
+		<script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
 </body>
 </html>

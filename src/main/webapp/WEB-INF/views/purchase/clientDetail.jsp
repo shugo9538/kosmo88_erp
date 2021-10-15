@@ -78,7 +78,9 @@
     </div>
     <!-- end row -->
     <%@ include file="./js_purchase.jsp"%>
+    
     <script src="${RESOURCES_PATH}/purchase/js/clientDetail.js"></script>
+    
 </div>
 </body>
 </html>
