@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.V_inboundDto;
+import com.kosmo88.logistics_erp.wms.dto.V_inbound_itemDto;
 import com.kosmo88.logistics_erp.wms.dto.V_purchaseDto;
 import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
 import com.kosmo88.logistics_erp.wms.util.MyLog;
@@ -21,6 +22,7 @@ public interface InboundDao {
 	List<V_inboundDto> allInboundList();
 	List<V_inboundDto> selectDispatchedInboundList(int warehouseId);
 	List<V_inboundDto> selectWarehousedInboundList(int warehouseId);
+	List<V_inbound_itemDto> selectWarehousedInboundItemList(int warehouseId);
 	void insertInbound(V_purchaseDto dto, int inbound_id, int warehouseId);
 	int selectMaxId();
 	V_purchaseDto selectOne(int purahcse_id);
@@ -103,6 +105,10 @@ class InboundDaoImpl implements InboundDao{
 	public List<V_inboundDto> selectWarehousedInboundList(int warehouseId) {
 		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectWarehousedInboundList", warehouseId);
 	}
-	
+
+	@Override
+	public List<V_inbound_itemDto> selectWarehousedInboundItemList(int warehouseId) {
+		return sqlSession.selectList(Vars.DAO_PATH + ".InboundDao.selectWarehousedInboundItemList", warehouseId);
+	}
 	
 }

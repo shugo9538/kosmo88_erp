@@ -17,7 +17,7 @@
 	</select>
 
 	<select id="selectItemList" parameterType="int"
-		resultType="V_sales_itemDto">
+		resultType="V_request_itemDto">
 		SELECT * FROM V_REQUEST_ITEM
 		WHERE REQUEST_ID = #{requestId}
 	</select>
@@ -27,6 +27,7 @@
 		SELECT *
 		FROM V_OUTBOUND
 		WHERE WAREHOUSE_ID = #{warehouseId}
+		AND SHIPPED_DATE IS NULL
 	</select>
 
 	<select id="selectMaxId" resultType="int">
@@ -41,9 +42,9 @@
 	</select>
 	
 	<select id="selectShippedOutboundList" parameterType="int"
-		resultType="V_inboundDto">
+		resultType="V_outbound_itemDto">
 		SELECT *
-		FROM V_OUTBOUND
+		FROM V_OUTBOUND_ITEM
 		WHERE WAREHOUSE_ID = #{warehouseId}
 		AND SHIPPED_DATE IS NOT NULL
 	</select>

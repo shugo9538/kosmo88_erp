@@ -39,7 +39,7 @@
 									</thead>
 									<tbody>
 										<%
-										V_sectionDto sectionDto = null;
+											V_sectionDto sectionDto = null;
 											System.out.println("테스트 : request내의 객체");
 											Enumeration attr = request.getAttributeNames();
 											int i = 0;
@@ -54,11 +54,11 @@
                       --%>
 										<c:forEach var="itemDto" items="${itemDtoList}">
 											<input name="itemId" type="hidden" value="${itemDto.item_id}" />
-											<input name="itemName" type="hidden"
-												value="${itemDto.item_name}" />
+											<!-- 											<input name="itemName" type="hidden" -->
+											<%-- 												value="${itemDto.item_name}" /> --%>
 											<input name="quantity" type="hidden"
 												value="${itemDto.quantity}" />
-												<input name="requestId" type="hidden"
+											<input name="requestId" type="hidden"
 												value="${itemDto.request_id}" />
 											<tr>
 												<%--
@@ -70,8 +70,8 @@
 														<!-- 											onfocus='this.initialSelect = this.selectedIndex;' onchange="this.selectedIndex = this.initialSelect;" -->
 														<option value="none">=== 선택 ===</option>
 														<c:set var="sectionDtoList" value="${sectionDtoList}"></c:set>
-																<%
-																List<V_sectionDto> list = (List<V_sectionDto>) pageContext.getAttribute("sectionDtoList");
+														<%
+															List<V_sectionDto> list = (List<V_sectionDto>) pageContext.getAttribute("sectionDtoList");
 																System.out.println("size: " + list.size());
 														%>
 
@@ -82,20 +82,21 @@
 															<c:choose>
 																<c:when
 																	test="${itemDto.item_name eq sectionDto.item_name}">
-																	<option class="section selected" value="${sectionDto.id}"
-																		selected>${sectionDto.section}
+																	<%-- 																	<option class="section selected" value="${sectionDto.id}" --%>
+																	<option class="sectionId selected"
+																		value="${sectionDto.id}" selected>${sectionDto.section}
 																		(${sectionDto.item_name})
 																		(${sectionDto.capacity-sectionDto.sum_count})</option>
 
-														<%
-															sectionDto = (V_sectionDto) pageContext.getAttribute("sectionDto");
-																System.out.println(sectionDto);
-																%>
+																	<%
+																		sectionDto = (V_sectionDto) pageContext.getAttribute("sectionDto");
+																						System.out.println(sectionDto);
+																	%>
 
 
 																</c:when>
 																<c:otherwise>
-																	<option class="section" value="${sectionDto.id}">
+																	<option class="section sectionId" value="${sectionDto.id}">
 																		${sectionDto.section} (${sectionDto.capacity })
 																		<%--
                                       (${sectionDto.item_name}) --%>
@@ -108,7 +109,7 @@
 																while (listItr.hasNext()) {
 																	V_sectionDto dto = listItr.next();
 																	System.out.println(dto.toString());
-																if (dto == sectionDto) {
+																	if (dto == sectionDto) {
 																		System.out.println("삭제합니다 " + dto);
 																		listItr.remove();
 																		request.removeAttribute("sectionDtoList");
@@ -121,9 +122,13 @@
 										</c:forEach>
 									</tbody>
 								</table>
+								<!-- 								<div class="col-xs-2"> -->
+								<!-- 									<button type="submit" class="btn btn-default mt-5">입고 -->
+								<!-- 										처리</button> -->
+								<!-- 								</div> -->
 								<div class="col-xs-2">
-									<button type="submit" class="btn btn-default mt-5">입고
-										처리</button>
+									<button type="button" class="btn btn-default mt-5"
+										onclick="warehousingAction()">입고 처리</button>
 								</div>
 							</form>
 							<!-- 							<div class="col-md-2 mt-1 mb-4"> -->

@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kosmo88.logistics_erp.wms.dao.InboundDao;
 import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.V_inboundDto;
+import com.kosmo88.logistics_erp.wms.dto.V_inbound_itemDto;
 import com.kosmo88.logistics_erp.wms.dto.V_purchaseDto;
 import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
 import com.kosmo88.logistics_erp.wms.dto.V_sectionDto;
@@ -72,9 +74,11 @@ public class InboundController {
 	public String manageWarehousing(HttpServletRequest req, Model model) {
 		int warehouseId = Integer.parseInt(req.getParameter("id"));
 		List<V_inboundDto> inboundDtoList = inboundDao.selectDispatchedInboundList(warehouseId);
-		List<V_inboundDto> warehousedInboundDtoList = inboundDao.selectWarehousedInboundList(warehouseId);
 		model.addAttribute("inboundDtoList", inboundDtoList);
-		model.addAttribute("warehousedInboundDtoList", warehousedInboundDtoList);
+
+		//입고 완료목록
+		List<V_inbound_itemDto> warehousedInboundItemDtoList = inboundDao.selectWarehousedInboundItemList(warehouseId);
+		model.addAttribute("warehousedInboundDtoList", warehousedInboundItemDtoList);
 		model.addAttribute("warehouseId", warehouseId);
 		return "wms/inbound/manageWarehousing";
 	}
@@ -118,7 +122,7 @@ class InboundRestController {
 	//ajax 아직
 	@RequestMapping("/dispatchAction")
 	public void dispatchAction(HttpServletRequest req) {
-		MyLog.logParamMap(req.getParameterMap());
+		MyLog.logReqParamMap(req.getParameterMap());
 		
 		int warehouseId = Integer.parseInt(req.getParameter("warehouseId"));
 		int requestId = Integer.parseInt(req.getParameter("requestId"));
@@ -133,16 +137,25 @@ class InboundRestController {
 	//stock 등록()
 	//보내야 할 정보 : warehouseId, 
 
+//	@RequestMapping("/warehousingAction")
+//	public void warehousingAction(HttpServletRequest req) {
+//		Map<String, String[]> paramMap = req.getParameterMap(); 
+//		MyLog.logReqParamMap(paramMap);
+//		int requestId = Integer.parseInt(req.getParameter("requestId"));
+//		inboundService.warehousingAction(paramMap, requestId); 
+//		System.out.println(paramMap.toString());
+//
+//		//상태코드 대신 inbound에 날짜 넣기
+//		inboundDao.updateWarehousedDate(requestId);
+//	}
+	
+	
 	@RequestMapping("/warehousingAction")
-	public void warehousingAction(HttpServletRequest req) {
-		Map<String, String[]> paramMap = req.getParameterMap();
-		MyLog.logParamMap(paramMap);
-		int requestId = Integer.parseInt(req.getParameter("requestId"));
-		inboundService.warehousingAction(paramMap, requestId);
-		System.out.println(paramMap.toString());
+	public void warehousingAction(@RequestBody Map<String, Object> jsonWarehousingVar) {
+		jsonWarehousingVar.entrySet().stream().forEach(e->System.out.println(e.getKey() +" "+e.getValue()));
 
-		//상태코드 대신 inbound에 날짜 넣기
-		inboundDao.updateWarehousedDate(requestId);
+		inboundService.warehousingAction(jsonWarehousingVar);
 	}
+
 
 }

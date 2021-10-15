@@ -66,7 +66,6 @@
 	<!-- Advisor 생성 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
-			<tx:method name="*" rollback-for="RuntimeException"></tx:method>
 			<tx:method name="insert*" rollback-for="RuntimeException"></tx:method>
 			<tx:method name="select*" read-only="true"></tx:method>
 			<tx:method name="update*" rollback-for="RuntimeException"></tx:method>

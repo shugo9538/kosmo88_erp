@@ -32,14 +32,11 @@ public class SectionService {
 	
 	
 	public List<V_sectionDto> validSectionList(int warehouseId, int rowNum, String[] itemArr){
-//	public List<V_sectionDto> validSectionList(int warehouseId, int rowNum, List itemIdList){
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("warehouseId", warehouseId);
 		paramMap.put("rowNum", rowNum);
-//		paramMap.put("itemIdArr", itemIdArr);
 		paramMap.put("itemArr", itemArr);
 
-//		paramMap.put("itemIdArr", Arrays.toString(itemIdArr).replace('[', '(').replace(']', ')'));
 
 		return sectionDao.selectValidSectionList(paramMap);
 

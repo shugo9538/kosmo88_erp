@@ -60,26 +60,6 @@
 
 
 
-					<!-- 					<h2 class="header-title  col-xs-12"> -->
-					<!-- 						<i class="fa fa-chevron-circle-right mr-2"></i> 입고 요청 조회 필터 -->
-					<!-- 					</h2> -->
-					<!-- 					<div class="col-sm-12"> -->
-					<!-- 						<form class="form-horizontal"> -->
-					<!-- 							<div class="filter"> -->
-					<!-- 								<div class="form-group"> -->
-					<!-- 									<label class="control-label col-sm-1">기간</label> -->
-					<!-- 									<div class="col-sm-4"> -->
-					<!-- 										<div class="input-daterange input-group" id="date-range"> -->
-					<!-- 											<input type="text" class="form-control" name="start"> -->
-					<!-- 											<span class="input-group-addon no-border text-white">to</span> -->
-					<!-- 											<input type="text" class="form-control" name="end"> -->
-					<!-- 										</div> -->
-					<!-- 									</div> -->
-					<!-- 								</div> -->
-					<!-- 							</div> -->
-					<!-- 						</form> -->
-					<!-- 					</div> -->
-
 
 					<!-- 							<div class="col-sm-12"> -->
 					<h2 class="header-title col-xs-12 mt-5">
@@ -157,10 +137,11 @@
 										<tr>
 											<th style="text-align: center"><input type="checkBox"
 												class="purchase_id" value="450"></th>
+											<th>품목</th>
+											<th>수량</th>
 											<th>구매처</th>
 											<th>입고완료일</th>
 											<th>입고창고</th>
-											<th>물품 수</th>
 										</tr>
 									</thead>
 									<c:forEach var="warehousedInboundDto" items="${warehousedInboundDtoList}">
@@ -169,10 +150,11 @@
 												<td style="text-align: center"><input type="checkBox"
 													class="purchase_id" value="450"></td>
 												<%-- 													<td>${inboundDto.id}</td> --%>
+												<td>${warehousedInboundDto.item_name}</td>
+												<td>${warehousedInboundDto.quantity}</td>
 												<td>${warehousedInboundDto.client_name}</td>
 												<td>${warehousedInboundDto.approved_date}</td>
 												<td>${warehousedInboundDto.warehouse_name}</td>
-												<td>${warehousedInboundDto.count_item}</td>
 											</tr>
 										</tbody>
 									</c:forEach>
