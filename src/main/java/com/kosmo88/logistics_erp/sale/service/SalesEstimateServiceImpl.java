@@ -33,15 +33,18 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	
 	QueryCode state;
 
+	// 견적서 등록
 	public void estimateRegisterAction(List<SalesInsertEstimateDTO> dtos) {
 		dtos.forEach(dto -> self.estimateRegisterAction(dto));
 	}
 	
+	// 견적서 목록
 	@Override
 	public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
 		return (ArrayList<SalesEstimateListViewDTO>) estimateDao.getEstimateList();
 	}
 
+	// 견적서 삭제(선택)
 	@Override
 	public boolean estimateChoiceDelete(int[] request_id) {
 		state = QueryCode.UPDATE;
@@ -54,6 +57,7 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		return true;
 	}
 
+	// 견적서 선택
 	@Override
 	public void selectClient(HttpServletRequest req, Model model) {
 		// 거래처 갯수
@@ -71,6 +75,7 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		
 	}
 
+	// 사원 선택
 	@Override
 	public void selectEmployee(HttpServletRequest req, Model model) {
 		// 담당자 갯수

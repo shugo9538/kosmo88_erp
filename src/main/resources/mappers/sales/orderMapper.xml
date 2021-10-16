@@ -6,7 +6,7 @@
 
 <mapper namespace="com.kosmo88.logistics_erp.sale.dao.SalesOrderDAO">
 
- 	<!-- 구매 관리 - 주문서 목록(구매) -->
+ 	<!-- 주문서 목록 -->
  	<select id="getOrderList" resultType="SalesOrderListViewDTO">
 		SELECT request_id, begin_date, end_date, client_name, client_ceo_name,
 		       client_phone, employee_name, enabled, slip_state, request_state
@@ -15,7 +15,7 @@
 		 ORDER BY request_id
  	</select>
  	
- 	<!-- 구매 관리 - 주문서 삭제(선택삭제) -->
+ 	<!-- 주문서 삭제(선택삭제) -->
  	<update id="deleteOrder" parameterType="int">
  		UPDATE request
  		   SET enabled = 'N'
