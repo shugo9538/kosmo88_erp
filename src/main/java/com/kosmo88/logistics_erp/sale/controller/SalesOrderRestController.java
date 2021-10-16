@@ -29,7 +29,7 @@ public class SalesOrderRestController {
 	@Autowired
 	SalesOrderService orderService;
 	
-	// 구매 관리 - 주문서 목록
+	// 주문서 목록
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderList")
     public List<SalesOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
@@ -52,7 +52,7 @@ public class SalesOrderRestController {
     	return orderService.orderChoiceDelete(request_id);
     }
     
-    // 등록한 주문서(구매) 목록
+    // 등록한 주문서 목록
     @ResponseBody
     @RequestMapping(value = "/orderRegister/registeredOrderList")
     public List<SalesOrderListViewDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {

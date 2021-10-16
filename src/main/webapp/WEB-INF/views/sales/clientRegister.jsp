@@ -43,8 +43,13 @@
 							<table id="client" class="display table mt-12" style="width:100%">
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
+									
 									<td><input type="text" name="name" id="name" required
-										placeholder="거래처명"></td>
+										placeholder="거래처명">
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
+											name="search_zip_code">거래처 불러오기</button>
+										</td>
+									
 									<th style="background-color: #f1f1f1;">구분</th>
 									<td><input type="text" value="법인" readonly></td>
 								</tr>
