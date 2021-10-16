@@ -249,7 +249,7 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 function clientList() {
 	currTab = $('#clientList').DataTable({
 		"order": [[ 1, "desc" ]],
-		dom: 'frtip<"clear">B',
+		dom: 'lfrtip<"clear">B',
         buttons: [ {
             extend: 'excelHtml5',
             autoFilter: true,
