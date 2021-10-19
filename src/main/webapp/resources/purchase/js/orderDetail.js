@@ -17,6 +17,10 @@ function orderDelete() {
 	return false;
 }
 	
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
 $('#pdfmake').on('click', function() {
     html2canvas($('#white-box')[0]).then(function(canvas) {
         
@@ -38,3 +42,7 @@ $('#pdfmake').on('click', function() {
         doc.save(request_id + '.' + client_name + '.pdf'); // pdf저장
       });
 });
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922

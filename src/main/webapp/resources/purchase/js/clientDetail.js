@@ -1,3 +1,4 @@
+// 거래처 상세페이지 - 거래처 삭제
 function clientDelete() {
 	
 	var client_id = document.getElementById('client_id').value;
@@ -16,7 +17,8 @@ function clientDelete() {
 		});
 	return false;
 }
-	
+
+// 거래처 상세페이지 pdf 출력	
 $('#pdfmake').on('click', function() {
     html2canvas($('#white-box')[0]).then(function(canvas) {
         

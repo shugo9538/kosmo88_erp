@@ -11,7 +11,7 @@ $(document).ready(function() {
     currLocation = currLocation.toString();
     csrfData[csrfParameter] = csrfToken;
 
-    // 시작 주소로 처음 구분
+    // 거래처 전체 목록
     if (currLocation.split('/')[5] == 'clientManagement') {
     	
         $('#clientList').ready(function() {
@@ -19,6 +19,7 @@ $(document).ready(function() {
         });
     }
     
+    // 거래처 등록
     if (currLocation.split('/')[5] == 'clientRegister') {
         
         $('#registeredClientList').ready(function() {
@@ -38,6 +39,7 @@ $(document).ready(function() {
     	var num = num1 + '-' + num2 + '-' + num3
     	console.log(num);
     	
+    	// 입력 유효성 검사
     	if (!$('#register_num1').val()) {
     		swal("사업자 번호를 입력하세요!!", "사업자 번호 입력 누락", "error");
     		return false;
@@ -62,7 +64,7 @@ $(document).ready(function() {
     });
     
     // 거래처, 거래처 상품 등록 처리
-	// '#clientRegisterAction', 버튼 id
+	// '#clientRegisterAction' - 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
 	    var flag = false;
@@ -122,10 +124,7 @@ $(document).ready(function() {
 	    	return false;
 	    }
 	    
-	    /*
-	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
-	     * */
-	    // $(form id tr id)
+	    // 1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
 	    var dataObject = new Object();
 	    $('#client').find('input').each(function() {
     		var data = $(this);
@@ -203,9 +202,9 @@ function itemRegister() {
 					timer: 2500
 				}, function() {
 	                $('#clientRegisterForm').find('input').each(function() {
-	                	$(this).val('');
+	                	$(this).val('');  // 값 비우기
 					});
-	                $("#dup_chk").val(0);
+	                $("#dup_chk").val(0);  // 중복체크 value 초기화
 	                currTab.ajax.reload();
 				});
             }
@@ -239,8 +238,6 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 
         var m = window.moment(d, from, locale, true);
 
-        // Order and type get a number value from Moment, everything else
-        // sees the rendered value
         return m.format(type === 'sort' || type === 'type' ? 'x' : to);
     };
 };
@@ -262,10 +259,6 @@ function clientList() {
 		}],		
         ajax : {
             url : window.location.href + '/clientList', // 현 위치
-            // + 요청
-            // url 로
-            // div별로 결과물 뿌리기 위해
-            // 이렇게 작성함
             type : 'POST',
             data : csrfData,
             dataSrc : ''

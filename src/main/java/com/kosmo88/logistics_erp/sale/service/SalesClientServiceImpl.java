@@ -44,13 +44,6 @@ public class SalesClientServiceImpl implements SalesClientService{
 		return state.check(clientDao.registerClient(dto));
 	}
 
-	// 아이템 등록 처리
-	@Override
-	public boolean itemRegisterAction(SalesItemDTO dto) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	// 거래처 상세 페이지
 	@Override
 	public void clientDetail(HttpServletRequest req, Model model) {
@@ -145,6 +138,7 @@ public class SalesClientServiceImpl implements SalesClientService{
 		
 	}
 
+	// 거래처 삭제
 	@Override
 	public void clientDelete(HttpServletRequest req, Model model) {
 
@@ -160,7 +154,4 @@ public class SalesClientServiceImpl implements SalesClientService{
 		model.addAttribute("update", update);
 		
 	}
-	
-	
-
 }

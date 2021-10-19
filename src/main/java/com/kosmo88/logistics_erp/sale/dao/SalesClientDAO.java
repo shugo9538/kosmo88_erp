@@ -8,7 +8,7 @@ import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesClientDAO {
 
-	// 거래처(판매처) 관리 - 거래처 목록
+	// 거래처 관리 - 거래처 목록
 	public List<SalesClientDTO> getClientList();
 	
 	// 거래처 등록 처리
@@ -20,15 +20,9 @@ public interface SalesClientDAO {
 	// 상세페이지 - 거래처
 	public SalesClientDTO getClientDetail(int id);
 	
-	// 상세페이지 - 상품
-	public List<SalesItemDTO> getItemDetail(int id);
-	
 	// 거래처 삭제
 	public int deleteClient(int id);
 	
 	// 거래처 수정 처리
 	public int updateClient(SalesClientDTO dto);
-	
-	// 상품 수정 처리
-	public int updateItem(SalesItemDTO idto);
 }

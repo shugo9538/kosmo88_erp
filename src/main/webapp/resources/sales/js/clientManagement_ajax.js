@@ -27,7 +27,7 @@ $(document).ready(function() {
         });
     }
     
- // 거래처, 거래처 상품 등록 처리
+ // 거래처 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
@@ -74,16 +74,7 @@ $(document).ready(function() {
 	    } else if(!$('#detail_address').val()) {
 	    	swal("상세주소를 입력하세요!!", "상세주소 입력 누락", "error");
 	    	return false;
-	    } else if(!$('.item input[name=item_name]').val()) {
-	    	swal("상품명을 입력하세요!!", "상품명 입력 누락", "error");
-	    	return false;
-	    } else if(!$('.item input[name=category]').val()) {
-	    	swal("상품 종류를 입력하세요!!", "상품 종류 입력 누락", "error");
-	    	return false;
-	    } else if(!$('.item input[name=price]').val()) {
-	    	swal("상품가격을 입력하세요!!", "상품가격 입력 누락", "error");
-	    	return false;
-	    }
+	    } 
 	    
 	    /*
 	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
@@ -147,11 +138,11 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
-// 거래처(구매처) 목록
+// 거래처 목록
 function clientList() {
 	currTab = $('#clientList').DataTable({
 		"order": [[ 0, "desc" ]],
-		dom: 'frtip<"clear">B',
+		dom: 'lfrtip<"clear">B',
         buttons: [ {
             extend: 'excelHtml5',
             autoFilter: true,
@@ -286,7 +277,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 }
 
 
-//등록한 거래처(구매처) 목록
+//등록한 거래처 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
     	"order": [[ 0, "desc" ]],
