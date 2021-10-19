@@ -19,9 +19,6 @@ public interface SalesClientService {
 	// 거래처 등록 처리
 	public boolean clientRegisterAction(SalesInsertClientDTO dto);
 	
-	// 상품 등록 처리
-	public boolean itemRegisterAction(SalesItemDTO dto);
-	
 	// 거래처 상세페이지
 	public void clientDetail(HttpServletRequest req, Model model);
 	

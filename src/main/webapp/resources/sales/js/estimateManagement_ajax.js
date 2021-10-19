@@ -216,6 +216,18 @@ function estimateList() {
 			.DataTable(
 					{
 						"order" : [ [ 1, "desc" ] ],
+						dom: 'lfrtip<"clear">B',
+				        buttons: [ {
+				            extend: 'excelHtml5',
+				            autoFilter: true,
+				            attr:{
+				            	class: "btn btn-primary"
+				            },
+				            text:'<i class="fa fa-download">견적서목록 다운로드</i>',
+				            sheetName: '영업팀 견적서 목록',
+				            messageBottom : '커밋 3팀'
+				        }
+				        ],
 						ajax : {
 							url : window.location.href + '/estimateList', // 현 위치
 							type : 'POST',
@@ -399,10 +411,10 @@ function estimateItemList() {
 								{
 									'sTitle' : '상품번호',
 									data : 'id',
-//									render : function(data) {
-//										return '<label style="border:none;" name="item_id" type="text" value="'
-//												+ data + '">' + data + '<label>';
-//									}
+									render : function(data) {
+										return '<input style="border:none;" name="item_id" type="text" value="'
+												+ data + '"readonly>';
+									}
 								},
 								{
 									'sTitle' : '상품명',
@@ -440,7 +452,7 @@ function estimateItemList() {
 									'sTitle' : '수량',
 									data : 'id',
 									render : function(data) {
-										return '<input class="item" name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)"><input style="padding:3px;" type="button" class="btn btn-primary" value="+" onclick="add(this);"><input style="padding:3px;" type="button" class="btn btn-primary" value="-" onclick="del(this);">';
+										return '<input class="item" name="quantity" type="number" placeholder="수량" value="1" onkeyup="change(this)">';
 									}
 								},
 								{
@@ -452,7 +464,8 @@ function estimateItemList() {
 												+ data
 												+ '">';
 									}
-								},],
+								},
+							],
 						destroy : true,
 						retrieve : true
 					});
@@ -462,8 +475,6 @@ function estimateItemList() {
 	currTab.on('click', 'tr', function(e, dt, type, indexes) {
 		$(this).dblclick(function() {
 			console.log(currTab.row(this).data());
-			
-			
 			
 			if(flag){
 				// tr 생성
@@ -475,26 +486,24 @@ function estimateItemList() {
 				console.log(td);
 				td.each(function() {
 					if(i==1) {
-						$('#item'+cnt).append('<td><input style="border:none"; type="text" name="1" value="'+$(this).children().text()+'" readonly></td>');
+						$('#item'+cnt).append('<td><input style="border:none"; type="text" name="'+ $(this).children().attr('name')+'" value="'+$(this).children().text()+'" readonly></td>');
 					} else {
-						$('#item'+cnt).append('<td><input style="border:none"; type="text" name="2" value="'+$(this).children().val()+'" readonly></td>');
+						$('#item'+cnt).append('<td><input style="border:none"; type="text" name="'+ $(this).children().attr('name')+'" value="'+$(this).children().val()+'" readonly></td>');
 					}
-					
-					
-					// tr id 1씩 증가
 					i++;
 				});
 				cnt++;
 				flag = false;
 			} else {
+				
 				flag = true;
-			}
+			}	
 		});
 	});
 	
 
 	// 최소 등록 상품 개수 유효성 검사
-	$('#estimateItemList tbody').on('click', '.icon-minus', function() {
+	$('#estimateRegisterList tbody').on('click', '.icon-minus', function() {
 
 		var itemGroup = document.querySelector('#estimateItemList tbody');
 		console.log(itemGroup.childElementCount);
@@ -507,9 +516,10 @@ function estimateItemList() {
 	});
 }
 
-// 상품 수량
+
+//상품 수량
 var price;
-var sale_price;
+var sales_price = price * 1.3;
 var quantity;
 
 // 수량 +
@@ -520,15 +530,12 @@ function add(btn) {
 	totalprice = $(btn).parent().parent().find('input[name=totalprice]');
 	console.log(totalprice.val());
 
-	price = $(btn).parent().parent().find('input[name=price]');
-	console.log(price.val());
-
-	sale_price = $(btn).parent().parent().find('input[name=sale_price]');
-	console.log(sale_price.val());
+	sales_price = $(btn).parent().parent().find('input[name=sales_price]');
+	console.log(sales_price.val());
 
 	var plus = parseInt(quantity.val()) + 1;
 
-	var total = parseInt(plus) * parseInt(sale_price.val());
+	var total = parseInt(plus) * parseInt(sales_price.val());
 
 	quantity.val(plus);
 	console.log(quantity.val());
@@ -553,7 +560,7 @@ function del(btn) {
 		quantity.val(minus);
 		console.log(quantity.val());
 
-		var total = parseInt(quantity.val()) * parseInt(sale_price.val());
+		var total = parseInt(quantity.val()) * parseInt(sales_price.val());
 		totalprice.val(total);
 	}
 }
@@ -564,13 +571,13 @@ function change(btn) {
 	console.log(quantity.val());
 	totalprice = $(btn).parent().parent().find('input[name=totalprice]');
 	console.log(totalprice.val());
-	sale_price = $(btn).parent().parent().find('input[name=sale_price]');
-	console.log(sale_price.val());
+	sales_price = $(btn).parent().parent().find('input[name=sales_price]');
+	console.log(sales_price.val());
 
 	if (parseInt(quantity.val()) <= 1 || quantity.val() == null) {
 		quantity.val(1);
 	}
 
-	var total = parseInt(quantity.val()) * parseInt(sale_price.val());
+	var total = parseInt(quantity.val()) * parseInt(sales_price.val());
 	totalprice.val(total);
 }

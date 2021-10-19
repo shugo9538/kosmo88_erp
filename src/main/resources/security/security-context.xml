@@ -18,27 +18,40 @@
 		auto-config="true"
 		use-expressions="true">
 
+<<<<<<< HEAD
 <!--     <security:intercept-url
 			pattern="/hr/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
+=======
+<!--     <security:intercept-url -->
+<!-- 			pattern="/hr/**" -->
+<!-- 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
+>>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
 		
-		<security:intercept-url
-			pattern="/account/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="/account/**" -->
+<!-- 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
 		
-		<security:intercept-url
-			pattern="/purchase/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="/purchase/**" -->
+<!-- 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
 			
-		<security:intercept-url
-			pattern="/sale/**"
-			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="/sale/**" -->
+<!-- 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
 			
+<<<<<<< HEAD
 		<security:intercept-url
 			pattern="/wms/**"
 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" />
 
  -->
+=======
+<!-- 		<security:intercept-url -->
+<!-- 			pattern="/wms/**" -->
+<!-- 			access="hasAnyRole('ROLE_USER','ROLE_ACCOUNT','ROLE_ADMIN')" /> -->
+
+>>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
 		<security:intercept-url
 			pattern="/**"
 			access="permitAll" />

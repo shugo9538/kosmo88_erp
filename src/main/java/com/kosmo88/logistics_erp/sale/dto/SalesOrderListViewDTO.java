@@ -18,6 +18,7 @@ public class SalesOrderListViewDTO {
 	private String enabled;			// 활성화코드('Y', 'N')
 	private String slip_state;		// 승인상태(전표 회계){R, Y, N}
 	private String request_state;   // 출고상태{SALE, PURCHASE, ESTIMATE, ORDER}
+	
 	public int getRequest_id() {
 		return request_id;
 	}

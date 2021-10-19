@@ -1,14 +1,12 @@
 package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesDTO;
 
 @Repository
 public class SalesDAOImpl implements SalesDAO{
@@ -54,9 +52,5 @@ public class SalesDAOImpl implements SalesDAO{
 		int deleteCnt = sqlSession.delete("com.kosmo88.logistics_erp.sale.dao.SalesDAO.deleteClient", id);
 		return deleteCnt;
 	}
-
-	
-
-
 
 }

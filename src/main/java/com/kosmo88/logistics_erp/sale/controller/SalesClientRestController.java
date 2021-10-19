@@ -29,10 +29,11 @@ public class SalesClientRestController {
 	@Autowired
 	SalesClientService clientService;
 	
-	// 거래처(구매처) 목록
+	// 거래처 목록
     @ResponseBody
-    @RequestMapping(value = "/clientManagement/clientList")
+    @RequestMapping(value = "/clientManagement/clientList", produces = "application/json; charset=UTF-8")
     public List<SalesClientDTO> clientList(HttpServletRequest req, HttpServletResponse res) {
+    	logger.info("current => clientJson");
     	return clientService.clientList(req, res);
     }
     
@@ -52,7 +53,7 @@ public class SalesClientRestController {
     	return clientService.clientChoiceDelete(client_id);
     }
     
-    // 등록한 거래처(구매처) 목록
+    // 등록한 거래처 목록
     @ResponseBody
     @RequestMapping(value = "/clientRegister/registeredClientList")
     public List<SalesClientDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {
@@ -65,15 +66,4 @@ public class SalesClientRestController {
     	clientService.clientRegisterAction(dto);
     	return true;
     }
-    
-    /*
-	// 상품 등록 처리
-    @RequestMapping(value = "/clientRegister/itemRegisterAction")
-    public boolean itemRegisterAction(@RequestBody List<SalesClientDTO> dtos) {
-    	for (SalesClientDTO dto : dtos) {
-    		clientService.itemRegisterAction(dto);
-    	}
-    	return true;
-    }
-    */
 }
