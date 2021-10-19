@@ -116,7 +116,7 @@
 							</h2>
 							
 							<div class="col-md-2 mt-1 mb-4">
-								<button class="btn  btn-primary" type="button" id="estimateItemCall">거래처 상품 불러오기</button>
+								<button class="btn  btn-primary" type="button" id="estimateItemCall" value="0">거래처 상품 불러오기</button>
 							</div>
 							
 							<div id="estimateItemListTable">

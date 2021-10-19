@@ -15,9 +15,7 @@ $(document).ready(function() {
 });
 
 $('#clientManagementForm').ready(function(){
-    if($(this).find('form').attr('id') == 'clientManagementForm') {
-        addItem();
-    }
+	addItem();
 });
 
 var i = 0;
