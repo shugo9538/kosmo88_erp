@@ -31,7 +31,7 @@ public class SalesOrderRestController {
 	
 	// 주문서 목록
     @ResponseBody
-    @RequestMapping(value = "/orderManagement/orderList")
+    @RequestMapping(value = "/orderManagement/orderList", produces = "application/json; charset=UTF-8")
     public List<SalesOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
