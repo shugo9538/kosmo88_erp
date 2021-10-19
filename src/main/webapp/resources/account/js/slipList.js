@@ -7,12 +7,6 @@ let checkedId; //체크박스 값 저장할 곳
 // -------------------------------- slipList.jsp --------------------------------
 //일반전표 페이지 확인
 function slipCheck() {
-
-	/*
-	 * if (! document.slipFrom.slipid_chk.checked){ alert("승인하실 전표를 선택 바랍니다.");
-	 * return false; }
-	 */
-
 	// 체크박스 체크여부 확인
 	var slipid_chk = document.getElementsByName("slipid_chk");
 	var count = 0;
@@ -45,13 +39,6 @@ function slipCheck() {
 				slipFrom.submit();
 			});
 		return false;
-		//var result = confirm("승인 전표를 선택 하셨습니다. \n선택하신 전표를 승인 하시겠습니까?");
-	/*	if (result == true ) {
-			//slipFrom.submit();
-			// return false;
-		}else{
-			return false;
-		}*/
 	}
 }
 
@@ -80,13 +67,10 @@ function slip_Id(emlement){
 		title : emlement + "번 전표를 선택 하셨습니다.",
 		text : "",
 		type : "info"}, function(){
-			window.open(url, "accountDetail", "menubar=no, width=1000, height=750");
+			window.open(url, "accountDetail", "menubar=no, width=1000, height=600");
 			
 		});
 }
-
-
-
 
 
 //-------------------------------- slipDetail --------------------------------

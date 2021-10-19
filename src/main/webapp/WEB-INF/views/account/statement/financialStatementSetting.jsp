@@ -34,7 +34,7 @@
 <!-- 부가세예수금(받은세금) -->
 <c:set var="vatDeposit" value="${dto.vatDeposit}"/>
 <!-- 부채총계  -->
-<c:set var="asset4" value="${accounts_receivable + vatDeposit}"/>
+<c:set var="asset4" value="${purchase_receivable + vatDeposit}"/>
 
 <!--   Ⅰ. 자      본      금     -->
 <!-- 자본금(기초설정이 없어서 100,000,000 임의설정) -->
