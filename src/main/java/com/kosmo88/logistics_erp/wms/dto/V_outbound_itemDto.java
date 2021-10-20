@@ -4,10 +4,9 @@ import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
-@Alias("V_outBoundDto")
-public class V_outboundDto {
-
-	int outbound_id;
+@Alias("V_outbound_itemDto")
+public class V_outbound_itemDto {
+	int id;
 	int request_id;
 	int warehouse_id;
 	String warehouse_name;
@@ -15,17 +14,17 @@ public class V_outboundDto {
 	Date end_date;
 	String employee_id;
 	Date approved_date;
-	Date warehoused_date;
+	Date shipped_date;
+	int item_id;
+	String item_name;
+	int quantity;
 	int client_id;
 	String client_name;
-	int count_item;
-	
-	
-	public int getOutbound_id() {
-		return outbound_id;
+	public int getId() {
+		return id;
 	}
-	public void setOutbound_id(int outbound_id) {
-		this.outbound_id = outbound_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getRequest_id() {
 		return request_id;
@@ -69,11 +68,29 @@ public class V_outboundDto {
 	public void setApproved_date(Date approved_date) {
 		this.approved_date = approved_date;
 	}
-	public Date getWarehoused_date() {
-		return warehoused_date;
+	public Date getShipped_date() {
+		return shipped_date;
 	}
-	public void setWarehoused_date(Date warehoused_date) {
-		this.warehoused_date = warehoused_date;
+	public void setShipped_date(Date shipped_date) {
+		this.shipped_date = shipped_date;
+	}
+	public int getItem_id() {
+		return item_id;
+	}
+	public void setItem_id(int item_id) {
+		this.item_id = item_id;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 	public int getClient_id() {
 		return client_id;
@@ -87,21 +104,16 @@ public class V_outboundDto {
 	public void setClient_name(String client_name) {
 		this.client_name = client_name;
 	}
-	public int getCount_item() {
-		return count_item;
-	}
-	public void setCount_item(int count_item) {
-		this.count_item = count_item;
-	}
+	
 	@Override
 	public String toString() {
-		return "V_outboundDto [outbound_id=" + outbound_id + ", request_id=" + request_id + ", warehouse_id="
-				+ warehouse_id + ", warehouse_name=" + warehouse_name + ", begin_date=" + begin_date + ", end_date="
-				+ end_date + ", employee_id=" + employee_id + ", approved_date=" + approved_date + ", warehoused_date="
-				+ warehoused_date + ", client_id=" + client_id + ", client_name=" + client_name + ", count_item="
-				+ count_item + "]";
+		return "V_outbound_itemList [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
+				+ ", warehouse_name=" + warehouse_name + ", begin_date=" + begin_date + ", end_date=" + end_date
+				+ ", employee_id=" + employee_id + ", approved_date=" + approved_date + ", shipped_date=" + shipped_date
+				+ ", item_id=" + item_id + ", item_name=" + item_name + ", quantity=" + quantity + ", client_id="
+				+ client_id + ", client_name=" + client_name + "]";
 	}
-	
-	
 
+	
+	
 }

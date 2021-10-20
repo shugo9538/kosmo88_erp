@@ -81,7 +81,7 @@ public class DtoFunction {
 	public static Set<?> getDtoSetFromParamMap(Map<String, String[]> paramMap, Class<? extends Object> clazz,
 			int index) {
 		logMethodStart();
-		MyLog.logParamMap(paramMap);
+		MyLog.logReqParamMap(paramMap);
 
 		String param;
 		String paramValue;

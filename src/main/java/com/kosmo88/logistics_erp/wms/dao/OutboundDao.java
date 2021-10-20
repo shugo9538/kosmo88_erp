@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kosmo88.logistics_erp.wms.dto.V_outboundDto;
+import com.kosmo88.logistics_erp.wms.dto.V_outbound_itemDto;
 import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
 import com.kosmo88.logistics_erp.wms.dto.V_salesDto;
 import com.kosmo88.logistics_erp.wms.util.Vars;
 
 public interface OutboundDao {
 	void updateState(int requestId);
+	void updateShippedDate(int requestId);
 	List<V_outboundDto> selectDispatchedOutboundList(int warehouseId);
 	List<V_request_itemDto> selectItemList(int requestId);
 	int selectMaxId();
@@ -23,7 +25,7 @@ public interface OutboundDao {
 	List<V_outboundDto> select();
 	List<V_outboundDto> allOutboundList();
 	void insertOutbound(V_salesDto dto, int outboundId, int warehouseId);
-	List<V_outboundDto> selectShippedOutboundList(int warehouseId); 
+	List<V_outbound_itemDto> selectShippedOutboundList(int warehouseId); 
 }
 
 
@@ -88,8 +90,13 @@ class OutboundDaoImpl implements OutboundDao{
 	}
 
 	@Override
-	public List<V_outboundDto> selectShippedOutboundList(int warehouseId) {
+	public List<V_outbound_itemDto> selectShippedOutboundList(int warehouseId) {
 		return sqlSession.selectList(Vars.DAO_PATH + ".OutboundDao.selectShippedOutboundList", warehouseId);
+	}
+	
+	@Override
+	public void updateShippedDate(int requestId) {
+		sqlSession.update(Vars.OUTBOUND_DAO_PATH+".updateShippedDate", requestId);
 	}
 	
 

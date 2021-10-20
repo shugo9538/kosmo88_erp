@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.wms.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,23 +11,27 @@ import com.kosmo88.logistics_erp.wms.dto.StockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_section_stockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_stockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_stock_detailDto;
+import com.kosmo88.logistics_erp.wms.util.Vars;
 
 public interface StockDao {
 
 	void insertStock(StockDto stockDto);
+	void insertStock(Map<String, Object> paramMap);
+
+	void updateStockQuantity(Map<String, Integer> paramMap);
+
+	void deleteStock(int stockId);
+
+	V_stock_detailDto selectOldestStock(int itemId);
 
 	List<V_stockDto> selectStockList(int warehouse_id);
 
 
 	List<V_section_stockDto> selectStockDetailList(int stockId);
 
-	void select();
+	List<V_stockDto> selectValidStockList(Map<String, Object> paramMap);
 
 	int selectMaxId();
-
-	void update();
-
-	void delete();
 }
 
 @Repository
@@ -40,9 +45,10 @@ class StockDaoImpl implements StockDao {
 	}
 
 	@Override
-	public void select() {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.StockDao.select");
+	public void insertStock(Map<String, Object> paramMap) {
+		sqlSession.insert(Vars.STOCK_DAO_PATH+".insertStock", paramMap);
 	}
+
 
 	@Override
 	public List<V_stockDto> selectStockList(int warehouse_id){
@@ -55,19 +61,33 @@ class StockDaoImpl implements StockDao {
 	}
 
 
+
+	@Override
+	public List<V_stockDto> selectValidStockList(Map<String, Object> paramMap) {
+		return sqlSession.selectList(Vars.STOCK_DAO_PATH+".selectValidStockList", paramMap);
+	}
+	
+	@Override
+	public V_stock_detailDto selectOldestStock(int itemId) {
+		return sqlSession.selectOne(Vars.STOCK_DAO_PATH+".selectOldestStock", itemId);
+	}
+	
+	@Override
+	public void updateStockQuantity(Map<String, Integer> paramMap) {
+		sqlSession.update(Vars.STOCK_DAO_PATH+".updateStockQuantity", paramMap);
+	}
+	
+	@Override
+	public void deleteStock(int stockId) {
+		sqlSession.delete(Vars.STOCK_DAO_PATH+".deleteStock", stockId);
+	}
+
+
 	@Override
 	public int selectMaxId() {
-		return sqlSession.selectOne("com.kosmo88.logistics_erp.wms.dao.StockDao.selectMaxId");
+		return sqlSession.selectOne(Vars.STOCK_DAO_PATH + ".selectMaxId");
 	}
 
-	@Override
-	public void update() {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.StockDao.insert");
-	}
 
-	@Override
-	public void delete() {
-		sqlSession.insert("com.kosmo88.logistics_erp.wms.dao.StockDao.insert");
-	}
-
+	
 }
