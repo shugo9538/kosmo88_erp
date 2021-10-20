@@ -45,13 +45,20 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 // (구매처)상품 목록
 function itemList() {
 	currTab = $('#itemList').DataTable({
-		"order": [[ 0, "desc" ]],
+		"order": [ [ 0, "desc" ] ],
+		dom: 'lfrtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">상품목록 다운로드</i>',
+            sheetName: '구매팀 상품 목록',
+            messageBottom : '커밋 3팀'
+		}],		
         ajax : {
             url : window.location.href + '/itemList', // 현 위치
-            // + 요청
-            // url 로
-            // div별로 결과물 뿌리기 위해
-            // 이렇게 작성함
             type : 'POST',
             data : csrfData,
             dataSrc : ''

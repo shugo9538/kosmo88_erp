@@ -39,7 +39,10 @@ $(document).ready(function() {
 	    } else if (!$('#end_date').val()) {
 	    	swal("납기요청일자를 입력하세요!!", "납기요청일자 입력 누락", "error");
 	    	return false;
-	    }
+	    } else if ($('#orderItemCall').val() != 1) {
+	    	swal("하나 이상의 상품을 입력하세요!!", "상품 미선택", "error");
+	    	return false;
+	    } 
 	    
 	    /*
 	     * 1. 주문서 등록 {id:'id', type:'type', name:'name' ... }
@@ -92,7 +95,10 @@ $('#orderItemCall').on('click', function() {
 	var client_id = $('#client_id').val();
 	console.log(client_id);
 	if (client_id != 'none'|| 0) {
+		
+		$('#orderRegisterForm').find('#orderItemCall').val(1);
 		orderItemList(request_id);
+		
 	} else {
 		swal("견적서를 선택해주세요!");
 		return false;
@@ -126,6 +132,17 @@ function orderList() {
 	// 테이블 id
 	currTab = $('#orderList').DataTable({
 		"order": [[ 1, "desc" ]],
+		dom: 'lfrtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">주문서목록 다운로드</i>',
+            sheetName: '구매팀 주문서 목록',
+            messageBottom : '커밋 3팀'
+		}],
         ajax : {
             url : window.location.href + '/orderList', // 현 위치
             type : 'POST',
@@ -162,14 +179,14 @@ function orderList() {
                 	render : function(data, type, row, meta) {
                 		if (row.slip_state == 'R') return '<button class="btn  btn-primary" type="button" name="orderRequest" value="' + row.request_id + '">승인요청</button>';
                 		else if (row.slip_state == 'N') return '<button class="btn  btn-defalt" type="button">승인대기</button>';
-                		else if (row.slip_state == 'Y') return '승인완료';
+                		else if (row.slip_state == 'Y') return '<label style="color:blue;"><i class="fa fa-check">승인완료</label>';
                 	}
                 }, {
                 	data : 'request_state',
                 	render : function(data) {
                 		if (data == 'TX_ORDER') return '<button class="btn  btn-defalt" type="button">입고준비</button>';
                 		else if (data == 'TX_PURCHASE') return '<button class="btn  btn-defalt" type="button">입고준비</button>';
-                		else if (data == 'TX_INBOUND') return '입고완료';
+                		else if (data == 'TX_INBOUND') return '<label style="color:blue;"><i class="fa fa-check">입고완료</label>';
                 	}
                 }
         ],
@@ -299,7 +316,7 @@ function registeredOrderList() {
     });
 }
 
-// 견적서 상품 불러오기
+// 주문서 상품 불러오기
 function orderItemList(request_id) {
 	$("#orderItemListTable").empty();
 	$("#orderItemListTable").append(
@@ -434,6 +451,7 @@ function itemRegister() {
 					destroy : true,
 					retrieve : true
 					});
+					$('#orderRegisterForm').find('#orderItemCall').val(0);
 					regiTab.ajax.reload();
 				});
 			}

@@ -50,14 +50,13 @@ public class ClientRestController {
     @ResponseBody
     @RequestMapping(value = "/clientManagement/clientChoiceDelete")
     public boolean clientChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
+    	logger.info(data);
     	data = data.replace("\"", "");
     	data = data.replace("client_id=", "");
     	String[] arrStr = data.split("&");
     	int[] client_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		client_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(client_id[i]);
     	}
     	return clientService.clientChoiceDelete(client_id);
     }
@@ -79,10 +78,9 @@ public class ClientRestController {
 	// 거래처 상품 등록 처리
     @RequestMapping(value = "/clientRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<PurchaseItemDTO> dtos) {
-        System.out.println(dtos);
     	for (PurchaseItemDTO dto : dtos) {
     		clientService.itemRegisterAction(dto);
-    		System.out.println(dto.getName());
+    		logger.info(dto.getName());
     	}
     	return true;
     }

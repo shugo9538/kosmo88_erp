@@ -4,7 +4,7 @@
 	<!--logo-->
 	<div class="logo">
 		<a href="${ROOT_PATH}/">KU ERP</a>
-		<p>Kosmo Ubiquitous</p>
+		<p>Kosmo Ultimate</p>
 	</div>
 	<div class="logo-icon text-center">
 		<a href="${ROOT_PATH}/"> <img
