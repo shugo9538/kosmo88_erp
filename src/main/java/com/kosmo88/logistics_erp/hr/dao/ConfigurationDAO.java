@@ -28,4 +28,7 @@ public interface ConfigurationDAO {
     
     //호봉 테이블
     List<PayStepTableDTO> selectAnnualSalary();
+    
+    // 인사코드 입력
+    int insertHRCode(HRCodeDTO dto);
 }

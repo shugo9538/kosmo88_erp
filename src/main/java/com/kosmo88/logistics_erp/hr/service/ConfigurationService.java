@@ -28,10 +28,8 @@ public interface ConfigurationService {
     //호봉 테이블
     ArrayList<PayStepTableDTO> selectAnnualSalary();
 
-//    void hrCodeManagement(HttpServletRequest req, HttpServletResponse res);
-//    
-//    // 근태 항목 등록
-//    void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res);
+    // 인사 코드 등록
+    void insertHRCode(HRCodeDTO dto);
 //
 //    // 사원별 휴가 일수 조회
 //    void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res);

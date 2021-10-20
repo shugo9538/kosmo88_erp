@@ -47,23 +47,10 @@ public class ConfigurationServiceImpl implements ConfigurationService {
         return (ArrayList<PayStepTableDTO>) configurationDAO.selectAnnualSalary();
     }
 
-//    @Override
-//    public void hrCodeManagement(HttpServletRequest req, HttpServletResponse res) {
-//        // TODO Auto-generated method stub
-//
-//    }
-
-//    @Override
-//    public void insertAttendanceCode(HttpServletRequest req, HttpServletResponse res) {
-//        int id = Integer.parseInt(req.getParameter("id"));
-//        String name = req.getParameter("name");
-//        String type = req.getParameter("type");
-//        String enabled = req.getParameter("enabled");
-//
-//        AttendanceCodeDTO dto = new AttendanceCodeDTO(id, name, type, enabled.charAt(0));
-//
-//        configurationDAO.insertAttendanceCode(dto);
-//    }
+    @Override
+    public void insertHRCode(HRCodeDTO dto) {
+        configurationDAO.insertHRCode(dto);
+    }
 //
 //    @Override
 //    public void employeeHasHoliday(HttpServletRequest req, HttpServletResponse res) {

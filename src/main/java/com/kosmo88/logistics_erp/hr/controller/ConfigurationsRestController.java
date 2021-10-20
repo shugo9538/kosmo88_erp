@@ -58,14 +58,14 @@ public class ConfigurationsRestController {
         return configService.selectAttendanceCode();
     }
 
-//    // 부서 코드 관리
-//    @RequestMapping(value = "/insertAttendanceAction")
-//    public boolean insertAttendanceAction(@RequestBody List<AttendanceDTO> dto) {
-//        for (AttendanceDTO d : dto) {
-//            configService.insertAttendance(d);
-//        }
-//        return true;
-//    }
+    // 인사코드 입력
+    @RequestMapping(value = "/insertHrCodeAction")
+    public boolean insertAttendanceAction(@RequestBody List<HRCodeDTO> dto) {
+        for (HRCodeDTO d : dto) {
+            configService.insertHRCode(d);
+        }
+        return true;
+    }
 //    
 //    // 출퇴근 기록부
 //    @RequestMapping(value = "/commuteList")
