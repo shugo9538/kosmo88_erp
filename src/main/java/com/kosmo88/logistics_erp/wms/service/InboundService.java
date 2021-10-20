@@ -1,5 +1,6 @@
 package com.kosmo88.logistics_erp.wms.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.kosmo88.logistics_erp.wms.dao.StockDao;
 import com.kosmo88.logistics_erp.wms.dto.StockDto;
 import com.kosmo88.logistics_erp.wms.dto.V_purchaseDto;
 import com.kosmo88.logistics_erp.wms.dto.V_request_itemDto;
+import com.kosmo88.logistics_erp.wms.dto.V_stock_detailDto;
 
 @Service
 public class InboundService {
@@ -53,60 +55,90 @@ public class InboundService {
 		inboundDao.updateState(purchaseId);
 	}
 
-	// 해야할것
-	// inbound에 warehoused_date 입력
-	// stock 추가
-	// 빈 섹션을 가져오는 로직이 어딘가에는 있어야한다	
-	@Transactional
-	public void warehousingAction(int waerhouseId, int requestId) {
-		// inbound warehoused 처리
-		inboundDao.updateWarehousedDate(requestId);
-		
-		
-		// 구매 정보를 토대로 재고 정보 작성
-		List<V_request_itemDto> itemDtoList = inboundDao.selectItemList(requestId);
-		//sectionId 배열을 쿼리로 받아올 수도 있지만 일단은 백엔드에셔 처리란다
-		
-		
-
-		for (V_request_itemDto itemDto : itemDtoList) {
-			// stock 등록
-			int maxId = stockDao.selectMaxId();
-			StockDto stockDto = new StockDto();
-			stockDto.setId(maxId);
-			stockDto.setSection_id(0);
-			stockDto.setItem_id(itemDto.getItem_id());
-			stockDto.setCount(itemDto.getQuantity());
-			stockDao.insertStock(stockDto);
-		}
-		inboundDao.updateState(requestId);
-	}
-
-	
-	
+	// 안쓰는건가????
+//	// 해야할것
+//	// inbound에 warehoused_date 입력
+//	// stock 추가
+//	// 빈 섹션을 가져오는 로직이 어딘가에는 있어야한다	
 //	@Transactional
-	public void warehousingAction(Map<String, String[]> paramMap,int requestId) {
-		// 1. inbound.warehoused_date update
-		inboundDao.updateWarehousedDate(requestId);
-		
-		// 2. 구매 정보를 토대로 재고 정보 작성
-		String[] itemIdArr = paramMap.get("itemId");
-		String[] itemNameArr = paramMap.get("itemName");
-		String[] quantityArr = paramMap.get("quantity");
-		String[] sectionIdArr = paramMap.get("section");
+//	public void warehousingAction(int waerhouseId, int requestId) {
+//		// inbound warehoused 처리
+//		inboundDao.updateWarehousedDate(requestId);
+//		
+//		
+//		// 구매 정보를 토대로 재고 정보 작성
+//		List<V_request_itemDto> itemDtoList = inboundDao.selectItemList(requestId);
+//		//sectionId 배열을 쿼리로 받아올 수도 있지만 일단은 백엔드에셔 처리란다
+//		
+//		
+//
+//		for (V_request_itemDto itemDto : itemDtoList) {
+//			// stock 등록
+//			int maxId = stockDao.selectMaxId();
+//			StockDto stockDto = new StockDto();
+//			stockDto.setId(maxId);
+//			stockDto.setSection_id(0);
+//			stockDto.setItem_id(itemDto.getItem_id());
+//			stockDto.setCount(itemDto.getQuantity());
+//			stockDao.insertStock(stockDto);
+//		}
+//		inboundDao.updateState(requestId);
+//	}
 
-		for(int i = 0; i<itemIdArr.length; i++) {
-			int itemId = Integer.parseInt(itemIdArr[i]);
-			int quantity = Integer.parseInt(quantityArr[i]);
-			int sectionId = Integer.parseInt(sectionIdArr[i]);
-			StockDto stockDto = new StockDto();
-			stockDto.setCount(quantity);
-			stockDto.setItem_id(itemId);
-			stockDto.setSection_id(sectionId);
-			stockDao.insertStock(stockDto);
+//	public void warehousingAction(Map<String, String[]> paramMap,int requestId) {
+//		// 1. inbound.warehoused_date update
+//		inboundDao.updateWarehousedDate(requestId);
+//		
+//		// 2. 구매 정보를 토대로 재고 정보 작성
+//		String[] itemIdArr = paramMap.get("itemId");
+//		String[] quantityArr = paramMap.get("quantity");
+//		String[] sectionIdArr = paramMap.get("section");
+//
+//		for(int i = 0; i<itemIdArr.length; i++) {
+//			int itemId = Integer.parseInt(itemIdArr[i]);
+//			int quantity = Integer.parseInt(quantityArr[i]);
+//			int sectionId = Integer.parseInt(sectionIdArr[i]);
+//			StockDto stockDto = new StockDto();
+//			stockDto.setCount(quantity);
+//			stockDto.setItem_id(itemId);
+//			stockDto.setSection_id(sectionId);
+//			stockDao.insertStock(stockDto);
+//		}
+//
+//		// 3. request state => 'TX_INBOUND'
+//		inboundDao.updateState(requestId);
+//	}
+
+	// 넘어오는 값은 itemId, quantity 두가지이다
+	// 재고가 부족할 경우를 생각해서 재귀적으로 사용해야야한다
+	public void warehousingAction(Map<String, Object> jsonWarehousingVar) {
+		List itemIdArr = (List) jsonWarehousingVar.get("itemId");
+		List sectionIdArr = (List) jsonWarehousingVar.get("sectionId");
+		List quantityArr = (List) jsonWarehousingVar.get("quantity");
+		int requestId = (int) jsonWarehousingVar.get("requestId");
+
+		System.out.println(itemIdArr.getClass().getSimpleName() + " " + itemIdArr);
+		System.out.println(sectionIdArr.getClass().getSimpleName() + " " + sectionIdArr);
+		System.out.println(quantityArr.getClass().getSimpleName() + " " + quantityArr);
+		System.out.println("requetId : " + requestId);
+
+		int itemId;
+		int sectionId;
+		int quantity;
+		for (int i = 0; i < itemIdArr.size(); i++) {
+			itemId = Integer.parseInt((String) itemIdArr.get(i));
+			sectionId = Integer.parseInt((String) sectionIdArr.get(i));
+			quantity = Integer.parseInt((String) quantityArr.get(i));
+
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("quantity", quantity);
+			paramMap.put("itemId", itemId);
+			paramMap.put("sectionId", sectionId);
+			stockDao.insertStock(paramMap);
+
 		}
+		inboundDao.updateWarehousedDate(requestId);
 
-		// 3. request state => 'TX_INBOUND'
-		inboundDao.updateState(requestId);
 	}
+
 }

@@ -129,10 +129,28 @@ public class AccountDAOImpl implements AccountDAO {
 	public SalesSlipDTO selectSalesSlipSum() {
 		return sqlSession.selectOne(STATEMENT +  ".selectSalesSlipSum");
 	}
+	// 매입,매출전표 공급가액/세액 합계
+	@Override
+	public SalesSlipDTO selectSalesSum() {
+		return sqlSession.selectOne(STATEMENT +  ".selectSalesSum");
+	}
+	// 매입,매출전표 공급가액/세액 합계
+	@Override
+	public SalesSlipDTO selectPurchaseeSum() {
+		return sqlSession.selectOne(STATEMENT +  ".selectPurchaseeSum");
+	}
 	// 매입 매출전표 건수
 	@Override
 	public int getSalesSlipCnt() {
 		return sqlSession.selectOne(STATEMENT +  ".getSalesSlipCnt");
+	}
+	@Override
+	public int getSalesCnt() {
+		return sqlSession.selectOne(STATEMENT +  ".getSalesCnt");
+	}
+	@Override
+	public int getPurchaseeCnt() {
+		return sqlSession.selectOne(STATEMENT +  ".getPurchaseeCnt");
 	}
 	// 일반전표 승인 후 (영업) 매출 전표 생성
 	@Override

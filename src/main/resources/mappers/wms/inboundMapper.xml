@@ -40,6 +40,15 @@
 		WHERE WAREHOUSE_ID = #{warehouseId}
 		AND WAREHOUSED_DATE IS NOT NULL
 	</select>
+	
+	
+	<select id="selectWarehousedInboundItemList" parameterType="int"
+		resultType="V_inbound_itemDto">
+		SELECT *
+		FROM V_INBOUND_ITEM
+		WHERE WAREHOUSE_ID = #{warehouseId}
+		AND WAREHOUSED_DATE IS NOT NULL
+	</select>
 
 	<select id="selectMaxId" resultType="int">
 		SELECT MAX_ID('INBOUND')

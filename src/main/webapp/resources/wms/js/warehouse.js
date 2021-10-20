@@ -1,6 +1,6 @@
 //====== 랙등록
 
-let submitWindow;
+// let submitWindow;
 // let warehouse_id;
 
 function addSection(inboundId, warehouseId) {
@@ -14,7 +14,8 @@ function addSection(inboundId, warehouseId) {
 
     //근데 여기서 this 는 open한 window 객체인데 ,쟤한테 저 속성들이 있나???
     // console.log("입고처리 창  오픈  inboundId : " + inboundId + " warehouseId : " + warehouseId);
-    submitWindow = window.open(url + query, "haha", "width=800,height=600");
+    // submitWindow = window.open(url + query, "haha", "width=800,height=600");
+    window.open(url + query, "haha", "width=800,height=600");
 }
 
 //=================

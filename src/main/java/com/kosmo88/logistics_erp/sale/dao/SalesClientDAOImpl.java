@@ -42,26 +42,18 @@ public class SalesClientDAOImpl implements SalesClientDAO{
 		return sqlSession.selectOne(STATEMENT + ".getClientDetail", id);
 	}
 
-	@Override
-	public List<SalesItemDTO> getItemDetail(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	// 거래처 삭제
 	@Override
 	public int deleteClient(int id) {
 		return sqlSession.update(STATEMENT + ".deleteClient", id);
 	}
 
+	// 거래처 수정
 	@Override
 	public int updateClient(SalesClientDTO dto) {
 		return sqlSession.update(STATEMENT + ".updateClient", dto);
 	}
 
-	@Override
-	public int updateItem(SalesItemDTO idto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 }

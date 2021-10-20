@@ -1,10 +1,8 @@
 package com.kosmo88.logistics_erp.sale.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesDTO;
 
 public interface SalesDAO {
 

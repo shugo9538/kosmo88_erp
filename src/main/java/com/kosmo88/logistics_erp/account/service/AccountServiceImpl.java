@@ -1,6 +1,7 @@
 package com.kosmo88.logistics_erp.account.service;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +10,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,6 +80,7 @@ public class AccountServiceImpl implements AccountService {
 
 		slip = accountDAO.selectSlipList();
 		System.out.println("일반전표관리 - 일반전표 : " + slip.size());
+		System.out.println("전표 : " + slip);
 		
 		model.addAttribute("slip", slip);
 	
@@ -289,6 +296,7 @@ public class AccountServiceImpl implements AccountService {
 										
 									if (updateCnt > 0) {	// 다건일 경우 updateCnt 1이상의 결과가 insertPurchaseSlip 에서 발생
 											slipConfirmAlert(MenuCode.SEND,MenuCode.COMPANY,MenuCode.PURCHASE_SEND);
+											
 											model.addAttribute("SUCCESS", MenuCode.SUCCESS);
 											System.out.println("구매팀 전표승인 완료");
 									}else {
@@ -318,7 +326,9 @@ public class AccountServiceImpl implements AccountService {
 									
 									switch(updateCnt) {
 									case 1:
+										// 전표승인 push 알람 발송
 										slipConfirmAlert(MenuCode.SEND,MenuCode.COMPANY,MenuCode.SALES_SEND);
+										
 										model.addAttribute("SUCCESS", MenuCode.SUCCESS);
 										System.out.println("영업팀 전표승인 완료");
 										break;
@@ -372,8 +382,7 @@ public class AccountServiceImpl implements AccountService {
 									
 									switch(updateCnt) {
 									case 1:
-										//fcm.send_FCM(MenuCode.SEND,MenuCode.COMPANY,MenuCode.ACCOUNT_SEND);
-								    	slipConfirmAlert(MenuCode.SEND,MenuCode.COMPANY,MenuCode.ACCOUNT_SEND);
+								    	slipConfirmAlert(MenuCode.SEND, MenuCode.COMPANY, MenuCode.ACCOUNT_SEND);
 										model.addAttribute("SUCCESS", MenuCode.SUCCESS);
 										System.out.println("회계팀 전표승인 완료");
 										break;
@@ -404,14 +413,15 @@ public class AccountServiceImpl implements AccountService {
 				}
 			}
 	}
-	// 알람발송
+	
+	
+	
+	// FCM 발송
 	@Override
 	public void slipConfirmAlert(String tokenId, String title, String content)   {
 		 //  메세지 성공여부
-		 int successCnt = 0;
-		 String viewPage = "";
 	        try {    
-	            //본인의 json 파일 경로 입력
+	            // json 파일 경로 입력
 	            FileInputStream refreshToken = new FileInputStream("C:\\dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\account\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
 	            
 	            FirebaseOptions options = new FirebaseOptions.Builder()
@@ -423,7 +433,6 @@ public class AccountServiceImpl implements AccountService {
 	            if(FirebaseApp.getApps().isEmpty()) { 
 	                FirebaseApp.initializeApp(options);
 	            }
-	            
 	            //String registrationToken = 안드로이드 토큰 입력;
 	            String registrationToken = tokenId;
 
@@ -442,11 +451,8 @@ public class AccountServiceImpl implements AccountService {
 	                    .setToken(registrationToken)
 	                    .build();
 
-	            //메세지를 FirebaseMessaging 에 보내기
+	            // 메세지를 FirebaseMessaging에 보내기
 	            String response = FirebaseMessaging.getInstance().send(msg);
-	            //결과 출력
-	            System.out.println("Successfully sent message: " + response);
-	            
 	        }catch(Exception e){
 	            e.printStackTrace();
 	        }
@@ -612,13 +618,13 @@ public class AccountServiceImpl implements AccountService {
 		@Override
 		public void salesSlipList(Model model) {
 			List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
+			SalesSlipDTO sum = new SalesSlipDTO();
 			
 			saleslip = accountDAO.selectSalesSlip();
 			System.out.println("매입/매출장 목록 : " + saleslip);
 			
 			model.addAttribute("saleslip", saleslip);
 			
-			SalesSlipDTO sum = new SalesSlipDTO();
 			sum = accountDAO.selectSalesSlipSum();
 			
 			model.addAttribute("sum", sum);
@@ -636,13 +642,19 @@ public class AccountServiceImpl implements AccountService {
 		@Override
 		public void purchaseList(Model model) {
 			List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
+			SalesSlipDTO sum = new SalesSlipDTO();
 			
 			saleslip = accountDAO.selectPurchaseList();
 			System.out.println("매입전표 조회 : " + saleslip);
 			
 			//String type = "WITHDRAW";
 			int getCnt = 0;
-			getCnt = accountDAO.getSalesSlipCnt();
+			getCnt = accountDAO.getPurchaseeCnt();
+			
+			sum = accountDAO.selectPurchaseeSum();
+			
+			model.addAttribute("sum", sum);
+			System.out.println("공급가액, 세액 , 합계 : " + sum);
 			
 			model.addAttribute("getCnt", getCnt);
 			model.addAttribute("saleslip", saleslip);
@@ -651,13 +663,19 @@ public class AccountServiceImpl implements AccountService {
 		@Override
 		public void salesList(Model model) {
 			List<SalesSlipDTO> saleslip = new ArrayList<SalesSlipDTO>();
+			SalesSlipDTO sum = new SalesSlipDTO();
 			
 			saleslip = accountDAO.selectSalesList();
 			System.out.println("매출전표 조회 : " + saleslip);
 			
 			//String type = "DEPOSIT";
 			int getCnt = 0;
-			getCnt = accountDAO.getSalesSlipCnt();
+			getCnt = accountDAO.getSalesCnt();
+			
+			sum = accountDAO.selectSalesSum();
+			
+			model.addAttribute("sum", sum);
+			System.out.println("공급가액, 세액 , 합계 : " + sum);
 			
 			model.addAttribute("getCnt", getCnt);
 			model.addAttribute("saleslip", saleslip);
@@ -875,207 +893,31 @@ public class AccountServiceImpl implements AccountService {
 		System.out.println("손익계산서: " + income);
 		model.addAttribute("dto", income);
 	}
-
-
-
-
-
-
-
-
 	
-	// 영업팀 수주요청서 
-	// 4번 거래대금 수금확인 요청(영업팀) rx_sale바탕으로 slip테이블 작성(영업팀)
-	// 영업팀에서 일반전표 생성하여 회계팀에서 일반전표 변경하면서 매출전표 발생 sales_slip
-	
-	// 구매팀 발주요청서
-	// 11번 구매요청과함께 발주금액 임금요청
-	// 일반전표 생성 
-	// 매입전표 생성
-	
-	
-	/*	
-	// 기초정보관리
-	// 거래처 목록조회
+	//jsoup
 	@Override
-	public void accountingList(HttpServletRequest request, Model model) {
-
-		// 거래처 목록조회 페이징 처리
-		int pageSize = 5;// 한 페이지당 출력할 글 개수
-		int pageBlock = 3; // 한 블럭당 페이지 개수
+	public void jsoup(HttpServletRequest request, Model model) {
 		
-		int cnt = 0;// 전체글 개수
-		int start = 0;// 현재(각)페이지 시작 글번호
-		int end = 0;// 현재(각)페이지 마지막 글번호
-		int number = 0; // 출력용 글번호
-		String pageNum = "0"; //페이지 번호
-		int currentPage=0; //현제페이지 번호
+		final String inflearnUrl = "https://www.inflearn.com/courses/it-programming";
+		Connection conn = Jsoup.connect(inflearnUrl);
 		
-		int pageCount = 0; //페이지 개수
-		int startPage = 0; //시작페이지
-		int endPage = 0; //마지막 페이지
+		List<String> list = new ArrayList<String>();
 		
-		// 1. 거래처 등록 개수 조회
-		int categoryNum = Integer.parseInt(request.getParameter("categoryNum"));
-		System.out.println("화면에서 받은 categoryNum");
-		System.out.println("=================");
-		
-		switch (categoryNum) {
-			case CLIENT://거래처
-			cnt = accountDAO.getClientCnt();
-			System.out.println("accountDAO : " + CLIENT);
-			break;
-			case SLIP://일반전표
-			cnt = accountDAO.getSlipCnt();
-			System.out.println("accountDAO : " + SLIP);
-			break;
-			case SALES://매출전표
-			cnt = accountDAO.getSalesPurchaseCnt(SALES_NAME);
-			System.out.println("accountDAO : " + SALES);
-			break;
-			case PURCHASE://매입전표
-			cnt = accountDAO.getSalesPurchaseCnt(PURCHASE_NAME);
-			System.out.println("accountDAO : " + PURCHASE);
-			break;
-			case SALESSLIP://매입/매출전표
-			cnt = accountDAO.getSalesSlipCnt();
-			System.out.println("accountDAO : " + SALESSLIP);
-			break;
-			case ACCOUNT://계좌
-			cnt = accountDAO.getAccountCnt();
-			System.out.println("accountDAO : " + ACCOUNT);
-			break;
-		
+		try {
+			Document document = conn.get();
+			 Elements img = document.getElementsByClass("swiper-lazy");
+			 
+			 for(Element pro : img) {
+				 System.out.println(pro.attr("abs:src"));
+				 
+				 list.add(pro.attr("abs:src"));
+			 }
+			 
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		System.out.println("건수조회 cnt : " + cnt);
+		request.setAttribute("list", list);
 		
-		// 2. 페이지번호(페이지이동시 전화면세서 가지고와서 대입)
-		pageNum = request.getParameter("pageNum");
-		System.out.println("화면에서 받아온 페이지번호 pageNum : " + pageNum);
-		if(pageNum == null) {
-			pageNum = "1";
-			System.out.println("페이지번호가 없을때 pageNum 1 : " + pageNum);
-		}
-		
-		// 전체글개수 예) 30개일경우
-		// 2. 현재 페이지 번호
-		currentPage = Integer.parseInt(pageNum);	
-		System.out.println("현재페이지 번호 currentPage : " + currentPage);
-	
-		// 3. 전체페이지 개수 (전체글개수 / 페이지에서 출력할 글개수) + (전체글개수 % 출력할 글개수 나머지가 0 이상이면 한페이지를 추가한다.)
-		// 페이지 개수 6 = ( 30 / 5 ) + ( 0 )    
-		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
-		System.out.println("페이지 개수 pageCount : " + pageCount);
-	
-		// 4. 현재페이지 시작 글번호(페이지별)
-		// 1 = (1 - 1) * 5 + 1;
-		start = (currentPage - 1) * pageSize + 1;
-		System.out.println("페이지 시작글번호 start : " + start);
-		
-		// 5. 현제페이지 마지막 글번호(페이지별)
-		// 5 = (1 + 5) - 1;
-		end = (start + pageSize) - 1;
-		System.out.println("페이지 마지막 글번호 end : " + end);
-		
-		// 6. 출력용 글번호 
-		// 출력용 글번호 = 전체글개수 - (현재페이지번호 - 1) * 출력할 페이지개수
-		// 30 = 30 - (1-1) * 5;
-		number = cnt - (currentPage - 1) * pageSize;
-		System.out.println("출력용 글번호 number : " + number);
-		
-		// 7. 시작페이지
-		// 시작페이지 = (현재페이지 / 페이지블랙개수) * 페이지블랙개수 + 1;
-		// 1= (1/3) * 3 + 1;
-		startPage = (currentPage / pageBlock) * pageBlock + 1;
-		if(currentPage % pageBlock == 0) startPage -= pageBlock;
-		System.out.println("시작페이지 startPage : " + startPage);
-		// 8. 마지막 페이지 
-		// 마지막페이지 = 시작페이지 + 페이지블랙개수 - 1
-		// 3 = 1 + 3 - 1
-		endPage = currentPage + pageBlock - 1;
-		if (endPage > pageCount) endPage = pageCount;
-		System.out.println("마지막페이지 endPage : " + endPage);
-		
-		// 리턴받을 List
-		List<ClientDTO> client = null;
-		List<SlipDTO> slip = null;
-		List<SalesSlipDTO> saleslip = null;
-		List<AccountDTO> account = null;
-		
-		// 매개변수 전달한 Map
-		Map<String,Object> map = new HashMap<String,Object>();
-		
-		// 전체글개수가 0보다 크면 리스트정보를 받아온다.
-		if (cnt > 0) {
-			System.out.println("==================");
-			System.out.println("dao 전달 start : " + start);
-			System.out.println("dao 전달 end : " + end);
-			System.out.println("==================");
-			map.put("start", start);
-			map.put("end", end);
-			
-			// 거래처관리
-			if (categoryNum == CLIENT) {
-				client = new ArrayList<ClientDTO>();
-				//client = accountDAO.selectClient(map);
-			// 일반전표
-			}else if(categoryNum == SLIP) {
-				slip = new ArrayList<SlipDTO>();
-				//slip = accountDAO.selectSlip(map);
-			// 매출전표 목록	
-			}else if (categoryNum == SALES) {
-				map.put("type", SALES_NAME);
-				saleslip = new ArrayList<SalesSlipDTO>();
-				saleslip = accountDAO.selectSalesPurchase(map);
-			// 매입전표 목록	
-			}else if (categoryNum == PURCHASE) {
-				map.put("type", PURCHASE_NAME);
-				saleslip = new ArrayList<SalesSlipDTO>();
-				saleslip = accountDAO.selectSalesPurchase(map);
-			// 매입/매출 전체목록
-			}else if(categoryNum == SALESSLIP) {
-				saleslip = new ArrayList<SalesSlipDTO>();
-				//saleslip = accountDAO.selectSalesSlip(map);
-			// 계좌조회
-			}else if(categoryNum == ACCOUNT) {
-				account = new ArrayList<AccountDTO>();
-				//account = accountDAO.selectAccount(map);
-			}
-				
-		}
-		System.out.println("거래처 dtos : " + client);
-		System.out.println("일반전표 dtos : " + slip);
-		System.out.println("매입/매출 전표 dtos : " + saleslip);
-		System.out.println("계좌조회 dtos : " + account);
-		
-		// 거래처
-		model.addAttribute("client", client);
-		// 일반전표
-		model.addAttribute("slip", slip);
-		// 매입 매출전표 
-		model.addAttribute("saleslip", saleslip);
-		// 계좌조회
-		model.addAttribute("account", account);
-		
-		
-		model.addAttribute("cnt", cnt);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("number", number);
-		
-		// 전체글개수가 0보다 크면 각 페이지정보를 생성한다.
-		if (cnt > 0) {
-			model.addAttribute("startPage", startPage);
-			model.addAttribute("endPage", endPage);
-			model.addAttribute("pageBlock", pageBlock);
-			model.addAttribute("pageCount", pageCount);
-			model.addAttribute("currentPage", currentPage);
-		}
-		System.out.println("다음페이지 통과 ");
 	}
-*/	
 	
-	
-	
-	
-
 }

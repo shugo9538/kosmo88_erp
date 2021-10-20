@@ -29,14 +29,14 @@ public class SalesEstimateRestController {
 	 @Autowired
 	 SalesEstimateService estimateService;
 	 
-	// 견적서 관리 - 견적서 목록(구매)
+	// 견적서 관리
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateList")
     public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
     }
     
- // 견적서 관리 - 견적서 삭제(선택삭제)
+    // 견적서 삭제(선택삭제)
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
     public boolean estimateChoiceDelete(@RequestBody String data) {

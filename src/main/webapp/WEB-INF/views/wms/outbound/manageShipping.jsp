@@ -157,10 +157,11 @@
 										<tr>
 											<th style="text-align: center"><input type="checkBox"
 												class="purchase_id" value="450"></th>
+											<th>품목</th>
+											<th>수량</th>
 											<th>구매처</th>
 											<th>출고완료일</th>
 											<th>출고창고</th>
-											<th>물품 수</th>
 										</tr>
 									</thead>
 									<c:forEach var="shippedOutboundDto" items="${shippedOutboundDtoList}">
@@ -169,10 +170,11 @@
 												<td style="text-align: center"><input type="checkBox"
 													class="purchase_id" value="450"></td>
 												<%-- 													<td>${outboundDto.id}</td> --%>
+												<td>${shippedOutboundDto.item_name}</td>
+												<td>${shippedOutboundDto.quantity}</td>
 												<td>${shippedOutboundDto.client_name}</td>
 												<td>${shippedOutboundDto.approved_date}</td>
 												<td>${shippedOutboundDto.warehouse_name}</td>
-												<td>${shippedOutboundDto.count_item}</td>
 											</tr>
 										</tbody>
 									</c:forEach>

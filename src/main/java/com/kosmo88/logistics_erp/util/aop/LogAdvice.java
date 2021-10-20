@@ -17,33 +17,44 @@ public class LogAdvice {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogAdvice.class);
 
-	@Pointcut("execution(* com.kosmo88.logistics_erp.wms..*.*(..))")
-	private void wms() {
-	}
+	@Pointcut("execution(* com.kosmo88.logistics_erp.wms..*.*(..))"
+			+ " ||execution(* java.lang.Integer..*.*(..))"
+			)
+	private void common() { }
+	
+	@Pointcut("execution(* com.kosmo88.logistics_erp..dto.*.set*(..))")
+	private void setter() { }
 
-	@Pointcut("execution(* dtoFunction..*.*(..))")
-	private void dtoFunction() {
-	}
+	@Pointcut("execution(* com.kosmo88.logistics_erp..dto.*.get*(..))")
+	private void getter() { }
 
-	@Before("execution(* com.kosmo88.logistics_erp.wms..*.*(..))")
+	@Pointcut(argNames = "dtoFunction", value = "execution(* dtoFunction..*.*(..))")
+	private void dtoFunction() { }
+
+
+	@Before(value ="common()")
 	public void beforeLog(JoinPoint jp) {
 		logger.info("---- 메소드 실행 : " + jp.getSignature().toShortString() + "----");
-		logger.info("--아-규멘또 : " + Arrays.toString(jp.getArgs()));
-//		logger.info("------------------------------------------------------------");
+		logger.info("" + jp.getSignature().getDeclaringType());
+		logger.info("argument : " + jp.getArgs().getClass().getSimpleName() + " " + Arrays.toString(jp.getArgs()));
 	}
 
-//	@After("wms()")
-//	public void afterLog(JoinPoint jp) {
-//		logger.info("--- " + jp. + "----");
-//		logger.info("--아-규멘또 : " + Arrays.toString(jp.getArgs()));
-//	}
-
-	@AfterReturning(value = "wms()", returning = "obj")
+	@AfterReturning(value = "common()", returning = "obj")
 	public void afterReturningLog(JoinPoint jp, Object obj) {
 		logger.info("---- 메소드 종료 : " + jp.getSignature().toShortString() + "----");
 		System.out.println("return: " + obj);
-//		logger.info("------------------------------------------------------------");
+	}
+	
+	@AfterReturning(value="getter()", returning = "obj")
+	public void afterGetter(JoinPoint jp, Object obj) {
+		logger.info("---- " + jp.getSignature().toShortString());
+		System.out.println("return : " + obj);
 	}
 
+	@AfterReturning(value="setter()", returning = "obj")
+	public void afterSetter(JoinPoint jp, Object obj) {
+		logger.info("---- " + jp.getSignature().toShortString());
+		System.out.println("return : " + obj);
+	}
 
-}// end of class SampleAdvice{}
+}

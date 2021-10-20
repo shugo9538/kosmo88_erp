@@ -15,10 +15,13 @@ import com.google.firebase.messaging.AndroidConfig;
 import com.google.firebase.messaging.AndroidNotification;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
+import com.kosmo88.logistics_erp.account.code.MenuCode;
 
 @Component
 public class FcmUtil {
-
+	// 테스트 토큰
+	//String TOKENID = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+	
 	 @Async   // 비동기 어노테이션
 	 public int send_FCM(String tokenId, String title, String content) {
 		 //  메세지 성공여부

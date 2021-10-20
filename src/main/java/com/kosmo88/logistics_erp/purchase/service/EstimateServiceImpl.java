@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,8 @@ import com.kosmo88.logistics_erp.util.QueryCode;
 @Service
 public class EstimateServiceImpl implements EstimateService {
 
+	private static final Logger logger = LoggerFactory.getLogger(EstimateServiceImpl.class);
+	
     @Autowired
     EstimateDAO estimateDao;
     
@@ -51,7 +55,7 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		// 거래처 갯수
 		int cnt = estimateDao.getClientCnt();
-		System.out.println("거래처 갯수 : " + cnt);
+		logger.info("거래처 갯수 : " + cnt);
 		
 		// 거래처가 있을때
 		if (cnt > 0) {
@@ -69,7 +73,7 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		// 담당자 갯수
 		int cnt = estimateDao.getEmployeeCnt();
-		System.out.println("담당자 갯수 : " + cnt);
+		logger.info("담당자 갯수 : " + cnt);
 		
 		// 담당자가 있을때
 		if (cnt > 0) {
@@ -92,8 +96,8 @@ public class EstimateServiceImpl implements EstimateService {
 		map.put("state", "TX_ESTIMATE");
 		map.put("employee_id", dto.getEmployee_id());
 		map.put("client_id", dto.getClient_id());
-		System.out.println("담당자 코드 : " + dto.getEmployee_id());
-		System.out.println("거래처 코드 : " + dto.getClient_id());
+		logger.info("담당자 코드 : " + dto.getEmployee_id());
+		logger.info("거래처 코드 : " + dto.getClient_id());
 		
 		// request tbl 입력
 		return state.check(estimateDao.insertRequest(map));
@@ -111,16 +115,16 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		map.put("quantity", dto.getQuantity());
 		map.put("item_id", dto.getItem_id());
-		System.out.println("상품 수량 : " + dto.getQuantity());
-		System.out.println("상품 코드 : " + dto.getItem_id());
+		logger.info("상품 수량 : " + dto.getQuantity());
+		logger.info("상품 코드 : " + dto.getItem_id());
 		
 		// product_group tbl 입력
 		insert = state.check(estimateDao.insertProductGroup(map));
-		System.out.println("product_group tbl 입력 : " + insert);
+		logger.info("product_group tbl 입력 : " + insert);
 		
 		// req_product_list tbl 입력
 		insert = state.check(estimateDao.insertRPL());
-		System.out.println("req_product_list tbl 입력 : " + insert);
+		logger.info("req_product_list tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -167,7 +171,7 @@ public class EstimateServiceImpl implements EstimateService {
 		
 		// 거래처 삭제 처리
 		update = state.check(estimateDao.deleteEstimate(id));
-		System.out.println("견적서 삭제 처리 : " + update);
+		logger.info("견적서 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 	}

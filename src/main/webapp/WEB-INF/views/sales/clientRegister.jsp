@@ -20,7 +20,7 @@
 			<div class="page-title-box">
 				<h4 class="page-title">거래처 등록</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">거래처 관리</a></li>
+					<li><a href="${ROOT_PATH}/sales/clientManagement">거래처 관리</a></li>
 					<li class="active">거래처 등록</li>
 				</ol>
 				<div class="clearfix"></div>
@@ -43,8 +43,13 @@
 							<table id="client" class="display table mt-12" style="width:100%">
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
+									
 									<td><input type="text" name="name" id="name" required
-										placeholder="거래처명"></td>
+										placeholder="거래처명">
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
+											name="search_zip_code">거래처 불러오기</button>
+										</td>
+									
 									<th style="background-color: #f1f1f1;">구분</th>
 									<td><input type="text" value="법인" readonly></td>
 								</tr>
@@ -89,7 +94,7 @@
 									<th rowspan="3" style="background-color: #f1f1f1;">거래처 주소</th>
 									<td colspan="3">
 										<input type="text" name="zip_code"
-										id="zip_code" required readonly>
+										id="zip_code" required>
 										<button type="button" class="btn  btn-primary" id="search_zip_code"
 											name="search_zip_code" onclick="daumPostcode()">우편번호검색</button>
 									</td>

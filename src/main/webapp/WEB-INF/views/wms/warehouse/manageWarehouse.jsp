@@ -21,7 +21,7 @@
 	<!-- main content start-->
 	<div class="main-content">
 		<!-- header section start-->
-		<%@ include file="/WEB-INF/views/common/header.jsp"%>
+		<%@ include file="/WEB-INF/views/wms/common/myHeader.jspf"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
 

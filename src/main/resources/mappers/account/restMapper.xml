@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.kosmo88.logistics_erp.account.dao.AccountRestDAO">
+
+<!-- 전표 상세내역 -->
+
+<!-- 1. 일반전표 세부내역  -->
+<select id="selectSlipInfo" parameterType="int">
+	
+	<if test="300">
+		SELECT *
+ 		  FROM ACCOUNT_SALES_ISSUE_VIEW
+	</if>
+	<if test="400">
+		SELECT *
+ 		  FROM ACCOUNT_PURCHASE_ISSUE_VIEW
+	</if>
+</select>
+
+
+<!-- 손익계산서조회  -->
+<select id="selectIcomeStatement" resultType="IncomeStatementDTO">
+SELECT sa.id, sa.sales_cost, sa.basic_product, sa.current_product,
+       ad.employee_salary, ad.employee_benefits, ad.travel_expenses, ad.entertainment,
+       ad.communication_cost,ad.water_utility_bill, ad.taxes_and_duties, ad.paid_rent, ad.premium,
+       ad.vehicle_maintenance_cost, ad.office_supplies, ad.consumables_cost, ad.interest_income,
+       ad.interest_expense, ad.corporate_tax
+  FROM ACCOUNT_SALES_VIEW sa, ACCOUNT_administrative_VIEW ad
+ WHERE sa.id = ad.id
+</select>
+
+<!-- 재무상태표 조회  -->
+<select id="financialStatement" resultType="FinancialStatementsDTO">
+SELECT cash_asets, accounts_receivable, purchase_receivable, vatpayment, inventory_assets, vatdeposit, capital  
+FROM FinancialStatements
+</select>
+
+</mapper>
