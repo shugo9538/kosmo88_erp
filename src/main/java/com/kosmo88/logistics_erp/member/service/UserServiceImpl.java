@@ -33,6 +33,5 @@ public class UserServiceImpl implements UserService {
         dto.setAuthorities(req.getParameter("authority"));
         dto.setEnabled('Y');
         code = QueryCode.INSERT;
-        System.out.println(code.check(userDAO.insertUser(dto)));
     }
 }

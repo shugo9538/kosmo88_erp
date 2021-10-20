@@ -41,7 +41,6 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public boolean insertCommute(CommuteDTO dto) {
         state = QueryCode.UPDATE;
-        System.out.println("commute insert service");
         return state.check(attendanceDAO.insertCommute(dto));
     }
 }

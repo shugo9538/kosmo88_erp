@@ -14,10 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kosmo88.logistics_erp.hr.dao.ConfigurationDAO;
 import com.kosmo88.logistics_erp.hr.dao.EmployeeDAO;
-import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.EmployeeDTO;
-import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
@@ -51,24 +49,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         String email2 = req.getParameter("email2");
         StringBuilder sb = new StringBuilder(email1).append("@").append(email2);
         String email = sb.toString();
-        System.out.println(email);
         Date hire_date = Date.valueOf(req.getParameter("hire_date"));
         String phone1 = req.getParameter("phone1");
         String phone2 = req.getParameter("phone2");
         String phone3 = req.getParameter("phone3");
         StringBuilder sb2 = new StringBuilder(phone1).append("-").append(phone2).append("-").append(phone3);
         String phone = sb2.toString();
-        System.out.println(phone);
         int position_id = Integer.parseInt(req.getParameter("position_id"));
         String resident_reg_num1 = req.getParameter("resident_reg_num1");
         String resident_reg_num2 = req.getParameter("resident_reg_num2");
         StringBuilder sb3 = new StringBuilder(resident_reg_num1).append("-").append(resident_reg_num2);
         String resident_reg_num = sb3.toString();
-        System.out.println(resident_reg_num);
         String id = "";
         String detail_address = req.getParameter("detail_address");
-        System.out.println("address : " + address);
-        System.out.println("detail_address" + detail_address);
         int zip_code = Integer.parseInt(req.getParameter("zip_code"));
         switch (department_id) {
         case 100:
@@ -151,23 +144,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         String email2 = req.getParameter("email2");
         StringBuilder sb = new StringBuilder(email1).append("@").append(email2);
         String email = sb.toString();
-        System.out.println(email);
         Date hire_date = Date.valueOf(req.getParameter("hire_date"));
         String phone1 = req.getParameter("phone1");
         String phone2 = req.getParameter("phone2");
         String phone3 = req.getParameter("phone3");
         StringBuilder sb2 = new StringBuilder(phone1).append("-").append(phone2).append("-").append(phone3);
         String phone = sb2.toString();
-        System.out.println(phone);
         int position_id = Integer.parseInt(req.getParameter("position_id"));
         String resident_reg_num1 = req.getParameter("resident_reg_num1");
         String resident_reg_num2 = req.getParameter("resident_reg_num2");
         StringBuilder sb3 = new StringBuilder(resident_reg_num1).append("-").append(resident_reg_num2);
         String resident_reg_num = sb3.toString();
-        System.out.println(resident_reg_num);
         String detail_address = req.getParameter("detail_address");
-        System.out.println("address : " + address);
-        System.out.println("detail_address" + detail_address);
         int zip_code = Integer.parseInt(req.getParameter("zip_code"));
 
         dto.setPhoto(photo);

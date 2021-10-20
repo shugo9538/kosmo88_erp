@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kosmo88.logistics_erp.account.dto.ClientDTO;
 import com.kosmo88.logistics_erp.account.dto.FinancialStatementsDTO;
 import com.kosmo88.logistics_erp.account.dto.IncomeStatementDTO;
 import com.kosmo88.logistics_erp.account.dto.SlipDTO;
@@ -73,7 +72,7 @@ public class AccountRestController {
 			 Elements img = document.getElementsByClass("swiper-lazy");
 			 
 			 for(Element pro : img) {
-				 System.out.println(pro.attr("abs:src"));
+				 logger.info(pro.attr("abs:src"));
 				 
 				 list.add(pro.attr("abs:src"));
 			 }

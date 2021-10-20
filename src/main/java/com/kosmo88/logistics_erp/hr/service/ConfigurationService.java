@@ -2,9 +2,6 @@ package com.kosmo88.logistics_erp.hr.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;

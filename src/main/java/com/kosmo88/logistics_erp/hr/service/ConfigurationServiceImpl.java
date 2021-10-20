@@ -1,10 +1,6 @@
 package com.kosmo88.logistics_erp.hr.service;
 
-import java.sql.Date;
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

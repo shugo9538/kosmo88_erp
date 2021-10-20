@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import com.kosmo88.logistics_erp.purchase.controller.ClientController;
 import com.kosmo88.logistics_erp.purchase.dao.OrderDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;

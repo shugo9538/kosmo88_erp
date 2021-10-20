@@ -9,18 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
-import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
-import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;
-import com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO;
 import com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO;
 import com.kosmo88.logistics_erp.hr.service.ConfigurationService;
 
@@ -76,7 +72,6 @@ public class ConfigurationsRestController {
 //    // 출퇴근 입력
 //    @RequestMapping(value = "/insertCommuteAction")
 //    public boolean insertCommuteAction(@RequestBody List<CommuteDTO> dto) {
-//        System.out.println(dto.get(0).getEmployee_id());
 //        for (CommuteDTO d : dto) {
 //            configService.insertCommute(d);
 //        }

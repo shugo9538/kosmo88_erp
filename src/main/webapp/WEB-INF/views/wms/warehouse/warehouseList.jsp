@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KU ERP</title>
 <%@ include file="/WEB-INF/views/wms/common/css_core.jspf"%>
 <%@ include file="/WEB-INF/views/wms/common/settings.jspf"%>
 </head>
@@ -243,6 +243,7 @@
 
 
 		</div>
+	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
 	<!--창고 목록End row-->
 
@@ -250,7 +251,6 @@
 
 
 
-	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/warehouse.js"></script>

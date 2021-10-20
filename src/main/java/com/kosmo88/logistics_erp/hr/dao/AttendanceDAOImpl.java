@@ -39,7 +39,6 @@ public class AttendanceDAOImpl implements AttendanceDAO {
 
     @Override
     public int insertCommute(CommuteDTO dto) {
-        System.out.println("commute insert");
         return sqlSession.insert(STATEMENT + ".insertCommute", dto);
     }
 }

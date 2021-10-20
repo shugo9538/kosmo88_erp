@@ -3,7 +3,6 @@ package com.kosmo88.logistics_erp.hr.dao;
 import java.util.List;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
-import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 
 public interface HolidayDAO {

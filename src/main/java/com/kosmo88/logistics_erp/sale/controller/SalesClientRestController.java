@@ -41,14 +41,12 @@ public class SalesClientRestController {
     @ResponseBody
     @RequestMapping(value = "/clientManagement/clientChoiceDelete")
     public boolean clientChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
     	data = data.replace("\"", "");
     	data = data.replace("client_id=", "");
     	String[] arrStr = data.split("&");
     	int[] client_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		client_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(client_id[i]);
     	}
     	return clientService.clientChoiceDelete(client_id);
     }
