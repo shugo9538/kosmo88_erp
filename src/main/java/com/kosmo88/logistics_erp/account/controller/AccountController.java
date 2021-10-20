@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.account.service.AccountService;
-import com.kosmo88.logistics_erp.account.utilTest.FcmUtil;
+import com.kosmo88.logistics_erp.account.utilTest.FcmUtilTest;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @Controller
 @RequestMapping(value = "/account")
@@ -28,7 +27,7 @@ public class AccountController {
 	
 	@Autowired
 	AccountService service;
-	FcmUtil fcm;
+	FcmUtilTest fcm;
 	
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
@@ -53,13 +52,13 @@ public class AccountController {
 				Document document = conn.get();
 				Elements element = document.getElementsByClass("nclicks(cls_eco.clsart1)");
 				for (Element el : element) {
-					System.out.println("el href: " + el.attr("abs:href"));
+					logger.info("el href: " + el.attr("abs:href"));
 				}
 				
 				Elements ele = document.getElementsByClass("photo");
 				for (Element el : ele) {
-					System.out.println("el src: " + el.children().attr("abs:href"));
-					System.out.println("el src: " + el.children().html());
+					logger.info("el src: " + el.children().attr("abs:href"));
+					logger.info("el src: " + el.children().html());
 				}
 				
 			} catch (IOException e) {
@@ -297,7 +296,7 @@ public class AccountController {
     	String title = "KU ERP Kosmo Ultimate ERP"; 
     	String content = "발주서 승인 되었습니다.";
     	
-    	FcmUtil fcm = new FcmUtil();
+    	FcmUtilTest fcm = new FcmUtilTest();
     	fcm.send_FCM(tokenId, title, content);
     	
     	model.addAttribute("successCnt", 1);

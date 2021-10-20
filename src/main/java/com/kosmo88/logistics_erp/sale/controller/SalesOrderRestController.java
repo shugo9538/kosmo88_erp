@@ -40,14 +40,12 @@ public class SalesOrderRestController {
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderChoiceDelete")
     public boolean orderChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
     	data = data.replace("\"", "");
     	data = data.replace("request_id=", "");
     	String[] arrStr = data.split("&");
     	int[] request_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		request_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(request_id[i]);
     	}
     	return orderService.orderChoiceDelete(request_id);
     }

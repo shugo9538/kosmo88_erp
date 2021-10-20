@@ -54,7 +54,6 @@ public class FCMUtil {
 	            //메세지를 FirebaseMessaging 에 보내기
 	            String response = FirebaseMessaging.getInstance().send(msg);
 	            //결과 출력
-	            System.out.println("Successfully sent message: " + response);
 	            
 	            if (response != null) {
 	            	successCnt = 1;

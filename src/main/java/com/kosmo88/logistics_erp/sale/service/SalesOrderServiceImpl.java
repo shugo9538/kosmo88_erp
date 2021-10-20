@@ -52,18 +52,12 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		map.put("end_date", dto.getEnd_date());
 		map.put("type", "DEPOSIT");
 		map.put("department_id", dto.getDepartment_id());
-		System.out.println("담당자 id : " + dto.getEmployee_id());
-		System.out.println("거래처 id : " + dto.getClient_id());
-		System.out.println("납기요청일자: " + dto.getEnd_date());
-		System.out.println("담당자 부서 : " + dto.getDepartment_id());
 		
 		// request tbl 입력
 		insert = state.check(orderDao.insertRequest(map));
-		System.out.println("request tbl 입력 : " + insert);
 		
 		// slip tbl 입력
 		insert = state.check(orderDao.insertSlip(map));
-		System.out.println("slip tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -79,17 +73,12 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		map.put("quantity", dto.getItem_quantity());
 		map.put("item_id", dto.getItem_id());
 		map.put("sales_price", dto.getItem_sales_price());
-		System.out.println("상품 수량 : " + dto.getItem_quantity());
-		System.out.println("상품 코드 : " + dto.getItem_id());
-		System.out.println("판매가격 : " + dto.getItem_sales_price());
 		
 		// product_group tbl 입력
 		insert = state.check(orderDao.insertProductGroup(map));
-		System.out.println("product_group tbl 입력 : " + insert);
 		
 		// req_product_list tbl 입력
 		insert = state.check(orderDao.insertRPL());
-		System.out.println("req_product_list tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -133,7 +122,6 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		
 		// 주문서 삭제 처리
 		update = state.check(orderDao.deleteOrder(id));
-		System.out.println("주문서 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 		
@@ -145,7 +133,6 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		
 		// 견적서 갯수
 		int cnt = orderDao.getEstimateCnt();
-		System.out.println("견적서 갯수 : " + cnt);
 		
 		// 주문서 등록 화면 - 견적서가 있을때
 		if (cnt > 0) {

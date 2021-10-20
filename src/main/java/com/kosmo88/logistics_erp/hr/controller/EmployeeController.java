@@ -55,7 +55,6 @@ public class EmployeeController {
         MultipartFile mf = req.getFile("photo");
 
         if (mf != null) {
-            System.out.println("this null");
             String originFileName = mf.getOriginalFilename(); // 원본 파일 명
             String safeFile = IMG_UPLOAD_DIR + originFileName;
 
