@@ -3,6 +3,7 @@ package com.kosmo88.logistics_erp.wms.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,11 +111,13 @@ public class WarehouseController {
 	@Transactional
 	@RequestMapping(value = "/addAction")
 	public String addAction(HttpServletRequest req, Model model) {
+//	public void addAction(HttpServletRequest req, Model model) {
 		Map<String, String[]> paramMap = req.getParameterMap();
 		MyLog.logReqParamMap(paramMap);
 		warehouseService.addAction(paramMap);
 
-		return "wms/warehouse/warehouseList";
+//		return "wms/warehouse/warehouseList";
+		return "redirect:/wms/warehouse/list";
 	}
 	
 	@RequestMapping(value = "/addSectionAction")
@@ -141,6 +144,8 @@ public class WarehouseController {
 class WarehouseRestController {
 	@Autowired
 	WarehouseService warehouseService;
+	@Autowired
+	WarehouseDao warehouseDao;
 
 	// 거래처(구매처) 목록
 	@ResponseBody
@@ -148,5 +153,13 @@ class WarehouseRestController {
 	public List<V_warehouseDto> warehouseList() {
 		return warehouseService.warehouseList();
 	}
+	
+	//rest용.. 안드로이드에서 조회용으로 사용 
+//	@RequestMapping(value = { "/list", "/warehouseList" })
+//	public List<V_warehouseDto> warehouseList(Model model) {
+//		List<V_warehouseDto> list = warehouseDao.selectWarehouseList();
+//
+//		return list;
+//	}
 
 }

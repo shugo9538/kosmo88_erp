@@ -45,24 +45,6 @@
 				<div class="col-md-12">
 					<div class="tab-content">
 						<div class="tab-pane fade active in" id="list">
-							<!-- 							<h2 class="header-title"> -->
-							<!-- 								<i class="fa fa-chevron-circle-right mr-2"></i> 창고 요청 조회 필터 -->
-							<!-- 							</h2> -->
-							<!-- 							<form class="form-horizontal col-md-12"> -->
-							<!-- 								<div class="filter"> -->
-							<!-- 									<div class="form-group"> -->
-							<!-- 										<label class="control-label col-md-1">기간</label> -->
-							<!-- 										<div class="col-md-4"> -->
-							<!-- 											<div class="input-daterange input-group" id="date-range"> -->
-							<!-- 												<input type="text" class="form-control" name="start"> -->
-							<!-- 												<span class="input-group-addon no-border text-white">to</span> -->
-							<!-- 												<input type="text" class="form-control" name="end"> -->
-							<!-- 											</div> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 								</div> -->
-							<!-- 							</form> -->
-							<!-- 							<div class="col-md-12"> -->
 							<h2 class="header-title">
 								<i class="fa fa-chevron-circle-right mr-2"></i>창고 목록
 							</h2>
@@ -73,18 +55,11 @@
 								<!-- csrf 토큰 -->
 								<sec:csrfInput />
 								<div class="table-responsive">
-									<!-- 									<div class="col-md-2 mt-1 mb-4"> -->
-									<!-- 										<input class="btn btn-default" type="button" -->
-									<!-- 											id="clientChoiceDeleteBtn" value="거래처 삭제"> -->
-									<!-- 									</div> -->
 
 									<table id="clientList" class="display table"
 										style="width: 100%">
 										<thead>
 											<tr>
-												<!-- 												<td style="text-align: center"><input type="checkbox" -->
-												<!-- 													id="checkAll" name="checkAll"></td> -->
-												<!-- 												<th>#</th> -->
 												<th>창고명</th>
 												<th>사용섹션수</th>
 												<th>사용용적</th>

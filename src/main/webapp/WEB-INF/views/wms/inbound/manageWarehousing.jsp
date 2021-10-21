@@ -80,8 +80,8 @@
 								<table id="clientList" class="display table" style="width: 100%">
 									<thead>
 										<tr>
-											<th style="text-align: center"><input type="checkBox"
-												class="purchase_id" value="450"></th>
+<!-- 											<th style="text-align: center"><input type="checkBox" -->
+<!-- 												class="purchase_id" value="450"></th> -->
 											<th>구매처</th>
 											<th>입하일</th>
 											<th>물품 수</th>
@@ -91,9 +91,8 @@
 									<c:forEach var="inboundDto" items="${inboundDtoList}">
 										<tbody>
 											<tr>
-												<td style="text-align: center"><input type="checkBox"
-													class="purchase_id" value="450"></td>
-												<%-- 													<td>${inboundDto.id}</td> --%>
+<!-- 												<td style="text-align: center"><input type="checkBox" -->
+<!-- 													class="purchase_id" value="450"></td> -->
 												<td>${inboundDto.client_name}</td>
 												<td>${inboundDto.approved_date}</td>
 												<td>${inboundDto.count_item}</td>
@@ -127,16 +126,11 @@
 							<!-- csrf 토큰 -->
 							<sec:csrfInput />
 							<div class="table-responsive">
-								<!-- 										<div class="col-sm-2 mt-1 mb-4"> -->
-								<!-- 											<input class="btn btn-default" type="button" -->
-								<!-- 												id="clientChoiceDeleteBtn" value="거래처 삭제"> -->
-								<!-- 										</div> -->
-
 								<table id="clientList" class="display table" style="width: 100%">
 									<thead>
 										<tr>
-											<th style="text-align: center"><input type="checkBox"
-												class="purchase_id" value="450"></th>
+<!-- 											<th style="text-align: center"><input type="checkBox" -->
+<!-- 												class="purchase_id" value="450"></th> -->
 											<th>품목</th>
 											<th>수량</th>
 											<th>구매처</th>
@@ -147,9 +141,8 @@
 									<c:forEach var="warehousedInboundDto" items="${warehousedInboundDtoList}">
 										<tbody>
 											<tr>
-												<td style="text-align: center"><input type="checkBox"
-													class="purchase_id" value="450"></td>
-												<%-- 													<td>${inboundDto.id}</td> --%>
+<!-- 												<td style="text-align: center"><input type="checkBox" -->
+<!-- 													class="purchase_id" value="450"></td> -->
 												<td>${warehousedInboundDto.item_name}</td>
 												<td>${warehousedInboundDto.quantity}</td>
 												<td>${warehousedInboundDto.client_name}</td>
