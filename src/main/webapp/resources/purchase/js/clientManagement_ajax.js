@@ -245,8 +245,8 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
 // 거래처(구매처) 목록
 function clientList() {
 	currTab = $('#clientList').DataTable({
-		"order": [[ 1, "desc" ]],
-		dom: 'lfrtip<"clear">B',
+		"order": [[ 1, "desc" ]],  // 거래처명 오름차순 정렬
+		dom: 'lfrtip<"clear">B',  // 목록보기(l), 검색(f), 보여주는 열 처리(r), 테이블(t), 페이지요약(i), 페이징(p),  
         buttons: [ {
             extend: 'excelHtml5',
             autoFilter: true,
