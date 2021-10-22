@@ -44,4 +44,9 @@ public class ConfigurationDAOImpl implements ConfigurationDAO {
         return sqlSession.selectList(STATEMENT + ".selectAnnualSalary");
     }
 
+    @Override
+    public int insertHRCode(HRCodeDTO dto) {
+        return sqlSession.insert(STATEMENT + ".insertHRCode");
+    }
+
 }

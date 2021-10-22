@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KU ERP</title>
 <link
 	href="${RESOURCES_PATH}/assets/plugins/datatables/css/jquery.dataTables.min.css"
 	rel="stylesheet" type="text/css" />
@@ -207,6 +207,7 @@
 				</div>
 			</div>
 		</div>
+	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
 	</div>
 	<!-- End Wrapper-->

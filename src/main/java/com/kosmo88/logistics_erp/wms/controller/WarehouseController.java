@@ -111,7 +111,7 @@ public class WarehouseController {
 	@RequestMapping(value = "/addAction")
 	public String addAction(HttpServletRequest req, Model model) {
 		Map<String, String[]> paramMap = req.getParameterMap();
-		MyLog.logParamMap(paramMap);
+		MyLog.logReqParamMap(paramMap);
 		warehouseService.addAction(paramMap);
 
 		return "wms/warehouse/warehouseList";

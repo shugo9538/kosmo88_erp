@@ -62,7 +62,6 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	public void selectClient(HttpServletRequest req, Model model) {
 		// 거래처 갯수
 		int cnt = estimateDao.getClientCnt();
-		System.out.println("거래처 갯수 : " + cnt);
 		
 		// 거래처가 있을때
 		if (cnt > 0) {
@@ -80,7 +79,6 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 	public void selectEmployee(HttpServletRequest req, Model model) {
 		// 담당자 갯수
 		int cnt = estimateDao.getEmployeeCnt();
-		System.out.println("담당자 갯수 : " + cnt);
 		
 		// 담당자가 있을때
 		if (cnt > 0) {
@@ -99,7 +97,6 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 
 		// 상품갯수
 		int cnt = estimateDao.getItemCnt();
-		System.out.println("상품 갯수 : " + cnt);
 		
 		if(cnt > 0) {
 			List<SalesItemDTO> dtos = estimateDao.getItemList();
@@ -116,17 +113,12 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		
 		// 환면에서 값을 받아온다.
 		int request_id = Integer.parseInt(req.getParameter("request_id"));
-		System.out.println("request_id : " + request_id);
 		
 		// 견적서 상세페이지(거래처, 담당자)
 		SalesEstimateDetailViewDTO dto = estimateDao.getEstimateDetail(request_id);
 		
 		// 견적서 상세페이지(상품정보)
 		SalesEstimateDetailViewDTO idto = estimateDao.getEstimateDetailItem(request_id);
-		System.out.println(idto.getItem_name());
-		System.out.println(idto.getItem_category());
-		System.out.println(idto.getItem_quantity());
-		System.out.println(idto.getItem_sales_price());
 		
 		model.addAttribute("dto", dto);
 		model.addAttribute("idto", idto); 
@@ -160,15 +152,10 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		map.put("quantity", dto.getQuantity());
 		map.put("item_id", dto.getItem_id());
 		map.put("sales_price", dto.getSales_price());
-		System.out.println("상품 수량 : " + dto.getQuantity());
-		System.out.println("상품 코드 : " + dto.getItem_id());
-		System.out.println("판매 가격 : " + dto.getSales_price());
 		
 		insert = state.check(estimateDao.insertProductGroup(map));
-		System.out.println("product_group tbl 입력 : " + insert);
 		
 		insert = state.check(estimateDao.insertRPL());
-		System.out.println("req_product_list tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -191,7 +178,6 @@ public class SalesEstimateServiceImpl implements SalesEstimateService{
 		
 		// 거래처 삭제 처리
 		update = state.check(estimateDao.deleteEstimate(id));
-		System.out.println("견적서 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 		

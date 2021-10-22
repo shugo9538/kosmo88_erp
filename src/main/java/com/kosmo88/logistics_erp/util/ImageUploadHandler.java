@@ -33,7 +33,6 @@ public class ImageUploadHandler {
 
             String fileName = "";
             for (Part part : req.getParts()) {
-                System.out.println(part.getHeader("content-disposition"));
                 fileName = getFileName(part);
                 if (fileName != null && !"".equals(fileName)) {
                     part.write(uploadPath + File.separator + fileName);

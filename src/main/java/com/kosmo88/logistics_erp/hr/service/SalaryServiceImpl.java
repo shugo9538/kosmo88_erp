@@ -1,7 +1,5 @@
 package com.kosmo88.logistics_erp.hr.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,7 +57,6 @@ public class SalaryServiceImpl implements SalaryService {
     @Override
     public boolean insertSalaryAction(SalaryDTO dto) {
         queryCode = QueryCode.INSERT;
-        System.out.println(dto.getBasic_pay() +"");
         Date d = dto.getPayday();
         
         dto.setPayday(new java.sql.Date(d.getYear(), d.getMonth(), d.getDate()));

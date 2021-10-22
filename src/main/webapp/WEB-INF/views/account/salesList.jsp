@@ -1,151 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../common/settings.jsp"%>    
+<%@ include file="../common/settings.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <title>우여곡절 - 재무상태표</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>회계관리 - 매입/매출장</title>
 </head>
-
 <body class="sticky-header">
-
-    <!--Start left side Menu-->
+	<!--Start left side Menu-->
 	<%@ include file="../common/left_side.jsp"%>
-    <!--End left side menu-->
-
-    <!-- main content start-->
-    <div class="main-content" >
-        <!-- header section start-->
-		<%@ include file="../common/header.jsp"%>    
-        <!-- header section end-->
-
-        <!--body wrapper start-->
-        <div class="wrapper">
-  
-          <!--Start Page Title-->
-           <div class="page-title-box">
-                <h2 class="page-title">
-                <a href="${ROOT_PATH}/account/salesSlipList?categoryNum=130">
+	<!--End left side menu-->
+	<!-- main content start-->
+	<div class="main-content">
+		<!-- header section start-->
+		<%@ include file="../common/header.jsp"%>
+		<%@ include file="common/accountHeader.jsp" %>
+		 <c:set var="now" value="<%=new java.util.Date()%>" />
+ 		<c:set var="sysYear"><fmt:formatDate value="${now}" pattern="yyyy년MM월dd일" /></c:set>  
+		
+		<!-- header section end-->
+		<!--body wrapper start-->
+		<div class="wrapper">
+			<!--Start Page Title-->
+			<div class="page-title-box">
+				<h2 class="page-title">
+				  <a href="${ROOT_PATH}/account/salesSlipList?categoryNum=130">
                 	매입/매출장 목록</a>&nbsp;&gt;&nbsp;매출전표</h2>
-                <ol class="breadcrumb">
-                  <%--   <li>
-                        <a href="${ROOT_PATH}/account/purchaseList">매입목록</a>
-                    </li>
-                    <li>
-                        <a href="${ROOT_PATH}/account/salesList">매출목록</a>
-                    </li> --%>
-                   <!--  <li class="active">
-                        Responsive Table
-                    </li> -->
-                </ol>
-                <div class="clearfix"></div>
-             </div>
-              <!--End Page Title-->  
-           
-               <!-- Start responsive Table-->
-                <div class="col-md-12">
-                 <div class="white-box">
-	                 	<div class="title" style="text-align-last: center">
-		                    <h2 class="header-title">매출전표 목록</h2>
-		                    <h2 class="header-title">2021년</h2>
-	                    </div>
-	                    
-                     <div class="table-responsive">
-                         <table  id="salesList" class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                        	<th>전표일자</th>
-                                            <th>전표번호</th>
-                                            <th>거래처코드</th>
-                                            <th>거래처</th>
-                                            <th>사업자번호</th>
-                                            <th>품명</th>
-                                            <th>공급가액</th>
-                                            <th>세액</th>
-                                            <th>합계</th>
-                                            <th>유형</th>
-                                            <th>요약</th>
-                                            <th>일반전표ID</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <!-- 등록 매출/매입전표가 있는경우 -->                     
-                                    	<c:set var="sum_supply" value="0"/>
-                                    	<c:set var="sum_tax" value="0"/>
-                                    	<c:set var="sum_total" value="0"/>
-                                    	<c:forEach var="dto" items="${saleslip}">
-   											<tr>
-   												<%-- <td>${number}
-   													<c:set var="number" value="${number -1 }"/>
-   												</td> --%>
-                                        		<td>
-                                        		<fmt:formatDate pattern="yyyy-MM-dd" value="${dto.confirm_date}"/>
-                                        		</td>
-                                        		<td>${dto.id}</td>
-                                        		<%-- <td>${dto.account_title}</td> --%>
-                                        		<td>${dto.client_code}</td>
-                                        		<td>${dto.client_name}</td>
-                                        		<td>${dto.client_num}</td>
-                                        		<td>${dto.product_name}</td>
-                                        		<td>
-                                        		<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount}"/>
-                                        		</td>
-                                        		<td>
-                                        		<fmt:formatNumber pattern="###,###,###,###" value="${dto.tax_amount}"/>
-                                        		</td>
-                                        		<td>
-                                        		<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount + dto.tax_amount}"/>
-                                        		</td>
-                                        		<td>
-                                        			<c:choose>
+				<div class="clearfix"></div>
+			</div>
+			<!--End Page Title-->
+			<!-- Start responsive Table-->
+			<div class="col-md-12">
+				<!-- 메뉴버튼 -->
+	<%-- 			<div>
+					<ul class="nav nav-pills custom-nav">
+						<li class="active">
+							<a href="${ROOT_PATH}/account/purchaseList?categoryNum=131">매입목록</a>
+						</li>
+						<li class="active">
+							<a href="${ROOT_PATH}/account/salesList?categoryNum=132">매출목록</a>
+						</li>
+					</ul>
+				</div> --%>
+				<!-- 메뉴버튼 끝 -->
+				<div class="white-box">
+					<div class="title" style="text-align-last: center">
+						<h2 class="header-title" style="font-size:35px">매출전표 목록</h2><br>
+						<h2 class="header-title"><c:out value="${sysYear}"/></h2>
+					</div>
+					<!-- 테이블 시작  -->
+					<div class="table-responsive">
+						<c:set var="sum_supply" value="0" />
+						<c:set var="sum_tax" value="0" />
+						<c:set var="sum_total" value="0" />
+						<table id="example" class="table table-bordered" style="width: 100%">
+							<thead>
+								<tr>
+									<th>전표일자</th>
+									<th>전표번호</th>
+									<th>계정과목</th>
+									<th>거래처코드</th>
+									<th>거래처</th>
+									<th>사업자번호</th>
+									<th>품명</th>
+									<th>공급가액</th>
+									<th>세액</th>
+									<th>합계</th>
+									<th>유형</th>
+									<th>요약</th>
+									<th>일반전표ID</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="dto" items="${saleslip}">
+									<tr>
+										<td>
+											<!-- 전표일자(slip 테이블 승인일자 동일)  -->
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${dto.confirm_date}" />
+										</td>
+										<!-- 전표번호  -->
+										<td>${dto.id}</td>
+										<!-- 계정과목  -->
+										<td>${dto.account_title}</td>
+										<!-- 거래처코드 -->
+										<td>${dto.client_code}</td>
+										<!-- 거래처이름 -->
+										<td>${dto.client_name}</td>
+										<!-- 사업자번호 -->
+										<td>${dto.client_num}</td>
+										<!-- 상품이름 or 재화 or 서비스 제공 -->
+										<td>${dto.product_name}</td>
+										<!-- row 공급가액 -->
+										<td>
+											<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount}" />
+										</td>
+										<!-- row 세액 -->
+										<td>
+											<fmt:formatNumber pattern="###,###,###,###" value="${dto.tax_amount}" />
+										</td>
+										<!-- row 합계 -->
+										<td>
+											<fmt:formatNumber pattern="###,###,###,###" value="${dto.supply_amount + dto.tax_amount}" />
+										</td>
+										<td>
+											<c:choose>
 												<c:when test="${dto.type eq 'DEPOSIT'}">
 													<span>매출</span>
 												</c:when>
 												<c:when test="${dto.type eq 'WITHDRAW'}">
 													<span>매입</span>
-												</c:when>
-												</c:choose>
-                                        		</td>
-                                        		<td>${dto.abs}</td>
-                                        		<td>${dto.slip_id}</td>
-                                        		<c:set var="sum_supply" value="${sum_supply + dto.supply_amount}"/>
-                                    			<c:set var="sum_tax" value="${sum_tax + dto.tax_amount}"/>
-                                    			<c:set var="sum_total" value="${sum_total + dto.supply_amount + dto.tax_amount}"/>
-                                       	    </tr>		                                     		
-                                    	</c:forEach>
-                                    	 <tr style="background-color:ghostwhite; font-weight: bold;">
-                                            <td colspan="5" align="center">합계</td>
-                                            <td>${cnt}건 (매수 ${cnt}매)</td>
-                                            <td>
-                                            <fmt:formatNumber pattern="###,###,###,###" value="${sum_supply}"/>
-                                            </td>
-                                            <td>
-                                            <fmt:formatNumber pattern="###,###,###,###" value="${sum_tax}"/>
-                                            </td>
-                                            <td>
-                                            <fmt:formatNumber pattern="###,###,###,###" value="${sum_total}"/>
-                                            </td>
-                                            <td colspan="3"></td>
-                                        </tr>
-                                    </tbody>
-                                    
-                                    <tfoot>
-                                    </tfoot>
-                                   </table>  
-                            </div>
-                       </div>
-                   </div>
-               </div>
-               <!--End row-->
-
-        <!--Start  Footer -->
-		<%@ include file="../common/footer.jsp"%>	
-         <!--End footer -->
-       </div>
-      <!--End main content -->
+												</c:when>											
+											</c:choose>
+										</td>
+										<td>${dto.abs}</td>
+										<td>${dto.slip_id}</td>
+										<!-- 공급가액 합계  -->
+										<c:set var="sum_supply" value="${sum_supply + dto.supply_amount}" />
+										<!-- 세액 합계  -->
+										<c:set var="sum_tax" value="${sum_tax + dto.tax_amount}" />
+										<!-- 공금가액 + 세액 합계  -->
+										<c:set var="sum_total" value="${sum_total + dto.supply_amount + dto.tax_amount}" />
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr style="background-color: ghostwhite; font-weight: bold;">
+									<td colspan="5" align="center">합계</td>
+									<td>${getCnt}건(매수${getCnt}매)</td>
+									<td>
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_supply}" />
+									</td>
+									<td>
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_tax}" />
+									</td>
+									<td>
+										<fmt:formatNumber pattern="###,###,###,###" value="${sum.sum_total}" />
+									</td>
+									<td colspan="4"></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--End row-->
+		<!--Start  Footer -->
+		<%@ include file="../common/footer.jsp"%>
+		<%@ include file="common/accountFooter.jsp"%>
+		<!--End footer -->
+	</div>
+	<!--End main content -->
 </body>
 </html>

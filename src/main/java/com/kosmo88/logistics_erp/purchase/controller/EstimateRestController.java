@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,7 +19,6 @@ import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertEstimateDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseItemDTO;
 import com.kosmo88.logistics_erp.purchase.service.EstimateService;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @RestController
 @RequestMapping(value = "/purchase")
@@ -32,7 +30,7 @@ public class EstimateRestController {
     
     // 견적서 관리 - 견적서 목록(구매)
     @ResponseBody
-    @RequestMapping(value = "/estimateManagement/estimateList")
+    @RequestMapping(value = "/estimateManagement/estimateList", produces = "application/json; charset=UTF-8")
     public List<PurchaseEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
     }
@@ -41,14 +39,13 @@ public class EstimateRestController {
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
     public boolean estimateChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
+    	logger.info(data);
     	data = data.replace("\"", "");
     	data = data.replace("request_id=", "");
     	String[] arrStr = data.split("&");
     	int[] request_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		request_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(request_id[i]);
     	}
     	return estimateService.estimateChoiceDelete(request_id);
     }
@@ -70,10 +67,8 @@ public class EstimateRestController {
 	// 견적서 상품 등록 처리
     @RequestMapping(value = "/estimateRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<PurchaseInsertEstimateDTO> dtos) {
-        System.out.println(dtos);
     	for (PurchaseInsertEstimateDTO dto : dtos) {
     		estimateService.itemRegisterAction(dto);
-    		System.out.println(dto.getItem_id());
     	}
     	return true;
     }

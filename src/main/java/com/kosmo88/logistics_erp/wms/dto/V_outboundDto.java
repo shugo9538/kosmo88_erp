@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 @Alias("V_outBoundDto")
 public class V_outboundDto {
 
-	int id;
+	int outbound_id;
 	int request_id;
 	int warehouse_id;
 	String warehouse_name;
@@ -19,11 +19,13 @@ public class V_outboundDto {
 	int client_id;
 	String client_name;
 	int count_item;
-	public int getId() {
-		return id;
+	
+	
+	public int getOutbound_id() {
+		return outbound_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setOutbound_id(int outbound_id) {
+		this.outbound_id = outbound_id;
 	}
 	public int getRequest_id() {
 		return request_id;
@@ -93,9 +95,9 @@ public class V_outboundDto {
 	}
 	@Override
 	public String toString() {
-		return "V_outboundDto [id=" + id + ", request_id=" + request_id + ", warehouse_id=" + warehouse_id
-				+ ", warehouse_name=" + warehouse_name + ", begin_date=" + begin_date + ", end_date=" + end_date
-				+ ", employee_id=" + employee_id + ", approved_date=" + approved_date + ", warehoused_date="
+		return "V_outboundDto [outbound_id=" + outbound_id + ", request_id=" + request_id + ", warehouse_id="
+				+ warehouse_id + ", warehouse_name=" + warehouse_name + ", begin_date=" + begin_date + ", end_date="
+				+ end_date + ", employee_id=" + employee_id + ", approved_date=" + approved_date + ", warehoused_date="
 				+ warehoused_date + ", client_id=" + client_id + ", client_name=" + client_name + ", count_item="
 				+ count_item + "]";
 	}

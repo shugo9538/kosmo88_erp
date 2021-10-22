@@ -59,6 +59,9 @@ public interface AccountService {
 	public void financialStatementsSelect(Model model);
 	// 손익계산서 조회
 	public void incomeStatementSelect(Model model);
+	
+	// 가져오자
+	public void jsoup(HttpServletRequest request, Model model);
 
 
 }

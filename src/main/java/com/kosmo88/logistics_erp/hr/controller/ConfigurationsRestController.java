@@ -9,18 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.kosmo88.logistics_erp.hr.dto.AttendanceCodeDTO;
-import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
-import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.dto.DepartmentCodeDTO;
 import com.kosmo88.logistics_erp.hr.dto.HRCodeDTO;
-import com.kosmo88.logistics_erp.hr.dto.PayStepTableDTO;
 import com.kosmo88.logistics_erp.hr.dto.PositionCodeDTO;
 import com.kosmo88.logistics_erp.hr.service.ConfigurationService;
 
@@ -58,14 +54,14 @@ public class ConfigurationsRestController {
         return configService.selectAttendanceCode();
     }
 
-//    // 부서 코드 관리
-//    @RequestMapping(value = "/insertAttendanceAction")
-//    public boolean insertAttendanceAction(@RequestBody List<AttendanceDTO> dto) {
-//        for (AttendanceDTO d : dto) {
-//            configService.insertAttendance(d);
-//        }
-//        return true;
-//    }
+    // 인사코드 입력
+    @RequestMapping(value = "/insertHrCodeAction")
+    public boolean insertAttendanceAction(@RequestBody List<HRCodeDTO> dto) {
+        for (HRCodeDTO d : dto) {
+            configService.insertHRCode(d);
+        }
+        return true;
+    }
 //    
 //    // 출퇴근 기록부
 //    @RequestMapping(value = "/commuteList")
@@ -76,7 +72,6 @@ public class ConfigurationsRestController {
 //    // 출퇴근 입력
 //    @RequestMapping(value = "/insertCommuteAction")
 //    public boolean insertCommuteAction(@RequestBody List<CommuteDTO> dto) {
-//        System.out.println(dto.get(0).getEmployee_id());
 //        for (CommuteDTO d : dto) {
 //            configService.insertCommute(d);
 //        }

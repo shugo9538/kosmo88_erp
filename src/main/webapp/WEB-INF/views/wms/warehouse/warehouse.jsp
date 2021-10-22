@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KU ERP</title>
 
 <%@ include file="/WEB-INF/views/wms/common/css_multiSelect.jspf"%>
 <%@ include file="/WEB-INF/views/wms/common/css_core.jspf"%>
@@ -198,7 +198,7 @@
 			</div>
 		</div>
 
-
+	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
 
 	<!-- End Wrapper-->

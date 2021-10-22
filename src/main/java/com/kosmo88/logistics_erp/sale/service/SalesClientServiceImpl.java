@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import com.kosmo88.logistics_erp.sale.dao.SalesClientDAO;
 import com.kosmo88.logistics_erp.sale.dto.SalesClientDTO;
 import com.kosmo88.logistics_erp.sale.dto.SalesInsertClientDTO;
-import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
@@ -109,7 +108,6 @@ public class SalesClientServiceImpl implements SalesClientService{
 		
 		// 우편번호
 		int zip_code = Integer.parseInt(req.getParameter("zip_code"));
-		System.out.println("zip_code:" + zip_code);
 		
 		// 주소
 		String address = req.getParameter("address");
@@ -132,7 +130,6 @@ public class SalesClientServiceImpl implements SalesClientService{
 		
 		// 거래처 등록 처리
 		update = state.check(clientDao.updateClient(cdto));
-		System.out.println("거래처 수정 처리 : " + update);
 		
 		model.addAttribute("update", update);
 		
@@ -143,13 +140,11 @@ public class SalesClientServiceImpl implements SalesClientService{
 	public void clientDelete(HttpServletRequest req, Model model) {
 
 		int id = Integer.parseInt(req.getParameter("client_id"));  // 거래처코드
-		System.out.println("id" + id);
 		state = QueryCode.UPDATE;
 		boolean update = false;
 		
 		// 거래처 삭제 처리
 		update = state.check(clientDao.deleteClient(id));
-		System.out.println("거래처 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 		

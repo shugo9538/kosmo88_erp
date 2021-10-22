@@ -61,16 +61,14 @@ public interface MenuCode {
 	
 	
 	// 안드로이드 디바이스 토큰
-	//String TOKENID = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
 	String SEND = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
 	String COMPANY = "KU ERP Kosmo Ultimate ERP"; 
 	
-	
 	// 승인 안내
-	String HR_SEND = "급여 이체가 되었습니다. \n 즐거운 하루 보내세요~"; 
-	String SALES_SEND = "재형아 받아라~ \n 즐거운 하루 보내세요~";
-	String PURCHASE_SEND = "지훈아 받아라~ \n 즐거운 하루 보내세요~";
-	String ACCOUNT_SEND = "회계야 받아라~ \n 즐거운 하루 보내세요~";
+	String HR_SEND = "인사팀 급여전표 승인 및 이체가 완료되었습니다. \n 즐거운 하루 보내세요~"; 
+	String SALES_SEND = "영업팀 전표승인 완료 되었습니다.";
+	String PURCHASE_SEND = "영업팀 전표승인 완료 되었습니다.";
+	String ACCOUNT_SEND = " 요청하신 판매관리비 전표승인 처리 되었습니다.";
 	
 	//알람
 	String ALERT = "";

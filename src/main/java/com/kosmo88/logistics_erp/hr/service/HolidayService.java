@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kosmo88.logistics_erp.hr.dto.HolidayDTO;
 import com.kosmo88.logistics_erp.hr.dto.HolidayUsageStatusDTO;
 
 public interface HolidayService {

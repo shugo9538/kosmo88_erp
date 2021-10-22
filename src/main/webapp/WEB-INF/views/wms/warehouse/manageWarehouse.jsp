@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KU ERP</title>
 
 <%@ include file="/WEB-INF/views/wms/common/css_multiSelect.jspf"%>
 <%@ include file="/WEB-INF/views/wms/common/css_core.jspf"%>
@@ -21,7 +21,7 @@
 	<!-- main content start-->
 	<div class="main-content">
 		<!-- header section start-->
-		<%@ include file="/WEB-INF/views/common/header.jsp"%>
+		<%@ include file="/WEB-INF/views/wms/common/myHeader.jspf"%>
 		<!--body wrapper start-->
 		<div class="wrapper">
 
@@ -239,11 +239,11 @@
 			</div>
 		</div>
 
+	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 
 	</div>
 
 	<!-- End Wrapper-->
-	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	<%@ include file="/WEB-INF/views/wms/common/js_core.jspf"%>
 	<script src="${RESOURCES_PATH}/wms/js/wms.js"></script>
 	<script src="${RESOURCES_PATH}/wms/js/warehouse.js"></script>

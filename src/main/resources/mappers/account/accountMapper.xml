@@ -165,7 +165,6 @@ SELECT sl.update_date as confirm_date, sl.id, sl.account_title, re.cl_id as clie
        sl.sl_id as slip_id
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 WHERE sl.department_request = re.id AND re.item_id = it.id
-
 </select>
 <!-- 2-2. 매입전표조회 -->
 <select id="selectPurchaseList" resultType="SalesSlipDTO">
@@ -194,11 +193,40 @@ SELECT SUM(supply_amount) AS sum_supply,
        SUM(supply_amount + tax_amount) AS sum_total
 FROM sales_slip
 </select>
+<select id="selectSalesSum" resultType="SalesSlipDTO">
+SELECT SUM(supply_amount) AS sum_supply,
+       SUM(tax_amount) AS sum_tax,
+       SUM(supply_amount + tax_amount) AS sum_total
+FROM sales_slip
+where type = 'DEPOSIT'
+</select>
+<select id="selectPurchaseeSum" resultType="SalesSlipDTO">
+   SELECT SUM(supply_amount) AS sum_supply,
+       SUM(tax_amount) AS sum_tax,
+       SUM(supply_amount + tax_amount) AS sum_total
+FROM sales_slip
+where type = 'WITHDRAW'
+</select>
 <!--2-3. 매입,매출 전표 건수조회  -->
 <select id="getSalesSlipCnt" parameterType="String" resultType="int">
-SELECT COUNT(*) 
+  SELECT COUNT(*)
   FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
 			WHERE sl.department_request = re.id AND re.item_id = it.id
+
+</select>
+<select id="getSalesCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*)
+  FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
+			WHERE sl.department_request = re.id AND re.item_id = it.id
+			AND sa_type = 'DEPOSIT'
+            GROUP BY sa_type
+</select>
+<select id="getPurchaseeCnt" parameterType="String" resultType="int">
+  SELECT COUNT(*)
+  FROM ACCOUNT_SLIP_VIEW sl, ACCOUNT_REQUEST_VIEW re, item it
+			WHERE sl.department_request = re.id AND re.item_id = it.id
+			AND sa_type = 'WITHDRAW'
+            GROUP BY sa_type
 </select>
 <!-- 2-4. 매출 전표 발행 ( 영업팀 일반반전표 승인 후 자동발행) -->
 <insert id="insertSalesSlip" parameterType="java.util.Map">

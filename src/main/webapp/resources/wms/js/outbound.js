@@ -6,7 +6,7 @@ function dispatchOutbound(requestId) {
 	console.log(getContextPath() + "/wms/outbound/dispatch");
 	this.requestId = requestId;
 	console.log("출하 지시창 오픈. requestId : " + requestId);
-	dispatchwindow = window.open(getContextPath() + "/wms/outbound/dispatch?requestId="+requestId, "haha", "width=800,height=600");
+	dispatchwindow = window.open(getContextPath() + "/wms/outbound/dispatch?requestId=" + requestId, "haha", "width=800,height=600");
 }
 
 function dispatchAction() {
@@ -20,7 +20,7 @@ function dispatchAction() {
 
 
 	var req = new XMLHttpRequest();
-	var query = 'warehouseId=' + warehouseId + "&requestId=" + opener.requestId;	
+	var query = 'warehouseId=' + warehouseId + "&requestId=" + opener.requestId;
 	console.log("query : " + query);
 
 	if (!req) {
@@ -50,20 +50,78 @@ function alertContents(req) {
 }
 
 
-function getStock(warehouseId){
+function getStock(warehouseId) {
 	console.log('getStock() 실행. warehouseId : ' + warehouseId)
-	document.getElementById('stockList').innerHTML = 
-	'<h5>재고 여부</h5>';
+	document.getElementById('stockList').innerHTML =
+		'<h5>재고 여부</h5>';
 
 
 	csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	csrfToken = $("meta[name='_csrf']").attr("content");
 
 	//ajax 해볼까
-}	
+}
 
 
 
+function shipping(requestId, warehouseId) {
+	console.log('shipping() 실행')
+	var url = getContextPath() + "/wms/outbound/shipping"
+	var query = "?requestId=" + requestId + "&warehouseId=" + warehouseId;
+
+	this.requestId = requestId;
+	this.warehouseId = warehouseId;
+	console.log('log : ' + log);
+	console.log('query : ' + query);
+
+	shippingWindow = window.open(url + query, "shipping", "width=800,height=600")
+}
+
+
+
+// function shippingAction(itemId, quantity){
+function shippingAction(outboundId) {
+	var itemIdArr = Array.from(document.getElementsByName('itemId')).map(e => e.value);
+	var quantityArr = Array.from(document.getElementsByName('quantity')).map(e => e.value);
+	var requestId = opener.requestId;
+	console.log('requestId : ' + requestId);
+	// var paramMap = new Map();
+
+	// console.log(paramMap);
+
+	console.log('testArrJson : ' + JSON.stringify(itemIdArr));
+
+	csrfParameter = Array.from(document.getElementsByName('_csrf_parameter')).find(e => e.hasAttribute('content')).getAttribute('content');
+	csrfToken = Array.from(document.getElementsByName('_csrf')).find(e => e.hasAttribute('content')).getAttribute('content');
+	console.log("csrfParameter : " + csrfParameter + " csrfToken : " + csrfToken);
+
+	var url = getContextPath() + '/wms/outbound/shippingAction';
+
+	//map은 JSON.stringify로  반환되지 않는다
+	// var jsonParamMap = JSON.stringify(Array.from(paramMap.entries()));
+	var jsonShippingVar = '{'
+		+ '"itemId" : ' + JSON.stringify(itemIdArr)
+		+ ',"quantity" : ' + JSON.stringify(quantityArr)
+		+ ',"requestId" : ' + requestId
+		+ '}';
+
+	console.log(jsonShippingVar)
+
+	// console.log(jsonParamMap);
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('POST', url, true)
+	// xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken);
+	// xhr.send(query)
+	xhr.send(jsonShippingVar);
+
+	alert('출고처리 되었습니다');
+	window.close();
+	opener.location.reload();
+}
 
 
 

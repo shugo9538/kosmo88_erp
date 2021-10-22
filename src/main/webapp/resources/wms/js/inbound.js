@@ -67,9 +67,9 @@ let dispatchWindow;
 let warehouse_id;
 
 function dispatchInbound(requestId) {
-  csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-  csrfToken = $("meta[name='_csrf']").attr("content");
-  
+  // csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+  // csrfToken = $("meta[name='_csrf']").attr("content");
+
   console.log(getContextPath() + "/wms/inbound/dispatch");
   this.requestId = requestId;
   console.log("입하 지시창 오. requestId : " + requestId);
@@ -104,11 +104,11 @@ function dispatchAction(requestId) {
 
   xhr.onreadystatechange = alertContents(xhr);
   // xhr.open("GET", url + "?" + query, true);
-   xhr.open("POST", url, true);
-   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   // xhr.setRequestHeader(csrfParameter, csrfToken)
   xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken)
-   xhr.send(query);
+  xhr.send(query);
 
 
   alert("입하 지시 되었습니다.\n test: " + query);
@@ -410,41 +410,45 @@ function warehousing(requestId, warehouseId) {
 function disableSameOption(value) { }
 
 function warehousingAction() {
-  //   var select = document.getElementById("destination");
-// var itemIdArr = document.getElementsByName('itemId');   
-// var quantityArr = document.getElementsByName('itemId');   
-// var itemIdArr = document.getElementsByName('itemId');   
+  var itemIdArr = Array.from(document.getElementsByName('itemId')).map(e => e.value);
+  var sectionIdArr =Array.from(document.getElementsByName('section')).map(e=>(e.options[e.selectedIndex].value));
+  var quantityArr = Array.from(document.getElementsByName('quantity')).map(e => e.value);
+  var requestId = opener.requestId;
+  console.log('requestId : ' + requestId);
+  var paramMap = new Map();
 
-  //   var url = getContextPath() + "/wms/inbound/warehousingAction";
-  //   console.log("요청 url : " + url);
-  //   var req = new XMLHttpRequest();
+  csrfParameter = Array.from(document.getElementsByName('_csrf_parameter')).find(e => e.hasAttribute('content')).getAttribute('content');
+  csrfToken = Array.from(document.getElementsByName('_csrf')).find(e => e.hasAttribute('content')).getAttribute('content');
+  console.log("csrfParameter : " + csrfParameter + " csrfToken : " + csrfToken);
 
-  //   var itemIds = document.getElementsByClassName("itemId");
-  //   var itemNames = document.getElementsByClassName("item");
-  //   var sections = document.getElementsByName("section");
+  var url = getContextPath() + '/wms/inbound/warehousingAction';
 
-  //   var query =
-  //     "warehouseId=" +
-  //     warehouse_id +
-  //     "&inboundId=" +
-  //     opener.inboundId +
-  //     "&sectionId=" +
-  //     opener.sectionId;
-  //   console.log("query : " + query);
+  
 
-  //   if (!req) {
-  //     alert("XMLHTTP 인스턴스 생성 불가");
-  //     return false;
-  //   }
+  var jsonWarehousingVar = '{'
+    + '"itemId" : ' + JSON.stringify(itemIdArr)
+    + ',"sectionId" : ' + JSON.stringify(sectionIdArr)
+    + ',"quantity" : ' + JSON.stringify(quantityArr)
+    + ',"requestId" : ' + requestId
+    + '}';
+  console.log(jsonWarehousingVar)
 
-  //   req.onreadystatechange = alertContents(req);
-  //   req.open("POST", url + "?" + query, true);
-  //   req.send();
+  var xhr = new XMLHttpRequest();
+  if (!xhr) {
+    alert("XMLHTTP 인스턴스 생성 불가");
+    return false;
+  }
+	xhr.open('POST', url, true)
+	// xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Content-Type', 'application/json');
+	xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken);
+	// xhr.send(query)
+	xhr.send(jsonWarehousingVar);  
 
   alert("입고 처리되었습니다.\n");
-    // window.close();
+  window.close();
   opener.location.reload();
-  
+
   return true;
 }
 

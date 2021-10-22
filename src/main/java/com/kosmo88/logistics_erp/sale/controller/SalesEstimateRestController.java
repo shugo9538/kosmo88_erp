@@ -40,14 +40,12 @@ public class SalesEstimateRestController {
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
     public boolean estimateChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
     	data = data.replace("\"", "");
     	data = data.replace("request_id=", "");
     	String[] arrStr = data.split("&");
     	int[] request_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		request_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(request_id[i]);
     	}
     	return estimateService.estimateChoiceDelete(request_id);
     }
@@ -71,10 +69,8 @@ public class SalesEstimateRestController {
     @ResponseBody
     @RequestMapping(value = "/estimateRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<SalesInsertEstimateDTO> dtos) {
-    	System.out.println(dtos);
     	for(SalesInsertEstimateDTO dto : dtos) {
     		estimateService.itemRegisterAction(dto);
-    		System.out.println(dto.getItem_id());
     	}
     	return true;
     }
