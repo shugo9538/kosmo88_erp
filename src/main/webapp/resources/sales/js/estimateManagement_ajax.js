@@ -136,39 +136,9 @@ function itemRegister() {
 							$(this).val('');
 						}
 					});
-					$("#estimateRegisterTable").empty();
-					$("#estimateRegisterTable").append('<table id="estimateItemList" style="width:100%"></table>');
-					$("#estimateRegisterList").DataTable({
-						"dom" : '<"top">rt<"bottom"><"clear">',
-						columns : [
-							{
-								'sTitle' : '상품명',
-							},
-							{
-								'sTitle' : '상품종류',
-							},
-							{
-								'sTitle' : '구매단가',
-							},
-							{
-								'sTitle' : '판매단가',
-							},
-							{
-								'sTitle' : '수량',
-							},
-							{
-								'sTitle' : '공급가액',
-							},
-							{
-								'sTitle' : '삭제 버튼',
-							},
-						],
-						destroy : true,
-						retrieve : true
-						
-					});
+					$('#estimateRegisterList').find('#plus').attr('value', '+');
+					$('#estimateRegisterList').find('#minus').attr('value', '-');
 					currTab.ajax.reload();
-					$("#estimateRegisterList").append('<table id="estimateItemList" style="width:100%"></table>');
 				});
 			}
 		},

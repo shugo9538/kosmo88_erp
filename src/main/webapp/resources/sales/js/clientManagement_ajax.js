@@ -1,4 +1,3 @@
-
 var csrfData = {};
 var currTab;
 var csrfParameter;
@@ -100,8 +99,18 @@ $(document).ready(function() {
                 xhr.setRequestHeader(csrfParameter, csrfToken);
             },
             success : function(data) {
-                itemRegister();
-            },
+	        	swal({
+					title:"거래처 등록 성공",
+					type: "success",
+					text: "거래처가 등록되었습니다.",
+					timer: 2500
+				}, function() {
+					$('#clientRegisterForm').find('input').each(function() {
+	                	$(this).val('');
+					});
+	                currTab.ajax.reload();
+				});	
+	        },
             error : function() {
     			swal({
     				title:"거래처 등록 오류",
