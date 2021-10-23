@@ -16,6 +16,7 @@ public class V_warehouseDto {
 	private int stock_count;
 	private int capacity_sum;
 	private int count_sum;
+	
 	public int getId() {
 		return id;
 	}

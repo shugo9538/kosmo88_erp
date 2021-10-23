@@ -160,6 +160,90 @@ public class DtoFunction {
 		System.out.println("뭬야");
 		return dtoSet;
 	}
+	
+	
+	public static List<?> getDtoListFromParamMap(Map<String, String[]> paramMap, Class<? extends Object> clazz,
+			int index) {
+		logMethodStart();
+		MyLog.logReqParamMap(paramMap);
+
+		String param;
+		String paramValue;
+		String prop;
+		String propType;
+//		Set<String> settedPropSet = new HashSet<>();
+		Set<String> paramSet = paramMap.keySet();
+
+		Method[] methods = clazz.getDeclaredMethods();
+
+		List<Object> dtoList = new ArrayList<>();
+
+		// 일단 총 갯수가 2개 이상인 파라미터에 대해서만 작동하도록 돌려막기....
+		for (int i = 0; i < index; i++) {
+			try {
+				Object dto = clazz.newInstance();
+				Iterator<String> paramItr = paramSet.iterator();
+				while (paramItr.hasNext()) {
+					param = paramItr.next();
+					if (paramMap.get(param).length < index)
+						continue;
+					paramValue = paramMap.get(param)[i];
+//					param = adjustParamName(param);
+//					System.out.println("요청 파라미터 : " + param + "  값 : " + paramValue);
+
+					// dto에서 프로퍼티 가져오기
+					for (Method method : methods) {
+						prop = methodNameToProperty(method.getName());
+						if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
+							try {
+
+								// 이걸 여기서가 아니라 처음부터 받아와서 해야돼.
+								System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName()
+										+ "실행 - " + paramValue + " => " + prop);
+//								paramType = paramValue.getClass().getSimpleName();
+								propType = method.getParameters()[0].getType().getSimpleName();
+//								System.out.println("파라미터 타입 : " + paramType + " 프로퍼티 타입 : " + propType);
+
+//								if (paramType == propType)
+//									method.invoke(dto, paramValue);
+//								else {
+								System.out.println("invoke : " + paramValue.getClass().getSimpleName() + " "
+										+ paramValue + " => " + prop);
+								switch (propType) {
+								case "String":
+									method.invoke(dto, paramValue);
+									break;
+								case "int":
+									method.invoke(dto, Integer.parseInt(paramValue));
+									break;
+								case "Double":
+									method.invoke(dto, Double.parseDouble(paramValue));
+									break;
+								case "Boolean":
+									method.invoke(dto, Boolean.parseBoolean(paramValue));
+									break;
+								case "Date":
+									method.invoke(dto, java.sql.Date.valueOf(paramValue));
+									break;
+								}
+							} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+				System.out.println("dtoSet <= Dto : " + dto);
+				dtoList.add(dto);
+			} catch (InstantiationException | IllegalAccessException e1) {
+				e1.printStackTrace();
+			}
+		}
+		// 확인용
+		System.out.println("---- 쎗팅된 dtoSet");
+		dtoList.stream().forEach((d) -> System.out.println(d));
+		System.out.println("뭬야");
+		return dtoList;
+	}
 
 	// 보류 : get으로 대체
 	// 요청 파라미터로 Dto 초기화(insert 하기 전 dto에 데이터 담을 때 사용)
