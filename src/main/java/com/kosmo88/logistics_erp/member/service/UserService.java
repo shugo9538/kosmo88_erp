@@ -7,4 +7,7 @@ import org.springframework.ui.Model;
 public interface UserService {
     // 회원가입 처리
     public void signinAction(HttpServletRequest req, Model model);
+    
+    // ml chart
+    public void showChart(HttpServletRequest req, Model model) throws Exception;
 }
