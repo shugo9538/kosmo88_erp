@@ -135,7 +135,7 @@ function orderList() {
 	// 테이블 id
 	currTab = $('#orderList').DataTable({
 		"order": [[ 1, "desc" ]],
-		dom: 'frtip<"clear">B',
+		dom: 'lfrtip<"clear">B',
         buttons: [ {
             extend: 'excelHtml5',
             autoFilter: true,

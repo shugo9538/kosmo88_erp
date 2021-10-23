@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<footer class="footer-main"> Copyright &copy; 2021 주식회사 우여곡절
-	Co.,Ltd All Rights Reserved </footer>
+<footer class="footer-main"> Copyright &copy; 2021 KU Ultimate Co.,Ltd All Rights Reserved </footer>
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="Chatbot"
+  agent-id="93c009a0-03a9-4f66-ae86-e30713eaf6b1"
+  language-code="ko"
+></df-messenger>

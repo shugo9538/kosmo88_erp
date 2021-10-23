@@ -8,12 +8,12 @@ import org.apache.ibatis.type.Alias;
 @Alias("PurchaseOrderListViewDTO")
 public class PurchaseOrderListViewDTO {
 	
-	private int request_id;			// 발주번호
-	private Date begin_date;		// 발주일자
+	private int request_id;			// 주문번호
+	private Date begin_date;		// 주문일자
 	private Date end_date;			// 납기요청일자
-	private String client_name;		// 발주처
-	private String client_ceo_name; // 발주처 대표자
-	private String client_phone; 	// 발주처 연락처
+	private String client_name;		// 주문처
+	private String client_ceo_name; // 주문처 대표자
+	private String client_phone; 	// 주문처 연락처
 	private String employee_name;	// 구매 담당자
 	private String enabled;			// 활성화코드('Y', 'N')
 	private String slip_state;		// 승인상태(전표 회계){R, Y, N}

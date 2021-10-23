@@ -29,9 +29,9 @@ public class SalesOrderRestController {
 	@Autowired
 	SalesOrderService orderService;
 	
-	// 구매 관리 - 주문서 목록
+	// 주문서 목록
     @ResponseBody
-    @RequestMapping(value = "/orderManagement/orderList")
+    @RequestMapping(value = "/orderManagement/orderList", produces = "application/json; charset=UTF-8")
     public List<SalesOrderListViewDTO> orderList(HttpServletRequest req, HttpServletResponse res) {
     	return orderService.orderList(req, res);
     }
@@ -40,19 +40,17 @@ public class SalesOrderRestController {
     @ResponseBody
     @RequestMapping(value = "/orderManagement/orderChoiceDelete")
     public boolean orderChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
     	data = data.replace("\"", "");
     	data = data.replace("request_id=", "");
     	String[] arrStr = data.split("&");
     	int[] request_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		request_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(request_id[i]);
     	}
     	return orderService.orderChoiceDelete(request_id);
     }
     
-    // 등록한 주문서(구매) 목록
+    // 등록한 주문서 목록
     @ResponseBody
     @RequestMapping(value = "/orderRegister/registeredOrderList")
     public List<SalesOrderListViewDTO> registeredClientList(HttpServletRequest req, HttpServletResponse res) {

@@ -42,7 +42,10 @@ $(document).ready(function() {
 		} else if (!$('#employee_id').val()) {
 			swal("담당자를 선택해주세요!!", "담당자 미선택", "error");
 	    	return false;
-		}
+	    } else if ($('#estimateItemCall').val() != 1) {
+	    	swal("하나 이상의 상품을 입력하세요!!", "상품 미선택", "error");
+	    	return false;
+	    } 
 		
 		var dataObject = new Object();
 
@@ -86,7 +89,10 @@ $('#estimateItemCall').on('click', function() {
 	var client_id = $('#client_id').val();
 	console.log(client_id);
 	if (client_id != 'none' || 0) {
+		
+		$('#estimateRegisterForm').find('#estimateItemCall').val(1);
 		estimateItemList(client_id);
+		
 	} else {
 		swal("거래처를 선택해주세요!");
 		return false;
@@ -123,6 +129,17 @@ function estimateList() {
 	// 테이블 id
 	currTab = $('#estimateList').DataTable({
 		"order" : [ [ 1, "desc" ] ],
+		dom: 'lfrtip<"clear">B',
+        buttons: [ {
+            extend: 'excelHtml5',
+            autoFilter: true,
+            attr:{
+            	class: "btn btn-primary"
+            },
+            text:'<i class="fa fa-download">견적서목록 다운로드</i>',
+            sheetName: '구매팀 견적서 목록',
+            messageBottom : '커밋 3팀'
+		}],		
 		ajax : {
 			url : window.location.href + '/estimateList', // 현 위치
 			type : 'POST',
@@ -444,6 +461,7 @@ function itemRegister() {
 						destroy : true,
 						retrieve : true
 					});
+					$('#estimateRegisterForm').find('#estimateItemCall').val(1);
 					regiTab.ajax.reload();
 				});
 			}

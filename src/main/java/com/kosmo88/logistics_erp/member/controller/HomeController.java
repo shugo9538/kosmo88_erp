@@ -1,7 +1,5 @@
 package com.kosmo88.logistics_erp.member.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -11,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kosmo88.logistics_erp.member.dto.LoginUserVO;
-import com.kosmo88.logistics_erp.member.handler.AuthenticationHandler;
 import com.kosmo88.logistics_erp.member.service.UserService;
 
 @Controller

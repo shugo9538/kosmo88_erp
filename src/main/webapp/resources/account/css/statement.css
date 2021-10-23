@@ -12,6 +12,11 @@ background-color:aliceblue;
 background-color:mintcream;
 }
 
+/* 제목폰트 */
+.title_font{
+	font-size:25px;
+}
+
 /* 작업끝난것 */
 .red{
 color:red;	

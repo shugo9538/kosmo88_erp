@@ -29,25 +29,23 @@ public class SalesEstimateRestController {
 	 @Autowired
 	 SalesEstimateService estimateService;
 	 
-	// 견적서 관리 - 견적서 목록(구매)
+	// 견적서 관리
     @ResponseBody
-    @RequestMapping(value = "/estimateManagement/estimateList")
+    @RequestMapping(value = "/estimateManagement/estimateList", produces = "application/json; charset=UTF-8")
     public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
     }
     
- // 견적서 관리 - 견적서 삭제(선택삭제)
+    // 견적서 삭제(선택삭제)
     @ResponseBody
     @RequestMapping(value = "/estimateManagement/estimateChoiceDelete")
     public boolean estimateChoiceDelete(@RequestBody String data) {
-    	System.out.println(data);
     	data = data.replace("\"", "");
     	data = data.replace("request_id=", "");
     	String[] arrStr = data.split("&");
     	int[] request_id = new int[arrStr.length];
     	for(int i = 0; i < arrStr.length; i++) {
     		request_id[i] = Integer.parseInt(arrStr[i]);
-    		System.out.println(request_id[i]);
     	}
     	return estimateService.estimateChoiceDelete(request_id);
     }
@@ -71,10 +69,8 @@ public class SalesEstimateRestController {
     @ResponseBody
     @RequestMapping(value = "/estimateRegister/itemRegisterAction")
     public boolean itemRegisterAction(@RequestBody List<SalesInsertEstimateDTO> dtos) {
-    	System.out.println(dtos);
     	for(SalesInsertEstimateDTO dto : dtos) {
     		estimateService.itemRegisterAction(dto);
-    		System.out.println(dto.getItem_id());
     	}
     	return true;
     }

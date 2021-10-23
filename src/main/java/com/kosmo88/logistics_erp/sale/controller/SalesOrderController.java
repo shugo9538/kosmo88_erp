@@ -45,9 +45,7 @@ public class SalesOrderController {
 	@RequestMapping(value = "/orderDelete")
 	public String orderDelete(HttpServletRequest req, Model model) {
 		
-		System.out.println("삭제 전");
 		orderService.orderDelete(req, model);
-		System.out.println("삭제 후");
 		
 		return "sales/orderDelete";
 	}

@@ -2,6 +2,8 @@ package com.kosmo88.logistics_erp.util;
 
 import java.io.FileInputStream;
 
+import org.springframework.scheduling.annotation.Async;
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -108,9 +110,4 @@ public class FCMUtil {
              e.printStackTrace();
          }
      }
-
-
-
-
-
 }

@@ -4,7 +4,7 @@
 <!-- <html> -->
 <!-- <head> -->
 <!-- <meta charset="UTF-8"> -->
-<!-- <title>Insert title here</title> -->
+<!-- <title>KU ERP</title> -->
 <link rel="stylesheet" type="text/css" href="${RESOURCES_PATH}/assets/plugins/jquery-multi-select/css/multi-select.css">
 
 <!-- 불확실 -->

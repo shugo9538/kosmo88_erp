@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import com.kosmo88.logistics_erp.util.QueryCode;
 @Service
 public class ClientServiceImpl implements ClientService {
 
+	private static final Logger logger = LoggerFactory.getLogger(EstimateServiceImpl.class);
+	
     @Autowired
     ClientDAO clientDao;
     
@@ -83,7 +87,7 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 상세페이지 - 상품
 		List<PurchaseItemDTO> idtos = clientDao.getItemDetail(id);
-		System.out.println(idtos.get(0).getName());
+		logger.info(idtos.get(0).getName());
 		
 		model.addAttribute("cdto", cdto);
 		model.addAttribute("idtos", idtos);
@@ -172,7 +176,7 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 거래처 등록 처리
 		update = state.check(clientDao.updateClient(cdto));
-		System.out.println("거래처 수정 처리 : " + update);
+		logger.info("거래처 수정 처리 : " + update);
 		
 		PurchaseItemDTO idto = new PurchaseItemDTO();
 		
@@ -203,7 +207,7 @@ public class ClientServiceImpl implements ClientService {
 				
 				// 상품 등록 처리
 				update = state.check(clientDao.updateItem(idto));
-				System.out.println("상품 수정 처리 : " + update);
+				logger.info("상품 수정 처리 : " + update);
 			}
 		}
 		
@@ -222,7 +226,7 @@ public class ClientServiceImpl implements ClientService {
 		
 		// 거래처 삭제 처리
 		update = state.check(clientDao.deleteClient(id));
-		System.out.println("거래처 삭제 처리 : " + update);
+		logger.info("거래처 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 	}

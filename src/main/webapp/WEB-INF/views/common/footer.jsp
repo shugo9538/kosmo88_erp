@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--Start  Footer -->
-<footer class="footer-main"> Copyright &copy; 2021 주식회사 우여곡절 Co.,Ltd All Rights Reserved </footer>
+<footer class="footer-main"> Copyright &copy; 2021 KU Ultimate Co.,Ltd All Rights Reserved </footer>
 <!--End footer -->
 <!--End main content -->
 <!--Begin core plugin -->

@@ -1,35 +1,25 @@
 package com.kosmo88.logistics_erp.account.controller;
 
-import java.io.FileInputStream;
-import java.util.Arrays;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.client.RestTemplate;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.kosmo88.logistics_erp.account.service.AccountService;
-import com.kosmo88.logistics_erp.account.utilTest.FcmUtil;
-import com.kosmo88.logistics_erp.account.utilTest.FirebasePushMessage;
-import com.kosmo88.logistics_erp.util.FCMUtil;
+import com.kosmo88.logistics_erp.account.utilTest.FcmUtilTest;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @Controller
 @RequestMapping(value = "/account")
@@ -37,35 +27,47 @@ public class AccountController {
 	
 	@Autowired
 	AccountService service;
+	FcmUtilTest fcm;
 	
     private static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
-    // 기초정보 관리
-    @RequestMapping(value = "/configurations")
-    public String configurations(Model model) {
-
-        return "account/configurations";
-    }
-
-    // 전표입력/장부관리
-    @RequestMapping(value = "/statementBook")
-    public String hrManagement(Model model) {
-
-        return "account/statementBook";
-    }
-
-    // 금융/자금관리
-    @RequestMapping(value = "/financialFunds")
-    public String attendanceManagement(Model model) {
+    //jsoup
+    @RequestMapping(value = "/jsoup")
+    public String jsoup(HttpServletRequest request, Model model) {
+    	logger.info("/jsoup");
     	
-        return "account/financialFunds";
+    	service.jsoup(request, model);
+    	
+    	return "account/temp/jsoup";
     }
-    //jQuery
-    @RequestMapping(value = "/yooooooooo")
-    public String yooooooooo(HttpServletRequest request, Model model) {
-    	logger.info("/yooooooooo");
-    	return "account/temp/yooooooooo";
+    //jsoup2
+    @RequestMapping(value = "/jsoup2")
+    public String jsoup2(HttpServletRequest request, Model model) {
+    	logger.info("/jsoup2");
+    	//1.Url 접근
+    	final String naverNewsUrl = "https://news.naver.com/main/clusterArticles.naver?id=c_202109290810_00000125&mode=LSD&mid=shm&sid1=101&oid=366&aid=0000767182";
+		Connection conn = Jsoup.connect(naverNewsUrl);
+		
+			try {
+				Document document = conn.get();
+				Elements element = document.getElementsByClass("nclicks(cls_eco.clsart1)");
+				for (Element el : element) {
+					logger.info("el href: " + el.attr("abs:href"));
+				}
+				
+				Elements ele = document.getElementsByClass("photo");
+				for (Element el : ele) {
+					logger.info("el src: " + el.children().attr("abs:href"));
+					logger.info("el src: " + el.children().html());
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			 
+    	return "account/temp/jsoup2";
     }
+
     //------------------------ 기초정보관리 ------------------------
     // 기초정보관리 - 거래처 목록
     @RequestMapping(value = "/clientList")
@@ -258,22 +260,22 @@ public class AccountController {
     	
         return "account/financialStatement";
     }
-    // 재무제표(계정과목 상세페이지)
-    @RequestMapping(value = "/salesCost")
-    public String salesCost(Model model) {
-    	logger.info("/salesCost");
+    // 재무제표(계정과목 상세페이지 - 매입매출전표)
+    @RequestMapping(value = "/sales")
+    public String sales(Model model) {
+    	logger.info("/sales");
     	
     	service.salesSlipList(model);
     	
-    	return "account/statement/salesCost";
+    	return "account/statement/salesList";
     }
     // 재무제표(계정과목 상세페이지)
-    @RequestMapping(value = "/sales")
-    public String sales(Model model) {
+    @RequestMapping(value = "/salesCost")
+    public String salesCost(Model model) {
     	
     	service.salesList(model);
     	
-    	return "account/statement/salesList";
+    	return "account/statement/salesCost";
     }
 //-------------------------- 손익 계산서 -------------------------    
     // 손익계산서
@@ -294,7 +296,7 @@ public class AccountController {
     	String title = "KU ERP Kosmo Ultimate ERP"; 
     	String content = "발주서 승인 되었습니다.";
     	
-    	FcmUtil fcm = new FcmUtil();
+    	FcmUtilTest fcm = new FcmUtilTest();
     	fcm.send_FCM(tokenId, title, content);
     	
     	model.addAttribute("successCnt", 1);
@@ -302,60 +304,5 @@ public class AccountController {
     	return "account/slipSendAction";
     }
     
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/fcmTest", method=RequestMethod.GET, produces="text/plain;charset=UTF-8")
-    public String fcmTest(HttpServletRequest request, HttpServletRequest reponse, Model model) throws Exception {
-    	try {
-    		
-    	String path = "C:\\dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\account\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json";           
-        String MESSAGING_SCOPE = "https://www.googleapis.com/auth/firebase.messaging";
-        String[] SCOPES = { MESSAGING_SCOPE };
-        
-        GoogleCredential googleCredential = GoogleCredential
-                .fromStream(new FileInputStream(path))
-                .createScoped(Arrays.asList(SCOPES));
-		googleCredential.refreshToken();
-		
-		
-		HttpHeaders headers = new HttpHeaders();
-        headers.add("content-type" , MediaType.APPLICATION_JSON_VALUE);
-        headers.add("Authorization", "Bearer " + googleCredential.getAccessToken());
-        
-        JSONObject notification = new JSONObject();
-        notification.put("title", "아우우우");
-        notification.put("body", "흑흑흑");
-        
-        JSONObject message = new JSONObject();
-        message.put("token", "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ");
-        message.put("notification", notification);
-        
-        JSONObject jsonParams = new JSONObject();
-        jsonParams.put("message", message);
-        
-        HttpEntity<JSONObject> httpEntity = new HttpEntity<JSONObject>(jsonParams, headers);
-        RestTemplate rt = new RestTemplate();  
-        
-        ResponseEntity<String> res = rt.exchange("https://fcm.googleapis.com/v1/projects/kosmo88erp-38a3c/messages:send"
-                , HttpMethod.POST
-                , httpEntity
-                , String.class);
-        
-	        if (res.getStatusCode() != HttpStatus.OK) {
-	        	logger.debug("FCM-Exception");
-	        	logger.debug(res.getStatusCode().toString());
-	        	logger.debug(res.getHeaders().toString());
-	        	logger.debug(res.getBody().toString());
-	            
-	        } else {
-	        	logger.debug(res.getStatusCode().toString());
-	        	logger.debug(res.getHeaders().toString());
-	        	logger.debug(res.getBody().toLowerCase());
-	            
-	        }
-	    }catch (Exception e) {
-	        e.printStackTrace();
-	    }
-		return null;
-	}
 }
 

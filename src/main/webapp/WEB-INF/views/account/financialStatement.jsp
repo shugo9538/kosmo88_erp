@@ -61,8 +61,8 @@
                          <table id="finacialStatment" class="table table table-hover m-0">
                           <thead>
                             <tr>
-                              <th>과목</th>
-                              <th colspan="2">제 01(당)기</th>
+                              <th class="title_font">과목</th>
+                              <th colspan="2" class="title">제 01(당)기</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -89,9 +89,7 @@
                             <tr>
                               <!-- <td>      현금 및 현금성자산(보통예금)</td> -->
                               <td>  
-                              <input type="hidden" id="salesCost" value="보통예금">
-                              <a href="#" onclick="salesCost();">    
-                               	현금 및 현금성자산(보통예금)</a>
+                               	현금 및 현금성자산(보통예금)
                               </td>
                               <td class="red">
                               	<fmt:formatNumber value="${cash_asets}" pattern="###,###,###,###"/>
@@ -184,10 +182,10 @@
                             </tr>
                             <tr>
                               <td>      자     본       금</td>
-                              <td></td>
                               <td class="red">
                              	 <fmt:formatNumber value="${capital}" pattern="###,###,###,###" />
                               </td>
+                              <td></td>
                             </tr>
  							<tr  class="info">
                               <td>(당기순이익)</td>

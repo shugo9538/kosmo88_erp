@@ -38,12 +38,12 @@
 	</select>
 
 	<!-- 근태 항목 등록 -->
-<!-- 	<insert -->
-<!-- 		id="insertAttendanceCode" -->
-<!-- 		parameterType="AttendanceCodeDTO"> -->
-<!-- 		INSERT INTO attendance_cd (id, name, type, enabled) -->
-<!-- 		VALUES(#{id}, #{name}, #{type}, #{enabled}) -->
-<!-- 	</insert> -->
+	<insert
+		id="insertHRCode"
+		parameterType="HRCodeDTO">
+		INSERT INTO attendance_cd (id, name, hr_group_id)
+		VALUES(#{id}, #{name}, #{hr_group_id})
+	</insert>
 	<!-- 사원별 휴가 일수 조회 -->
 	<!-- 급여관리 -->
 	<!-- 호봉 테이블 -->
