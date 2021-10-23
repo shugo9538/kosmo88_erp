@@ -144,6 +144,7 @@
 				</div>
 			</div>
 		</div>
+		<button type="button" onclick="location.href='/logistics_erp/test/fcmTest'" >fcmTest</button>
 	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
 	</div>

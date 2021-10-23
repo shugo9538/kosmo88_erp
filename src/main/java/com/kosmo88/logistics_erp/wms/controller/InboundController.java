@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosmo88.logistics_erp.util.FCMUtil;
 import com.kosmo88.logistics_erp.wms.dao.InboundDao;
 import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.V_inboundDto;
@@ -128,6 +129,9 @@ class InboundRestController {
 		int requestId = Integer.parseInt(req.getParameter("requestId"));
 		System.out.println("warehouseId : " + warehouseId + " inboundId : " + requestId);
 		inboundService.dispatchAction(warehouseId, requestId);
+		String fcmMessage = requestId + "번 요청의 입하를 지시하였습니다";
+		FCMUtil.sendFcm(fcmMessage, req.getServletContext().getRealPath("/WEB-INF/classes/fcm/fcmToken_ych.json"));
+
 	}
 	
 	
@@ -151,10 +155,19 @@ class InboundRestController {
 	
 	
 	@RequestMapping("/warehousingAction")
-	public void warehousingAction(@RequestBody Map<String, Object> jsonWarehousingVar) {
+	public void warehousingAction(HttpServletRequest req, @RequestBody Map<String, Object> jsonWarehousingVar) {
 		jsonWarehousingVar.entrySet().stream().forEach(e->System.out.println(e.getKey() +" "+e.getValue()));
 
 		inboundService.warehousingAction(jsonWarehousingVar);
+		int requestId = 0;
+		try {
+		requestId = (int) jsonWarehousingVar.get("requestId");
+		} catch (Exception e ) {
+			e.getStackTrace();
+		}
+		String fcmMessage = requestId + "번 요청의 출고가 완료되었습니다";
+		FCMUtil.sendFcm(fcmMessage, req.getServletContext().getRealPath("/WEB-INF/classes/fcm/fcmToken_ych.json"));
+
 	}
 
 

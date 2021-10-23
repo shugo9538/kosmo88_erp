@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosmo88.logistics_erp.util.FCMUtil;
 import com.kosmo88.logistics_erp.wms.dao.OutboundDao;
 import com.kosmo88.logistics_erp.wms.dao.SectionDao;
 import com.kosmo88.logistics_erp.wms.dto.V_outboundDto;
@@ -42,7 +43,6 @@ public class OutboundController {
 	SectionDao sectionDao;
 	@Autowired
 	StockService stockService;
-	
 
 	// 관리자
 	@RequestMapping("/manageOutbound")
@@ -57,8 +57,7 @@ public class OutboundController {
 		// 출하 내역
 		return "wms/outbound/manageOutbound";
 	}
-	
-	
+
 	@RequestMapping("/dispatch")
 	public String dispatchOutbound(HttpServletRequest req, Model model) {
 //		List<V_warehouseDto> list = warehouseService.list();
@@ -74,20 +73,18 @@ public class OutboundController {
 		return "wms/outbound/dispatchOutbound";
 	}
 
-	
 	@RequestMapping(value = { "/manageShipping", "/" })
 	public String ShippingList(HttpServletRequest req, Model model) {
 		int warehouseId = Integer.parseInt(req.getParameter("id"));
 		List<V_outboundDto> outboundDtoList = outboundDao.selectDispatchedOutboundList(warehouseId);
 		model.addAttribute("outboundDtoList", outboundDtoList);
 
-		//완료목록
+		// 완료목록
 		List<V_outbound_itemDto> shippedOutboundDtoList = outboundDao.selectShippedOutboundList(warehouseId);
 		model.addAttribute("shippedOutboundDtoList", shippedOutboundDtoList);
 		model.addAttribute("warehouseId", warehouseId);
 		return "wms/outbound/manageShipping";
 	}
-
 
 	@RequestMapping("/shipping")
 	public String shipping(HttpServletRequest req, Model model) {
@@ -124,17 +121,34 @@ class ShippingRestController {
 	@RequestMapping("/dispatchAction")
 	public void dispatchAction(HttpServletRequest req) {
 		int warehouseId = Integer.parseInt(req.getParameter("warehouseId"));
-		int requestId = Integer.parseInt(req.getParameter("requestId"));
+		int requestId = 0;
+		try {
+			requestId = Integer.parseInt(req.getParameter("requestId"));
+			} catch (Exception e ) {
+				e.getStackTrace();
+			}
+//		int requestId = Integer.parseInt(req.getParameter("requestId"));
 		System.out.println("warehouseId : " + warehouseId + " outboundId : " + requestId);
 		outboundService.dispatchAction(warehouseId, requestId);
+		String fcmMessage = requestId + "번 요청의 출하를 지시했습니다";
+		FCMUtil.sendFcm(fcmMessage, req.getServletContext().getRealPath("/WEB-INF/classes/fcm/fcmToken_ych.json"));
 	}
 
 	// 해야할것 1. 재고 가져오기 2. 재고 날짜 확인 3. 날짜별로 갯수 확인하면서 갯수 맞추기
 	@RequestMapping("/shippingAction")
-	public void shippingAction(@RequestBody Map<String, Object> jsonShippingVar) {
+	public void shippingAction(HttpServletRequest req, @RequestBody Map<String, Object> jsonShippingVar) {
 		jsonShippingVar.entrySet().stream().forEach(e->System.out.println(e.getKey() +" "+e.getValue()));
 
 		outboundService.shippingAction(jsonShippingVar);
+
+		int requestId = 0;
+		try {
+		requestId = (int) jsonShippingVar.get("requestId");
+		} catch (Exception e ) {
+			e.getStackTrace();
+		}
+		String fcmMessage = requestId + "번 요청의 출고가 완료되었습니다";
+		FCMUtil.sendFcm(fcmMessage, req.getServletContext().getRealPath("/WEB-INF/classes/fcm/fcmToken_ych.json"));
 	}
 
 }
