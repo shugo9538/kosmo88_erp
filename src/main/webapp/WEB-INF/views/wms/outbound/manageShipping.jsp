@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>KU ERP</title>
 
 
 <link rel="stylesheet"
@@ -167,6 +167,7 @@
 
 			</div>
 		</div>
+	<%@ include file="/WEB-INF/views/wms/common/footer.jspf"%>
 	</div>
 	<!-- End Wrapper-->
 

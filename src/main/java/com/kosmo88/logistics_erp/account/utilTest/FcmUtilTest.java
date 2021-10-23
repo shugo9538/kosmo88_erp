@@ -2,11 +2,10 @@ package com.kosmo88.logistics_erp.account.utilTest;
 
 import java.io.FileInputStream;
 
-import javax.servlet.RequestDispatcher;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -17,8 +16,10 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.Message;
 
 @Component
-public class FcmUtil {
-
+public class FcmUtilTest {
+    private static final Logger logger = LoggerFactory.getLogger(FcmUtilTest.class);
+	// 테스트 토큰
+	
 	 @Async   // 비동기 어노테이션
 	 public int send_FCM(String tokenId, String title, String content) {
 		 //  메세지 성공여부
@@ -59,7 +60,7 @@ public class FcmUtil {
 	            //메세지를 FirebaseMessaging 에 보내기
 	            String response = FirebaseMessaging.getInstance().send(msg);
 	            //결과 출력
-	            System.out.println("Successfully sent message: " + response);
+	            logger.info("Successfully sent message: " + response);
 	            
 	            if (response != null) {
 	            	successCnt = 1;

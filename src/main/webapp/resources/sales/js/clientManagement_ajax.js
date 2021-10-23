@@ -1,4 +1,3 @@
-
 var csrfData = {};
 var currTab;
 var csrfParameter;
@@ -27,7 +26,7 @@ $(document).ready(function() {
         });
     }
     
- // 거래처, 거래처 상품 등록 처리
+ // 거래처 등록 처리
 	// '#clientRegisterAction', 버튼 id
 	$('#white-box').on('click', '#clientRegisterAction', function() {
 	    var loc = $('#clientRegisterForm').attr('action');
@@ -74,16 +73,7 @@ $(document).ready(function() {
 	    } else if(!$('#detail_address').val()) {
 	    	swal("상세주소를 입력하세요!!", "상세주소 입력 누락", "error");
 	    	return false;
-	    } else if(!$('.item input[name=item_name]').val()) {
-	    	swal("상품명을 입력하세요!!", "상품명 입력 누락", "error");
-	    	return false;
-	    } else if(!$('.item input[name=category]').val()) {
-	    	swal("상품 종류를 입력하세요!!", "상품 종류 입력 누락", "error");
-	    	return false;
-	    } else if(!$('.item input[name=price]').val()) {
-	    	swal("상품가격을 입력하세요!!", "상품가격 입력 누락", "error");
-	    	return false;
-	    }
+	    } 
 	    
 	    /*
 	    1. 거래처 등록 {id:'id', type:'type', name:'name' ... }
@@ -109,8 +99,18 @@ $(document).ready(function() {
                 xhr.setRequestHeader(csrfParameter, csrfToken);
             },
             success : function(data) {
-                itemRegister();
-            },
+	        	swal({
+					title:"거래처 등록 성공",
+					type: "success",
+					text: "거래처가 등록되었습니다.",
+					timer: 2500
+				}, function() {
+					$('#clientRegisterForm').find('input').each(function() {
+	                	$(this).val('');
+					});
+	                currTab.ajax.reload();
+				});	
+	        },
             error : function() {
     			swal({
     				title:"거래처 등록 오류",
@@ -147,11 +147,11 @@ $.fn.dataTable.render.moment = function(from, to, locale) {
     };
 };
 
-// 거래처(구매처) 목록
+// 거래처 목록
 function clientList() {
 	currTab = $('#clientList').DataTable({
 		"order": [[ 0, "desc" ]],
-		dom: 'frtip<"clear">B',
+		dom: 'lfrtip<"clear">B',
         buttons: [ {
             extend: 'excelHtml5',
             autoFilter: true,
@@ -286,7 +286,7 @@ function clientChoiceDelete(csrfParameter, csrfToken) {
 }
 
 
-//등록한 거래처(구매처) 목록
+//등록한 거래처 목록
 function registeredClientList() {
     currTab = $('#registeredClientList').DataTable({
     	"order": [[ 0, "desc" ]],

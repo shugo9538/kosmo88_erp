@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Insert title here</title>
+<title>KU ERP</title>
 <%@ include file="/WEB-INF/views/wms/common/css_core.jspf"%>
 <%@ include file="/WEB-INF/views/wms/common/settings.jspf"%>
 </head>

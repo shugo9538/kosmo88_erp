@@ -14,16 +14,16 @@ import com.kosmo88.logistics_erp.sale.dto.SalesItemDTO;
 
 public interface SalesEstimateDAO {
 
-	// 견적서 관리 - 견적서 목록(구매)
+	// 견적서 관리 - 견적서 목록
 	public List<SalesEstimateListViewDTO> getEstimateList();
 	
-	// 견적서 관리 - 견적서 삭제(선택삭제)
+	// 견적서 삭제(선택삭제)
 	public int deleteEstimate(int request_id);
 	
-	// 견적서 등록 화면 - 거래처 갯수
+	// 거래처 갯수
 	public int getClientCnt();
 	
-	// 견적서 등록 화면 - 거래처 리스트
+	// 거래처 목록
 	public List<SalesClientDTO> getClientList();
 	
 	// 상품 갯수

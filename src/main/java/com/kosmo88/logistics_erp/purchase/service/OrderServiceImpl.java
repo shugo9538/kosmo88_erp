@@ -1,5 +1,6 @@
 package com.kosmo88.logistics_erp.purchase.service;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,11 +9,20 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.messaging.AndroidConfig;
+import com.google.firebase.messaging.AndroidNotification;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.Message;
 import com.kosmo88.logistics_erp.purchase.dao.OrderDAO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseInsertOrderDTO;
 import com.kosmo88.logistics_erp.purchase.dto.PurchaseOrderDetailViewDTO;
@@ -23,6 +33,8 @@ import com.kosmo88.logistics_erp.util.QueryCode;
 
 @Service
 public class OrderServiceImpl implements OrderService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     OrderDAO orderDao;
@@ -59,10 +71,8 @@ public class OrderServiceImpl implements OrderService {
 		
 		for (int id: request_id) {
 			if(!state.check(orderDao.deleteOrder(id))) {
-				System.out.println(state.check(orderDao.deleteOrder(id)));
 				return false;
 			}
-			System.out.println(state.check(orderDao.deleteOrder(id)));
 		}
 		return true;
 	}
@@ -79,7 +89,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 주문서 삭제 처리
 		update = state.check(orderDao.deleteOrder(id));
-		System.out.println("주문서 삭제 처리 : " + update);
+		logger.info("주문서 삭제 처리 : " + update);
 		
 		model.addAttribute("update", update);
 	}
@@ -90,7 +100,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		// 주문서 등록 화면 - 견적서 갯수
 		int cnt = orderDao.getEstimateCnt();
-		System.out.println("견적서 갯수 : " + cnt);
+		logger.info("견적서 갯수 : " + cnt);
 		
 		// 주문서 등록 화면 - 견적서가 있을때
 		if (cnt > 0) {
@@ -127,18 +137,18 @@ public class OrderServiceImpl implements OrderService {
 		map.put("end_date", dto.getEnd_date());
 		map.put("type", "WITHDRAW");
 		map.put("department_id", dto.getDepartment_id());
-		System.out.println("담당자 id : " + dto.getEmployee_id());
-		System.out.println("거래처 id : " + dto.getClient_id());
-		System.out.println("납기요청일자: " + dto.getEnd_date());
-		System.out.println("담당자 부서 : " + dto.getDepartment_id());
+		logger.info("담당자 id : " + dto.getEmployee_id());
+		logger.info("거래처 id : " + dto.getClient_id());
+		logger.info("납기요청일자: " + dto.getEnd_date());
+		logger.info("담당자 부서 : " + dto.getDepartment_id());
 		
 		// request tbl 입력
 		insert = state.check(orderDao.insertRequest(map));
-		System.out.println("request tbl 입력 : " + insert);
+		logger.info("request tbl 입력 : " + insert);
 		
 		// slip tbl 입력
 		insert = state.check(orderDao.insertSlip(map));
-		System.out.println("slip tbl 입력 : " + insert);
+		logger.info("slip tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -155,16 +165,16 @@ public class OrderServiceImpl implements OrderService {
 		
 		map.put("quantity", dto.getItem_quantity());
 		map.put("item_id", dto.getItem_id());
-		System.out.println("상품 수량 : " + dto.getItem_quantity());
-		System.out.println("상품 코드 : " + dto.getItem_id());
+		logger.info("상품 수량 : " + dto.getItem_quantity());
+		logger.info("상품 코드 : " + dto.getItem_id());
 		
 		// product_group tbl 입력
 		insert = state.check(orderDao.insertProductGroup(map));
-		System.out.println("product_group tbl 입력 : " + insert);
+		logger.info("product_group tbl 입력 : " + insert);
 		
 		// req_product_list tbl 입력
 		insert = state.check(orderDao.insertRPL());
-		System.out.println("req_product_list tbl 입력 : " + insert);
+		logger.info("req_product_list tbl 입력 : " + insert);
 		
 		return insert;
 	}
@@ -173,9 +183,59 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean orderApproval(int id) {
 		
-		state = QueryCode.UPDATE;
+		// 안드로이드 디바이스 토큰
+		String send = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+		String company = "KU ERP Kosmo Ultimate ERP";
+		String account_send = "구매팀에서 주문서 승인을 요청하였습니다.";
 		
-		return state.check(orderDao.requestApproval(id));
+		state = QueryCode.UPDATE;
+		boolean approval = state.check(orderDao.requestApproval(id));
+		
+		if (approval) {
+			ApprovalRequestAlert(send, company, account_send);
+		}
+		
+		return approval;
 	}
+	
+	// FCM 발송
+	public void ApprovalRequestAlert(String tokenId, String title, String content) {
+		// 메세지 성공여부
+        try {    
+            // json 파일 경로 입력
+            FileInputStream refreshToken = new FileInputStream("C:\\dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\purchase\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
+            
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(refreshToken))
+                    .setDatabaseUrl("https://kosmo88erp-38a3c.firebaseio.com")
+                    .build();
+            
+            //Firebase 처음 호출시에만 initializing 처리
+            if(FirebaseApp.getApps().isEmpty()) {
+                FirebaseApp.initializeApp(options);
+            }
+            //String requestToken = 안드로이드 토큰 입력;
+            String requestToken = tokenId;
 
+            //message 작성
+            Message msg = Message.builder()
+                    .setAndroidConfig(AndroidConfig.builder()
+                        .setTtl(3600 * 1000) // 1 hour in milliseconds
+                        .setPriority(AndroidConfig.Priority.NORMAL)
+                        .setNotification(AndroidNotification.builder()
+                            .setTitle(title)
+                            .setBody(content)
+                            .setIcon("stock_ticker_update")
+                            .setColor("#f45342")
+                            .build())
+                        .build())
+                    .setToken(requestToken)
+                    .build();
+
+            // 메세지를 FirebaseMessaging에 보내기
+            String response = FirebaseMessaging.getInstance().send(msg);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+	}
 }

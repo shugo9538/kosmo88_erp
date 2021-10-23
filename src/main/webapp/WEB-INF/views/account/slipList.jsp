@@ -34,9 +34,6 @@
 			<div class="page-title-box">
 				<h4 class="page-title">전표입력/장부관리</h4>
 				<ol class="breadcrumb">
-					<li><a href="#">승인전표 목록</a></li>
-					<li><a href="#" id="alerttest">미승인전표 목록</a> 
-					</li>
 					<!--  <li class="active">
                         Data Table
                     </li> -->

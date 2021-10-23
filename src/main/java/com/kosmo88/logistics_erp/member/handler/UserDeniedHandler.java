@@ -18,7 +18,6 @@ public class UserDeniedHandler implements AccessDeniedHandler {
 
         String errMsg = accessDeniedException.getMessage();
         request.setAttribute("errMsg", errMsg);
-        System.out.println("error : " + errMsg);
 
         String viewPage = "/";
 

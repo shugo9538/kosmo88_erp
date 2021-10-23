@@ -43,8 +43,13 @@
 							<table id="client" class="display table mt-12" style="width:100%">
 								<tr>
 									<th style="background-color: #f1f1f1;">거래처명</th>
+									
 									<td><input type="text" name="name" id="name" required
-										placeholder="거래처명"></td>
+										placeholder="거래처명">
+										<button type="button" class="btn  btn-primary" id="search_zip_code"
+											name="search_zip_code">거래처 자동등록</button>
+										</td>
+									
 									<th style="background-color: #f1f1f1;">구분</th>
 									<td><input type="text" value="법인" readonly></td>
 								</tr>
@@ -105,16 +110,14 @@
 										required></td>
 								</tr>
 							</table>
-
-							<div class="form-group mt-5">
+						</form>
+						<div class="form-group mt-5">
 								<div class="col-md-5 col-md-offset-5">
 									<input class="btn  btn-primary" id="clientRegisterAction"
 										type="button" value="등록"> 
 									<input class="btn  btn-default" type="reset" value="취소">
 								</div>
 							</div>
-
-						</form>
 					</div>
 					<!-- end white-box -->
 				</div>

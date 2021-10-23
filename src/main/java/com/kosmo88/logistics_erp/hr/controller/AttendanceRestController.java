@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +18,6 @@ import com.kosmo88.logistics_erp.hr.dto.AttendanceDTO;
 import com.kosmo88.logistics_erp.hr.dto.CommuteDTO;
 import com.kosmo88.logistics_erp.hr.service.AttendanceService;
 
-//@Secured({"ROLE_GUEST", "ROLE_ADMIN"})
 @SessionAttributes({ "session", "userid" })
 @RestController
 @RequestMapping(value = "/hr/attendance")
@@ -53,7 +51,6 @@ public class AttendanceRestController {
     // 출퇴근 입력
     @RequestMapping(value = "/insertCommuteAction")
     public boolean insertCommuteAction(@RequestBody List<CommuteDTO> dto) {
-        System.out.println(dto.get(0).getEmployee_id());
         for (CommuteDTO d : dto) {
             attendanceService.insertCommute(d);
         }

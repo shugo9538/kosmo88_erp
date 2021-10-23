@@ -1,9 +1,9 @@
 package com.kosmo88.logistics_erp.account.utilTest;
 
 import java.io.FileInputStream;
-import java.util.Arrays;
-import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -14,8 +14,8 @@ import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Message;
 
 @Component
-public class FirebasePushMessage {
-
+public class FirebasePushMessageTest {
+    private static final Logger logger = LoggerFactory.getLogger(FirebasePushMessageTest.class);
 	void init() {
 		FileInputStream serviceAccount = null;
 		try {
@@ -53,12 +53,12 @@ public class FirebasePushMessage {
 			}
 			// Response is a message ID string.
 			
-			System.out.println("Successfully sent message: " + response);
+			logger.info("Successfully sent message: " + response);
 		}
 		
 
 		public static void main(String[] args) {
-			FirebasePushMessage fpm = new FirebasePushMessage();
+			FirebasePushMessageTest fpm = new FirebasePushMessageTest();
 			fpm.init();
 			fpm.sendMessage();
 		}

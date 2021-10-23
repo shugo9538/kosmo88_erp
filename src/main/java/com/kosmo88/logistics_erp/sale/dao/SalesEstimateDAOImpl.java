@@ -68,7 +68,6 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectList(STATEMENT + ".getEmployeeList");
 	}
 
-
 	// 견적서 상세페이지
 	@Override
 	public List<SalesItemDTO> getEstimateItemList() {
@@ -87,7 +86,6 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 		return sqlSession.selectOne(STATEMENT + ".getEstimateDetailItem", request_id);
 	}
 	
-	
 	// 견적서 등록 처리
 	@Override
 	public int insertRequest(Map<String, Object> map) {
@@ -105,12 +103,4 @@ public class SalesEstimateDAOImpl implements SalesEstimateDAO{
 	public int insertRPL() {
 		return sqlSession.insert(STATEMENT + ".insertRPL");
 	}
-
-	
-	
-
-	
-
-	
-
 }

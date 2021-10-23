@@ -21,7 +21,7 @@ public class SalesClientController {
 	@Autowired
     SalesClientService clientService;
 	
-	// 거래처(구매처) 관리 - 거래처 목록
+	// 거래처 목록
     @RequestMapping(value = "/clientManagement")
     public String clientManagement(HttpServletRequest req, Model model) {
     	

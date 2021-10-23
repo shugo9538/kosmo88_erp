@@ -126,7 +126,7 @@
 							</h2>
 							
 							<div class="col-md-2 mt-1 mb-4">
-								<button class="btn  btn-primary" type="button" id="orderItemCall">견적서 상품 불러오기</button>
+								<button class="btn  btn-primary" type="button" id="orderItemCall" value="0">견적서 상품 불러오기</button>
 							</div>
 							
 							<div id="orderItemListTable">
