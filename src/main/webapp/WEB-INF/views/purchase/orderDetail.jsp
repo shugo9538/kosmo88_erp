@@ -7,31 +7,19 @@
 	<!--Start row-->
     <div class="row">
         <div class="col-md-12">
-<<<<<<< HEAD
             <div class="white-box" id="white-box">
                 <!-- 주문서 PDF 출력 -->
 	            <div style="text-align:right;" class="dt-buttons">
-=======
-            <div class="white-box">
-            
-            	<!-- 주문서 PDF 출력 -->
-	           <div  style="text-align:right;" class="dt-buttons">
->>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
+
 	               	<button class="btn btn-danger" type="button" id="pdfmake">
 	               		<span>
 	               			<i class="fa fa-download">
 	               				PDF 다운로드
 	               			</i>
 	               		</span>
-<<<<<<< HEAD
 	            	</button>
                 </div>
-            
-=======
-	               	</button>
-               </div> 
-               
->>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
+
                 <h2 style="font-size:34px; text-align:center;" class="header-title col-md-12 mb-5">주 문 서</h2>
                 
                 
@@ -121,13 +109,9 @@
     <!-- end row -->
     <%@ include file="./js_purchase.jsp"%>
     <script src="${RESOURCES_PATH}/purchase/js/orderDetail.js"></script>
-<<<<<<< HEAD
+    
     <!-- pdf 출력 -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-=======
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
->>>>>>> 9e3fbc3b954bffb2f8c3bdbca19d87195cc70922
 	<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </div>
 </body>
