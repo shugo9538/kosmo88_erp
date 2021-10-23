@@ -31,7 +31,7 @@ public class SalesEstimateRestController {
 	 
 	// 견적서 관리
     @ResponseBody
-    @RequestMapping(value = "/estimateManagement/estimateList")
+    @RequestMapping(value = "/estimateManagement/estimateList", produces = "application/json; charset=UTF-8")
     public List<SalesEstimateListViewDTO> estimateList(HttpServletRequest req, HttpServletResponse res) {
     	return estimateService.estimateList(req, res);
     }

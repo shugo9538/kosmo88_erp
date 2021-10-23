@@ -139,7 +139,7 @@
 								<table id="estimateRegisterList" class="table table-hover" style="width:100%">
 									<thead>
 										<tr>
-											<th style="background-color: #f1f1f1;">상품번호</th>
+											<th style="background-color: #f1f1f1;">상품선택</th>
 											<th style="background-color: #f1f1f1;">상품명</th>
 											<th style="background-color: #f1f1f1;">상품종류</th>
 											<th style="background-color: #f1f1f1;">구매단가</th>
@@ -152,7 +152,7 @@
 										<tr>
 										<td>
 											<div>
-												<input type="button" class="btn  btn-primary" id="selectItem" value="상품선택">
+												<button class="btn  btn-primary" id="selectItem">상품선택</button>
 												<input type="hidden" name="item_id" id="item_id">
 											</div>
 											
@@ -171,8 +171,8 @@
 										</td>
 										<td>
 											<input style="padding:5px; border-color:#dbdbdb;" name="quantity" id="quantity" type="text"  onchange="change();" readonly required>
-											<input style="padding:2px;" type="button" value=" + " onclick="add();">                                 
-											<input style="padding:2px;" type="button" value=" - " onclick="del();">                                 
+											<input id="plus" style="padding:2px;" type="button" value=" + " onclick="add();">                                 
+											<input id="minus" style="padding:2px;" type="button" value=" - " onclick="del();">                                 
 										</td>
 										<td>
 											<input style="border:none;" class="form-control" name="total_price" id="total_price" type="text" min="0" placeholder="공급가액" required>
@@ -182,16 +182,17 @@
 								</table>
 							</div>
 							 
-							<div class="form-group mt-5">
-								<div class="col-md-5 col-md-offset-5">
-									<button class="btn  btn-primary" id="estimateRegisterAction"
-										type="button">등록</button>
-									<button
-										class="btn  btn-default" type="reset">취소</button>
-								</div>
-							</div>
+							
 
 						</form>
+						<div class="form-group mt-5">
+							<div class="col-md-5 col-md-offset-5">
+								<button class="btn  btn-primary" id="estimateRegisterAction"
+									type="button">등록</button>
+								<button
+									class="btn  btn-default" type="reset">취소</button>
+							</div>
+						</div>
 					</div>
 					<!-- end white-box -->
 				</div>

@@ -52,11 +52,11 @@
 		                                </td>
 	                                    <!-- p_order_list_view -->
 	                                    <th>주문번호</th> 		 <!-- request_id -->
-	                                    <th>주문처</th>		 <!-- client_name -->
+	                                    <th>판매처</th>		 <!-- client_name -->
 	                                    <th>대표자</th>  		 <!-- client_ceo_name -->
-	                                    <th>주문처 연락처</th>   <!-- client_phone -->
+	                                    <th>판매처 연락처</th>   <!-- client_phone -->
 	                                    <th>담당자</th>		 <!-- employee_name -->
-	                                    <th>주문일자</th> 	 	 <!-- begin_date -->
+	                                    <th>판매일자</th> 	 	 <!-- begin_date -->
 	                                    <th>납기요청일자</th>  	 <!-- end_date -->
                                         <th>승인상태</th>		 <!-- slip_state -->
                                         <th>입고상태</th>		 <!-- request_state -->
