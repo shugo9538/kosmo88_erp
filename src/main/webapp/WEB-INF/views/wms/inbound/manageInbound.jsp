@@ -144,7 +144,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+		<button type="button" onclick="location.href='/logistics_erp/test/fcmTest'" >fcmTest</button>
 	</div>
 	<!-- End Wrapper-->
 

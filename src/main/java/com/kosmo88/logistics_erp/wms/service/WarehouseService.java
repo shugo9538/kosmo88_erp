@@ -76,9 +76,9 @@ public class WarehouseService {
 
 		int additionalFormCnt = Integer.parseInt(paramMap.get("additionalFormCnt")[0]);
 		System.out.println("additionalFromCnt : " + additionalFormCnt);
-		Set<SectionDto> dtoSet = (Set<SectionDto>) DtoFunction.getDtoSetFromParamMap(paramMap, SectionDto.class,
+		List<SectionDto> dtoList = (List<SectionDto>) DtoFunction.getDtoListFromParamMap(paramMap, SectionDto.class,
 				additionalFormCnt);
-		for (SectionDto sectionDto : dtoSet) {
+		for (SectionDto sectionDto : dtoList) {
 			sectionDto.setWarehouse_id(warehouseId);
 			sectionDao.insert(sectionDto);
 		}
