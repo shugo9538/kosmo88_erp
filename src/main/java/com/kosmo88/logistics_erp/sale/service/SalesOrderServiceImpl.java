@@ -166,7 +166,7 @@ public class SalesOrderServiceImpl implements SalesOrderService{
    public boolean orderApproval(int id) {
       
       // 안드로이드 디바이스 토큰
-      String send = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+      String send = "fWdd9-ylRr24WYMm34VZf7:APA91bHH5aL7dvzwKM2WNttpRgKtK1sxwQOPowfhj-fHzaidivMdvnZsdXYPvJe-m7Zdcy_2GzpM7qo9Q2wcndclxnMBZYO1dw_5sSKvStlh0ycMce4vrhGa4v8IfBNeU_p3vp91Pgoc";
       String company = "KU ERP Kosmo Ultimate ERP";
       String account_send = "영업팀에서 주문서 승인을 요청하였습니다.";
       
@@ -186,7 +186,7 @@ public class SalesOrderServiceImpl implements SalesOrderService{
 		 //  메세지 성공여부
 	        try {    
 	            // json 파일 경로 입력
-	            FileInputStream refreshToken = new FileInputStream("C:\\Users\\82104\\Desktop\\teamPj\\kosmo88_erp\\src\\main\\webapp\\resources\\sales\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
+	            FileInputStream refreshToken = new FileInputStream("D:\\Dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\purchase\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
 	            
 	            FirebaseOptions options = new FirebaseOptions.Builder()
 	                    .setCredentials(GoogleCredentials.fromStream(refreshToken))
