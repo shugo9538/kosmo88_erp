@@ -27,9 +27,9 @@
 				<li class="active">
 					<a id="salaryList">월별 지급 및 현황</a>
 				</li>
-				<li>
-					<a id="salaryStatistics">급여 통계</a>
-				</li>
+<!-- 				<li> -->
+<!-- 					<a id="salaryStatistics">급여 통계</a> -->
+<!-- 				</li> -->
 			</ul>
 			<!--End Page Tab-->
 			<!--Start row : 근태 항목 관리 -->

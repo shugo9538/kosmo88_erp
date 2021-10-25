@@ -67,7 +67,7 @@ public class FCMUtil {
 //    public void ApprovalRequestAlert(String tokenId, String title, String content)   {
     public static void sendFcm(String content, String tokenPath)   {
         //  메세지 성공여부
-    	 String tokenId = "d9ZLQRsbSWuNhewbzkBs7j:APA91bE4g3pc6rxsj9uuMkQ-Nl-5LNrdkJWplQvKzvAQhvCoPNme6FYKO9Yre2aFsc2aL2PGSA_0m5OAdpJCZGZT69angZNczVqauVorLKICm9rB2BWzqKHZ3_snAOaI4v7i0ub-9jPJ";
+    	 String tokenId = "cM39uxMuQ_OAG9iTnxiJWu:APA91bGU2e6qocrIJyWewYHg_KCPvN8a4eC7PtYvn6cb5QDFtGX9GtQRj0iBS-i8OUgc8cVK_g6iensGEHzNN3vMa85nMahUMaZsrhy6xOTnD2YSE1BgfG2mZk_MJ23aaoqC0Q74wodr";
          String title = "KU ERP Kosmo Ultimate ERP";
          
          try {    

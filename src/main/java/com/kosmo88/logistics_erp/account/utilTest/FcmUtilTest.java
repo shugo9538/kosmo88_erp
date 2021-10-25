@@ -27,7 +27,7 @@ public class FcmUtilTest {
 		 String viewPage = "";
 	        try {    
 	            //본인의 json 파일 경로 입력
-	            FileInputStream refreshToken = new FileInputStream("C:\\dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\account\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
+	            FileInputStream refreshToken = new FileInputStream("D:\\Dev88\\workspace\\kosmo88_erp\\src\\main\\webapp\\resources\\account\\json\\kosmo88erp-38a3c-firebase-adminsdk-927z7-f61b2ca066.json");
 	            
 	            FirebaseOptions options = new FirebaseOptions.Builder()
 	                    .setCredentials(GoogleCredentials.fromStream(refreshToken))

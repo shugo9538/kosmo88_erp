@@ -77,7 +77,6 @@
 		WHERE ID = #{requestId}
 		AND STATE='TX_PURCHASE'
 	</update>
-	
 
 	<update id="updateWarehousedDate" parameterType="int">
 		UPDATE INBOUND SET

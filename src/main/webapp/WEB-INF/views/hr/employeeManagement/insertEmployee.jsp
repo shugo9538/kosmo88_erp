@@ -112,7 +112,9 @@
 								<td>
 									<select name="position_id" id="position_id">
 										<c:forEach items="${positionCodeDTOs}" var="dto">
-											<option value="${dto.id}">${dto.name}</option>
+											<c:if test="${dto.id != 0}">
+												<option value="${dto.id}">${dto.name}</option>
+											</c:if>
 										</c:forEach>
 									</select>
 								</td>

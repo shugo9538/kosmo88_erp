@@ -18,7 +18,7 @@ public interface MenuCode {
 	
 	//인사100 회계 200 영업 300 구매 400 물류 500
 	
-	int HR = 1;//   
+	int HR = 100;//   
 	String HR_STATE = "RX_SALARY";
 	String PAYMENT_STATE ="이체완료"; // 급여 일반전표 승인
 	
