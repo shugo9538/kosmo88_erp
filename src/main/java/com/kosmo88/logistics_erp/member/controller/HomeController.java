@@ -26,7 +26,7 @@ public class HomeController {
 	public String home(Model model) {
 	    logger.info("Welcome home! The client locale is {}.");
 	    
-	    return "index";
+	    return "redirect:account/financialStatement?categoryNum=150";
 	}
 	
 	@RequestMapping(value = "/login")

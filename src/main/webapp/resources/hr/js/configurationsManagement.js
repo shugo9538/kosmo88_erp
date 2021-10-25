@@ -72,50 +72,15 @@ $(document).on("click", configTab, function() {
 });
 
 // 입력 버튼 클릭시 처리
-$('.white-box').on('click', '#insertholidayAction, #insertCommuteAction', function(event) {
-    csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
-    csrfToken = $("meta[name='_csrf']").attr("content");
+$('.white-box').on('click', '#insertAttendanceAction, #insertCommuteAction', function(event) {
     var list = new Array();
     var i = 0;
-    $('#insertholidayForm #holiday').each(function() {
-        var dataObject = new Object();
-        $('.form-control' + i).each(function() {
-            var data = $(this);
-            dataObject[data.attr('name')] = data.val();
-        });
-        console.log(dataObject);
-        list.push(dataObject);
-        i++;
-    });
-    list.pop();
-    var formData = JSON.stringify(list);
-    var loc = $('#insertholidayForm').attr('action');
-    console.log(loc, formData);
-
+    window.close();
     if (preventMultiFlag) {
         alert('처리중입니다.');
         return false;
     } else {
-        $.ajax({
-            type : 'POST',
-            url : loc + '?' + csrfParameter + '=' + csrfToken,
-            data : formData,
-            accept : "application/json",
-            contentType : "application/json; charset=utf-8",
-            dataType : 'text',
-            beforeSend : function(xhr) {
-                xhr.setRequestHeader(csrfParameter, csrfToken);
-            },
-            success : function(data) {
-                if (data) {
-                    preventMultiFlag = true;
-                    window.close();
-                }
-            },
-            error : function() {
-                alert('오류');
-            },
-        });
+        window.close();
     }
 
     event.preventDefault();
@@ -152,11 +117,11 @@ function callConfigList(url, columns, ordering) {
         $('#configDatatables').append('&nbsp;');
         $('#configDatatables').append('<button id="deleteHRCode">');
         $('#insertHRCode').append('신규 코드 등록').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round");
         $('#insertHRGroupCode').append('신규 그룹코드 등록').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
         $('#deleteHRCode').append('선택 삭제').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
 
         var searchDiv = $('#configTable_filter').find('label');
         searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');
@@ -168,9 +133,9 @@ function callConfigList(url, columns, ordering) {
         $('#configDatatables').append('&nbsp;');
         $('#configDatatables').append('<button id="deleteDeptCode">');
         $('#insertDeptCode').append('부서 코드 등록').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
         $('#deleteDeptCode').append('선택 삭제').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
 
         var searchDiv = $('#configTable_filter').find('label');
         searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');
@@ -182,9 +147,9 @@ function callConfigList(url, columns, ordering) {
         $('#configDatatables').append('&nbsp;');
         $('#configDatatables').append('<button id="deletePositionCode">');
         $('#insertPositionCode').append('직급 코드 등록').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
         $('#deletePositionCode').append('선택 삭제').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
 
         var searchDiv = $('#configTable_filter').find('label');
         searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');
@@ -197,9 +162,9 @@ function callConfigList(url, columns, ordering) {
         $('#configDatatables').append('&nbsp;');
         $('#configDatatables').append('<button id="deleteAttendanceCode">');
         $('#insertAttendanceCode').append('근태 코드 등록').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
         $('#deleteAttendanceCode').append('선택 삭제').attr('class',
-                "btn btn-default outline-btn round set-color");
+                "btn btn-default outline-btn round ");
 
         var searchDiv = $('#configTable_filter').find('label');
         searchDiv.before('<select id="searchHRCode" style="margin-right:10px">');

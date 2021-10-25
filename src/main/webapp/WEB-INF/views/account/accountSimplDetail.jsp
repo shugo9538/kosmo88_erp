@@ -17,7 +17,7 @@
 <!-- 통장 거래내역 추가 페이지  -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/logistics_erp/resources/accounting/js/datepicker-ko.js"></script>
+<script src="${RESOURCES_PATH}/account/js/datepicker-ko.js"></script>
 <body class="sticky-header" onload="accountSimplFocus();">
 
     <!--Start left side Menu-->

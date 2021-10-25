@@ -57,11 +57,10 @@ $('#searchEmployeeSalary').on('click', "input[name]",function() {
     $("input[name=payday]", opener.document).val(new Date().toISOString().slice(0, 10));
     var sum = 
         Number(child.find('#employee_basic_pay').val()) + 
-        Number(child.find('#employee_over_time').val()) * 
-        1.5 * 
-        Number(child.find('#employee_time_pay').val());
+        Number(child.find('#employee_over_time').val());
+    console.log(Number(child.find('#employee_over_time').val()));
     sum = Math.round(sum / 10000) * 10000;
-    var tax = Math.round((sum * 0.06)/10000) * 10000;
+    var tax = Math.round((sum * 0.06)/10000)*10000;
     var total = sum - tax;
     $("input[name=income_tax]", opener.document).val(tax);
     $("input[name=employee_salary]", opener.document).val(total);

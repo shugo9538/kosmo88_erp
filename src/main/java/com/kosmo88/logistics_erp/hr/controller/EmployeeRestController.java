@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +28,7 @@ public class EmployeeRestController {
     EmployeeService employeeService;
 
     // 인사카드 목록 조회
+    @ResponseBody
     @RequestMapping(value = "/selectEmployee", produces = "application/json; charset=UTF-8")
     public ArrayList<EmployeeDTO> selectEmployee(HttpServletRequest req, HttpServletResponse res) {
         return employeeService.employeeManagement();

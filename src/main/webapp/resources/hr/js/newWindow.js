@@ -6,16 +6,22 @@ $(document)
                     var win;
                     var options = "width=1000,height=500,scrollbars=no,menubar=no,status=no,titlebar=no,left=150,top=200,_blank";
 
-                    var confgList = '#insertHRGroupCode, #insertHRCode';
+                    var confgList = '#insertHRGroupCode, #insertHRCode, #insertAttendanceCD, #insertPositionCode, #insertDeptCode';
                     $('#configDatatables').on('click', confgList, function(event) {
                         var url;
                         if ($(this).attr('id') == 'insertHRGroupCode') {
-                            url = 'http://192.168.50.26:3000';
+                            url = 'http://localhost:3000/insertHRGroup';
                         } else if ($(this).attr('id') == 'insertHRCode') {
-                            url = 'http://192.168.50.26:3000';
+                            url = 'http://localhost:3000/insertHRCode';
+                        } else if ($(this).attr('id') == 'insertAttendanceCD') {
+                            url = 'http://localhost:3000/insertAttendanceCD';
+                        } else if ($(this).attr('id') == 'insertPositionCode') {
+                            url = 'http://localhost:3000/insertPosition';
+                        } else if ($(this).attr('id') == 'insertDeptCode') {
+                            url = 'http://localhost:3000/insertDept';
                         }
 //                        event.preventDefault();
-                        win = window.open('http://localhost:3000/', "popupWindow", '_blank');
+                        win = window.open(url, "popupWindow", '_blank');
 //                        win = window.open('http://naver.com/', "popupWindow", '_blank');
                         win.onbeforeunload = ()=>{ alert('closed'); };
 

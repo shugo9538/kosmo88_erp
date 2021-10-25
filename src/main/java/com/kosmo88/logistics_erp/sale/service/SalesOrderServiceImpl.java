@@ -166,7 +166,8 @@ public class SalesOrderServiceImpl implements SalesOrderService{
    public boolean orderApproval(int id) {
       
       // 안드로이드 디바이스 토큰
-      String send = "fWdd9-ylRr24WYMm34VZf7:APA91bHH5aL7dvzwKM2WNttpRgKtK1sxwQOPowfhj-fHzaidivMdvnZsdXYPvJe-m7Zdcy_2GzpM7qo9Q2wcndclxnMBZYO1dw_5sSKvStlh0ycMce4vrhGa4v8IfBNeU_p3vp91Pgoc";
+//      String send = "fWdd9-ylRr24WYMm34VZf7:APA91bHH5aL7dvzwKM2WNttpRgKtK1sxwQOPowfhj-fHzaidivMdvnZsdXYPvJe-m7Zdcy_2GzpM7qo9Q2wcndclxnMBZYO1dw_5sSKvStlh0ycMce4vrhGa4v8IfBNeU_p3vp91Pgoc";
+      String send = "cM39uxMuQ_OAG9iTnxiJWu:APA91bGU2e6qocrIJyWewYHg_KCPvN8a4eC7PtYvn6cb5QDFtGX9GtQRj0iBS-i8OUgc8cVK_g6iensGEHzNN3vMa85nMahUMaZsrhy6xOTnD2YSE1BgfG2mZk_MJ23aaoqC0Q74wodr";
       String company = "KU ERP Kosmo Ultimate ERP";
       String account_send = "영업팀에서 주문서 승인을 요청하였습니다.";
       
