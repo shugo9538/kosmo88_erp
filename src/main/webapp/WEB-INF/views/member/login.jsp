@@ -43,7 +43,7 @@
 							</div>
 						</form>
 						<div class="copy-text">
-							<p class="m-0">Copyright © 2021 주식회사 우여곡절</p>
+							<p class="m-0">Copyright © 2021 KU Ultimate ERP</p>
 							<p class="m-0">Co.,Ltd All Rights Reserved</p>
 						</div>
 					</div>

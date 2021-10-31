@@ -33,6 +33,15 @@
 					height="1000px" width="800px"
 					frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
 			</div>
+			
+			<div class="row">
+
+				<iframe
+					class="col-md-12"
+					src="http://127.0.0.1:8000/"
+					height="1000px" width="800px"
+					frameborder=0 framespacing=0 marginheight=0 marginwidth=0 scrolling=no vspace=0></iframe>
+			</div>
 			<!-- Start inbox widget-->
 		</div>
 		<!--End row-->
