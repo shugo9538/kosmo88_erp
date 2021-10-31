@@ -20,6 +20,9 @@
 	<listener>
 		<listener-class>com.kosmo88.logistics_erp.util.InitVars</listener-class>
 	</listener>
+<!-- 	<listener> -->
+<!-- 		<listener-class>com.kosmo88.logistics_erp.util.elastic.InitEs</listener-class> -->
+<!-- 	</listener> -->
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>

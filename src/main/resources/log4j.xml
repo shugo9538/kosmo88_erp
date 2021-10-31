@@ -13,9 +13,9 @@
 	</appender>
 
 	<!-- Application Loggers -->
-	<logger name="com.kosmo88.logistics_erp.wms">
-		<level value="debug" />
-	</logger>
+	<!-- <logger name="com.kosmo88.logistics_erp.wms"> -->
+	<!-- <level value="debug" /> -->
+	<!-- </logger> -->
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
@@ -51,6 +51,16 @@
 		<level value="debug" />
 	</logger>
 
+
+	<logger name="org.elasticsearch">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	<logger name="com.kosmo88.logistics_erp.wms.util">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	
 
 	<!-- Root Logger -->
 	<root>

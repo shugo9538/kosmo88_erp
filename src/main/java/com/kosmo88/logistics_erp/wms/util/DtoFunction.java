@@ -15,39 +15,151 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import org.apache.ibatis.logging.LogException;
+
+import com.google.api.pathtemplate.ValidationException.Supplier;
+
+import io.grpc.alts.internal.TsiFrameProtector.Consumer;
+
 //dto Function을 사용하는 방법 3가지
 //1. 싱글톤으로 사용  2. 상속하여 사용  3.정적 메소드로 사용
 // - dto에 다형성을 적용해야 하는 상황인가??
 // - 싱글톤과 정적메소드 사용시 각각의 장단점
 // - 관점. 캡슐로 사용할지 메서드처럼 사용할지
 // - 객체지향에서 static을 너무 남발하면 객체지향 언어의 장점을 잃는다
+// 해당 클래스는 대체될 여지가 없으므로 static메소드를 사용한다
 //commondto로 대체하여 commondto를 상속하는 방식으로 전환
 public class DtoFunction {
 	// setter나 getter 메서드 이름으로 카멜 표기법 프로퍼티 이름 반환
 
-	private Log log = Log.ENABLE;
+//	static Log log = Log.ENABLE;
+	static Log log = Log.DISABLE;
 
-	// 전달되는 파라미터 이름과 Dto의 프로퍼티 이름이 다를 경우
-	// 파라미터 Map에서 이름을 참조하여 가져온 후 Dto로 넣을 때 사용한다
-	public static String adjustParamName(String param) {
-		// 1. _이 있으면 제거하고 뒤의 글자롤 대문자로 바꾼다
-		System.out.println("변경 전 이름 : " + param);
-		if (!param.contains("_")) {
-			System.out.println("변경사항 없음");
-			return param;
+	public static void disableLog() {
+		log = Log.DISABLE;
+	}
+
+	public static void enableBasicLog() {
+		log = Log.BASIC;
+	}
+
+	public static void enableDetailLog() {
+		log = Log.DETAIL;
+	}
+
+	public static void logExecuteMethod() {
+		if (log != Log.DISABLE) {
+			System.out.println("execute method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
+	}
+	
+	public static void logExecuteMethod(Object argument) {
+		if (log != Log.DISABLE) {
+			System.out.println("execute method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+			System.out.println("argument : " + argument);
+		}
+	}
+
+	// 하고싶은 말이 있으면 람다로 출력..
+	private static void logExecuteMethod(Consumer<Object> consumer) {
+		if (log != Log.DISABLE) {
+			System.out.println("execute method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+			consumer.accept(consumer);
+		}
+	}
+
+	private static void logEndMethod() {
+		if (log != Log.DISABLE) {
+			System.out.println("end method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
+	}
+	
+	private static void logEndMethod(Object returnValue) {
+		if (log != Log.DISABLE) {
+			System.out.println("return : " + returnValue);
+			System.out.println("end method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
+	}
+
+	private static void logEndMethod(Consumer<Object> consumer) {
+		if (log != Log.DISABLE) {
+			consumer.accept(consumer);
+			System.out.println("end method : " + Thread.currentThread().getStackTrace()[1].getClassName() + " "
+					+ Thread.currentThread().getStackTrace()[2].getMethodName());
+		}
+	}
+
+	public static String snakeToCamel(String var) {
+//		logExecuteMethod(e -> System.out.println("var : " + var));
+		logExecuteMethod(var);
+
+		//not snake 조건좀 늘릴 필요가 있다
+		if (!var.contains("_")) {
+			System.out.println("not snake case");
+			return var;
+		} else {
+			// 1. _이 있으면 제거하고 뒤의 글자롤 대문자로 바꾼다
+			int index;
+			StringBuffer stringBuffer;
+			stringBuffer = new StringBuffer(var);
+			while (stringBuffer.indexOf("_") > 0) {
+				index = stringBuffer.indexOf("_");
+				stringBuffer.deleteCharAt(index);
+				stringBuffer.replace(index, index + 1, (char) (stringBuffer.charAt(index) - 32) + "");
+			}
+			String newString = stringBuffer.toString();
+
+//			logEndMethod(e -> System.out.println("result : " + var + " => " + newString));
+			logEndMethod(newString);
+			return stringBuffer.toString();
+		}
+	}
+
+	// interate 했을때와 달리 for문에 정수 i를 사용했기 때문에 반복연산 중간에 index가 변경되어도 계속 연산이 실행되었다.
+	public static String camelToSnake(String var) {
+		logExecuteMethod(var);
+		StringBuffer stringBuffer;
+		if (var.contains("_")) {
+			System.out.println("not camel case");
+			return var;
 		} else {
 			int index;
-			StringBuffer stringBuffer2;
-			stringBuffer2 = new StringBuffer(param);
-			while (stringBuffer2.indexOf("_") > 0) {
-				index = stringBuffer2.indexOf("_");
-				stringBuffer2.deleteCharAt(index);
-				stringBuffer2.replace(index, index + 1, (char) (stringBuffer2.charAt(index) - 32) + "");
-			}
-			String newString = stringBuffer2.toString();
-			System.out.println("새 이름 : " + newString);
-			return stringBuffer2.toString();
+			stringBuffer = new StringBuffer(var);
+			boolean hasCap;
+			do {
+				hasCap = false;
+				for (int i = 0; i < stringBuffer.length(); i++) {
+					// 65 < upper < 91, 97 < lower < 122
+					if ((byte) stringBuffer.charAt(i) < 91 && (byte) stringBuffer.charAt(i) > 65) {
+						index = i;
+						// 첫번째 인덱스에 대문자가 들어있을 확룰은 희박하나, _를 붙이지 않도록 설정
+						if (i == 0) {
+							stringBuffer.replace(index, index + 1, "" + (char) (stringBuffer.charAt(index) + 32));
+						} else {
+							stringBuffer.replace(index, index + 1, "_" + (char) (stringBuffer.charAt(index) + 32));
+						}
+						hasCap = true;
+					}
+				}
+			} while (hasCap);
 		}
+		logEndMethod(stringBuffer.toString());
+		return stringBuffer.toString();
+	}
+	
+	
+	// 미완
+	public static Object dtoToMap(Object obj) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		Class clazz = obj.getClass();
+
+		return map;
+		
 	}
 
 	public static String methodNameToProperty(String methodName) {
@@ -80,7 +192,7 @@ public class DtoFunction {
 
 	public static Set<?> getDtoSetFromParamMap(Map<String, String[]> paramMap, Class<? extends Object> clazz,
 			int index) {
-		logMethodStart();
+		logExecuteMethod();
 		MyLog.logReqParamMap(paramMap);
 
 		String param;
@@ -160,11 +272,10 @@ public class DtoFunction {
 		System.out.println("뭬야");
 		return dtoSet;
 	}
-	
-	
+
 	public static List<?> getDtoListFromParamMap(Map<String, String[]> paramMap, Class<? extends Object> clazz,
 			int index) {
-		logMethodStart();
+		logExecuteMethod();
 		MyLog.logReqParamMap(paramMap);
 
 		String param;
@@ -249,8 +360,9 @@ public class DtoFunction {
 	// 요청 파라미터로 Dto 초기화(insert 하기 전 dto에 데이터 담을 때 사용)
 	// 요청 파라미터의 name 과 프로퍼티 이름은 같아야 한다
 	// set한 프로퍼티의 목록을 Set으로 리턴하면 좋을것같다
+	// 팀프로젝트만 끝나면 삭제하자..
 	public static Set<String> setDtoFromParamMap(Map<String, String[]> paramMap, Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 
 		String param;
 		String[] paramValue;
@@ -330,93 +442,92 @@ public class DtoFunction {
 		return settedPropSet;
 	}
 
-	// 보류 : clss를 받도록 개선
-	public static Object getDtoFromParamMap(Map<String, String[]> paramMap, Object dto) {
-		logMethodStart();
-//	Enumeration<String> parameterEnum = request.getParameterNames();
-
-		String param;
-		String[] paramValue;
-		String prop;
-		Set<String> settedPropSet = new HashSet<>();
-		Set<String> paramSet = paramMap.keySet();
-		Iterator<String> paramItr = paramSet.iterator();
-
-		String paramType;
-		String propType;
-
-		Class clazz = dto.getClass();
-		Method[] methods = clazz.getDeclaredMethods();
-		// 파라미터 이름,값 가져오기
-		// 하나의 키에 대해 값이 여러개일 수 있다
-		// 1. 하나인지 여러개인지 체크
-		// 2. 각 값에 대해서 다 대입하도록? > 타입이 컬렉션이어야 한다
-		while (paramItr.hasNext()) {
-			param = paramItr.next();
-			paramValue = paramMap.get(param);
-			param = adjustParamName(param);
-
-			System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
-
-			// dto에서 프로퍼티 가져오기
-			for (Method method : methods) {
-				prop = methodNameToProperty(method.getName());
-				if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
-					try {
-						for (int i = 0; i < paramValue.length; i++) {
-							System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName() + "실행 - "
-									+ paramValue[i] + " => " + prop);
-							paramType = paramValue[i].getClass().getSimpleName();
-							propType = method.getParameters()[0].getType().getSimpleName();
-							System.out.println("파라미터 타입 : " + paramType + " 프로퍼티 타입 : " + propType);
-
-							if (paramType == propType)
-								method.invoke(dto, paramValue[i]);
-							else {
-								System.out.println("paramvalue" + " " + paramValue.getClass().getSimpleName() + " "
-										+ paramValue[i]);
-								switch (propType) {
-								case "String":
-									method.invoke(dto, paramValue[0]);
-									break;
-								case "int":
-									method.invoke(dto, Integer.parseInt(paramValue[0]));
-									break;
-								case "Double":
-									method.invoke(dto, Double.parseDouble(paramValue[0]));
-									break;
-								case "Boolean":
-									method.invoke(dto, Boolean.parseBoolean(paramValue[0]));
-									break;
-								case "Date":
-									method.invoke(dto, java.sql.Date.valueOf(paramValue[0]));
-									break;
-								}
-//							method.invoke(dto, castParamType(paramValue, propType));
-							}
-						}
-//					if (paramValue.length == 1) {
-//						method.invoke(dto, paramValue[0]);
-//						settedPropSet.add(prop);
-//					} else if (paramValue.length > 1) {
-						// 파라미터 값이 여러개일 경우의 처리 필요
-						// 여러개이면 아마 콜렉션에 추가하는 식으로
-						// 이럴 경우엔 setter가 add가 될 것이다
+//	// 보류 : clss를 받도록 개선
+//	public static Object getDtoFromParamMap(Map<String, String[]> paramMap, Object dto) {
+//		logMethodStart();
+////	Enumeration<String> parameterEnum = request.getParameterNames();
+//
+//		String param;
+//		String[] paramValue;
+//		String prop;
+//		Set<String> settedPropSet = new HashSet<>();
+//		Set<String> paramSet = paramMap.keySet();
+//		Iterator<String> paramItr = paramSet.iterator();
+//
+//		String paramType;
+//		String propType;
+//
+//		Class clazz = dto.getClass();
+//		Method[] methods = clazz.getDeclaredMethods();
+//		// 파라미터 이름,값 가져오기
+//		// 하나의 키에 대해 값이 여러개일 수 있다
+//		// 1. 하나인지 여러개인지 체크
+//		// 2. 각 값에 대해서 다 대입하도록? > 타입이 컬렉션이어야 한다
+//		while (paramItr.hasNext()) {
+//			param = paramItr.next();
+//			paramValue = paramMap.get(param);
+//			param = snakeToKamel(param);
+//
+//			System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
+//
+//			// dto에서 프로퍼티 가져오기
+//			for (Method method : methods) {
+//				prop = methodNameToProperty(method.getName());
+//				if (method.getName().contains("set") && prop.equals(param) && !paramValue.equals("")) {
+//					try {
+//						for (int i = 0; i < paramValue.length; i++) {
+//							System.out.println(" - " + dto.getClass().getSimpleName() + " " + method.getName() + "실행 - "
+//									+ paramValue[i] + " => " + prop);
+//							paramType = paramValue[i].getClass().getSimpleName();
+//							propType = method.getParameters()[0].getType().getSimpleName();
+//							System.out.println("파라미터 타입 : " + paramType + " 프로퍼티 타입 : " + propType);
+//
+//							if (paramType == propType)
+//								method.invoke(dto, paramValue[i]);
+//							else {
+//								System.out.println("paramvalue" + " " + paramValue.getClass().getSimpleName() + " "
+//										+ paramValue[i]);
+//								switch (propType) {
+//								case "String":
+//									method.invoke(dto, paramValue[0]);
+//									break;
+//								case "int":
+//									method.invoke(dto, Integer.parseInt(paramValue[0]));
+//									break;
+//								case "Double":
+//									method.invoke(dto, Double.parseDouble(paramValue[0]));
+//									break;
+//								case "Boolean":
+//									method.invoke(dto, Boolean.parseBoolean(paramValue[0]));
+//									break;
+//								case "Date":
+//									method.invoke(dto, java.sql.Date.valueOf(paramValue[0]));
+//									break;
+//								}
+////							method.invoke(dto, castParamType(paramValue, propType));
+//							}
+//						}
+////					if (paramValue.length == 1) {
+////						method.invoke(dto, paramValue[0]);
+////						settedPropSet.add(prop);
+////					} else if (paramValue.length > 1) {
+//						// 파라미터 값이 여러개일 경우의 처리 필요
+//						// 여러개이면 아마 콜렉션에 추가하는 식으로
+//						// 이럴 경우엔 setter가 add가 될 것이다
+////					}
+//					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+//						e.printStackTrace();
 //					}
-					} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-		// 확인용
-		checkSettedProperties(dto);
-		return dto;
-	}
+//				}
+//			}
+//		}
+//		// 확인용
+//		checkSettedProperties(dto);
+//		return dto;
+//	}
 
-	// 보류 : clss를 받도록 개선
 	public static Object getDtoFromParamMap(Map<String, String[]> paramMap, Class<?> clazz) {
-		logMethodStart();
+		logExecuteMethod();
 //		Enumeration<String> parameterEnum = request.getParameterNames();
 
 		String param;
@@ -442,7 +553,7 @@ public class DtoFunction {
 			while (paramItr.hasNext()) {
 				param = paramItr.next();
 				paramValue = paramMap.get(param);
-				param = adjustParamName(param);
+				param = snakeToCamel(param);
 
 				System.out.println("요청 파라미터 : " + param + "  값 : " + Arrays.toString(paramValue));
 
@@ -507,7 +618,7 @@ public class DtoFunction {
 
 	// db조회 결과 ResultSet로 dto를 초기화
 	public static void setDtoWithResultSetRow(Object dto, ResultSet rs) {
-		logMethodStart();
+		logExecuteMethod();
 		String column;
 		String columnType;// 확인용
 		Object columnValue;
@@ -542,7 +653,7 @@ public class DtoFunction {
 	// dto와 칼럼이름, 값만 가지고오면 알아서 매칭해서 저장
 	// Collection 변수이면 add하기 추가....
 	public static void setPropertyWithColumn(Object dto, String column, Object columnValue) {
-		logMethodStart();
+		logExecuteMethod();
 		// dto에서 메서드 이름 뽑아오기
 		Class clazz = dto.getClass();
 		Method[] methods = clazz.getDeclaredMethods();
@@ -569,7 +680,7 @@ public class DtoFunction {
 
 	// dto의 모든 프로퍼티 셋 반환
 	public static Set<String> getAllPropertySet(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		Set<String> propertySet = new HashSet<>();
 		Class clazz = dto.getClass();
 		Method[] methods = clazz.getDeclaredMethods();
@@ -586,7 +697,7 @@ public class DtoFunction {
 
 	// VO의 모든 프로퍼티 키, 값 Map 반환
 	public static Map<String, Object> getAllPropertyMap(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		String property = "";
 		Object propertyValue;
 		Map<String, Object> propertieMap = new HashMap<>();
@@ -614,7 +725,7 @@ public class DtoFunction {
 
 	// 값이 있는 프로퍼티만 Map 으로 반환
 	public static Map<String, Object> getValidPropertyMap(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		String property;
 		Object propertyValue;
 		Map<String, Object> propertieMap = new HashMap<>();
@@ -645,7 +756,7 @@ public class DtoFunction {
 	// PreparedStatement에 순서를 맞추기 위해 List 사용
 	// 프로퍼티 값이 존재하는지 미리 확인.. 근데 이러면 자원 낭비가 너무 많이 된다
 	public static List<String> getValidPropertyList(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		String property;
 		Object propertyValue;
 		List<String> propertyList = new ArrayList<>();
@@ -672,7 +783,7 @@ public class DtoFunction {
 	}
 
 	public static List<Object> getValidPropertyValueList(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		String property;
 		Object propertyValue;
 		List<Object> propertyValueList = new ArrayList<>();
@@ -707,7 +818,7 @@ public class DtoFunction {
 	}
 
 	public static void checkSettedProperties(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		String checkPropertyName;
 		Object checkPropertyValue;
 		Map<String, Object> dtoPropertyMap = getValidPropertyMap(dto);
@@ -720,7 +831,7 @@ public class DtoFunction {
 	}
 
 	public static void printDtoInfo(Object dto) {
-		logMethodStart();
+		logExecuteMethod();
 		Class clazz = dto.getClass();
 		Method[] methods = clazz.getDeclaredMethods();
 		String methodName;
@@ -735,33 +846,6 @@ public class DtoFunction {
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void logMethodStart() {
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
-		System.out.print("----------------");
-		System.out.print(
-				stackTraceElement.getClassName().substring((stackTraceElement.getClassName().lastIndexOf(".") + 1)));
-		System.out.print(" " + stackTraceElement.getMethodName() + "실행");
-		System.out.println("---------------");
-	}
-
-	public static void logMethodEnd() {
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
-		System.out.print("----------------");
-		System.out.print(
-				stackTraceElement.getClassName().substring((stackTraceElement.getClassName().lastIndexOf(".") + 1)));
-		System.out.print(" " + stackTraceElement.getMethodName() + "끝");
-		System.out.println("---------------");
-	}
-
-	public void setLog(boolean value) {
-		if (value == true) {
-			log = Log.ENABLE;
-		} else {
-			log = Log.DISABLE;
-		}
-
 	}
 
 	public static Object castParamType(String paramValue, Object propType) {
@@ -801,5 +885,5 @@ public class DtoFunction {
 }
 
 enum Log {
-	ENABLE, DISABLE
+	DISABLE, BASIC, DETAIL
 }

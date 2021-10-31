@@ -19,6 +19,7 @@ public class LogAdvice {
 
 	@Pointcut("execution(* com.kosmo88.logistics_erp.wms..*.*(..))"
 			+ " ||execution(* java.lang.Integer..*.*(..))"
+			+ " ||execution(* org.elasticsearch..*.*(..))"
 			)
 	private void common() { }
 	
