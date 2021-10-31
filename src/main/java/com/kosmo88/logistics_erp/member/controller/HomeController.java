@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosmo88.logistics_erp.member.service.UserService;
+import com.kosmo88.logistics_erp.wms.service.ElasticService;
 
 @Controller
 public class HomeController {
@@ -22,11 +23,15 @@ public class HomeController {
     @Autowired
     SqlSessionTemplate sqlSession;
     
+    @Autowired
+    ElasticService elasticService;
+
 	@RequestMapping(value = "/")
 	public String home(Model model) {
 	    logger.info("Welcome home! The client locale is {}.");
-	    
-	    return "redirect:account/financialStatement?categoryNum=150";
+
+//	    return "redirect:account/financialStatement?categoryNum=150";
+	    return "index";
 	}
 	
 	@RequestMapping(value = "/login")

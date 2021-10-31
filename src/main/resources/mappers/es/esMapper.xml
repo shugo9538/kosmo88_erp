@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosmo88.logistics_erp.wms.dao.EsEtlDao">
+	<select id="selectPurchaseAndSaleList"
+	resultType="PurchaseAndSaleDto">
+		SELECT * FROM V_PURCHASE_AND_SALE
+	</select>
+	
+		<select id="selectSalesDetailList"
+	resultType="SalesDetailDto">
+		SELECT * FROM V_SALES_DETAIL
+	</select>
+	
+</mapper>
+
+
